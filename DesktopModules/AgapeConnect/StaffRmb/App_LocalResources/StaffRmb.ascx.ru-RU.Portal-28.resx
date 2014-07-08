@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountBalance.Text">
+    <value>Остаток на счете</value>
+  </data>
+  <data name="AccountsComments.Text">
+    <value>Комментарии к счетам</value>
+  </data>
+  <data name="AccountsMode.Text">
+    <value>Вы находитесь в режиме Счета. Чтобы переключиться в обычный режим (как обычный сотрудник или утверждающий), перейдите в режим Просмотра (вверху справа).</value>
+  </data>
+  <data name="AccountsOnly.Text">
+    <value>Использовать только для счетов</value>
+  </data>
+  <data name="AccountWarning.Text">
+    <value>Предупреждение</value>
+  </data>
+  <data name="AddEditRmb.Text">
+    <value>Добавить/Изменить Новый отчёт</value>
+  </data>
+  <data name="AdvAmountSpecial.Text">
+    <value>Поскольку ваша сумма больше, чем [TEAMLEADERLIMIT] в вашем авансе, она должна быть одобрена [AUTHUSER].</value>
+  </data>
+  <data name="Advance.Text">
+    <value>Аванс</value>
+  </data>
+  <data name="AdvanceApproved.Text">
+    <value>Аванс №[ADVANCEID] был одобрен!</value>
+  </data>
+  <data name="AdvanceBalance.Text">
+    <value>Сумма незакрытых авансов</value>
+  </data>
+  <data name="AdvanceError.Text">
+    <value>Вы ввели неправильную сумму. Настройки не были сохранены.</value>
+  </data>
+  <data name="AdvanceRequest.Text">
+    <value>Запрос аванса</value>
+  </data>
+  <data name="AdvApproved.Text">
+    <value>Утверждено [DATA] от [STAFFNAME]</value>
+  </data>
+  <data name="AdvAuthSpecial.Text">
+    <value>Так как вы Авторизованый Пользователь, и ваш обычный лидер не может утвердить этот Аванс, он должен быть одобрен Директором: [AUTHAUTHUSER].</value>
+  </data>
+  <data name="AdvDate.Text">
+    <value>Получен [DATE]</value>
+  </data>
+  <data name="AdvEmailApprovedSubject.Text">
+    <value>Аванс №[ADVNO] был одобрен [APPROVER]</value>
+  </data>
+  <data name="AdvEmailCancelledSubject.Text">
+    <value>Аванс №[ADVNO] отменен</value>
+  </data>
+  <data name="AdvEmailSubmittedSubject.Text">
+    <value>Аванс №[ADVNO]</value>
+  </data>
+  <data name="AdvIntro.Text">
+    <value>[STAFFNAME] подал заявку на утверждение Вами авансового запроса</value>
+  </data>
+  <data name="AdvLocked.Text">
+    <value>Ваш Аванс уже обработан и не может быть изменен или отменен.</value>
+  </data>
+  <data name="AdvNotApproved.Text">
+    <value>Ожидает утверждения от: [STAFFNAMES]</value>
+  </data>
+  <data name="AdvProcessed.Text">
+    <value>Обработан [DATE]</value>
+  </data>
+  <data name="AdvReason.Text">
+    <value>Причина</value>
+  </data>
+  <data name="AdvSpouseSpecial.Text">
+    <value>Поскольку Ваш руководитель является Вашим супругом, аванс должен быть обработан [AUTHUSER].</value>
+  </data>
+  <data name="AdvSubmittedApprEmailSubject.Text">
+    <value>Аванс для [STAFFNAME]</value>
+  </data>
+  <data name="Amount.Text">
+    <value>Сумма</value>
+  </data>
+  <data name="AmountSpecial.Text">
+    <value>Поскольку в Вашем отчёте имеется сумма больше, чем [TEAMLEADERLIMIT], отчёт должен быть одобрен [AUTHUSER].</value>
+  </data>
+  <data name="Approved.Text">
+    <value>Одобрен</value>
+  </data>
+  <data name="ApprovedBy.Text">
+    <value>Одобрен</value>
+  </data>
+  <data name="ApprovedOn.Text">
+    <value>Одобрен</value>
+  </data>
+  <data name="AuthSpecial.Text">
+    <value>Так как Вы руководитель, и Ваш обычный руководитель не может утвердить этот отчёт, то он должен быть одобрен Самым Главным Руководителем: [AUTHAUTHUSER].</value>
+  </data>
+  <data name="AwaitingApproval.Text">
+    <value>Ожидает утверждения</value>
+  </data>
+  <data name="BatchedRmbs.Text">
+    <value>Download Batched Reimbursements</value>
+  </data>
+  <data name="btnAddExpenseItem.Text">
+    <value>Добавьте затраты</value>
+  </data>
+  <data name="btnAdvanceRequest.Text">
+    <value>Сделайте запрос Аванса</value>
+  </data>
+  <data name="btnAdvReq.Text">
+    <value>Запрос Аванса</value>
+  </data>
+  <data name="btnApprove.Text">
+    <value>Утвердить</value>
+  </data>
+  <data name="btnCancel.Text">
+    <value>Отменить</value>
+  </data>
+  <data name="btnCreate.Text">
+    <value>Создавать</value>
+  </data>
+  <data name="btnDownload.Text">
+    <value>Загрузить в Excel</value>
+  </data>
+  <data name="btnDownloadBatch.Text">
+    <value>Download Batched Transactions</value>
+  </data>
+  <data name="btnEnter.Text">
+    <value>Ввести</value>
+  </data>
+  <data name="btnMoreInfo.Text">
+    <value>Запросить больше информации</value>
+  </data>
+  <data name="btnNew.Text">
+    <value>Новый отчёт</value>
+  </data>
+  <data name="btnNo.Text">
+    <value>Нет</value>
+  </data>
+  <data name="btnOK.Text">
+    <value>ОК</value>
+  </data>
+  <data name="btnPrint.Text">
+    <value>Печать</value>
+  </data>
+  <data name="btnProcess.Text">
+    <value>Процесс</value>
+  </data>
+  <data name="btnReject.Text">
+    <value>Не принимает</value>
+  </data>
+  <data name="btnSave.Text">
+    <value>Сохранить</value>
+  </data>
+  <data name="btnSettings.Text">
+    <value>Настройки</value>
+  </data>
+  <data name="btnSplitAdd.Text">
+    <value>Добавить строку</value>
+  </data>
+  <data name="btnSubmit.Text">
+    <value>Представлять</value>
+  </data>
+  <data name="btnUnProcess.Text">
+    <value>Не Проводить</value>
+  </data>
+  <data name="btnYes.Text">
+    <value>Да</value>
+  </data>
+  <data name="Cancelled.Text">
+    <value>Отменено</value>
+  </data>
+  <data name="cbExpenses.Text">
+    <value>Включают в себя расходы</value>
+  </data>
+  <data name="cbSalaries.Help">
+    <value>Выберите этот вариант, чтобы включить заработную плату сотрудников в предложенной платежной загрузке. Вы можете установить зарплату для каждого сотрудника, со страницы Персонал Админ (Admin-&gt;AgapeConnect-&gt;Staff Admin).</value>
+  </data>
+  <data name="cbSalaries.Text">
+    <value>Включите заработные платы</value>
+  </data>
+  <data name="Comment.Text">
+    <value>Комментарий</value>
+  </data>
+  <data name="CreateRmb.Text">
+    <value>Создание нового отчёта</value>
+  </data>
+  <data name="Default.Text">
+    <value>По умолчанию</value>
+  </data>
+  <data name="DefaultSettingsText">
+    <value>* Внимание - этот модуль с настройками по умолчанию. Пожалуйста, ознакомьтесь с сохранением настроек модуля, прежде чем использовать в онлайн режиме.</value>
+  </data>
+  <data name="Delete.Text">
+    <value>Удалить</value>
+  </data>
+  <data name="Description.Text">
+    <value>Описание</value>
+  </data>
+  <data name="DownloadFailed.Text">
+    <value>Скачать не удалось</value>
+  </data>
+  <data name="Draft.Text">
+    <value>Черновик</value>
+  </data>
+  <data name="Edit.Text">
+    <value>Редактировать</value>
+  </data>
+  <data name="EmailApprovedSubjectA.Text">
+    <value>Отчёт №[RMBNO] был одобрен [APPROVER]</value>
+  </data>
+  <data name="EmailApprovedSubjectP.Text">
+    <value>Отчёт №[RMBNO] - [USERREF] был одобрен</value>
+  </data>
+  <data name="EmailCancelledSubject.Text">
+    <value>ОТчёт №[RMBNO] - [USERREF] отменил</value>
+  </data>
+  <data name="EmailComments.Text">
+    <value>Эти комментарии были представлены с  отчётом </value>
+  </data>
+  <data name="EmailSubmittedSubject.Text">
+    <value>Отчёт №[RMBNO]</value>
+  </data>
+  <data name="ErrorHelp.Text">
+    <value>* Note: If the automatic download experiences an error whilst inserting transactions to the Accounts Program, the entire batch may be rejected. If you have multiple reimbursements in an error state - the problem might be with one of the other reimbursements.</value>
+  </data>
+  <data name="ErrorInProgress.Text">
+    <value>This reimbursement cannot be unprocessed at this time, as it is currently being downloaded by the automatic datapump (transaction broker). You can try again in a few minutes, but be aware that it will already have been processed into your accounts program.</value>
+  </data>
+  <data name="Errors.Text">
+    <value>Следующие возмещения в состоянии ошибки</value>
+  </data>
+  <data name="Expenses.Text">
+    <value>Расходы</value>
+  </data>
+  <data name="Expire.Text">
+    <value>Возмещение должно быть сделано в течение [EXPIRE] месяцев. Дата, которую Вы ввели, уже за пределами возможного периода [EXPIRE] месяцев возмещения. Если Вы возместите этот расход, то выплаты по нему будут рассматриваться как дополнительная зарплата и дополнительно облагаться налогом.</value>
+  </data>
+  <data name="ExpireDept.Text">
+    <value>Отчёт должен быть сделан в течение [EXPIRE] месяцев. Дата, которую Вы ввели, уже за пределами возможного периода [EXPIRE] месяцев возмещения. Если Вы возместите этот расход, то выплаты по нему будут рассматриваться как дополнительная зарплата (с Вашего Личного СЧЕТА!) и дополнительно облагаться налогом.</value>
+  </data>
+  <data name="ExpireImpossible.Text">
+    <value>Отчёт должен быть сделан в течение [EXPIRE] месяцев. Дата, которую Вы ввели, уже за пределами возможного периода [EXPIRE] месяцев возмещения и НЕ может быть возмещена.</value>
+  </data>
+  <data name="ForceNonTaxable.Text">
+    <value>Не облагается налогом</value>
+  </data>
+  <data name="ForceTaxable.Text">
+    <value>Облагается налогом</value>
+  </data>
+  <data name="LargeTransaction.Text">
+    <value>Крупный перевод</value>
+  </data>
+  <data name="lblAccountWarning.Text">
+    <value>Недостаточно средств на счете для возмещения этого отчёта. Обработка этого отчёта может привести к отрицательному балансу счета. Вы уверены, что хотите продолжить?</value>
+  </data>
+  <data name="lblBankAccount.Help">
+    <value>Select the Bank Account that you will use to pay staff. (You can set the default bank account under the Settings page of this module.).</value>
+  </data>
+  <data name="lblBankAccount.Text">
+    <value>Банковский счет</value>
+  </data>
+  <data name="lblElectronicReceipts.Help">
+    <value>Загрузить изображения (JPG, PNG, GIF) или PDF электронной квитанции (чека).</value>
+  </data>
+  <data name="lblElectronicReceipts.Text">
+    <value>Электронный чек</value>
+  </data>
+  <data name="lblErrorMessage.Text">
+    <value>Сообщение об ошибке</value>
+  </data>
+  <data name="lblIncome.Text">
+    <value>Сотрудник заявил, что он получил доход  (лично). Эта сумма была вычтена из суммы, подлежащей выплате им. Если это пожертвование, пожалуйста, не забудьте отметить этот пожертвование в Donorwise.</value>
+  </data>
+  <data name="lblWrongType.Text">
+    <value>Этот отчёт использует тип расхода, который недопустим для этого счёта. Вы должны отредактировать эту строку и выбрать правильный тип расходов, прежде чем Вы сможете представить этот отчёт.</value>
+  </data>
+  <data name="lblWrongTypes.Text">
+    <value>Отчёт содержит позиции с несовместимыми типами расходов - они выделены красным цветом. Некоторые виды расходов возможны только или как личный расход или как прочее для административного отчёта. Чтобы исправить это, выберите новый (правильный) тип расхода. Вы должны исправить эти ошибки, прежде чем Вы сможете представить/утвердить/обработать этот отчёт.</value>
+  </data>
+  <data name="LineType.Text">
+    <value>Тип линии</value>
+  </data>
+  <data name="LineTypes.Text">
+    <value>Тип Расходов</value>
+  </data>
+  <data name="NewLineTitle.Text">
+    <value>Добавить затраты по отчёту</value>
+  </data>
+  <data name="MoreInfo.Text">
+    <value>Финансовый отдел просит, чтобы Вы предоставили больше информации для отчёта [RMBNO] - [UserRef].</value>
+  </data>
+  <data name="NoReceipts.Text">
+    <value>Нет квитанции</value>
+  </data>
+  <data name="OpenNewTab.Text">
+    <value>Нажмите, чтобы посмотреть в новой вкладке ...</value>
+  </data>
+  <data name="OriginalTrans.Text">
+    <value>Оригинал перевода</value>
+  </data>
+  <data name="OutOfDate.Text">
+    <value>Этот расход устарел и будет облагаться налогом.</value>
+  </data>
+  <data name="OverideTax.Text">
+    <value>Overide Tax</value>
+  </data>
+  <data name="PayOff.Help">
+    <value>Введите сумму, которую вы хотели бы внести за заем.</value>
+  </data>
+  <data name="PayOff.Text">
+    <value>Погасить аванс</value>
+  </data>
+  <data name="PendingDownload.Text">
+    <value>В ожидании загрузки</value>
+  </data>
+  <data name="Period.Text">
+    <value>Период</value>
+  </data>
+  <data name="PostReceipts.Text">
+    <value>Пожалуйста, оставьте свои квитанции (чеки), в прилагаемой форме, в национальное офисе.</value>
+  </data>
+  <data name="PrintoutMoreInfo.Text">
+    <value>Отпечаток открылась в новом окне / вкладке. Если вам нужно отправить в квитанции для вашего возмещения, и вы еще не посылал их в офис, приложите их к этой распечатке и отправить его в офис.</value>
+  </data>
+  <data name="Processed.Text">
+    <value>Обработано</value>
+  </data>
+  <data name="ProcessedBy.Text">
+    <value>Обработано</value>
+  </data>
+  <data name="ProcessedOn.Text">
+    <value>Обработанные на</value>
+  </data>
+  <data name="ReceiptNo.Text">
+    <value>Квитанция (чек) №</value>
+  </data>
+  <data name="Receipts.Text">
+    <value>Квитанции (чеки)</value>
+  </data>
+  <data name="RecoverVAT.Text">
+    <value>Восстановление НДС?</value>
+  </data>
+  <data name="RecoverVATRate.Text">
+    <value>НДС к возмещению ставка (%)</value>
+  </data>
+  <data name="Reimbursement.Text">
+    <value>Отчёт</value>
+  </data>
+  <data name="RmbApproved.Text">
+    <value>Отчёт №[RMBNO] был одобрен!</value>
+  </data>
+  <data name="RmbsToApprove.Text">
+    <value>Отчёты для утверждения</value>
+  </data>
+  <data name="RmbTitle.Text">
+    <value>Отчёты</value>
+  </data>
+  <data name="SubmittedApprEmailSubject.Text">
+    <value>Отчёт [STAFFNAME]</value>
+  </data>
+  <data name="TeamRmbs.Text">
+    <value>Ваша команда / отдел</value>
+  </data>
+  <data name="TransDate.Text">
+    <value>Дата</value>
+  </data>
+  <data name="Year.Text">
+    <value>Год</value>
+  </data>
+  <data name="YourRef.Text">
+    <value>Ваши описания</value>
+  </data>
+  <data name="YourRmbs.Text">
+    <value>Ваши отчёты</value>
+  </data>
+  <data name="ApproversComments.Text">
+    <value>Комментарии от руководителя &amp;#39;s</value>
+  </data>
+  <data name="cbExpenses.Help">
+    <value>Выберите эту опцию, чтобы включить Аванс и Возмещение платежей. Расходы должны быть полностью обработаны в динамике до соответствующей оплаты, которая появятся в этом отчете. ( Может занять до 5 минут после «размещения», прежде чем она появится здесь).</value>
+  </data>
+  <data name="CommentLeft.Text">
+    <value>Комментарий, который оставил [FIRSTNAME]: "[COMMENT]".</value>
+  </data>
+  <data name="EmailApproverChanged.Text">
+    <value>Кажется, что Ваш руководитель внёс изменения в Ваш отчёт, прежде, чем одобрить его. Вы можете посмотреть Ваш отчёт, выбрав его из раздела "Одобрено" в группе Отчёты.</value>
+  </data>
+  <data name="LineTypes.Help">
+    <value>Пожалуйста, убедитесь, чтобы Вы вошли в свое возмещение правильным образом. Если Ваш расход не соответствует ни одной из категорий, зайдите вновь.</value>
+  </data>
+  <data name="MarkProcessed.Text">
+    <value>Хотели бы Вы отметить загруженные сделки как 'Обработанные'?</value>
+  </data>
+  <data name="MarkProcessedHelp.Text">
+    <value>Если вы собираетесь вставить эти операции вручную в группу счетов, вы должны выбрать ДА. Знайте, что по отдельным ДА, эти сделки будут помечены как обработанные и таким образом игнорируются автоматическим переносом информации.</value>
+  </data>
+  <data name="MoreInfoMsg.Text">
+    <value>Этот отчёт будет доступен сотруднику на этой странице. Тем не менее, Вы должны выслать сообщение сотруднику непосредственно, чтобы он понимал, какая информация Вам нужна.</value>
+  </data>
+  <data name="NextBatch.Text">
+    <value>Этот отчёт будет загружен в следующей партии.</value>
+  </data>
+  <data name="NextBatchAdvance.Text">
+    <value>Этот аванс будет загружен в следующей партии.</value>
+  </data>
+  <data name="NoPostReceipts.Text">
+    <value>Нет необходимости предоставлять квитанцию (чек), так что вам не нужно отправлять что-либо в офис. Прилагаемая форма только для информации.</value>
+  </data>
+  <data name="OverideTax.Help">
+    <value>Используйте эту настройку для изменения настроек налогов. По умолчанию система рассчитает налог на основе информации, предоставленной пользователем - но сотрудники могут использовать эту установку для изменения этих настроек.</value>
+  </data>
+  <data name="Printout.Text">
+    <value>Эта форма открылась в новом окне/вкладке. Не забудьте приложить отчёт с квитанцииями/чеками к этой распечатки и отправить его в офис.</value>
+  </data>
+  <data name="YourComments.Text">
+    <value>Ваши комментарии</value>
+  </data>
+  <data name="ToProcess.Text">
+    <value>Обработать</value>
+  </data>
+  <data name="ToApprove.Text">
+    <value>Утвердить</value>
+  </data>
+  <data name="Taxable.Text">
+    <value>* - Поля отмеченные *, будет облагаться налогом.</value>
+  </data>
+  <data name="SuggestedPayments.Text">
+    <value>Предлагаемые Платежи</value>
+  </data>
+  <data name="SubmittedOn.Text">
+    <value>Сдан</value>
+  </data>
+  <data name="SubmittedBy.Text">
+    <value>Сдан</value>
+  </data>
+  <data name="ShortComment.Help">
+    <value>Your accounting program will probably have a limit on the number of characters in the Comment/Description field. For Dynamics/Solomon, this is typically 30 Characters (Including the staff initals). You can customise this descrption here.</value>
+  </data>
+  <data name="Submitted.Text">
+    <value>Сдан</value>
+  </data>
+  <data name="SpouseSpecial.Text">
+    <value>Поскольку Ваш руководитель является Вашим супругом, отчёт должен быть обработан [AuthUser].</value>
+  </data>
+  <data name="SplitTransaction.Text">
+    <value>Разделить перевод</value>
+  </data>
+  <data name="SplitInto.Text">
+    <value>Разделить</value>
+  </data>
+  <data name="SplitError.Text">
+    <value>Пожалуйста, введите описание и сумму для всех позиций</value>
+  </data>
+  <data name="Split.Text">
+    <value>Разделение</value>
+  </data>
+  <data name="ShortComment.Text">
+    <value>Короткий комментарий</value>
+  </data>
+</root>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AgapeConnect" EntityNamespace="MinistryView" ContextNamespace="MinistryView" Class="MinistryViewDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=AgapeConnect;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.MinistryView_UserCountryProfile" Member="MinistryView_UserCountryProfiles">
+    <Type Name="MinistryView_UserCountryProfile">
+      <Column Name="UserCountryProfileId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CountryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="GUID" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Association Name="MinistryView_AdditionalCountry_MinistryView_UserCountryProfile" Member="MinistryView_AdditionalCountry" ThisKey="CountryId" OtherKey="CountryId" Type="MinistryView_AdditionalCountry" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MinistryView_AdditionalCountries" Member="MinistryView_AdditionalCountries">
+    <Type Name="MinistryView_AdditionalCountry">
+      <Column Name="CountryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CountryName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ServiceURL" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="MinistryView_AdditionalCountry_MinistryView_UserCountryProfile" Member="MinistryView_UserCountryProfiles" ThisKey="CountryId" OtherKey="CountryId" Type="MinistryView_UserCountryProfile" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountBalance.Text">
+    <value>Баланс на сметка</value>
+  </data>
+  <data name="AccountsComments.Text">
+    <value>Коментари от финансов отдел</value>
+  </data>
+  <data name="AccountWarning.Text">
+    <value>Внимание</value>
+  </data>
+  <data name="AddEditRmb.Text">
+    <value>Въведете/редактирайте нов разход</value>
+  </data>
+  <data name="Advance.Text">
+    <value>Аванс</value>
+  </data>
+  <data name="AdvanceApproved.Text">
+    <value>Аванс #[ADVANCEID] е одобрен!</value>
+  </data>
+  <data name="AdvanceBalance.Text">
+    <value>Баланс на авансите: </value>
+  </data>
+  <data name="AdvanceRequest.Text">
+    <value>Заявка за аванс</value>
+  </data>
+  <data name="AdvApproved.Text">
+    <value>Одобрен на [DATE] от [STAFFNAME]</value>
+  </data>
+  <data name="AdvDate.Text">
+    <value>Получен на [DATE]</value>
+  </data>
+  <data name="AdvEmailApprovedSubject.Text">
+    <value>Аванс #:[ADVNO] е одобрен от [APPROVER]</value>
+  </data>
+  <data name="AdvEmailCancelledSubject.Text">
+    <value>Аванс #: [ADVNO] е отхвърлен</value>
+  </data>
+  <data name="AdvEmailSubmittedSubject.Text">
+    <value>Аванс #[ADVNO]</value>
+  </data>
+  <data name="AdvIntro.Text">
+    <value>[STAFFNAME] е подал заявка за одобрение на аванс</value>
+  </data>
+  <data name="AdvLocked.Text">
+    <value>Вашият аванс вече е обработен и не може да бъде променен или прекратен</value>
+  </data>
+  <data name="AdvNotApproved.Text">
+    <value>Чака одобрение от: [STAFFNAMES]</value>
+  </data>
+  <data name="AdvReason.Text">
+    <value>Причина</value>
+  </data>
+  <data name="AdvSubmittedApprEmailSubject.Text">
+    <value>Аванс за [STAFFNAME]</value>
+  </data>
+  <data name="Amount.Text">
+    <value>Сума</value>
+  </data>
+  <data name="Approved.Text">
+    <value>Одобрени</value>
+  </data>
+  <data name="ApprovedBy.Text">
+    <value>Одобрен от: </value>
+  </data>
+  <data name="ApprovedOn.Text">
+    <value>Одобрен на: </value>
+  </data>
+  <data name="AdvAmountSpecial.Text">
+    <value>Имате заявка за аванс по-голяма от [TEAMLEADERLIMIT]. Това трябва да бъде одобрено от [AUTHUSER].</value>
+  </data>
+  <data name="AdvanceError.Text">
+    <value>Въвели сте некоректна стойност. Зашите настройки няма да бъдат запзаени.</value>
+  </data>
+  <data name="AdvProcessed.Text">
+    <value>Обработен на [DATE]</value>
+  </data>
+  <data name="AdvSpouseSpecial.Text">
+    <value>Тъй като вашият ръководител е вашият съпруг, то вашият аванс трябва да бъде одобрен от [AUTHUSER].</value>
+  </data>
+  <data name="AwaitingApproval.Text">
+    <value>Чака одобрение от: </value>
+  </data>
+  <data name="btnAdvanceRequest.Text">
+    <value>Изпрати Заявка за аванс</value>
+  </data>
+  <data name="btnCancel.Text">
+    <value>Откажи</value>
+  </data>
+  <data name="btnApprove.Text">
+    <value>Одобри</value>
+  </data>
+  <data name="btnEnter.Text">
+    <value>Въведи</value>
+  </data>
+  <data name="btnNew.Text">
+    <value>Нов отчет</value>
+  </data>
+  <data name="btnNo.Text">
+    <value>Не</value>
+  </data>
+  <data name="btnPrint.Text">
+    <value>Отпечатай</value>
+  </data>
+  <data name="btnReject.Text">
+    <value>Отхвърли</value>
+  </data>
+  <data name="btnSave.Text">
+    <value>Запази</value>
+  </data>
+  <data name="btnSettings.Text">
+    <value>Настройки</value>
+  </data>
+  <data name="btnSplitAdd.Text">
+    <value>Добави ред</value>
+  </data>
+  <data name="btnSubmit.Text">
+    <value>Изпрати</value>
+  </data>
+  <data name="btnYes.Text">
+    <value>Да</value>
+  </data>
+  <data name="Cancelled.Text">
+    <value>Отказани</value>
+  </data>
+  <data name="Delete.Text">
+    <value>Изтрий</value>
+  </data>
+  <data name="Description.Text">
+    <value>Описание</value>
+  </data>
+  <data name="Edit.Text">
+    <value>Редактирай</value>
+  </data>
+  <data name="Expenses.Text">
+    <value>Разходи</value>
+  </data>
+  <data name="Period.Text">
+    <value>Период: </value>
+  </data>
+  <data name="btnAdvReq.Text">
+    <value>Заявка за аванс</value>
+  </data>
+  <data name="btnCreate.Text">
+    <value>Създай</value>
+  </data>
+  <data name="btnMoreInfo.Text">
+    <value> Поискай повече информация</value>
+  </data>
+  <data name="btnProcess.Text">
+    <value>Обработи</value>
+  </data>
+  <data name="btnUnProcess.Text">
+    <value>Откажи обработката</value>
+  </data>
+  <data name="EmailSubmittedSubject.Text">
+    <value>Отчет #[RMBNO]</value>
+  </data>
+  <data name="EmailApprovedSubjectP.Text">
+    <value>Отчет #: [RMBNO] - [USERREF]  е одобрен</value>
+  </data>
+  <data name="EmailCancelledSubject.Text">
+    <value>Отчет #: [RMBNO] - [USERREF]  е отхвърлен</value>
+  </data>
+  <data name="EmailApprovedSubjectA.Text">
+    <value>Отчет #:[RMBNO] е одобрен от [APPROVER]</value>
+  </data>
+  <data name="ProcessedBy.Text">
+    <value>Обработен от: </value>
+  </data>
+  <data name="ProcessedOn.Text">
+    <value>Обработен на: </value>
+  </data>
+  <data name="Processed.Text">
+    <value>Обработени</value>
+  </data>
+  <data name="Receipts.Text">
+    <value>Документи: </value>
+  </data>
+  <data name="ReceiptNo.Text">
+    <value>Документ №</value>
+  </data>
+  <data name="Reimbursement.Text">
+    <value>Отчет</value>
+  </data>
+  <data name="RmbApproved.Text">
+    <value>Отчет #[RMBNO] е одобрен!</value>
+  </data>
+  <data name="RmbsToApprove.Text">
+    <value>Отчети за одобрение</value>
+  </data>
+  <data name="RmbTitle.Text">
+    <value>Отчети</value>
+  </data>
+  <data name="ShortComment.Text">
+    <value>Кратък коментар</value>
+  </data>
+  <data name="Split.Text">
+    <value>Раздели</value>
+  </data>
+  <data name="SplitError.Text">
+    <value>Моля въведете описание и сума за всеки ред</value>
+  </data>
+  <data name="Submitted.Text">
+    <value>Изпратени</value>
+  </data>
+  <data name="SubmittedApprEmailSubject.Text">
+    <value>Отчет на [STAFFNAME]</value>
+  </data>
+  <data name="SubmittedBy.Text">
+    <value>Изпратен от</value>
+  </data>
+  <data name="SubmittedOn.Text">
+    <value>Изпратен на</value>
+  </data>
+  <data name="ToApprove.Text">
+    <value>За одобрение: </value>
+  </data>
+  <data name="ToProcess.Text">
+    <value>За обработване: </value>
+  </data>
+  <data name="TransDate.Text">
+    <value>Дата</value>
+  </data>
+  <data name="Year.Text">
+    <value>Година</value>
+  </data>
+  <data name="YourComments.Text">
+    <value>Вашите коментари</value>
+  </data>
+  <data name="YourRmbs.Text">
+    <value>Вашите отчети: </value>
+  </data>
+  <data name="TeamRmbs.Text">
+    <value>Вашият екип / отдел</value>
+  </data>
+  <data name="Draft.Text">
+    <value>Чернови</value>
+  </data>
+  <data name="Comment.Text">
+    <value>Коментар</value>
+  </data>
+  <data name="SpouseSpecial.Text">
+    <value>Тъй като вашият ръководител е вашият съпруг, то вашият отчет трябва да бъде одобрен от [AUTHUSER].</value>
+  </data>
+  <data name="CreateRmb.Text">
+    <value>Създай нов отчет</value>
+  </data>
+  <data name="LineTypes.Text">
+    <value>Вид на разхода: </value>
+  </data>
+  <data name="MoreInfo.Text">
+    <value>Финансовият отдел изисква от вас повече информация за отчет[RMBNO] - [USERREF].</value>
+  </data>
+  <data name="YourRef.Text">
+    <value>Ваша референция: </value>
+  </data>
+  <data name="CommentLeft.Text">
+    <value>Коментарът на [FIRSTNAME] е: "[COMMENT]".</value>
+  </data>
+  <data name="btnAddExpenseItem.Text">
+    <value>Добави разход</value>
+  </data>
+  <data name="cbExpenses.Text">
+    <value>Включи разходи: </value>
+  </data>
+  <data name="cbSalaries.Text">
+    <value>Включи заплати: </value>
+  </data>
+  <data name="AmountSpecial.Text">
+    <value>Имате разход надвишаващ [TEAMLEADERLIMIT]. Той трябва да бъде одобрен от [AUTHUSER].</value>
+  </data>
+  <data name="NewLineTitle.Text">
+    <value>Добави нов разход</value>
+  </data>
+  <data name="PayOff.Text">
+    <value>За изчистване от аванс: </value>
+  </data>
+  <data name="NoReceipts.Text">
+    <value>Без документи: </value>
+  </data>
+  <data name="lblBankAccount.Text">
+    <value>Банкова сметка</value>
+  </data>
+  <data name="lblElectronicReceipts.Text">
+    <value>Сканирани документи</value>
+  </data>
+  <data name="lblErrorMessage.Text">
+    <value>Съобщение за грешка: </value>
+  </data>
+  <data name="PostReceipts.Text">
+    <value>Моля приложете всички документи към прикачената форма и ги изпратете в Националния офис.</value>
+  </data>
+  <data name="Printout.Text">
+    <value>Формуляр за отпечатване на вашия отчет е отворена. Не забравяйте да прикачите документите към формуляра и да ги изпратите в Националния офис.</value>
+  </data>
+  <data name="ApproversComments.Text">
+    <value>Коментар на одобряващия</value>
+  </data>
+  <data name="btnDownload.Text">
+    <value>Download to Excel</value>
+  </data>
+  <data name="EmailApproverChanged.Text">
+    <value>Одобряващият е направил промени във вашия отчет преди да го одобри. Може да видите отчета си в отдел "Одобрени" на страницата за Отчети.</value>
+  </data>
+  <data name="EmailComments.Text">
+    <value>Към отчета има следните коментари</value>
+  </data>
+  <data name="lblElectronicReceipts.Help">
+    <value>Приложете сканирани документи във формат jpg, png, gif или PDF.</value>
+  </data>
+  <data name="Expire.Text">
+    <value>Разходите трябва да се отчитат в рамките на [EXPIRE] месеца. Разходът, който сте въвели не попада в този период от  [EXPIRE] месеца. Ако го отчетете той ще бъде възстановен само на половина.</value>
+  </data>
+</root>

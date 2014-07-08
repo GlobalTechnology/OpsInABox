@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AgapeConnect" Class="gr_mappingDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=AgapeConnect;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ProfilePropertyDefinition" Member="ProfilePropertyDefinitions">
+    <Type Name="ProfilePropertyDefinition">
+      <Column Name="PropertyDefinitionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PortalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ModuleDefID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Deleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DataType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DefaultValue" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PropertyCategory" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Length" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Required" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ValidationExpression" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="ViewOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Visible" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DefaultVisibility" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReadOnly" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_StaffPropertyDefinition" Member="AP_StaffBroker_StaffPropertyDefinitions">
+    <Type Name="AP_StaffBroker_StaffPropertyDefinition">
+      <Column Name="StaffPropertyDefinitionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PropertyName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ViewOrder" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Display" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PropertyHelp" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Type" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="FixedFieldName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.gr_mapping" Member="gr_mappings">
+    <Type Name="gr_mapping">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LocalName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="gr_dot_notated_name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="FieldType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LocalSource" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

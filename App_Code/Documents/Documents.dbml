@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AgapeConnect" Class="DocumentsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=AgapeConnect;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.AP_Documents_Docs" Member="AP_Documents_Docs">
+    <Type Name="AP_Documents_Doc">
+      <Column Name="DocId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FolderId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FileId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Author" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CustomIcon" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Permissions" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Keywords" Type="System.String" DbType="nvarchar(250)" CanBeNull="true" />
+      <Column Name="VersionNumber" Type="System.String" DbType="nvarchar(10)" CanBeNull="true" />
+      <Column Name="LinkType" Type="System.String" DbType="nvarchar(10)" CanBeNull="true" />
+      <Column Name="LinkValue" Type="System.String" DbType="nvarchar(Max)" CanBeNull="true" />
+      <Association Name="AP_Documents_Doc_AP_Documents_TagMeta" Member="AP_Documents_TagMetas" ThisKey="DocId" OtherKey="DocId" Type="AP_Documents_TagMeta" />
+      <Association Name="AP_Documents_Doc_AP_Documents_Comment" Member="AP_Documents_Comments" ThisKey="DocId" OtherKey="DocId" Type="AP_Documents_Comment" />
+      <Association Name="AP_Documents_Doc_AP_Documents_Version" Member="AP_Documents_Versions" ThisKey="FileId" OtherKey="FileId" Type="AP_Documents_Version" Cardinality="One" />
+      <Association Name="AP_Documents_Folder_AP_Documents_Doc" Member="AP_Documents_Folder" ThisKey="FolderId" OtherKey="FolderId" Type="AP_Documents_Folder" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_Documents_Folders" Member="AP_Documents_Folders">
+    <Type Name="AP_Documents_Folder">
+      <Column Name="FolderId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ParentFolder" Type="System.Int64" DbType="BigInt" CanBeNull="false" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CustomIcon" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Permission" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Association Name="AP_Documents_Folder_AP_Documents_Doc" Member="AP_Documents_Docs" ThisKey="FolderId" OtherKey="FolderId" Type="AP_Documents_Doc" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_Documents_TagMeta" Member="AP_Documents_TagMetas">
+    <Type Name="AP_Documents_TagMeta">
+      <Column Name="TagMetaId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DocId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TagId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="AP_Documents_Doc_AP_Documents_TagMeta" Member="AP_Documents_Doc" ThisKey="DocId" OtherKey="DocId" Type="AP_Documents_Doc" IsForeignKey="true" />
+      <Association Name="AP_Documents_Tag_AP_Documents_TagMeta" Member="AP_Documents_Tag" ThisKey="TagId" OtherKey="TagId" Type="AP_Documents_Tag" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_Documents_Tags" Member="AP_Documents_Tags">
+    <Type Name="AP_Documents_Tag">
+      <Column Name="TagId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TagName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CustomIcon" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="AP_Documents_Tag_AP_Documents_TagMeta" Member="AP_Documents_TagMetas" ThisKey="TagId" OtherKey="TagId" Type="AP_Documents_TagMeta" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_Documents_Comments" Member="AP_Documents_Comments">
+    <Type Name="AP_Documents_Comment">
+      <Column Name="CommentId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DocId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Display" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="AP_Documents_Doc_AP_Documents_Comment" Member="AP_Documents_Doc" ThisKey="DocId" OtherKey="DocId" Type="AP_Documents_Doc" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_Documents_Versions" Member="AP_Documents_Versions">
+    <Type Name="AP_Documents_Version">
+      <Column Name="VersionId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DocId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="FileId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VersionNumber" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="AP_Documents_Doc_AP_Documents_Version" Member="AP_Documents_Doc" ThisKey="FileId" OtherKey="FileId" Type="AP_Documents_Doc" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnCancel.Text">
+    <value>Anuloj</value>
+  </data>
+  <data name="lblDescription.Help">
+    <value>Shkruani një përshkrim të shkurtër (jo e detyrueshme)</value>
+  </data>
+  <data name="lblDescription.Text">
+    <value>Përshkrimi</value>
+  </data>
+  <data name="lblDisplaying.Text">
+    <value>Duke shfaqur përmbajtjen e</value>
+  </data>
+  <data name="lblDisplayName.Help">
+    <value>Zgjidhni një emër për këtë dokument (max 100 karaktere). Nuk duhet të jetë i njëjtë me emrin e skedarit.</value>
+  </data>
+  <data name="lblDisplayingSearch.Text">
+    <value>Rezultatet e kërkimit për Display</value>
+  </data>
+  <data name="lblDisplayName.Text">
+    <value>Display Name</value>
+  </data>
+  <data name="lblExpand.Text">
+    <value>(Kliko për të zgjeruar / colapse)</value>
+  </data>
+  <data name="lblFile.Text">
+    <value>Skeda</value>
+  </data>
+  <data name="lblFileAuthor.Help">
+    <value>Shkruani emrin e autor / pronari (optional)</value>
+  </data>
+  <data name="lblFileAuthor.Text">
+    <value>Autori</value>
+  </data>
+  <data name="lblFileDescription.Help">
+    <value>Shkruani një përshkrim të shkurtër të këtij file (optional)</value>
+  </data>
+  <data name="lblFileDescription.Text">
+    <value>Përshkrimi</value>
+  </data>
+  <data name="lblFolderName.Help">
+    <value>Zgjidhni një emër për dosjen tuaj të re (max 100 karaktere)</value>
+  </data>
+  <data name="lblFolderName.Text">
+    <value>Folder Name</value>
+  </data>
+  <data name="lblGoogle.Help">
+    <value>Kjo është identike me të Jashtëm URL, përveç lidhja do të ketë një Google Icon. Kur përdoruesit të klikoni në këtë link, googledoc do të hapet në një skedë të re.</value>
+  </data>
+  <data name="lblGoogle.Text">
+    <value>Google Doc URL</value>
+  </data>
+  <data name="lblIcon.Text">
+    <value>Icon</value>
+  </data>
+  <data name="lblKeywords.Help">
+    <value>Shkruani fjalë kyçe që lidhen me këtë skedë. Fjalë kyçe të shumëfishta me një presje. Keywords ndihmuar përdoruesit tuaj të kërkoni për dokumente.</value>
+  </data>
+  <data name="lblKeywords.Text">
+    <value>Keywords</value>
+  </data>
+  <data name="lblLinkType.Help">
+    <value>Zgjidhni llojin link.</value>
+  </data>
+  <data name="lblLinkType.Text">
+    <value>Link Type</value>
+  </data>
+  <data name="lblPage.Help">
+    <value>Zgjidhni faqe ju do të donte për të link. Kur përdoruesit të klikoni në këtë link, ajo do të hapet në të njëjtën gruas së ve.</value>
+  </data>
+  <data name="lblPage.Text">
+    <value>Faqe</value>
+  </data>
+  <data name="lblPermissions.Text">
+    <value>Lejet</value>
+  </data>
+  <data name="lblSelectFile.Help">
+    <value>Zgjidh një dokument për ta ngarkuar, si një version të ri, pastaj kliko Save Version.</value>
+  </data>
+  <data name="lblSelectFile.Text">
+    <value>Zgjidh dokumentit</value>
+  </data>
+  <data name="lblSelectFiles.Text">
+    <value>Zgjidhni dosjet që doni të ngarkoni</value>
+  </data>
+  <data name="lblSelectFilesHelp.Text">
+    <value>Ju mund të zgjidhni sa më shumë fotografi që ju dëshironi. Kur ju keni zgjedhur fotografi tuaj, klikoni upload. Nëse ju do të donte për të ndryshuar të dhënat fotografi (p.sh. emër ose një përshkrim) ose vendndodhjen, right click mbi file (pasi që e keni ngarkuar atë).</value>
+  </data>
+  <data name="lblSelectIcon.Help">
+    <value>Zgjidh një file imazh (png, gif ose jpg). Përderisa çdo skedar imazh mund të përdoret, ne ju këshillojmë të përdorni një imazh Sqaure të 128px x 128px. Fotografi png priren të punojnë më mirë, pasi ata mund të sigurojë cilësi të lartë me prejardhje transparente. Shmangni fotografi me rezolucion shumë të lartë, pasi që këto do të ngadalësojë herë tuaj ngarkimit.</value>
+  </data>
+  <data name="lblSelectIcon.Text">
+    <value>Zgjidh Image dokumentit</value>
+  </data>
+  <data name="lblTags.Help">
+    <value>Zgjidhni tags që përshkruajnë më mirë llojin e burimeve. Dokumentet mund të jetë e shënuar dhe e kontrolluar nga Tag.</value>
+  </data>
+  <data name="lblTags.Text">
+    <value>Tags</value>
+  </data>
+  <data name="lblURL.Help">
+    <value>Futni url website (duke përfshirë http://). Kur përdoruesit të klikoni në këtë link, në faqen e internetit do të hapet në një skedë të re.</value>
+  </data>
+  <data name="lblURL.Text">
+    <value>Website URL</value>
+  </data>
+  <data name="lblVersion.Help">
+    <value>Futni një numër versioni për këtë dokumenteve (Opsionale)</value>
+  </data>
+  <data name="lblVersion.Text">
+    <value>Versioni</value>
+  </data>
+  <data name="lblVersions.Text">
+    <value>Versionet</value>
+  </data>
+  <data name="lblYouTube.Help">
+    <value>Futni url e YouTube video tuaj, ose vetëm të ju tub video-id. Kur përdoruesit të klikoni në këtë link, ata do të shohin këtë video në këtë faqe.</value>
+  </data>
+  <data name="lblYouTube.Text">
+    <value>YouTube URL</value>
+  </data>
+  <data name="Save.Text">
+    <value>Ruaj</value>
+  </data>
+</root>

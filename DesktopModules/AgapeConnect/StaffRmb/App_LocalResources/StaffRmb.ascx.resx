@@ -1,0 +1,582 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountsComments.Text" xml:space="preserve">
+    <value>Accounts Comments</value>
+  </data>
+  <data name="AccountsOnly.Text" xml:space="preserve">
+    <value>Accounts use only</value>
+  </data>
+  <data name="AdvanceError.Text" xml:space="preserve">
+    <value>You have entered an invalid amount. Your settings have not been saved.</value>
+  </data>
+  <data name="Amount.Text" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="AmountSpecial.Text" xml:space="preserve">
+    <value>Since you have a transaction over [TEAMLEADERLIMIT] in your reimbursement it must be approved by [AUTHUSER].</value>
+  </data>
+  <data name="Approved.Text" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="ApprovedBy.Text" xml:space="preserve">
+    <value>Approved by:</value>
+  </data>
+  <data name="ApprovedOn.Text" xml:space="preserve">
+    <value>Approved on:</value>
+  </data>
+  <data name="ApproversComments.Text" xml:space="preserve">
+    <value>Approver&amp;#39;s Comments</value>
+  </data>
+  <data name="AuthSpecial.Text" xml:space="preserve">
+    <value>Since you are the AuthUser, and your usual leader is inelligible to approve this reimbursement, it must be approved by the AuthAuthUser: [AUTHAUTHUSER].</value>
+  </data>
+  <data name="AwaitingApproval.Text" xml:space="preserve">
+    <value>Awaiting approval by:</value>
+  </data>
+  <data name="btnAddExpenseItem.Text" xml:space="preserve">
+    <value>Add Expense Item</value>
+  </data>
+  <data name="btnApprove.Text" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnCreate.Text" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="btnDownload.Text" xml:space="preserve">
+    <value>Download to Excel</value>
+  </data>
+  <data name="btnDownloadBatch.Text" xml:space="preserve">
+    <value>Download Batched Transactions</value>
+  </data>
+  <data name="btnEnter.Text" xml:space="preserve">
+    <value>Enter</value>
+  </data>
+  <data name="btnNew.Text" xml:space="preserve">
+    <value>New Reimbursement</value>
+  </data>
+  <data name="btnNo.Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="btnOK.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="btnPrint.Text" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="btnProcess.Text" xml:space="preserve">
+    <value>Process</value>
+  </data>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="btnSettings.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="btnSplitAdd.Text" xml:space="preserve">
+    <value>Add Line</value>
+  </data>
+  <data name="btnSubmit.Text" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="btnUnProcess.Text" xml:space="preserve">
+    <value>UnProcess</value>
+  </data>
+  <data name="btnYes.Text" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Cancelled.Text" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="Comment.Text" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="CommentLeft.Text" xml:space="preserve">
+    <value>The comment that [FIRSTNAME] left was: "[COMMENT]".</value>
+  </data>
+  <data name="DefaultSettingsText" xml:space="preserve">
+    <value>*Warning - This module is using the default settings. Please review and save the module settings before using in a live environement</value>
+  </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Description.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Draft.Text" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="Edit.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EmailApprovedSubjectA.Text" xml:space="preserve">
+    <value>Rmb#:[RMBNO] has been approved by [APPROVER]</value>
+  </data>
+  <data name="EmailApprovedSubjectP.Text" xml:space="preserve">
+    <value>Rmb#: [RMBNO] - [USERREF]  has been approved</value>
+  </data>
+  <data name="EmailApproverChanged.Text" xml:space="preserve">
+    <value>It appears that your approver made changes to this reimbursement, before approving it. You can view this reimbursement by selecting it from the "Approved" section of the Reimbursement website.</value>
+  </data>
+  <data name="EmailCancelledSubject.Text" xml:space="preserve">
+    <value>Rmb#: [RMBNO] - [USERREF]  has been cancelled</value>
+  </data>
+  <data name="EmailComments.Text" xml:space="preserve">
+    <value>The following comments were submitted with this reimbursement:</value>
+  </data>
+  <data name="EmailSubmittedSubject.Text" xml:space="preserve">
+    <value>Reimbursement #[RMBNO]</value>
+  </data>
+  <data name="ErrorInProgress.Text" xml:space="preserve">
+    <value>This reimbursement cannot be unprocessed at this time, as it is currently being downloaded by the automatic datapump (transaction broker). You can try again in a few minutes, but be aware that it will already have been processed into your accounts program.</value>
+  </data>
+  <data name="Expenses.Text" xml:space="preserve">
+    <value>Expenses</value>
+  </data>
+  <data name="Expire.Text" xml:space="preserve">
+    <value>Reimbursements must be made within [EXPIRE] months. This item you have entered is not within the [EXPIRE] months cut off period. If you reimburse this item it will be treated as extra salary and therefore incur tax.</value>
+  </data>
+  <data name="LineType.Text" xml:space="preserve">
+    <value>Line Type</value>
+  </data>
+  <data name="LineTypes.Help" xml:space="preserve">
+    <value>Please ensure that you enter your reimbursement under the correct type. If your expense doesn't fit under any other category, select other.</value>
+  </data>
+  <data name="LineTypes.Text" xml:space="preserve">
+    <value>Expense Type:</value>
+  </data>
+  <data name="AdvanceBalance.Text" xml:space="preserve">
+    <value>Advance Balance:</value>
+  </data>
+  <data name="MarkProcessed.Text" xml:space="preserve">
+    <value>Would you like to mark the downloaded transactions as 'Processed'?</value>
+  </data>
+  <data name="MarkProcessedHelp.Text" xml:space="preserve">
+    <value>If you are going to insert these transactions manually into your accounts package, you should select YES. Be aware that by selected YES, these transactions will be marked as processed and therfore ignored by the automatic datapump.</value>
+  </data>
+  <data name="NewLineTitle.Text" xml:space="preserve">
+    <value>Add New Reimbursement Transaction</value>
+  </data>
+  <data name="NextBatch.Text" xml:space="preserve">
+    <value>This reimbursement will be downloaded in the next batch.</value>
+  </data>
+  <data name="NoPostReceipts.Text" xml:space="preserve">
+    <value>There are no receipts required, so you do not need to send anything to the office. The attached form is for your reference only.</value>
+  </data>
+  <data name="NoReceipts.Text" xml:space="preserve">
+    <value>No Receipts:</value>
+  </data>
+  <data name="OriginalTrans.Text" xml:space="preserve">
+    <value>Original Transaction</value>
+  </data>
+  <data name="PayOff.Help" xml:space="preserve">
+    <value>Enter the amount you would like to pay off your loan.</value>
+  </data>
+  <data name="PayOff.Text" xml:space="preserve">
+    <value>Pay off advance:</value>
+  </data>
+  <data name="PendingDownload.Text" xml:space="preserve">
+    <value>Pending Download</value>
+  </data>
+  <data name="Period.Text" xml:space="preserve">
+    <value>Period:</value>
+    <comment>Financial Period/Month</comment>
+  </data>
+  <data name="PostReceipts.Text" xml:space="preserve">
+    <value>Please post your receipts, on the attached form, to the national office.</value>
+    <comment>You might want to include the address here.</comment>
+  </data>
+  <data name="Printout.Text" xml:space="preserve">
+    <value>Your printout has opened in a new window/tab. Don't forget to attach your receipts (if necessary) to this printout and send it to the office.</value>
+  </data>
+  <data name="PrintoutMoreInfo.Text" xml:space="preserve">
+    <value>Your printout has opened in a new window/tab. If you need to send in receipts for your reimbursement and you have not yet sent them in to the office, please attach them to this printout and send it to the office.</value>
+  </data>
+  <data name="Processed.Text" xml:space="preserve">
+    <value>Processed</value>
+  </data>
+  <data name="ProcessedBy.Text" xml:space="preserve">
+    <value>Processed by:</value>
+  </data>
+  <data name="ProcessedOn.Text" xml:space="preserve">
+    <value>Processed on:</value>
+  </data>
+  <data name="ReceiptNo.Text" xml:space="preserve">
+    <value>Receipt No</value>
+  </data>
+  <data name="Receipts.Text" xml:space="preserve">
+    <value>Receipts:</value>
+  </data>
+  <data name="RecoverVAT.Text" xml:space="preserve">
+    <value>Recover VAT?</value>
+  </data>
+  <data name="RecoverVATRate.Text" xml:space="preserve">
+    <value>Vat Recoverable Rate(%):</value>
+  </data>
+  <data name="Reimbursement.Text" xml:space="preserve">
+    <value>Reimbursement</value>
+  </data>
+  <data name="RmbApproved.Text" xml:space="preserve">
+    <value>Reimbursement #[RMBNO] has been approved!</value>
+  </data>
+  <data name="RmbsToApprove.Text" xml:space="preserve">
+    <value>Reimbursments to approve:</value>
+  </data>
+  <data name="RmbTitle.Text" xml:space="preserve">
+    <value>Reimbursments</value>
+  </data>
+  <data name="Split.Text" xml:space="preserve">
+    <value>Split</value>
+  </data>
+  <data name="SplitError.Text" xml:space="preserve">
+    <value>Please enter a description and an amount for all lines</value>
+  </data>
+  <data name="SplitInto.Text" xml:space="preserve">
+    <value>Split into</value>
+  </data>
+  <data name="SpouseSpecial.Text" xml:space="preserve">
+    <value>Since your leader is also your spouse your reimbursement must be processed by [AUTHUSER].</value>
+  </data>
+  <data name="Submitted.Text" xml:space="preserve">
+    <value>Submitted</value>
+  </data>
+  <data name="SubmittedApprEmailSubject.Text" xml:space="preserve">
+    <value>Reimbursement for [STAFFNAME]</value>
+  </data>
+  <data name="SubmittedBy.Text" xml:space="preserve">
+    <value>Submitted by:</value>
+  </data>
+  <data name="SubmittedOn.Text" xml:space="preserve">
+    <value>Submitted on:</value>
+  </data>
+  <data name="Taxable.Text" xml:space="preserve">
+    <value>* - Items marked with a * will be taxed.</value>
+  </data>
+  <data name="TeamRmbs.Text" xml:space="preserve">
+    <value>Your team / department</value>
+  </data>
+  <data name="ToApprove.Text" xml:space="preserve">
+    <value>To Approve:</value>
+  </data>
+  <data name="ToProcess.Text" xml:space="preserve">
+    <value>To Process:</value>
+  </data>
+  <data name="TransDate.Text" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Year.Text" xml:space="preserve">
+    <value>Year:</value>
+  </data>
+  <data name="YourComments.Text" xml:space="preserve">
+    <value>Your Comments</value>
+  </data>
+  <data name="YourRef.Text" xml:space="preserve">
+    <value>Your Ref:</value>
+  </data>
+  <data name="YourRmbs.Text" xml:space="preserve">
+    <value>Your Reimbursements:</value>
+  </data>
+  <data name="AddEditRmb.Text" xml:space="preserve">
+    <value>Add/Edit New Reimbursement Expense</value>
+  </data>
+  <data name="BatchedRmbs.Text" xml:space="preserve">
+    <value>Download Batched Reimbursements</value>
+  </data>
+  <data name="CreateRmb.Text" xml:space="preserve">
+    <value>Create a New Reimbursement</value>
+  </data>
+  <data name="SplitTransaction.Text" xml:space="preserve">
+    <value>Split Transaction</value>
+  </data>
+  <data name="AccountsMode.Text" xml:space="preserve">
+    <value>You are in Accounts Mode. To switch to normal mode (as a normal staff member or Approver), switch to VIEW mode (top right).</value>
+  </data>
+  <data name="ErrorHelp.Text" xml:space="preserve">
+    <value>* Note: If the automatic download experiences an error whilst inserting transactions to the Accounts Program, the entire batch may be rejected. If you have multiple reimbursements in an error state - the problem might be with one of the other reimbursements.</value>
+  </data>
+  <data name="Errors.Text" xml:space="preserve">
+    <value>The following reimbursements are in an error state: </value>
+  </data>
+  <data name="AdvanceRequest.Text" xml:space="preserve">
+    <value>Advance Request</value>
+  </data>
+  <data name="btnAdvanceRequest.Text" xml:space="preserve">
+    <value>Submit Advance Request</value>
+  </data>
+  <data name="btnAdvReq.Text" xml:space="preserve">
+    <value>Request Advance</value>
+  </data>
+  <data name="AdvApproved.Text" xml:space="preserve">
+    <value>Approved on [DATE] by [STAFFNAME]</value>
+  </data>
+  <data name="AdvDate.Text" xml:space="preserve">
+    <value>Received on [DATE]</value>
+  </data>
+  <data name="AdvIntro.Text" xml:space="preserve">
+    <value>[STAFFNAME] has submitted an Advance Request for your approval:</value>
+  </data>
+  <data name="AdvNotApproved.Text" xml:space="preserve">
+    <value>Awaiting Approval by: [STAFFNAMES]</value>
+  </data>
+  <data name="AdvProcessed.Text" xml:space="preserve">
+    <value>Processed on [DATE]</value>
+  </data>
+  <data name="AdvReason.Text" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="btnReject.Text" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="AccountBalance.Text" xml:space="preserve">
+    <value>Account Balance</value>
+    <comment>This is a comment</comment>
+  </data>
+  <data name="AdvanceApproved.Text" xml:space="preserve">
+    <value>Advance #[ADVANCEID] has been approved!</value>
+  </data>
+  <data name="AdvLocked.Text" xml:space="preserve">
+    <value>Your advance has already been processed and cannot be changed or cancelled.</value>
+  </data>
+  <data name="NextBatchAdvance.Text" xml:space="preserve">
+    <value>This Advance will be downloaded in the next batch.</value>
+  </data>
+  <data name="Advance.Text" xml:space="preserve">
+    <value>Advance</value>
+  </data>
+  <data name="Default.Text" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="DownloadFailed.Text" xml:space="preserve">
+    <value>Download Failed</value>
+  </data>
+  <data name="ForceNonTaxable.Text" xml:space="preserve">
+    <value>Force Non-Taxable</value>
+  </data>
+  <data name="ForceTaxable.Text" xml:space="preserve">
+    <value>Force Taxable</value>
+  </data>
+  <data name="LargeTransaction.Text" xml:space="preserve">
+    <value>Large Transaction</value>
+  </data>
+  <data name="OutOfDate.Text" xml:space="preserve">
+    <value>This expense is out of date and will be taxed.</value>
+  </data>
+  <data name="OverideTax.Help" xml:space="preserve">
+    <value>Use this setting to overide the tax setting. By default, the system will calculate tax based on the information provided by the user - but accounts staff can use this setting to overide this.</value>
+  </data>
+  <data name="OverideTax.Text" xml:space="preserve">
+    <value>Overide Tax:</value>
+  </data>
+  <data name="btnMoreInfo.Text" xml:space="preserve">
+    <value> Request more info</value>
+  </data>
+  <data name="MoreInfo.Text" xml:space="preserve">
+    <value>The finance team have requested that you supply more information for Reimbursement [RMBNO] - [USERREF].</value>
+  </data>
+  <data name="MoreInfoMsg.Text" xml:space="preserve">
+    <value>This reimbursment will be highlighted to the staff member on this page. However, you should email the staff member directly, to let him/her know what information you need.</value>
+  </data>
+  <data name="AdvAmountSpecial.Text" xml:space="preserve">
+    <value>Since you have a transaction over [TEAMLEADERLIMIT] in your advance, it must be approved by [AUTHUSER].</value>
+  </data>
+  <data name="AdvAuthSpecial.Text" xml:space="preserve">
+    <value>Since you are the AuthUser, and your usual leader is inelligible to approve this Advance, it must be approved by the AuthAuthUser: [AUTHAUTHUSER].</value>
+  </data>
+  <data name="AdvEmailSubmittedSubject.Text" xml:space="preserve">
+    <value>Advance #[ADVNO]</value>
+  </data>
+  <data name="AdvSpouseSpecial.Text" xml:space="preserve">
+    <value>Since your leader is also your spouse your advance must be processed by [AUTHUSER].</value>
+  </data>
+  <data name="AdvSubmittedApprEmailSubject.Text" xml:space="preserve">
+    <value>Advance for [STAFFNAME]</value>
+  </data>
+  <data name="AdvEmailApprovedSubject.Text" xml:space="preserve">
+    <value>Advance #:[ADVNO] has been approved by [APPROVER]</value>
+  </data>
+  <data name="AdvEmailCancelledSubject.Text" xml:space="preserve">
+    <value>Advance #: [ADVNO] has been cancelled</value>
+  </data>
+  <data name="ExpireDept.Text" xml:space="preserve">
+    <value>Reimbursements must be made within [EXPIRE] months. This item you have entered is not within the [EXPIRE] months cut off period. If you reimburse this item it will be treated as extra (from your STAFF ACCOUNT!) and incur tax.</value>
+  </data>
+  <data name="ExpireImpossible.Text" xml:space="preserve">
+    <value>Reimbursements must be made within [EXPIRE] months. This item you have entered is not within the [EXPIRE] months cut off period, and cannot be reimbursed.</value>
+  </data>
+  <data name="lblErrorMessage.Text" xml:space="preserve">
+    <value>Error Message:</value>
+  </data>
+  <data name="cbExpenses.Help" xml:space="preserve">
+    <value>Select this optoin to include Advance and Reimbursement payments. Expenses must be fully processed in Dynamics before the corresponding payment will appear on this report. (It may take up to 5 minutes after 'Posting' before it appears here).</value>
+  </data>
+  <data name="cbExpenses.Text" xml:space="preserve">
+    <value>Include Expenses:</value>
+  </data>
+  <data name="cbSalaries.Help" xml:space="preserve">
+    <value>Select this option to include staff salaries in the suggested payments download. You can set the salary for each staff member, from the Staff Admin page (Admin-&gt;AgapeConnect-&gt;Staff Admin).</value>
+  </data>
+  <data name="cbSalaries.Text" xml:space="preserve">
+    <value>Include Salaries:</value>
+  </data>
+  <data name="SuggestedPayments.Text" xml:space="preserve">
+    <value>Suggested Payments</value>
+  </data>
+  <data name="lblBankAccount.Help" xml:space="preserve">
+    <value>Select the Bank Account that you will use to pay staff. (You can set the default bank account under the Settings page of this module.).</value>
+  </data>
+  <data name="lblBankAccount.Text" xml:space="preserve">
+    <value>Bank Account:</value>
+  </data>
+  <data name="lblWrongType.Text" xml:space="preserve">
+    <value>This reimbursement uses an expense type that is not valid for this Responsibility Center. You must edit this line and select a valid expense type, before you can submit/process this reimbursement.</value>
+  </data>
+  <data name="lblWrongTypes.Text" xml:space="preserve">
+    <value>The Reimbursement contains expenses with incompatible expense types - highlighted in red. Some expense types are only valid or Personal Reimbursements and others for Department Reimbursements. To correct this, edit the line(s) and select a new (valid) expense type. You must fix these errors before your can Submit/Approve/Process this r.eimbursment.</value>
+  </data>
+  <data name="AccountWarning.Text" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="lblAccountWarning.Text" xml:space="preserve">
+    <value>There is not enough money in the R/C to cover this Reimbursement. Processing this Reimbursement may result in a negative account balance. Do you wish to continue?</value>
+  </data>
+  <data name="ShortComment.Help" xml:space="preserve">
+    <value>Your accounting program will probably have a limit on the number of characters in the Comment/Description field. For Dynamics/Solomon, this is typically 30 Characters (Including the staff initals). You can customise this descrption here.</value>
+  </data>
+  <data name="ShortComment.Text" xml:space="preserve">
+    <value>Short Comment</value>
+  </data>
+  <data name="lblElectronicReceipts.Help" xml:space="preserve">
+    <value>Upload and image (jpg, png, gif) or a PDF as an Electronic Receipt.</value>
+  </data>
+  <data name="lblElectronicReceipts.Text" xml:space="preserve">
+    <value>Electronic Receipts</value>
+  </data>
+  <data name="OpenNewTab.Text" xml:space="preserve">
+    <value>Click to view in new tab...</value>
+  </data>
+  <data name="lblIncome.Text" xml:space="preserve">
+    <value>The staff member has declared that they have received income (personally). This amount has been deducted from the amount payable to them. If this is donation income, please do not forget to book this donation in Donorwise.</value>
+  </data>
+  <data name="btnLogin.Text" xml:space="preserve">
+    <value>Login</value>
+  </data>
+</root>

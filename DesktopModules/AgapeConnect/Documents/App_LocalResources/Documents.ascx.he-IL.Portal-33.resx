@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnCancel.Text">
+    <value>בטל</value>
+  </data>
+  <data name="lblDescription.Help">
+    <value>הכניס תיאור קצר</value>
+  </data>
+  <data name="lblDescription.Text">
+    <value>תיאור</value>
+  </data>
+  <data name="lblDisplaying.Text">
+    <value>מציג תוכן של</value>
+  </data>
+  <data name="lblPage.Text">
+    <value>עמוד</value>
+  </data>
+  <data name="lblDisplayingSearch.Text">
+    <value>הצג תוצאות חיפוס ל</value>
+  </data>
+  <data name="lblDisplayName.Text">
+    <value>הצג שם</value>
+  </data>
+  <data name="lblDisplayName.Help">
+    <value>בחר שם למסמכים</value>
+  </data>
+  <data name="Save.Text">
+    <value>שמר</value>
+  </data>
+  <data name="lblSelectFile.Text">
+    <value>בחר קובץ</value>
+  </data>
+  <data name="lblSelectFiles.Text">
+    <value>בחר את הקובצים שרוצה להעלות</value>
+  </data>
+  <data name="lblSelectFile.Help">
+    <value>בחר קובץ להעלות כגרסה חדשה, אז לחץ על
+Save Version</value>
+  </data>
+  <data name="lblVersion.Text">
+    <value>גרסה</value>
+  </data>
+  <data name="lblVersions.Text">
+    <value>גרסות</value>
+  </data>
+  <data name="lblSelectIcon.Text">
+    <value>בחר קובץ תמונה</value>
+  </data>
+  <data name="lblSelectIcon.Help">
+    <value>בחר קובץ תמונה.  אדיף להשתמש בתמונה מרובעת</value>
+  </data>
+  <data name="lblTags.Text">
+    <value>תגים</value>
+  </data>
+  <data name="lblTags.Help">
+    <value>בחר את התגים שמתאר הכי טוב את סוג המשאב</value>
+  </data>
+  <data name="lblVersion.Help">
+    <value>אופציונלי) הכניס מספר גרסה למסמכים האלה)</value>
+  </data>
+  <data name="lblFile.Text">
+    <value>קובץ</value>
+  </data>
+  <data name="lblFileAuthor.Help">
+    <value>הכנס שם של המחבר/בעל</value>
+  </data>
+  <data name="lblFileAuthor.Text">
+    <value>מחבר</value>
+  </data>
+  <data name="lblFileDescription.Help">
+    <value>הכנס תיאור קצר של הקובץ</value>
+  </data>
+  <data name="lblFileDescription.Text">
+    <value>תיאור</value>
+  </data>
+  <data name="lblFolderName.Help">
+    <value>בחר שם לתיקייה</value>
+  </data>
+  <data name="lblFolderName.Text">
+    <value>שם תיקייה</value>
+  </data>
+  <data name="lblExpand.Text">
+    <value>לחץ לפתוח/לסגור</value>
+  </data>
+  <data name="lblFile.Help">
+    <value>בחר את הקובץ שאליו רוצה לחבר.  הקשר יופיע כמה כל קובץ אחר ויכלול כל הגרסות והערות</value>
+  </data>
+  <data name="lblIcon.Text">
+    <value>איקונין</value>
+  </data>
+  <data name="lblLinkType.Text">
+    <value>סוג קשר</value>
+  </data>
+  <data name="lblKeywords.Text">
+    <value>מילות מפתח</value>
+  </data>
+  <data name="lblLinkType.Help">
+    <value>בחר סוג קשר</value>
+  </data>
+  <data name="lblKeywords.Help">
+    <value>הכנס מילות מפתח קשורות עם קובץ זה.  הפרד מילות מפתח מרובות עם פסיק.  מילות מפתח עוזרות למשתמשים לחפש מסמכים</value>
+  </data>
+  <data name="lblPage.Help">
+    <value>בחר את העמוד שרוצה לחבר אליו.  כאשר משתמשים לוחצים על קשר זה, הוא יפתח באותו חלון</value>
+  </data>
+  <data name="lblPermissions.Text">
+    <value>הרשאות</value>
+  </data>
+  <data name="lblURL.Text">
+    <value>כתובת אתר</value>
+  </data>
+  <data name="lblURL.Help">
+    <value>הכנס כתובת האתר המלאה.  כאשר משתמשים לוחצים על הקשר, האתר יפתח בכרטיסייה חדשה</value>
+  </data>
+  <data name="lblYouTube.Text">
+    <value>YouTube כתובת אתר</value>
+  </data>
+  <data name="lblYouTube.Help">
+    <value>הכנס את כתובת אתר של סרטון שלך.  כאשר משתמשים לוחצים על קשר זה, הם יצפו את הסרטון באתר זה</value>
+  </data>
+  <data name="lblGoogle.Text">
+    <value>כתובת אתר של מסמך גוגל</value>
+  </data>
+  <data name="lblGoogle.Help">
+    <value>זה זהה לכתובת אתר חיצונית, מלבד יהיה לקשר איקונין גוגל.  כאשר משתמשים לוחצים על הקשר, המסמך ייפתח בכרטיסייה חדשה</value>
+  </data>
+</root>

@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AgapeConnect" Class="StaffBrokerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=AgapeConnect;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSuperUser" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AffiliateId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatePassword" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastIPAddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="User_UserProfile" Member="UserProfiles" ThisKey="UserID" OtherKey="UserID" Type="UserProfile" />
+      <Association Name="User_AP_StaffBroker_Staff" Member="AP_StaffBroker_Staffs" ThisKey="UserID" OtherKey="UserId1" Type="AP_StaffBroker_Staff" Cardinality="One" />
+      <Association Name="User_AP_StaffBroker_LeaderMeta" Member="AP_StaffBroker_LeaderMetas" ThisKey="UserID" OtherKey="UserId" Type="AP_StaffBroker_LeaderMeta" />
+      <Association Name="User_UserPortal" Member="UserPortals" ThisKey="UserID" OtherKey="UserId" Type="UserPortal" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserProfile" Member="UserProfiles">
+    <Type Name="UserProfile">
+      <Column Name="ProfileID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyDefinitionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyValue" Type="System.String" DbType="NVarChar(3750)" CanBeNull="true" />
+      <Column Name="PropertyText" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Visibility" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastUpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="User_UserProfile" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="ProfilePropertyDefinition_UserProfile" Member="ProfilePropertyDefinition" ThisKey="PropertyDefinitionID" OtherKey="PropertyDefinitionID" Type="ProfilePropertyDefinition" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProfilePropertyDefinition" Member="ProfilePropertyDefinitions">
+    <Type Name="ProfilePropertyDefinition">
+      <Column Name="PropertyDefinitionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PortalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ModuleDefID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Deleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DataType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DefaultValue" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PropertyCategory" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Length" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Required" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ValidationExpression" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="ViewOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Visible" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DefaultVisibility" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ProfilePropertyDefinition_UserProfile" Member="UserProfiles" ThisKey="PropertyDefinitionID" OtherKey="PropertyDefinitionID" Type="UserProfile" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_Staff" Member="AP_StaffBroker_Staffs">
+    <Type Name="AP_StaffBroker_Staff">
+      <Column Name="StaffId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="CostCenter" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="StaffTypeId" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="UserId1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserId2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="bit" CanBeNull="false" />
+      <Column Name="PortalId" Type="System.Int32" DbType="int" CanBeNull="true" />
+      <Association Name="AP_StaffBroker_Staff_AP_StaffBroker_StaffProfile" Member="AP_StaffBroker_StaffProfiles" ThisKey="StaffId" OtherKey="StaffId" Type="AP_StaffBroker_StaffProfile" />
+      <Association Name="AP_StaffBroker_Staff_AP_StaffBroker_Children" Member="AP_StaffBroker_Childrens" ThisKey="StaffId" OtherKey="StaffId" Type="AP_StaffBroker_Children" />
+      <Association Name="User2_AP_StaffBroker_Staff" Member="User2" ThisKey="UserId2" OtherKey="UserID" Type="User2" IsForeignKey="true" />
+      <Association Name="User_AP_StaffBroker_Staff" Member="User" ThisKey="UserId1" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="AP_StaffBroker_StaffType_AP_StaffBroker_Staff" Member="AP_StaffBroker_StaffType" ThisKey="StaffTypeId" OtherKey="StaffTypeId" Type="AP_StaffBroker_StaffType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_StaffType" Member="AP_StaffBroker_StaffTypes">
+    <Type Name="AP_StaffBroker_StaffType">
+      <Column Name="StaffTypeId" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PortalId" Type="System.Int32" DbType="int" CanBeNull="true" />
+      <Association Name="AP_StaffBroker_StaffType_AP_StaffBroker_Staff" Member="AP_StaffBroker_Staffs" ThisKey="StaffTypeId" OtherKey="StaffTypeId" Type="AP_StaffBroker_Staff" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProfilePropertyDefinition" Member="ProfilePropertyDefinition2s">
+    <Type Name="ProfilePropertyDefinition2">
+      <Column Name="PropertyDefinitionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PortalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ModuleDefID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Deleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DataType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DefaultValue" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PropertyCategory" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Length" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Required" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ValidationExpression" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="ViewOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Visible" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DefaultVisibility" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ProfilePropertyDefinition2_UserProfile2" Member="UserProfile2s" ThisKey="PropertyDefinitionID" OtherKey="PropertyDefinitionID" Type="UserProfile2" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserProfile" Member="UserProfile2s">
+    <Type Name="UserProfile2">
+      <Column Name="ProfileID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyDefinitionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyValue" Type="System.String" DbType="NVarChar(3750)" CanBeNull="true" />
+      <Column Name="PropertyText" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Visibility" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastUpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="User2_UserProfile2" Member="User2" ThisKey="UserID" OtherKey="UserID" Type="User2" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="ProfilePropertyDefinition2_UserProfile2" Member="ProfilePropertyDefinition2" ThisKey="PropertyDefinitionID" OtherKey="PropertyDefinitionID" Type="ProfilePropertyDefinition2" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="User2s">
+    <Type Name="User2">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSuperUser" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AffiliateId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatePassword" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastIPAddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="User2_AP_StaffBroker_Staff" Member="AP_StaffBroker_Staffs" ThisKey="UserID" OtherKey="UserId2" Type="AP_StaffBroker_Staff" Cardinality="One" />
+      <Association Name="User2_UserProfile2" Member="UserProfile2s" ThisKey="UserID" OtherKey="UserID" Type="UserProfile2" />
+      <Association Name="User2_AP_StaffBroker_LeaderMeta2" Member="AP_StaffBroker_LeaderMeta2s" ThisKey="UserID" OtherKey="UserId" Type="AP_StaffBroker_LeaderMeta2" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_StaffProfile" Member="AP_StaffBroker_StaffProfiles">
+    <Type Name="AP_StaffBroker_StaffProfile">
+      <Column Name="StaffProfileId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PropertyValue" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="StaffPropertyDefinitionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StaffId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="AP_StaffBroker_Staff_AP_StaffBroker_StaffProfile" Member="AP_StaffBroker_Staff" ThisKey="StaffId" OtherKey="StaffId" Type="AP_StaffBroker_Staff" IsForeignKey="true" />
+      <Association Name="AP_StaffBroker_StaffPropertyDefinition_AP_StaffBroker_StaffProfile" Member="AP_StaffBroker_StaffPropertyDefinition" ThisKey="StaffPropertyDefinitionId" OtherKey="StaffPropertyDefinitionId" Type="AP_StaffBroker_StaffPropertyDefinition" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_Children" Member="AP_StaffBroker_Childrens">
+    <Type Name="AP_StaffBroker_Children">
+      <Column Name="ChildId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Birthday" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="StaffId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.String" DbType="nvarchar(10)" CanBeNull="true" />
+      <Association Name="AP_StaffBroker_Staff_AP_StaffBroker_Children" Member="AP_StaffBroker_Staff" ThisKey="StaffId" OtherKey="StaffId" Type="AP_StaffBroker_Staff" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_LeaderMeta" Member="AP_StaffBroker_LeaderMetas">
+    <Type Name="AP_StaffBroker_LeaderMeta">
+      <Column Name="LeaderMetaId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LeaderId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DelegateId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="AP_StaffBroker_LeaderMeta_Leader" Member="Leaders" ThisKey="LeaderId" OtherKey="UserID" Type="Leader" Cardinality="One" />
+      <Association Name="User_AP_StaffBroker_LeaderMeta" Member="User" ThisKey="UserId" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="Delegate_AP_StaffBroker_LeaderMeta" Member="Delegate" ThisKey="DelegateId" OtherKey="UserID" Type="Delegate" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Leaders">
+    <Type Name="Leader">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSuperUser" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AffiliateId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatePassword" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastIPAddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="AP_StaffBroker_LeaderMeta_Leader" Member="AP_StaffBroker_LeaderMeta" ThisKey="UserID" OtherKey="LeaderId" Type="AP_StaffBroker_LeaderMeta" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Delegates">
+    <Type Name="Delegate">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSuperUser" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AffiliateId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatePassword" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastIPAddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Delegate_AP_StaffBroker_LeaderMeta" Member="AP_StaffBroker_LeaderMetas" ThisKey="UserID" OtherKey="DelegateId" Type="AP_StaffBroker_LeaderMeta" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_LeaderMeta" Member="AP_StaffBroker_LeaderMeta2s">
+    <Type Name="AP_StaffBroker_LeaderMeta2">
+      <Column Name="LeaderMetaId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LeaderId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DelegateId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="AP_StaffBroker_LeaderMeta2_Leader2" Member="Leader2s" ThisKey="LeaderId" OtherKey="UserID" Type="Leader2" Cardinality="One" />
+      <Association Name="Delegate2_AP_StaffBroker_LeaderMeta2" Member="Delegate2" ThisKey="DelegateId" OtherKey="UserID" Type="Delegate2" IsForeignKey="true" />
+      <Association Name="User2_AP_StaffBroker_LeaderMeta2" Member="User2" ThisKey="UserId" OtherKey="UserID" Type="User2" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Delegate2s">
+    <Type Name="Delegate2">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSuperUser" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AffiliateId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatePassword" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastIPAddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Delegate2_AP_StaffBroker_LeaderMeta2" Member="AP_StaffBroker_LeaderMeta2" ThisKey="UserID" OtherKey="DelegateId" Type="AP_StaffBroker_LeaderMeta2" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Leader2s">
+    <Type Name="Leader2">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSuperUser" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AffiliateId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatePassword" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastIPAddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="AP_StaffBroker_LeaderMeta2_Leader2" Member="AP_StaffBroker_LeaderMeta2" ThisKey="UserID" OtherKey="LeaderId" Type="AP_StaffBroker_LeaderMeta2" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_AccountCodes" Member="AP_StaffBroker_AccountCodes">
+    <Type Name="AP_StaffBroker_AccountCode">
+      <Column Name="AccountCodeId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AccountCode" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountCodeName" Type="System.String" DbType="NVarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountCodeType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_CostCenters" Member="AP_StaffBroker_CostCenters">
+    <Type Name="AP_StaffBroker_CostCenter">
+      <Column Name="CostCentreId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CostCentreCode" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="CostCentreName" Type="System.String" DbType="NVarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_Settings" Member="AP_StaffBroker_Settings">
+    <Type Name="AP_StaffBroker_Setting">
+      <Column Name="SettingId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SettingName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SettingValue" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserPortals" Member="UserPortals">
+    <Type Name="UserPortal">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserPortalId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Authorised" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RefreshRoles" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="User_UserPortal" Member="User" ThisKey="UserId" OtherKey="UserID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_Images" Member="AP_Images">
+    <Type Name="AP_Image">
+      <Column Name="ImageId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Content" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_StaffPropertyDefinition" Member="AP_StaffBroker_StaffPropertyDefinitions">
+    <Type Name="AP_StaffBroker_StaffPropertyDefinition">
+      <Column Name="StaffPropertyDefinitionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PropertyName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ViewOrder" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Display" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PropertyHelp" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Type" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="FixedFieldName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="AP_StaffBroker_StaffPropertyDefinition_AP_StaffBroker_StaffProfile" Member="AP_StaffBroker_StaffProfiles" ThisKey="StaffPropertyDefinitionId" OtherKey="StaffPropertyDefinitionId" Type="AP_StaffBroker_StaffProfile" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_Menu_Link" Member="AP_Menu_Links">
+    <Type Name="AP_Menu_Link">
+      <Column Name="LinkId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LinkType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ToolTip" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Target" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Ref" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TabModuleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ViewOrder" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_Staff_SuggestedPayments" Member="AP_Staff_SuggestedPayments">
+    <Type Name="AP_Staff_SuggestedPayment">
+      <Column Name="SuggestedPaymentId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CostCenter" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ExpPayable" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ExpTaxable" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="PrevSalary" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AccountBalance" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="AdvanceBalance" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_Departments" Member="AP_StaffBroker_Departments">
+    <Type Name="AP_StaffBroker_Department">
+      <Column Name="CostCenterId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="CostCentre" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CostCentreManager" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CostCentreDelegate" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CanRmb" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanCharge" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanGiveTo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="GivingText" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GivingShortcut" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PayType" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IsProject" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PhotoId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Spare1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Spare2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Spare3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.Agape_Main_AlterUserName" Method="Agape_Main_AlterUserName">
+    <Parameter Name="ExistUserName" Parameter="existUserName" Type="System.String" DbType="VarChar(120)" />
+    <Parameter Name="NewUserName" Parameter="newUserName" Type="System.String" DbType="VarChar(121)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetSearchResults" Method="GetSearchResults">
+    <Parameter Name="PortalID" Parameter="portalID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TabId" Parameter="tabId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ModuleId" Parameter="moduleId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetSearchResultsResult">
+      <Column Name="SearchItemID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PortalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TabID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ModuleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(2000) NOT NULL" CanBeNull="false" />
+      <Column Name="Author" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PubDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SearchKey" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Guid" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="HitCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageFileId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AuthorName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetSearchResultsByWord" Method="GetSearchResultsByWord">
+    <Parameter Name="PortalID" Parameter="portalID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Word" Parameter="word" Type="System.String" DbType="NVarChar(100)" />
+    <ElementType Name="GetSearchResultsByWordResult">
+      <Column Name="SearchItemID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Word" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Occurrences" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Relevance]" Member="Relevance" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ModuleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TabID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(2000) NOT NULL" CanBeNull="false" />
+      <Column Name="Author" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PubDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SearchKey" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Guid" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ImageFileId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AuthorName" Type="System.String" DbType="NVarChar(101)" CanBeNull="true" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

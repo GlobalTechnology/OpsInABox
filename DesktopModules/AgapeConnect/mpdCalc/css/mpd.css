@@ -1,0 +1,161 @@
+﻿ .mpdInput {
+        width: 70px;
+    }
+    input, textarea, .uneditable-input{
+        width: 70px ;
+    }
+    .mpdColumn {
+        text-align: right;
+    }
+
+    .mpd-help {
+        padding-left: 10px;
+          font-weight: normal;
+color: #777;
+    }
+
+    .btn-edit {
+        position: absolute;
+        right: 8px;
+    }
+
+    .btn-insert, .btn-delete-section {
+        font-style: italic;
+        text-align: center;
+        position: relative;
+        top: -0.8em;
+        background-color: #F5F5F5;
+    }
+
+    .mpd-insert {
+        width: 100%;
+        text-align: center;
+        border-top: 1pt dashed gainsboro;
+    }
+
+    .btn-insert-section {
+        font-style: italic;
+        text-align: center;
+        position: relative;
+        top: -0.8em;
+        background-color: #F5F5F5;
+    }
+
+    .mpd-insert-section {
+        width: 100%;
+        text-align: center;
+        border-top: 1pt dashed gainsboro;
+        border-bottom: 1pt dashed gainsboro;
+        margin-bottom: 5px;
+    }
+
+    .version-number {
+        width: 20px;
+        float: left;
+        font-size: small;
+        font-weight: bold;
+        color: lightgray;
+    }
+
+    .form-horizontal .control-label {
+        width: 200px;
+    }
+
+        .form-horizontal .control-label.conf {
+            width: 180px;
+            margin-left: 8px;
+        }
+
+    .checkbox label {
+        display: inline-block;
+    }
+
+    .checkboxOuter {
+        padding: 20px 80px 20px 80px;
+    }
+
+    .form-horizontal .control-group.mpdTotal {
+        margin-bottom: 0px;
+    }
+
+    .percentage {
+        float: right;
+        font-size: 56pt;
+        margin: 55px 100px 15px 15px;
+        font-weight: bold;
+        position: absolute;
+        right: 50px;
+    }
+
+    .net-tax {
+        font-size: small;
+        color: gray;
+        font-style: italic;
+    }
+
+    .mpd-edit {
+        margin-top: 10px;
+    }
+
+
+    .comment {
+        font-size: x-small;
+        font-weight: bold;
+    }
+
+    .exFormula {
+        width: 100%;
+        text-align: center;
+        font-family: 'Courier New';
+        font-size: small;
+    }
+
+    .valid, .invalid {
+        margin-top: 5px;
+        float: right;
+    }
+
+    .mpd-section-total {
+        border-top: 1pt solid gainsboro;
+    }
+
+    .control-group.mpd-insert-mode {
+        margin-bottom: 0 !important;
+    }
+
+    .mpd-btn-order {
+        float: right;
+        padding: 12px 4px 12px 4px;
+    }
+
+    .btn-edit-section {
+        margin: 24px 0 0 5px;
+        float: left;
+    }
+
+    .mpd-status {
+        float: right;
+        margin-top: -50px;
+    }
+
+    .subTitle {
+        font-style: italic;
+        color: lightgray;
+        top: -14px;
+        position: relative;
+        font-size: large;
+    }
+   .form-horizontal .cell div {
+        margin: 5px !important;
+    }
+    .cell .span8 label {
+       display: inline;
+position: relative;
+margin-left: 5px;
+top: 3px;
+    }
+
+    .cell .control-label {
+        margin-right: 10px;
+       
+    }

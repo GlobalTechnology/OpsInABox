@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.875, 12.125" name="Budget">
+  <DataContextMoniker Name="/BudgetDataContext" />
+  <nestedChildShapes>
+    <classShape Id="e6d4f532-53a0-4bd5-8e18-bf61c24402ab" absoluteBounds="0.75, 0.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/BudgetDataContext/AP_Budget_Project" />
+      <nestedChildShapes>
+        <elementListCompartment Id="eb9bf3af-9e0b-4e89-a645-3760ecd23cc2" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="317fa00a-8f84-4a64-b2f2-7529f2814015" absoluteBounds="3.75, 0.75, 2, 6.0015283203125">
+      <DataClassMoniker Name="/BudgetDataContext/AP_Budget_Transaction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="398e1930-1b35-4461-9733-754f65b74dfb" absoluteBounds="3.765, 1.21, 1.9700000000000002, 5.4415283203125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="969be8e3-996a-4f89-839e-c931cf54d7f6" absoluteBounds="6.75, 0.75, 2, 4.8477197265625">
+      <DataClassMoniker Name="/BudgetDataContext/AP_Budget_Summary" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c0cf4552-de6e-4079-93e6-2ec0bed4be7d" absoluteBounds="6.765, 1.21, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 1.82774983723958); (3.75 : 1.82774983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BudgetDataContext/AP_Budget_Project/AP_Budget_Project_AP_Budget_Transaction" />
+      <nodes>
+        <classShapeMoniker Id="e6d4f532-53a0-4bd5-8e18-bf61c24402ab" />
+        <classShapeMoniker Id="317fa00a-8f84-4a64-b2f2-7529f2814015" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="8ef216eb-db63-46c1-bb7e-80af4ef04dbe" absoluteBounds="10.625, 3.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/BudgetDataContext/AP_StaffBroker_AccountCode" />
+      <nestedChildShapes>
+        <elementListCompartment Id="86c52b35-caed-4b4e-9e35-ec6dcaec0d5f" absoluteBounds="10.64, 4.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="280ff7f0-4fbe-4271-9a00-55caf94143f0" absoluteBounds="10.5, 1, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/BudgetDataContext/AP_StaffBroker_CostCenter" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9b21f0f4-68eb-40a6-87ff-d63946239dec" absoluteBounds="10.515, 1.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(10.5 : 1.88544840494792); (8.75 : 1.88544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BudgetDataContext/AP_StaffBroker_CostCenter/AP_StaffBroker_CostCenter_AP_Budget_Summary" />
+      <nodes>
+        <classShapeMoniker Id="280ff7f0-4fbe-4271-9a00-55caf94143f0" />
+        <classShapeMoniker Id="969be8e3-996a-4f89-839e-c931cf54d7f6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.625 : 4.73635986328125); (8.75 : 4.73635986328125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BudgetDataContext/AP_StaffBroker_AccountCode/AP_StaffBroker_AccountCode_AP_Budget_Summary" />
+      <nodes>
+        <classShapeMoniker Id="8ef216eb-db63-46c1-bb7e-80af4ef04dbe" />
+        <classShapeMoniker Id="969be8e3-996a-4f89-839e-c931cf54d7f6" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="db0ce417-6e62-42bb-a312-301e364cab2f" absoluteBounds="8.875, 7, 2, 4.8477197265625">
+      <DataClassMoniker Name="/BudgetDataContext/AP_Budget_Summary1" />
+      <nestedChildShapes>
+        <elementListCompartment Id="baf63074-0df0-4022-829c-76f991b78a37" absoluteBounds="8.89, 7.46, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

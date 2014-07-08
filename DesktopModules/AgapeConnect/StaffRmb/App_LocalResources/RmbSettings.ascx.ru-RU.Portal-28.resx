@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnCancel.Text">
+    <value>Отменить</value>
+  </data>
+  <data name="btnSave.Text">
+    <value>Сохранить</value>
+  </data>
+  <data name="lblAccountsEmail.Help">
+    <value>Введите адрес электронной почты для вашего финансового отдела.</value>
+  </data>
+  <data name="lblAccountsEmail.Text">
+    <value>E-mail финансового отдела</value>
+  </data>
+  <data name="lblAccountsName.Help">
+    <value>Введите имя человека, который будет получать письма финансовой системы</value>
+  </data>
+  <data name="lblAccountsName.Text">
+    <value>Название счета</value>
+  </data>
+  <data name="lblAccountsRole.Help">
+    <value>Select the Security for the Accounts Team. You can create a role group under Admin-&gt;Security Roles. Members of this role group will have access to the accounts functions of the reimbursmenet system.</value>
+  </data>
+  <data name="lblAccountsRole.Text">
+    <value>Accounts Roles</value>
+  </data>
+  <data name="lblAccPay.Text">
+    <value>Accounts Payable</value>
+  </data>
+  <data name="lblBankAccount.Text">
+    <value>Банковский счет</value>
+  </data>
+  <data name="lblBicycle.Text">
+    <value>Bicycle Rate</value>
+  </data>
+  <data name="lblBreakfast.Text">
+    <value>Завтрак</value>
+  </data>
+  <data name="lblCarRate.Text">
+    <value>Car Rate</value>
+  </data>
+  <data name="lblControlAccount.Help">
+    <value>The Responsibility Center of the Control Account</value>
+  </data>
+  <data name="lblControlAccount.Text">
+    <value>Control Account</value>
+  </data>
+  <data name="lblCurConverter.Help">
+    <value>When a user is prompted to enter a currency, a link is available to popup the Currency Converter to allow him to enter the currency in a foreign currency. Check this box if you would, instead, like the currency converter to always appear. This is recommended only if your accounting currency is different from your local currency.</value>
+  </data>
+  <data name="lblCurConverter.Text">
+    <value>Always show Currency Converter</value>
+  </data>
+  <data name="lblDay.Text">
+    <value>Whole Day</value>
+  </data>
+  <data name="lblDinner.Text">
+    <value>Ужин</value>
+  </data>
+  <data name="lblDistanceUnit.Text">
+    <value>Единица длины (расстояния)</value>
+  </data>
+  <data name="lblDownloadFormat.Help">
+    <value>Формат, используемый для загрузки документа</value>
+  </data>
+  <data name="lblAccPay.Help">
+    <value>Пожалуйста, выберите номер счета, используемого для кредиторской задолженности</value>
+  </data>
+  <data name="lblAcctRec.Text">
+    <value>Авансовый счет</value>
+  </data>
+  <data name="lblAcctRec.Help">
+    <value>Пожалуйста, выберите ваш авансовый счет</value>
+  </data>
+  <data name="lblAuthAuthUser.Help">
+    <value>Выберите руководителя, который может утверждать отчёты </value>
+  </data>
+  <data name="lblAuthUser.Help">
+    <value>Выберите руководителя, который может утверждать крупные расходы </value>
+  </data>
+  <data name="lblAuthAuthUser.Text">
+    <value>Утвержденный руководитель</value>
+  </data>
+  <data name="lblAuthUser.Text">
+    <value>Authorasation User</value>
+  </data>
+  <data name="lblBankAccount.Help">
+    <value>Select the bank account used to pay staff. (This is only used on the Suggested Payments Report)</value>
+  </data>
+  <data name="lblDownloadFormat.Text">
+    <value>Загрузить Формат</value>
+  </data>
+  <data name="lblElecRec.Help">
+    <value>Может ли сотрудник прикреплять к отчёту электронные квитанции?</value>
+  </data>
+  <data name="lblElecRec.Text">
+    <value>Разрешить электронные квитанции</value>
+  </data>
+  <data name="lblEntertaining.Help">
+    <value>Введите текущую сумму суточных</value>
+  </data>
+  <data name="lblEntertaining.Text">
+    <value>Суточные расходы - развлечения</value>
+  </data>
+  <data name="lblExpenseTypes.Help">
+    <value>Выберите типы расходов, которые вы хотите сделать доступными для ваших сотрудников</value>
+  </data>
+  <data name="lblExpenseTypes.Text">
+    <value>Типы расходов</value>
+  </data>
+  <data name="lblExpire.Help">
+    <value>Введите количество месяцев, в течение которых отчёт может быть принят. Система проигнорировал дня каждого месяца.</value>
+  </data>
+  <data name="lblExpire.Text">
+    <value>Сделки должны быть возмещены в течение</value>
+  </data>
+  <data name="lblLunch.Text">
+    <value>Обед</value>
+  </data>
+  <data name="lblMenuSize.Help">
+    <value>Введите максимальное количество элементов для отображения в каждом меню</value>
+  </data>
+  <data name="lblMenuSize.Text">
+    <value>Максимальное количество элементов, отображаемых в меню</value>
+  </data>
+  <data name="lblMileage.Help">
+    <value>Введите текущие ставки Пробег и ограничения.</value>
+  </data>
+  <data name="lblMileage.Text">
+    <value>Mileage Rates and Limits</value>
+  </data>
+  <data name="lblMotorcycle.Text">
+    <value>Motorcyle Rate</value>
+  </data>
+  <data name="lblNoReceipt.Help">
+    <value>Квитанции (чеки) не требуются для операций, сумма которых меньше или равна этой</value>
+  </data>
+  <data name="lblNoReceipt.Text">
+    <value>Нет Получение Предел</value>
+  </data>
+  <data name="lblOvernight.Text">
+    <value>Ночевка</value>
+  </data>
+  <data name="lblPayroll.Help">
+    <value>Select the account used for Payroll (Salary) Payable</value>
+  </data>
+  <data name="lblPayroll.Text">
+    <value>Payroll Payable Account</value>
+  </data>
+  <data name="lblPerDiem.Help">
+    <value>Enter the current subsistence rates. If you leave a value blank (or zero), it will not be displayed to the user.</value>
+  </data>
+  <data name="lblPerDiem.Text">
+    <value>Суточные - Проживание</value>
+  </data>
+  <data name="lblRate1.Text">
+    <value>Rate1</value>
+  </data>
+  <data name="lblRate2.Text">
+    <value>Rate2</value>
+  </data>
+  <data name="lblRate3.Text">
+    <value>Rate3</value>
+  </data>
+  <data name="lblRate4.Text">
+    <value>Rate4</value>
+  </data>
+  <data name="lblRate5.Text">
+    <value>Rate5</value>
+  </data>
+  <data name="lblRate6.Text">
+    <value>Rate6</value>
+  </data>
+  <data name="lblSalary.Help">
+    <value>Select the expense account used for Salary</value>
+  </data>
+  <data name="lblSalary.Text">
+    <value>Salary Expense Account</value>
+  </data>
+  <data name="lblShowRemBal.Help">
+    <value>Displays the reimbaining balance (once this and other "Pending Download" transactions have been processed.) This can be helpful in determining if there are sufficient funds for the reimbursment.</value>
+  </data>
+  <data name="lblShowRemBal.Text">
+    <value>Показать остаток?</value>
+  </data>
+  <data name="lblTaxAccRec.Help">
+    <value>Please select your taxable Advance Account.</value>
+  </data>
+  <data name="lblTaxAccRec.Text">
+    <value>Taxable Advance Account </value>
+  </data>
+  <data name="lblTeamLeaderLimit.Help">
+    <value>The maximum amount that a team leader can authorize. If a transaction is over this, an email is sent to the Auth User</value>
+  </data>
+  <data name="lblTeamLeaderLimit.Text">
+    <value>Team Leader Auth Limit</value>
+  </data>
+  <data name="lblUseDCode.Help">
+    <value>If you use different account codes for departemnts, check this box. If no DCode is supplied (below) the PCode will be used instead.</value>
+  </data>
+  <data name="lblUseDCode.Text">
+    <value>Use different account codes for departments</value>
+  </data>
+  <data name="lblVAT.Help">
+    <value>If your organization is VAT registered and you wish to allow staff to reimburse VAT attributable expenses, check this option.</value>
+  </data>
+  <data name="lblVAT.Text">
+    <value>Включить НДС</value>
+  </data>
+  <data name="lblWarnIfNegative.Help">
+    <value>При обработке расходов система предупредит, если на счет станет отрицательным в результате этой операции.</value>
+  </data>
+  <data name="lblWarnIfNegative.Text">
+    <value>Показать предупреждение баланса счета </value>
+  </data>
+  <data name="Months.Text">
+    <value>Месяцев</value>
+  </data>
+  <data name="lblDescriptionLength.Text">
+    <value>Макc Описание </value>
+  </data>
+  <data name="lblDescriptionLength.Help">
+    <value>Введите максимальное количество символов, которое может ввести пользователь в поле описания. Если это число больше, что предел в динамике, система автоматически обрезать строку до нужного размера. Имейте в виду, что система автоматически Addes пользователей инициалы в начале описания (с последующим символом-который занимает 3 букв. Таким образом, по умолчанию, у вас есть 27 символов. Если сумма enetered в суммы в иностранной валюте, оригинальные детали валютные добавляются в конец строки. Счета сотрудники могут просматривать и редактировать строку, которая будет Actaully быть введен.</value>
+  </data>
+</root>

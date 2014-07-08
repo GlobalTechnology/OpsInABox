@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Database" Class="TemplatesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=beta.myagape.org.uk;Initial Catalog=AgapeConnectDev;User ID=remotelogin" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.AP_StaffBroker_Templates" Member="AP_StaffBroker_Templates">
+    <Type Name="AP_StaffBroker_Template">
+      <Column Name="TemplateId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TemplateName" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="TemplateDescription" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TemplateHTML" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

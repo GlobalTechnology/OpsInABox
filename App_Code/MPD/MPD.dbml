@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AgapeConnect" Class="MPDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=AgapeConnect;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.AP_mpdCalc_Definition" Member="AP_mpdCalc_Definitions">
+    <Type Name="AP_mpdCalc_Definition">
+      <Column Name="mpdDefId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TabModuleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ActiveFromYear" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="AssessmentRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ShowComplience" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Complience" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FirstBudgetPeriod" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="StaffTypes" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Compensation" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Assessment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DefaultAccount" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="AuthUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AuthAuthUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="AP_mpdCalc_Definition_AP_mpdCalc_Section" Member="AP_mpdCalc_Sections" ThisKey="mpdDefId" OtherKey="mpdDefId" Type="AP_mpdCalc_Section" />
+      <Association Name="AP_mpdCalc_Definition_AP_mpdCalc_StaffBudget" Member="AP_mpdCalc_StaffBudgets" ThisKey="mpdDefId" OtherKey="DefinitionId" Type="AP_mpdCalc_StaffBudget" />
+      <Association Name="AP_mpdCalc_Definition_AP_mpd_Country" Member="AP_mpd_Countries" ThisKey="mpdDefId" OtherKey="mpdDefId" Type="AP_mpd_Country" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_mpdCalc_Section" Member="AP_mpdCalc_Sections">
+    <Type Name="AP_mpdCalc_Section">
+      <Column Name="SectionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Number" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalMode" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="mpdDefId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="AP_mpdCalc_Section_AP_mpdCalc_Question" Member="AP_mpdCalc_Questions" ThisKey="SectionId" OtherKey="SectionId" Type="AP_mpdCalc_Question" />
+      <Association Name="AP_mpdCalc_Definition_AP_mpdCalc_Section" Member="AP_mpdCalc_Definition" ThisKey="mpdDefId" OtherKey="mpdDefId" Type="AP_mpdCalc_Definition" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_mpdCalc_Question" Member="AP_mpdCalc_Questions">
+    <Type Name="AP_mpdCalc_Question">
+      <Column Name="QuestionId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SectionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionNumber" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(120) NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Min" Type="System.String" DbType="NVarChar(400) NOT NULL" CanBeNull="false" />
+      <Column Name="Max" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="Formula" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Help" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AccountCode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Rate1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Threshold1" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Rate2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Threshold2" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Rate3" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Threshold3" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Rate4" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Fixed" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TaxSystem" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="AP_mpdCalc_Question_AP_mpdCalc_Answer" Member="AP_mpdCalc_Answers" ThisKey="QuestionId" OtherKey="QuestionId" Type="AP_mpdCalc_Answer" />
+      <Association Name="AP_mpdCalc_Section_AP_mpdCalc_Question" Member="AP_mpdCalc_Section" ThisKey="SectionId" OtherKey="SectionId" Type="AP_mpdCalc_Section" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_mpdCalc_StaffBudget" Member="AP_mpdCalc_StaffBudgets">
+    <Type Name="AP_mpdCalc_StaffBudget">
+      <Column Name="StaffBudgetId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StaffId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DefinitionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BudgetYearStart" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="SubmittedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ApprovedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ApprovedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ProcessedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProcessedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="CurrentSupportLevel" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TotalBudget" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="BudgetPeriodStart" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="Compensation" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="ToRaise" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="ApproveCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="AP_mpdCalc_StaffBudget_AP_mpdCalc_Answer" Member="AP_mpdCalc_Answers" ThisKey="StaffBudgetId" OtherKey="StaffBudgetId" Type="AP_mpdCalc_Answer" />
+      <Association Name="AP_mpdCalc_Definition_AP_mpdCalc_StaffBudget" Member="AP_mpdCalc_Definition" ThisKey="DefinitionId" OtherKey="mpdDefId" Type="AP_mpdCalc_Definition" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_mpdCalc_Answer" Member="AP_mpdCalc_Answers">
+    <Type Name="AP_mpdCalc_Answer">
+      <Column Name="AnswerId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="QuestionId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="StaffBudgetId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(120)" CanBeNull="true" />
+      <Column Name="Tax" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Association Name="AP_mpdCalc_Question_AP_mpdCalc_Answer" Member="AP_mpdCalc_Question" ThisKey="QuestionId" OtherKey="QuestionId" Type="AP_mpdCalc_Question" IsForeignKey="true" />
+      <Association Name="AP_mpdCalc_StaffBudget_AP_mpdCalc_Answer" Member="AP_mpdCalc_StaffBudget" ThisKey="StaffBudgetId" OtherKey="StaffBudgetId" Type="AP_mpdCalc_StaffBudget" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_mpd_Country" Member="AP_mpd_Countries">
+    <Type Name="AP_mpd_Country">
+      <Column Name="mpdCountryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="isoCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="portalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lastUpdated" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="compensationAccounts" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="foreighIncomeAccounts" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="mpdDefId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AvgSupport12" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="AvgSupport3" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="AvgSupport1" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="SplitLocal" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SplitForeign" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SplitSubsidy" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FullCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HighCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LowCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VeryLowCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BudgetAccuracy" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NoBudgetCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="gr_ministry_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="AP_mpd_Country_Ap_mpd_User" Member="Ap_mpd_Users" ThisKey="mpdCountryId" OtherKey="mpdCountryId" Type="Ap_mpd_User" />
+      <Association Name="AP_mpdCalc_Definition_AP_mpd_Country" Member="AP_mpdCalc_Definition" ThisKey="mpdDefId" OtherKey="mpdDefId" Type="AP_mpdCalc_Definition" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_mpd_UserAccountInfo" Member="AP_mpd_UserAccountInfos">
+    <Type Name="AP_mpd_UserAccountInfo">
+      <Column Name="mpdUserAccountInfo" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="mpdCountryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="staffId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="period" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="income" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="expense" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="balance" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="foreignIncome" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="compensation" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="mpdUserId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="expBudget" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="toRaiseBudget" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Association Name="Ap_mpd_User_AP_mpd_UserAccountInfo" Member="Ap_mpd_User" ThisKey="mpdUserId" OtherKey="AP_mpd_UserId" Type="Ap_mpd_User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ap_mpd_User" Member="Ap_mpd_Users">
+    <Type Name="Ap_mpd_User">
+      <Column Name="AP_mpd_UserId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StaffId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mpdCountryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AvgIncome12" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="AvgIncome3" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="AvgIncome1" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="SplitLocal" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="SplitForeign" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="SplitSubsidy" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="AvgExpenses" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="gr_person_id" Type="System.String" DbType="varchar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Key_GUID" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="AvgSupLevel12" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="AvgSupLevel3" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="AvgSupLevel1" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="LocalIncome12" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="ForeignIncome12" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="SubsidyIncome12" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="AvgExpenseBudget12" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="AvgMPDBudget12" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="AvgIncome" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Association Name="Ap_mpd_User_AP_mpd_UserAccountInfo" Member="AP_mpd_UserAccountInfos" ThisKey="AP_mpd_UserId" OtherKey="mpdUserId" Type="AP_mpd_UserAccountInfo" />
+      <Association Name="AP_mpd_Country_Ap_mpd_User" Member="AP_mpd_Country" ThisKey="mpdCountryId" OtherKey="mpdCountryId" Type="AP_mpd_Country" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ministry_systems" Member="ministry_systems">
+    <Type Name="ministry_system">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="min_code" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="min_name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="min_logo" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="last_fin_rep" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="gma_status" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="last_dataserver_donation" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="iso2_code" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
+      <Column Name="gr_ministry_id" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="last_dataserver_transaction" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="ministry_scope" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="area_code" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="area_name" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="is_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="stage" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="fcx" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

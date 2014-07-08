@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="gr_mapping">
+  <DataContextMoniker Name="/gr_mappingDataContext" />
+  <nestedChildShapes>
+    <classShape Id="53023f03-2363-4869-b23e-73dba8bc2cd0" absoluteBounds="6.5, 0.5, 2, 4.4631168619791666">
+      <DataClassMoniker Name="/gr_mappingDataContext/ProfilePropertyDefinition" />
+      <nestedChildShapes>
+        <elementListCompartment Id="69234513-63d9-4f7a-9271-c3d6a9011eac" absoluteBounds="6.5150000000000006, 0.96, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0a0be5f9-c0e8-4fc8-9f69-888100ef363a" absoluteBounds="6.25, 5.75, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/gr_mappingDataContext/AP_StaffBroker_StaffPropertyDefinition" />
+      <nestedChildShapes>
+        <elementListCompartment Id="545c2f84-b5fd-4c20-8ae0-70b406a40ba4" absoluteBounds="6.265, 6.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="04574e6e-2898-40ed-b49c-364ba5869cff" absoluteBounds="4.125, 1.375, 2, 1.9631982421875">
+      <DataClassMoniker Name="/gr_mappingDataContext/gr_mapping" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d12a36a8-a2b6-40ff-b1e8-87cea36934d2" absoluteBounds="4.14, 1.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,114 @@
+﻿@import url("/Portals/_default/Skins/AgapeBlue/start/jquery-ui-1.8.16.custom.css");
+@import url("/Portals/_default/Skins/AgapeBlue/JqueryUIFix.css");
+
+.RadAjaxPanel{
+    z-index:999;
+}
+.dept-giving{
+   display: none;
+}
+.table .visible-desktop, .table .visible-desktop,.table .visible-desktop, .table .visible-desktop{
+    display: table-cell !important;
+}
+td > .dnnLabel {
+ width: inherit; 
+}
+a.breadcrumb:link, a.breadcrumb:active, a.breadcrumb:visited {
+    font-size: 22px !important;
+}
+
+.accordion-heading{
+    background-color: #EEE;
+}
+#RibbonBar_ddlMode .rcbInput[input] {
+padding: 3px !important;
+}
+#RibbonBar_ddlUICulture_Input{
+    padding: 5px !important;
+}
+.accordion-body{
+    background-color: white;
+}
+a.dnnFormHelp{
+    right: inherit;
+    top: inherit;
+    margin-left: 5px !important;
+    float:right;
+    position: relative;
+}
+.dnnLabel{
+    width: 100%;
+     padding-right: 0; 
+ margin-right: 0; 
+
+ max-width: 250px;
+ min-width: 150px;
+}
+.dnnFormHelpContent{
+    white-space: normal;    
+}
+.language-object{
+   margin: -23px 0 3px 0;
+  height: 20px;
+}
+.Language{
+    margin: 3px;
+    padding-bottom: 3px;
+}
+.Language.selected{
+border: #f6b900 2px solid;
+
+}
+[title=Register] {
+    display:none !important;
+}
+.dnn_mact > li ul {
+    width: 250px;
+}
+#RibbonBar_hypMessage img{ 
+    display:none;  /*hide the DNN logo*/
+}
+#RibbonBar_ddlMode{
+    width: 150px;
+}
+a.breadcrumb{
+    font-size: 15px !important;
+}
+.bread_date {
+
+padding: 0 0 20px 0 !important;
+}
+
+fieldset {
+display: block;
+-webkit-margin-start: 2px;
+-webkit-margin-end: 2px;
+-webkit-padding-before: 0.35em;
+-webkit-padding-start: 0.75em;
+-webkit-padding-end: 0.75em;
+-webkit-padding-after: 0.625em;
+border: 2px groove threedface;
+border-image-source: initial;
+border-image-slice: initial;
+border-image-width: initial;
+border-image-outset: initial;
+border-image-repeat: initial;
+min-width: -webkit-min-content;
+}
+.ui-widget-overlay {
+    background: #000 ;
+    opacity: 0.7;
+    filter: Alpha(Opacity=70);
+    z-index: 999;
+    height: 500%;
+}
+.ui-dialog {
+    /*z-index: 9999;*/
+}
+
+.headr{
+    padding: 0 !important;
+}
+.dnn_logo {
+padding: 28px 10px 20px 0 !important;
+}

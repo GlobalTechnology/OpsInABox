@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="AgapeIcons">
+  <DataContextMoniker Name="/AgapeIconsDataContext" />
+  <nestedChildShapes>
+    <classShape Id="be080d57-6bc9-4b56-be7f-eca17386bfc5" absoluteBounds="3.25, 0.5, 2, 2.9247054036458326">
+      <DataClassMoniker Name="/AgapeIconsDataContext/File" />
+      <nestedChildShapes>
+        <elementListCompartment Id="63eb5ead-0e8e-4a33-8db2-2f6c84fc3293" absoluteBounds="3.2649999999999997, 0.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9b9c26be-c6a4-4f17-9145-615e2b362d25" absoluteBounds="3.5, 4.125, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/AgapeIconsDataContext/Agape_Skin_AgapeIcon" />
+      <nestedChildShapes>
+        <elementListCompartment Id="417fd960-c021-4e0b-8729-7c2ce30b0b1d" absoluteBounds="3.515, 4.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b57ee5b0-bc93-4057-af2c-ef812e0b5c8a" absoluteBounds="6, 0.75, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/AgapeIconsDataContext/Agape_Skin_IconSetting" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d765652b-348b-4f7d-a056-e17746e9c053" absoluteBounds="6.015, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

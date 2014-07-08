@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountBalance.Text">
+    <value>Gjendja e llogarisë</value>
+  </data>
+  <data name="AccountsComments.Text">
+    <value>Komente nga zyra e financave</value>
+  </data>
+  <data name="Advance.Text">
+    <value>Paradhënie</value>
+  </data>
+  <data name="AdvanceApproved.Text">
+    <value>Paradhënia #[ADVANCEID] është miratuar!</value>
+  </data>
+  <data name="btnAddExpenseItem.Text">
+    <value>Shto një shpenzim të ri</value>
+  </data>
+  <data name="btnNew.Text">
+    <value>Rimbursim i ri</value>
+  </data>
+  <data name="btnNo.Text">
+    <value>Jo</value>
+  </data>
+  <data name="btnOK.Text">
+    <value>OK</value>
+  </data>
+  <data name="btnPrint.Text">
+    <value>Printo</value>
+  </data>
+  <data name="btnProcess.Text">
+    <value>Shqyrto</value>
+  </data>
+  <data name="btnReject.Text">
+    <value>Anullo</value>
+  </data>
+  <data name="btnSave.Text">
+    <value>Ruaj</value>
+  </data>
+  <data name="btnSettings.Text">
+    <value>Vetitë</value>
+  </data>
+  <data name="btnSplitAdd.Text">
+    <value>Shto një rresht</value>
+  </data>
+  <data name="btnSubmit.Text">
+    <value>Dërgo</value>
+  </data>
+  <data name="btnUnProcess.Text">
+    <value>UnProcess</value>
+  </data>
+  <data name="btnYes.Text">
+    <value>Po</value>
+  </data>
+  <data name="Cancelled.Text">
+    <value>Të anulluara</value>
+  </data>
+  <data name="cbExpenses.Help" />
+  <data name="CreateRmb.Text">
+    <value>Krijo një rimbursim të ri</value>
+  </data>
+  <data name="EmailApprovedSubjectA.Text">
+    <value>Rmb#:[RMBNO] u miratua nga [APPROVER]</value>
+  </data>
+  <data name="EmailApprovedSubjectP.Text">
+    <value>Rmb#: [RMBNO] - [USERREF] u miratua</value>
+  </data>
+  <data name="EmailApproverChanged.Text" />
+  <data name="Expenses.Text">
+    <value>Shpenzime</value>
+  </data>
+  <data name="TransDate.Text">
+    <value>Data</value>
+  </data>
+  <data name="Year.Text">
+    <value>Viti</value>
+  </data>
+  <data name="YourComments.Text">
+    <value>Komentet tuaja</value>
+  </data>
+  <data name="YourRef.Text">
+    <value>Referenca juaj</value>
+  </data>
+  <data name="YourRmbs.Text">
+    <value>Rimbursimet tuaja</value>
+  </data>
+  <data name="AccountsMode.Text">
+    <value>Jeni në Accounts Mode (zyra e financave). Për të kaluar në pamje normale (si staf i thjeshtë ose si aprovues) kalo në VIEW mode (cepin e djathtë lart).</value>
+  </data>
+  <data name="Draft.Text">
+    <value>Të papërfunduara</value>
+  </data>
+  <data name="Submitted.Text">
+    <value>Të plotësuara</value>
+  </data>
+  <data name="SubmittedApprEmailSubject.Text">
+    <value>Rimbursimi për [STAFFNAME]</value>
+  </data>
+  <data name="SubmittedBy.Text">
+    <value>Plotësuar nga</value>
+  </data>
+  <data name="SubmittedOn.Text">
+    <value>Plotësuar më</value>
+  </data>
+  <data name="SuggestedPayments.Text" />
+  <data name="Taxable.Text" />
+  <data name="TeamRmbs.Text">
+    <value>Skuadra / departamenti juaj</value>
+  </data>
+  <data name="ToApprove.Text">
+    <value>Për të miratuar</value>
+  </data>
+  <data name="ToProcess.Text">
+    <value>Për të shqyrtuar</value>
+  </data>
+  <data name="Approved.Text">
+    <value>Të miratuara</value>
+  </data>
+  <data name="ApprovedBy.Text">
+    <value>Miratuar nga</value>
+  </data>
+  <data name="ApprovedOn.Text">
+    <value>Miratuar më</value>
+  </data>
+  <data name="ApproversComments.Text">
+    <value>Komente të aprovuesit</value>
+  </data>
+  <data name="AuthSpecial.Text">
+    <value>Ngaqë ju jeni AuthUser, dhe udhëheqësi juaj e zakonshme është inelligible që të miratojë këtë rimbursim, ajo duhet të miratohet nga AuthAuthUser: [AUTHAUTHUSER].</value>
+  </data>
+  <data name="Processed.Text">
+    <value>Të shqyrtuara</value>
+  </data>
+  <data name="ProcessedBy.Text">
+    <value>Shqyrtuar nga: </value>
+  </data>
+  <data name="ProcessedOn.Text">
+    <value>Shqyrtuar më</value>
+  </data>
+  <data name="ReceiptNo.Text">
+    <value>Fatura Nr.</value>
+  </data>
+  <data name="Receipts.Text">
+    <value>Fatura</value>
+  </data>
+  <data name="RecoverVAT.Text" />
+  <data name="RecoverVATRate.Text" />
+  <data name="Reimbursement.Text">
+    <value>Rimbursime</value>
+  </data>
+  <data name="RmbApproved.Text">
+    <value>Rimbursimi #[RMBNO] u miratua!</value>
+  </data>
+  <data name="RmbsToApprove.Text">
+    <value>Rimburime për tu miratuar</value>
+  </data>
+  <data name="btnAdvReq.Text">
+    <value>Kërko paradhënie</value>
+  </data>
+  <data name="AccountsOnly.Text">
+    <value>Për përdorim vetëm nga zyra e financave</value>
+  </data>
+  <data name="AccountWarning.Text">
+    <value>Paralajmërim</value>
+  </data>
+  <data name="AddEditRmb.Text">
+    <value>Shto / Ndrysho shpenzim të ri</value>
+  </data>
+  <data name="AdvanceBalance.Text">
+    <value>Gjendja e paradhënieve</value>
+  </data>
+  <data name="AdvanceRequest.Text">
+    <value>Kërkesë për paradhënie</value>
+  </data>
+  <data name="AdvApproved.Text">
+    <value>Miratuar më [DATE] nga [STAFFNAME]</value>
+  </data>
+  <data name="AwaitingApproval.Text">
+    <value>Në pritje të miratimit nga</value>
+  </data>
+  <data name="btnApprove.Text">
+    <value>Mirato</value>
+  </data>
+  <data name="btnCancel.Text">
+    <value>Anullo</value>
+  </data>
+  <data name="btnCreate.Text">
+    <value>Krijo</value>
+  </data>
+  <data name="btnMoreInfo.Text">
+    <value>Kërko më shumë info</value>
+  </data>
+  <data name="Delete.Text">
+    <value>Fshi</value>
+  </data>
+  <data name="Description.Text">
+    <value>Përshkrimi</value>
+  </data>
+  <data name="DownloadFailed.Text">
+    <value>Shkarkimi Dështoi</value>
+  </data>
+  <data name="Edit.Text">
+    <value>Redakto</value>
+  </data>
+  <data name="EmailSubmittedSubject.Text">
+    <value>Rimbursimi #[RMBNO]</value>
+  </data>
+  <data name="lblBankAccount.Text">
+    <value>Llogaria Bankare</value>
+  </data>
+  <data name="PayOff.Help">
+    <value>Shkruaj shumën e paradhënies që do të shlyesh.</value>
+  </data>
+  <data name="PayOff.Text">
+    <value>Shlyej paradhënie</value>
+  </data>
+  <data name="PendingDownload.Text">
+    <value>
+    </value>
+  </data>
+  <data name="Period.Text">
+    <value>Periudha</value>
+  </data>
+  <data name="RmbTitle.Text">
+    <value>Rimbursime</value>
+  </data>
+  <data name="Split.Text">
+    <value>Ndaji</value>
+  </data>
+  <data name="ShortComment.Text">
+    <value>Koment i shkurtër</value>
+  </data>
+  <data name="SplitInto.Text">
+    <value>Ndaj në</value>
+  </data>
+  <data name="SplitTransaction.Text">
+    <value>Ndaj veprimin</value>
+  </data>
+  <data name="SplitError.Text">
+    <value>Ju lutem shkruani një përshkrim sasinë secilin rresht</value>
+  </data>
+  <data name="AdvDate.Text">
+    <value>Marre ne [DATE]</value>
+  </data>
+  <data name="AdvEmailApprovedSubject.Text">
+    <value>Paradhenia #:[ADVNO] eshte miratuar nga [APPROVER]</value>
+  </data>
+  <data name="AdvEmailCancelledSubject.Text">
+    <value>Paradhenia #: [ADVNO] eshte anulluar</value>
+  </data>
+  <data name="AdvEmailSubmittedSubject.Text">
+    <value>Paradhenie #[ADVNO]</value>
+  </data>
+  <data name="AdvIntro.Text">
+    <value>[STAFFNAME] ka kerkuar autorizimin e nje paradhenieje</value>
+  </data>
+  <data name="AdvLocked.Text">
+    <value>Kerkesa juaj per paradhenie eshte derguar dhe nuk mund te ndryshohet apo te fshihet.</value>
+  </data>
+  <data name="AdvReason.Text">
+    <value>Arsyeja</value>
+  </data>
+  <data name="AdvSubmittedApprEmailSubject.Text">
+    <value>Paradhenie per [STAFFNAME]</value>
+  </data>
+  <data name="Amount.Text">
+    <value>Shuma</value>
+  </data>
+  <data name="AdvanceError.Text">
+    <value>Ju keni futur shumë të pavlefshme. Vetitë tuaja nuk janë ruajtur.</value>
+  </data>
+  <data name="AdvNotApproved.Text">
+    <value>Në pritje të miratimit nga: [STAFFNAMES]</value>
+  </data>
+  <data name="AdvProcessed.Text">
+    <value>Përpunuar më [DATE]</value>
+  </data>
+  <data name="btnAdvanceRequest.Text">
+    <value>Kërko paradhënie</value>
+  </data>
+  <data name="btnDownload.Text">
+    <value>Shkarko në Excel</value>
+  </data>
+  <data name="btnDownloadBatch.Text">
+    <value>Shkarko transaksionet pako</value>
+  </data>
+  <data name="btnEnter.Text">
+    <value>Hyj</value>
+  </data>
+  <data name="cbExpenses.Text">
+    <value>Përfshi shpenzimet</value>
+  </data>
+  <data name="cbSalaries.Text">
+    <value>Përfshi rrogat</value>
+  </data>
+  <data name="Comment.Text">
+    <value>Koment</value>
+  </data>
+  <data name="EmailComments.Text">
+    <value>Komentet e mëposhtme janë paraqitur me këtë rimbursimin</value>
+  </data>
+  <data name="Errors.Text">
+    <value>Rimbursimet e mëposhtme kanë një gabim</value>
+  </data>
+  <data name="lblElectronicReceipts.Help">
+    <value>Ngarkoni një imazhi (jpg, png, gif) ose një dokument PDF si Faturë Elektronike.</value>
+  </data>
+  <data name="lblElectronicReceipts.Text">
+    <value>Faturë Elektronike</value>
+  </data>
+  <data name="lblErrorMessage.Text">
+    <value>Error Mesazh</value>
+  </data>
+  <data name="lblWrongType.Text">
+    <value>Ky rimbursim përdor një lloj të shpenzimeve që nuk është e vlefshme për këtë Qendër të Përgjegjshmërisë. Ju duhet të redaktoni këtë linjë dhe të zgjidhni një lloj të vlefshme të shpenzimeve, para se të mund të paraqesë / procesi këtë rimbursim.</value>
+  </data>
+  <data name="LineTypes.Text">
+    <value>Lloji i shpenzimit</value>
+  </data>
+  <data name="PrintoutMoreInfo.Text">
+    <value>Printimi juaj ka hapur në një dritare të re / tab. Nëse keni nevojë për të dërguar faturat për rimbursimin tuaj dhe ju nuk i kam dërguar ata në ende në zyrë, ju lutem të bashkëngjitni këtë printim dhe të dërgoni atë në zyrë.</value>
+  </data>
+  <data name="AdvAuthSpecial.Text">
+    <value>Përderisa ju jeni AuthUser, dhe udhëheqësi juaj e zakonshme është inelligible që të miratojë këtë Advance, ajo duhet të miratohet nga AuthAuthUser: [AUTHAUTHUSER].</value>
+  </data>
+  <data name="AdvAmountSpecial.Text">
+    <value>Ngaqë keni një transaksion mbi [TEAMLEADERLIMIT] paraprakisht tuaj, ai duhet të miratohet nga [AUTHUSER].</value>
+  </data>
+  <data name="AdvSpouseSpecial.Text">
+    <value>Ngaqë udhëheqësi juaj është edhe bashkëshorti juaj paraprakisht tuaj duhet të jenë të përpunuara nga [AUTHUSER].</value>
+  </data>
+  <data name="AmountSpecial.Text">
+    <value>Ngaqë ju keni një transaksion mbi [TEAMLEADERLIMIT] në rimbursimin tuaj ajo duhet të miratohet nga [AUTHUSER].</value>
+  </data>
+  <data name="BatchedRmbs.Text">
+    <value>Shkarko rimbursimet pako</value>
+  </data>
+  <data name="cbSalaries.Help">
+    <value>Zgjidh këtë opsion për të përfshirë rrogat e personelit në sugjeruar pagesave shkarko. Ju mund të vendosni pagën për çdo anëtar të personelit, nga faqja Stafi Admin (Admin-&amp;gt; AgapeConnect-&amp;gt; Stafi Admin).</value>
+  </data>
+  <data name="Default.Text">
+    <value>Default</value>
+  </data>
+  <data name="DefaultSettingsText">
+    <value>* Warning - Ky modul është duke përdorur default settings. Ju lutemi të shqyrtojë dhe të ruajtur parametrat modul para se të përdorni në një environement jetojnë</value>
+  </data>
+  <data name="EmailCancelledSubject.Text">
+    <value>Rmb #: [RMBNO] - [USERREF] është anuluar</value>
+  </data>
+  <data name="ErrorHelp.Text">
+    <value>* Shënim: Nëse automatike shkarko përjeton një gabim ndërsa futur transaksione të Programit të Llogarive, e tërë ajo seri mund të refuzohet. Nëse keni rimbursimet e shumta në një shtet gabim - problemi mund të jetë me një nga rimbursimet e tjera.</value>
+  </data>
+  <data name="ErrorInProgress.Text">
+    <value>Ky kompensim nuk mund të jetë i papërpunuar në këtë kohë, pasi ajo është aktualisht duke u shkarkuar nga datapump automatike (ndërmjetësi transaksion). Ju mund të provoni përsëri në disa minuta, por të jenë të vetëdijshëm se do të tashmë janë përpunuar në programin e llogarive tuaj.</value>
+  </data>
+  <data name="Expire.Text">
+    <value>Rimbursimet duhet të bëhet brenda [skadon] muaj. Ky artikull ju keni futur nuk është brenda [skadojnë] muaj ndërprerjen periudhë. Nëse ju rimbursojë këtë artikull ai do të trajtohet si pagë shtesë dhe për këtë arsye të pësojë taksë.</value>
+  </data>
+  <data name="ExpireDept.Text">
+    <value>Rimbursimet duhet të bëhet brenda [skadon] muaj. Ky artikull ju keni futur nuk është brenda [skadojnë] muaj ndërprerjen periudhë. Nëse ju rimbursojë këtë artikull ai do të trajtohet si shtesë (nga llogaria juaj STAFI!) Dhe të pësojë tatimin.</value>
+  </data>
+  <data name="ExpireImpossible.Text">
+    <value>Rimbursimet duhet të bëhet brenda [skadon] muaj. Ky artikull ju keni futur nuk është brenda [skadojnë] muaj ndërprerjen periudhë, dhe nuk mund të rimbursohet.</value>
+  </data>
+  <data name="ForceNonTaxable.Text">
+    <value>Forca jo të tatueshme</value>
+  </data>
+  <data name="ForceTaxable.Text">
+    <value>Forca e tatueshme</value>
+  </data>
+  <data name="LargeTransaction.Text">
+    <value>Transaksion i madh</value>
+  </data>
+  <data name="lblAccountWarning.Text">
+    <value>Nuk ka para të mjaftueshme në R / C për të mbuluar këtë rimbursim. Përpunimit të këtij rimbursimi mund të rezultojë në një bilanc negativ të llogarisë. A dëshironi të vazhdoni?</value>
+  </data>
+  <data name="lblBankAccount.Help">
+    <value>Zgjidhni llogarinë bankare që ju do të përdorni për të paguar stafin. (Ju mund të vendosni llogari bankare parazgjedhur në faqen e Settings të këtij moduli.).</value>
+  </data>
+  <data name="lblIncome.Text">
+    <value>Anëtar i stafit ka deklaruar se ata kanë marrë të ardhura (personalisht). Kjo shumë është zbritur nga shuma e pagueshme për ta. Nëse kjo është e ardhura donacion, ju lutem mos harroni të librit këtë donacion në Donorwise.</value>
+  </data>
+  <data name="lblWrongTypes.Text">
+    <value>Rimbursimi përmban shpenzimet me lloje të papajtueshme e shpenzimeve - theksuara në të kuqe. Disa lloje të shpenzimeve janë vetëm Rimbursimet vlefshme ose personale dhe të tjerë për të Departamentit rimbursimet. Për të korrigjuar këtë, për të ndryshuar vijën (s) dhe të zgjidhni një të ri (të vlefshme) llojin e shpenzimeve. Ju duhet të rregullojmë këto gabime para se juaj mund Submit / Miratimi / Procesi këtë r.eimbursment.</value>
+  </data>
+  <data name="LineType.Text">
+    <value>Line Type</value>
+  </data>
+  <data name="MarkProcessedHelp.Text">
+    <value>Nëse ju do të futur këto transaksione me dorë në llogaritë paketën tuaj, ju duhet të zgjidhni YES. Të jenë të vetëdijshëm se duke zgjedhur YES, këto transaksione do të shënohen si të përpunuara dhe prandaj injoruar nga datapump automatike.</value>
+  </data>
+  <data name="MoreInfo.Text">
+    <value>Ekipi i financave kanë kërkuar që ju të ofrojë më shumë informacion për Rimbursimi [RMBNO] - [USERREF].</value>
+  </data>
+  <data name="MoreInfoMsg.Text">
+    <value>Kjo reimbursment do të theksohet për punonjësit në këtë faqe. Megjithatë, ju duhet të dërgoni me email anëtarin e stafit të drejtpërdrejtë, për të le / saj të mos e dini se çfarë informacioni keni nevojë.</value>
+  </data>
+  <data name="NewLineTitle.Text">
+    <value>Shto Transaksion të ri rimbursimi</value>
+  </data>
+  <data name="NoReceipts.Text">
+    <value>Nuk kanë fatura</value>
+  </data>
+  <data name="OpenNewTab.Text">
+    <value>Kliko për të parë në skedë të re ...</value>
+  </data>
+  <data name="OriginalTrans.Text">
+    <value>Original Transaksionit</value>
+  </data>
+  <data name="OutOfDate.Text">
+    <value>Ky shpenzim është e vjetëruar dhe do të tatohen.</value>
+  </data>
+  <data name="PostReceipts.Text">
+    <value>Ju lutem postoni faturat tuaja, në formularin e bashkangjitur, në zyrën kombëtare.</value>
+  </data>
+  <data name="Printout.Text">
+    <value>Fleta e printimit u hap në një dritare të re. Mos harro të dërgosh faturat bashkë me rimbursimin.</value>
+  </data>
+  <data name="SpouseSpecial.Text">
+    <value>Që udhëheqësi juaj është edhe bashkëshorti juaj rimbursim juaj duhet të përpunohen nga [AUTHUSER].</value>
+  </data>
+  <data name="ShortComment.Help">
+    <value>Programi juaj kontabilitetit ndoshta do të ketë një kufi për numrin e karaktereve në Koment / Përshkrimi fushë. Për Dynamics / Salomonit, kjo është zakonisht 30 shkronja (Duke përfshirë të initals stafit). Ju mund ta rregulloje këtë descrption këtu.</value>
+  </data>
+</root>

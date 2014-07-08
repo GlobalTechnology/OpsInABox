@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 14.625" name="Stories">
+  <DataContextMoniker Name="/StoriesDataContext" />
+  <nestedChildShapes>
+    <classShape Id="aecb1389-1259-438c-b76b-a0f07dbb8587" absoluteBounds="3.375, 0.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/StoriesDataContext/AP_Stories_Module" />
+      <nestedChildShapes>
+        <elementListCompartment Id="07be7d2e-64aa-49ac-8d64-71af26fc1f1c" absoluteBounds="3.39, 1.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="64b62629-5be0-4278-8bfe-1097474d40c0" absoluteBounds="4.625, 3.875, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/StoriesDataContext/AP_Stories_Module_Channel" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c90e7e01-ce40-4e62-85f3-bec0d65d77d8" absoluteBounds="4.64, 4.335, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5 : 2.90549967447917); (5 : 3.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StoriesDataContext/AP_Stories_Module/AP_Stories_Module_AP_Stories_Module_Channel" />
+      <nodes>
+        <classShapeMoniker Id="aecb1389-1259-438c-b76b-a0f07dbb8587" />
+        <classShapeMoniker Id="64b62629-5be0-4278-8bfe-1097474d40c0" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="7b1d3d98-9d45-4d5c-b2cb-154ae99d416d" absoluteBounds="7.125, 7, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/StoriesDataContext/AP_Stories_Control" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ab761e00-33c2-4bc4-a5d4-2f3f6c0f7d93" absoluteBounds="7.14, 7.4600000000000009, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6bcbb9fc-0762-45d0-969d-c608190c553f" absoluteBounds="0.5, 2.375, 2, 4.8477197265625">
+      <DataClassMoniker Name="/StoriesDataContext/AP_Stories_Module_Channel_Cache" />
+      <nestedChildShapes>
+        <elementListCompartment Id="133948b4-85d8-406c-bc67-a5668c8ec80b" absoluteBounds="0.51499999999999968, 2.835, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.625 : 5.94314697265625); (2.5 : 5.94314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StoriesDataContext/AP_Stories_Module_Channel/AP_Stories_Module_Channel_AP_Stories_Module_Channel_Cache" />
+      <nodes>
+        <classShapeMoniker Id="64b62629-5be0-4278-8bfe-1097474d40c0" />
+        <classShapeMoniker Id="6bcbb9fc-0762-45d0-969d-c608190c553f" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="68d523e8-9f0d-4b87-b0c1-b2e757e74be7" absoluteBounds="1.125, 8.625, 2, 5.8092268880208326">
+      <DataClassMoniker Name="/StoriesDataContext/AP_Story" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f6a12076-c4a4-470c-9fbc-48ebe33371ff" absoluteBounds="1.1399999999999997, 9.085, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d1ce0bb7-21ec-4af1-8802-f4ee86a73c2c" absoluteBounds="3.875, 8.875, 2, 1.3862939453125">
+      <DataClassMoniker Name="/StoriesDataContext/AP_Stories_Tag_Meta" />
+      <nestedChildShapes>
+        <elementListCompartment Id="24ac33b1-62ab-4cf1-be68-406f25b1a490" absoluteBounds="3.8899999999999997, 9.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.125 : 9.56814697265625); (3.875 : 9.56814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StoriesDataContext/AP_Story/AP_Story_AP_Stories_Tag_Meta" />
+      <nodes>
+        <classShapeMoniker Id="68d523e8-9f0d-4b87-b0c1-b2e757e74be7" />
+        <classShapeMoniker Id="d1ce0bb7-21ec-4af1-8802-f4ee86a73c2c" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="6874e732-fcd7-4f1a-adda-ed2fc7209157" absoluteBounds="7.375, 8.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/StoriesDataContext/AP_Stories_Tag" />
+      <nestedChildShapes>
+        <elementListCompartment Id="acf872b9-5d92-424d-b982-3284a4bd77c8" absoluteBounds="7.3900000000000006, 9.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.375 : 9.56814697265625); (5.875 : 9.56814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/StoriesDataContext/AP_Stories_Tag/AP_Stories_Tag_AP_Stories_Tag_Meta" />
+      <nodes>
+        <classShapeMoniker Id="6874e732-fcd7-4f1a-adda-ed2fc7209157" />
+        <classShapeMoniker Id="d1ce0bb7-21ec-4af1-8802-f4ee86a73c2c" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

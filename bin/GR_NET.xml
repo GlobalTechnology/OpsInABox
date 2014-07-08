@@ -1,0 +1,143 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+GR_NET
+</name>
+</assembly>
+<members>
+<member name="M:GR_NET.Entity.AddPropertyValue(System.String,System.String)">
+	<summary>
+ Recursive method to add a property (and its ancestor entities)
+ </summary>
+	<param name="Key">The name of the Property in dot notation (eg person.address.city)</param>
+	<param name="Value">The value of this property (eg London)</param>
+	<remarks></remarks>
+</member><member name="M:GR_NET.Entity.ToJson(System.String)">
+	<summary>
+ Returns this object in JSON format
+ </summary>
+	<returns></returns>
+	<remarks>The JSON response can be supplied to GR API to add/update this entity (and its decendants) to the GR</remarks>
+</member><member name="T:GR_NET.Entity">
+	<summary>
+ Local object model to represent GR entity types. 
+ </summary>
+	<remarks>Entities relect actual people and their profile properties. (eg. "Jon Vellacott" is an entity of entity_type 'person'. He has a child Entity (Name=FirstName, value =Jon). )</remarks>
+</member><member name="M:GR_NET.EntityType.#ctor(System.String,System.String,GR_NET.EntityType)">
+	<summary>
+ Creates a new EntityType
+ </summary>
+	<param name="Type_Name"></param>
+	<param name="Type_Id"></param>
+	<param name="Type_Parent"></param>
+	<remarks></remarks>
+</member><member name="M:GR_NET.EntityType.GetDecendents(System.Collections.Generic.List{GR_NET.EntityType}@,System.String)">
+	<summary>
+ Recursive function to gather a flat list of all enitities
+ </summary>
+	<param name="FlatList">The list to which all entity_types will be added and returned</param>
+	<param name="type">Enter Nothing/Null for leaves only. "All" for everything. Or filter by FieldType (see field type class)</param>
+	<remarks></remarks>
+</member><member name="M:GR_NET.EntityType.IsRoot">
+	<summary>
+ Checks if this is a root entity
+ </summary>
+	<returns>True/False</returns>
+	<remarks>Returns true if this EntityType is a RootEntity type (ie has no parent)</remarks>
+</member><member name="M:GR_NET.EntityType.GetDotNotation">
+	<summary>
+ Returns the name of this entity type in Dot Notation
+ </summary>
+	<returns></returns>
+	<remarks>eg person.address.city</remarks>
+</member><member name="T:GR_NET.EntityType">
+	<summary>
+ Local object model to represent GR entity types. 
+ </summary>
+	<remarks>
+ EntityTypes refect the structure of profile properties and collections in the Global Registry. (eg 'person' is an enitity_type. It has a child entity_types of 'first_name', 'last_name' etc)
+ Entity types can be nested (ie they have parents/children). These objects are created by the GR constructor. The main method you are likely to call on this object is GetDotNotation. 
+ GR.GetFlatEntityTypeList returs a list of entity types. Calling GetDotNotation on each of these entity types allows you create a list of valid inputs to the Entity.AddPropertyValue method. </remarks>
+</member><member name="M:GR_NET.People.createPerson(System.String)">
+	<summary>
+ Crreate a new person and add them to the people_list
+ </summary>
+	<param name="LocalUserId">Enter the UserId of this person (ie. the id of this person in your system)</param>
+	<returns>The newly created person. </returns>
+	<remarks>The new person is an entity with one property (client_integration_id). Use the "AddProperty" method on the returned entity to add other attributes (like firstname, lastname, email, etc)</remarks>
+</member><member name="T:GR_NET.People">
+	<summary>
+ People is a very tiny class that defnies a group of persons( entites)
+ </summary>
+	<remarks>GR has a local People member. (gr.people). Create an intstance of gr and use its people member rather than creating your own.</remarks>
+</member><member name="P:GR_NET.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:GR_NET.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:GR_NET.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:GR_NET.GR.#ctor(System.String,System.String)">
+	<summary>
+ The constructor initialises the GR object. 
+ </summary>
+	<param name="apiKey">Your GR Auth Key</param>
+	<param name="gr_url">The URL of the GR server</param>
+	<remarks>The test GR server is used by default.</remarks>
+</member><member name="M:GR_NET.GR.SyncPeople">
+	<summary>
+ Update all People stored on this object
+ </summary>
+	<remarks></remarks>
+</member><member name="M:GR_NET.GR.GetFlatEntityLeafList(System.String,System.String)">
+	<summary>
+ Returns a flat list of all entity types
+ </summary>
+	<param name="rootEntity">The root entity in dot notation (usually person but could be somethine like person.address)</param>
+	<param name="type">Leave blank to return leaves only. To return everything enter "All". Otherswise only entities of the specified Type are retured (as listed in the FieldTypes class)</param>
+	<returns>A Flat list of all EntityTypes</returns>
+	<remarks>Note Each entity type has a GetDotNotation function - which allows you to populate a list of enitities in DotNotation(eg person.address.city) </remarks>
+</member><member name="M:GR_NET.GR.addNewEntityType(System.String,System.String,System.String)">
+	<summary>
+ Creates a new entity type in GR
+ </summary>
+	<param name="entityName">The name of the new entity</param>
+	<param name="type">The field type (as listed in FieldType class)</param>
+	<param name="parentEntityType">Parent Entity in DotNotation (eg person.address)</param>
+	<remarks>The ParentEntity must exist. CAUTION - there is currently no way to delete a created entity.</remarks>
+</member><member name="M:GR_NET.GR.addSubEntityTypes(System.Collections.Generic.Dictionary{System.String,System.Object},GR_NET.EntityType@)">
+	<summary>
+ Recursive subroutine to parse the JSON response for entity_type definition
+ </summary>
+	<param name="input"></param>
+	<param name="Parent"></param>
+	<remarks></remarks>
+</member><member name="T:GR_NET.GR">
+	<summary>
+ The main object in the GR_NET Libarary
+ </summary>
+	<remarks>
+ To get started with the GR_NET library create an instance of this class - using the constructor. This class allows you to 
+ </remarks>
+</member><member name="M:GR_NET.FieldType.isValid(System.String)">
+	<summary>
+ Checks if a FieldType is valid
+ </summary>
+	<param name="name"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="T:GR_NET.FieldType">
+	<summary>
+ Basic class to define the possible values for Field Type in the GR system. 
+ </summary>
+	<remarks>Several of the methods in GR.NET ask for a Type (or field Type) of type string. Rather than enter "integer" is would be better to enter FieldType._integer. This insures that you don't enter an invalid FieldType</remarks>
+</member>
+</members>
+</doc>

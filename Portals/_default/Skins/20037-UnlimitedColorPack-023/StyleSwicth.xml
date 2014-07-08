@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DNNGo_StyleSwicth>
+  <Settings>
+<Setting>
+      <Name><![CDATA[Color1]]></Name>
+      <Alias><![CDATA[Color1]]></Alias>
+      <StyleContent>
+        <![CDATA[
+           <style>
+		    #dnn_wrapper .Theme_25_Default .pager .selected,
+        #dnn_wrapper .Theme_21_Default .pager .selected,
+        #dnn_wrapper .Theme_25_Default .prev:hover,
+        #dnn_wrapper .Theme_21_Default .prev:hover,
+        #dnn_wrapper .Theme_25_Default .next:hover,
+        #dnn_wrapper .Theme_21_Default .next:hover,
+        .accordion-heading .accordion-toggle:hover,
+        .accordion-heading .actived,
+        .tabs-top .nav-tabs > .active > a,
+        .tabs-top .nav-tabs > .active > a:hover,
+        .tabs-left .nav-tabs > .active > a,
+        .tabs-left .nav-tabs > .active > a:hover,
+        .tabs-right .nav-tabs > .active > a, 
+        .tabs-right .nav-tabs > .active > a:hover, 
+        #to_top,
+        a.login:hover,
+        a.user:hover,
+        #dnn_dnnSEARCH2_cmdSearch,
+        .dropdown-menu li > a:hover,
+        .dropdown-menu .active > a,
+        .dropdown-menu .active > a:hover,
+        .RightPaneProfile .console .active,
+        .RightPaneProfile .console .console-mouseon,
+        #dnn_wrapper .Theme_Normal_Bottom .btn,
+        .color1_h .contentmain1:hover,
+        .color1_h .c1_icon,
+        .mobile_icon,
+        .banner_blue,
+        .ls-minimal-10478 .ls-nav-prev:hover,
+        .ls-minimal-10478 .ls-nav-next:hover,
+        .search,
+        .accordion-heading .color1-bg-h:hover,
+        .accordion-heading .color1-bg-h.actived,
+        .color1-bg-h.actived,
+        .color1-bg-h:hover,
+        #top_menu ul li.Item-1  a:hover,
+        #top_menu ul li.Item-1  a.menu_hover,
+        #top_menu ul li.Item-1.current > a,
+        #top_menu ul li.Item-4  a:hover,
+        #top_menu ul li.Item-4  a.menu_hover,
+        #top_menu ul li.Item-4.current > a,
+        #top_menu ul li.Item-7  a:hover,
+        #top_menu ul li.Item-7  a.menu_hover,
+        #top_menu ul li.Item-7.current > a,
+        #Mega_menu ul li.Item-1 > a:hover,
+        #Mega_menu ul li.Item-1.dgn-root-hover > a,
+        #Mega_menu ul li.Item-1.current > a,
+        #Mega_menu ul li.Item-4 > a:hover,
+        #Mega_menu ul li.Item-4.dgn-root-hover > a,
+        #Mega_menu ul li.Item-4.current > a,
+        #Mega_menu ul li.Item-7 > a:hover,
+        #Mega_menu ul li.Item-7.dgn-root-hover > a,
+        #Mega_menu ul li.Item-7.current > a,
+        .multi_menu > ul > li.Item-1 > a:hover,
+        .multi_menu > ul > li.Item-1.active > a,
+        .multi_menu > ul > li.Item-1.current > a,
+        .multi_menu > ul > li.Item-4 > a:hover,
+        .multi_menu > ul > li.Item-4.active > a,
+        .multi_menu > ul > li.Item-4.current > a,
+        .multi_menu > ul > li.Item-7 > a:hover,
+        .multi_menu > ul > li.Item-7.active > a,
+        .multi_menu > ul > li.Item-7.current > a,
+        #left_menu > .gomenu > ul > li > a:hover,
+        #left_menu > .gomenu > ul > li.current > a,
+        #left_menu > .gomenu > ul > li.current > a:hover,
+        .color1-bg,
+        #styler_slider .update_click,
+				.team_social a:hover,
+				.tabs-left2 > .nav-tabs > li > a:Hover,
+				.Services_List > div > div:hover .Services_icon,
+				.price-table .color1-bg,
+				.social-icons a:hover,
+				.Theme_21_LinkAndZoom_Default .prev:hover,
+				.Theme_21_LinkAndZoom_Default .next:hover,
+				.Theme_21_LinkAndZoom_Normal .prev:hover,
+				.Theme_21_LinkAndZoom_Normal .next:hover,
+				.Theme_21_LinkAndZoom_Normal .pager a.selected,
+				.Theme_21_LinkAndZoom_Default .pager a.selected,
+				#filters li.selected a,
+				#filters li.selected a:hover,
+				.filter-switch,
+				.gallery_tags a:hover,
+				#dnn_wrapper .Theme_25_Normal .flex-control-paging li a.flex-active{
+				background-color:{0};
+				}
+			
+			A,
+      A:link,
+      A:active,
+      A:visited,
+      A:hover,
+      .CommandButton,
+      A.CommandButton:link,
+      A.CommandButton:visited,
+      A.CommandButton:active,
+      A.CommandButton:hover,
+      h1,
+      h2,
+      h3,
+      a.terms:hover,
+      a.breadcrumb:hover,
+      #dnn_bottom .categories li a:hover,
+      blockquote small,
+      .color1-link a,
+      .color1-text,
+      #left_menu ul li li a:hover,
+      #left_menu ul li li.subcurrent > a,
+      #Mega_menu ul li.Item-1 ul  li > a:hover,
+      #Mega_menu ul li.Item-1  ul li.dgn-root-hover > a,
+      .multi_menu ul li.Item-1 ul li a:hover,
+      .multi_menu ul li.Item-1 ul li.active > a,
+      .multi_menu ul li.Item-1 ul li.current > a,
+      #Mega_menu ul li.Item-4 ul  li > a:hover,
+      #Mega_menu ul li.Item-4  ul li.dgn-root-hover > a,
+      .multi_menu ul li.Item-4 ul li a:hover,
+      .multi_menu ul li.Item-4 ul li.active > a,
+      .multi_menu ul li.Item-4 ul li.current > a,
+      #Mega_menu ul li.Item-7 ul  li > a:hover,
+      #Mega_menu ul li.Item-7  ul li.dgn-root-hover > a
+      .multi_menu ul li.Item-7 ul li a:hover,
+      .multi_menu ul li.Item-7 ul li.active > a,
+      .multi_menu ul li.Item-7 ul li.current > a,
+			.team_content span,
+			.tabs-left2 > .nav-tabs > li.active > a,
+			.tabs-left2 > .nav-tabs > li.active > a:hover,
+			.Services_List > div > div:hover:hover h3,
+			.tabs-top-group2 .nav-tabs a:hover,
+			.tabs-top-group2 .nav-tabs li.active a,
+			.tabs-top-group2 .nav-tabs li.active a:hover,
+			.tabs-top-group2 .accordion-heading .accordion-toggle:hover,
+			.Theme_21_LinkAndZoom_Default li:hover .carousel_title,
+			.Theme_19_Normal .filter_navigation ul li a:hover,
+			.Theme_19_Normal .filter_navigation ul li.selected a,
+			#filters li a:hover,
+			.sort_box li a:hover,
+			.comment_form .submit_button .CommandButton{
+				color:{0};
+				}
+			.comment_form .submit_button .CommandButton{
+				border-color:{0};
+			}
+      </style>
+         ]]>
+      </StyleContent>
+      <DefaultValue><![CDATA[#1dbdea]]></DefaultValue>
+      <ControlType><![CDATA[ColorBox]]></ControlType>
+      <List_Name><![CDATA[]]></List_Name>
+      <List_Alias><![CDATA[]]></List_Alias>
+      <Description><![CDATA[]]></Description>
+      <Required><![CDATA[False]]></Required>
+  </Setting>
+<Setting>
+      <Name><![CDATA[Color2]]></Name>
+      <Alias><![CDATA[Color2]]></Alias>
+      <StyleContent>
+        <![CDATA[
+           <style>
+		    .color2_h .contentmain1:hover,
+        .color2_h .c1_icon,
+        .banner_yellow,
+        .accordion-heading .color2-bg-h:hover,
+        .accordion-heading .color2-bg-h.actived,
+        .color2-bg-h:hover,
+        #top_menu ul li.Item-2  a:hover,
+        #top_menu ul li.Item-2  a.menu_hover,
+        #top_menu ul li.Item-2.current > a,
+        #top_menu ul li.Item-5  a:hover,
+        #top_menu ul li.Item-5  a.menu_hover,
+        #top_menu ul li.Item-5.current > a,
+        #top_menu ul li.Item-8  a:hover,
+        #top_menu ul li.Item-8  a.menu_hover,
+        #top_menu ul li.Item-8.current > a,
+        .multi_menu > ul > li.Item-2 > a:hover,
+        .multi_menu > ul > li.Item-2.active > a,
+        .multi_menu > ul > li.Item-2.current > a,
+        .multi_menu > ul > li.Item-5 > a:hover,
+        .multi_menu > ul > li.Item-5.active > a,
+        .multi_menu > ul > li.Item-5.current > a,
+        .multi_menu > ul > li.Item-8 > a:hover,
+        .multi_menu > ul > li.Item-8.active > a,
+        .multi_menu > ul > li.Item-8.current > a,
+        #Mega_menu > div > ul > li.Item-2 > a:hover,
+        #Mega_menu > div > ul > li.Item-2.dgn-root-hover > a,
+        #Mega_menu > div > ul > li.Item-2.current > a,
+        #Mega_menu > div > ul > li.Item-5 > a:hover,
+        #Mega_menu > div > ul > li.Item-5.dgn-root-hover > a,
+        #Mega_menu > div > ul > li.Item-5.current > a,
+        #Mega_menu > div > ul > li.Item-8 > a:hover,
+        #Mega_menu > div > ul > li.Item-8.dgn-root-hover > a,
+        #Mega_menu > div > ul > li.Item-8.current > a,
+        .color2-bg,
+				.price-table .color2-bg{
+			     background-color:{0};
+			   }
+         .color2-link a,
+          .color2-text,
+          #Mega_menu ul li.Item-2 ul  li > a:hover,
+          #Mega_menu ul li.Item-2  ul  li.dgn-root-hover > a,
+          .multi_menu ul li.Item-2 ul li a:hover,
+      	  .multi_menu ul li.Item-2 ul li.active > a,
+          .multi_menu ul li.Item-2 ul li.current > a,
+          #Mega_menu ul li.Item-5 ul  li > a:hover,
+          #Mega_menu ul li.Item-5  ul  li.dgn-root-hover > a,
+          .multi_menu ul li.Item-5 ul li a:hover,
+		  .multi_menu ul li.Item-5 ul li.active > a,
+          .multi_menu ul li.Item-5 ul li.current > a,
+          #Mega_menu ul li.Item-8 ul  li > a:hover,
+          #Mega_menu ul li.Item-8  ul  li.dgn-root-hover > a,
+          .multi_menu ul li.Item-8 ul li a:hover,
+      	  .multi_menu ul li.Item-8 ul li.active > a,
+          .multi_menu ul li.Item-8 ul li.current > a{
+            color:{0};
+          }
+			
+      </style>
+         ]]>
+      </StyleContent>
+      <DefaultValue><![CDATA[#f6b900]]></DefaultValue>
+      <ControlType><![CDATA[ColorBox]]></ControlType>
+      <List_Name><![CDATA[]]></List_Name>
+      <List_Alias><![CDATA[]]></List_Alias>
+      <Description><![CDATA[]]></Description>
+      <Required><![CDATA[False]]></Required>
+  </Setting>
+  <Setting>
+      <Name><![CDATA[Color3]]></Name>
+      <Alias><![CDATA[Color3]]></Alias>
+      <StyleContent>
+        <![CDATA[
+           <style> 
+		      .color3-link a,
+          .color3-text,
+          #Mega_menu ul li.Item-3 ul  li > a:hover,
+          #Mega_menu ul li.Item-3  ul  li.dgn-root-hover > a,
+          .multi_menu ul li.Item-3 ul li a:hover,
+      	  .multi_menu ul li.Item-3 ul li.active > a,
+          .multi_menu ul li.Item-3 ul li.current > a,
+          #Mega_menu ul li.Item-6 ul  li > a:hover,
+          #Mega_menu ul li.Item-6  ul  li.dgn-root-hover > a,
+          .multi_menu ul li.Item-6 ul li a:hover,
+      	  .multi_menu ul li.Item-6 ul li.active > a,
+          .multi_menu ul li.Item-6 ul li.current > a,
+          #Mega_menu ul li.Item-9 ul  li > a:hover,
+          #Mega_menu ul li.Item-9  ul  li.dgn-root-hover > a,
+          .multi_menu ul li.Item-9 ul li a:hover,
+      	  .multi_menu ul li.Item-9 ul li.active > a,
+          .multi_menu ul li.Item-9 ul li.current > a{
+				      color:{0};
+			}
+
+			.color3_h .contentmain1:hover,
+      .color3_h .c1_icon,
+      .banner_green,
+      .accordion-heading .color3-bg-h:hover,
+      .accordion-heading .color3-bg-h.actived,
+      .color3-bg-h.actived,
+      .color3-bg-h:hover,
+      #top_menu ul li.Item-3  a:hover,
+      #top_menu ul li.Item-3  a.menu_hover,
+      #top_menu ul li.Item-3.current > a,
+      #top_menu ul li.Item-6  a:hover,
+      #top_menu ul li.Item-6  a.menu_hover,
+      #top_menu ul li.Item-6.current > a,
+      #top_menu ul li.Item-9  a:hover,
+      #top_menu ul li.Item-9  a.menu_hover,
+      #top_menu ul li.Item-9.current > a,
+      .multi_menu > ul > li.Item-3 > a:hover,
+      .multi_menu > ul > li.Item-3.active > a,
+      .multi_menu > ul > li.Item-3.current > a,
+      .multi_menu > ul > li.Item-6 > a:hover,
+      .multi_menu > ul > li.Item-6.active > a,
+      .multi_menu > ul > li.Item-6.current > a,
+      .multi_menu > ul > li.Item-9 > a:hover,
+      .multi_menu > ul > li.Item-9.active > a,
+      .multi_menu > ul > li.Item-9.current > a,
+      #Mega_menu > div > ul > li.Item-3 > a:hover,
+      #Mega_menu > div > ul > li.Item-3.dgn-root-hover > a,
+      #Mega_menu > div > ul > li.Item-3.current > a,
+      #Mega_menu > div > ul > li.Item-6 > a:hover,
+      #Mega_menu > div > ul > li.Item-6.dgn-root-hover > a,
+      #Mega_menu > div > ul > li.Item-6.current > a,
+      #Mega_menu > div > ul > li.Item-9 > a:hover,
+      #Mega_menu > div > ul > li.Item-9.dgn-root-hover > a,
+      #Mega_menu > div > ul > li.Item-9.current > a,
+      .color3-bg,
+			.price-table .color3-bg{
+				background-color:{0};	
+			}
+
+      </style>
+         ]]>
+      </StyleContent>
+      <DefaultValue><![CDATA[#64c827]]></DefaultValue>
+      <ControlType><![CDATA[ColorBox]]></ControlType>
+      <List_Name><![CDATA[]]></List_Name>
+      <List_Alias><![CDATA[]]></List_Alias>
+      <Description><![CDATA[]]></Description>
+      <Required><![CDATA[False]]></Required>
+  </Setting>
+  </Settings>
+  <Projects>
+    <ProjectItem>
+      <Name><![CDATA[background1]]></Name>
+      <Alias><![CDATA[Color Scheme 1]]></Alias>
+      <Control><![CDATA[Color1:#1dbdea;Color2:#f6b900;Color3:#64c827]]></Control>
+    </ProjectItem>
+    <ProjectItem>
+      <Name><![CDATA[background2]]></Name>
+      <Alias><![CDATA[Color Scheme 2]]></Alias>
+      <Control><![CDATA[Color1:#F5B900;Color2:#27C027;Color3:#F26418]]></Control>
+    </ProjectItem>
+    <ProjectItem>
+      <Name><![CDATA[background3]]></Name>
+      <Alias><![CDATA[Color Scheme 3]]></Alias>
+      <Control><![CDATA[Color1:#64C827;Color2:#FF8A0E;Color3:#2CBEA7]]></Control>
+    </ProjectItem>
+    <ProjectItem>
+      <Name><![CDATA[background4]]></Name>
+      <Alias><![CDATA[Color Scheme 4]]></Alias>
+      <Control><![CDATA[Color1:#FE6263;Color2:#D1C403;Color3:#3BCDB8]]></Control>
+    </ProjectItem>
+  </Projects>
+</DNNGo_StyleSwicth>
+
+
+

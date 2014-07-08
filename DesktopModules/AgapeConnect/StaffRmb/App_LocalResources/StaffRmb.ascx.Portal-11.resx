@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountBalance.Text">
+    <value>Stan konta</value>
+  </data>
+  <data name="AccountsComments.Text">
+    <value>Opis konta</value>
+  </data>
+  <data name="AccountWarning.Text">
+    <value>Ostrzeżenie</value>
+  </data>
+  <data name="AdvanceBalance.Text">
+    <value>Stan Zaliczek</value>
+  </data>
+  <data name="Advance.Text">
+    <value>Zaliczka</value>
+  </data>
+  <data name="AdvanceApproved.Text">
+    <value>Zaliczka #[ADVANCEID] została zaakceptowana!</value>
+  </data>
+  <data name="AdvanceRequest.Text">
+    <value>Prośba o zaliczkę</value>
+  </data>
+  <data name="AdvApproved.Text">
+    <value>Zaakcepowano [DATE] przez [STAFFNAME]</value>
+  </data>
+  <data name="AdvDate.Text">
+    <value>Otrzymano [DATE]</value>
+  </data>
+  <data name="AdvEmailApprovedSubject.Text">
+    <value>Zaliczka #:[ADVNO] została zaakceptowana przez [APPROVER]</value>
+  </data>
+  <data name="AdvEmailCancelledSubject.Text">
+    <value>Zaliczka #: [ADVNO] nie została zaakceptowana (usunięta)</value>
+  </data>
+  <data name="AdvEmailSubmittedSubject.Text">
+    <value>Zaliczka #[ADVNO]</value>
+  </data>
+  <data name="AdvIntro.Text">
+    <value>[STAFFNAME] złożył podanie o zaliczkę, która czeka na Twoją akceptację</value>
+  </data>
+  <data name="AdvLocked.Text">
+    <value>Twoja zaliczka jest w trakcie realizacji i nie może być zmieniana czy usunięta.</value>
+  </data>
+  <data name="AdvNotApproved.Text">
+    <value>Oczekiwanie na akceptację przez: [STAFFNAMES]</value>
+  </data>
+  <data name="AdvProcessed.Text">
+    <value>Zrealizowana [DATE]</value>
+  </data>
+  <data name="AdvReason.Text">
+    <value>Powód</value>
+  </data>
+  <data name="AmountSpecial.Text">
+    <value>Ponieważ kwota transakcji jest powyżej[TEAMLEADERLIMIT] Twoje zwroty muszą być zaakceptowane przez [AUTHUSER].</value>
+  </data>
+  <data name="Approved.Text">
+    <value>Zaakceptowane</value>
+  </data>
+  <data name="ApprovedBy.Text">
+    <value>Zaakceptowane przez</value>
+  </data>
+  <data name="ApproversComments.Text">
+    <value>Approver&amp;#39;s Komentarz</value>
+  </data>
+  <data name="AwaitingApproval.Text">
+    <value>Czeka na akceptację przez</value>
+  </data>
+  <data name="btnAddExpenseItem.Text">
+    <value>Dodaj pozycję wydatku</value>
+  </data>
+  <data name="btnAdvanceRequest.Text">
+    <value>Złoż podanie o zaliczkę</value>
+  </data>
+  <data name="btnAdvReq.Text">
+    <value>Podanie o zaliczkę</value>
+  </data>
+  <data name="btnApprove.Text">
+    <value>Zaakceptowane</value>
+  </data>
+  <data name="btnCreate.Text">
+    <value>Utwórz</value>
+  </data>
+  <data name="btnDownload.Text">
+    <value>Importuj do Excel</value>
+  </data>
+  <data name="btnEnter.Text">
+    <value>Wejdź</value>
+  </data>
+  <data name="btnNew.Text">
+    <value>Nowe zwroty</value>
+  </data>
+  <data name="btnNo.Text">
+    <value>Nie</value>
+  </data>
+  <data name="btnPrint.Text">
+    <value>Drukuj</value>
+  </data>
+  <data name="btnReject.Text">
+    <value>Odrzuć</value>
+  </data>
+  <data name="btnSave.Text">
+    <value>Zapisz</value>
+  </data>
+  <data name="btnProcess.Text">
+    <value>Kontynuuj</value>
+  </data>
+  <data name="btnSettings.Text">
+    <value>Ustawienia</value>
+  </data>
+  <data name="btnSplitAdd.Text">
+    <value>Dodaj linię</value>
+  </data>
+  <data name="btnYes.Text">
+    <value>Tak</value>
+  </data>
+  <data name="Cancelled.Text">
+    <value>Odrzucone</value>
+  </data>
+  <data name="cbExpenses.Text">
+    <value>Dołącz wydatki</value>
+  </data>
+  <data name="Comment.Text">
+    <value>Komentarz</value>
+  </data>
+  <data name="CommentLeft.Text">
+    <value>Komentarz, który zostawił [FIRSTNAME] to: "[COMMENT]".</value>
+  </data>
+  <data name="CreateRmb.Text">
+    <value>Utwórz nowe zwroty</value>
+  </data>
+  <data name="Default.Text">
+    <value>Domyślny</value>
+  </data>
+  <data name="Delete.Text">
+    <value>Usuń</value>
+  </data>
+  <data name="Description.Text">
+    <value>Opis</value>
+  </data>
+  <data name="DownloadFailed.Text">
+    <value>Import nieudany</value>
+  </data>
+  <data name="Draft.Text">
+    <value>Roboczy</value>
+  </data>
+  <data name="Edit.Text">
+    <value>Edytuj</value>
+  </data>
+  <data name="EmailApprovedSubjectA.Text">
+    <value>Rmb#:[RMBNO] zotały zaakceptowane przez[APPROVER]</value>
+  </data>
+  <data name="EmailApprovedSubjectP.Text">
+    <value>Rmb#: [RMBNO] - [USERREF]  zaakceptowane</value>
+  </data>
+  <data name="EmailCancelledSubject.Text">
+    <value>Rmb#: [RMBNO] - [USERREF]  usunięte</value>
+  </data>
+  <data name="EmailSubmittedSubject.Text">
+    <value>Zwroty #[RMBNO]</value>
+  </data>
+  <data name="AccountsOnly.Text">
+    <value>Użyj tylko nr konta</value>
+  </data>
+  <data name="AdvAmountSpecial.Text">
+    <value>Ponieważ Twoje zwroty są powyżej [TEAMLEADERLIMIT], dlatego musi być zatwierdzona przez [AUTHUSER].</value>
+  </data>
+  <data name="AdvanceError.Text">
+    <value>Wprowadziłeś niewłaściwą kwotę. Twoje ustawienia nie zostały zapisane.</value>
+  </data>
+  <data name="AdvAuthSpecial.Text">
+    <value>Ponieważ jesteś AuthUser i zwykły lider jest nie jest uprawniony zatwierdzić tej zaliczki, musi być ona zatwierdzona przez AuthAuthUser: [AUTHAUTHUSER].</value>
+  </data>
+  <data name="AdvSpouseSpecial.Text">
+    <value>Ponieważ Twój lider jest Twoim współmałżonkiem zaliczka musi być zatwierdzona przez [AUTHUSER].</value>
+  </data>
+  <data name="AdvSubmittedApprEmailSubject.Text">
+    <value>Zaliczka dla [STAFFNAME]</value>
+  </data>
+  <data name="Amount.Text">
+    <value>Kwota</value>
+  </data>
+  <data name="AuthSpecial.Text">
+    <value>Ponieważ jesteś AuthUser i lider jest nie jest uprawniony zatwierdzić Twoich zwrotów, muszą one być zatwierdzone przez AuthAuthUser: [AUTHAUTHUSER].</value>
+  </data>
+  <data name="BatchedRmbs.Text">
+    <value>Pobierz zapisane zwroty</value>
+  </data>
+  <data name="btnCancel.Text">
+    <value>Anuluj</value>
+  </data>
+  <data name="btnDownloadBatch.Text">
+    <value>Pobierz zapisane transakcje</value>
+  </data>
+  <data name="btnMoreInfo.Text">
+    <value>Poproś o więcej informacji</value>
+  </data>
+  <data name="LineTypes.Text">
+    <value>Typ wydatku</value>
+  </data>
+  <data name="MarkProcessed.Text">
+    <value>Chcesz oznaczyć pobrane transakcje jako "Przetworzone"?</value>
+  </data>
+  <data name="Expenses.Text">
+    <value>Wydatki</value>
+  </data>
+  <data name="Errors.Text">
+    <value>Następujące zwroty mają status błędu: </value>
+  </data>
+  <data name="lblBankAccount.Text">
+    <value>Konto bankowe</value>
+  </data>
+  <data name="lblErrorMessage.Text">
+    <value>Komunikat błędu</value>
+  </data>
+  <data name="lblElectronicReceipts.Text">
+    <value>Rachunek elektroniczny</value>
+  </data>
+  <data name="NewLineTitle.Text">
+    <value>Dodaj nowe zwroty</value>
+  </data>
+  <data name="NoReceipts.Text">
+    <value>Brak rachunku</value>
+  </data>
+  <data name="OpenNewTab.Text">
+    <value>Kliknij by zobaczyć w nowej zakładce...</value>
+  </data>
+  <data name="OriginalTrans.Text">
+    <value>Original Transaction</value>
+  </data>
+  <data name="PayOff.Text">
+    <value>Rozlicz zaliczkę</value>
+  </data>
+  <data name="PendingDownload.Text">
+    <value>Pending Download</value>
+  </data>
+  <data name="Processed.Text">
+    <value>W trakcie przetwarzania</value>
+  </data>
+  <data name="Period.Text">
+    <value>Okres</value>
+  </data>
+  <data name="ProcessedOn.Text">
+    <value>Processed on</value>
+  </data>
+</root>

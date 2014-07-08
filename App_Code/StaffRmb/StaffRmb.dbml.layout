@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.25, 16.75" name="StaffRmb">
+  <DataContextMoniker Name="/StaffRmbDataContext" />
+  <nestedChildShapes>
+    <classShape Id="24f330c8-7b6e-4904-a68d-179ca62539dd" absoluteBounds="6.625, 3.75, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/StaffRmbDataContext/AP_Staff_RmbLineType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c8bd9813-8b6a-4199-be2e-ba94fbf40a01" absoluteBounds="6.64, 4.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="056fa405-77a9-40f5-9d05-b725d13d0ff9" absoluteBounds="9.25, 4, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/StaffRmbDataContext/AP_StaffRmb_PortalLineType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="01d09d46-30d2-49dc-84ef-80eb99de13e3" absoluteBounds="9.265, 4.46, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.625 : 4.76044840494792); (9.25 : 4.76044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffRmbDataContext/AP_Staff_RmbLineType/AP_Staff_RmbLineType_AP_StaffRmb_PortalLineType" />
+      <nodes>
+        <classShapeMoniker Id="24f330c8-7b6e-4904-a68d-179ca62539dd" />
+        <classShapeMoniker Id="056fa405-77a9-40f5-9d05-b725d13d0ff9" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="4705fd25-ac9e-4e84-aba3-babb6768d7e0" absoluteBounds="10, 0.625, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/StaffRmbDataContext/AP_StaffBroker_Department" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b6faf713-cf55-4eed-bf21-e6c817e36742" absoluteBounds="10.015, 1.085, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ae34fbb0-0a0c-4263-9de3-3e9fc050b814" absoluteBounds="7.5, 0.625, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/StaffRmbDataContext/AP_StaffBroker_CostCenter" />
+      <nestedChildShapes>
+        <elementListCompartment Id="33f31182-0a5c-4ba8-845d-1e4eefbe2772" absoluteBounds="7.515, 1.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0d1ea7b6-e4dc-4c29-8f1a-1da36eb36fc8" absoluteBounds="5.125, 0.75, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/StaffRmbDataContext/AP_StaffBroker_AccountCode" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c74745ab-82c8-48cb-948e-ff6a238cd263" absoluteBounds="5.14, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="04cf3e34-0cde-4d87-b8b3-dcae1502bbc1" absoluteBounds="1.25, 0.875, 2, 7.1553369140625005">
+      <DataClassMoniker Name="/StaffRmbDataContext/AP_Staff_Rmb" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e08dc11c-e850-44f9-a1ac-9d50ab46a4f3" absoluteBounds="1.2650000000000001, 1.335, 1.9700000000000002, 6.5953369140625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2167f53f-73fb-4bdf-906d-de0c2e9a2b9b" absoluteBounds="4.5, 11.25, 2, 5.2323225911458344">
+      <DataClassMoniker Name="/StaffRmbDataContext/AP_Staff_AdvanceRequest" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f74729a1-8523-48d6-a82b-a7757253c175" absoluteBounds="4.515, 11.71, 1.9700000000000002, 4.672322591145833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="02a187d1-5f63-42af-b2f1-1e5c0270946a" absoluteBounds="7.125, 9.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/StaffRmbDataContext/AP_Staff_Rmb_PerDeimMuliType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ea58cdcb-1538-4f6a-a80b-6c0d52312bab" absoluteBounds="7.14, 10.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="82a8ae9d-f06f-4cf6-955e-76ead972823b" absoluteBounds="4.25, 3.375, 2, 7.1553369140625005">
+      <DataClassMoniker Name="/StaffRmbDataContext/AP_Staff_RmbLine" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0f1f339a-acbf-4f94-a573-5a1f6c37a9ab" absoluteBounds="4.265, 3.835, 1.9700000000000002, 6.5953369140625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.25 : 5.70266845703125); (4.25 : 5.70266845703125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/StaffRmbDataContext/AP_Staff_Rmb/AP_Staff_Rmb_AP_Staff_RmbLine" />
+      <nodes>
+        <classShapeMoniker Id="04cf3e34-0cde-4d87-b8b3-dcae1502bbc1" />
+        <classShapeMoniker Id="82a8ae9d-f06f-4cf6-955e-76ead972823b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.625 : 4.63544840494792); (6.25 : 4.63544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffRmbDataContext/AP_Staff_RmbLineType/AP_Staff_RmbLineType_AP_Staff_RmbLine" />
+      <nodes>
+        <classShapeMoniker Id="24f330c8-7b6e-4904-a68d-179ca62539dd" />
+        <classShapeMoniker Id="82a8ae9d-f06f-4cf6-955e-76ead972823b" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

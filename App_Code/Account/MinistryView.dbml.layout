@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="MinistryView">
+  <DataContextMoniker Name="/MinistryViewDataContext" />
+  <nestedChildShapes>
+    <classShape Id="86568dfe-3492-4cb0-bcad-09fcaf7d1da8" absoluteBounds="0.75, 0.75, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/MinistryViewDataContext/MinistryView_UserCountryProfile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="63c0d274-a392-4032-a9c6-c0f9c78ac6e1" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="46d06364-cbac-424f-942c-310dc1d31eb6" absoluteBounds="3.75, 0.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/MinistryViewDataContext/MinistryView_AdditionalCountry" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fb06ef19-d041-45c3-bf72-784b42e54cec" absoluteBounds="3.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.75 : 1.44314697265625); (2.75 : 1.44314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MinistryViewDataContext/MinistryView_AdditionalCountry/MinistryView_AdditionalCountry_MinistryView_UserCountryProfile" />
+      <nodes>
+        <classShapeMoniker Id="46d06364-cbac-424f-942c-310dc1d31eb6" />
+        <classShapeMoniker Id="86568dfe-3492-4cb0-bcad-09fcaf7d1da8" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountBalance.Text">
+    <value>Залишок на рахунку</value>
+  </data>
+  <data name="AccountsComments.Text">
+    <value>Коментарі до рахунків</value>
+  </data>
+  <data name="AccountsOnly.Text">
+    <value>Використовувати тільки для розділу "Рахунки"</value>
+  </data>
+  <data name="AccountWarning.Text">
+    <value>Попередження</value>
+  </data>
+  <data name="AddEditRmb.Text">
+    <value>Додати / Змінити нову компенсаційну витрату </value>
+  </data>
+  <data name="AdvAmountSpecial.Text">
+    <value>Оскільки ваша транзакція перевищує суму [TEAMLEADERLIMIT] вашого авансу, її повинен затвердити [AuthUser].</value>
+  </data>
+  <data name="Advance.Text">
+    <value>Аванс</value>
+  </data>
+  <data name="AdvanceApproved.Text">
+    <value>Аванс # [ADVANCEID] був схвалений!</value>
+  </data>
+  <data name="AdvanceBalance.Text">
+    <value>Баланс по авансам</value>
+  </data>
+  <data name="AdvanceError.Text">
+    <value>Ви ввели невірну суму. Ваші налаштування не були збережені.</value>
+  </data>
+  <data name="AdvanceRequest.Text">
+    <value>Запит на аванс</value>
+  </data>
+  <data name="AdvApproved.Text">
+    <value>Затверджено [DATE] [STAFFNAME]</value>
+  </data>
+  <data name="AdvAuthSpecial.Text">
+    <value>Так як ви AuthUser, і ваше звичайний лідер не має права затвердити цей аванс, він повинен бути схвалений AuthAuthUser: [AUTHAUTHUSER].</value>
+  </data>
+  <data name="AdvDate.Text">
+    <value>Отримано [DATE]</value>
+  </data>
+  <data name="AdvEmailCancelledSubject.Text">
+    <value>Аванс #: [ADVNO] був скасований</value>
+  </data>
+  <data name="AdvEmailSubmittedSubject.Text">
+    <value>Аванс # [ADVNO]</value>
+  </data>
+  <data name="AdvIntro.Text">
+    <value>[STAFFNAME] відправив Запит на Аванс  для затвердження вами</value>
+  </data>
+  <data name="AdvLocked.Text">
+    <value>Ваш аванс вже був провередний і не може бути змінений або скасований.</value>
+  </data>
+  <data name="AdvNotApproved.Text">
+    <value>Очікує затвердження: [STAFFNAMES]</value>
+  </data>
+  <data name="AdvProcessed.Text">
+    <value>Проведено [DATE]</value>
+  </data>
+  <data name="AdvReason.Text">
+    <value>Причина</value>
+  </data>
+  <data name="AdvSpouseSpecial.Text">
+    <value>Так як ваш лідер також ваше подружжя, ваш аванс повинен бути оброблений [AuthUser].</value>
+  </data>
+  <data name="AdvSubmittedApprEmailSubject.Text">
+    <value>Аванс для [STAFFNAME]</value>
+  </data>
+  <data name="Amount.Text">
+    <value>Сума</value>
+  </data>
+  <data name="Approved.Text">
+    <value>Затверджено</value>
+  </data>
+  <data name="ApprovedBy.Text">
+    <value>Затверджено</value>
+  </data>
+  <data name="ApprovedOn.Text">
+    <value>Затверджено</value>
+  </data>
+  <data name="AwaitingApproval.Text">
+    <value>Очікує затвердження</value>
+  </data>
+  <data name="BatchedRmbs.Text">
+    <value>Завантажити оброблені відшкодування</value>
+  </data>
+  <data name="btnAddExpenseItem.Text">
+    <value>Додати статтю витрат</value>
+  </data>
+  <data name="btnAdvanceRequest.Text">
+    <value>Надіслати запит на аванс</value>
+  </data>
+  <data name="btnAdvReq.Text">
+    <value>Запит на аванс</value>
+  </data>
+  <data name="btnApprove.Text">
+    <value>Затвердити</value>
+  </data>
+  <data name="btnCancel.Text">
+    <value>Скасувати</value>
+  </data>
+  <data name="btnCreate.Text">
+    <value>Створити</value>
+  </data>
+  <data name="btnDownload.Text">
+    <value>Завантажити в Excel</value>
+  </data>
+  <data name="btnDownloadBatch.Text">
+    <value>Завантажити оброблені тразакції</value>
+  </data>
+  <data name="btnEnter.Text">
+    <value>Ввести</value>
+  </data>
+  <data name="btnMoreInfo.Text">
+    <value>Запитати додаткову інформацію</value>
+  </data>
+  <data name="btnNew.Text">
+    <value>Нове відшкодування</value>
+  </data>
+  <data name="btnNo.Text">
+    <value>Ні</value>
+  </data>
+  <data name="btnOK.Text">
+    <value>Так</value>
+  </data>
+  <data name="btnPrint.Text">
+    <value>Друкувати</value>
+  </data>
+  <data name="btnProcess.Text">
+    <value>Провести</value>
+  </data>
+  <data name="btnReject.Text">
+    <value>Скасувати</value>
+  </data>
+  <data name="btnSave.Text">
+    <value>Зберегти</value>
+  </data>
+  <data name="btnSettings.Text">
+    <value>Налаштування</value>
+  </data>
+  <data name="btnSplitAdd.Text">
+    <value>Додати лінію</value>
+  </data>
+  <data name="btnSubmit.Text">
+    <value>Відправити на обробку</value>
+  </data>
+  <data name="btnYes.Text">
+    <value>Так</value>
+  </data>
+  <data name="Cancelled.Text">
+    <value>Скасовано</value>
+  </data>
+  <data name="cbExpenses.Text">
+    <value>Включити витрати</value>
+  </data>
+  <data name="Comment.Text">
+    <value>Коментувати</value>
+  </data>
+  <data name="CreateRmb.Text">
+    <value>Створити нове відшкодування</value>
+  </data>
+  <data name="Default.Text">
+    <value>Умовчання</value>
+  </data>
+  <data name="Delete.Text">
+    <value>Видалити</value>
+  </data>
+  <data name="Description.Text">
+    <value>Опис</value>
+  </data>
+  <data name="DownloadFailed.Text">
+    <value>Помилка завантаження</value>
+  </data>
+  <data name="Draft.Text">
+    <value>Чернетка</value>
+  </data>
+  <data name="Edit.Text">
+    <value>Редагувати</value>
+  </data>
+  <data name="Expenses.Text">
+    <value>Витрати</value>
+  </data>
+  <data name="LargeTransaction.Text">
+    <value>Велика транзакція</value>
+  </data>
+  <data name="lblBankAccount.Text">
+    <value>Банківський рахунок</value>
+  </data>
+  <data name="lblErrorMessage.Text">
+    <value>Повідомлення про помилку</value>
+  </data>
+  <data name="LineTypes.Text">
+    <value>Тип витрат</value>
+  </data>
+  <data name="NewLineTitle.Text">
+    <value>Додати нову транзакцію відшкодування</value>
+  </data>
+  <data name="NoReceipts.Text">
+    <value>Немає квитанцій</value>
+  </data>
+  <data name="OriginalTrans.Text">
+    <value>Оригінал транзакції</value>
+  </data>
+  <data name="btnUnProcess.Text">
+    <value>Відмінити проводку</value>
+  </data>
+  <data name="cbExpenses.Help">
+    <value>Виберіть цю опцію, щоб додати аванс та виплати відшкодування.Витрати повинні бути повністю оброблені в MS Dynamics перед тим, як вони з'являються в цьому звіті. (Це може зайняти до 5 хвилин після того, як Оброблено, перед тим, як з'явиться тут).</value>
+  </data>
+  <data name="cbSalaries.Text">
+    <value>Додати заробітну плату</value>
+  </data>
+  <data name="EmailApprovedSubjectP.Text">
+    <value>Rmb #: [RMBNO] - [UserRef] було схвалено</value>
+  </data>
+  <data name="EmailApprovedSubjectA.Text">
+    <value>Rmb #: [RMBNO] було схвалено [APPROVER]</value>
+  </data>
+  <data name="EmailCancelledSubject.Text">
+    <value>Rmb #: [RMBNO] - [UserRef] було скасовано</value>
+  </data>
+  <data name="EmailComments.Text">
+    <value>Наступні зауваження були представлені з цим відшкодуванням</value>
+  </data>
+  <data name="EmailSubmittedSubject.Text">
+    <value>Відшкодування # [RMBNO]</value>
+  </data>
+  <data name="Errors.Text">
+    <value>Наступні відшкодування перебувають у стані помилки</value>
+  </data>
+  <data name="ForceNonTaxable.Text">
+    <value>Примусово Не-оподатковується</value>
+  </data>
+  <data name="ForceTaxable.Text">
+    <value>Примусово Оподатковується</value>
+  </data>
+  <data name="MarkProcessed.Text">
+    <value>Хотіли б ви позначити завантажені транзакції як Проведені?</value>
+  </data>
+  <data name="NextBatch.Text">
+    <value>Це відшкодування буде завантажено в наступний пакет.</value>
+  </data>
+  <data name="NextBatchAdvance.Text">
+    <value>Цей аванс буде завантажено в наступний пакет.</value>
+  </data>
+  <data name="PayOff.Text">
+    <value>Погасити аванс</value>
+  </data>
+  <data name="PendingDownload.Text">
+    <value>В очікуванні Завантаження</value>
+  </data>
+  <data name="Period.Text">
+    <value>Період</value>
+  </data>
+  <data name="Processed.Text">
+    <value>Проведено</value>
+  </data>
+  <data name="ReceiptNo.Text">
+    <value>№ квитанції</value>
+  </data>
+  <data name="ProcessedBy.Text">
+    <value>Проведено</value>
+  </data>
+  <data name="ProcessedOn.Text">
+    <value>Проведено</value>
+  </data>
+  <data name="Receipts.Text">
+    <value>Квитанції</value>
+  </data>
+  <data name="RecoverVAT.Text">
+    <value>Повернути ПДВ?</value>
+  </data>
+  <data name="Reimbursement.Text">
+    <value>Відшкодування</value>
+  </data>
+  <data name="RmbApproved.Text">
+    <value>Відшкодування # [RMBNO] було схвалено!</value>
+  </data>
+  <data name="RmbsToApprove.Text">
+    <value>Відшкодування для затвердження</value>
+  </data>
+  <data name="RmbTitle.Text">
+    <value>Відшкодування</value>
+  </data>
+  <data name="Split.Text">
+    <value>Розділити</value>
+  </data>
+  <data name="SplitError.Text">
+    <value>Будь ласка, введіть опис і суму для всіх ліній</value>
+  </data>
+  <data name="SplitTransaction.Text">
+    <value>Розділити</value>
+  </data>
+  <data name="SplitInto.Text">
+    <value>Розділити на</value>
+  </data>
+  <data name="Submitted.Text">
+    <value>Відправлено</value>
+  </data>
+  <data name="SubmittedBy.Text">
+    <value>Відправлено</value>
+  </data>
+  <data name="SuggestedPayments.Text">
+    <value>Запропоновані платежі</value>
+  </data>
+  <data name="ToApprove.Text">
+    <value>Затвердити</value>
+  </data>
+  <data name="ToProcess.Text">
+    <value>Провести</value>
+  </data>
+  <data name="TransDate.Text">
+    <value>DATE</value>
+  </data>
+  <data name="TeamRmbs.Text">
+    <value>Ваша команда / служіння</value>
+  </data>
+  <data name="SubmittedOn.Text">
+    <value>Відправлено</value>
+  </data>
+  <data name="Year.Text">
+    <value>Рік</value>
+  </data>
+  <data name="YourComments.Text">
+    <value>Ваші коментарі</value>
+  </data>
+  <data name="YourRef.Text">
+    <value>Ваше посилання</value>
+  </data>
+  <data name="YourRmbs.Text">
+    <value>Ваші відшкодування</value>
+  </data>
+  <data name="Taxable.Text">
+    <value>* - Поля відмічені *, будуть обкладатися податком.</value>
+  </data>
+  <data name="SubmittedApprEmailSubject.Text">
+    <value>Відшкодування для [STAFFNAME]</value>
+  </data>
+  <data name="SpouseSpecial.Text">
+    <value>Так як ваш лідер також ваше подружжя, ваше відшкодування повинно бути оброблено [AuthUser].</value>
+  </data>
+  <data name="PayOff.Help">
+    <value>Введіть суму позички, яку ви хотіли б погасити.</value>
+  </data>
+  <data name="DefaultSettingsText">
+    <value>* Увага - цей модуль з настройками за замовчуванням. Прочитайте і збережіть налаштування модуля перед використанням в живому середовищі.</value>
+  </data>
+  <data name="AccountsMode.Text">
+    <value>Ви знаходитесь в режимі "Рахунки". Щоб повернутися до звичайного режиму (як звичайний співробітник або як затверджувач), перейдіть в режим Перегляду (вгорі праворуч).</value>
+  </data>
+  <data name="AdvEmailApprovedSubject.Text">
+    <value>Аванс #: [ADVNO] було схвалено [APPROVER]</value>
+  </data>
+  <data name="AmountSpecial.Text">
+    <value>Оскільки у вашому відшкодуванні  транзакція перевищує ліміт[TEAMLEADERLIMIT] , його має бути схвалено [AuthUser].</value>
+  </data>
+  <data name="ApproversComments.Text">
+    <value>Коментарі затверджуючого</value>
+  </data>
+  <data name="AuthSpecial.Text">
+    <value>Так як ви є AuthUser, і ваш лідер не може  затвердити це відшкодування, він повинен бути схвалений AuthAuthUser: [AUTHAUTHUSER].</value>
+  </data>
+  <data name="cbSalaries.Help">
+    <value>Виберіть цей параметр для включення заробітної плати співробітників у завантаження запропонований платежів. Ви можете встановити зарплату для кожного співробітника, зі сторінки Персонал Admin (Admin-&amp;gt; AgapeConnect-&amp;gt; Співробітники Admin).</value>
+  </data>
+  <data name="CommentLeft.Text">
+    <value>Коментар щодо [FIRSTNAME] був: "[COMMENT]".</value>
+  </data>
+  <data name="EmailApproverChanged.Text">
+    <value>Схоже, що ваш затверджувач внес зміни в це відшкодування, перш ніж схвалити його. Ви можете переглянути це відшкодування, вибравши його в частини "Затверджені"  відшкодування сайту.</value>
+  </data>
+  <data name="ErrorHelp.Text">
+    <value>* Примітка: Якщо автоматичне завантаження стикається з помилкою коли переносить тразакції у бухгалтерську програму, вся партія може бути відхилена. Якщо у вас кілька відшкодувань у стані помилки - проблема може бути з одним з інших відшкодувань.</value>
+  </data>
+  <data name="ErrorInProgress.Text">
+    <value>Ця компенсація не може бути відмінена в цей час, так як це в даний час завантажується автоматичною службою   Datapump (транзакція брокера). Ви можете повторити спробу через кілька хвилин, але знайте, що вона вже буде проведена у вашій бухгалтерській програмі.</value>
+  </data>
+  <data name="lblBankAccount.Help">
+    <value>Виберіть банківський рахунок, який ви будете використовувати для виплат співробітникам. (Ви можете встановити за замовчуванням рахунок банку на сторінці Параметри цього модуля.).</value>
+  </data>
+  <data name="PostReceipts.Text">
+    <value>Будь ласка,відправте ваші квитанції, за формою, що додається, до національного офісу.</value>
+  </data>
+  <data name="PrintoutMoreInfo.Text">
+    <value>Сторінка для роздрукування відкрилася в новому вікні / вкладці. Якщо вам потрібно відправити у квитанції для відшкодування ваших витрат, і ви ще не відправили їх в офіс, будь ласка, додайте їх до цієї роздруківки і надішліть в офіс.</value>
+  </data>
+  <data name="Expire.Text">
+    <value>Відшкодування повинно бути зроблено протягом [EXPIRE] місяців. Пункт,що ви ввели, не знаходиться в межах [EXPIRE] місяців звітного періоду. Якщо ви хочете відшкодувати цей пункт, він буде розглядатися як додаткова заробітна плата і, відповідно оподаткований.</value>
+  </data>
+  <data name="ExpireDept.Text">
+    <value>Відшкодування повинно бути зроблено протягом [EXPIRE] місяців. Пункт,що ви ввели, не знаходиться в межах [EXPIRE] місяців звітного періоду. Якщо ви хочете відшкодувати цей пункт, він буде розглядатися як додаткова заробітна плата ( з вашого РАХУНКУ СПІВРОБІНИКА)і, відповідно оподаткований.</value>
+  </data>
+  <data name="ExpireImpossible.Text">
+    <value>Відшкодування повинно бути зроблено протягом [EXPIRE] місяців. Пункт,що ви ввели, не знаходиться в межах [EXPIRE] місяців звітного періоду, і не може бути відшкодован0.</value>
+  </data>
+  <data name="lblAccountWarning.Text">
+    <value>На  рахунку даного центра відповідальності не вистачає грошей для покриття цього відшкодування. Обробка цього відшкодування може призвести до негативного балансу рахунку. Бажаєте продовжити?</value>
+  </data>
+  <data name="lblWrongType.Text">
+    <value>Це стаття відшкодування використовує категорію витрат, які є неприпустимими для цього Центр відповідальності. Ви повинні змінити цю лінію і вибрати допустимий тип витрат, перш ніж ви можете зможете подати на обробку це відшкодування.</value>
+  </data>
+  <data name="LineType.Text">
+    <value>Тип лінії</value>
+  </data>
+  <data name="lblWrongTypes.Text">
+    <value>Відшкодування витрат містить витрати не сумісні з типами видат - виділені червоним кольором. Деякі типи витрат дійсні тільки для Особистого відшкодувань, інші для Відшкодувань служіння. Щоб це виправити, змініть рядок і виберіть новий (дійсний) тип витрат. Ви повинні виправити ці помилки, перш ніж подаватити на затвердження та проведення цього відшкодування.</value>
+  </data>
+  <data name="LineTypes.Help">
+    <value>Переконайтеся, що ви вводите ваше відшкодування відповідно з правильним типом витрат. Якщо ваша витрата не відноситься до жодної з вказаних категорій, виберіть Інші.</value>
+  </data>
+  <data name="MarkProcessedHelp.Text">
+    <value>Якщо ви збираєтеся вставити ці тразакції вручну в ваш пакет рахунків, ви повинні вибрати ТАК. Зауважте, що при обраному ТАК, ці операції будуть позначені як проведені і будет проігноровані втоматичним брокером.</value>
+  </data>
+  <data name="MoreInfo.Text">
+    <value>Фінансова команда запросила, щоб ви надали більше інформації стосовно відшкодування [RMBNO] - [UserRef].</value>
+  </data>
+  <data name="MoreInfoMsg.Text">
+    <value>Це відшкодування буде підсвічене для співробітника на цій сторінці. Однак, ви повинні відправити листа співробітнику особисто, щоб сповістити його / її, яка інформація вам потрібна.</value>
+  </data>
+  <data name="NoPostReceipts.Text">
+    <value>Квитанцій не потрібно, отож вам не потрібно нічого посилати в офіс. Форма, що додається, є тільки для довідки.</value>
+  </data>
+  <data name="OutOfDate.Text">
+    <value>Цей рахунок застарів і буде обкладатися податком.</value>
+  </data>
+  <data name="OverideTax.Help">
+    <value>Використовуйте це налаштування для примусової зміни налаштування оподаткування. Типово, система розраховує податок на основі інформації, наданої користувачем - але співробітники фінвідділу можуть використовувати це налаштування для зміни цього.</value>
+  </data>
+  <data name="OverideTax.Text">
+    <value>Змінити податок</value>
+  </data>
+  <data name="Printout.Text">
+    <value>Роздруківка відкрилася в новому вікні / вкладці. Не забудьте докласти квитанції (при необхідності) до цієї роздруківки і надіслати в офіс.</value>
+  </data>
+  <data name="lblElectronicReceipts.Text">
+    <value>Електронні квитанції</value>
+  </data>
+  <data name="lblElectronicReceipts.Help">
+    <value>Завантажте зображення (JPG, PNG, GIF) або PDF як електронну квитанцію.</value>
+  </data>
+  <data name="OpenNewTab.Text">
+    <value>Натисніть, щоб побачити в новій вкладці ...</value>
+  </data>
+  <data name="RecoverVATRate.Text">
+    <value>Ставка ПДВ до відшкодування (%)</value>
+  </data>
+  <data name="ShortComment.Help">
+    <value>Ваша бухгалтерська програма, ймовірно,має обмеження на кількість символів у коментарях / Описі поля. Для Dynamics / Соломон, як правило, це 30 символів (включаючи ініциали). Ви можете налаштувати це тут.</value>
+  </data>
+  <data name="ShortComment.Text">
+    <value>Короткий коментар</value>
+  </data>
+</root>

@@ -1,0 +1,1303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="tntmpd.dataserver.tntware.com" xmlns:s2="http://tempuri.org/AbstractTypes" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="tntmpd.dataserver.tntware.com" />
+      <s:element name="GetStaffPortalResourceStrings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CountryURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStaffPortalResourceStringsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStaffPortalResourceStringsResult" type="tns:ArrayOfResourceStr" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfResourceStr">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ResourceStr" nillable="true" type="s1:ResourceStr" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSiteProperties">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CountryURL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSitePropertiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSitePropertiesResult" type="s1:SiteProperties" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGiftsReceivedFromOneDonor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CountryURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StaffProfileCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DonorCode" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="DesignationFilter" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGiftsReceivedFromOneDonorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGiftsReceivedFromOneDonorResult" type="tns:ArrayOfGift" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGift">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Gift" nillable="true" type="s1:Gift" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetStaffPortalLanguages">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CountryURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStaffPortalLanguagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStaffPortalLanguagesResult" type="tns:ArrayOfLanguage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLanguage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Language" nillable="true" type="s1:Language" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetGifGetStaffProfilestsReceived">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CountryURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGifGetStaffProfilestsReceivedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGifGetStaffProfilestsReceivedResult" type="tns:ArrayOfProfile" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProfile">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Profile" nillable="true" type="s1:Profile" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetGiftsReceived">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CountryURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StaffProfileCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DateFrom" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="DateTo" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="DesignationFilter" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGiftsReceivedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGiftsReceivedResult" type="tns:ArrayOfGift" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogoutSession">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CountryURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogoutSessionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="LogoutUserAllSessions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CountryURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogoutUserAllSessionsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetStaffPortalResourceStrings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CountryURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ResourceStrings" type="tns:ArrayOfResourceStr" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetStaffPortalResourceStringsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RegisterUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CountryURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrationCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RegisteredUserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RegisterUserResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="RegisteredUserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnpublishedFinancialTransactions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CountryURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StaffProfileCodes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FinancialAccountFilter" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MarkAsPublished" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FinancialAccounts" type="tns:ArrayOfFinancialAccount" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndingDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFinancialAccount">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FinancialAccount" nillable="true" type="s1:FinancialAccount" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUnpublishedFinancialTransactionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUnpublishedFinancialTransactionsResult" type="tns:ArrayOfFinancialTransaction" />
+            <s:element minOccurs="0" maxOccurs="1" name="FinancialAccounts" type="tns:ArrayOfFinancialAccount" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndingDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFinancialTransaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FinancialTransaction" nillable="true" type="s1:FinancialTransaction" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFinancialTransactions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CountryURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StaffProfileCodes" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DateFrom" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="DateTo" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="FinancialAccountFilter" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MarkAsPublished" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FinancialAccounts" type="tns:ArrayOfFinancialAccount" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFinancialTransactionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFinancialTransactionsResult" type="tns:ArrayOfFinancialTransaction" />
+            <s:element minOccurs="0" maxOccurs="1" name="FinancialAccounts" type="tns:ArrayOfFinancialAccount" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDonors">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CountryURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StaffProfileCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DonorIDs" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="DateFrom" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="DesignationFilter" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDonorsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDonorsResult" type="tns:ArrayOfDonor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDonor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Donor" nillable="true" type="s1:Donor" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSummary">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProxyGrantingTicket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSummaryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetSummaryResult" type="tns:myAccounts" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="myAccounts">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Countries" type="tns:ArrayOfCountry" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCountry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Country" type="tns:Country" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Country">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Currency" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Profiles" type="tns:ArrayOfCountryProfile" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCountryProfile">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CountryProfile" type="tns:CountryProfile" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CountryProfile">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProfileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProfileCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Donations" type="tns:ArrayOfDonationAccount" />
+          <s:element minOccurs="0" maxOccurs="1" name="Accounts" type="tns:ArrayOfFinancialAccounts" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDonationAccount">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DonationAccount" type="tns:DonationAccount" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DonationAccount">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DesignationID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DonationsThisMonth" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFinancialAccounts">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FinancialAccounts" type="tns:FinancialAccounts" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FinancialAccounts">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AccountID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfResourceStr" nillable="true" type="tns:ArrayOfResourceStr" />
+      <s:element name="SiteProperties" nillable="true" type="s1:SiteProperties" />
+      <s:element name="ArrayOfGift" nillable="true" type="tns:ArrayOfGift" />
+      <s:element name="ArrayOfLanguage" nillable="true" type="tns:ArrayOfLanguage" />
+      <s:element name="ArrayOfProfile" nillable="true" type="tns:ArrayOfProfile" />
+      <s:element name="ArrayOfDonor" nillable="true" type="tns:ArrayOfDonor" />
+      <s:element name="myAccounts" type="tns:myAccounts" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="tntmpd.dataserver.tntware.com">
+      <s:complexType name="ResourceStr">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TranID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RefValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TranValue" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SiteProperties">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AppVersion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrgName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrgAbbrev" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrgCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrgLogo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountHelpUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BannerAdUrl" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MinGiftDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxGiftDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfGifts" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiniPortal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MinPidLength" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HelpUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HelpUrlDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HelpOther" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SetupProfileUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultCurrencyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GLAccountCategories" type="s1:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultCountryID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayGLAccountOnStaffPortalAccountReport" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayMemoOnStaffPortalDonations" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="WebUserCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="WebUserCount30Days" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="WebUserCount60Days" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="WebUserCount90Days" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsFCX" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Gift">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DonorCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DonorName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="GiftDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="DesignationCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MotivationCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentMethodCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TenderedAmount" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="TenderedCurrency" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReceiptCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Memo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Language">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Profile">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FinancialAccount">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BeginningBalance" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndingBalance" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FinancialTransaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FiscalYear" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FiscalPeriod" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FinancialAccountCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GLAccountCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GLAccountDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GLAccountCategory" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="GLAccountIsIncome" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Donor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DonorName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StreetAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StateProvince" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AddressLastUpdate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PhoneLastUpdate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CountryID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsOrganization" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrganizationName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FamilyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GivenName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Suffix" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpouseFamilyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpouseGivenName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpouseMiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpouseTitle" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastGiftDate" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema targetNamespace="http://tempuri.org/AbstractTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:complexType name="StringArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="unbounded" name="String" type="s:string" />
+            </s:sequence>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetStaffPortalResourceStringsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStaffPortalResourceStrings" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffPortalResourceStringsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStaffPortalResourceStringsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSitePropertiesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSiteProperties" />
+  </wsdl:message>
+  <wsdl:message name="GetSitePropertiesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSitePropertiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGiftsReceivedFromOneDonorSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGiftsReceivedFromOneDonor" />
+  </wsdl:message>
+  <wsdl:message name="GetGiftsReceivedFromOneDonorSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGiftsReceivedFromOneDonorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffPortalLanguagesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStaffPortalLanguages" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffPortalLanguagesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStaffPortalLanguagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGifGetStaffProfilestsReceivedSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGifGetStaffProfilestsReceived" />
+  </wsdl:message>
+  <wsdl:message name="GetGifGetStaffProfilestsReceivedSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGifGetStaffProfilestsReceivedResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGiftsReceivedSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGiftsReceived" />
+  </wsdl:message>
+  <wsdl:message name="GetGiftsReceivedSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGiftsReceivedResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSessionSoapIn">
+    <wsdl:part name="parameters" element="tns:LogoutSession" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSessionSoapOut">
+    <wsdl:part name="parameters" element="tns:LogoutSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogoutUserAllSessionsSoapIn">
+    <wsdl:part name="parameters" element="tns:LogoutUserAllSessions" />
+  </wsdl:message>
+  <wsdl:message name="LogoutUserAllSessionsSoapOut">
+    <wsdl:part name="parameters" element="tns:LogoutUserAllSessionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetStaffPortalResourceStringsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetStaffPortalResourceStrings" />
+  </wsdl:message>
+  <wsdl:message name="SetStaffPortalResourceStringsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetStaffPortalResourceStringsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterUserSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterUser" />
+  </wsdl:message>
+  <wsdl:message name="RegisterUserSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUnpublishedFinancialTransactionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUnpublishedFinancialTransactions" />
+  </wsdl:message>
+  <wsdl:message name="GetUnpublishedFinancialTransactionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUnpublishedFinancialTransactionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFinancialTransactionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFinancialTransactions" />
+  </wsdl:message>
+  <wsdl:message name="GetFinancialTransactionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFinancialTransactionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDonorsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDonors" />
+  </wsdl:message>
+  <wsdl:message name="GetDonorsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDonorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSummarySoapIn">
+    <wsdl:part name="parameters" element="tns:GetSummary" />
+  </wsdl:message>
+  <wsdl:message name="GetSummarySoapOut">
+    <wsdl:part name="parameters" element="tns:GetSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffPortalResourceStringsHttpGetIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="Culture" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffPortalResourceStringsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfResourceStr" />
+  </wsdl:message>
+  <wsdl:message name="GetSitePropertiesHttpGetIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSitePropertiesHttpGetOut">
+    <wsdl:part name="Body" element="tns:SiteProperties" />
+  </wsdl:message>
+  <wsdl:message name="GetGiftsReceivedFromOneDonorHttpGetIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="StaffProfileCode" type="s:string" />
+    <wsdl:part name="DonorCode" type="s:string" />
+    <wsdl:part name="DesignationFilter" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGiftsReceivedFromOneDonorHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGift" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffPortalLanguagesHttpGetIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffPortalLanguagesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLanguage" />
+  </wsdl:message>
+  <wsdl:message name="GetGifGetStaffProfilestsReceivedHttpGetIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGifGetStaffProfilestsReceivedHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProfile" />
+  </wsdl:message>
+  <wsdl:message name="GetGiftsReceivedHttpGetIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="StaffProfileCode" type="s:string" />
+    <wsdl:part name="DateFrom" type="s:string" />
+    <wsdl:part name="DateTo" type="s:string" />
+    <wsdl:part name="DesignationFilter" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGiftsReceivedHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGift" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSessionHttpGetIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSessionHttpGetOut" />
+  <wsdl:message name="LogoutUserAllSessionsHttpGetIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LogoutUserAllSessionsHttpGetOut" />
+  <wsdl:message name="GetDonorsHttpGetIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="StaffProfileCode" type="s:string" />
+    <wsdl:part name="DonorIDs" type="s2:StringArray" />
+    <wsdl:part name="DateFrom" type="s:string" />
+    <wsdl:part name="DesignationFilter" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDonorsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDonor" />
+  </wsdl:message>
+  <wsdl:message name="GetSummaryHttpGetIn">
+    <wsdl:part name="ProxyGrantingTicket" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSummaryHttpGetOut">
+    <wsdl:part name="Body" element="tns:myAccounts" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffPortalResourceStringsHttpPostIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="Culture" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffPortalResourceStringsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfResourceStr" />
+  </wsdl:message>
+  <wsdl:message name="GetSitePropertiesHttpPostIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSitePropertiesHttpPostOut">
+    <wsdl:part name="Body" element="tns:SiteProperties" />
+  </wsdl:message>
+  <wsdl:message name="GetGiftsReceivedFromOneDonorHttpPostIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="StaffProfileCode" type="s:string" />
+    <wsdl:part name="DonorCode" type="s:string" />
+    <wsdl:part name="DesignationFilter" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGiftsReceivedFromOneDonorHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGift" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffPortalLanguagesHttpPostIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStaffPortalLanguagesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLanguage" />
+  </wsdl:message>
+  <wsdl:message name="GetGifGetStaffProfilestsReceivedHttpPostIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGifGetStaffProfilestsReceivedHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProfile" />
+  </wsdl:message>
+  <wsdl:message name="GetGiftsReceivedHttpPostIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="StaffProfileCode" type="s:string" />
+    <wsdl:part name="DateFrom" type="s:string" />
+    <wsdl:part name="DateTo" type="s:string" />
+    <wsdl:part name="DesignationFilter" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGiftsReceivedHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGift" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSessionHttpPostIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSessionHttpPostOut" />
+  <wsdl:message name="LogoutUserAllSessionsHttpPostIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LogoutUserAllSessionsHttpPostOut" />
+  <wsdl:message name="GetDonorsHttpPostIn">
+    <wsdl:part name="CountryURL" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="StaffProfileCode" type="s:string" />
+    <wsdl:part name="DonorIDs" type="s2:StringArray" />
+    <wsdl:part name="DateFrom" type="s:string" />
+    <wsdl:part name="DesignationFilter" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDonorsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDonor" />
+  </wsdl:message>
+  <wsdl:message name="GetSummaryHttpPostIn">
+    <wsdl:part name="ProxyGrantingTicket" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSummaryHttpPostOut">
+    <wsdl:part name="Body" element="tns:myAccounts" />
+  </wsdl:message>
+  <wsdl:portType name="MinistryViewDSServicesSoap">
+    <wsdl:operation name="GetStaffPortalResourceStrings">
+      <wsdl:input message="tns:GetStaffPortalResourceStringsSoapIn" />
+      <wsdl:output message="tns:GetStaffPortalResourceStringsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteProperties">
+      <wsdl:input message="tns:GetSitePropertiesSoapIn" />
+      <wsdl:output message="tns:GetSitePropertiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGiftsReceivedFromOneDonor">
+      <wsdl:input message="tns:GetGiftsReceivedFromOneDonorSoapIn" />
+      <wsdl:output message="tns:GetGiftsReceivedFromOneDonorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffPortalLanguages">
+      <wsdl:input message="tns:GetStaffPortalLanguagesSoapIn" />
+      <wsdl:output message="tns:GetStaffPortalLanguagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGifGetStaffProfilestsReceived">
+      <wsdl:input message="tns:GetGifGetStaffProfilestsReceivedSoapIn" />
+      <wsdl:output message="tns:GetGifGetStaffProfilestsReceivedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGiftsReceived">
+      <wsdl:input message="tns:GetGiftsReceivedSoapIn" />
+      <wsdl:output message="tns:GetGiftsReceivedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogoutSession">
+      <wsdl:input message="tns:LogoutSessionSoapIn" />
+      <wsdl:output message="tns:LogoutSessionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogoutUserAllSessions">
+      <wsdl:input message="tns:LogoutUserAllSessionsSoapIn" />
+      <wsdl:output message="tns:LogoutUserAllSessionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetStaffPortalResourceStrings">
+      <wsdl:input message="tns:SetStaffPortalResourceStringsSoapIn" />
+      <wsdl:output message="tns:SetStaffPortalResourceStringsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <wsdl:input message="tns:RegisterUserSoapIn" />
+      <wsdl:output message="tns:RegisterUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnpublishedFinancialTransactions">
+      <wsdl:input message="tns:GetUnpublishedFinancialTransactionsSoapIn" />
+      <wsdl:output message="tns:GetUnpublishedFinancialTransactionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFinancialTransactions">
+      <wsdl:input message="tns:GetFinancialTransactionsSoapIn" />
+      <wsdl:output message="tns:GetFinancialTransactionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDonors">
+      <wsdl:input message="tns:GetDonorsSoapIn" />
+      <wsdl:output message="tns:GetDonorsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSummary">
+      <wsdl:input message="tns:GetSummarySoapIn" />
+      <wsdl:output message="tns:GetSummarySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="MinistryViewDSServicesHttpGet">
+    <wsdl:operation name="GetStaffPortalResourceStrings">
+      <wsdl:input message="tns:GetStaffPortalResourceStringsHttpGetIn" />
+      <wsdl:output message="tns:GetStaffPortalResourceStringsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteProperties">
+      <wsdl:input message="tns:GetSitePropertiesHttpGetIn" />
+      <wsdl:output message="tns:GetSitePropertiesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGiftsReceivedFromOneDonor">
+      <wsdl:input message="tns:GetGiftsReceivedFromOneDonorHttpGetIn" />
+      <wsdl:output message="tns:GetGiftsReceivedFromOneDonorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffPortalLanguages">
+      <wsdl:input message="tns:GetStaffPortalLanguagesHttpGetIn" />
+      <wsdl:output message="tns:GetStaffPortalLanguagesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGifGetStaffProfilestsReceived">
+      <wsdl:input message="tns:GetGifGetStaffProfilestsReceivedHttpGetIn" />
+      <wsdl:output message="tns:GetGifGetStaffProfilestsReceivedHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGiftsReceived">
+      <wsdl:input message="tns:GetGiftsReceivedHttpGetIn" />
+      <wsdl:output message="tns:GetGiftsReceivedHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogoutSession">
+      <wsdl:input message="tns:LogoutSessionHttpGetIn" />
+      <wsdl:output message="tns:LogoutSessionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogoutUserAllSessions">
+      <wsdl:input message="tns:LogoutUserAllSessionsHttpGetIn" />
+      <wsdl:output message="tns:LogoutUserAllSessionsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDonors">
+      <wsdl:input message="tns:GetDonorsHttpGetIn" />
+      <wsdl:output message="tns:GetDonorsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSummary">
+      <wsdl:input message="tns:GetSummaryHttpGetIn" />
+      <wsdl:output message="tns:GetSummaryHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="MinistryViewDSServicesHttpPost">
+    <wsdl:operation name="GetStaffPortalResourceStrings">
+      <wsdl:input message="tns:GetStaffPortalResourceStringsHttpPostIn" />
+      <wsdl:output message="tns:GetStaffPortalResourceStringsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteProperties">
+      <wsdl:input message="tns:GetSitePropertiesHttpPostIn" />
+      <wsdl:output message="tns:GetSitePropertiesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGiftsReceivedFromOneDonor">
+      <wsdl:input message="tns:GetGiftsReceivedFromOneDonorHttpPostIn" />
+      <wsdl:output message="tns:GetGiftsReceivedFromOneDonorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffPortalLanguages">
+      <wsdl:input message="tns:GetStaffPortalLanguagesHttpPostIn" />
+      <wsdl:output message="tns:GetStaffPortalLanguagesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGifGetStaffProfilestsReceived">
+      <wsdl:input message="tns:GetGifGetStaffProfilestsReceivedHttpPostIn" />
+      <wsdl:output message="tns:GetGifGetStaffProfilestsReceivedHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGiftsReceived">
+      <wsdl:input message="tns:GetGiftsReceivedHttpPostIn" />
+      <wsdl:output message="tns:GetGiftsReceivedHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogoutSession">
+      <wsdl:input message="tns:LogoutSessionHttpPostIn" />
+      <wsdl:output message="tns:LogoutSessionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogoutUserAllSessions">
+      <wsdl:input message="tns:LogoutUserAllSessionsHttpPostIn" />
+      <wsdl:output message="tns:LogoutUserAllSessionsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDonors">
+      <wsdl:input message="tns:GetDonorsHttpPostIn" />
+      <wsdl:output message="tns:GetDonorsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSummary">
+      <wsdl:input message="tns:GetSummaryHttpPostIn" />
+      <wsdl:output message="tns:GetSummaryHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MinistryViewDSServicesSoap" type="tns:MinistryViewDSServicesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetStaffPortalResourceStrings">
+      <soap:operation soapAction="http://tempuri.org/GetStaffPortalResourceStrings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteProperties">
+      <soap:operation soapAction="http://tempuri.org/GetSiteProperties" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGiftsReceivedFromOneDonor">
+      <soap:operation soapAction="http://tempuri.org/GetGiftsReceivedFromOneDonor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffPortalLanguages">
+      <soap:operation soapAction="http://tempuri.org/GetStaffPortalLanguages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGifGetStaffProfilestsReceived">
+      <soap:operation soapAction="http://tempuri.org/GetGifGetStaffProfilestsReceived" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGiftsReceived">
+      <soap:operation soapAction="http://tempuri.org/GetGiftsReceived" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogoutSession">
+      <soap:operation soapAction="http://tempuri.org/LogoutSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogoutUserAllSessions">
+      <soap:operation soapAction="http://tempuri.org/LogoutUserAllSessions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetStaffPortalResourceStrings">
+      <soap:operation soapAction="http://tempuri.org/SetStaffPortalResourceStrings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <soap:operation soapAction="http://tempuri.org/RegisterUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnpublishedFinancialTransactions">
+      <soap:operation soapAction="http://tempuri.org/GetUnpublishedFinancialTransactions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFinancialTransactions">
+      <soap:operation soapAction="http://tempuri.org/GetFinancialTransactions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDonors">
+      <soap:operation soapAction="http://tempuri.org/GetDonors" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSummary">
+      <soap:operation soapAction="http://tempuri.org/GetSummary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MinistryViewDSServicesSoap12" type="tns:MinistryViewDSServicesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetStaffPortalResourceStrings">
+      <soap12:operation soapAction="http://tempuri.org/GetStaffPortalResourceStrings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteProperties">
+      <soap12:operation soapAction="http://tempuri.org/GetSiteProperties" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGiftsReceivedFromOneDonor">
+      <soap12:operation soapAction="http://tempuri.org/GetGiftsReceivedFromOneDonor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffPortalLanguages">
+      <soap12:operation soapAction="http://tempuri.org/GetStaffPortalLanguages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGifGetStaffProfilestsReceived">
+      <soap12:operation soapAction="http://tempuri.org/GetGifGetStaffProfilestsReceived" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGiftsReceived">
+      <soap12:operation soapAction="http://tempuri.org/GetGiftsReceived" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogoutSession">
+      <soap12:operation soapAction="http://tempuri.org/LogoutSession" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogoutUserAllSessions">
+      <soap12:operation soapAction="http://tempuri.org/LogoutUserAllSessions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetStaffPortalResourceStrings">
+      <soap12:operation soapAction="http://tempuri.org/SetStaffPortalResourceStrings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <soap12:operation soapAction="http://tempuri.org/RegisterUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnpublishedFinancialTransactions">
+      <soap12:operation soapAction="http://tempuri.org/GetUnpublishedFinancialTransactions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFinancialTransactions">
+      <soap12:operation soapAction="http://tempuri.org/GetFinancialTransactions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDonors">
+      <soap12:operation soapAction="http://tempuri.org/GetDonors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSummary">
+      <soap12:operation soapAction="http://tempuri.org/GetSummary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MinistryViewDSServicesHttpGet" type="tns:MinistryViewDSServicesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetStaffPortalResourceStrings">
+      <http:operation location="/GetStaffPortalResourceStrings" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteProperties">
+      <http:operation location="/GetSiteProperties" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGiftsReceivedFromOneDonor">
+      <http:operation location="/GetGiftsReceivedFromOneDonor" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffPortalLanguages">
+      <http:operation location="/GetStaffPortalLanguages" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGifGetStaffProfilestsReceived">
+      <http:operation location="/GetGifGetStaffProfilestsReceived" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGiftsReceived">
+      <http:operation location="/GetGiftsReceived" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogoutSession">
+      <http:operation location="/LogoutSession" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="LogoutUserAllSessions">
+      <http:operation location="/LogoutUserAllSessions" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetDonors">
+      <http:operation location="/GetDonors" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSummary">
+      <http:operation location="/GetSummary" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MinistryViewDSServicesHttpPost" type="tns:MinistryViewDSServicesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetStaffPortalResourceStrings">
+      <http:operation location="/GetStaffPortalResourceStrings" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteProperties">
+      <http:operation location="/GetSiteProperties" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGiftsReceivedFromOneDonor">
+      <http:operation location="/GetGiftsReceivedFromOneDonor" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffPortalLanguages">
+      <http:operation location="/GetStaffPortalLanguages" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGifGetStaffProfilestsReceived">
+      <http:operation location="/GetGifGetStaffProfilestsReceived" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGiftsReceived">
+      <http:operation location="/GetGiftsReceived" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogoutSession">
+      <http:operation location="/LogoutSession" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="LogoutUserAllSessions">
+      <http:operation location="/LogoutUserAllSessions" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetDonors">
+      <http:operation location="/GetDonors" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSummary">
+      <http:operation location="/GetSummary" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MinistryViewDSServices">
+    <wsdl:port name="MinistryViewDSServicesSoap" binding="tns:MinistryViewDSServicesSoap">
+      <soap:address location="http://blackholewebservices.com/MinistryViewDSServices.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MinistryViewDSServicesSoap12" binding="tns:MinistryViewDSServicesSoap12">
+      <soap12:address location="http://blackholewebservices.com/MinistryViewDSServices.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MinistryViewDSServicesHttpGet" binding="tns:MinistryViewDSServicesHttpGet">
+      <http:address location="http://blackholewebservices.com/MinistryViewDSServices.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MinistryViewDSServicesHttpPost" binding="tns:MinistryViewDSServicesHttpPost">
+      <http:address location="http://blackholewebservices.com/MinistryViewDSServices.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Date.Error">
+    <value>Datë  e pavlefshme.</value>
+  </data>
+  <data name="Description.Error">
+    <value>* Ju duhet të shkruani një përshkrim</value>
+  </data>
+  <data name="lblAmount.Text">
+    <value>Distanca ([NJËSIA])</value>
+  </data>
+  <data name="lblDate.Help">
+    <value>Data e udhëtimit. Nëse udhëtimi ka zgjatur për më shumë se një ditë, shkruani datën kur keni filluar udhëtimin.</value>
+  </data>
+  <data name="lblDate.Text">
+    <value>Data</value>
+  </data>
+  <data name="lblDesc.Help">
+    <value>Ju lutem shkruani një përshkrim të shkurtër. (P.sh. - Vizitë skuadrës në Korçë)</value>
+  </data>
+  <data name="lblDesc.Text">
+    <value>Destinacioni dhe qëllimi</value>
+  </data>
+  <data name="Explanation.Text">
+    <value>... për të rimbursuar shpenzimet e përdorimit të makinës tuaj personale për udhëtim shërbese.</value>
+  </data>
+  <data name="lblAmount.Help">
+    <value>Rekomandojmë që të mbani dhe ruani një regjistër për të gjitha udhëtimet e shërbesës.</value>
+  </data>
+  <data name="lblReceipt.Help">
+    <value>Fatura me TVSH duhet të jetë për karburant në makinën tuaj, kur ju e bëri udhëtimin! Ju ende do të merrni paguar të njëjtin ritëm kilometrazh - por llogaria juaj stafi do të kreditohet me ndonjë TVSH se ne jemi në gjendje për të kërkuar.</value>
+  </data>
+  <data name="lblReceipt.Text">
+    <value>A dëshironi të shtoni një &lt;br /&gt; Faturë TVSH për këtë &lt;br /&gt; shpenzim?</value>
+  </data>
+  <data name="lblVatInfo.Text">
+    <value>* Nëse keni mbushur deri makinën tuaj para se të udhëtimit dhe keni faturë me TVSH ne mund të kërkojmë kthim të TVSH-së.</value>
+  </data>
+  <data name="lblVehicle.Help">
+    <value>Ju lutemi zgjidhni llojin e automjetit të përdorur.</value>
+  </data>
+  <data name="lblVehicle.Text">
+    <value>Lloji i automjetit</value>
+  </data>
+  <data name="Miles.Error">
+    <value>Kilometra të pavlefshme.</value>
+  </data>
+  <data name="No.Text">
+    <value>Jo</value>
+  </data>
+  <data name="NoReceipt.Text">
+    <value>Pa faturë (nën [LIMIT])</value>
+  </data>
+  <data name="OldDate.Error">
+    <value>Data e transaksionit duhet të jetë në të shkuarën!</value>
+  </data>
+  <data name="Reverse.Error">
+    <value>Nuk mund të shkruani kilometra negative (edhe në qoftë se e keni ngarë makinën në indietro!)</value>
+  </data>
+  <data name="Standard.Text">
+    <value>Faturë pa TVSH</value>
+  </data>
+  <data name="VAT.Text">
+    <value>Faturë me TVSH</value>
+  </data>
+  <data name="Work.Error">
+    <value>* Nuk mund të rimbursoni udhëtimin në vendin e përditshëm të punës.</value>
+  </data>
+  <data name="Yes.Text">
+    <value>Po</value>
+  </data>
+</root>

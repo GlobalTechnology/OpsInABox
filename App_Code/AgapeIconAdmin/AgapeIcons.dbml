@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AgapeConnect" Class="AgapeIconsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=AgapeConnect;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Files" Member="Files">
+    <Type Name="File">
+      <Column Name="FileId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FileName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Extension" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Size" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Width" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Height" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ContentType" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Folder" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="FolderID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Content" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Agape_Skin_AgapeIcons" Member="Agape_Skin_AgapeIcons">
+    <Type Name="Agape_Skin_AgapeIcon">
+      <Column Name="AgapeIconid" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IconFile" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LinkType" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="LinkLoc" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ViewOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HovrIconFile" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Agape_Skin_IconSettings" Member="Agape_Skin_IconSettings">
+    <Type Name="Agape_Skin_IconSetting">
+      <Column Name="AgapeSkinSettings" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IconHeight" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ShowTitles" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Padding" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

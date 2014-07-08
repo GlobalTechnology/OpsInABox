@@ -1,0 +1,162 @@
+/*
+below is the base css for the original key look but adjusted for new html
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------*/
+body, p, table, ul, ol, form {margin:0; padding:0; border:0;}
+
+html {height:100%;}
+
+body {min-height:100%; color:#000; font-family:'Lucida Grande', sans-serif; background-color:#fff; font-size:10pt; line-height:15pt;}
+
+a {text-decoration:none; color:#00f;}
+a:hover {text-decoration:underline;}
+
+/* clearfix */
+.minorContent:after,
+.mainContent div.submit:after {display:block; content:""; clear:both; visibility:hidden; line-height:0; height:0;}
+
+
+
+/* structure
+--------------------------------------------------*/
+.main {width:580px; margin:0 auto; padding:3em 0; position:relative;}
+
+.header {margin-bottom:4em; text-align:center;}
+.header p {color:#666; padding:0.5em 32px;}
+
+
+
+/* menu & help
+--------------------------------------------------*/
+.menu {margin:2em 25px 0; font-size:13pt; font-weight:normal; overflow:hidden; padding:0; height:34px;}
+.menu li {float:left; list-style:none; margin:0 3px; overflow:hidden; padding:7px 0; border:1px solid #333; border-bottom:0; background-color:#3c3c3c;}
+.menu li:hover {background-color:#666;}
+.menu li a {color:#fff; padding:12px 10px; background-color:#3c3c3c;}
+.menu li a:hover {background-color:#666; text-decoration:none;}
+.menu li.selected,
+.menu li.selected:hover {background-color:#fff;}
+.menu li.selected a,
+.menu li.selected a:hover {background-color:#fff; color:#000;}
+
+#ssoHelp {overflow:visible; position:absolute; right:25px; z-index:100; background-color:#3c3c3c; border-bottom:1px solid #333; padding-bottom:6px;}
+#ssoHelp:hover {background-color:#666;}
+#ssoHelp_link {background-color:transparent; color:#fff;}
+#ssoHelp_popup-wrap {display:none; position:absolute; width:1px; height:1px; right:-1px; top:-1px;} /* jQuery needs the box to be 1x1, so don't change to 0x0 as it once was */
+#ssoHelp_link-active {position:absolute; top:0; right:0; padding:0; height:44px; color:#fff; background-color:#999; border:1px solid #333; border-bottom:0;}
+#ssoHelp_link-active span {display:block; padding:7px 10px 0;}
+#ssoHelp_link-active:hover {color:#000;}
+#ssoHelp_popup {position:absolute; z-index:100; right:0; top:35px; width:320px;}
+.ssoHelp_content {border:1px solid #333; border-top-width:0;}
+.ssoHelp_content-in {border:6px solid #999; background-color:#e5e5e5; font-size:9pt;}
+.ssoHelp_content h2 {margin:0.75em 60px 0.75em 10px; font-size:13pt;}
+.ssoHelp_content p {margin-left:10px; margin-right:10px; margin-bottom:1em;}
+.ssoHelp_content p.ssoHelp_exit {font-weight:bold;}
+.ssoHelp_content ol,
+.ssoHelp_content ul {padding:0 2em 1em 3em;}
+.ssoHelp_content li {overflow:visible; border-width:0; float:none; display:list-item;}
+.ssoHelp_content ul li {list-style-type:disc;}
+.ssoHelp_content ol li {list-style-type:decimal;}
+.ssoHelp_content .ssoHelp_footer {font-weight:bold;}
+.menu li .ssoHelp_content a,
+.menu li .ssoHelp_content a:hover,
+.menu li .ssoHelp_content li,
+.menu li .ssoHelp_content li:hover {background-color:transparent !important;}
+.menu li .ssoHelp_content a {padding:0; color:#00f;}
+
+
+/* content
+--------------------------------------------------*/
+.content {border:1px solid #333; background-color:#fff;}
+.content_header {text-align:center; margin:1.5em 0; color:#333; clear:none; font-size:10.5pt;}
+.content_header p {padding:0.25em 3px;}
+
+.mainContent {margin:0.25em 35px 1.5em;}
+.mainContent label {font-weight:bold; padding:0 4px; text-transform:capitalize;}
+.mainContent input {font-size:12pt; margin:0;}
+.mainContent div.section {border-bottom:1px dashed #ccc; padding-bottom:1em; margin-bottom:0.75em;}
+.mainContent div.section ul {margin:0.75em 0 0.75em 20px;}
+.mainContent div.section p,
+.mainContent div.errors {margin:0.75em 0 0.75em 4px;}
+.mainContent div.errors {color:#f00; font-weight:bold;}
+.mainContent div.group {margin:0.75em 0 1.5em;}
+.mainContent div.group a {padding:0.25em 4px; display:block;}
+.mainContent div.group input {padding:0.25em 3px; margin-top:0.25em;}
+.mainContent div.group input.form_text,
+.mainContent div.group textarea.form_textarea {border:1px solid #aaa; width:500px;}
+.mainContent div.group textarea.form_textarea {height:9em; background-color:#f2f2f2;}
+.mainContent div.group .form_error span {background-color:#f99; border-bottom:2px solid #f00; padding:0.25em 4px;}
+.mainContent div.submit {margin:1.5em 2px 0.5em; padding-bottom:0.75em; position:relative;}
+.mainContent div.submit input,
+.mainContent div.submit .form_submit-wrap {float:right; clear:none; cursor:pointer; margin-left:24px;}
+.mainContent div.submit .form_submit-wrap input {float:none; margin:0;}
+.mainContent div.submit input:hover {color:#00f;}
+.mainContent div.section.searchResults {background-color:#e5e5e5; border:1px solid; border-color:#555 #999 #ddd; padding:0 10px;}
+.mainContent div.section.searchResults .group {margin-right:-16px;}
+.mainContent div.section.searchResults select {border:1px solid #ccc; width:85%;}
+
+/* facebook button */
+.facebookLogin {display: none;}
+.fb_button, .fb_button_text {line-height:14px !important; font-style:normal !important;}
+.fb_button {padding:0 !important;}
+.fb_button .fb_button_text, .fb_button_rtl .fb_button_text {margin-left:22px !important;}
+.fb_button:hover {text-decoration:none !important;}
+
+.minorContent {padding:1em 39px 0; border-top:1px solid #ccc;}
+.minorContent .logo-wrap {float:right; margin-bottom:1em;}
+.minorContent .logo {height:7em;}
+.minorContent .menu_minorContent-wrap {float:right;}
+.minorContent .menu_minorContent {margin-right:32px; padding:2em 30px; border-right:1px dashed #ccc;}
+.minorContent .menu_minorContent li {margin:0; padding:0; list-style:none;}
+
+#languagesList {margin:1em 8px; text-align:center;}
+#languagesList li {display:inline; padding:2px 8px;}
+#languagesList li a {color:#666; white-space:nowrap; text-decoration:underline;}
+#languagesList li.selected a {color:#000; font-weight:bold; text-decoration:none;}
+#languagesList li a:hover {color:#000;}
+
+
+
+/* page-specific overrides
+--------------------------------------------------*/
+body.page_SelfServe_AccountDetails #ssoHelp_popup {width:450px;}
+
+
+
+/* ie hacks
+	\9 = ie9 & below, * = ie7 & below, _ = ie6 & below
+--------------------------------------------------*/
+#ssoHelp_popup-wrap {_right:-2px;}
+.mainContent div.submit {height:1em;}
+.mainContent div.submit input,
+.mainContent div.submit .form_submit-wrap {position:relative; top:-1px;}
+.mainContent div.submit .form_submit-wrap input {top:0;}
+.mainContent div.group .form_error {padding-top:0.1em;}
+.minorContent {height:8em;}
+
+
+
+
+
+
+
+/*
+client css overrides
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------*/
+body {background:transparent url(/Portals/_default/skins/AgapeBlue/images/BackgroundRepeat.gif) repeat top left;}
+
+.menu li,
+.menu li a,
+#ssoHelp {background-color:#0d3163;}
+
+.menu li:hover,
+.menu li a:hover,
+#ssoHelp:hover,
+#ssoHelp_link-active {background-color:#4a6ea3;}
+.ssoHelp_content-in {border-color:#4a6ea3;}
+
+#ssoHelp_link-active:hover {color:#fff;}
+.minorContent {background:transparent url(GetLogo.aspx) no-repeat right top; height:100px;}
+.minorContent .logo-wrap {display:none;}
+.minorContent .menu_minorContent-wrap {margin-right:240px;}
+.facebookLogin {visibility:hidden;}

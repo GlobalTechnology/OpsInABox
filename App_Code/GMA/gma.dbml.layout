@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="gma">
+  <DataContextMoniker Name="/gmaDataContext" />
+  <nestedChildShapes>
+    <classShape Id="72c8a7aa-5916-45ae-96a5-2aa6f7006f70" absoluteBounds="7.625, 4.125, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/gmaDataContext/gma_Server" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b46bc897-f6a9-4f67-9230-fe9101539803" absoluteBounds="7.64, 4.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

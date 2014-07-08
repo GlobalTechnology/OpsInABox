@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 18.75, 27.75" name="StaffBroker">
+  <DataContextMoniker Name="/StaffBrokerDataContext" />
+  <nestedChildShapes>
+    <classShape Id="3be43550-19eb-43c3-8224-6ab9bfd8a123" absoluteBounds="3.125, 2.875, 2, 3.6939111328124996">
+      <DataClassMoniker Name="/StaffBrokerDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a1429d75-ace4-4921-a9f1-86060217d2df" absoluteBounds="3.14, 3.335, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5ab3b1bb-c0a5-4329-8ff3-1a2455310292" absoluteBounds="3.125, 0.5, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/StaffBrokerDataContext/UserProfile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5fde19f0-94c9-4b19-a83e-831b123eb53f" absoluteBounds="3.1399999999999997, 0.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.125 : 2.875); (4.125 : 2.65549967447917)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/User/User_UserProfile" />
+      <nodes>
+        <classShapeMoniker Id="3be43550-19eb-43c3-8224-6ab9bfd8a123" />
+        <classShapeMoniker Id="5ab3b1bb-c0a5-4329-8ff3-1a2455310292" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="b20e37ea-5ba4-4072-a271-9c18d6ebe070" absoluteBounds="0.5, 0.5, 2, 4.2708154296875">
+      <DataClassMoniker Name="/StaffBrokerDataContext/ProfilePropertyDefinition" />
+      <nestedChildShapes>
+        <elementListCompartment Id="36f91719-831c-4d31-b148-ae0d33cf8708" absoluteBounds="0.51499999999999968, 0.96, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.5 : 1.57774983723958); (3.125 : 1.57774983723958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/ProfilePropertyDefinition/ProfilePropertyDefinition_UserProfile" />
+      <nodes>
+        <classShapeMoniker Id="b20e37ea-5ba4-4072-a271-9c18d6ebe070" />
+        <classShapeMoniker Id="5ab3b1bb-c0a5-4329-8ff3-1a2455310292" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="257bbff8-3f02-4e3c-9065-2547f34c0386" absoluteBounds="6.25, 5.875, 2, 2.3478011067708326">
+      <DataClassMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_Staff" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7928d7b1-8461-452b-b3dd-fd2f0231003b" absoluteBounds="6.265, 6.335, 1.9700000000000002, 1.7878011067708333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e2011518-877a-40a1-8611-e3f7d78881a8" absoluteBounds="6.25, 3.5, 2, 1.3862939453124996">
+      <DataClassMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_StaffType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="60a9fbd3-eeef-4d01-beff-b449d032e523" absoluteBounds="6.265, 3.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2719d7c1-b7c9-4c14-90e8-c4c75ae57f95" absoluteBounds="0.625, 14.625, 2, 4.2708154296874987">
+      <DataClassMoniker Name="/StaffBrokerDataContext/ProfilePropertyDefinition2" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b774e610-ddd8-4136-9c08-5a286451e655" absoluteBounds="0.64, 15.085, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ebd7accf-4de5-4ef8-ba20-c9aee782fd29" absoluteBounds="0.625, 12.25, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/StaffBrokerDataContext/UserProfile2" />
+      <nestedChildShapes>
+        <elementListCompartment Id="16e0fade-e2a5-4397-92e6-5d48e12d1ea7" absoluteBounds="0.64000000000000012, 12.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="af7dfbf7-739c-4a55-b2a5-68d9934a82dc" absoluteBounds="3.25, 12.125, 2, 3.6939111328124987">
+      <DataClassMoniker Name="/StaffBrokerDataContext/User2" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e28622ee-d394-4116-9e2e-e5b9cb97163b" absoluteBounds="3.265, 12.585, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.21875 : 12.125); (5.21875 : 6.72195556640625); (6.25 : 6.72195556640625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/User2/User2_AP_StaffBroker_Staff" />
+      <nodes>
+        <classShapeMoniker Id="af7dfbf7-739c-4a55-b2a5-68d9934a82dc" />
+        <classShapeMoniker Id="257bbff8-3f02-4e3c-9065-2547f34c0386" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.125 : 6.22195556640625); (6.25 : 6.22195556640625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/User/User_AP_StaffBroker_Staff" />
+      <nodes>
+        <classShapeMoniker Id="3be43550-19eb-43c3-8224-6ab9bfd8a123" />
+        <classShapeMoniker Id="257bbff8-3f02-4e3c-9065-2547f34c0386" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="f6f11dfe-3d50-451b-948f-2824824384f6" absoluteBounds="9, 5.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_StaffProfile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="93a74b46-7ae8-4dd2-8949-87d10f4efca4" absoluteBounds="9.015, 6.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.25 : 6.66429768880208); (9 : 6.66429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_Staff/AP_StaffBroker_Staff_AP_StaffBroker_StaffProfile" />
+      <nodes>
+        <classShapeMoniker Id="257bbff8-3f02-4e3c-9065-2547f34c0386" />
+        <classShapeMoniker Id="f6f11dfe-3d50-451b-948f-2824824384f6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.25 : 4.8862939453125); (7.25 : 5.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_StaffType/AP_StaffBroker_StaffType_AP_StaffBroker_Staff" />
+      <nodes>
+        <classShapeMoniker Id="e2011518-877a-40a1-8611-e3f7d78881a8" />
+        <classShapeMoniker Id="257bbff8-3f02-4e3c-9065-2547f34c0386" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="23e7593f-8ce9-4361-bfa2-2ad7e9e5d0b1" absoluteBounds="6.875, 9, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_Children" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3daca5fa-ca9e-40d2-ac95-50604009f666" absoluteBounds="6.89, 9.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.5625 : 8.22280110677083); (7.5625 : 9)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_Staff/AP_StaffBroker_Staff_AP_StaffBroker_Children" />
+      <nodes>
+        <classShapeMoniker Id="257bbff8-3f02-4e3c-9065-2547f34c0386" />
+        <classShapeMoniker Id="23e7593f-8ce9-4361-bfa2-2ad7e9e5d0b1" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="384181ab-7257-4abe-8c77-78a0b15f24c9" absoluteBounds="0.75, 6, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_LeaderMeta" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8caf08c7-7ed8-41cc-bdcc-e8f3ad4cecf0" absoluteBounds="0.76499999999999968, 6.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.125 : 6.28445556640625); (2.75 : 6.28445556640625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/User/User_AP_StaffBroker_LeaderMeta" />
+      <nodes>
+        <classShapeMoniker Id="3be43550-19eb-43c3-8224-6ab9bfd8a123" />
+        <classShapeMoniker Id="384181ab-7257-4abe-8c77-78a0b15f24c9" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="58dd6b67-0ce4-46c2-9cfa-841dc60ca813" absoluteBounds="3.125, 6.875, 2, 3.6939111328124987">
+      <DataClassMoniker Name="/StaffBrokerDataContext/Leader" />
+      <nestedChildShapes>
+        <elementListCompartment Id="df5853af-05a7-4589-993b-546b6f668f8e" absoluteBounds="3.1400000000000006, 7.3350000000000009, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 7.22679768880208); (3.125 : 7.22679768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_LeaderMeta/AP_StaffBroker_LeaderMeta_Leader" />
+      <nodes>
+        <classShapeMoniker Id="384181ab-7257-4abe-8c77-78a0b15f24c9" />
+        <classShapeMoniker Id="58dd6b67-0ce4-46c2-9cfa-841dc60ca813" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="178de3aa-428a-4b54-a8ae-cc1a11271c9d" absoluteBounds="0.75, 8, 2, 3.6939111328124987">
+      <DataClassMoniker Name="/StaffBrokerDataContext/Delegate" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6ac0f014-2c7d-41a3-880c-76159699b8fd" absoluteBounds="0.76500000000000057, 8.46, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.75 : 8); (1.75 : 7.57859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/Delegate/Delegate_AP_StaffBroker_LeaderMeta" />
+      <nodes>
+        <classShapeMoniker Id="178de3aa-428a-4b54-a8ae-cc1a11271c9d" />
+        <classShapeMoniker Id="384181ab-7257-4abe-8c77-78a0b15f24c9" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="a5d818bd-c121-4342-a511-e0dc504fdee5" absoluteBounds="3.125, 17.25, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_LeaderMeta2" />
+      <nestedChildShapes>
+        <elementListCompartment Id="019c165d-54c9-4d5c-a953-675eed171bfa" absoluteBounds="3.1400000000000006, 17.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1d09256e-1c1a-41bc-96c3-532100ba357d" absoluteBounds="4.375, 19.875, 2, 3.6939111328124987">
+      <DataClassMoniker Name="/StaffBrokerDataContext/Delegate2" />
+      <nestedChildShapes>
+        <elementListCompartment Id="edf3125f-aab0-4356-883c-52fedeb57330" absoluteBounds="4.3900000000000006, 20.335, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0d8719b5-fd0a-491b-8884-225d01a74f97" absoluteBounds="6.125, 15.875, 2, 3.6939111328124987">
+      <DataClassMoniker Name="/StaffBrokerDataContext/Leader2" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2016cc4b-807f-4496-a9c4-32bc0e216716" absoluteBounds="6.1400000000000006, 16.335, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.1875 : 15.8189111328125); (4.1875 : 17.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/User2/User2_AP_StaffBroker_LeaderMeta2" />
+      <nodes>
+        <classShapeMoniker Id="af7dfbf7-739c-4a55-b2a5-68d9934a82dc" />
+        <classShapeMoniker Id="a5d818bd-c121-4342-a511-e0dc504fdee5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.125 : 18.0392976888021); (6.125 : 18.0392976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_LeaderMeta2/AP_StaffBroker_LeaderMeta2_Leader2" />
+      <nodes>
+        <classShapeMoniker Id="a5d818bd-c121-4342-a511-e0dc504fdee5" />
+        <classShapeMoniker Id="0d8719b5-fd0a-491b-8884-225d01a74f97" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.25 : 13.3277498372396); (2.625 : 13.3277498372396)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/User2/User2_UserProfile2" />
+      <nodes>
+        <classShapeMoniker Id="af7dfbf7-739c-4a55-b2a5-68d9934a82dc" />
+        <classShapeMoniker Id="ebd7accf-4de5-4ef8-ba20-c9aee782fd29" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.625 : 14.625); (1.625 : 14.4054996744792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/ProfilePropertyDefinition2/ProfilePropertyDefinition2_UserProfile2" />
+      <nodes>
+        <classShapeMoniker Id="2719d7c1-b7c9-4c14-90e8-c4c75ae57f95" />
+        <classShapeMoniker Id="ebd7accf-4de5-4ef8-ba20-c9aee782fd29" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.75 : 19.875); (4.75 : 18.8285953776042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/Delegate2/Delegate2_AP_StaffBroker_LeaderMeta2" />
+      <nodes>
+        <classShapeMoniker Id="1d09256e-1c1a-41bc-96c3-532100ba357d" />
+        <classShapeMoniker Id="a5d818bd-c121-4342-a511-e0dc504fdee5" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="c589ca61-e9e9-4bd4-ba07-980e181f3f61" absoluteBounds="13, 0.625, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_AccountCode" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f61e0e3a-a766-47bf-ba9e-be3074295ed2" absoluteBounds="13.015, 1.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ab124ea4-522a-4e0c-b4eb-430dd972da65" absoluteBounds="13, 3.25, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_CostCenter" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2c14eb9e-e27f-4e1a-a018-ed99432a4df3" absoluteBounds="13.015, 3.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d6b8631f-3868-46ca-a08e-bc8036450ee3" absoluteBounds="5.75, 1, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_Setting" />
+      <nestedChildShapes>
+        <elementListCompartment Id="76ab7633-72ab-4767-a574-73d4a0f8720a" absoluteBounds="5.765, 1.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="afed4084-f2c6-488b-8d95-1b3b8a38ccf5" absoluteBounds="5.625, 1.25, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/StaffBrokerDataContext/UserPortal" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ad45fa12-f0d5-4e94-8cf7-fea814f82fee" absoluteBounds="5.64, 1.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.125 : 3.14024983723958); (5.625 : 3.14024983723958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/User/User_UserPortal" />
+      <nodes>
+        <classShapeMoniker Id="3be43550-19eb-43c3-8224-6ab9bfd8a123" />
+        <classShapeMoniker Id="afed4084-f2c6-488b-8d95-1b3b8a38ccf5" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="2cf93686-bf26-4ca1-8668-b3e73299156d" absoluteBounds="5.875, 11.875, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/StaffBrokerDataContext/AP_Image" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4dba9ffa-7fa0-4fd8-9751-f373224bc630" absoluteBounds="5.89, 12.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ca63045d-b230-4ea4-9979-de323689b5e0" absoluteBounds="12.75, 5.25, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_StaffPropertyDefinition" />
+      <nestedChildShapes>
+        <elementListCompartment Id="09739400-0687-43fb-8ef9-e837bf16c806" absoluteBounds="12.765, 5.71, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(12.75 : 6.66429768880208); (11 : 6.66429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_StaffPropertyDefinition/AP_StaffBroker_StaffPropertyDefinition_AP_StaffBroker_StaffProfile" />
+      <nodes>
+        <classShapeMoniker Id="ca63045d-b230-4ea4-9979-de323689b5e0" />
+        <classShapeMoniker Id="f6f11dfe-3d50-451b-948f-2824824384f6" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="308e77d0-2103-462c-aa0d-58132601c2ed" absoluteBounds="4.25, 25, 2, 2.5401025390625">
+      <DataClassMoniker Name="/StaffBrokerDataContext/AP_Menu_Link" />
+      <nestedChildShapes>
+        <elementListCompartment Id="210d9f25-c58e-4a86-9b8d-269e5e46532d" absoluteBounds="4.265, 25.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b213e61a-07ce-48e6-86ef-6e5da90a9aaf" absoluteBounds="16.5, 2.625, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/StaffBrokerDataContext/AP_Staff_SuggestedPayment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="38b2fba3-ee22-4fa0-87df-c95784a2e0e9" absoluteBounds="16.515, 3.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="97fa48a3-a0f1-40f3-bf7e-20fd6cf4cceb" absoluteBounds="8.75, 0.5, 2, 4.0785139973958326">
+      <DataClassMoniker Name="/StaffBrokerDataContext/AP_StaffBroker_Department" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ee4e8e80-02f3-4583-a0e1-1da45cf7447d" absoluteBounds="8.765, 0.96, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

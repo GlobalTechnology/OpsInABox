@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="YourRmbs.Text">
+    <value>החזרי ההוצאות שלך</value>
+  </data>
+  <data name="YourComments.Text">
+    <value>ההערות שלך</value>
+  </data>
+  <data name="TransDate.Text">
+    <value>תאריך</value>
+  </data>
+  <data name="Year.Text">
+    <value>שנה</value>
+  </data>
+  <data name="SubmittedOn.Text">
+    <value>הוגש ב</value>
+  </data>
+  <data name="AccountBalance.Text">
+    <value>יתרת חשבון</value>
+  </data>
+  <data name="AccountsComments.Text">
+    <value>הערות חשבונות</value>
+  </data>
+  <data name="AccountsMode.Text" />
+  <data name="AccountsOnly.Text">
+    <value>לשימוש במנהלים בלבד</value>
+  </data>
+  <data name="AccountWarning.Text">
+    <value>אזהרה</value>
+  </data>
+  <data name="AddEditRmb.Text">
+    <value>הוסיף/ערך הוצאה חדשה</value>
+  </data>
+  <data name="AdvAmountSpecial.Text">
+    <value>מפני שיש לך הוצאה מעל 8000 ש"ח במקדמה שלך, צריך לקבל אישור מאדם למונט</value>
+  </data>
+  <data name="Advance.Text">
+    <value>מקדמה</value>
+  </data>
+  <data name="AdvanceApproved.Text">
+    <value>מאושרת #[ADVANCEID] מקדמה</value>
+  </data>
+  <data name="AdvanceBalance.Text">
+    <value>יתרת מקדמה</value>
+  </data>
+  <data name="AdvanceError.Text">
+    <value>הכנסת סכום שגוי.  ההגדרות שלך לא נשמרו</value>
+  </data>
+  <data name="AdvanceRequest.Text">
+    <value>בקשת מקדמה</value>
+  </data>
+  <data name="AdvApproved.Text">
+    <value>[STAFFNAME] על ידי [DATE] אישר ב </value>
+  </data>
+  <data name="AdvAuthSpecial.Text">
+    <value>כיוון שאת/ה המשתמש המורשה, והמנהיג הרגיל שלך לא יכול לאשר את המקדמה, היא חייבת לקבל אישור מאדם למונט</value>
+  </data>
+  <data name="AdvDate.Text">
+    <value>[DATE] נקבל ב</value>
+  </data>
+  <data name="AdvReason.Text">
+    <value>סיבה</value>
+  </data>
+  <data name="AdvLocked.Text">
+    <value>המקדמה שלך כבר עברה עיבוד ולא אפשרי לשונות או לבטל אותה</value>
+  </data>
+  <data name="AdvNotApproved.Text">
+    <value>[STAFFNAMES] מחכה לאישור מ</value>
+  </data>
+  <data name="AdvProcessed.Text">
+    <value>[DATE] עברה עיבוד ב</value>
+  </data>
+  <data name="AdvSubmittedApprEmailSubject.Text">
+    <value>[STAFFNAME] מקדמה ל</value>
+  </data>
+  <data name="AdvEmailCancelledSubject.Text">
+    <value>[ADVNO] בוטלה מקדמה מס</value>
+  </data>
+  <data name="AdvEmailSubmittedSubject.Text">
+    <value>[ADVNO] מקדמה מס</value>
+  </data>
+  <data name="AdvIntro.Text">
+    <value>הגיש בקשת מקדמה לאישורך [STAFFNAME]</value>
+  </data>
+  <data name="AdvSpouseSpecial.Text">
+    <value>
+    </value>
+  </data>
+  <data name="Amount.Text">
+    <value>סכום</value>
+  </data>
+  <data name="Approved.Text">
+    <value>מאושר</value>
+  </data>
+  <data name="ApprovedBy.Text">
+    <value>מאושר ע"י</value>
+  </data>
+  <data name="ApprovedOn.Text">
+    <value>מאושר ב</value>
+  </data>
+  <data name="AwaitingApproval.Text">
+    <value>מחכה לאישור של</value>
+  </data>
+  <data name="ToApprove.Text">
+    <value>לאשר</value>
+  </data>
+  <data name="ToProcess.Text">
+    <value>לעבר עיבוד</value>
+  </data>
+  <data name="SubmittedBy.Text">
+    <value>הוגש ע"י</value>
+  </data>
+  <data name="Submitted.Text">
+    <value>הוגש</value>
+  </data>
+  <data name="SuggestedPayments.Text">
+    <value>הצעות מחיר</value>
+  </data>
+  <data name="TeamRmbs.Text">
+    <value>קבוצה צוות שלך</value>
+  </data>
+  <data name="SubmittedApprEmailSubject.Text">
+    <value>[STAFFNAME] החזר הוצאות עבור</value>
+  </data>
+  <data name="btnAddExpenseItem.Text">
+    <value>הוסיף הוצאה</value>
+  </data>
+  <data name="btnAdvanceRequest.Text">
+    <value>הגש בקשת מקדמה</value>
+  </data>
+  <data name="btnAdvReq.Text">
+    <value>בקשת מקדמה</value>
+  </data>
+  <data name="btnApprove.Text">
+    <value>אשר</value>
+  </data>
+  <data name="btnCancel.Text">
+    <value>בטל</value>
+  </data>
+  <data name="btnCreate.Text">
+    <value>ברא</value>
+  </data>
+  <data name="btnDownload.Text">
+    <value>הורד לאקסל</value>
+  </data>
+  <data name="btnDownloadBatch.Text">
+    <value>
+    </value>
+  </data>
+  <data name="btnMoreInfo.Text">
+    <value>ביקש מידע נוסף</value>
+  </data>
+  <data name="btnNew.Text">
+    <value>החזר הוצאות חדש</value>
+  </data>
+  <data name="btnNo.Text">
+    <value>לא</value>
+  </data>
+  <data name="btnOK.Text">
+    <value>אוקיי</value>
+  </data>
+  <data name="btnPrint.Text">
+    <value>הדפס</value>
+  </data>
+  <data name="btnProcess.Text">
+    <value>עבד</value>
+  </data>
+  <data name="btnReject.Text">
+    <value>דחה</value>
+  </data>
+  <data name="btnSave.Text">
+    <value>שמר</value>
+  </data>
+  <data name="btnSettings.Text">
+    <value>הגדרות</value>
+  </data>
+  <data name="btnSplitAdd.Text">
+    <value>הוסף שורה</value>
+  </data>
+  <data name="btnSubmit.Text">
+    <value>הגש</value>
+  </data>
+  <data name="btnYes.Text">
+    <value>כן</value>
+  </data>
+  <data name="Cancelled.Text">
+    <value>מבוטל</value>
+  </data>
+  <data name="cbExpenses.Help" />
+  <data name="Comment.Text">
+    <value>הערה</value>
+  </data>
+  <data name="CreateRmb.Text">
+    <value>ברא החזר הוצאות חדש</value>
+  </data>
+  <data name="Delete.Text">
+    <value>מחק</value>
+  </data>
+  <data name="Description.Text">
+    <value>תיאור</value>
+  </data>
+  <data name="DownloadFailed.Text" />
+  <data name="Edit.Text">
+    <value>ערך</value>
+  </data>
+  <data name="EmailApproverChanged.Text">
+    <value>כנראה המאשר שלך שינו את החזר ההוצאות הזה, לפני שהוא אישר אותו.  אפשר לראות את החזר ההוצאות הזה  אם תלחץ אותו מהחלק ה"מאושר" של אתר החזרי ההוצאות</value>
+  </data>
+  <data name="EmailCancelledSubject.Text">
+    <value>[RMBNO] בוטלו החזר הוצאות מס
+[USERREF]</value>
+  </data>
+  <data name="EmailComments.Text">
+    <value>ההערות הבאות הוגשו עם החזר ההוצאות הזה</value>
+  </data>
+  <data name="EmailSubmittedSubject.Text">
+    <value>[RMBNO] החזר הוצאות מס</value>
+  </data>
+  <data name="ErrorHelp.Text" />
+  <data name="EmailApprovedSubjectP.Text">
+    <value>[RMBNO] אישרו החזר הוצאות מס
+[USERREF]</value>
+  </data>
+  <data name="EmailApprovedSubjectA.Text">
+    <value>[RMBNO] החזר הוצאות מס
+[APPROVER] אושר ע"י</value>
+  </data>
+  <data name="Expenses.Text">
+    <value>הוצאות</value>
+  </data>
+  <data name="Errors.Text">
+    <value>החזרי ההוצאות הבאים במצב שגוי</value>
+  </data>
+  <data name="NoPostReceipts.Text">
+    <value>אף קבלות נדרשות.  אין צורך לשלוח משהו למשרד.  טופס המצורף לעיונך בלבד</value>
+  </data>
+  <data name="PrintoutMoreInfo.Text">
+    <value>התספיס שלך נפתח בחלון חדש.  אם צריך לשלוח קבלות להחזר ההוצאות שלך ועוד לא שלחת אותן למשרד, נא לצרף אותם לתדפיס זה ושלח אותו למשרד</value>
+  </data>
+  <data name="NoReceipts.Text">
+    <value>מס' קבלות</value>
+  </data>
+  <data name="OriginalTrans.Text">
+    <value>הוצאה מקורית</value>
+  </data>
+  <data name="OutOfDate.Text">
+    <value>ההוצאה לא בתוקף והיא תחויב במס</value>
+  </data>
+  <data name="PayOff.Text">
+    <value>להחזיר את המקדמה</value>
+  </data>
+  <data name="Period.Text">
+    <value>תקופה</value>
+  </data>
+  <data name="Draft.Text">
+    <value>טיוטה</value>
+  </data>
+  <data name="LargeTransaction.Text">
+    <value>הוצאה גדולה</value>
+  </data>
+  <data name="lblBankAccount.Text">
+    <value>חשבון בנק</value>
+  </data>
+  <data name="LineType.Text">
+    <value>סוג שורה</value>
+  </data>
+  <data name="LineTypes.Text">
+    <value>סוג הוצאה</value>
+  </data>
+  <data name="NewLineTitle.Text">
+    <value>הוסיף הוצאה חדשה</value>
+  </data>
+  <data name="PostReceipts.Text">
+    <value>נא לשלוח את הקבלות שלך בדואר פיזי או במייל למשרד</value>
+  </data>
+  <data name="Processed.Text">
+    <value>מעובד</value>
+  </data>
+  <data name="ProcessedBy.Text">
+    <value>מעובד ע"י</value>
+  </data>
+  <data name="ProcessedOn.Text">
+    <value>מעובד ב</value>
+  </data>
+  <data name="ReceiptNo.Text">
+    <value>קבלה מס</value>
+  </data>
+  <data name="Receipts.Text">
+    <value>קבלות</value>
+  </data>
+  <data name="Reimbursement.Text">
+    <value>החזר הוצאות</value>
+  </data>
+  <data name="RmbApproved.Text">
+    <value>[RMBNO] אישרו החזר הוצאות מס</value>
+  </data>
+  <data name="RmbsToApprove.Text">
+    <value>החזרי הוצאות שצריך לאשר</value>
+  </data>
+  <data name="RmbTitle.Text">
+    <value>החזרי הוצאות</value>
+  </data>
+  <data name="Split.Text">
+    <value>פצל</value>
+  </data>
+  <data name="SplitError.Text">
+    <value>נא להכניס תיאור וסכום לכל שורה</value>
+  </data>
+  <data name="SplitInto.Text">
+    <value>פצל ל</value>
+  </data>
+  <data name="SplitTransaction.Text">
+    <value>פצל הוצאה</value>
+  </data>
+  <data name="YourRef.Text">
+    <value>העיון שלך</value>
+  </data>
+  <data name="ShortComment.Text">
+    <value>הערה קצרה</value>
+  </data>
+  <data name="Printout.Text">
+    <value>התדפיס שלך נפתח בחלון חדש.  אל תשכח לצרף את הקבלות שלך (אם צריך) לתדפיס הזה ולשלוח אותו בדואר או במייל למשרד</value>
+  </data>
+  <data name="MoreInfo.Text">
+    <value>צוות פיננסית מבקשת ממך לתת יותר מידע על החזר הוצאות
+[RMBNO]</value>
+  </data>
+  <data name="LineTypes.Help">
+    <value>נא להזהר שבוחר את סוג ההוצאה שמתאימה להוצאה שלך הכי טוב.  אם ההוצאה שלך לא מתאימה לאף סוג, בחר אחר</value>
+  </data>
+  <data name="lblErrorMessage.Text">
+    <value>הודעה שגיאה</value>
+  </data>
+  <data name="Expire.Text">
+    <value>[EXPIRE] הוצאה לא בתוקף. לא ניתן להגיש הוצאה ישנה מ
+חודשים</value>
+  </data>
+  <data name="ExpireDept.Text">
+    <value>[EXPIRE] הוצאה לא בתוקף. לא ניתן להגיש הוצאה ישנה מ
+חודשים</value>
+  </data>
+  <data name="ExpireImpossible.Text">
+    <value>[EXPIRE] לא ניתן להגיש הואצות יותר ישנות מ
+חודשים.  ההוצאה הזאת לא בתוקה</value>
+  </data>
+  <data name="btnEnter.Text">
+    <value>הכנס</value>
+  </data>
+</root>

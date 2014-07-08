@@ -1,0 +1,53 @@
+*+html #dnn_wrapper .Theme_Normal_Bottom .btn{
+	height:30px;
+}
+
+.mobile_nav,
+#mobile_menu{
+	display:none!important;
+}
+img{
+	max-width: none;
+}
+.Content_About img,
+.team_img img{
+	max-width: 100%;
+}
+
+.Theme_Normal_Bottom textarea, 
+.Theme_Normal_Bottom input[type="text"], 
+.Theme_Normal_Bottom input[type="password"], 
+.Theme_Normal_Bottom input[type="datetime"], 
+.Theme_Normal_Bottom input[type="datetime-local"], 
+.Theme_Normal_Bottom input[type="date"], 
+.Theme_Normal_Bottom input[type="month"], 
+.Theme_Normal_Bottom input[type="time"], 
+.Theme_Normal_Bottom input[type="week"], 
+.Theme_Normal_Bottom input[type="number"], 
+.Theme_Normal_Bottom input[type="email"], 
+.Theme_Normal_Bottom input[type="url"], 
+.Theme_Normal_Bottom input[type="search"], 
+.Theme_Normal_Bottom input[type="tel"], 
+.Theme_Normal_Bottom input[type="color"], 
+.uneditable-input{
+	background:#f2f2f2 !important;
+	border:1px solid #c9c9c9 !important;
+	}
+
+*+html #to_top{
+	margin-top:-1px;
+	}
+*+html .yellow_bg{
+	line-height:26px;
+	}
+
+#top_menu .menuslide ul,
+#Mega_menu div.mega_submenu{ 
+	background:url(images/submenu.png) repeat 0 0;
+}
+
+.js-clingify-locked{
+	position:static;
+}
+
+

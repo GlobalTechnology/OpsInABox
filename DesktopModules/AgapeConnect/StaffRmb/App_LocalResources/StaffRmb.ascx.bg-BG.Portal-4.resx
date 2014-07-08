@@ -1,0 +1,507 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountBalance.Text">
+    <value>Салдото на сметка</value>
+  </data>
+  <data name="AccountsComments.Text">
+    <value>Акаунти коментари</value>
+  </data>
+  <data name="AccountsMode.Text">
+    <value>Вие сте в режим на акаунти. За да превключите на нормален режим (като нормален персонала или одобряващ), превключете на режим на ПОКАЗВАНЕ (горе вдясно).</value>
+  </data>
+  <data name="AccountsOnly.Text">
+    <value>Акаунти използват само</value>
+  </data>
+  <data name="AddEditRmb.Text">
+    <value>Добавяне/редактиране на нови разходи за възстановяване</value>
+  </data>
+  <data name="AdvAmountSpecial.Text">
+    <value>Тъй като имате една транзакция над [TEAMLEADERLIMIT] във вашия аванс, то трябва да бъде одобрено от [AUTHUSER].</value>
+  </data>
+  <data name="Advance.Text">
+    <value>Предварително</value>
+  </data>
+  <data name="AdvanceApproved.Text">
+    <value>Предварително #[ADVANCEID] е одобрен!</value>
+  </data>
+  <data name="AdvanceBalance.Text">
+    <value>Предварително баланс</value>
+  </data>
+  <data name="AdvanceError.Text">
+    <value>Въвели сте невалидна стойност. Вашите настройки не са записани.</value>
+  </data>
+  <data name="AdvanceRequest.Text">
+    <value>Предварително искане</value>
+  </data>
+  <data name="AdvApproved.Text">
+    <value>Одобрени на [дата] от [STAFFNAME]</value>
+  </data>
+  <data name="AdvAuthSpecial.Text">
+    <value>Тъй като сте AuthUser, и ви обичайното лидер е inelligible да се одобри този аванс, то трябва да бъде одобрено от AuthAuthUser: [AUTHAUTHUSER].</value>
+  </data>
+  <data name="AdvDate.Text">
+    <value>Получено на [DATE]</value>
+  </data>
+  <data name="AdvEmailApprovedSubject.Text">
+    <value>Авансово #: [ADVNO] е одобрен от [APPROVER]</value>
+  </data>
+  <data name="AdvEmailCancelledSubject.Text">
+    <value>Предварително #: [ADVNO] е бил отменен</value>
+  </data>
+  <data name="AdvEmailSubmittedSubject.Text">
+    <value>Предварително #[ADVNO]</value>
+  </data>
+  <data name="AdvIntro.Text">
+    <value>[STAFFNAME] е подал искане за предварително за одобрение</value>
+  </data>
+  <data name="AdvLocked.Text">
+    <value>Вашият аванс, вече е обработена и не може да бъде променена или отменени.</value>
+  </data>
+  <data name="AdvNotApproved.Text">
+    <value>Изчакване на одобрение от: [STAFFNAMES]</value>
+  </data>
+  <data name="AdvProcessed.Text">
+    <value>Преработени на [DATE]</value>
+  </data>
+  <data name="AdvReason.Text">
+    <value>Причина</value>
+  </data>
+  <data name="AdvSpouseSpecial.Text">
+    <value>Тъй като вашият ръководител е също и съпругата ви ви аванс трябва да се обработват от [AUTHUSER].</value>
+  </data>
+  <data name="AdvSubmittedApprEmailSubject.Text">
+    <value>Аванс за [STAFFNAME]</value>
+  </data>
+  <data name="Amount.Text">
+    <value>Сума</value>
+  </data>
+  <data name="AmountSpecial.Text">
+    <value>Тъй като имате една транзакция над [TEAMLEADERLIMIT] във вашия възстановяване, то трябва да бъде одобрено от [AUTHUSER].</value>
+  </data>
+  <data name="Approved.Text">
+    <value>Одобрен</value>
+  </data>
+  <data name="ApprovedBy.Text">
+    <value>Одобрен от</value>
+  </data>
+  <data name="ApprovedOn.Text">
+    <value>Одобрен на</value>
+  </data>
+  <data name="AuthSpecial.Text">
+    <value>Тъй като сте AuthUser, и ви обичайното лидер е inelligible да одобри това възстановяване, той трябва да бъде одобрена от AuthAuthUser: [AUTHAUTHUSER].</value>
+  </data>
+  <data name="AwaitingApproval.Text">
+    <value>Изчакване на одобрение от</value>
+  </data>
+  <data name="BatchedRmbs.Text">
+    <value>Изтегляне Batched възстановяване на разходи</value>
+  </data>
+  <data name="btnAddExpenseItem.Text">
+    <value>Добавяне на елемент на разход</value>
+  </data>
+  <data name="btnAdvanceRequest.Text">
+    <value>Представя предварително искане</value>
+  </data>
+  <data name="btnAdvReq.Text">
+    <value>Искане за предварително</value>
+  </data>
+  <data name="btnApprove.Text">
+    <value>Одобрява</value>
+  </data>
+  <data name="btnCancel.Text">
+    <value>Отказ</value>
+  </data>
+  <data name="btnCreate.Text">
+    <value>Създаване на</value>
+  </data>
+  <data name="btnDownload.Text">
+    <value>Изтегли в Excel</value>
+  </data>
+  <data name="btnDownloadBatch.Text">
+    <value>Изтегли Batched транзакции</value>
+  </data>
+  <data name="btnEnter.Text">
+    <value>Въведете</value>
+  </data>
+  <data name="btnMoreInfo.Text">
+    <value> За повече информация</value>
+  </data>
+  <data name="btnNew.Text">
+    <value>Нови възстановяване</value>
+  </data>
+  <data name="btnNo.Text">
+    <value>Не</value>
+  </data>
+  <data name="btnOK.Text">
+    <value>OK</value>
+  </data>
+  <data name="btnPrint.Text">
+    <value>Печат</value>
+  </data>
+  <data name="btnProcess.Text">
+    <value>Процес</value>
+  </data>
+  <data name="btnReject.Text">
+    <value>Отхвърли</value>
+  </data>
+  <data name="btnSave.Text">
+    <value>Запиши</value>
+  </data>
+  <data name="btnSettings.Text">
+    <value>Настройки</value>
+  </data>
+  <data name="btnSplitAdd.Text">
+    <value>Добавяне на линия</value>
+  </data>
+  <data name="btnSubmit.Text">
+    <value>Представят</value>
+  </data>
+  <data name="btnUnProcess.Text">
+    <value>UnProcess</value>
+  </data>
+  <data name="btnYes.Text">
+    <value>Да</value>
+  </data>
+  <data name="Cancelled.Text">
+    <value>Отменено</value>
+  </data>
+  <data name="Comment.Text">
+    <value>Коментар</value>
+  </data>
+  <data name="CreateRmb.Text">
+    <value>Създаване на нов възстановяване на суми</value>
+  </data>
+  <data name="Default.Text">
+    <value>По подразбиране</value>
+  </data>
+  <data name="DefaultSettingsText">
+    <value>° Предупреждение - този модул използва настройките по подразбиране. Проверете и запишете настройките на модула, преди да използвате в живо проведени</value>
+  </data>
+  <data name="Delete.Text">
+    <value>Изтрий</value>
+  </data>
+  <data name="Description.Text">
+    <value>Описание</value>
+  </data>
+  <data name="DownloadFailed.Text">
+    <value>Неуспешно изтегляне</value>
+  </data>
+  <data name="Draft.Text">
+    <value>Проект</value>
+  </data>
+  <data name="Edit.Text">
+    <value>Редактиране</value>
+  </data>
+  <data name="EmailApprovedSubjectA.Text">
+    <value>RMB #: [RMBNO] е одобрен от [APPROVER]</value>
+  </data>
+  <data name="EmailApprovedSubjectP.Text">
+    <value>RMB #: [RMBNO] - [USERREF] е бил одобрен</value>
+  </data>
+  <data name="EmailCancelledSubject.Text">
+    <value>RMB #: [RMBNO]-[USERREF] е отменено</value>
+  </data>
+  <data name="EmailComments.Text">
+    <value>Следните коментари бяха представени с това възстановяване</value>
+  </data>
+  <data name="EmailSubmittedSubject.Text">
+    <value>Възстановяване # [RMBNO]</value>
+  </data>
+  <data name="ErrorHelp.Text">
+    <value>° Бележка: Могат да бъдат отхвърлени Ако автоматичното изтегляне преживявания грешка, докато Вмъкване на транзакции на сметките програмата, цялата партида. Ако имате множество възстановени в състояние на грешка - проблемът може да е с един от другите плащания.</value>
+  </data>
+  <data name="ErrorInProgress.Text">
+    <value>Това възстановяване не може да бъде непреработени по това време, тъй като тя в момента се изтегля от автоматичното datapump (транзакция брокер). Можете да опитате отново в рамките на няколко минути, но трябва да знаете, че тя ще вече са били преработени във вашата програма на акаунти.</value>
+  </data>
+  <data name="Errors.Text">
+    <value>Следните плащания са в състояние на грешка: </value>
+  </data>
+  <data name="Expenses.Text">
+    <value>Разходи</value>
+  </data>
+  <data name="Expire.Text">
+    <value>Възстановяването на суми трябва да се направи в [EXPIRE] месеца. Този елемент, който сте въвели, не е в рамките на [EXPIRE] месеца, отрязани период. Ако сте възстанови този елемент ще бъдат третирани като екстра заплата и поради това да поема данък.</value>
+  </data>
+  <data name="ExpireDept.Text">
+    <value>Възстановяването на суми трябва да се направи в [EXPIRE] месеца. Този елемент, който сте въвели, не е в рамките на [EXPIRE] месеца, отрязани период. Ако сте възстанови този елемент ще бъде разглеждано като допълнителни (от от АКАУНТ вашия персонал!) и поема данък.</value>
+  </data>
+  <data name="ExpireImpossible.Text">
+    <value>Възстановяването на суми трябва да се направи в [EXPIRE] месеца. Този елемент, който сте въвели, не е в рамките на [EXPIRE] месеца, отрязани период и не може да бъде възстановено.</value>
+  </data>
+  <data name="ForceNonTaxable.Text">
+    <value>Сила необлагаеми</value>
+  </data>
+  <data name="ForceTaxable.Text">
+    <value>Сила данъчно</value>
+  </data>
+  <data name="LargeTransaction.Text">
+    <value>Големи транзакция</value>
+  </data>
+  <data name="lblErrorMessage.Text">
+    <value>Съобщение за грешка</value>
+  </data>
+  <data name="LineType.Text">
+    <value>Вид ред</value>
+  </data>
+  <data name="LineTypes.Text">
+    <value>Тип на разходите</value>
+  </data>
+  <data name="MarkProcessedHelp.Text">
+    <value>Ако ще да вмъкнете тези транзакции ръчно във вашия пакет за сметки, трябва да изберете "да". Имайте предвид, че от избрани да, тези транзакции ще бъдат маркирани като преработени и игнориран от автоматичното транзакция брокер.</value>
+  </data>
+  <data name="MoreInfo.Text">
+    <value>Екипа на сметките са поискали да дадете повече информация за възстановяване, [RMBNO]-[USERREF].</value>
+  </data>
+  <data name="MoreInfoMsg.Text">
+    <value>Този reimbursment ще бъде осветен на члена на персонала на тази страница. Обаче трябва да пишете директно, членът на персонала да го знаят каква нужната ви информация.</value>
+  </data>
+  <data name="NewLineTitle.Text">
+    <value>Добавяне на нова транзакция за възстановяване</value>
+  </data>
+  <data name="NextBatch.Text">
+    <value>Това възстановяване ще бъдат изтеглени в следващата партида.</value>
+  </data>
+  <data name="NextBatchAdvance.Text">
+    <value>Този аванс ще бъдат изтеглени в следващата партида.</value>
+  </data>
+  <data name="NoPostReceipts.Text">
+    <value>Няма никакви разписки за изисква, така че не е нужно да изпратите нещо в Службата. Приложената форма е за справка само.</value>
+  </data>
+  <data name="NoReceipts.Text">
+    <value>Няма разписки</value>
+  </data>
+  <data name="OriginalTrans.Text">
+    <value>Първоначалната транзакция</value>
+  </data>
+  <data name="OutOfDate.Text">
+    <value>Този разход е остарял и ще бъде облагано.</value>
+  </data>
+  <data name="OverideTax.Help">
+    <value>Използвайте тази настройка, за да overide настройката на данъка. По подразбиране системата ще изчисли данък, въз основа на информацията, предоставена от потребителя - но акаунти персонал може да използвате тази настройка за overide, това.</value>
+  </data>
+  <data name="OverideTax.Text">
+    <value>отменят данък</value>
+  </data>
+  <data name="PayOff.Help">
+    <value>Въведете сума, бихте желали да изплати изключите вашия кредит.</value>
+  </data>
+  <data name="PayOff.Text">
+    <value>Заплащане на разстояние за предварително</value>
+  </data>
+  <data name="PendingDownload.Text">
+    <value>Чакащо изтегляне</value>
+  </data>
+  <data name="Period.Text">
+    <value>Период</value>
+  </data>
+  <data name="PostReceipts.Text">
+    <value>Моля качете вашите разписки, в приложената форма, на националната служба.</value>
+  </data>
+  <data name="PrintoutMoreInfo.Text">
+    <value>Вашият разпечатка отвори в нов прозорец/раздел. Ако искате да изпратите в разписки за вашите възстановяване и вие още не сте изпратили ги в Службата, ги прикачите към тази разпечатка и я изпраща на Службата.</value>
+  </data>
+  <data name="Processed.Text">
+    <value>Преработени</value>
+  </data>
+  <data name="ProcessedBy.Text">
+    <value>Обработени от</value>
+  </data>
+  <data name="ProcessedOn.Text">
+    <value>Обработени за</value>
+  </data>
+  <data name="ReceiptNo.Text">
+    <value>№ на разписка</value>
+  </data>
+  <data name="Receipts.Text">
+    <value>Разписки</value>
+  </data>
+  <data name="RecoverVAT.Text">
+    <value>Възстановяване на ДДС?</value>
+  </data>
+  <data name="RecoverVATRate.Text">
+    <value>ДДС възстановима процент(%)</value>
+  </data>
+  <data name="Reimbursement.Text">
+    <value>Възстановяване</value>
+  </data>
+  <data name="RmbApproved.Text">
+    <value>Възстановяване # [RMBNO] е одобрено!</value>
+  </data>
+  <data name="RmbsToApprove.Text">
+    <value>Възстановяването да одобри</value>
+  </data>
+  <data name="RmbTitle.Text">
+    <value>Възстановяването</value>
+  </data>
+  <data name="Split.Text">
+    <value>Сплит</value>
+  </data>
+  <data name="SplitError.Text">
+    <value>Моля, въведете описание и сума за всички редове</value>
+  </data>
+  <data name="SplitInto.Text">
+    <value>Раздели на</value>
+  </data>
+  <data name="SplitTransaction.Text">
+    <value>Раздели транзакция</value>
+  </data>
+  <data name="SpouseSpecial.Text">
+    <value>Тъй като вашият ръководител е също и съпругата ви ви възстановяване трябва да бъдат обработени от [AUTHUSER].</value>
+  </data>
+  <data name="Submitted.Text">
+    <value>Представено</value>
+  </data>
+  <data name="SubmittedApprEmailSubject.Text">
+    <value>Възстановяване на разходи за [STAFFNAME]</value>
+  </data>
+  <data name="SubmittedBy.Text">
+    <value>Подадени от</value>
+  </data>
+  <data name="SubmittedOn.Text">
+    <value>Представено на</value>
+  </data>
+  <data name="Taxable.Text">
+    <value>* - Елементите, маркирани с * ще бъдат обложени.</value>
+  </data>
+  <data name="TeamRmbs.Text">
+    <value>Вашият екип / отдел</value>
+  </data>
+  <data name="ToApprove.Text">
+    <value>За да одобри</value>
+  </data>
+  <data name="ToProcess.Text">
+    <value>За да обработи</value>
+  </data>
+  <data name="TransDate.Text">
+    <value>Дата</value>
+  </data>
+  <data name="Year.Text">
+    <value>Година</value>
+  </data>
+  <data name="YourComments.Text">
+    <value>Вашите коментари</value>
+  </data>
+  <data name="YourRef.Text">
+    <value>Вашият Ref</value>
+  </data>
+  <data name="YourRmbs.Text">
+    <value>Възстановяване на вашите разходи</value>
+  </data>
+</root>

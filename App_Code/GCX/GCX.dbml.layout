@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="GCX">
+  <DataContextMoniker Name="/GCXDataContext" />
+  <nestedChildShapes>
+    <classShape Id="3d588cb4-8fcf-483d-9fb9-709760d4dc8b" absoluteBounds="4.5, 1.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/GCXDataContext/Agape_GCX_Proxy" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c88d3ac5-4cb2-4281-87ff-f4dba4db88b1" absoluteBounds="4.515, 2.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

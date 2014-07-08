@@ -1,0 +1,220 @@
+﻿<dotnetnuke type="Package" version="5.0">
+  <packages><package name="AgapeConnect.StaffAdmin" type="Module" version="1.0.0">
+  <friendlyName>acStaffAdmin</friendlyName>
+  <description>Agape Connect - StaffAdmin</description>
+  <iconFile />
+  <owner>
+    <name>Jon Vellacott</name>
+    <organization>Agape</organization>
+    <url>http://www.agapeconect.me</url>
+    <email>JonVellacott@agape.org.uk</email>
+  </owner>
+  <license>Not yet available</license>
+  <releaseNotes>This package has no Release Notes</releaseNotes>
+  <components>
+    <component type="Module">
+      <desktopModule>
+        <moduleName>AgapeConnect.StaffAdmin</moduleName>
+        <foldername>AgapeConnect/StaffAdmin</foldername>
+        <businessControllerClass />
+        <supportedFeatures />
+        <moduleDefinitions>
+          <moduleDefinition>
+            <friendlyName>acStaffAdmin</friendlyName>
+            <defaultCacheTime>0</defaultCacheTime>
+            <moduleControls>
+              <moduleControl>
+                <controlKey />
+                <controlSrc>DesktopModules/AgapeConnect/StaffAdmin/StaffAdmin.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>View</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>BulkUpload</controlKey>
+                <controlSrc>DesktopModules/AgapeConnect/StaffAdmin/BulkUpload.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>View</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>ChangeUsername</controlKey>
+                <controlSrc>DesktopModules/AgapeConnect/StaffAdmin/ChangeUsername.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>View</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>StaffProfileFields</controlKey>
+                <controlSrc>DesktopModules/AgapeConnect/StaffAdmin/StaffProfileFields.ascx</controlSrc>
+                <supportsPartialRendering>True</supportsPartialRendering>
+                <controlTitle />
+                <controlType>View</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>True</supportsPopUps>
+                <viewOrder>0</viewOrder>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>StaffReportingRelationships</controlKey>
+                <controlSrc>DesktopModules/AgapeConnect/StaffAdmin/StaffReportingRelationships.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle>Staff Reporting Relationships</controlTitle>
+                <controlType>View</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>StaffTypes</controlKey>
+                <controlSrc>DesktopModules/AgapeConnect/StaffAdmin/StaffTypes.ascx</controlSrc>
+                <supportsPartialRendering>True</supportsPartialRendering>
+                <controlTitle />
+                <controlType>View</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
+              </moduleControl>
+            </moduleControls>
+          </moduleDefinition>
+        </moduleDefinitions>
+      </desktopModule>
+    </component>
+    <component type="File">
+      <files>
+        <basePath>DesktopModules\AgapeConnect\StaffAdmin</basePath>
+        <file>
+          <path>Controls</path>
+          <name>acImage.ascx</name>
+        </file>
+        <file>
+          <path>Controls</path>
+          <name>acImage.ascx.vb</name>
+        </file>
+        <file>
+          <path>Controls</path>
+          <name>AddStaff.ascx</name>
+        </file>
+        <file>
+          <path>Controls</path>
+          <name>AddStaff.ascx.vb</name>
+        </file>
+        <file>
+          <path>Controls</path>
+          <name>Departments.ascx</name>
+        </file>
+        <file>
+          <path>Controls</path>
+          <name>Departments.ascx.vb</name>
+        </file>
+        <file>
+          <path>Controls</path>
+          <name>GetImage.aspx</name>
+        </file>
+        <file>
+          <path>Controls</path>
+          <name>GetImage.aspx.vb</name>
+        </file>
+        <file>
+          <path>Controls</path>
+          <name>Leaders.ascx</name>
+        </file>
+        <file>
+          <path>Controls</path>
+          <name>Leaders.ascx.vb</name>
+        </file>
+        <file>
+          <path>Controls</path>
+          <name>No Image.jpg</name>
+        </file>
+        <file>
+          <path>Controls</path>
+          <name>NoImage.gif</name>
+        </file>
+        <file>
+          <path>Controls</path>
+          <name>Plebs.ascx</name>
+        </file>
+        <file>
+          <path>Controls</path>
+          <name>Plebs.ascx.vb</name>
+        </file>
+        <file>
+          <path>Controls</path>
+          <name>StaffChildren.ascx</name>
+        </file>
+        <file>
+          <path>Controls</path>
+          <name>StaffChildren.ascx.vb</name>
+        </file>
+        <file>
+          <path>providers</path>
+          <name>01.00.00.SqlDataProvider.disabled</name>
+        </file>
+        <file>
+          <path>providers</path>
+          <name>01.00.01 (2).disabled</name>
+        </file>
+        <file>
+          <path>providers</path>
+          <name>01.00.01.disabled</name>
+        </file>
+        <file>
+          <path>providers</path>
+          <name>01.00.02.disabled</name>
+        </file>
+        <file>
+          <name>BulkUpload.ascx</name>
+        </file>
+        <file>
+          <name>BulkUpload.ascx.vb</name>
+        </file>
+        <file>
+          <name>ChangeUsername.ascx</name>
+        </file>
+        <file>
+          <name>ChangeUsername.ascx.vb</name>
+        </file>
+        <file>
+          <name>DatatSync.asmx</name>
+        </file>
+        <file>
+          <name>StaffAdmin.ascx</name>
+        </file>
+        <file>
+          <name>StaffAdmin.ascx.vb</name>
+        </file>
+        <file>
+          <name>StaffProfileFields.ascx</name>
+        </file>
+        <file>
+          <name>StaffProfileFields.ascx.vb</name>
+        </file>
+        <file>
+          <name>StaffReportingRelationships.ascx</name>
+        </file>
+        <file>
+          <name>StaffReportingRelationships.ascx.vb</name>
+        </file>
+        <file>
+          <name>StaffTypes.ascx</name>
+        </file>
+        <file>
+          <name>StaffTypes.ascx.vb</name>
+        </file>
+      </files>
+    </component>
+  </components>
+</package></packages>
+</dotnetnuke>

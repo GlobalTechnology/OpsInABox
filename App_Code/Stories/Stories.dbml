@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AgapeConnect" Class="StoriesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=AgapeConnect;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.AP_Stories_Module" Member="AP_Stories_Modules">
+    <Type Name="AP_Stories_Module">
+      <Column Name="StoryModuleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TabModuleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FilterType" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="FilterSetting1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FilterSetting2" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="FilterSetting3" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MaxDisplayItems" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Association Name="AP_Stories_Module_AP_Stories_Module_Channel" Member="AP_Stories_Module_Channels" ThisKey="StoryModuleId" OtherKey="StoryModuleId" Type="AP_Stories_Module_Channel" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_Stories_Module_Channel" Member="AP_Stories_Module_Channels">
+    <Type Name="AP_Stories_Module_Channel">
+      <Column Name="ChannelId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Type" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="URL" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Weight" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Language" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ChannelTitle" Type="System.String" DbType="NVarChar(154)" CanBeNull="true" />
+      <Column Name="ImageId" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="StoryModuleId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="AutoDetectLanguage" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="AP_Stories_Module_Channel_AP_Stories_Module_Channel_Cache" Member="AP_Stories_Module_Channel_Caches" ThisKey="ChannelId" OtherKey="ChannelId" Type="AP_Stories_Module_Channel_Cache" />
+      <Association Name="AP_Stories_Module_AP_Stories_Module_Channel" Member="AP_Stories_Module" ThisKey="StoryModuleId" OtherKey="StoryModuleId" Type="AP_Stories_Module" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_Stories_Controls" Member="AP_Stories_Controls">
+    <Type Name="AP_Stories_Control">
+      <Column Name="StoryControlId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Location" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="Type" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_Stories_Module_Channel_Cache" Member="AP_Stories_Module_Channel_Caches">
+    <Type Name="AP_Stories_Module_Channel_Cache">
+      <Column Name="CacheId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Headline" Type="System.String" DbType="NVarChar(154) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Link" Type="System.String" DbType="NVarChar(154) NOT NULL" CanBeNull="false" />
+      <Column Name="ImageId" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="ChannelId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageWidth" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ImageHeight" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="BoostDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Block" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Precal" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Clicks" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StoryDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Langauge" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="TranslationGroup" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GUID" Type="System.String" DbType="NVarChar(154)" CanBeNull="true" />
+      <Column Name="Spare1" Type="System.String" DbType="NVarChar(154)" CanBeNull="true" />
+      <Column Name="Spare2" Type="System.String" DbType="NVarChar(154)" CanBeNull="true" />
+      <Column Name="Spare3" Type="System.String" DbType="NVarChar(154)" CanBeNull="true" />
+      <Association Name="AP_Stories_Module_Channel_AP_Stories_Module_Channel_Cache" Member="AP_Stories_Module_Channel" ThisKey="ChannelId" OtherKey="ChannelId" Type="AP_Stories_Module_Channel" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_Stories" Member="AP_Stories">
+    <Type Name="AP_Story">
+      <Column Name="StoryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Headline" Type="System.String" DbType="NVarChar(154) NOT NULL" CanBeNull="false" />
+      <Column Name="PhotoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StoryText" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="StoryDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Author" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EditorBoost" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="Editable" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RegionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsVisible" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Sent" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PortalID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TabId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TabModuleId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TranslationGroup" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Language" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="Subtitle" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="TextSample" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Field1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Field2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="Keywords" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="AP_Story_AP_Stories_Tag_Meta" Member="AP_Stories_Tag_Metas" ThisKey="StoryId" OtherKey="StoryId" Type="AP_Stories_Tag_Meta" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_Stories_Tag_Meta" Member="AP_Stories_Tag_Metas">
+    <Type Name="AP_Stories_Tag_Meta">
+      <Column Name="StoryTagMetaId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StoryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TagId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="AP_Story_AP_Stories_Tag_Meta" Member="AP_Story" ThisKey="StoryId" OtherKey="StoryId" Type="AP_Story" IsForeignKey="true" />
+      <Association Name="AP_Stories_Tag_AP_Stories_Tag_Meta" Member="AP_Stories_Tag" ThisKey="TagId" OtherKey="StoryTagId" Type="AP_Stories_Tag" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_Stories_Tags" Member="AP_Stories_Tags">
+    <Type Name="AP_Stories_Tag">
+      <Column Name="StoryTagId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TagName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Keywords" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Master" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="AP_Stories_Tag_AP_Stories_Tag_Meta" Member="AP_Stories_Tag_Metas" ThisKey="StoryTagId" OtherKey="TagId" Type="AP_Stories_Tag_Meta" />
+    </Type>
+  </Table>
+</Database>

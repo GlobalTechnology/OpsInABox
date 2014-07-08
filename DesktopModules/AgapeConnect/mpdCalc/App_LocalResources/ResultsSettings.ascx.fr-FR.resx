@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle_settings.Text">
+    <value xml:space="preserve">Paramètres des résultats de la recherche</value>
+  </data>
+  <data name="ModuleHelp.Text">
+    <value xml:space="preserve">&lt;h1&gt;A propos du module Résultat de la recherche &lt;/h1&gt;&lt;p&gt;Le module &amp;quot;Résultat de 
+la recherche&amp;quot; (Search Results) retourne une liste de résultat suite à la 
+recherche initié par un utilisateur du site. Ce module compte 5 paramètres :&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;div align="left"&gt;&lt;b&gt;Nombre maxi. de résultats&lt;/b&gt; – spécifier le nombre 
+	maximal de résultat à afficher. &lt;b&gt;&lt;/b&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;div align="left"&gt;&lt;b&gt;Résultats par page &lt;/b&gt;- spécifiez le nombre de 
+	résultat à afficher par page.&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;div align="left"&gt;&lt;b&gt;Longueur maximale du titre&lt;/b&gt; - spécifiez le nombre de 
+	caractères à afficher pour le titre.&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;div align="left"&gt;&lt;b&gt;Longueur maxi. de la description&lt;/b&gt; - spécifiez le 
+	nombre maximal de caractères à afficher pour la description à l'issue d'une 
+	recherche.&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;div align="left"&gt;&lt;b&gt;Afficher la description&lt;/b&gt; - cochez l&amp;#180;option afin 
+	d'afficher la description.&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="plDescription.Help">
+    <value xml:space="preserve">Saisissez le nombre maximal de caractères à afficher pour le résumé (ne rien mettre si pas de limitation)</value>
+  </data>
+  <data name="plDescription.Text">
+    <value xml:space="preserve">Longueur maxi. de la description :</value>
+  </data>
+  <data name="plPage.Help">
+    <value xml:space="preserve">Saisissez le nombre de résultats affichés par page.</value>
+  </data>
+  <data name="plPage.Text">
+    <value xml:space="preserve">Résultats par page :</value>
+  </data>
+  <data name="plResults.Help">
+    <value xml:space="preserve">Saisissez le nombre maximal de résultat à afficher pour une recherche</value>
+  </data>
+  <data name="plResults.Text">
+    <value xml:space="preserve">Nombre maxi. de résultats :</value>
+  </data>
+  <data name="plShowDescription.Help">
+    <value xml:space="preserve">Cochez cette case si vous desirez faire apparaitre la description dans le résultat de la recherche</value>
+  </data>
+  <data name="plShowDescription.Text">
+    <value xml:space="preserve">Afficher la description ?</value>
+  </data>
+  <data name="plTitle.Help">
+    <value xml:space="preserve">Saisissez le nombre maximal de caractères à afficher pour le titre (ne rien mettre si pas de limitation)</value>
+  </data>
+  <data name="plTitle.Text">
+    <value xml:space="preserve">Longueur maximale du titre :</value>
+  </data>
+  <data name="Validation.ErrorMessage">
+    <value xml:space="preserve">&lt;br&gt;Doit être un entier supérieur à 0 !</value>
+  </data>
+</root>

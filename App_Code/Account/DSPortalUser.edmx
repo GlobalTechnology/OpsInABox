@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DataserverPortalUsersEntitiesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="DataserverPortalUsersEntitiesModelStoreContainer">
+          <EntitySet Name="DataserverPortalUsers" EntityType="DataserverPortalUsersEntitiesModel.Store.DataserverPortalUsers" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="DataserverPortalUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SsoCode" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PortalUri" Type="nvarchar(max)" />
+          <Property Name="PortalName" Type="nvarchar(max)" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataserverPortalUsersEntitiesModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="DataserverPortalUsersEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DataserverPortalUsers" EntityType="DataserverPortalUsersEntitiesModel.DataserverPortalUser" />
+        </EntityContainer>
+        <EntityType Name="DataserverPortalUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="SsoCode" Nullable="false" />
+          <Property Type="String" Name="PortalUri" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PortalName" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DataserverPortalUsersEntitiesModelStoreContainer" CdmEntityContainer="DataserverPortalUsersEntities">
+          <EntitySetMapping Name="DataserverPortalUsers">
+            <EntityTypeMapping TypeName="DataserverPortalUsersEntitiesModel.DataserverPortalUser">
+              <MappingFragment StoreEntitySet="DataserverPortalUsers">
+                <ScalarProperty Name="PortalName" ColumnName="PortalName" />
+                <ScalarProperty Name="PortalUri" ColumnName="PortalUri" />
+                <ScalarProperty Name="SsoCode" ColumnName="SsoCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="DSPortalUser">
+        <EntityTypeShape EntityType="DataserverPortalUsersEntitiesModel.DataserverPortalUser" Width="3.625" PointX="0.75" PointY="0.75" Height="1.592306315104167" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

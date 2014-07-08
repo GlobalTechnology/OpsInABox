@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://agapeconnect.me/desktopmodules/agapeconnect/casauth/pgtcallback.asmx?wsdl" docRef="https://agapeconnect.me/desktopmodules/agapeconnect/casauth/pgtcallback.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://agapeconnect.me/desktopmodules/agapeconnect/casauth/pgtcallback.asmx" xmlns:q1="http://tempuri.org/" binding="q1:PGTCallBackSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://agapeconnect.me/desktopmodules/agapeconnect/casauth/pgtcallback.asmx" xmlns:q2="http://tempuri.org/" binding="q2:PGTCallBackSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

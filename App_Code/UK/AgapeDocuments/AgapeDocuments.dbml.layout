@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="AgapeDocuments">
+  <DataContextMoniker Name="/AgapeDocumentsDataContext" />
+  <nestedChildShapes>
+    <classShape Id="67bb304e-d6c3-4995-b530-7ad6f39c6196" absoluteBounds="5, 2.125, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/AgapeDocumentsDataContext/Agape_Main_AgapeDocument" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a49d8331-b29a-45c5-a467-ea999560aa9a" absoluteBounds="5.015, 2.585, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="02de63a9-ec54-4ac9-bf07-057fc034c784" absoluteBounds="1.375, 2, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/AgapeDocumentsDataContext/Agape_Main_AgapeDocuments_Comment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6d7f97cd-cb53-4132-99a7-670fe66d7aad" absoluteBounds="1.3900000000000001, 2.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5 : 2.94794840494792); (3.375 : 2.94794840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AgapeDocumentsDataContext/Agape_Main_AgapeDocument/Agape_Main_AgapeDocument_Agape_Main_AgapeDocuments_Comment" />
+      <nodes>
+        <classShapeMoniker Id="67bb304e-d6c3-4995-b530-7ad6f39c6196" />
+        <classShapeMoniker Id="02de63a9-ec54-4ac9-bf07-057fc034c784" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

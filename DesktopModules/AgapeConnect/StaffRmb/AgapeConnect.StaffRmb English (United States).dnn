@@ -1,0 +1,36 @@
+﻿<dotnetnuke type="Package" version="5.0">
+  <packages><package name="AgapeConnect.StaffRmb English (United States)" type="ExtensionLanguagePack" version="1.0.0">
+  <friendlyName>AgapeConnect.StaffRmb English (United States)</friendlyName>
+  <description />
+  <iconFile />
+  <owner>
+    <name />
+    <organization />
+    <url />
+    <email />
+  </owner>
+  <license>The license for this package is not currently included within the installation file, please check with the vendor for full license details.</license>
+  <releaseNotes />
+  <components>
+    <component type="ExtensionLanguage">
+      <languageFiles>
+        <code>en-US</code>
+        <package>AgapeConnect.StaffRmb</package>
+        <basePath>DesktopModules\AgapeConnect/StaffRmb</basePath>
+        <languageFile>
+          <path>DesktopModules\AgapeConnect\StaffRmb\App_LocalResources</path>
+          <name>EditDocument.ascx.resx</name>
+        </languageFile>
+        <languageFile>
+          <path>DesktopModules\AgapeConnect\StaffRmb\App_LocalResources</path>
+          <name>Layout.ascx.resx</name>
+        </languageFile>
+        <languageFile>
+          <path>DesktopModules\AgapeConnect\StaffRmb\App_LocalResources</path>
+          <name>ViewStaffRmb.ascx.resx</name>
+        </languageFile>
+      </languageFiles>
+    </component>
+  </components>
+</package></packages>
+</dotnetnuke>

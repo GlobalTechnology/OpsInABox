@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ModuleHelp.Text">
+    <value xml:space="preserve">&lt;h1&gt;A propos du module Résultat de la recherche&lt;/h1&gt;&lt;p&gt;Cet outil affiche le résultat d'une recherche initiée sur le site.&lt;/p&gt;</value>
+  </data>
+  <data name="ModuleHidden.Text">
+    <value xml:space="preserve">Ce module est masqué pour les utilisateurs réguliers.</value>
+  </data>
+  <data name="NoResults.Text">
+    <value xml:space="preserve">Désolé, pas de résultat pour &lt;b&gt;&lt;i&gt;{0}&lt;/i&gt;&lt;/b&gt;</value>
+  </data>
+  <data name="NoSearch.Text">
+    <value xml:space="preserve">Pas de terme saisi.</value>
+  </data>
+  <data name="Relevance.Text">
+    <value xml:space="preserve">Pertinence : </value>
+  </data>
+  <data name="Results.Text">
+    <value xml:space="preserve">Résultat de la recherche pour &lt;b&gt;&lt;i&gt;{0}&lt;/i&gt;&lt;/b&gt;</value>
+  </data>
+</root>

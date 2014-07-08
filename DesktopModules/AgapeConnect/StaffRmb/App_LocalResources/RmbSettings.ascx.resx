@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="lblAccountsEmail.Help" xml:space="preserve">
+    <value>Enter the email for your accounts dept.</value>
+  </data>
+  <data name="lblAccountsEmail.Text" xml:space="preserve">
+    <value>Accounts Email</value>
+  </data>
+  <data name="lblAccountsName.Help" xml:space="preserve">
+    <value>Enter enter the name of the person who will receive accounts emails from the rmb system.</value>
+  </data>
+  <data name="lblAccountsName.Text" xml:space="preserve">
+    <value>Accounts Name</value>
+  </data>
+  <data name="lblAccountsRole.Help" xml:space="preserve">
+    <value>Select the Security for the Accounts Team. You can create a role group under Admin-&gt;Security Roles. Members of this role group will have access to the accounts functions of the reimbursmenet system.</value>
+  </data>
+  <data name="lblAccountsRole.Text" xml:space="preserve">
+    <value>Accounts Roles</value>
+  </data>
+  <data name="lblAccPay.Help" xml:space="preserve">
+    <value>Please select the account code used for Accounts Payable</value>
+  </data>
+  <data name="lblAccPay.Text" xml:space="preserve">
+    <value>Accounts Payable</value>
+  </data>
+  <data name="lblAcctRec.Help" xml:space="preserve">
+    <value>Please select your advance account (a.k.a. 'Accounts Receivable').</value>
+  </data>
+  <data name="lblAcctRec.Text" xml:space="preserve">
+    <value>Advance Account</value>
+  </data>
+  <data name="lblAuthAuthUser.Help" xml:space="preserve">
+    <value>Select the person who can approce the Departmental Reimbursements of the Auth User</value>
+  </data>
+  <data name="lblAuthAuthUser.Text" xml:space="preserve">
+    <value>Auth User's Approver</value>
+  </data>
+  <data name="lblAuthUser.Help" xml:space="preserve">
+    <value>Select the person who can authorize large transactions and Cost Centre Manager reimbursements</value>
+  </data>
+  <data name="lblAuthUser.Text" xml:space="preserve">
+    <value>Authorasation User</value>
+  </data>
+  <data name="lblBicycle.Text" xml:space="preserve">
+    <value>Bicycle Rate:</value>
+  </data>
+  <data name="lblBreakfast.Text" xml:space="preserve">
+    <value>Breakfast:</value>
+  </data>
+  <data name="lblCarRate.Text" xml:space="preserve">
+    <value>Car Rate:</value>
+  </data>
+  <data name="lblControlAccount.Help" xml:space="preserve">
+    <value>The Responsibility Center of the Control Account</value>
+  </data>
+  <data name="lblControlAccount.Text" xml:space="preserve">
+    <value>Control Account</value>
+  </data>
+  <data name="lblDay.Text" xml:space="preserve">
+    <value>Whole Day:</value>
+  </data>
+  <data name="lblDinner.Text" xml:space="preserve">
+    <value>Dinner:</value>
+  </data>
+  <data name="lblDistanceUnit.Text" xml:space="preserve">
+    <value>Unit of Distance:</value>
+  </data>
+  <data name="lblDownloadFormat.Help" xml:space="preserve">
+    <value>The format used for the download document</value>
+  </data>
+  <data name="lblDownloadFormat.Text" xml:space="preserve">
+    <value>Download Format</value>
+  </data>
+  <data name="lblEntertaining.Help" xml:space="preserve">
+    <value>Enter the current subsistence rates.</value>
+  </data>
+  <data name="lblEntertaining.Text" xml:space="preserve">
+    <value>Per Diem - Entertaining</value>
+  </data>
+  <data name="lblExpenseTypes.Help" xml:space="preserve">
+    <value>Select the expense types that you want to make available to your staff</value>
+  </data>
+  <data name="lblExpenseTypes.Text" xml:space="preserve">
+    <value>Expense Types</value>
+  </data>
+  <data name="lblExpire.Help" xml:space="preserve">
+    <value>Enter the number of months back a transaction can be reimbursement. The system ignored the day-of-month. So on the 17th Jan 2011, you can reimburse anything since 1st Oct 2010</value>
+  </data>
+  <data name="lblExpire.Text" xml:space="preserve">
+    <value>Transactions must be reimbursed within</value>
+  </data>
+  <data name="lblLunch.Text" xml:space="preserve">
+    <value>Lunch:</value>
+  </data>
+  <data name="lblMenuSize.Help" xml:space="preserve">
+    <value>Enter the maximum number of items to display in each menu (excluding to approve)</value>
+  </data>
+  <data name="lblMenuSize.Text" xml:space="preserve">
+    <value>Max # of items to display in Menu</value>
+  </data>
+  <data name="lblMileage.Help" xml:space="preserve">
+    <value>Enter the current milage rates and limits.</value>
+  </data>
+  <data name="lblMileage.Text" xml:space="preserve">
+    <value>Mileage Rates and Limits</value>
+  </data>
+  <data name="lblMotorcycle.Text" xml:space="preserve">
+    <value>Motorcyle Rate:</value>
+  </data>
+  <data name="lblNoReceipt.Help" xml:space="preserve">
+    <value>Receipts are not required for transactions less than or equal to this amount</value>
+  </data>
+  <data name="lblNoReceipt.Text" xml:space="preserve">
+    <value>No Receipt Limit</value>
+  </data>
+  <data name="lblOvernight.Text" xml:space="preserve">
+    <value>Overnight:</value>
+  </data>
+  <data name="lblPerDiem.Help" xml:space="preserve">
+    <value>Enter the current subsistence rates. If you leave a value blank (or zero), it will not be displayed to the user.</value>
+  </data>
+  <data name="lblPerDiem.Text" xml:space="preserve">
+    <value>Per Diem - Subsistence</value>
+  </data>
+  <data name="lblRate1.Text" xml:space="preserve">
+    <value>Rate1:</value>
+  </data>
+  <data name="lblRate2.Text" xml:space="preserve">
+    <value>Rate2:</value>
+  </data>
+  <data name="lblRate3.Text" xml:space="preserve">
+    <value>Rate3:</value>
+  </data>
+  <data name="lblRate4.Text" xml:space="preserve">
+    <value>Rate4:</value>
+  </data>
+  <data name="lblRate5.Text" xml:space="preserve">
+    <value>Rate5:</value>
+  </data>
+  <data name="lblRate6.Text" xml:space="preserve">
+    <value>Rate6:</value>
+  </data>
+  <data name="lblTaxAccRec.Help" xml:space="preserve">
+    <value>Please select your taxable Advance Account.</value>
+  </data>
+  <data name="lblTaxAccRec.Text" xml:space="preserve">
+    <value>Taxable Advance Account</value>
+  </data>
+  <data name="lblTeamLeaderLimit.Help" xml:space="preserve">
+    <value>The maximum amount that a team leader can authorize. If a transaction is over this, an email is sent to the Auth User</value>
+  </data>
+  <data name="lblTeamLeaderLimit.Text" xml:space="preserve">
+    <value>Team Leader Auth Limit</value>
+  </data>
+  <data name="lblUseDCode.Help" xml:space="preserve">
+    <value>If you use different account codes for departemnts, check this box. If no DCode is supplied (below) the PCode will be used instead.</value>
+  </data>
+  <data name="lblUseDCode.Text" xml:space="preserve">
+    <value>Use different account codes for departments</value>
+  </data>
+  <data name="lblVAT.Help" xml:space="preserve">
+    <value>If your organization is VAT registered and you wish to allow staff to reimburse VAT attributable expenses, check this option.</value>
+  </data>
+  <data name="lblVAT.Text" xml:space="preserve">
+    <value>Enable VAT</value>
+  </data>
+  <data name="Months.Text" xml:space="preserve">
+    <value>Months</value>
+  </data>
+  <data name="lblCurConverter.Help" xml:space="preserve">
+    <value>When a user is prompted to enter a currency, a link is available to popup the Currency Converter to allow him to enter the currency in a foreign currency. Check this box if you would, instead, like the currency converter to always appear. This is recommended only if your accounting currency is different from your local currency.</value>
+  </data>
+  <data name="lblCurConverter.Text" xml:space="preserve">
+    <value>Always show Currency Converter</value>
+  </data>
+  <data name="lblPayroll.Help" xml:space="preserve">
+    <value>Select the account used for Payroll (Salary) Payable</value>
+  </data>
+  <data name="lblPayroll.Text" xml:space="preserve">
+    <value>Payroll Payable Account</value>
+  </data>
+  <data name="lblSalary.Help" xml:space="preserve">
+    <value>Select the expense account used for Salary</value>
+  </data>
+  <data name="lblSalary.Text" xml:space="preserve">
+    <value>Salary Expense Account</value>
+  </data>
+  <data name="lblBankAccount.Help" xml:space="preserve">
+    <value>Select the bank account used to pay staff. (This is only used on the Suggested Payments Report)</value>
+  </data>
+  <data name="lblBankAccount.Text" xml:space="preserve">
+    <value>Bank Account</value>
+  </data>
+  <data name="lblShowRemBal.Help" xml:space="preserve">
+    <value>Displays the reimbaining balance (once this and other "Pending Download" transactions have been processed.) This can be helpful in determining if there are sufficient funds for the reimbursment.</value>
+  </data>
+  <data name="lblShowRemBal.Text" xml:space="preserve">
+    <value>Show Remaining Balance?:</value>
+  </data>
+  <data name="lblWarnIfNegative.Help" xml:space="preserve">
+    <value>When processing an expense, the system will warn if the account balance will go negative as a result of this transaction. </value>
+  </data>
+  <data name="lblWarnIfNegative.Text" xml:space="preserve">
+    <value>Show Account Balance Warning</value>
+  </data>
+  <data name="lblElecRec.Help" xml:space="preserve">
+    <value>Can staff attatch electronic receipts?</value>
+  </data>
+  <data name="lblElecRec.Text" xml:space="preserve">
+    <value>Allow Electronic Receipts</value>
+  </data>
+  <data name="lblDescriptionLength.Help" xml:space="preserve">
+    <value>Enter the maximum number of characters that users can enter into the description field. If this number is greater that the limit in Dynamics, the system will automatically trim the string to size. Bear in mind that the system automatically addes the users initials at the begining of the description (followed by a symbol- which takes up 3 characters. So, by default, you have 27 characters. If the amount is enetered in a foreign currency amount, the original currency details are appended to the end of the string. Accounts staff can preview and edit the string that will actaully be entered.</value>
+  </data>
+  <data name="lblDescriptionLength.Text" xml:space="preserve">
+    <value>Max Description Length</value>
+  </data>
+</root>

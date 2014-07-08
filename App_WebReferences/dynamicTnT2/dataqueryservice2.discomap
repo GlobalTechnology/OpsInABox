@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="https://dataserver.tntware.com/dataserver/test/dataquery/dataqueryservice2.asmx?disco" filename="dataqueryservice2.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="https://dataserver.tntware.com/dataserver/test/dataquery/dataqueryservice2.asmx?wsdl" filename="dataqueryservice2.wsdl" />
+  </Results>
+</DiscoveryClientResultsFile>

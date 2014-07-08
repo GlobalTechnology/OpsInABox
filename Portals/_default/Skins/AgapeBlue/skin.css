@@ -1,0 +1,621 @@
+
+@import url("skinPopup.css");
+/*########## PortalCSS ################*/
+
+
+#searchContainer, #seachContainer span, #searchContainer span .NormalTextBox
+{
+    padding: 0 ;
+    margin: 0;
+    vertical-align: top;
+}
+
+.ui-accordion .ui-accordion-content 
+{
+ padding: 3px;   
+}
+a.dnnFormHelp span
+{
+    margin-right: 20px!important;
+}
+
+.RadTreeView
+{
+    text-align: left;    
+}
+
+/*############## Menu Style ###############*/
+/* main menu td */
+.main_dnnmenu_bar 
+{
+	cursor:pointer;
+	font-size: 12px; 
+	background-color:transparent;
+	width:970px;
+	z-index:1000px ;
+	
+}
+
+/*  Main Menu Normal  */
+.main_dnnmenu_rootitem  
+{	
+	color: #FFF; 
+	 
+	padding:  5px 7px 5px 7px;
+font-weight: bold ;
+ 
+	white-space:nowrap;
+	/*float: left;*/
+	z-index:1000px ;
+	height: 24px;
+}
+
+
+/*  Main menu hover  */
+.main_dnnmenu_rootitem_hover
+{  
+	color: #FFF; 
+	 background-color:#4a6ea3 ;
+	
+	padding:  5px 7px 5px 7px;
+ 
+	 font-weight: bold ;
+height: 24px;
+	white-space:nowrap;
+	/*float: left;*/
+	z-index:1000px ;
+}
+
+
+
+/*  Main menu selected  */
+.main_dnnmenu_rootitem_selected 
+{
+	color: white; 
+	 background-color:#7d97bc ;
+	font-weight: bold ;
+	
+	padding:  5px 7px 5px 7px;
+	 
+	white-space:nowrap;
+	/*float: left;*/
+	z-index:1000px ;
+	height: 24px;
+}
+
+/*  SUB Menu Normal */
+.main_dnnmenu_submenu 
+{
+	border:1px solid #C0D6E5;
+	z-index:1000px ;
+	
+}
+
+.main_dnnmenu_submenu td
+{
+	
+	background-color:#FFF;
+	z-index: 1000;
+	font-size: 11px; 
+	font-weight:bold;
+	text-align:left;
+	color: #4a6ea3;
+	line-height:2em;
+	padding-left: 5px ;
+	margin: 0px ;
+	z-index:1000px ;
+}
+
+/*  SUB Menu hover & selected */
+.main_dnnmenu_itemhover td   
+{  
+	background-color:#7d97bc; 
+	color:#FFF;
+	z-index:1000px ;
+}
+.main_dnnmenu_itemselected td{
+ background-color: #7d97bc ; 
+ font-weight: bold;
+	color:#FFF;
+	z-index:1000px ;
+}
+
+.main_dnnmenu_break
+{
+	height: 2px;
+	background-color: #D5E0FF;
+	z-index:1000px ;
+}
+
+.main_dnnmenu_ChildRoot
+{
+	background-image:none;
+	background-color: #FFFFFF;
+	
+}
+
+.Language.selected
+{
+    border:  1px solid white;
+    
+}
+
+/*########### SKIN CSS ###############*/
+
+#Body{background: url(images/BackgroundRepeat.gif) repeat top left; height:100%;width: 100%;  }
+.theMenu{margin-top: 3px;}
+.clear_float{clear:both; line-height:0; font-size:0; height:0;}
+.headerLeft {
+	background-image: url(images/MenuDTL.jpg);
+	background-repeat:  no-repeat;
+    height: 46px;
+	margin: -1px ; 
+}
+.headerRepeat {
+	background-image: url(images/MenuD.jpg);
+	background-repeat: repeat-x;
+	
+	max-height: 46px ;
+	padding-top: 15px;
+}
+.headerRight {
+	background-image: url(images/MenuDTR.jpg);
+	background-repeat:  no-repeat;
+	height: 46px;
+	width: 26px;
+	max-height: 46px ;
+	 max-width: 26px ;
+	 margin: -1px ; 
+}
+.mastheadLeft {
+	background-image: url(images/MastheadLeft.gif);
+	background-repeat:  repeat-y;
+	margin: 0px;
+	border-style: none;
+	border-width: 0px;
+	height:114px;
+    margin: -1px ; 
+}
+.mastheadCentre {
+	background-color:#FFF;	
+}
+.mastheadRight {
+	background-image: url(images/MastheadRight.gif);
+	background-repeat:  repeat-y;
+	height:114px;
+	width: 26px;
+	margin: 0px;
+	border-style: none;
+	border-width: 0px;
+	margin: -1px ; 
+}
+.breadcrumbLeft {
+	background-image: url(images/BreadcrumbLeft.gif);
+	background-repeat:   no-repeat;
+	height: 44px;
+	margin: 0;
+	border-style: none;
+	margin: -1px ; 
+}
+.breadcrumbCentre {
+	background-image: url(images/BreadcrumbInner.gif);
+	background-repeat: repeat-x;
+	height: 44px;
+}
+ .breadcrumbRight {
+	background-image: url(images/BreadcrumbRight.gif);
+	background-repeat:   no-repeat;
+	height: 44px;
+	width: 26px;
+    margin: 0;
+	border-style: none;
+	margin: -1px ; 
+}
+.mainLeft {
+	background-image: url(images/MastheadLeft.gif);
+	background-repeat:  repeat-y;
+	border-style: none;
+	border-width: 0px;
+	margin: -1px ; 
+}
+.mainContentContainer {
+	background-color: white;
+	text-align: left;
+}
+.mainRight {
+	background-image: url(images/MastheadRight.gif);
+	background-repeat:  repeat-y;	
+	border-style: none;
+	border-width: 0px;
+	margin: -1px ; 
+}
+.footerLeft {
+	background-image: url(images/FooterLeftD.jpg);
+	background-repeat:  no-repeat;
+	height: 42px;
+	
+	/*float: left;*/
+	margin: 0px ; 
+}
+.footerCentre {
+	background-image: url(images/FooterD.jpg);
+	background-repeat: repeat-x;
+	
+	 vertical-align: top ;
+	 padding-top: 10px;
+}
+.footerRight {
+	background-image: url(images/FooterRightD.jpg);
+	background-repeat:  no-repeat;
+	height: 42px;
+	
+	/*float: right;*/
+	margin: 0px ; 
+}
+
+
+
+/* Breadrumb */
+#breadcrumbContainer 
+{	
+	  margin-top: 1px ;
+	 float:left ;
+	 white-space:nowrap ; 
+}
+#loginContainer 
+{	
+	  margin-top: 1px ;
+	 float:right ;
+	 margin-right: 10px;
+	 white-space: nowrap ;
+}
+#searchContainer 
+{		 
+	float:right ;
+	white-space: nowrap ;
+    vertical-align:  middle ;
+}
+.TopPane {
+	background-color: White;
+	margin:0;
+	
+}
+.LeftPane {
+	background-color: White;
+	margin:0;
+	
+	max-width : 180px;
+	
+}
+.ContentPane {
+	padding:0;
+	margin: 0 ;
+	width: 100%;
+}
+
+.RightPane {
+	background-color: White;
+	margin:0;
+	
+}
+.BottomPane {
+	background-color: White;
+	padding:10px;
+	margin: 0 ;
+}
+
+/*-------------- Footer Style --------------*/
+.footer,a.footer:link,a.footer:active,a.footer:visited,a.footer:hover  { font-family:Verdana; color:#FFF; font-size:11px; font-weight: bold ;  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
