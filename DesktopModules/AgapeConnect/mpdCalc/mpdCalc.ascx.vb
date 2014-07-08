@@ -61,6 +61,8 @@ Namespace DotNetNuke.Modules.AgapeConnect
         Private StaffBudId As Integer = -1
         Public LastSection As Integer = 0
         Public DefaultAccount As String = ""
+        Public TagReplacementScript As String = ""
+  
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
             If (Not String.IsNullOrEmpty(Request.QueryString("sb"))) Then
@@ -171,6 +173,29 @@ Namespace DotNetNuke.Modules.AgapeConnect
                     Staff = StaffBrokerFunctions.GetStaffbyStaffId(bud.First.StaffId)
 
                 End If
+                'Dim d As New StaffBroker.StaffBrokerDataContext
+                Dim staffDefs = From c In ds.AP_StaffBroker_StaffPropertyDefinitions Where c.PortalId = PortalId
+
+
+                For Each row In staffDefs
+
+                    Dim value = StaffBrokerFunctions.GetStaffProfileProperty(Staff.StaffId, row.PropertyName)
+                    If row.Type = 2 Then 'Boolean
+                        value = value.ToLower
+                        If value = "" Then
+                            value = "false"
+                        End If
+                    ElseIf row.Type = 0 Then 'string
+                        value = "'" & value & "'"
+                    ElseIf row.Type = 1 And String.IsNullOrEmpty(value) Then
+                        value = 0
+
+                    End If
+                    TagReplacementScript &= "f = f.replace(/{" & row.PropertyName & "}/g, " & value & ");" & vbNewLine
+                Next
+
+
+                hfTagReplacementScript.Value = TagReplacementScript
 
 
                 lblStaffName.Text = Translate("BudgetFor").Replace("[NAME]", "<b>" & Staff.DisplayName & "<b>")
@@ -201,12 +226,30 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
                 End If
                 cbCompliance.Visible = thisForm.ShowComplience
-                Age1 = 20
-                Age2 = 22
+                Try
+                    Dim user1 = UserController.GetUserById(PortalId, Staff.UserId1)
+                    Age1 = DateDiff(DateInterval.Year, Date.Parse(User1.Profile.GetPropertyValue("Birthday"), New CultureInfo("en-gb")), Today)
+                Catch ex As Exception
+                    Age1 = 0
+                End Try
+                If Staff.UserId2 > 0 Then
+                    Try
+                        Dim user1 = UserController.GetUserById(PortalId, Staff.UserId2)
+                        Age2 = DateDiff(DateInterval.Year, Date.Parse(User1.Profile.GetPropertyValue("Birthday"), New CultureInfo("en-gb")), Today)
+                    Catch ex As Exception
+                        Age2 = 0
+                    End Try
+                Else
+                    Age2 = 0
+                End If
+                
 
 
 
 
+
+            Else
+                TagReplacementScript = hfTagReplacementScript.Value
 
 
             End If

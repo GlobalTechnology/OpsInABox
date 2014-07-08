@@ -330,6 +330,7 @@ function calculateSectionTotal(section) {
         a1 = (st * a / (1 - a));
     }
     else {
+      //  alert(assess);
         a1 = eval(replacePercTags(assess, st, st));
 
     }
@@ -396,7 +397,12 @@ function handleFormulas() {
         var f = $(this).siblings("input:hidden").val();
         f = replaceTags(f);
         // console.log(f);
-        $(this).val(eval(f).toFixed(0));
+        try {
+            $(this).val(eval(f).toFixed(0));
+        } catch (e) {
+            $(this).val('0');
+        }
+       
 
 
 
@@ -436,20 +442,20 @@ function replaceTags(f) {
 
     f = f.replace(/{STAFFTYPE}/g, staffType);
     f = f.replace(/{ISCOUPLE}/g, isCouple);
-
+    f = replaceStaffProfileTags(f);
     f = f.replace(/{AGE}/g, '');
     f = f.replace(/{AGE2}/g, '');
     f = f.replace(/{STAFFTYPE}/g, '');
     f = f.replace(/{ISCOUPLE}/g, '');
     f = f.replace(/\{.*\}/g, '0');
-
+    
     return f;
 }
 function replacePercTags(f, subTotal, mpdGoal) {
 
     var temp = f.replace(/{SUBTOTAL}/g, subTotal);
     temp = temp.replace(/{MPDGOAL}/g, mpdGoal);
-    return replaceTags(temp)
+    return replaceTags(temp);
 }
 
 

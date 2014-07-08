@@ -179,7 +179,7 @@ Partial Class DesktopModules_AgapeConnect_mpdCalc_controls_mpdAdmin
             d.SubmitChanges()
             StaffBrokerFunctions.SetSetting("DataserverURL", tbDataserverURL.Text, PS.PortalId)
 
-            ' Response.Redirect(Request.Url.ToString())
+            Response.Redirect(Request.Url.ToString())
         End If
     End Sub
     Protected Sub btnTestDataserver_Click(sender As Object, e As EventArgs) Handles btnTestDataserver.Click

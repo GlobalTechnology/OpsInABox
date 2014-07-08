@@ -25,7 +25,12 @@
     var staffType=  '<%=StaffType %>';
     
     
-    
+    function replaceStaffProfileTags(f){
+        <%= TagReplacementScript %>
+        return f;
+    }
+
+
 
     
 
@@ -40,7 +45,7 @@
 
 
 
-
+<asp:HiddenField ID="hfTagReplacementScript" runat="server" Value="" />
 
 
 
