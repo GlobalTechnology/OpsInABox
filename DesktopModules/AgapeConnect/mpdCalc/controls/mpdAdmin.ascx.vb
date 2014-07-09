@@ -177,12 +177,34 @@ Partial Class DesktopModules_AgapeConnect_mpdCalc_controls_mpdAdmin
             theForm.First.AuthAuthUser = ddlAuthAuthUser.SelectedValue
 
             d.SubmitChanges()
+            TrimDataserverString()
             StaffBrokerFunctions.SetSetting("DataserverURL", tbDataserverURL.Text, PS.PortalId)
 
             Response.Redirect(Request.Url.ToString())
         End If
     End Sub
+
+    Private Sub TrimDataserverString()
+        tbDataserverURL.Text = tbDataserverURL.Text.ToLower()
+
+        If Not tbDataserverURL.Text.StartsWith("http") Then
+            tbDataserverURL.Text = "https://" & tbDataserverURL.Text
+        End If
+
+        Dim r = tbDataserverURL.Text.IndexOf("dataserver/")
+        If r > 0 Then
+            r += 11
+            Dim o = tbDataserverURL.Text.Substring(r).IndexOf("/")
+            If o > 0 Then
+                tbDataserverURL.Text = tbDataserverURL.Text.Substring(0, r + o + 1)
+
+            End If
+        End If
+
+    End Sub
+
     Protected Sub btnTestDataserver_Click(sender As Object, e As EventArgs) Handles btnTestDataserver.Click
+        TrimDataserverString()
         Dim resp = tntWebUsers.TestDataserverConnection(tbDataserverURL.Text)
         imgOK.Visible = False
         imgWarning.Visible = False
