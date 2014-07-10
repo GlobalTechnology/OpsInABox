@@ -32,7 +32,7 @@
             });
 
             $('.sLevel').each(function (c) {
-                console.log($(this).attr("data-value"));
+               
                 $('.' + $(this).attr("data-value")).text(' (' + $(this).text() + ')');
             });
 

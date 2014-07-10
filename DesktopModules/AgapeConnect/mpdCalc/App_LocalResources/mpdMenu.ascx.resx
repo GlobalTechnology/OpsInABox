@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EditMode.Text" xml:space="preserve">
-    <value>You are currently in Edit Mode. This allows you to configure the MPD Calculatore (bottom of this page), edit/process other people's budgets and customise the MPD budget Form. To return to normal mode, select "View Mode" (top right).</value>
+    <value>You are currently in Edit Mode. This allows you to configure the MPD Calculator (bottom of this page), edit/process other people's budgets and customise the MPD budget Form. To return to normal mode, select "View Mode" (top right).</value>
   </data>
   <data name="HeadsUp.Text" xml:space="preserve">
     <value>Heads up!</value>

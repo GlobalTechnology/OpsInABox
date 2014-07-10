@@ -171,7 +171,10 @@ Partial Class DesktopModules_AgapeConnect_mpdCalc_controls_mpdAdmin
 
             theForm.First.Complience = tbComplience.Text
             theForm.First.ShowComplience = tbComplience.Text.Trim(" ").Length > 0
-            theForm.First.DefaultAccount = ddlAccount.SelectedValue
+            If Not StaffBrokerFunctions.GetSetting("NonDynamics", PS.PortalId) = "True" Then
+                theForm.First.DefaultAccount = ddlAccount.SelectedValue
+            End If
+
 
             theForm.First.AuthUser = ddlAuthUser.SelectedValue
             theForm.First.AuthAuthUser = ddlAuthAuthUser.SelectedValue
@@ -216,7 +219,7 @@ Partial Class DesktopModules_AgapeConnect_mpdCalc_controls_mpdAdmin
             imgWarning.Visible = True
             pnlWarning.Visible = True
             If resp.connectionSuccess Then
-                lblWarning.Text = "The URL appears to be correct. However the trusted user, allowing this site to access your dataserver, has not been setup. You will need to setup ""trusteduser@agapeconnect.me"" in tntDataserver. For help, please contact ThadHoskins@agapeeurope.org. "
+                lblWarning.Text = "The URL appears to be correct. However the trusted user,  allowing this site to access your dataserver, has not been setup. You will need to setup ""trusteduser@agapeconnect.me"" in tntDataserver. For help, please contact ThadHoskins@agapeeurope.org. "
             Else
                 lblWarning.Text = resp.ErrorMessage
             End If
