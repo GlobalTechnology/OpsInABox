@@ -409,6 +409,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
                 Dim insertRmb As New AgapeIconAdmin.Agape_Skin_AgapeIcon
                 Dim insertAccount As New AgapeIconAdmin.Agape_Skin_AgapeIcon
+                Dim insertMpd As New AgapeIconAdmin.Agape_Skin_AgapeIcon
                 For Each row In Directory.GetFiles("*.png")
                     Dim folder As IFolderInfo
 
@@ -429,6 +430,11 @@ Namespace DotNetNuke.Modules.AgapeConnect
                                 insertAccount.IconFile = theFile.FileId
                             Case "ViewAccount2.png"
                                 insertAccount.HovrIconFile = theFile.FileId
+                            Case "Budgets-light.png"
+                                insertMpd.IconFile = theFile.FileId
+                            Case "Budgets.png"
+                                insertMpd.HovrIconFile = theFile.FileId
+
                         End Select
 
 
@@ -445,6 +451,11 @@ Namespace DotNetNuke.Modules.AgapeConnect
                     insertAccount.LinkLoc = x.TabID
                 End If
 
+
+                x = mc.GetModuleByDefinition(PortalId, "acMpdCalc")
+                If Not x Is Nothing Then ' The Module exists
+                    insertMpd.LinkLoc = x.TabID
+                End If
                 insertRmb.LinkType = "T"
                 insertRmb.Title = "Expenses"
                 insertRmb.ViewOrder = 0
@@ -455,8 +466,16 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 insertAccount.Title = "Accounts"
                 insertAccount.ViewOrder = 1
                 insertAccount.PortalId = thePortalId
+
+                insertMpd.LinkType = "T"
+                insertMpd.Title = "MPD Calculator"
+                insertMpd.ViewOrder = 2
+                insertMpd.PortalId = thePortalId
+
+
                 d.Agape_Skin_AgapeIcons.InsertOnSubmit(insertRmb)
                 d.Agape_Skin_AgapeIcons.InsertOnSubmit(insertAccount)
+                d.Agape_Skin_AgapeIcons.InsertOnSubmit(insertMpd)
                 d.SubmitChanges()
             End If
 
