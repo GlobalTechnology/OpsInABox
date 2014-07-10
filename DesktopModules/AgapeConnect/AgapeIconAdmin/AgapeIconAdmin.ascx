@@ -196,6 +196,12 @@
 </asp:LinqDataSource>
 <asp:HiddenField ID="PortalIdHF" runat="server" />
 
-
-
-
+<div class="well">
+Quick Add:  
+<asp:DropDownList ID="ddlInsertType" runat="server">
+    <asp:ListItem Text="Expenses" Value="acStaffRmb" />
+     <asp:ListItem Text="MPD Calculator"  Value="acMpdCalc"/>
+     <asp:ListItem Text="Accounts" Value="acAccounts" />
+</asp:DropDownList>
+    <asp:LinkButton ID="btnQuickAdd" runat="server">Add</asp:LinkButton>
+    </div>

@@ -11,7 +11,7 @@ Imports System.Web.UI.WebControls
 Imports System.Web.UI.WebControls.WebParts
 Imports DotNetNuke
 Imports DotNetNuke.Security
-
+Imports DotNetNuke.Services.FileSystem
 
 
 Namespace DotNetNuke.Modules.aAgapeIconAdmin
@@ -182,6 +182,76 @@ Namespace DotNetNuke.Modules.aAgapeIconAdmin
                 d.Agape_Skin_IconSettings.InsertOnSubmit(insert)
             End If
             d.SubmitChanges()
+        End Sub
+
+
+        Protected Sub btnQuickAdd_Click(sender As Object, e As EventArgs) Handles btnQuickAdd.Click
+
+
+            Dim d As New AgapeIconAdmin.AgapeIconsDataContext
+            Dim newViewOrder = (From c In d.Agape_Skin_AgapeIcons Where c.PortalId = PortalId).Count
+
+            Dim folder As IFolderInfo
+
+            If Not FolderManager.Instance.FolderExists(PortalId, "acIcons") Then
+                folder = FolderManager.Instance.AddFolder(PortalId, "acIcons")
+            Else
+                folder = FolderManager.Instance.GetFolder(PortalId, "acIcons")
+            End If
+
+            Dim insert As New AgapeIconAdmin.Agape_Skin_AgapeIcon
+            Dim image1 As String
+            Dim image2 As String
+
+
+            Dim mc As New DotNetNuke.Entities.Modules.ModuleController
+            Dim x = mc.GetModuleByDefinition(PortalId, ddlInsertType.SelectedValue)
+            If Not x Is Nothing Then ' The Module exists
+                insert.LinkLoc = x.TabID
+            End If
+            Select Case ddlInsertType.SelectedValue
+                Case "acStaffRmb"
+                    image1 = "Rmb.png"
+                    image2 = "Rmb-2.png"
+
+                Case "acAccounts"
+                    image1 = "ViewAccount.png"
+                    image2 = "ViewAccount2.png"
+
+                Case "acMpdCalc"
+                    image1 = "Budgets-light.png"
+                    image2 = "Budgets.png"
+            End Select
+
+            'Dim File1 = New System.IO.FileInfo(Server.MapPath("/DesktopModules/AgapeConnect/AgapeIconAdmin/images/" & image1))
+            'Dim File2 = New System.IO.FileInfo(Server.MapPath("/DesktopModules/AgapeConnect/AgapeIconAdmin/images/" & image2))
+            Dim theFile1 As FileInfo
+            Dim theFile2 As FileInfo
+            Using FileStream As New System.IO.FileStream(Server.MapPath("/DesktopModules/AgapeConnect/AgapeIconAdmin/images/" & image1), System.IO.FileMode.Open)
+                theFile1 = FileManager.Instance.AddFile(folder, image1, FileStream, False, False, "image/png")
+            End Using
+            Using FileStream As New System.IO.FileStream(Server.MapPath("/DesktopModules/AgapeConnect/AgapeIconAdmin/images/" & image2), System.IO.FileMode.Open)
+                theFile2 = FileManager.Instance.AddFile(folder, image2, FileStream, False, False, "image/png")
+            End Using
+
+          
+            insert.LinkType = "T"
+            insert.Title = ddlInsertType.SelectedItem.Text
+            insert.ViewOrder = newViewOrder
+
+            insert.PortalId = PortalId
+            If Not theFile1 Is Nothing And Not theFile2 Is Nothing And Not insert.LinkLoc Is Nothing Then
+                insert.IconFile = theFile1.FileId
+                insert.HovrIconFile = theFile2.FileId
+
+                d.Agape_Skin_AgapeIcons.InsertOnSubmit(insert)
+                d.SubmitChanges()
+
+                GridView1.DataBind()
+            End If
+
+            
+
         End Sub
     End Class
 
