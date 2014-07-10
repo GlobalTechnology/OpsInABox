@@ -87,9 +87,16 @@ Namespace DotNetNuke.Modules.AgapeConnect
                         ddlMinistries.DataTextField = "Name"
                         ddlMinistries.DataBind()
                         ddlMinistries.SelectedValue = StaffBrokerFunctions.GetSetting("gr_ministry_id", PortalId)
-                    Dim leaves = From c In gr.GetFlatEntityLeafList("person") Select Name = c.GetDotNotation, c.ID Order By Name
+                        Dim leaves = (From c In gr.GetFlatEntityLeafList("person") Select Name = c.GetDotNotation, c.ID).ToList()
+                        Dim staffLeaves = (From c In gr.GetFlatEntityLeafList("ministry_membership") Select Name = c.GetDotNotation.Replace("ministry_membership.", "person:{in_this_min}."), c.ID).ToList()
+                        leaves.AddRange(staffLeaves)
 
-                    gr_entity_types.DataSource = leaves
+
+                     
+
+
+
+                        gr_entity_types.DataSource = leaves.OrderBy(Function(c) c.Name)
                     gr_entity_types.DataTextField = "Name"
                     gr_entity_types.DataValueField = "ID"
                         gr_entity_types.DataBind()
@@ -106,6 +113,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                         Next
                     Catch ex As Exception
                         pnlMain.Visible = False
+                        lblTest.Text = ex.ToString
                     End Try
                 End If
 

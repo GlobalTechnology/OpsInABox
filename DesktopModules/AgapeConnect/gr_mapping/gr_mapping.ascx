@@ -124,3 +124,4 @@
 
 
 
+<asp:Label ID="lblTest" runat="server" Text="Label"></asp:Label>
