@@ -35,7 +35,7 @@ Partial Class DesktopModules_AgapeConnect_gr_mapping_gr_sub
                     Dim gr As New GR(StaffBrokerFunctions.GetSetting("gr_api_key", PS.PortalId), StaffBrokerFunctions.GetSetting("gr_api_url", PS.PortalId))
 
                     Dim ent = gr.GetEntity(resp("id"))
-                    AgapeLogger.WriteEventLog(0, ent.EntityType)
+
                     If ent.EntityType = "person" Then
 
                         Dim d As New gr_mapping.gr_mappingDataContext
@@ -47,8 +47,8 @@ Partial Class DesktopModules_AgapeConnect_gr_mapping_gr_sub
                             AgapeLogger.WriteEventLog(0, "Processing User: " & User.DisplayName)
                             Dim Staff = StaffBrokerFunctions.GetStaffMember(User.UserID)
 
-                            For Each link In d.gr_mappings.Where(Function(c) c.PortalId = PS.PortalId And c.LocalSource = "U")
-                                Dim value = ent.GetPropertyValue(link.gr_dot_notated_name.Replace("person.", ""))
+                            For Each link In d.gr_mappings.Where(Function(c) c.PortalId = PS.PortalId And c.LocalSource = "U" And c.can_be_updated)
+                                Dim value = ent.GetPropertyValue(link.gr_dot_notated_name.Replace("person.", "").Replace("person:{in_this_min}", "ministry:relationship"))
                                 If Not String.IsNullOrEmpty(value) Then
                                     Select Case link.LocalName
                                         Case "FirstName"
@@ -65,28 +65,28 @@ Partial Class DesktopModules_AgapeConnect_gr_mapping_gr_sub
                                     End Select
                                 End If
                             Next
-                            For Each link In d.gr_mappings.Where(Function(c) c.PortalId = PS.PortalId And c.LocalSource = "UP")
+                            For Each link In d.gr_mappings.Where(Function(c) c.PortalId = PS.PortalId And c.LocalSource = "UP" And c.can_be_updated)
 
-                                Dim value = ent.GetPropertyValue(link.gr_dot_notated_name.Replace("person.", ""))
+                                Dim value = ent.GetPropertyValue(link.gr_dot_notated_name.Replace("person.", "").Replace("person:{in_this_min}", "ministry:relationship"))
                                 If Not String.IsNullOrEmpty(value) Then
                                     User.Profile.SetProfileProperty(link.LocalName, value)
                                 End If
                             Next
-                            For Each link In d.gr_mappings.Where(Function(c) c.PortalId = PS.PortalId And c.LocalSource = "S")
-                                Dim value = ent.GetPropertyValue(link.gr_dot_notated_name.Replace("person.", ""))
+                            For Each link In d.gr_mappings.Where(Function(c) c.PortalId = PS.PortalId And c.LocalSource = "S" And c.can_be_updated)
+                                Dim value = ent.GetPropertyValue(link.gr_dot_notated_name.Replace("person.", "").Replace("person:{in_this_min}", "ministry:relationship"))
                                 If Not String.IsNullOrEmpty(value) Then
                                     Select Case link.LocalName
                                         Case "R/C"
                                             Staff.CostCenter = value
-                                       Case "DisplayName"
+                                        Case "DisplayName"
                                             Staff.DisplayName = value
 
                                     End Select
                                 End If
                             Next
-                            For Each link In d.gr_mappings.Where(Function(c) c.PortalId = PS.PortalId And c.LocalSource = "SP")
+                            For Each link In d.gr_mappings.Where(Function(c) c.PortalId = PS.PortalId And c.LocalSource = "SP" And c.can_be_updated)
 
-                                Dim value = ent.GetPropertyValue(link.gr_dot_notated_name.Replace("person.", ""))
+                                Dim value = ent.GetPropertyValue(link.gr_dot_notated_name.Replace("person.", "").Replace("person:{in_this_min}", "ministry:relationship"))
                                 If Not String.IsNullOrEmpty(value) Then
                                     StaffBrokerFunctions.AddProfileValue(PS.PortalId, Staff.StaffId, link.LocalName, value)
                                 End If
@@ -100,7 +100,7 @@ Partial Class DesktopModules_AgapeConnect_gr_mapping_gr_sub
 
                     End If
 
-                    AgapeLogger.WriteEventLog(0, resp("client_integration_id") & " has changed. " & ent.GetPropertyValue(""))
+                    'AgapeLogger.WriteEventLog(0, resp("client_integration_id") & " has changed. " & ent.GetPropertyValue(""))
 
 
 

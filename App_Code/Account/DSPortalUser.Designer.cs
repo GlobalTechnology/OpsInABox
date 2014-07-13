@@ -8,15 +8,15 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
-
 namespace Account
 {
     #region Contexts
@@ -82,6 +82,7 @@ namespace Account
         private ObjectSet<DataserverPortalUser> _DataserverPortalUsers;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -93,11 +94,11 @@ namespace Account
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -124,6 +125,7 @@ namespace Account
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -226,9 +228,11 @@ namespace Account
         partial void OnPortalNameChanged();
 
         #endregion
+
     
     }
 
     #endregion
+
     
 }

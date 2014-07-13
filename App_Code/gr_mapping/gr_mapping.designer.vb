@@ -23,7 +23,7 @@ Imports System.Reflection
 
 Namespace gr_mapping
 	
-	<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="AgapeConnect")>  _
+	<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="dnn_dev")>  _
 	Partial Public Class gr_mappingDataContext
 		Inherits System.Data.Linq.DataContext
 		
@@ -795,6 +795,8 @@ Namespace gr_mapping
 		
 		Private _LocalSource As String
 		
+		Private _can_be_updated As Boolean
+		
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -825,6 +827,10 @@ Namespace gr_mapping
     Partial Private Sub OnLocalSourceChanging(value As String)
     End Sub
     Partial Private Sub OnLocalSourceChanged()
+    End Sub
+    Partial Private Sub Oncan_be_updatedChanging(value As Boolean)
+    End Sub
+    Partial Private Sub Oncan_be_updatedChanged()
     End Sub
     #End Region
 		
@@ -927,6 +933,23 @@ Namespace gr_mapping
 					Me._LocalSource = value
 					Me.SendPropertyChanged("LocalSource")
 					Me.OnLocalSourceChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_can_be_updated", DbType:="Bit NOT NULL")>  _
+		Public Property can_be_updated() As Boolean
+			Get
+				Return Me._can_be_updated
+			End Get
+			Set
+				If ((Me._can_be_updated = value)  _
+							= false) Then
+					Me.Oncan_be_updatedChanging(value)
+					Me.SendPropertyChanging
+					Me._can_be_updated = value
+					Me.SendPropertyChanged("can_be_updated")
+					Me.Oncan_be_updatedChanged
 				End If
 			End Set
 		End Property

@@ -73,16 +73,20 @@
                         </div>
                         <asp:Label ID="Label1" runat="server" Text='<%# Bind("LocalName") %>'></asp:Label>
                     </ItemTemplate>
+                    <ItemStyle Width="300px" />
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <ItemTemplate>
                         -->
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="gr_dot_notated_name" HeaderText="Global Registry Field" ItemStyle-Width="300px" />
+                <asp:BoundField DataField="gr_dot_notated_name" HeaderText="Global Registry Field" ItemStyle-Width="300px" >
+                <ItemStyle Width="300px" />
+                </asp:BoundField>
+                <asp:CheckBoxField DataField="can_be_updated" HeaderText="Receive updates?" />
                 <asp:TemplateField ShowHeader="False">
                     <ItemTemplate>
-                        <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="myDelete" Text="Delete" CommandArgument='<%# Eval("ID") %>'></asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandArgument='<%# Eval("ID") %>' CommandName="myDelete" Text="Delete"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
@@ -105,6 +109,10 @@
                 <td>--></td>
                 <td width="310px">
                     <asp:DropDownList ID="gr_entity_types" runat="server" Width="100%"></asp:DropDownList></td>
+                <td width="100px">
+                    <asp:Checkbox id="can_be_updated" runat="server" Checked="true" />
+                   
+                </td>
                 <td>
                     <asp:LinkButton ID="btnAdd" runat="server">add</asp:LinkButton></td>
             </tr>
@@ -117,7 +125,7 @@
     </fieldset>
 
 
-  
+    <asp:Button ID="btnReset" runat="server" Text="Reset Global RegistryId's for this Portal" />
 
        
 </asp:Panel>

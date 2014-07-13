@@ -18,7 +18,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
     Partial Class gr_mapping_mod
         Inherits Entities.Modules.PortalModuleBase
 
-
+      
 
 
         Dim gr As GR
@@ -63,12 +63,11 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
 
                 Dim d As New gr_mappingDataContext
-                Dim mappings = From c In d.gr_mappings Where c.PortalId = PortalId
-
+                Dim mappings = From c In d.gr_mappings Where c.PortalId = PortalId Select c.Id, c.PortalId, c.LocalName, c.LocalSource, c.gr_dot_notated_name, c.FieldType, c.can_be_updated
                 gvMappings.DataSource = mappings
                 gvMappings.DataBind()
 
-              
+                
                 ResetLocalDDL()
                
 
@@ -76,11 +75,16 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 If Not tbApiKey.Text = "" Then
                     Try
                         Dim gr_server = StaffBrokerFunctions.GetSetting("gr_api_url", PortalId)
-                   
-                        gr = New GR(tbApiKey.Text, gr_server)
+                        If String.IsNullOrEmpty(gr_server) Then
+                            gr_server = "https://api.global-registry.org/"
+                            StaffBrokerFunctions.SetSetting("gr_api_url", gr_server, PortalId)
+
+                        End If
+
+                        gr = New GR(tbApiKey.Text, gr_server, True)
 
 
-                        Dim ministries = gr.GetEntities("ministry", "&entity_type=ministry&ruleset=3010&filters[is_active]=true&filters[ministry_scope][]=Area&filters[ministry_scope][]=National Region&filters[ministry_scope][]=National", 0, 300, 0)
+                        Dim ministries = gr.GetEntities("ministry", "&ruleset=global_ministries", 0, 300, 0)
                         ddlMinistries.DataSource = From c In ministries Select Name = c.GetPropertyValue("name"), Value = c.GetPropertyValue("id") Order By Name
 
                         ddlMinistries.DataValueField = "Value"
@@ -97,8 +101,8 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
 
                         gr_entity_types.DataSource = leaves.OrderBy(Function(c) c.Name)
-                    gr_entity_types.DataTextField = "Name"
-                    gr_entity_types.DataValueField = "ID"
+                        gr_entity_types.DataTextField = "Name"
+                        gr_entity_types.DataValueField = "ID"
                         gr_entity_types.DataBind()
 
 
@@ -141,6 +145,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 insert.LocalSource = ddlProfileMap.SelectedValue.Substring(0, ddlProfileMap.SelectedValue.IndexOf("-"))
                 insert.gr_dot_notated_name = gr_entity_types.SelectedItem.Text
                 insert.FieldType = "string"
+                insert.can_be_updated = can_be_updated.Checked
                 d.gr_mappings.InsertOnSubmit(insert)
                 d.SubmitChanges()
 
@@ -188,6 +193,22 @@ Namespace DotNetNuke.Modules.AgapeConnect
        
         Protected Sub btnSaveMinistry_Click(sender As Object, e As EventArgs) Handles btnSaveMinistry.Click
             StaffBrokerFunctions.SetSetting("gr_ministry_id", ddlMinistries.SelectedValue, PortalId)
+        End Sub
+
+        Protected Sub btnReset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
+            For Each staff In StaffBrokerFunctions.GetStaff()
+                Dim the_user = UserController.GetUserById(PortalId, staff.UserID)
+                the_user.Profile.SetProfileProperty("gr_person_id", "")
+                the_user.Profile.SetProfileProperty("gr_ministry_membership_id", "")
+                UserController.UpdateUser(PortalId, the_user)
+
+            Next
+
+
+        End Sub
+
+        Protected Sub btnSaveKey_Click(sender As Object, e As EventArgs) Handles btnSaveKey.Click
+            StaffBrokerFunctions.SetSetting("gr_api_key", tbApiKey.Text, PortalId)
         End Sub
     End Class
 End Namespace
