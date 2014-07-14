@@ -130,6 +130,9 @@ Namespace DotNetNuke.Modules.StaffRmb
                     If CType(TabModuleSettings("AccountsName"), String) <> "" Then
                         tbAccountsName.Text = CType(TabModuleSettings("AccountsName"), String)
                     End If
+                    If CType(TabModuleSettings("SendAppEmail"), String) <> "" Then
+                        cbSendAppEmail.Checked = CType(TabModuleSettings("SendAppEmail"), String)
+                    End If
                     If CType(TabModuleSettings("DownloadFormat"), String) <> "" Then
                         ddlDownloadFormat.SelectedValue = CType(TabModuleSettings("DownloadFormat"), String)
                     End If
@@ -423,6 +426,7 @@ Namespace DotNetNuke.Modules.StaffRmb
 
             objModules.UpdateTabModuleSetting(TabModuleId, "AccountsEmail", tbAccountsEmail.Text)
             objModules.UpdateTabModuleSetting(TabModuleId, "AccountsName", tbAccountsName.Text)
+            objModules.UpdateTabModuleSetting(TabModuleId, "SendAppEmail", cbSendAppEmail.Checked)
             objModules.UpdateTabModuleSetting(TabModuleId, "DownloadFormat", ddlDownloadFormat.SelectedValue)
             objModules.UpdateTabModuleSetting(TabModuleId, "AuthUser", ddlAuthUser.SelectedValue)
             objModules.UpdateTabModuleSetting(TabModuleId, "AuthAuthUser", ddlAuthAuthUser.SelectedValue)

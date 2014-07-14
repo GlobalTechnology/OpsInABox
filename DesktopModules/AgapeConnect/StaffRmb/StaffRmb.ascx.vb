@@ -2243,11 +2243,20 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                     Emessage = Emessage.Replace("[CHANGES]", "")
                 End If
                 d.SubmitChanges()
+                Dim toEmail = theUser.Email
+                If Settings("SendAppEmail") = "True" Then 'copy accounts if SendAppEmail is enabled
+                    toEmail &= ";" & Settings("AccountsEmail")
 
-                ' DotNetNuke.Services.Mail.Mail.SendMail("donotreply@agape.org.uk", theUser.Email, "donotreply@agape.org.uk", "Rmb#: " & hfRmbNo.Value & "-" & rmb.First.UserRef & " has been approved", Emessage, "", "HTML", "", "", "", "")
-                DotNetNuke.Services.Mail.Mail.SendMail("donotreply@agapeconnect.me", theUser.Email, "", Translate("EmailApprovedSubjectP").Replace("[RMBNO]", rmb.First.RID).Replace("[USERREF]", rmb.First.UserRef), Emessage, "", "HTML", "", "", "", "")
+                End If
+                  DotNetNuke.Services.Mail.Mail.SendMail("donotreply@agapeconnect.me", toEmail, "", Translate("EmailApprovedSubjectP").Replace("[RMBNO]", rmb.First.RID).Replace("[USERREF]", rmb.First.UserRef), Emessage, "", "HTML", "", "", "", "")
+             
+
+
+
+
 
                 btnApprove.Visible = False
+
 
                 ResetMenu()
 
@@ -4601,9 +4610,13 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                     Emessage = Emessage.Replace("[APPROVER]", ObjAppr.DisplayName)
 
                     d.SubmitChanges()
+                    Dim toEmail = theUser.Email
+                    If Settings("SendAppEmail") = "True" Then 'copy accounts if SendAppEmail is enabled
+                        toEmail &= ";" & Settings("AccountsEmail")
 
+                    End If
                     ' DotNetNuke.Services.Mail.Mail.SendMail("donotreply@agape.org.uk", theUser.Email, "donotreply@agape.org.uk", "Rmb#: " & hfRmbNo.Value & "-" & rmb.First.UserRef & " has been approved", Emessage, "", "HTML", "", "", "", "")
-                    DotNetNuke.Services.Mail.Mail.SendMail("donotreply@agapeconnect.me", theUser.Email, "", Translate("AdvEmailApprovedSubject").Replace("[ADVNO]", q.First.LocalAdvanceId).Replace("[APPROVER]", ObjAppr.DisplayName), Emessage, "", "HTML", "", "", "", "")
+                    DotNetNuke.Services.Mail.Mail.SendMail("donotreply@agapeconnect.me", toEmail, "", Translate("AdvEmailApprovedSubject").Replace("[ADVNO]", q.First.LocalAdvanceId).Replace("[APPROVER]", ObjAppr.DisplayName), Emessage, "", "HTML", "", "", "", "")
 
 
 

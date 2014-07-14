@@ -339,4 +339,10 @@
   <data name="lblDescriptionLength.Text" xml:space="preserve">
     <value>Max Description Length</value>
   </data>
+  <data name="lblSendAppEmail.Help" xml:space="preserve">
+    <value>Send the Accounts person (listed aboved) an email when a reimbursement is approved (and ready to process). If you have a large number of staff, this may result in a lot of emails being sent. But for smaller countries, this may help inform your accounts team when they need to log into the website.</value>
+  </data>
+  <data name="lblSendAppEmail.Text" xml:space="preserve">
+    <value>Approval notifications</value>
+  </data>
 </root>

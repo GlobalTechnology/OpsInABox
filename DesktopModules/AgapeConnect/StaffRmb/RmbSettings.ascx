@@ -1240,6 +1240,16 @@
                 <tr>
                     <td>
                         <b>
+                            <dnn:Label ID="lblSendAppEmail" runat="server" ControlName="cbSendAppEmail" ResourceKey="lblSendAppEmail" />
+                        </b>
+                    </td>
+                    <td>
+                        <asp:CheckBox ID="cbSendAppEmail" runat="server" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>
                             <dnn:Label ID="lblAuthUser" runat="server" ControlName="ddlAuthUser" ResourceKey="lblAuthUser" />
                         </b>
                     </td>
