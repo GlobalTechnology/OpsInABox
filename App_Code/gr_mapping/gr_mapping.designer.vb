@@ -797,6 +797,8 @@ Namespace gr_mapping
 		
 		Private _can_be_updated As Boolean
 		
+		Private _replace As String
+		
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -831,6 +833,10 @@ Namespace gr_mapping
     Partial Private Sub Oncan_be_updatedChanging(value As Boolean)
     End Sub
     Partial Private Sub Oncan_be_updatedChanged()
+    End Sub
+    Partial Private Sub OnreplaceChanging(value As String)
+    End Sub
+    Partial Private Sub OnreplaceChanged()
     End Sub
     #End Region
 		
@@ -950,6 +956,22 @@ Namespace gr_mapping
 					Me._can_be_updated = value
 					Me.SendPropertyChanged("can_be_updated")
 					Me.Oncan_be_updatedChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_replace", DbType:="NVarChar(MAX)")>  _
+		Public Property replace() As String
+			Get
+				Return Me._replace
+			End Get
+			Set
+				If (String.Equals(Me._replace, value) = false) Then
+					Me.OnreplaceChanging(value)
+					Me.SendPropertyChanging
+					Me._replace = value
+					Me.SendPropertyChanged("replace")
+					Me.OnreplaceChanged
 				End If
 			End Set
 		End Property

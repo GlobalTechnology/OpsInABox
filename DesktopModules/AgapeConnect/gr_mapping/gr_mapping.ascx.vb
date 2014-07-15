@@ -63,7 +63,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
 
                 Dim d As New gr_mappingDataContext
-                Dim mappings = From c In d.gr_mappings Where c.PortalId = PortalId Select c.Id, c.PortalId, c.LocalName, c.LocalSource, c.gr_dot_notated_name, c.FieldType, c.can_be_updated
+                Dim mappings = From c In d.gr_mappings Where c.PortalId = PortalId
                 gvMappings.DataSource = mappings
                 gvMappings.DataBind()
 
@@ -95,11 +95,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
                         Dim staffLeaves = (From c In gr.GetFlatEntityLeafList("ministry_membership") Select Name = c.GetDotNotation.Replace("ministry_membership.", "person:{in_this_min}."), c.ID).ToList()
                         leaves.AddRange(staffLeaves)
 
-
-                     
-
-
-
                         gr_entity_types.DataSource = leaves.OrderBy(Function(c) c.Name)
                         gr_entity_types.DataTextField = "Name"
                         gr_entity_types.DataValueField = "ID"
@@ -111,10 +106,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
                    
 
-                        For Each row In gr.entity_types_def
-                            tv_gr_types.Nodes.Add(ProcessEntityTypesIntoTV(row))
-
-                        Next
+                        
                     Catch ex As Exception
                         pnlMain.Visible = False
                         lblTest.Text = ex.ToString
@@ -123,14 +115,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
             End If
         End Sub
-        Private Function ProcessEntityTypesIntoTV(ByVal et As EntityType) As TreeNode
-            Dim rtn As New TreeNode(et.Name, et.GetDotNotation)
-            For Each row In et.Children
-                rtn.ChildNodes.Add(ProcessEntityTypesIntoTV(row))
-            Next
-            Return rtn
-
-        End Function
+       
 
 
         Protected Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
@@ -144,7 +129,8 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 insert.LocalName = ddlProfileMap.SelectedItem.Text.Substring(ddlProfileMap.SelectedItem.Text.IndexOf(":") + 2)
                 insert.LocalSource = ddlProfileMap.SelectedValue.Substring(0, ddlProfileMap.SelectedValue.IndexOf("-"))
                 insert.gr_dot_notated_name = gr_entity_types.SelectedItem.Text
-                insert.FieldType = "string"
+                insert.FieldType = ddlDataType.SelectedValue
+                insert.replace = tbReplaceText.Text
                 insert.can_be_updated = can_be_updated.Checked
                 d.gr_mappings.InsertOnSubmit(insert)
                 d.SubmitChanges()

@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="False" CodeFile="gr_mapping.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.gr_mapping_mod" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <style type="text/css">
-    .LocalType {
+    /*.LocalType {
         font-size: small;
         color: lightgray;
         font-style: italic;
@@ -9,30 +9,16 @@
         width: 90px;
         float: left;
         margin-right: 5px;
-    }
+    }*/
 
     .mappingTitle {
         font-weight: bold;
     }
+ 
 
-    .left_box {
-        width: 220px;
-        float: left;
-        margin-right: 40px;
-    }
 </style>
 
-<div class="left_box">
-    <fieldset>
-        <legend>
-            <h5>GR - Entity Types</h5>
-        </legend>
-        <div style="max-width: 220px; overflow-x: auto;">
 
-            <asp:TreeView ID="tv_gr_types" runat="server" ShowLines="true" ExpandDepth="0"></asp:TreeView>
-        </div>
-    </fieldset>
-</div>
 
 <p>
     Global Registry API Key :
@@ -70,8 +56,9 @@
                     <ItemTemplate>
                         <div class="LocalType">
                             <asp:Label ID="Label2" runat="server" Text='<%# getLocalTypeName( Eval("LocalSource")) %>'></asp:Label>
+                              <asp:Label ID="Label1" runat="server" Text='<%# Bind("LocalName") %>'></asp:Label>
                         </div>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("LocalName") %>'></asp:Label>
+                      
                     </ItemTemplate>
                     <ItemStyle Width="300px" />
                 </asp:TemplateField>
@@ -83,12 +70,23 @@
                 <asp:BoundField DataField="gr_dot_notated_name" HeaderText="Global Registry Field" ItemStyle-Width="300px" >
                 <ItemStyle Width="300px" />
                 </asp:BoundField>
+                <asp:TemplateField HeaderText="Data Type">
+                    <ItemTemplate>
+                        <asp:DropDownList ID="DropDownList1" runat="server" Enabled="false" SelectedValue='<%# Eval("FieldType")%>'>
+                            <asp:ListItem Text="String" value="string"></asp:ListItem>
+                             <asp:ListItem Text="True/False" Value="boolean"></asp:ListItem>
+                             <asp:ListItem Text="Date" Value="uk_date"></asp:ListItem>
+
+                        </asp:DropDownList>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:CheckBoxField DataField="can_be_updated" HeaderText="Receive updates?" />
                 <asp:TemplateField ShowHeader="False">
                     <ItemTemplate>
                         <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandArgument='<%# Eval("ID") %>' CommandName="myDelete" Text="Delete"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
+                
             </Columns>
             <FooterStyle BackColor="#CCCC99" />
             <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
@@ -101,7 +99,7 @@
             <SortedDescendingHeaderStyle BackColor="#575357" />
         </asp:GridView>
         <div class="mappingTitle">Add new mapping:</div>
-        <table cellspacing="2px">
+        <table cellspacing="2px" class="insert_mapping">
 
             <tr>
                 <td width="310px">
@@ -109,12 +107,26 @@
                 <td>--></td>
                 <td width="310px">
                     <asp:DropDownList ID="gr_entity_types" runat="server" Width="100%"></asp:DropDownList></td>
+                <td>
+                       <asp:DropDownList ID="ddlDataType" runat="server">
+                            <asp:ListItem Text="String" value="string"></asp:ListItem>
+                             <asp:ListItem Text="True/False" Value="boolean"></asp:ListItem>
+                             <asp:ListItem Text="Date" Value="uk_date"></asp:ListItem>
+                            
+
+                        </asp:DropDownList>
+                </td>
                 <td width="100px">
                     <asp:Checkbox id="can_be_updated" runat="server" Checked="true" />
                    
                 </td>
                 <td>
                     <asp:LinkButton ID="btnAdd" runat="server">add</asp:LinkButton></td>
+            </tr>
+            <tr id="replaceBox">
+                <td colspan="5">
+                <asp:TextBox ID="tbReplaceText" runat="server" TextMode="MultiLine" Width="600px" Rows="4" placeholder='Replace Text (json): eg. [{""M"",""male""},{""F"",""female""}]' > </asp:TextBox>
+                    </td>
             </tr>
         </table>
 

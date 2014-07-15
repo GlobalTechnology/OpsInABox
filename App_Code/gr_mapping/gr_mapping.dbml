@@ -44,6 +44,7 @@
       <Column Name="PortalId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="LocalSource" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
       <Column Name="can_be_updated" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="replace" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
