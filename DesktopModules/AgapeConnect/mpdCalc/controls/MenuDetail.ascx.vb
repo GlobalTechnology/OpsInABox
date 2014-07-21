@@ -75,6 +75,7 @@ Partial Class DesktopModules_AgapeConnect_mpdCalc_controls_MenuDetail
         End Get
         Set(ByVal value As Integer)
             _staffId = value
+
             Dim d As New MPDDataContext
             myBudgets = From c In d.AP_mpdCalc_StaffBudgets
                                   Where c.AP_mpdCalc_Definition.PortalId = PortalId And c.StaffId = StaffId And c.Status <> StaffRmb.RmbStatus.Cancelled

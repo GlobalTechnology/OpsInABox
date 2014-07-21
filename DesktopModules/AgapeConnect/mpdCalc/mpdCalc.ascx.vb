@@ -17,6 +17,12 @@ Namespace DotNetNuke.Modules.AgapeConnect
     Partial Class mpdCalc
         Inherits Entities.Modules.PortalModuleBase
 
+        Const GR_MPDGOAL_ID_STAGE = "e5a338f8-0c2b-11e4-b27c-12c37bb2d521"
+        Const GR_MPDEXPENSE_ID_STAGE = "1e2bc398-0c2c-11e4-a651-12c37bb2d521"
+        Const GR_MPDGOAL_ID = "e5a338f8-0c2b-11e4-b27c-12c37bb2d521"
+        Const GR_MPDEXPENSE_ID = "1e2bc398-0c2c-11e4-a651-12c37bb2d521"
+
+
         Private _age1 As Integer = 0
         Public Property Age1() As Integer
             Get
@@ -361,7 +367,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 d.AP_mpdCalc_Answers.DeleteAllOnSubmit(d.AP_mpdCalc_Answers.Where(Function(c) c.StaffBudgetId = budId))
 
                 Dim budgetvalues As New Dictionary(Of String, Double)
-
+                Dim Staff = StaffBrokerFunctions.GetStaffbyStaffId(bud.First.StaffId)
                 For Each s In rpSections.Items
                     Dim rp As Repeater = s.FindControl("rpItems")
                     For Each q In rp.Items
@@ -387,34 +393,88 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
                     Next
                 Next
-                If ToStatus = StaffRmb.RmbStatus.Processed And Not StaffBrokerFunctions.GetSetting("NonDynamics", PortalId) = "True" Then
+                d.SubmitChanges()
+                If ToStatus = StaffRmb.RmbStatus.Processed Then
+                    'Send to GR
+                    Dim gr_server = StaffBrokerFunctions.GetSetting("gr_api_url", PortalId)
+                    Dim gr_api_key = StaffBrokerFunctions.GetSetting("gr_api_key", PortalId)
+
+                    Dim user1 = UserController.GetUserById(PortalId, Staff.UserId1)
+                    Dim rel_id = user1.Profile.GetPropertyValue("gr_ministry_membership_id")
+
+                    If Not String.IsNullOrEmpty(gr_server) And Not String.IsNullOrEmpty(rel_id) Then
+
+                        Dim gr = New GR_NET.GR(gr_api_key, gr_server, False)
 
 
-                    Dim FirstFiscalMonth = StaffBrokerFunctions.GetSetting("FirstFiscalMonth", PortalId)
-                    If String.IsNullOrEmpty(FirstFiscalMonth) Then
-                        FirstFiscalMonth = 7
-                    End If
-                    Dim rc = StaffBrokerFunctions.GetStaffbyStaffId(bud.First.StaffId).CostCenter
-                    Dim fy = getFiscalYear(bud.First.BudgetPeriodStart, FirstFiscalMonth)
 
-                    Dim fp = GetFiscalPeriod(bud.First.BudgetPeriodStart, FirstFiscalMonth)
+                        Dim mt_expense As New GR_NET.MeasurementType()
+                    
 
-                    For Each row In budgetvalues
+                        Dim mt_goal As New GR_NET.MeasurementType()
 
-
-                        AddBudgetFromPeriod(StaffBrokerFunctions.GetStaffbyStaffId(bud.First.StaffId).CostCenter, row.Key, fy, row.Value, fp, 12)
-                        If fp <> 1 Then
-                            AddBudgetFromPeriod(StaffBrokerFunctions.GetStaffbyStaffId(bud.First.StaffId).CostCenter, row.Key, fy + 1, row.Value, 1, fp)
+                        If (gr_server.Contains("stage")) Then
+                            mt_expense.ID = GR_MPDEXPENSE_ID_STAGE
+                            mt_goal.ID = GR_MPDGOAL_ID_STAGE
+                        Else
+                            mt_expense.ID = GR_MPDEXPENSE_ID
+                            mt_goal.ID = GR_MPDGOAL_ID
                         End If
+                        Dim startDate = New Date(Left(bud.First.BudgetPeriodStart, 4), Right(bud.First.BudgetPeriodStart, 2), 1)
+
+                        For i As Integer = 0 To 18
+                            Dim theDate = startDate.AddMonths(i)
+                            Dim insert_goal As New GR_NET.Measurement
+                            Dim period = theDate.ToString("yyyy-MM")
+
+                            mt_goal.addMeasurement(rel_id, period, mpdFunctions.getBudgetForStaffPeriod(Staff.StaffId, theDate.ToString("yyyyMM")))
+                            mt_expense.addMeasurement(rel_id, period, mpdFunctions.getExpenseBudgetForStaffPeriod(Staff.StaffId, theDate.ToString("yyyyMM")))
+
+                        Next
+                        gr.AddUpdateMeasurement(mt_goal)
+                        gr.AddUpdateMeasurement(mt_expense)
 
 
 
 
 
-                    Next
+
+
+                    End If
+
+
+
+
+
+                    If Not StaffBrokerFunctions.GetSetting("NonDynamics", PortalId) = "True" Then
+
+
+                        Dim FirstFiscalMonth = StaffBrokerFunctions.GetSetting("FirstFiscalMonth", PortalId)
+                        If String.IsNullOrEmpty(FirstFiscalMonth) Then
+                            FirstFiscalMonth = 7
+                        End If
+                        Dim rc = StaffBrokerFunctions.GetStaffbyStaffId(bud.First.StaffId).CostCenter
+                        Dim fy = getFiscalYear(bud.First.BudgetPeriodStart, FirstFiscalMonth)
+
+                        Dim fp = GetFiscalPeriod(bud.First.BudgetPeriodStart, FirstFiscalMonth)
+
+                        For Each row In budgetvalues
+
+
+                            AddBudgetFromPeriod(StaffBrokerFunctions.GetStaffbyStaffId(bud.First.StaffId).CostCenter, row.Key, fy, row.Value, fp, 12)
+                            If fp <> 1 Then
+                                AddBudgetFromPeriod(StaffBrokerFunctions.GetStaffbyStaffId(bud.First.StaffId).CostCenter, row.Key, fy + 1, row.Value, 1, fp)
+                            End If
+
+
+
+
+
+                        Next
+                    End If
                 End If
                 d.SubmitChanges()
-                Dim Staff = StaffBrokerFunctions.GetStaffbyStaffId(bud.First.StaffId)
+
                 If ToStatus = StaffRmb.RmbStatus.Submitted Then
                     'Send Email to Approver
 
