@@ -76,7 +76,8 @@
                             <asp:ListItem Text="String" value="string"></asp:ListItem>
                              <asp:ListItem Text="True/False" Value="boolean"></asp:ListItem>
                              <asp:ListItem Text="Date" Value="uk_date"></asp:ListItem>
-
+                             <asp:ListItem Text="Email" Value="email"></asp:ListItem>
+                             <asp:ListItem Text="Replace" Value="replace"></asp:ListItem>
                         </asp:DropDownList>
                     </ItemTemplate>
                 </asp:TemplateField>
@@ -112,7 +113,8 @@
                             <asp:ListItem Text="String" value="string"></asp:ListItem>
                              <asp:ListItem Text="True/False" Value="boolean"></asp:ListItem>
                              <asp:ListItem Text="Date" Value="uk_date"></asp:ListItem>
-                            
+                            <asp:ListItem Text="Email" Value="email"></asp:ListItem>
+                             <asp:ListItem Text="Replace" Value="replace"></asp:ListItem>
 
                         </asp:DropDownList>
                 </td>
@@ -125,7 +127,7 @@
             </tr>
             <tr id="replaceBox">
                 <td colspan="5">
-                <asp:TextBox ID="tbReplaceText" runat="server" TextMode="MultiLine" Width="600px" Rows="4" placeholder='Replace Text (json): eg. [{""M"",""male""},{""F"",""female""}]' > </asp:TextBox>
+                <asp:TextBox ID="tbReplaceText" runat="server" TextMode="MultiLine" Width="600px" Rows="4" placeholder='Replace Text (json): eg. {""M"":""male"",""F"":""female""}' > </asp:TextBox>
                     </td>
             </tr>
         </table>
@@ -137,7 +139,7 @@
     </fieldset>
 
 
-    <asp:Button ID="btnReset" runat="server" Text="Reset Global RegistryId's for this Portal" />
+    <asp:Button ID="btnReset" runat="server" Text="Reset Global RegistryId's for this Portal" /> 
 
        
 </asp:Panel>
@@ -145,3 +147,22 @@
 
 
 <asp:Label ID="lblTest" runat="server" Text="Label"></asp:Label>
+
+<asp:Panel ID="pnlAdmin" runat="server" Visible="true">
+    <fieldset><legend>Create New Key</legend>
+    <table>
+        <tr>
+            <td>Root Key:</td>
+            <td><asp:TextBox ID="tbRootKey" runat="server" TextMode="Password"></asp:TextBox></td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td>oib_<asp:TextBox ID="tbName" runat="server" T></asp:TextBox></td>
+        </tr>
+    </table> 
+
+<br />
+
+    <asp:Button ID="btnCreateKey" runat="server" Text="Create Key"  class="btn"/>
+        </fieldset>
+</asp:Panel>

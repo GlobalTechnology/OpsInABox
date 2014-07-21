@@ -55,8 +55,11 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
 
         Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-           
+
+
+
             If Not Page.IsPostBack Then
+                pnlAdmin.Visible = UserInfo.IsSuperUser
 
 
                 tbApiKey.Text = StaffBrokerFunctions.GetSetting("gr_api_key", PortalId)
@@ -195,6 +198,28 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
         Protected Sub btnSaveKey_Click(sender As Object, e As EventArgs) Handles btnSaveKey.Click
             StaffBrokerFunctions.SetSetting("gr_api_key", tbApiKey.Text, PortalId)
+        End Sub
+
+        Protected Sub btnCreateKey_Click(sender As Object, e As EventArgs) Handles btnCreateKey.Click
+            If tbRootKey.Text <> "" And tbName.Text <> "" Then
+                Dim gr_server = StaffBrokerFunctions.GetSetting("gr_api_url", PortalId)
+                If String.IsNullOrEmpty(gr_server) Then
+                    gr_server = "https://api.global-registry.org/"
+                    StaffBrokerFunctions.SetSetting("gr_api_url", gr_server, PortalId)
+
+                End If
+                gr = New GR(tbRootKey.Text, gr_server, False)
+                gr.CreateSystem("oib_" & tbName.Text.ToLower)
+                Dim systems = GR_NET.GR.GetSystems(tbRootKey.Text, gr_server)
+                Dim thisSystem = From c In systems Where c.Name = "oib_" & tbName.Text.ToLower
+
+                If thisSystem.Count > 0 Then
+                    StaffBrokerFunctions.SetSetting("gr_api_key", thisSystem.First.AccessToken, PortalId)
+                    Response.Redirect(NavigateURL())
+                End If
+            End If
+           
+
         End Sub
     End Class
 End Namespace
