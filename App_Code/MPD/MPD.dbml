@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AgapeConnect" Class="MPDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dnn_dev" Class="MPDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=dnn_dev;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AP_mpdCalc_Definition" Member="AP_mpdCalc_Definitions">
     <Type Name="AP_mpdCalc_Definition">
@@ -113,7 +113,14 @@
       <Column Name="VeryLowCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="BudgetAccuracy" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="NoBudgetCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="gr_ministry_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="gr_ministry_id" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EstFullCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EstHighCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EstLowCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EstVeryLowCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EstAvgSupport12" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="EstAvgSupport3" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="EstAvgSupport1" Type="System.Decimal" DbType="Money" CanBeNull="true" />
       <Association Name="AP_mpd_Country_Ap_mpd_User" Member="Ap_mpd_Users" ThisKey="mpdCountryId" OtherKey="mpdCountryId" Type="Ap_mpd_User" />
       <Association Name="AP_mpdCalc_Definition_AP_mpd_Country" Member="AP_mpdCalc_Definition" ThisKey="mpdDefId" OtherKey="mpdDefId" Type="AP_mpdCalc_Definition" IsForeignKey="true" />
     </Type>
@@ -122,8 +129,8 @@
     <Type Name="AP_mpd_UserAccountInfo">
       <Column Name="mpdUserAccountInfo" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="mpdCountryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="staffId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="period" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="staffId" Type="System.Int32" DbType="Int " CanBeNull="true" />
+      <Column Name="period" Type="System.String" DbType="Char(7) NOT NULL" CanBeNull="false" />
       <Column Name="income" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
       <Column Name="expense" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
       <Column Name="balance" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
@@ -161,6 +168,10 @@
       <Column Name="AvgExpenseBudget12" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
       <Column Name="AvgMPDBudget12" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
       <Column Name="AvgIncome" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="gr_min_membership_id" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EstSupLevel12" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="EstSupLevel3" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="EstSupLevel1" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Association Name="Ap_mpd_User_AP_mpd_UserAccountInfo" Member="AP_mpd_UserAccountInfos" ThisKey="AP_mpd_UserId" OtherKey="mpdUserId" Type="AP_mpd_UserAccountInfo" />
       <Association Name="AP_mpd_Country_Ap_mpd_User" Member="AP_mpd_Country" ThisKey="mpdCountryId" OtherKey="mpdCountryId" Type="AP_mpd_Country" IsForeignKey="true" />
     </Type>

@@ -83,7 +83,7 @@
 <div id="piechart_3d" style="width: 100%; height: 500px;"></div>
     </div>
 
-<div class="span4">
+<div class="span3">
    <h3> Average Support:</h3>
     Over the past:
     <table style="font-size: x-large;" cellpadding="10">
@@ -106,6 +106,7 @@
             </td>
         </tr>
     </table>
-
+    
+    <asp:Label ID="lblEstimates" runat="server" Visible="false" ForeColor="Gray" Font-Italic="True" Text="*Based on estimated budget - as no budget has been submitted."></asp:Label>
 
 </div>

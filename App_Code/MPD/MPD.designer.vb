@@ -23,7 +23,7 @@ Imports System.Reflection
 
 Namespace MPD
 	
-	<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="AgapeConnect")>  _
+	<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="dnn_dev")>  _
 	Partial Public Class MPDDataContext
 		Inherits System.Data.Linq.DataContext
 		
@@ -2063,7 +2063,21 @@ Namespace MPD
 		
 		Private _NoBudgetCount As Integer
 		
-		Private _gr_ministry_id As System.Nullable(Of Integer)
+		Private _gr_ministry_id As String
+		
+		Private _EstFullCount As Integer
+		
+		Private _EstHighCount As Integer
+		
+		Private _EstLowCount As Integer
+		
+		Private _EstVeryLowCount As Integer
+		
+		Private _EstAvgSupport12 As System.Nullable(Of Decimal)
+		
+		Private _EstAvgSupport3 As System.Nullable(Of Decimal)
+		
+		Private _EstAvgSupport1 As System.Nullable(Of Decimal)
 		
 		Private _Ap_mpd_Users As EntitySet(Of Ap_mpd_User)
 		
@@ -2156,9 +2170,37 @@ Namespace MPD
     End Sub
     Partial Private Sub OnNoBudgetCountChanged()
     End Sub
-    Partial Private Sub Ongr_ministry_idChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub Ongr_ministry_idChanging(value As String)
     End Sub
     Partial Private Sub Ongr_ministry_idChanged()
+    End Sub
+    Partial Private Sub OnEstFullCountChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnEstFullCountChanged()
+    End Sub
+    Partial Private Sub OnEstHighCountChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnEstHighCountChanged()
+    End Sub
+    Partial Private Sub OnEstLowCountChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnEstLowCountChanged()
+    End Sub
+    Partial Private Sub OnEstVeryLowCountChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnEstVeryLowCountChanged()
+    End Sub
+    Partial Private Sub OnEstAvgSupport12Changing(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OnEstAvgSupport12Changed()
+    End Sub
+    Partial Private Sub OnEstAvgSupport3Changing(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OnEstAvgSupport3Changed()
+    End Sub
+    Partial Private Sub OnEstAvgSupport1Changing(value As System.Nullable(Of Decimal))
+    End Sub
+    Partial Private Sub OnEstAvgSupport1Changed()
     End Sub
     #End Region
 		
@@ -2498,18 +2540,134 @@ Namespace MPD
 			End Set
 		End Property
 		
-		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_gr_ministry_id", DbType:="Int")>  _
-		Public Property gr_ministry_id() As System.Nullable(Of Integer)
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_gr_ministry_id", DbType:="VarChar(50)")>  _
+		Public Property gr_ministry_id() As String
 			Get
 				Return Me._gr_ministry_id
 			End Get
 			Set
-				If (Me._gr_ministry_id.Equals(value) = false) Then
+				If (String.Equals(Me._gr_ministry_id, value) = false) Then
 					Me.Ongr_ministry_idChanging(value)
 					Me.SendPropertyChanging
 					Me._gr_ministry_id = value
 					Me.SendPropertyChanged("gr_ministry_id")
 					Me.Ongr_ministry_idChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EstFullCount", DbType:="Int NOT NULL")>  _
+		Public Property EstFullCount() As Integer
+			Get
+				Return Me._EstFullCount
+			End Get
+			Set
+				If ((Me._EstFullCount = value)  _
+							= false) Then
+					Me.OnEstFullCountChanging(value)
+					Me.SendPropertyChanging
+					Me._EstFullCount = value
+					Me.SendPropertyChanged("EstFullCount")
+					Me.OnEstFullCountChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EstHighCount", DbType:="Int NOT NULL")>  _
+		Public Property EstHighCount() As Integer
+			Get
+				Return Me._EstHighCount
+			End Get
+			Set
+				If ((Me._EstHighCount = value)  _
+							= false) Then
+					Me.OnEstHighCountChanging(value)
+					Me.SendPropertyChanging
+					Me._EstHighCount = value
+					Me.SendPropertyChanged("EstHighCount")
+					Me.OnEstHighCountChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EstLowCount", DbType:="Int NOT NULL")>  _
+		Public Property EstLowCount() As Integer
+			Get
+				Return Me._EstLowCount
+			End Get
+			Set
+				If ((Me._EstLowCount = value)  _
+							= false) Then
+					Me.OnEstLowCountChanging(value)
+					Me.SendPropertyChanging
+					Me._EstLowCount = value
+					Me.SendPropertyChanged("EstLowCount")
+					Me.OnEstLowCountChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EstVeryLowCount", DbType:="Int NOT NULL")>  _
+		Public Property EstVeryLowCount() As Integer
+			Get
+				Return Me._EstVeryLowCount
+			End Get
+			Set
+				If ((Me._EstVeryLowCount = value)  _
+							= false) Then
+					Me.OnEstVeryLowCountChanging(value)
+					Me.SendPropertyChanging
+					Me._EstVeryLowCount = value
+					Me.SendPropertyChanged("EstVeryLowCount")
+					Me.OnEstVeryLowCountChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EstAvgSupport12", DbType:="Money")>  _
+		Public Property EstAvgSupport12() As System.Nullable(Of Decimal)
+			Get
+				Return Me._EstAvgSupport12
+			End Get
+			Set
+				If (Me._EstAvgSupport12.Equals(value) = false) Then
+					Me.OnEstAvgSupport12Changing(value)
+					Me.SendPropertyChanging
+					Me._EstAvgSupport12 = value
+					Me.SendPropertyChanged("EstAvgSupport12")
+					Me.OnEstAvgSupport12Changed
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EstAvgSupport3", DbType:="Money")>  _
+		Public Property EstAvgSupport3() As System.Nullable(Of Decimal)
+			Get
+				Return Me._EstAvgSupport3
+			End Get
+			Set
+				If (Me._EstAvgSupport3.Equals(value) = false) Then
+					Me.OnEstAvgSupport3Changing(value)
+					Me.SendPropertyChanging
+					Me._EstAvgSupport3 = value
+					Me.SendPropertyChanged("EstAvgSupport3")
+					Me.OnEstAvgSupport3Changed
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EstAvgSupport1", DbType:="Money")>  _
+		Public Property EstAvgSupport1() As System.Nullable(Of Decimal)
+			Get
+				Return Me._EstAvgSupport1
+			End Get
+			Set
+				If (Me._EstAvgSupport1.Equals(value) = false) Then
+					Me.OnEstAvgSupport1Changing(value)
+					Me.SendPropertyChanging
+					Me._EstAvgSupport1 = value
+					Me.SendPropertyChanged("EstAvgSupport1")
+					Me.OnEstAvgSupport1Changed
 				End If
 			End Set
 		End Property
@@ -2591,7 +2749,7 @@ Namespace MPD
 		
 		Private _mpdCountryId As Integer
 		
-		Private _staffId As Integer
+		Private _staffId As System.Nullable(Of Integer)
 		
 		Private _period As String
 		
@@ -2628,7 +2786,7 @@ Namespace MPD
     End Sub
     Partial Private Sub OnmpdCountryIdChanged()
     End Sub
-    Partial Private Sub OnstaffIdChanging(value As Integer)
+    Partial Private Sub OnstaffIdChanging(value As System.Nullable(Of Integer))
     End Sub
     Partial Private Sub OnstaffIdChanged()
     End Sub
@@ -2710,14 +2868,13 @@ Namespace MPD
 			End Set
 		End Property
 		
-		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_staffId", DbType:="Int NOT NULL")>  _
-		Public Property staffId() As Integer
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_staffId", DbType:="Int ")>  _
+		Public Property staffId() As System.Nullable(Of Integer)
 			Get
 				Return Me._staffId
 			End Get
 			Set
-				If ((Me._staffId = value)  _
-							= false) Then
+				If (Me._staffId.Equals(value) = false) Then
 					Me.OnstaffIdChanging(value)
 					Me.SendPropertyChanging
 					Me._staffId = value
@@ -2727,7 +2884,7 @@ Namespace MPD
 			End Set
 		End Property
 		
-		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_period", DbType:="Char(6) NOT NULL", CanBeNull:=false)>  _
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_period", DbType:="Char(7) NOT NULL", CanBeNull:=false)>  _
 		Public Property period() As String
 			Get
 				Return Me._period
@@ -2982,6 +3139,14 @@ Namespace MPD
 		
 		Private _AvgIncome As Decimal
 		
+		Private _gr_min_membership_id As String
+		
+		Private _EstSupLevel12 As Double
+		
+		Private _EstSupLevel3 As Double
+		
+		Private _EstSupLevel1 As Double
+		
 		Private _AP_mpd_UserAccountInfos As EntitySet(Of AP_mpd_UserAccountInfo)
 		
 		Private _AP_mpd_Country As EntityRef(Of AP_mpd_Country)
@@ -3088,6 +3253,22 @@ Namespace MPD
     Partial Private Sub OnAvgIncomeChanging(value As Decimal)
     End Sub
     Partial Private Sub OnAvgIncomeChanged()
+    End Sub
+    Partial Private Sub Ongr_min_membership_idChanging(value As String)
+    End Sub
+    Partial Private Sub Ongr_min_membership_idChanged()
+    End Sub
+    Partial Private Sub OnEstSupLevel12Changing(value As Double)
+    End Sub
+    Partial Private Sub OnEstSupLevel12Changed()
+    End Sub
+    Partial Private Sub OnEstSupLevel3Changing(value As Double)
+    End Sub
+    Partial Private Sub OnEstSupLevel3Changed()
+    End Sub
+    Partial Private Sub OnEstSupLevel1Changing(value As Double)
+    End Sub
+    Partial Private Sub OnEstSupLevel1Changed()
     End Sub
     #End Region
 		
@@ -3498,6 +3679,73 @@ Namespace MPD
 					Me._AvgIncome = value
 					Me.SendPropertyChanged("AvgIncome")
 					Me.OnAvgIncomeChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_gr_min_membership_id", DbType:="VarChar(50)")>  _
+		Public Property gr_min_membership_id() As String
+			Get
+				Return Me._gr_min_membership_id
+			End Get
+			Set
+				If (String.Equals(Me._gr_min_membership_id, value) = false) Then
+					Me.Ongr_min_membership_idChanging(value)
+					Me.SendPropertyChanging
+					Me._gr_min_membership_id = value
+					Me.SendPropertyChanged("gr_min_membership_id")
+					Me.Ongr_min_membership_idChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EstSupLevel12", DbType:="Float NOT NULL")>  _
+		Public Property EstSupLevel12() As Double
+			Get
+				Return Me._EstSupLevel12
+			End Get
+			Set
+				If ((Me._EstSupLevel12 = value)  _
+							= false) Then
+					Me.OnEstSupLevel12Changing(value)
+					Me.SendPropertyChanging
+					Me._EstSupLevel12 = value
+					Me.SendPropertyChanged("EstSupLevel12")
+					Me.OnEstSupLevel12Changed
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EstSupLevel3", DbType:="Float NOT NULL")>  _
+		Public Property EstSupLevel3() As Double
+			Get
+				Return Me._EstSupLevel3
+			End Get
+			Set
+				If ((Me._EstSupLevel3 = value)  _
+							= false) Then
+					Me.OnEstSupLevel3Changing(value)
+					Me.SendPropertyChanging
+					Me._EstSupLevel3 = value
+					Me.SendPropertyChanged("EstSupLevel3")
+					Me.OnEstSupLevel3Changed
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EstSupLevel1", DbType:="Float NOT NULL")>  _
+		Public Property EstSupLevel1() As Double
+			Get
+				Return Me._EstSupLevel1
+			End Get
+			Set
+				If ((Me._EstSupLevel1 = value)  _
+							= false) Then
+					Me.OnEstSupLevel1Changing(value)
+					Me.SendPropertyChanging
+					Me._EstSupLevel1 = value
+					Me.SendPropertyChanged("EstSupLevel1")
+					Me.OnEstSupLevel1Changed
 				End If
 			End Set
 		End Property

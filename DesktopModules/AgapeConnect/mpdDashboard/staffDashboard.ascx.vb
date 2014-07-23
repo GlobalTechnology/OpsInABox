@@ -30,7 +30,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
             Dim mpdu = (From c In d.Ap_mpd_Users Where c.AP_mpd_UserId = Request.QueryString("mpd_user_id")).First
             lblStaffName.Text = mpdu.Name
-            Dim incomeData = (From c In mpdu.AP_mpd_UserAccountInfos Where c.period >= Today.AddMonths(-13).ToString("yyyyMM") And c.income > 0).ToList
+            Dim incomeData = (From c In mpdu.AP_mpd_UserAccountInfos Where c.period >= Today.AddMonths(-13).ToString("yyyy-MM")).ToList
 
 
             jsonLi = ""
@@ -39,7 +39,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 '  Dim bud = mpdFunctions.getBudgetForStaffPeriod(row.staffId, row.period)
 
 
-                jsonLi &= "['" & start.ToString("MMM yy") & "', " & row.balance.ToString("0.00") & ", " & row.income.ToString("0.00") & ", " & row.toRaiseBudget.ToString("0.00") & ", " & (row.expense).ToString("0.00") & ", " & (row.expBudget).ToString("0.00") & "],"
+                jsonLi &= "['" & start.ToString("MMM yy") & "', " & row.balance.ToString("0.00") & ", " & (row.income + row.foreignIncome + row.compensation).ToString("0.00") & ", " & row.toRaiseBudget.ToString("0.00") & ", " & (-row.expense).ToString("0.00") & ", " & (row.expBudget).ToString("0.00") & "],"
             Next
 
             
@@ -49,10 +49,17 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
 
            
-
-            lblYear.Text = mpdu.AvgSupLevel12.ToString("0.0%")
-            lblQuarter.Text = mpdu.AvgSupLevel3.ToString("0.0%")
-            lblMonth.Text = mpdu.AvgSupLevel1.ToString("0.0%")
+            If mpdu.AvgExpenseBudget12 = 0 Then
+                lblYear.Text = mpdu.EstSupLevel12.ToString("0.0%") & "*"
+                lblQuarter.Text = mpdu.EstSupLevel3.ToString("0.0%") & "*"
+                lblMonth.Text = mpdu.EstSupLevel1.ToString("0.0%") & "*"
+                lblEstimates.Visible = True
+            Else
+                lblYear.Text = mpdu.AvgSupLevel12.ToString("0.0%")
+                lblQuarter.Text = mpdu.AvgSupLevel3.ToString("0.0%")
+                lblMonth.Text = mpdu.AvgSupLevel1.ToString("0.0%")
+            End If
+           
           
 
 

@@ -122,4 +122,36 @@ Public Class mpdFunctions
 
     End Function
 
+
+    Enum AverageType
+
+        LastMonth
+        Average3
+        Average12
+    End Enum
+
+
+    Public Shared Function getAverageMonthlyIncome(ByVal Portalid As Integer, ByVal StaffId As Integer, Optional type As AverageType = AverageType.Average12) As Double
+        Dim rtn As Double = 0.0
+        Dim d As New MPD.MPDDataContext
+
+        Dim u = (From c In d.Ap_mpd_Users Where c.StaffId = StaffId And c.AP_mpd_Country.portalId = Portalid).FirstOrDefault
+        If Not u Is Nothing Then
+
+
+            Select Case type
+
+                Case AverageType.LastMonth
+                    Return u.AvgIncome1
+
+                Case AverageType.Average3 ' take three months not including the last
+                    Return u.AvgIncome3
+
+                Case AverageType.Average12 ' take twelve months not including the last
+                    Return u.AvgIncome12
+
+            End Select
+        End If
+        Return rtn
+    End Function
 End Class

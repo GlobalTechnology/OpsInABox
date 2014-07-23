@@ -56,14 +56,17 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 Dim withBud = 1.0 - (thisCountry.NoBudgetCount / totalCount)
 
 
-                dt.Rows.Add(thisCountry.name, thisCountry.AvgSupport12.Value.ToString("0.0%"), thisCountry.AvgSupport3.Value.ToString("0.0%"), thisCountry.AvgSupport1.Value.ToString("0.0%"), withBud.ToString("0.0%"), thisCountry.BudgetAccuracy.Value.ToString("0.0%"), _
-                           (thisCountry.VeryLowCount / totalCount).ToString("0%"), (thisCountry.LowCount / totalCount).ToString("0%"), (thisCountry.HighCount / totalCount).ToString("0%"), (thisCountry.FullCount / totalCount).ToString("0%"), thisCountry.BudgetAccuracy.Value.ToString("0%"), thisCountry.SplitLocal.Value.ToString("0%"), thisCountry.isoCode)
+                'dt.Rows.Add(thisCountry.name, thisCountry.AvgSupport12.Value.ToString("0.0%"), thisCountry.AvgSupport3.Value.ToString("0.0%"), thisCountry.AvgSupport1.Value.ToString("0.0%"), withBud.ToString("0.0%"), thisCountry.BudgetAccuracy.Value.ToString("0.0%"), _
+                '           (thisCountry.VeryLowCount / totalCount).ToString("0%"), (thisCountry.LowCount / totalCount).ToString("0%"), (thisCountry.HighCount / totalCount).ToString("0%"), (thisCountry.FullCount / totalCount).ToString("0%"), thisCountry.BudgetAccuracy.Value.ToString("0%"), thisCountry.SplitLocal.Value.ToString("0%"), thisCountry.isoCode)
+                dt.Rows.Add(thisCountry.name, thisCountry.EstAvgSupport12.Value.ToString("0.0%"), thisCountry.EstAvgSupport3.Value.ToString("0.0%"), thisCountry.EstAvgSupport1.Value.ToString("0.0%"), withBud.ToString("0.0%"), thisCountry.BudgetAccuracy.Value.ToString("0.0%"), _
+                        (thisCountry.EstVeryLowCount / totalCount).ToString("0%"), (thisCountry.EstLowCount / totalCount).ToString("0%"), (thisCountry.EstHighCount / totalCount).ToString("0%"), (thisCountry.EstFullCount / totalCount).ToString("0%"), thisCountry.BudgetAccuracy.Value.ToString("0%"), thisCountry.SplitLocal.Value.ToString("0%"), thisCountry.isoCode)
 
 
             Next
+
             rpCountriesSummaryData.DataSource = dt
             rpCountriesSummaryData.DataBind()
-           
+
         End Sub
 
 
