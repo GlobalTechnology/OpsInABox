@@ -135,6 +135,9 @@
   <data name="NewSection.Text" xml:space="preserve">
     <value>Insert New Section</value>
   </data>
+  <data name="Process.Text" xml:space="preserve">
+    <value>Process</value>
+  </data>
   <data name="Reject.Text" xml:space="preserve">
     <value>Cancel/Reject</value>
   </data>

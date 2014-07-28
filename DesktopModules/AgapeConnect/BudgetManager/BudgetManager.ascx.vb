@@ -468,9 +468,9 @@ Namespace DotNetNuke.Modules.Budget
                 Dim connectionString = ""
 
                 If (fileExtension = ".xls") Then
-                    connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fileLocation + ";Extended Properties=""Excel 8.0;HDR=NO;IMEX=2"""
+                    connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fileLocation + ";Extended Properties=""Excel 8.0;HDR=NO;IMEX=1;TypeGuessRows=0;ImportMixedTypes=Text;"""
                 ElseIf fileExtension = ".xlsx" Then
-                    connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileLocation + ";Extended Properties=""Excel 12.0;HDR=NO;IMEX=2"""
+                    connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileLocation + ";Extended Properties=""Excel 12.0;HDR=NO;IMEX=1;TypeGuessRows=0;ImportMixedTypes=Text;"""
                 End If
 
                 Dim MyConnection As OleDbConnection
@@ -484,98 +484,100 @@ Namespace DotNetNuke.Modules.Budget
                     Dim MyCommand As New OleDbCommand()
                     MyCommand.Connection = MyConnection
 
-                    MyCommand.CommandText = "Select * from [Budget$A2:N99]"
+                    MyCommand.CommandText = "Select * from [Budget$A2:N199]"
 
                     Dim data = MyCommand.ExecuteReader()
 
                     While data.Read
                         Try
 
-                       
-                        If IsDBNull(data.Item(0)) Or IsDBNull(data.Item(1)) Then
-                            Exit While
-                        End If
+
+                            If IsDBNull(data.Item(0)) Or IsDBNull(data.Item(1)) Then
+                                'StaffBrokerFunctions.EventLog("Budget", "EOF" & data.ToJson, UserId)
+                                Exit While
+                            End If
 
 
 
-                        Dim insert As New AP_Budget_Summary
+                            Dim insert As New AP_Budget_Summary
 
-                        insert.Account = data.Item(0)
-                        insert.RC = data.Item(1)
+                            insert.Account = data.Item(0)
+                            insert.RC = data.Item(1)
 
-                        Try
-                            insert.P1 = CDbl(data.Item(2))
-                        Catch ex As Exception
-                            insert.P1 = 0.0
-                        End Try
-                        Try
-                            insert.P2 = CDbl(data.Item(3))
-                        Catch ex As Exception
-                            insert.P2 = 0.0
-                        End Try
-                        Try
-                            insert.P3 = CDbl(data.Item(4))
-                        Catch ex As Exception
-                            insert.P3 = 0.0
-                        End Try
-                        Try
-                            insert.P4 = CDbl(data.Item(5))
-                        Catch ex As Exception
-                            insert.P4 = 0.0
-                        End Try
-                        Try
-                            insert.P5 = CDbl(data.Item(6))
-                        Catch ex As Exception
-                            insert.P5 = 0.0
-                        End Try
-                        Try
-                            insert.P6 = CDbl(data.Item(7))
-                        Catch ex As Exception
-                            insert.P6 = 0.0
-                        End Try
-                        Try
-                            insert.P7 = CDbl(data.Item(8))
-                        Catch ex As Exception
-                            insert.P7 = 0.0
-                        End Try
-                        Try
-                            insert.P8 = CDbl(data.Item(9))
-                        Catch ex As Exception
-                            insert.P8 = 0.0
-                        End Try
-                        Try
-                            insert.P9 = CDbl(data.Item(10))
-                        Catch ex As Exception
-                            insert.P9 = 0.0
-                        End Try
-                        Try
-                            insert.P10 = CDbl(data.Item(11))
-                        Catch ex As Exception
-                            insert.P10 = 0.0
-                        End Try
-                        Try
-                            insert.P11 = CDbl(data.Item(12))
-                        Catch ex As Exception
-                            insert.P11 = 0.0
-                        End Try
-                        Try
-                            insert.P12 = CDbl(data.Item(13))
-                        Catch ex As Exception
-                            insert.P12 = 0.0
-                        End Try
-
-
+                            Try
+                                insert.P1 = CDbl(data.Item(2))
+                            Catch ex As Exception
+                                insert.P1 = 0.0
+                            End Try
+                            Try
+                                insert.P2 = CDbl(data.Item(3))
+                            Catch ex As Exception
+                                insert.P2 = 0.0
+                            End Try
+                            Try
+                                insert.P3 = CDbl(data.Item(4))
+                            Catch ex As Exception
+                                insert.P3 = 0.0
+                            End Try
+                            Try
+                                insert.P4 = CDbl(data.Item(5))
+                            Catch ex As Exception
+                                insert.P4 = 0.0
+                            End Try
+                            Try
+                                insert.P5 = CDbl(data.Item(6))
+                            Catch ex As Exception
+                                insert.P5 = 0.0
+                            End Try
+                            Try
+                                insert.P6 = CDbl(data.Item(7))
+                            Catch ex As Exception
+                                insert.P6 = 0.0
+                            End Try
+                            Try
+                                insert.P7 = CDbl(data.Item(8))
+                            Catch ex As Exception
+                                insert.P7 = 0.0
+                            End Try
+                            Try
+                                insert.P8 = CDbl(data.Item(9))
+                            Catch ex As Exception
+                                insert.P8 = 0.0
+                            End Try
+                            Try
+                                insert.P9 = CDbl(data.Item(10))
+                            Catch ex As Exception
+                                insert.P9 = 0.0
+                            End Try
+                            Try
+                                insert.P10 = CDbl(data.Item(11))
+                            Catch ex As Exception
+                                insert.P10 = 0.0
+                            End Try
+                            Try
+                                insert.P11 = CDbl(data.Item(12))
+                            Catch ex As Exception
+                                insert.P11 = 0.0
+                            End Try
+                            Try
+                                insert.P12 = CDbl(data.Item(13))
+                            Catch ex As Exception
+                                insert.P12 = 0.0
+                            End Try
 
 
-                        insert.FiscalYear = ddlFiscalYear.SelectedValue
-                        insert.Error = False
-                        insert.Changed = True
-                        insert.Portalid = PortalId
-                        insert.LastUpdated = Now
-                        BudgetImport.Add(insert)
+
+
+                            insert.FiscalYear = ddlFiscalYear.SelectedValue
+                            insert.Error = False
+                            insert.Changed = True
+                            insert.Portalid = PortalId
+                            insert.LastUpdated = Now
+                            BudgetImport.Add(insert)
                         Catch ex As Exception
                             errorCount += 1
                             ErrorString &= data.Item(0) & " - " & data.Item(1) & "<br />"
+                            StaffBrokerFunctions.EventLog("Budget", data.Item(0) & " - " & data.Item(1) & ex.ToString, UserId)
                         End Try
 
                     End While
@@ -594,7 +596,7 @@ Namespace DotNetNuke.Modules.Budget
                     MyConnection.Close()
                 End Try
 
-
+                StaffBrokerFunctions.EventLog("Budget", "BudgetImportCount: " & BudgetImport.Count, UserId)
 
 
                 'Now save these values

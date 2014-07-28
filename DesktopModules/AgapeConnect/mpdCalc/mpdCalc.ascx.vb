@@ -207,8 +207,8 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 lblStaffName.Text = Translate("BudgetFor").Replace("[NAME]", "<b>" & Staff.DisplayName & "<b>")
                 IsCouple = Staff.UserId2 > 0
                 StaffType = Staff.AP_StaffBroker_StaffType.Name
-                itemCurrent.Monthly = mpdFunctions.getAverageMonthlyIncomeOver12Periods(Staff.StaffId)
-
+                'itemCurrent.Monthly = mpdFunctions.getAverageMonthlyIncomeOver12Periods(Staff.StaffId)
+                itemCurrent.Monthly = mpdFunctions.getAverageMonthlyIncome(PortalId, bud.First.StaffId, mpdFunctions.AverageType.Average12)
                 If (thisForm.AP_mpdCalc_Sections.Count > 0) Then
                     LastSection = thisForm.AP_mpdCalc_Sections.Max(Function(c) c.Number)
                 End If

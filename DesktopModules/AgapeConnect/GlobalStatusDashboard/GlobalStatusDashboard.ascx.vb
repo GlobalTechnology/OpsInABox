@@ -23,21 +23,27 @@ Namespace DotNetNuke.Modules.AgapeConnect
         Const redLight = "/DesktopModules/AgapeConnect/GlobalStatusDashboard/red_light.png"
         Const greyLight = "/DesktopModules/AgapeConnect/GlobalStatusDashboard/grey_light.png"
 
+        Const globalops = ""
 
+        Dim membership_sites As String() = {"4d45a710-f634-11e3-8b5a-12768b82bfd5", "aed6627c-10e6-11e4-83ed-12543788cf06"}
         Dim countries As IQueryable(Of ministry_system)
         Public json_area As String = ""
         Protected Function CheckPermissions() As Boolean
+
             Dim rc As New DotNetNuke.Security.Roles.RoleController()
             Dim theRole = rc.GetRoleByName(PortalId, "Global Leaders")
-            ' Dim gr As New GR(GetSetting("gr_api_key", PortalId), GetSetting("gr_api_url", PortalId))
-            Dim gr As New GR("6d50408d0d92ff8090c0a0a71f8edf7b5069858b04ba57d5d643121d851e", "https://api.global-registry.org")
 
+            Dim gr As New GR(GetSetting("gr_root_key", PortalId), "https://api.global-registry.org", False)
+          
             Dim tmp = gr.GetEntities("person", "&filters[authentication][key_guid]=" & UserInfo.Profile.GetPropertyValue("ssoGUID") & "&filters[owned_by]=all")
+            AgapeLogger.WriteEventLog(UserId, "guid:" & UserInfo.Profile.GetPropertyValue("ssoGUID"))
             If tmp.Count > 0 Then
+                AgapeLogger.WriteEventLog(UserId, tmp.First.ToJson)
                 If (tmp.First.collections.ContainsKey("gcx_site:relationship")) Then
 
 
-                    If tmp.First.collections("gcx_site:relationship").Exists(Function(c) c.GetPropertyValue("gcx_site") = "4d45a710-f634-11e3-8b5a-12768b82bfd5") Then
+                    If tmp.First.collections("gcx_site:relationship").Exists(Function(c) membership_sites.Contains(c.GetPropertyValue("gcx_site"))) Then
+
                         rc.AddUserRole(PortalId, UserId, theRole.RoleID, DateTime.MaxValue)
                         StaffBrokerFunctions.SetUserProfileProperty(PortalId, UserId, "gr_person_id", tmp.First.ID)
                         UserController.UpdateUser(PortalId, UserInfo)
