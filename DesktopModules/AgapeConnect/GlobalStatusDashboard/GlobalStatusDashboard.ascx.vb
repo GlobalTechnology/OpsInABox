@@ -33,7 +33,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
             Dim rc As New DotNetNuke.Security.Roles.RoleController()
             Dim theRole = rc.GetRoleByName(PortalId, "Global Leaders")
 
-            Dim gr As New GR(GetSetting("gr_root_key", PortalId), "https://api.global-registry.org", False)
+            Dim gr As New GR(GetSetting("gr_root_key", 0), "https://api.global-registry.org", False)
           
             Dim tmp = gr.GetEntities("person", "&filters[authentication][key_guid]=" & UserInfo.Profile.GetPropertyValue("ssoGUID") & "&filters[owned_by]=all")
             AgapeLogger.WriteEventLog(UserId, "guid:" & UserInfo.Profile.GetPropertyValue("ssoGUID"))
