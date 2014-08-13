@@ -32,7 +32,7 @@ Partial Class DesktopModules_AgapePortal_StaffBroker_Depts
 
     Public Function getDepartments(ByVal UserId As Integer) As IQueryable(Of AP_StaffBroker_Department)
         Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
-        Dim depts = From c In d.AP_StaffBroker_Departments Where c.CostCentreManager = UserId And c.PortalId = PS.PortalId Or c.CostCentreDelegate = UserId
+        Dim depts = From c In d.AP_StaffBroker_Departments Where c.PortalId = PS.PortalId And (c.CostCentreManager = UserId Or c.CostCentreDelegate = UserId)
 
 
         Return depts

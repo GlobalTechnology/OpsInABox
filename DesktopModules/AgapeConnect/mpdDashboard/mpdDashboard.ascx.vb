@@ -51,7 +51,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
             For Each thisCountry In d.AP_mpd_Countries
                 Dim totalCount = thisCountry.VeryLowCount + thisCountry.LowCount + thisCountry.HighCount + thisCountry.FullCount + thisCountry.NoBudgetCount
 
-                jsonMap &= "['" & thisCountry.isoCode & "', " & (thisCountry.AvgSupport12.Value * 100).ToString("0.0") & "],"
+                jsonMap &= "['" & thisCountry.isoCode & "', " & (thisCountry.EstAvgSupport12.Value * 100).ToString("0.0") & "],"
 
                 Dim withBud = 1.0 - (thisCountry.NoBudgetCount / totalCount)
 

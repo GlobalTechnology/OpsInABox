@@ -100,7 +100,7 @@ Namespace DotNetNuke.Modules.StaffAdmin
         Private Function AddNewDept(ByVal Name As String, ByVal RC As String, ByVal UID1 As String, ByVal UID2 As String) As Boolean
             Dim rcCode As String = RC
             If RC.Contains("-") Then
-                rcCode = Left(RC, RC.IndexOf("-")).Trim.ToLower
+                rcCode = Left(RC, RC.IndexOf("-")).Trim
             End If
 
 
@@ -122,7 +122,7 @@ Namespace DotNetNuke.Modules.StaffAdmin
             End If
             Dim d As New StaffBrokerDataContext
 
-            If (Not (StaffBrokerFunctions.GetSetting("NonDynamics", PortalId) = "True")) And d.AP_StaffBroker_CostCenters.Where(Function(c) c.CostCentreCode.Trim().ToLower = rcCode And c.PortalId = PortalId).Count = 0 Then
+            If (Not (StaffBrokerFunctions.GetSetting("NonDynamics", PortalId) = "True")) And d.AP_StaffBroker_CostCenters.Where(Function(c) c.CostCentreCode.Trim() = rcCode And c.PortalId = PortalId).Count = 0 Then
                 lblResponse.Text &= "Error adding " & Name & " (" & rcCode & ") - RC does not exists.<br />"
             ElseIf id1 = Nothing Then
                 lblResponse.Text &= "Error adding " & Name & " (" & rcCode & ") - No Manager.<br />"

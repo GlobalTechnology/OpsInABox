@@ -19,13 +19,7 @@
 
             var data3 = google.visualization.arrayToDataTable([
          ['Country', 'MPD Level'],
-         ['Germany', 120],
-         ['United States', 96],
-         ['Brazil', 25],
-         ['Canada', 82],
-         ['France', 67],
-         ['RU', 43],
-         <%= jsonMap %>
+        <%= jsonMap %>
             ]);
 
             var options3 = {enableScrollWheel: true, colors: ['#FF0000', '#ff9b00', '#00FF00'], colorAxis: { minValue:50, maxValue: 110 } };
@@ -53,7 +47,7 @@
 
         });
     </script>
-<i>For this demo, please click on UK - as this is the only country with test data:</i>
+<i>Select a country on the map, or from the list below the map, to drill-down to a more detailed country report:</i>
 
 <div id="mapchart" style="width: 100%; height: 500px;">
     
