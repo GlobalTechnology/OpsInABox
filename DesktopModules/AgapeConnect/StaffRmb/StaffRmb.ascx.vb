@@ -3999,19 +3999,14 @@ Namespace DotNetNuke.Modules.StaffRmbMod
 
                     Else
                         Dim rmbAdvance As Double = 0.0
-                        Dim rmbAdvanceBalance As Double = 99999.99
+                        ' Dim rmbAdvanceBalance As Double = 99999.99
 
                         If theRmb.Count > 0 Then
 
                             Dim Adv As Double = theRmb.First.AP_Staff_Rmb.AdvanceRequest
                             If Not Adv = Nothing Then
+                                rmbAdvance = Math.Min(RmbTotal, Adv)
 
-
-                                If Adv > 0 Then
-                                    rmbAdvance = Math.Min(Math.Min(RmbTotal, Adv), rmbAdvanceBalance)
-                                ElseIf Adv = -1 Then
-                                    rmbAdvance = Math.Min(RmbTotal, rmbAdvanceBalance)
-                                End If
 
                             End If
 
