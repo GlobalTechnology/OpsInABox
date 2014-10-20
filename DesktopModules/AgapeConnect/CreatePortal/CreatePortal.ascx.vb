@@ -43,15 +43,10 @@ Namespace DotNetNuke.Modules.AgapeConnect
                
 
 
-                'Dim pc As New PortalController
-                'Dim p = pc.GetPortal(NewPortalId)
 
-
-
-
-                If cbGenerateUsers.Checked Then
-                    createUserFromTnT()
-                End If
+                'If cbGenerateUsers.Checked Then
+                '    createUserFromTnT()
+                'End If
 
             End If
 
@@ -64,6 +59,12 @@ Namespace DotNetNuke.Modules.AgapeConnect
             Dim user = StaffBrokerFunctions.CreateUser(thePortalid, username, FirstName, LastName)
 
             Dim NewUser = UserController.GetUserByName(thePortalid, username & thePortalid)
+            If (FirstName = "OiB") Then
+                NewUser.Email = "jon.vellacott+oib@ccci.org"
+                UserController.UpdateUser(thePortalid, NewUser)
+            End If
+
+
             lblStatus.Text &= "Created UserId: " & NewUser.UserID & "<br />"
             Dim staff = StaffBrokerFunctions.CreateStaffMember(thePortalid, NewUser, StaffType)
             lblStatus.Text &= "Created Staff Member: " & staff.StaffId & "<br />"
@@ -211,7 +212,9 @@ Namespace DotNetNuke.Modules.AgapeConnect
                             lblStatus.Text &= "Added current user to role" & vbNewLine
 
                             Try
-                        Dim Jon = CreateUser(newPid, "jon.vellacott@ccci.org", "Jon", "Vellacott", defaultStaffType)
+                        Dim Jon = CreateUser(newPid, "oib@ccci.org", "OiB", "Admin", defaultStaffType)
+
+
 
 
                                 rc.AddUserRole(newPid, Jon.UserId1, AdminRole.RoleID, Null.NullDate)
@@ -226,7 +229,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
                                     Dim insert2 As New StaffBroker.AP_StaffBroker_LeaderMeta
                                     insert2.UserId = Admin.UserId1
-                                    insert.LeaderId = Jon.UserId1
+                            insert2.LeaderId = Jon.UserId1
                                     d.AP_StaffBroker_LeaderMetas.InsertOnSubmit(insert2)
 
                                     d.SubmitChanges()
@@ -335,17 +338,15 @@ Namespace DotNetNuke.Modules.AgapeConnect
             StaffBrokerFunctions.SetSetting("NextRID", "1", thePortalId)
             StaffBrokerFunctions.SetSetting("NextAdvID", "1", thePortalId)
             StaffBrokerFunctions.SetSetting("tntFlag", "Clean", thePortalId)
-            If tbAdvancesSuffix.Text <> "" Then
-                StaffBrokerFunctions.SetSetting("AdvanceSuffix", tbAdvancesSuffix.Text, thePortalId)
-            End If
+           
             If tbDataServer.Text <> "" And tbDataServer.Text.EndsWith("/") Then
                 StaffBrokerFunctions.SetSetting("DataserverURL", tbDataServer.Text, thePortalId)
             End If
             StaffBrokerFunctions.SetSetting("AccountingCurrency", ddlAccountingCurrency.SelectedValue, thePortalId)
             StaffBrokerFunctions.SetSetting("LocalCurrency", ddlLocalCurrency.SelectedValue, thePortalId)
-            If tbCompany.Text <> "" Then
-                StaffBrokerFunctions.SetSetting("CompanyName", tbCompany.Text, thePortalId)
-            End If
+            'If tbCompany.Text <> "" Then
+            '    StaffBrokerFunctions.SetSetting("CompanyName", tbCompany.Text, thePortalId)
+            'End If
             If ddlAccountingCurrency.SelectedValue = ddlLocalCurrency.SelectedValue Then
                 StaffBrokerFunctions.SetSetting("CurConverter", "False", thePortalId)
             Else
@@ -514,7 +515,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
             Return Trim(str)
         End Function
 
-        Protected Sub btnTest_Click(sender As Object, e As System.EventArgs) Handles btnTest.Click
+        'Protected Sub btnTest_Click(sender As Object, e As System.EventArgs) Handles btnTest.Click
             'Dim d As New StaffBroker.StaffBrokerDataContext
 
             'Dim staff = From c In d.AP_StaffBroker_Staffs Where c.PortalId = 2 And c.Active
@@ -558,30 +559,30 @@ Namespace DotNetNuke.Modules.AgapeConnect
             ''Copy Leadership relationships
             ''Set Dept Managers
 
-        End Sub
+        ' End Sub
 
 
 
-        Protected Sub btnFCX_Click(sender As Object, e As System.EventArgs) Handles btnFCX.Click
-            'Dim objFCX As New FCX_API
-            'Dim myAPIKey As New Guid("36bf6bfb-f152-4a5d-ac6b-4ee00cbea6ea")
-            'Dim transactions() = New FCX_API.FinanctialTransaction(0) {}
-            'Dim insert As New FCX_API.FinanctialTransaction
-            'insert.Account = "4010"
-            'insert.Amount = "100.00"
-            'insert.Description = "Test Donation"
-            'insert.RC = "VJ12"
-            'insert.TransactionId = "1"
-            'insert.TrxDate = Now
-            'transactions(0) = insert
+        ' Protected Sub btnFCX_Click(sender As Object, e As System.EventArgs) Handles btnFCX.Click
+        'Dim objFCX As New FCX_API
+        'Dim myAPIKey As New Guid("36bf6bfb-f152-4a5d-ac6b-4ee00cbea6ea")
+        'Dim transactions() = New FCX_API.FinanctialTransaction(0) {}
+        'Dim insert As New FCX_API.FinanctialTransaction
+        'insert.Account = "4010"
+        'insert.Amount = "100.00"
+        'insert.Description = "Test Donation"
+        'insert.RC = "VJ12"
+        'insert.TransactionId = "1"
+        'insert.TrxDate = Now
+        'transactions(0) = insert
 
 
-            'Dim resp = objFCX.AddFinanicialTransactions(myAPIKey, "4", "ACTUAL", "This is a test", transactions)
-            'lblStatus.Text = resp.Status & ": " & resp.Message
+        'Dim resp = objFCX.AddFinanicialTransactions(myAPIKey, "4", "ACTUAL", "This is a test", transactions)
+        'lblStatus.Text = resp.Status & ": " & resp.Message
 
 
 
-        End Sub
+        ' End Sub
 
 
         Private Sub createUserFromTnT()
@@ -589,18 +590,18 @@ Namespace DotNetNuke.Modules.AgapeConnect
             tnt.CreateUsersFromTnt()
         End Sub
 
-        Protected Sub btnCreateAllUsers_Click(sender As Object, e As System.EventArgs) Handles btnCreateAllUsers.Click
-            createUserFromTnT()
+        ' Protected Sub btnCreateAllUsers_Click(sender As Object, e As System.EventArgs) Handles btnCreateAllUsers.Click
+        ' createUserFromTnT()
 
-        End Sub
+        ' End Sub
 
-        Protected Sub btnproxy_Click(sender As Object, e As System.EventArgs) Handles btnproxy.Click
+        ' Protected Sub btnproxy_Click(sender As Object, e As System.EventArgs) Handles btnproxy.Click
 
-        End Sub
+        ' End Sub
 
-        Protected Sub btnCreateEntropy_Click(sender As Object, e As System.EventArgs) Handles btnCreateEntropy.Click
-            StaffBrokerFunctions.SetSetting("TestUserPassword", "Thisisatestaccount", 0)
+        ' Protected Sub btnCreateEntropy_Click(sender As Object, e As System.EventArgs) Handles btnCreateEntropy.Click
+        '  StaffBrokerFunctions.SetSetting("TestUserPassword", "Thisisatestaccount", 0)
 
-        End Sub
+        ' End Sub
     End Class
 End Namespace
