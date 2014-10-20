@@ -137,7 +137,7 @@
     <value>The Auth User approves budgets for staff with no valid approver.</value>
   </data>
   <data name="Compensation.Text" xml:space="preserve">
-    <value>Compensation:</value>
+    <value>Subsidy</value>
   </data>
   <data name="Complience.Text" xml:space="preserve">
     <value>Complience Statement:</value>
