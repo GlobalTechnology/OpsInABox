@@ -748,7 +748,7 @@
                                             <asp:ListItem Value="WST">Samoa Tala</asp:ListItem>
                                             <asp:ListItem Value="STD">Sao Tome Dobra</asp:ListItem>
                                             <asp:ListItem Value="SAR">Saudi Arabian Riyal</asp:ListItem>
-                                            <asp:ListItem Value="SCR">Seychelles Rupee</asp:ListItem>
+                                            <asp:ListItem Value="SCR">Seychelles Rupee</asp:ListItem><asp:ListItem Value="RSD">Serbian Dinar</asp:ListItem>
                                             <asp:ListItem Value="SLL">Sierra Leone Leone</asp:ListItem>
                                             <asp:ListItem Value="SGD">Singapore Dollar</asp:ListItem>
                                             <asp:ListItem Value="SKK">Slovak Koruna</asp:ListItem>
@@ -903,7 +903,7 @@
                                             <asp:ListItem Value="WST">Samoa Tala</asp:ListItem>
                                             <asp:ListItem Value="STD">Sao Tome Dobra</asp:ListItem>
                                             <asp:ListItem Value="SAR">Saudi Arabian Riyal</asp:ListItem>
-                                            <asp:ListItem Value="SCR">Seychelles Rupee</asp:ListItem>
+                                            <asp:ListItem Value="SCR">Seychelles Rupee</asp:ListItem><asp:ListItem Value="RSD">Serbian Dinar</asp:ListItem>
                                             <asp:ListItem Value="SLL">Sierra Leone Leone</asp:ListItem>
                                             <asp:ListItem Value="SGD">Singapore Dollar</asp:ListItem>
                                             <asp:ListItem Value="SKK">Slovak Koruna</asp:ListItem>
@@ -1085,7 +1085,7 @@
                                                 <asp:ListItem Value="WST">Samoa Tala</asp:ListItem>
                                                 <asp:ListItem Value="STD">Sao Tome Dobra</asp:ListItem>
                                                 <asp:ListItem Value="SAR">Saudi Arabian Riyal</asp:ListItem>
-                                                <asp:ListItem Value="SCR">Seychelles Rupee</asp:ListItem>
+                                                <asp:ListItem Value="SCR">Seychelles Rupee</asp:ListItem><asp:ListItem Value="RSD">Serbian Dinar</asp:ListItem>
                                                 <asp:ListItem Value="SLL">Sierra Leone Leone</asp:ListItem>
                                                 <asp:ListItem Value="SGD">Singapore Dollar</asp:ListItem>
                                                 <asp:ListItem Value="SKK">Slovak Koruna</asp:ListItem>
