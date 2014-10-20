@@ -39,6 +39,25 @@
 
             </ItemTemplate>
         </asp:TemplateField>
+           <asp:TemplateField HeaderText="Rmbs (ever)" >
+            <ItemTemplate>
+                <asp:Label ID="Label1" runat="server" Text='<%# RmbsEver(Eval("PortalId"))%>'></asp:Label>
+
+            </ItemTemplate>
+        </asp:TemplateField>
+           <asp:TemplateField HeaderText="Rmbs (month)" >
+            <ItemTemplate>
+                <asp:Label ID="Label1" runat="server" Text='<%# RmbsMonth(Eval("PortalId"))%>'></asp:Label>
+
+            </ItemTemplate>
+        </asp:TemplateField>
+            <asp:TemplateField HeaderText="Rmbs Trans (ever)" >
+            <ItemTemplate>
+                <asp:Label ID="Label1" runat="server" Text='<%# RmbTrans(Eval("PortalId"))%>'></asp:Label>
+
+            </ItemTemplate>
+        </asp:TemplateField>
+      
     </Columns>
     <FooterStyle BackColor="#CCCC99" />
     <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />

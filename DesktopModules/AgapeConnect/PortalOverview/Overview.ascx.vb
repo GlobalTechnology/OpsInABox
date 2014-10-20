@@ -46,6 +46,34 @@ Namespace DotNetNuke.Modules.Portals
             Return isRmb Or isAdv
 
         End Function
+        Public Function RmbsEver(ByVal thePortalId As Integer) As Integer
+            Dim d As New StaffRmb.StaffRmbDataContext
+            Dim rmbs = (From c In d.AP_Staff_Rmbs Where c.PortalId = thePortalId And c.Status = StaffRmb.RmbStatus.Processed).Count
+
+            Dim adv = (From c In d.AP_Staff_AdvanceRequests Where c.PortalId = thePortalId And c.RequestStatus = StaffRmb.RmbStatus.Processed).Count
+
+            Return rmbs + adv
+
+        End Function
+
+        Public Function RmbsMonth(ByVal thePortalId As Integer) As Integer
+            Dim d As New StaffRmb.StaffRmbDataContext
+            Dim rmbs = (From c In d.AP_Staff_Rmbs Where c.PortalId = thePortalId And c.Status = StaffRmb.RmbStatus.Processed And c.ProcDate > Today.AddDays(-40)).Count
+
+            Dim adv = (From c In d.AP_Staff_AdvanceRequests Where c.PortalId = thePortalId And c.RequestStatus = StaffRmb.RmbStatus.Processed And c.ProcessedDate > Today.AddDays(-40)).Count
+
+            Return rmbs + adv
+
+        End Function
+        Public Function RmbTrans(ByVal thePortalId As Integer) As Integer
+            Dim d As New StaffRmb.StaffRmbDataContext
+            Dim rmbs = (From c In d.AP_Staff_RmbLines Where c.AP_Staff_Rmb.PortalId = thePortalId And c.AP_Staff_Rmb.Status = StaffRmb.RmbStatus.Processed).Count
+
+            Dim adv = (From c In d.AP_Staff_AdvanceRequests Where c.PortalId = thePortalId And c.RequestStatus = StaffRmb.RmbStatus.Processed).Count
+
+            Return rmbs + adv
+
+        End Function
         Public Function LastProcDate(ByVal thePortalId As Integer) As String
             Dim d As New StaffRmb.StaffRmbDataContext
             Dim procRmb = From c In d.AP_Staff_Rmbs Where c.PortalId = thePortalId And c.Status = StaffRmb.RmbStatus.Processed Select c.ProcDate Order By ProcDate Descending
