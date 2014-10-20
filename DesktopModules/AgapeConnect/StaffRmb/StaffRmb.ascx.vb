@@ -1741,6 +1741,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                         End If
 
                         Dim comment As String = CStr(ucType.GetProperty("Comment").GetValue(theControl, Nothing))
+                        line.First.Comment = comment
                         Dim sc = tbShortComment.Text
                         If (sc <> line.First.ShortComment) Then
                             'the short comment was manully changed, so this should take precidence over anything else.
@@ -2217,8 +2218,13 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                 For Each row In (From c In myApprovers.UserIds Where c.UserID <> rmb.First.UserId And c.UserID <> SpouseId)
                     ApprMessage = ApprMessage.Replace("[THISAPPRNAME]", row.DisplayName)
                     'DotNetNuke.Services.Mail.Mail.SendMail("donotreply@agapeconnect.me", row.Email, "donotreply@agape.org.uk", "Rmb#:" & hfRmbNo.Value & " has been approved by " & ObjAppr.DisplayName, ApprMessage, "", "HTML", "", "", "", "")
-                    DotNetNuke.Services.Mail.Mail.SendMail("donotreply@agapeconnect.me", row.Email, "", Translate("EmailApprovedSubjectA").Replace("[RMBNO]", rmb.First.RID).Replace("[APPROVER]", ObjAppr.DisplayName), ApprMessage, "", "HTML", "", "", "", "")
+                    Try
 
+                    
+                    DotNetNuke.Services.Mail.Mail.SendMail("donotreply@agapeconnect.me", row.Email, "", Translate("EmailApprovedSubjectA").Replace("[RMBNO]", rmb.First.RID).Replace("[APPROVER]", ObjAppr.DisplayName), ApprMessage, "", "HTML", "", "", "", "")
+                    Catch ex As Exception
+                        Log(rmb.First.RMBNo, "error sending approved email to approver")
+                    End Try
                 Next
 
 
@@ -2248,7 +2254,12 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                     toEmail &= ";" & Settings("AccountsEmail")
 
                 End If
-                  DotNetNuke.Services.Mail.Mail.SendMail("donotreply@agapeconnect.me", toEmail, "", Translate("EmailApprovedSubjectP").Replace("[RMBNO]", rmb.First.RID).Replace("[USERREF]", rmb.First.UserRef), Emessage, "", "HTML", "", "", "", "")
+                Try
+                    DotNetNuke.Services.Mail.Mail.SendMail("donotreply@agapeconnect.me", toEmail, "", Translate("EmailApprovedSubjectP").Replace("[RMBNO]", rmb.First.RID).Replace("[USERREF]", rmb.First.UserRef), Emessage, "", "HTML", "", "", "", "")
+
+                Catch ex As Exception
+                    Log(rmb.First.RMBNo, "error sending approved email to staff member")
+                End Try
              
 
 
