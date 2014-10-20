@@ -28,6 +28,32 @@ Partial Class DesktopModules_AgapeConnect_gr_mapping_gr_sub
 
 
                     Response.End()
+                ElseIf resp("action") = "merge" Then
+
+                    Dim old_id = resp("old_id")
+                    Dim new_id = resp("new_id")
+                    AgapeLogger.WriteEventLog(0, "Merge From: " & old_id & ", to: " & new_id)
+                    Dim d As New StaffBroker.StaffBrokerDataContext
+                    Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
+                    Dim q = From c In d.UserProfiles Where c.ProfilePropertyDefinition.PortalID = PS.PortalId And c.ProfilePropertyDefinition.PropertyName = "gr_person_id" And c.PropertyValue = old_id
+                    If q.Count > 0 Then
+                        q.First.PropertyValue = new_id
+
+
+                        'The relationship to ministry may have changed.
+                        Dim r = From c In q.First.User.UserProfiles Where c.ProfilePropertyDefinition.PropertyName = "gr_ministry_membership_id"
+                        If r.Count > 0 Then
+                            r.First.PropertyValue = ""
+
+                        End If
+                        d.SubmitChanges()
+
+
+                        AgapeLogger.WriteEventLog(0, "Merged user: " & q.First.User.DisplayName)
+                    End If
+
+
+
 
                 ElseIf resp("action") = "updated" Then
 
@@ -105,7 +131,7 @@ Partial Class DesktopModules_AgapeConnect_gr_mapping_gr_sub
 
 
                 End If
-          
+
             End If
 
 
