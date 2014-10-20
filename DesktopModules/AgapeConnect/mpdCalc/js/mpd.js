@@ -3,7 +3,7 @@
 
 
     $(document).ready(function () {
-        $('.numeric').numeric();
+              $('.numeric').numeric();
 
 
         $('.aButton').button();

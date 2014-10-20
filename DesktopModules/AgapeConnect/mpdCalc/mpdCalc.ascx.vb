@@ -19,8 +19,8 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
         Const GR_MPDGOAL_ID_STAGE = "e5a338f8-0c2b-11e4-b27c-12c37bb2d521"
         Const GR_MPDEXPENSE_ID_STAGE = "1e2bc398-0c2c-11e4-a651-12c37bb2d521"
-        Const GR_MPDGOAL_ID = "e5a338f8-0c2b-11e4-b27c-12c37bb2d521"
-        Const GR_MPDEXPENSE_ID = "1e2bc398-0c2c-11e4-a651-12c37bb2d521"
+        Const GR_MPDGOAL_ID = "b63003d2-0d9b-11e4-bcd4-12543788cf06"
+        Const GR_MPDEXPENSE_ID = "88077c4c-0d9b-11e4-997d-12543788cf06"
 
 
         Private _age1 As Integer = 0
@@ -394,7 +394,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                     Next
                 Next
                 d.SubmitChanges()
-                If ToStatus = StaffRmb.RmbStatus.Processed Then
+                If bud.First.Status = StaffRmb.RmbStatus.Processed Then
                     'Send to GR
                     Dim gr_server = StaffBrokerFunctions.GetSetting("gr_api_url", PortalId)
                     Dim gr_api_key = StaffBrokerFunctions.GetSetting("gr_api_key", PortalId)
@@ -409,7 +409,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
 
                         Dim mt_expense As New GR_NET.MeasurementType()
-                    
+
 
                         Dim mt_goal As New GR_NET.MeasurementType()
 

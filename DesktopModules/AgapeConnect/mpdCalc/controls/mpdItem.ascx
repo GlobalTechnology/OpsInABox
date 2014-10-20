@@ -22,7 +22,7 @@
         <div class="span2 mpdColumn">
             <div class="input-prepend">
                 <asp:Label ID="lblCur" runat="server" class="add-on"></asp:Label>
-                <asp:TextBox ID="tbMonthly" runat="server" placeholder="Monthly"  type="number" step="any" CssClass="mpdInput numeric monthly" Enabled="false"></asp:TextBox>
+                <asp:TextBox ID="tbMonthly" runat="server" placeholder="Monthly"  type="text" step="any" CssClass="mpdInput numeric monthly" Enabled="false"></asp:TextBox>
                 <asp:Panel ID="pnlNetTax" runat="server" class="net-tax" Visible="False">
                     (+<asp:Label ID="lblNetTax" runat="server" CssClass="net-tax-month">0</asp:Label>
                     tax)
@@ -37,7 +37,7 @@
         <div class="span2 mpdColumn">
             <div class="input-prepend">
                 <asp:Label ID="lblCur2" runat="server" CssClass="add-on"></asp:Label>
-                <asp:TextBox ID="tbYearly" runat="server" placeholder="Yearly" type="number" step="any"  CssClass="mpdInput numeric yearly" Enabled="false" ></asp:TextBox>
+                <asp:TextBox ID="tbYearly" runat="server" placeholder="Yearly" type="text" step="any"  CssClass="mpdInput numeric yearly" Enabled="false" ></asp:TextBox>
                 <asp:Panel ID="pnlNetTax2" runat="server" CssClass="net-tax" Visible="False">
                     (+<asp:Label ID="lblNetTax2" runat="server" CssClass="net-tax-year">0</asp:Label>
                     tax)
