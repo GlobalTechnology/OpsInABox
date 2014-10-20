@@ -75,12 +75,16 @@
     }
 </style>
 
-<h1>
+
+ <asp:Panel  ID="pnlError" runat="server" CssClass="alert" Visible="false">
+      <asp:Label ID="lblError" runat="server" Text="You do not have permissions to view this page"></asp:Label>
+    </asp:Panel>
+
+<div ID="pnlMain" runat="server">
+    <h1>
     <asp:Label ID="lblCountryTitle" runat="server" Text="Label"></asp:Label>
 </h1>
-
-
-<div class="row-fluid">
+    <div class="row-fluid">
     <div class="span7">
           <i>Click on each segment to a list of staff, and then click on a staff member to drill down to their personal MPD dashbaord.</i>
        
@@ -120,7 +124,7 @@
                 <ItemTemplate>
                     <div>
                     <asp:Hyperlink runat="server"  ID="Hyperlink1"  NavigateUrl='<%# EditUrl("staffDashboard") & "?mpd_user_id=" & Eval("AP_mpd_UserId") & "&country=" & Request.QueryString("country")%>'    Text='<%# Eval("Name")%>'  ></asp:Hyperlink>
-                         <asp:Hyperlink runat="server"  ID="Label2"  NavigateUrl='<%# EditUrl("staffDashboard") & "?mpd_user_id=" & Eval("AP_mpd_UserId") & "&country=" & Request.QueryString("country")%>'   Text='<%# (CDbl(Eval(IIf(UsingEstimates, "EstSupLevel12", "AvgSupLevel12"))) * 100).ToString("0.00") & "%"%>'   ></asp:Hyperlink>
+                         <asp:Hyperlink runat="server"  ID="Label2"  NavigateUrl='<%# EditUrl("staffDashboard") & "?mpd_user_id=" & Eval("AP_mpd_UserId") & "&country=" & Request.QueryString("country")%>'   Text='<%# (CDbl(Eval(IIf(UsingEstimates, "EstSupLevel12", "AvgSupLevel12"))) * 100).ToString("0") & "%"%>'   ></asp:Hyperlink>
                         </div>
                 </ItemTemplate>
 
@@ -134,7 +138,7 @@
                 <ItemTemplate>
                     <div>
                         <asp:Hyperlink runat="server"  ID="Hyperlink1"  NavigateUrl='<%# EditUrl("staffDashboard") & "?mpd_user_id=" & Eval("AP_mpd_UserId") & "&country=" & Request.QueryString("country")%>'    Text='<%# Eval("Name")%>' ></asp:Hyperlink>
-                         <asp:Hyperlink runat="server"  ID="Label2"  NavigateUrl='<%# EditUrl("staffDashboard") & "?mpd_user_id=" & Eval("AP_mpd_UserId") & "&country=" & Request.QueryString("country")%>'   Text='<%# (CDbl(Eval(IIf(UsingEstimates, "EstSupLevel12", "AvgSupLevel12"))) * 100).ToString("0.00") & "%"%>'  ></asp:Hyperlink>
+                         <asp:Hyperlink runat="server"  ID="Label2"  NavigateUrl='<%# EditUrl("staffDashboard") & "?mpd_user_id=" & Eval("AP_mpd_UserId") & "&country=" & Request.QueryString("country")%>'   Text='<%# (CDbl(Eval(IIf(UsingEstimates, "EstSupLevel12", "AvgSupLevel12"))) * 100).ToString("0") & "%"%>'  ></asp:Hyperlink>
                     </div>
                 </ItemTemplate>
 
@@ -148,7 +152,7 @@
                 <ItemTemplate>
                     <div>
                         <asp:Hyperlink runat="server"  ID="Hyperlink1"  NavigateUrl='<%# EditUrl("staffDashboard") & "?mpd_user_id=" & Eval("AP_mpd_UserId") & "&country=" & Request.QueryString("country")%>'    Text='<%# Eval("Name")%>' ></asp:Hyperlink>
-                         <asp:Hyperlink runat="server"  ID="Label2"  NavigateUrl='<%# EditUrl("staffDashboard") & "?mpd_user_id=" & Eval("AP_mpd_UserId") & "&country=" & Request.QueryString("country")%>'   Text='<%# (CDbl(Eval(IIf(UsingEstimates, "EstSupLevel12", "AvgSupLevel12"))) * 100).ToString("0.00") & "%"%>'  ></asp:Hyperlink>
+                         <asp:Hyperlink runat="server"  ID="Label2"  NavigateUrl='<%# EditUrl("staffDashboard") & "?mpd_user_id=" & Eval("AP_mpd_UserId") & "&country=" & Request.QueryString("country")%>'   Text='<%# (CDbl(Eval(IIf(UsingEstimates, "EstSupLevel12", "AvgSupLevel12"))) * 100).ToString("0") & "%"%>'  ></asp:Hyperlink>
                     </div>
                 </ItemTemplate>
 
@@ -162,7 +166,7 @@
                 <ItemTemplate>
                     <div>
                         <asp:Hyperlink runat="server"  ID="Hyperlink1"  NavigateUrl='<%# EditUrl("staffDashboard") & "?mpd_user_id=" & Eval("AP_mpd_UserId") & "&country=" & Request.QueryString("country")%>'    Text='<%# Eval("Name")%>' ></asp:Hyperlink>
-                         <asp:Hyperlink runat="server"  ID="Label2"  NavigateUrl='<%# EditUrl("staffDashboard") & "?mpd_user_id=" & Eval("AP_mpd_UserId") & "&country=" & Request.QueryString("country")%>'   Text='<%# (CDbl(Eval(IIf(UsingEstimates, "EstSupLevel12", "AvgSupLevel12"))) * 100).ToString("0.00")& "%"%>'  ></asp:Hyperlink>
+                         <asp:Hyperlink runat="server"  ID="Label2"  NavigateUrl='<%# EditUrl("staffDashboard") & "?mpd_user_id=" & Eval("AP_mpd_UserId") & "&country=" & Request.QueryString("country")%>'   Text='<%# (CDbl(Eval(IIf(UsingEstimates, "EstSupLevel12", "AvgSupLevel12"))) * 100).ToString("0") & "%"%>'  ></asp:Hyperlink>
                     </div>
                 </ItemTemplate>
 
@@ -177,7 +181,7 @@
                     <div>
                       
                           <asp:Hyperlink runat="server"  ID="Hyperlink1"  NavigateUrl='<%# EditUrl("staffDashboard") & "?mpd_user_id=" & Eval("AP_mpd_UserId") & "&country=" & Request.QueryString("country")%>'    Text='<%# Eval("Name")%>' ></asp:Hyperlink>
-                         <asp:Hyperlink runat="server"  ID="Label2"  NavigateUrl='<%# EditUrl("staffDashboard") & "?mpd_user_id=" & Eval("AP_mpd_UserId") & "&country=" & Request.QueryString("country")%>'   Text='<%# (CDbl(Eval(IIf(UsingEstimates, "EstSupLevel12", "AvgSupLevel12"))) * 100).ToString("0.00") & "%"%>'  ></asp:Hyperlink>
+                         <asp:Hyperlink runat="server"  ID="Label2"  NavigateUrl='<%# EditUrl("staffDashboard") & "?mpd_user_id=" & Eval("AP_mpd_UserId") & "&country=" & Request.QueryString("country")%>'   Text='<%# (CDbl(Eval(IIf(UsingEstimates, "EstSupLevel12", "AvgSupLevel12"))) * 100).ToString("0") & "%"%>'  ></asp:Hyperlink>
                     </div>
                 </ItemTemplate>
 
@@ -197,8 +201,7 @@
             </asp:Repeater>
         </div>
     </div>
+        </div>
 </div>
 
 
-
-<asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>

@@ -73,7 +73,11 @@
     }
 </style>
 
+ <asp:Panel  ID="pnlError" runat="server" CssClass="alert" Visible="false">
+      <asp:Label ID="lblError" runat="server" Text="You do not have permissions to view this page"></asp:Label>
+    </asp:Panel>
 
+<div ID="pnlMain" runat="server">
 <h2> <asp:Label ID="lblStaffName" runat="server" Text=""></asp:Label></h2>
 <div id="chart_div" style="width: 100%; height: 500px;"></div>
 
@@ -110,3 +114,4 @@
     <asp:Label ID="lblEstimates" runat="server" Visible="false" ForeColor="Gray" Font-Italic="True" Text="*Based on estimated budget - as no budget has been submitted."></asp:Label>
 
 </div>
+    </div>

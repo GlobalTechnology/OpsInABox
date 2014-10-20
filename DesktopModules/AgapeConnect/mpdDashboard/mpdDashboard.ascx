@@ -47,6 +47,14 @@
 
         });
     </script>
+
+ <asp:Panel  ID="pnlError" runat="server" CssClass="alert" Visible="false">
+      <asp:Label ID="lblError" runat="server" Text="You do not have permissions to view this page"></asp:Label>
+    </asp:Panel>
+
+<div ID="pnlMain" runat="server">
+
+
 <i>Select a country on the map, or from the list below the map, to drill-down to a more detailed country report:</i>
 
 <div id="mapchart" style="width: 100%; height: 500px;">
@@ -94,5 +102,4 @@
             </asp:HyperLink>
         </ItemTemplate>
  </asp:Repeater>   </table>
-
-
+    </div>

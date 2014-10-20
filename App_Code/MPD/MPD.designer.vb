@@ -23,7 +23,7 @@ Imports System.Reflection
 
 Namespace MPD
 	
-	<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="dnn_dev")>  _
+	<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="agapeconnect-2014-4-12-18-15")>  _
 	Partial Public Class MPDDataContext
 		Inherits System.Data.Linq.DataContext
 		
@@ -86,10 +86,16 @@ Namespace MPD
     End Sub
     Partial Private Sub Deleteministry_system(instance As ministry_system)
     End Sub
+    Partial Private Sub InsertAP_MPD_CountryAdmin(instance As AP_MPD_CountryAdmin)
+    End Sub
+    Partial Private Sub UpdateAP_MPD_CountryAdmin(instance As AP_MPD_CountryAdmin)
+    End Sub
+    Partial Private Sub DeleteAP_MPD_CountryAdmin(instance As AP_MPD_CountryAdmin)
+    End Sub
     #End Region
 		
 		Public Sub New()
-			MyBase.New(Global.System.Configuration.ConfigurationManager.ConnectionStrings("SiteSqlServer").ConnectionString, mappingSource)
+			MyBase.New(Global.System.Configuration.ConfigurationManager.ConnectionStrings("agapeconnect_2014_4_12_18_15ConnectionString").ConnectionString, mappingSource)
 			OnCreated
 		End Sub
 		
@@ -164,6 +170,12 @@ Namespace MPD
 		Public ReadOnly Property ministry_systems() As System.Data.Linq.Table(Of ministry_system)
 			Get
 				Return Me.GetTable(Of ministry_system)
+			End Get
+		End Property
+		
+		Public ReadOnly Property AP_MPD_CountryAdmins() As System.Data.Linq.Table(Of AP_MPD_CountryAdmin)
+			Get
+				Return Me.GetTable(Of AP_MPD_CountryAdmin)
 			End Get
 		End Property
 	End Class
@@ -2081,6 +2093,8 @@ Namespace MPD
 		
 		Private _Ap_mpd_Users As EntitySet(Of Ap_mpd_User)
 		
+		Private _AP_MPD_CountryAdmins As EntitySet(Of AP_MPD_CountryAdmin)
+		
 		Private _AP_mpdCalc_Definition As EntityRef(Of AP_mpdCalc_Definition)
 		
     #Region "Extensibility Method Definitions"
@@ -2207,6 +2221,7 @@ Namespace MPD
 		Public Sub New()
 			MyBase.New
 			Me._Ap_mpd_Users = New EntitySet(Of Ap_mpd_User)(AddressOf Me.attach_Ap_mpd_Users, AddressOf Me.detach_Ap_mpd_Users)
+			Me._AP_MPD_CountryAdmins = New EntitySet(Of AP_MPD_CountryAdmin)(AddressOf Me.attach_AP_MPD_CountryAdmins, AddressOf Me.detach_AP_MPD_CountryAdmins)
 			Me._AP_mpdCalc_Definition = CType(Nothing, EntityRef(Of AP_mpdCalc_Definition))
 			OnCreated
 		End Sub
@@ -2682,6 +2697,16 @@ Namespace MPD
 			End Set
 		End Property
 		
+		<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="AP_mpd_Country_AP_MPD_CountryAdmin", Storage:="_AP_MPD_CountryAdmins", ThisKey:="mpdCountryId", OtherKey:="ministry_id")>  _
+		Public Property AP_MPD_CountryAdmins() As EntitySet(Of AP_MPD_CountryAdmin)
+			Get
+				Return Me._AP_MPD_CountryAdmins
+			End Get
+			Set
+				Me._AP_MPD_CountryAdmins.Assign(value)
+			End Set
+		End Property
+		
 		<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="AP_mpdCalc_Definition_AP_mpd_Country", Storage:="_AP_mpdCalc_Definition", ThisKey:="mpdDefId", OtherKey:="mpdDefId", IsForeignKey:=true)>  _
 		Public Property AP_mpdCalc_Definition() As AP_mpdCalc_Definition
 			Get
@@ -2734,6 +2759,16 @@ Namespace MPD
 		End Sub
 		
 		Private Sub detach_Ap_mpd_Users(ByVal entity As Ap_mpd_User)
+			Me.SendPropertyChanging
+			entity.AP_mpd_Country = Nothing
+		End Sub
+		
+		Private Sub attach_AP_MPD_CountryAdmins(ByVal entity As AP_MPD_CountryAdmin)
+			Me.SendPropertyChanging
+			entity.AP_mpd_Country = Me
+		End Sub
+		
+		Private Sub detach_AP_MPD_CountryAdmins(ByVal entity As AP_MPD_CountryAdmin)
 			Me.SendPropertyChanging
 			entity.AP_mpd_Country = Nothing
 		End Sub
@@ -4188,6 +4223,147 @@ Namespace MPD
 					Me._fcx = value
 					Me.SendPropertyChanged("fcx")
 					Me.OnfcxChanged
+				End If
+			End Set
+		End Property
+		
+		Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+		
+		Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+		
+		Protected Overridable Sub SendPropertyChanging()
+			If ((Me.PropertyChangingEvent Is Nothing)  _
+						= false) Then
+				RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+			End If
+		End Sub
+		
+		Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+			If ((Me.PropertyChangedEvent Is Nothing)  _
+						= false) Then
+				RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+			End If
+		End Sub
+	End Class
+	
+	<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.AP_MPD_CountryAdmin")>  _
+	Partial Public Class AP_MPD_CountryAdmin
+		Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+		
+		Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+		
+		Private _Id As Long
+		
+		Private _sso_guid As String
+		
+		Private _ministry_id As Integer
+		
+		Private _AP_mpd_Country As EntityRef(Of AP_mpd_Country)
+		
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIdChanging(value As Long)
+    End Sub
+    Partial Private Sub OnIdChanged()
+    End Sub
+    Partial Private Sub Onsso_guidChanging(value As String)
+    End Sub
+    Partial Private Sub Onsso_guidChanged()
+    End Sub
+    Partial Private Sub Onministry_idChanging(value As Integer)
+    End Sub
+    Partial Private Sub Onministry_idChanged()
+    End Sub
+    #End Region
+		
+		Public Sub New()
+			MyBase.New
+			Me._AP_mpd_Country = CType(Nothing, EntityRef(Of AP_mpd_Country))
+			OnCreated
+		End Sub
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Id", AutoSync:=AutoSync.OnInsert, DbType:="BigInt NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+		Public Property Id() As Long
+			Get
+				Return Me._Id
+			End Get
+			Set
+				If ((Me._Id = value)  _
+							= false) Then
+					Me.OnIdChanging(value)
+					Me.SendPropertyChanging
+					Me._Id = value
+					Me.SendPropertyChanged("Id")
+					Me.OnIdChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_sso_guid", DbType:="Char(36) NOT NULL", CanBeNull:=false)>  _
+		Public Property sso_guid() As String
+			Get
+				Return Me._sso_guid
+			End Get
+			Set
+				If (String.Equals(Me._sso_guid, value) = false) Then
+					Me.Onsso_guidChanging(value)
+					Me.SendPropertyChanging
+					Me._sso_guid = value
+					Me.SendPropertyChanged("sso_guid")
+					Me.Onsso_guidChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ministry_id", DbType:="Int NOT NULL")>  _
+		Public Property ministry_id() As Integer
+			Get
+				Return Me._ministry_id
+			End Get
+			Set
+				If ((Me._ministry_id = value)  _
+							= false) Then
+					If Me._AP_mpd_Country.HasLoadedOrAssignedValue Then
+						Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+					End If
+					Me.Onministry_idChanging(value)
+					Me.SendPropertyChanging
+					Me._ministry_id = value
+					Me.SendPropertyChanged("ministry_id")
+					Me.Onministry_idChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="AP_mpd_Country_AP_MPD_CountryAdmin", Storage:="_AP_mpd_Country", ThisKey:="ministry_id", OtherKey:="mpdCountryId", IsForeignKey:=true)>  _
+		Public Property AP_mpd_Country() As AP_mpd_Country
+			Get
+				Return Me._AP_mpd_Country.Entity
+			End Get
+			Set
+				Dim previousValue As AP_mpd_Country = Me._AP_mpd_Country.Entity
+				If ((Object.Equals(previousValue, value) = false)  _
+							OrElse (Me._AP_mpd_Country.HasLoadedOrAssignedValue = false)) Then
+					Me.SendPropertyChanging
+					If ((previousValue Is Nothing)  _
+								= false) Then
+						Me._AP_mpd_Country.Entity = Nothing
+						previousValue.AP_MPD_CountryAdmins.Remove(Me)
+					End If
+					Me._AP_mpd_Country.Entity = value
+					If ((value Is Nothing)  _
+								= false) Then
+						value.AP_MPD_CountryAdmins.Add(Me)
+						Me._ministry_id = value.mpdCountryId
+					Else
+						Me._ministry_id = CType(Nothing, Integer)
+					End If
+					Me.SendPropertyChanged("AP_mpd_Country")
 				End If
 			End Set
 		End Property

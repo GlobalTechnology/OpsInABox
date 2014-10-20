@@ -26,9 +26,25 @@ Namespace DotNetNuke.Modules.AgapeConnect
         Dim ds As New StaffBroker.StaffBrokerDataContext
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
 
+            Dim ssoGuid = UserInfo.Profile.GetPropertyValue("ssoGUID")
 
+            'ssoGuid = "126AA989-238B-2EBD-5BE2-187DA7EDE3B7"  'Beni
+            ' ssoGuid = "109764C9-CD24-CF94-839C-65F41C9C2E5C"  ' Eric
+            'ssoGuid = "C17C80EC-D8C5-484C-0A43-4CE345ADFADF"  ' Tomas
+            'ssoGuid = "1FF92F95-DD56-AFCA-9489-FC6E8F253237" ' Goce
 
             Dim mpdu = (From c In d.Ap_mpd_Users Where c.AP_mpd_UserId = Request.QueryString("mpd_user_id")).First
+
+
+            If String.IsNullOrEmpty(ssoGuid) Or (PortalId <> 2 And mpdu.Key_GUID <> ssoGuid And (mpdu.AP_mpd_Country.AP_MPD_CountryAdmins.Where(Function(c) c.sso_guid = ssoGuid).Count = 0)) Then
+                'TODO display error message
+                pnlError.Visible = True
+                pnlMain.Visible = False
+                Return
+            End If
+
+
+
             lblStaffName.Text = mpdu.Name
             Dim incomeData = (From c In mpdu.AP_mpd_UserAccountInfos Where c.period >= Today.AddMonths(-13).ToString("yyyy-MM")).ToList
 

@@ -21,30 +21,60 @@ Namespace DotNetNuke.Modules.AgapeConnect
         Public jsonPI = ""
         Public jsonLi = ""
 
-        Dim d As New MPDDataContext
+        Dim d As New MPDDataContext()
+
         Dim Pid As Integer = -1
         Dim ds As New StaffBroker.StaffBrokerDataContext
         Public UsingEstimates As Boolean = False
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
-            
             If Not Page.IsPostBack Then
+                Dim ssoGuid = UserInfo.Profile.GetPropertyValue("ssoGUID")
+
+                'ssoGuid = "126AA989-238B-2EBD-5BE2-187DA7EDE3B7"  'Beni
+                ' ssoGuid = "109764C9-CD24-CF94-839C-65F41C9C2E5C"  ' Eric
+                'ssoGuid = "C17C80EC-D8C5-484C-0A43-4CE345ADFADF"  ' Tomas
+                'ssoGuid = "1FF92F95-DD56-AFCA-9489-FC6E8F253237" ' Goce
+
                 Dim thisCountry = (From c In d.AP_mpd_Countries Where c.isoCode = Request.QueryString("country")).FirstOrDefault
+                If String.IsNullOrEmpty(ssoGuid) Or (PortalId <> 2 And (thisCountry.AP_MPD_CountryAdmins.Where(Function(c) c.sso_guid = ssoGuid).Count = 0)) Then
+                    'TODO display error message
+                    pnlError.Visible = True
+                    pnlMain.Visible = False
+                    Return
+                End If
+
+
+
+
+
+                If Request.QueryString("StaffId") <> "" Then
+                    Response.Redirect(EditUrl("staffDashboard") & "?staffId=" & Request.QueryString("StaffId"))
+                End If
+
+
+
+
+
+
+
 
                 If Not thisCountry Is Nothing Then
                     ShowReport(thisCountry, thisCountry.VeryLowCount + thisCountry.LowCount + thisCountry.HighCount + thisCountry.FullCount = 0)
                 End If
 
             End If
-           
+
 
         End Sub
 
         Public Sub ShowReport(ByVal thisCountry As MPD.AP_mpd_Country, ByVal UseEstimates As Boolean)
+
+
             UsingEstimates = UseEstimates
             ' Dim thisCountry = From c In d.AP_mpd_Countries Where c.isoCode = Request.QueryString("country")
             lblEstimatedBudgets.Visible = UseEstimates
             btnShowEstimatedBudgets.Text = IIf(UseEstimates, "Don't use estimated budgets", "Use estimated budgets")
-        
+
 
 
             lblCountryTitle.Text = thisCountry.name
@@ -53,55 +83,57 @@ Namespace DotNetNuke.Modules.AgapeConnect
             jsonPI &= "['50-80% Raised', " & IIf(UseEstimates, thisCountry.EstLowCount, thisCountry.LowCount) & "],"
             jsonPI &= "['<50% Raised', " & IIf(UseEstimates, thisCountry.EstVeryLowCount, thisCountry.VeryLowCount) & "],"
             jsonPI &= "['No Budget', " & IIf(UseEstimates, 0, thisCountry.NoBudgetCount) & "]"
-                jsonLi = ""
+            jsonLi = ""
 
-                lblAvgSupport.Text = 0
+            lblAvgSupport.Text = 0
 
             lblAvgSupport.Text = CDbl(IIf(UseEstimates, thisCountry.EstAvgSupport12.Value, thisCountry.AvgSupport12.Value)).ToString("0.0%")
             lblBdgVsAct.Text = thisCountry.BudgetAccuracy.Value.ToString("0.0%")
             lblBdgVsActLabel.Text = IIf(thisCountry.BudgetAccuracy > 1.0, "(budgets under-estimated expenses)", "(budgets over-estimated expenses)")
 
 
+           
 
-
-
-                If UseEstimates Then
-                rpLessThan50.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.EstSupLevel12 < 0.5)
-                rpLow.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.EstSupLevel12 >= 0.5 And c.EstSupLevel12 < 0.8)
-                rpHigh.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.EstSupLevel12 >= 0.8 And c.EstSupLevel12 < 1.0)
-                rpFull.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.EstSupLevel12 >= 1.0)
+            If UseEstimates Then
+                rpLessThan50.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.EstSupLevel12 < 0.5).OrderBy(Function(c) c.Name)
+                rpLow.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.EstSupLevel12 >= 0.5 And c.EstSupLevel12 < 0.8).OrderBy(Function(c) c.Name)
+                rpHigh.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.EstSupLevel12 >= 0.8 And c.EstSupLevel12 < 1.0).OrderBy(Function(c) c.Name)
+                rpFull.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.EstSupLevel12 >= 1.0).OrderBy(Function(c) c.Name)
 
 
                 rpNone.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) False)
-                Else
-                rpLessThan50.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.AvgExpenseBudget12 <> 0 And c.AvgSupLevel12 < 0.5).Select(Function(c) New With {.Name = c.Name, .StaffId = c.StaffId, .SupLev = c.AvgSupLevel12})
-                rpLow.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.AvgExpenseBudget12 <> 0 And c.AvgSupLevel12 >= 0.5 And c.AvgSupLevel12 < 0.8).Select(Function(c) New With {.Name = c.Name, .StaffId = c.StaffId, .SupLev = c.AvgSupLevel12})
-                rpHigh.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.AvgExpenseBudget12 <> 0 And c.AvgSupLevel12 >= 0.8 And c.AvgSupLevel12 < 1.0).Select(Function(c) New With {.Name = c.Name, .StaffId = c.StaffId, .SupLev = c.AvgSupLevel12})
-                rpFull.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.AvgExpenseBudget12 <> 0 And c.AvgSupLevel12 >= 1.0).Select(Function(c) New With {.Name = c.Name, .StaffId = c.StaffId, .SupLev = c.AvgSupLevel12})
+            Else
+                rpLessThan50.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.AvgExpenseBudget12 <> 0 And c.AvgSupLevel12 < 0.5).OrderBy(Function(c) c.Name) '.Select(Function(c) New With {.Name = c.Name, .StaffId = c.StaffId, .SupLev = c.AvgSupLevel12})
+                rpLow.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.AvgExpenseBudget12 <> 0 And c.AvgSupLevel12 >= 0.5 And c.AvgSupLevel12 < 0.8).OrderBy(Function(c) c.Name)  '.Select(Function(c) New With {.Name = c.Name, .StaffId = c.StaffId, .SupLev = c.AvgSupLevel12})
+                rpHigh.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.AvgExpenseBudget12 <> 0 And c.AvgSupLevel12 >= 0.8 And c.AvgSupLevel12 < 1.0).OrderBy(Function(c) c.Name)  '.Select(Function(c) New With {.Name = c.Name, .StaffId = c.StaffId, .SupLev = c.AvgSupLevel12})
+                rpFull.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.AvgExpenseBudget12 <> 0 And c.AvgSupLevel12 >= 1.0).OrderBy(Function(c) c.Name)  '.Select(Function(c) New With {.Name = c.Name, .StaffId = c.StaffId, .SupLev = c.AvgSupLevel12})
 
-                rpNone.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.AvgExpenseBudget12 = 0)
-                End If
+                rpNone.DataSource = thisCountry.Ap_mpd_Users.Where(Function(c) c.AvgExpenseBudget12 = 0).OrderBy(Function(c) c.Name)
+            End If
 
 
-                rpNone.DataBind()
-                rpLessThan50.DataBind()
-                rpLow.DataBind()
+            rpNone.DataBind()
 
-                rpHigh.DataBind()
-                rpFull.DataBind()
+            rpLessThan50.DataBind()
+
+            rpLow.DataBind()
+
+            rpHigh.DataBind()
+            rpFull.DataBind()
+
 
 
             Dim lastPeriod As String = d.AP_mpd_UserAccountInfos.Where(Function(c) c.mpdCountryId = thisCountry.mpdCountryId And c.income > 0).Max(Function(c) c.period)
-                If String.IsNullOrEmpty(lastPeriod) Then
-                    lastPeriod = Today.ToString("yyyyMM")
-                End If
-                Dim LastPeriodDate = New Date(CInt(Left(lastPeriod, 4)), CInt(Right(lastPeriod, 2)), 1)
+            If String.IsNullOrEmpty(lastPeriod) Then
+                lastPeriod = Today.ToString("yyyyMM")
+            End If
+            Dim LastPeriodDate = New Date(CInt(Left(lastPeriod, 4)), CInt(Right(lastPeriod, 2)), 1)
 
             Dim firstPeriod As String = LastPeriodDate.AddMonths(-12).ToString("yyyy-MM")
             Dim quateerPeriod As String = LastPeriodDate.AddMonths(-3).ToString("yyyy-MM")
             Dim monthPeriod As String = LastPeriodDate.AddMonths(-1).ToString("yyyy-MM")
 
-                ' Label3.Text = lastPeriod
+            ' Label3.Text = lastPeriod
 
             If UseEstimates Then
                 Dim incomeData = (From c In d.AP_mpd_UserAccountInfos Where c.mpdCountryId = thisCountry.mpdCountryId And c.period >= firstPeriod And c.period <= lastPeriod _
