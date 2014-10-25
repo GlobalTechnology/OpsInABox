@@ -1,5 +1,7 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="False" CodeFile="staffDashboard.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.staffDashboard" %>
 <%@ Register Src="~/controls/labelcontrol.ascx" TagName="labelcontrol" TagPrefix="uc1" %>
+<%@ Register Src="~/DesktopModules/AgapeConnect/mpdDashboard/controls/mpdDashboardMenu.ascx" TagPrefix="uc1" TagName="mpdDashboardMenu" %>
+
 <link href="/Portals/_default/Skins/AgapeBlue/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <script src="/Portals/_default/Skins/AgapeBlue/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -64,7 +66,10 @@
 
 
     }
-
+    $(function () {
+        $('.dropdown-toggle').dropdown();
+        //$('#addStaffAccount').appendTo("body");
+    });
    
 </script>
 <style type="text/css">
@@ -78,6 +83,8 @@
     </asp:Panel>
 
 <div ID="pnlMain" runat="server">
+    <uc1:mpdDashboardMenu runat="server" ID="mpdDashboardMenu"/>
+    <asp:HyperLink ID="hlBack" runat="server"></asp:HyperLink>
 <h2> <asp:Label ID="lblStaffName" runat="server" Text=""></asp:Label></h2>
 <div id="chart_div" style="width: 100%; height: 500px;"></div>
 
@@ -88,7 +95,16 @@
     </div>
 
 <div class="span3">
+     <h3> MPD Analysis:</h3>
+    <div>
+         <asp:Image ID="imgMpdHealth" runat="server"  CssClass="span3"/>
+            <asp:Label ID="lblMpdHealth" runat="server" CssClass="span9"></asp:Label>
+
+      </div>
+    <div style="clear: both;" />
+
    <h3> Average Support:</h3>
+    
     Over the past:
     <table style="font-size: x-large;" cellpadding="10">
         <tr>
@@ -115,3 +131,6 @@
 
 </div>
     </div>
+
+
+

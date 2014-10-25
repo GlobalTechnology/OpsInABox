@@ -1,7 +1,29 @@
 ﻿Imports Microsoft.VisualBasic
 
 Public Class mpdFunctions
+    Public Shared Function GetViewOptions(ByVal sso_code As String) As List(Of ListItem)
+        Dim rtn As New List(Of ListItem)
+        Dim d As New MPD.MPDDataContext
+        Dim countries = (From c In d.AP_MPD_CountryAdmins Where c.sso_guid = sso_code).Count > 0
+        If countries Then
+            rtn.Add(New ListItem("Country Dashboard", "global"))
+        End If
 
+        Dim leaders = (From c In d.ap_mpd_user_reportings Where c.leader_sso_guid = sso_code).Count > 0
+        If leaders Then
+            rtn.Add(New ListItem("Team MPD Dashboard", "team"))
+        End If
+
+
+        Dim mpd_users = (From c In d.Ap_mpd_Users Where c.Key_GUID = sso_code)
+        For Each row In mpd_users
+            rtn.Add(New ListItem("Your own staff account (" & row.AP_mpd_Country.name & ")", "U" & row.AP_mpd_UserId))
+
+        Next
+
+
+        Return rtn
+    End Function
 
     Public Shared Function CreateNewDef(ByVal PortalId As Integer, ByVal TabModuleId As Integer) As MPD.AP_mpdCalc_Definition
         Dim d As New MPD.MPDDataContext

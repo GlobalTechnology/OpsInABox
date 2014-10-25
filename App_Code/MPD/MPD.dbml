@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="agapeconnect-2014-4-12-18-15" Class="MPDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=tcp:lhyw8k0s0l.database.windows.net,1433;Initial Catalog=agapeconnect-2014-4-12-18-15;Persist Security Info=True;User ID=agapeconnect@lhyw8k0s0l" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="agapeconnect_2014_4_12_18_15ConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=dnn_dev;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AP_mpdCalc_Definition" Member="AP_mpdCalc_Definitions">
     <Type Name="AP_mpdCalc_Definition">
       <Column Name="mpdDefId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -121,6 +121,7 @@
       <Column Name="EstAvgSupport12" Type="System.Decimal" DbType="Money" CanBeNull="true" />
       <Column Name="EstAvgSupport3" Type="System.Decimal" DbType="Money" CanBeNull="true" />
       <Column Name="EstAvgSupport1" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Area" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
       <Association Name="AP_mpd_Country_Ap_mpd_User" Member="Ap_mpd_Users" ThisKey="mpdCountryId" OtherKey="mpdCountryId" Type="Ap_mpd_User" />
       <Association Name="AP_mpd_Country_AP_MPD_CountryAdmin" Member="AP_MPD_CountryAdmins" ThisKey="mpdCountryId" OtherKey="ministry_id" Type="AP_MPD_CountryAdmin" />
       <Association Name="AP_mpdCalc_Definition_AP_mpd_Country" Member="AP_mpdCalc_Definition" ThisKey="mpdDefId" OtherKey="mpdDefId" Type="AP_mpdCalc_Definition" IsForeignKey="true" />
@@ -203,6 +204,21 @@
       <Column Name="sso_guid" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
       <Column Name="ministry_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="AP_mpd_Country_AP_MPD_CountryAdmin" Member="AP_mpd_Country" ThisKey="ministry_id" OtherKey="mpdCountryId" Type="AP_mpd_Country" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ap_mpd_user_reporting" Member="ap_mpd_user_reportings">
+    <Type Name="ap_mpd_user_reporting">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="mpd_user_id" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="mpd_leader_id" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="leader_sso_guid" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_mpd_AreaAdmins" Member="AP_mpd_AreaAdmins">
+    <Type Name="AP_mpd_AreaAdmin">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="area" Type="System.String" DbType="NVarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="sso_guid" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

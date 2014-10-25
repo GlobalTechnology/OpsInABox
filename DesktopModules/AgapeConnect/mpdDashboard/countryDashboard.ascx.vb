@@ -26,43 +26,115 @@ Namespace DotNetNuke.Modules.AgapeConnect
         Dim Pid As Integer = -1
         Dim ds As New StaffBroker.StaffBrokerDataContext
         Public UsingEstimates As Boolean = False
+        Public team_mode As Boolean = False
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
             If Not Page.IsPostBack Then
                 Dim ssoGuid = UserInfo.Profile.GetPropertyValue("ssoGUID")
 
-                'ssoGuid = "126AA989-238B-2EBD-5BE2-187DA7EDE3B7"  'Beni
+                ' ssoGuid = "126AA989-238B-2EBD-5BE2-187DA7EDE3B7"  'Beni
                 ' ssoGuid = "109764C9-CD24-CF94-839C-65F41C9C2E5C"  ' Eric
                 'ssoGuid = "C17C80EC-D8C5-484C-0A43-4CE345ADFADF"  ' Tomas
                 'ssoGuid = "1FF92F95-DD56-AFCA-9489-FC6E8F253237" ' Goce
+                'ssoGuid = "3925839A-F828-4087-8223-816DE32A7BAF" 'Chontelle
+                mpdDashboardMenu.CountryURL = EditUrl("countryDashboard")
+                mpdDashboardMenu.StaffUrl = EditUrl("staffDashboard")
 
-                Dim thisCountry = (From c In d.AP_mpd_Countries Where c.isoCode = Request.QueryString("country")).FirstOrDefault
-                If String.IsNullOrEmpty(ssoGuid) Or (PortalId <> 2 And (thisCountry.AP_MPD_CountryAdmins.Where(Function(c) c.sso_guid = ssoGuid).Count = 0)) Then
-                    'TODO display error message
-                    pnlError.Visible = True
-                    pnlMain.Visible = False
-                    Return
+                mpdDashboardMenu.ssoGuid = ssoGuid
+
+                If Request.QueryString("country") = "team" Then
+                    'team mode
+                    team_mode = True
+                    mpd_summary.Visible = False
+                    ShowTeam(ssoGuid, False, True)
+                Else
+                    Dim thisCountry = (From c In d.AP_mpd_Countries Where c.isoCode = Request.QueryString("country")).FirstOrDefault
+                    If String.IsNullOrEmpty(ssoGuid) Or (d.AP_mpd_AreaAdmins.Where(Function(c) c.area = thisCountry.Area And c.sso_guid = ssoGuid).Count = 0 And (thisCountry.AP_MPD_CountryAdmins.Where(Function(c) c.sso_guid = ssoGuid).Count = 0)) Then
+                        'TODO display error message
+                        pnlError.Visible = True
+                        pnlMain.Visible = False
+                        Return
+                    End If
+
+
+
+
+
+                    If Request.QueryString("StaffId") <> "" Then
+                        Response.Redirect(EditUrl("staffDashboard") & "?staffId=" & Request.QueryString("StaffId"))
+                    End If
+
+
+
+
+
+
+
+
+                    If Not thisCountry Is Nothing Then
+                        ShowReport(thisCountry, thisCountry.VeryLowCount + thisCountry.LowCount + thisCountry.HighCount + thisCountry.FullCount = 0)
+                    End If
+
+
                 End If
 
 
-
-
-
-                If Request.QueryString("StaffId") <> "" Then
-                    Response.Redirect(EditUrl("staffDashboard") & "?staffId=" & Request.QueryString("StaffId"))
-                End If
-
-
-
-
-
-
-
-
-                If Not thisCountry Is Nothing Then
-                    ShowReport(thisCountry, thisCountry.VeryLowCount + thisCountry.LowCount + thisCountry.HighCount + thisCountry.FullCount = 0)
-                End If
+           
 
             End If
+
+
+        End Sub
+
+        Public Sub ShowTeam(ByVal ssoGuid As String, ByVal UseEstimates As Boolean, ByVal first_time As Boolean)
+
+            ' Dim thisCountry = From c In d.AP_mpd_Countries Where c.isoCode = Request.QueryString("country")
+            lblEstimatedBudgets.Visible = UseEstimates
+            btnShowEstimatedBudgets.Text = IIf(UseEstimates, "Don't use estimated budgets", "Use estimated budgets")
+
+            mpdDashboardMenu.Title = "Team Report for " & UserInfo.DisplayName
+            mpdDashboardMenu.Mode = DesktopModules_AgapeConnect_mpdCalc_controls_mpdAdmin.mpdMenuMode.Team
+            Dim team_ids = From c In d.ap_mpd_user_reportings Where c.leader_sso_guid = ssoGuid Select c.mpd_user_id
+
+            Dim team = From c In d.Ap_mpd_Users Where team_ids.Contains(c.gr_person_id)
+
+            If first_time And team.Where(Function(c) c.AvgExpenseBudget12 <> 0).Count = 0 Then
+                UseEstimates = True
+
+            End If
+            UsingEstimates = UseEstimates
+
+            jsonPI = "['>100% Raised', " & IIf(UseEstimates, team.Where(Function(c) c.EstSupLevel12 >= 1.0).Count, team.Where(Function(c) c.AvgExpenseBudget12 <> 0 And c.AvgSupLevel12 >= 1.0).Count) & "],"
+            jsonPI &= "['80-100% Raised', " & IIf(UseEstimates, team.Where(Function(c) c.EstSupLevel12 >= 0.8 And c.EstSupLevel12 < 1.0).Count, team.Where(Function(c) c.AvgExpenseBudget12 <> 0 And c.AvgSupLevel12 >= 0.8 And c.AvgSupLevel12 < 1.0).Count) & "],"
+            jsonPI &= "['50-80% Raised', " & IIf(UseEstimates, team.Where(Function(c) c.EstSupLevel12 >= 0.5 And c.EstSupLevel12 < 0.8).Count, team.Where(Function(c) c.AvgExpenseBudget12 <> 0 And c.AvgSupLevel12 >= 0.6 And c.AvgSupLevel12 < 0.8).Count) & "],"
+            jsonPI &= "['<50% Raised', " & IIf(UseEstimates, team.Where(Function(c) c.EstSupLevel12 < 0.5).Count, team.Where(Function(c) c.AvgExpenseBudget12 <> 0 And c.AvgSupLevel12 < 0.5).Count) & "],"
+            jsonPI &= "['No Budget', " & IIf(UseEstimates, 0, team.Where(Function(c) c.AvgExpenseBudget12 = 0).Count) & "]"
+            jsonLi = ""
+            If UseEstimates Then
+                rpLessThan50.DataSource = team.Where(Function(c) c.EstSupLevel12 < 0.5).OrderBy(Function(c) c.Name)
+                rpLow.DataSource = team.Where(Function(c) c.EstSupLevel12 >= 0.5 And c.EstSupLevel12 < 0.8).OrderBy(Function(c) c.Name)
+                rpHigh.DataSource = team.Where(Function(c) c.EstSupLevel12 >= 0.8 And c.EstSupLevel12 < 1.0).OrderBy(Function(c) c.Name)
+                rpFull.DataSource = team.Where(Function(c) c.EstSupLevel12 >= 1.0).OrderBy(Function(c) c.Name)
+
+
+                rpNone.DataSource = team.Where(Function(c) False)
+            Else
+                rpLessThan50.DataSource = team.Where(Function(c) c.AvgExpenseBudget12 <> 0 And c.AvgSupLevel12 < 0.5).OrderBy(Function(c) c.Name) '.Select(Function(c) New With {.Name = c.Name, .StaffId = c.StaffId, .SupLev = c.AvgSupLevel12})
+                rpLow.DataSource = team.Where(Function(c) c.AvgExpenseBudget12 <> 0 And c.AvgSupLevel12 >= 0.5 And c.AvgSupLevel12 < 0.8).OrderBy(Function(c) c.Name)  '.Select(Function(c) New With {.Name = c.Name, .StaffId = c.StaffId, .SupLev = c.AvgSupLevel12})
+                rpHigh.DataSource = team.Where(Function(c) c.AvgExpenseBudget12 <> 0 And c.AvgSupLevel12 >= 0.8 And c.AvgSupLevel12 < 1.0).OrderBy(Function(c) c.Name)  '.Select(Function(c) New With {.Name = c.Name, .StaffId = c.StaffId, .SupLev = c.AvgSupLevel12})
+                rpFull.DataSource = team.Where(Function(c) c.AvgExpenseBudget12 <> 0 And c.AvgSupLevel12 >= 1.0).OrderBy(Function(c) c.Name)  '.Select(Function(c) New With {.Name = c.Name, .StaffId = c.StaffId, .SupLev = c.AvgSupLevel12})
+
+                rpNone.DataSource = team.Where(Function(c) c.AvgExpenseBudget12 = 0).OrderBy(Function(c) c.Name)
+            End If
+
+            rpNone.DataBind()
+
+            rpLessThan50.DataBind()
+
+            rpLow.DataBind()
+
+            rpHigh.DataBind()
+            rpFull.DataBind()
+
 
 
         End Sub
@@ -77,7 +149,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
 
 
-            lblCountryTitle.Text = thisCountry.name
+            mpdDashboardMenu.Title = thisCountry.name
             jsonPI = "['>100% Raised', " & IIf(UseEstimates, thisCountry.EstFullCount, thisCountry.FullCount) & "],"
             jsonPI &= "['80-100% Raised', " & IIf(UseEstimates, thisCountry.EstHighCount, thisCountry.HighCount) & "],"
             jsonPI &= "['50-80% Raised', " & IIf(UseEstimates, thisCountry.EstLowCount, thisCountry.LowCount) & "],"
@@ -194,12 +266,18 @@ Namespace DotNetNuke.Modules.AgapeConnect
         End Function
 
         Protected Sub btnShowEstimatedBudgets_Click(sender As Object, e As EventArgs) Handles btnShowEstimatedBudgets.Click
+            If Request.QueryString("country") = "team" Then
 
-            Dim thisCountry = (From c In d.AP_mpd_Countries Where c.isoCode = Request.QueryString("country")).FirstOrDefault
-            If Not thisCountry Is Nothing Then
-                ShowReport(thisCountry, Not btnShowEstimatedBudgets.Text.Contains("Don't"))
-               
+                Dim ssoGuid = UserInfo.Profile.GetPropertyValue("ssoGUID")
+                ShowTeam(ssoGuid, Not btnShowEstimatedBudgets.Text.Contains("Don't"), False)
+            Else
+                Dim thisCountry = (From c In d.AP_mpd_Countries Where c.isoCode = Request.QueryString("country")).FirstOrDefault
+                If Not thisCountry Is Nothing Then
+                    ShowReport(thisCountry, Not btnShowEstimatedBudgets.Text.Contains("Don't"))
+
+                End If
             End If
+            
         End Sub
     End Class
 End Namespace

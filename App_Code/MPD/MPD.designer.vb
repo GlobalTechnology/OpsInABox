@@ -92,10 +92,22 @@ Namespace MPD
     End Sub
     Partial Private Sub DeleteAP_MPD_CountryAdmin(instance As AP_MPD_CountryAdmin)
     End Sub
+    Partial Private Sub Insertap_mpd_user_reporting(instance As ap_mpd_user_reporting)
+    End Sub
+    Partial Private Sub Updateap_mpd_user_reporting(instance As ap_mpd_user_reporting)
+    End Sub
+    Partial Private Sub Deleteap_mpd_user_reporting(instance As ap_mpd_user_reporting)
+    End Sub
+    Partial Private Sub InsertAP_mpd_AreaAdmin(instance As AP_mpd_AreaAdmin)
+    End Sub
+    Partial Private Sub UpdateAP_mpd_AreaAdmin(instance As AP_mpd_AreaAdmin)
+    End Sub
+    Partial Private Sub DeleteAP_mpd_AreaAdmin(instance As AP_mpd_AreaAdmin)
+    End Sub
     #End Region
 		
 		Public Sub New()
-			MyBase.New(Global.System.Configuration.ConfigurationManager.ConnectionStrings("agapeconnect_2014_4_12_18_15ConnectionString").ConnectionString, mappingSource)
+			MyBase.New(Global.System.Configuration.ConfigurationManager.ConnectionStrings("SiteSqlServer").ConnectionString, mappingSource)
 			OnCreated
 		End Sub
 		
@@ -176,6 +188,18 @@ Namespace MPD
 		Public ReadOnly Property AP_MPD_CountryAdmins() As System.Data.Linq.Table(Of AP_MPD_CountryAdmin)
 			Get
 				Return Me.GetTable(Of AP_MPD_CountryAdmin)
+			End Get
+		End Property
+		
+		Public ReadOnly Property ap_mpd_user_reportings() As System.Data.Linq.Table(Of ap_mpd_user_reporting)
+			Get
+				Return Me.GetTable(Of ap_mpd_user_reporting)
+			End Get
+		End Property
+		
+		Public ReadOnly Property AP_mpd_AreaAdmins() As System.Data.Linq.Table(Of AP_mpd_AreaAdmin)
+			Get
+				Return Me.GetTable(Of AP_mpd_AreaAdmin)
 			End Get
 		End Property
 	End Class
@@ -2091,6 +2115,8 @@ Namespace MPD
 		
 		Private _EstAvgSupport1 As System.Nullable(Of Decimal)
 		
+		Private _Area As String
+		
 		Private _Ap_mpd_Users As EntitySet(Of Ap_mpd_User)
 		
 		Private _AP_MPD_CountryAdmins As EntitySet(Of AP_MPD_CountryAdmin)
@@ -2215,6 +2241,10 @@ Namespace MPD
     Partial Private Sub OnEstAvgSupport1Changing(value As System.Nullable(Of Decimal))
     End Sub
     Partial Private Sub OnEstAvgSupport1Changed()
+    End Sub
+    Partial Private Sub OnAreaChanging(value As String)
+    End Sub
+    Partial Private Sub OnAreaChanged()
     End Sub
     #End Region
 		
@@ -2683,6 +2713,22 @@ Namespace MPD
 					Me._EstAvgSupport1 = value
 					Me.SendPropertyChanged("EstAvgSupport1")
 					Me.OnEstAvgSupport1Changed
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Area", DbType:="NVarChar(16)")>  _
+		Public Property Area() As String
+			Get
+				Return Me._Area
+			End Get
+			Set
+				If (String.Equals(Me._Area, value) = false) Then
+					Me.OnAreaChanging(value)
+					Me.SendPropertyChanging
+					Me._Area = value
+					Me.SendPropertyChanged("Area")
+					Me.OnAreaChanged
 				End If
 			End Set
 		End Property
@@ -4364,6 +4410,240 @@ Namespace MPD
 						Me._ministry_id = CType(Nothing, Integer)
 					End If
 					Me.SendPropertyChanged("AP_mpd_Country")
+				End If
+			End Set
+		End Property
+		
+		Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+		
+		Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+		
+		Protected Overridable Sub SendPropertyChanging()
+			If ((Me.PropertyChangingEvent Is Nothing)  _
+						= false) Then
+				RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+			End If
+		End Sub
+		
+		Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+			If ((Me.PropertyChangedEvent Is Nothing)  _
+						= false) Then
+				RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+			End If
+		End Sub
+	End Class
+	
+	<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ap_mpd_user_reporting")>  _
+	Partial Public Class ap_mpd_user_reporting
+		Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+		
+		Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+		
+		Private _Id As Long
+		
+		Private _mpd_user_id As String
+		
+		Private _mpd_leader_id As String
+		
+		Private _leader_sso_guid As String
+		
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIdChanging(value As Long)
+    End Sub
+    Partial Private Sub OnIdChanged()
+    End Sub
+    Partial Private Sub Onmpd_user_idChanging(value As String)
+    End Sub
+    Partial Private Sub Onmpd_user_idChanged()
+    End Sub
+    Partial Private Sub Onmpd_leader_idChanging(value As String)
+    End Sub
+    Partial Private Sub Onmpd_leader_idChanged()
+    End Sub
+    Partial Private Sub Onleader_sso_guidChanging(value As String)
+    End Sub
+    Partial Private Sub Onleader_sso_guidChanged()
+    End Sub
+    #End Region
+		
+		Public Sub New()
+			MyBase.New
+			OnCreated
+		End Sub
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Id", AutoSync:=AutoSync.OnInsert, DbType:="BigInt NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+		Public Property Id() As Long
+			Get
+				Return Me._Id
+			End Get
+			Set
+				If ((Me._Id = value)  _
+							= false) Then
+					Me.OnIdChanging(value)
+					Me.SendPropertyChanging
+					Me._Id = value
+					Me.SendPropertyChanged("Id")
+					Me.OnIdChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_mpd_user_id", DbType:="Char(36) NOT NULL", CanBeNull:=false)>  _
+		Public Property mpd_user_id() As String
+			Get
+				Return Me._mpd_user_id
+			End Get
+			Set
+				If (String.Equals(Me._mpd_user_id, value) = false) Then
+					Me.Onmpd_user_idChanging(value)
+					Me.SendPropertyChanging
+					Me._mpd_user_id = value
+					Me.SendPropertyChanged("mpd_user_id")
+					Me.Onmpd_user_idChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_mpd_leader_id", DbType:="Char(36) NOT NULL", CanBeNull:=false)>  _
+		Public Property mpd_leader_id() As String
+			Get
+				Return Me._mpd_leader_id
+			End Get
+			Set
+				If (String.Equals(Me._mpd_leader_id, value) = false) Then
+					Me.Onmpd_leader_idChanging(value)
+					Me.SendPropertyChanging
+					Me._mpd_leader_id = value
+					Me.SendPropertyChanged("mpd_leader_id")
+					Me.Onmpd_leader_idChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_leader_sso_guid", DbType:="VarChar(40)")>  _
+		Public Property leader_sso_guid() As String
+			Get
+				Return Me._leader_sso_guid
+			End Get
+			Set
+				If (String.Equals(Me._leader_sso_guid, value) = false) Then
+					Me.Onleader_sso_guidChanging(value)
+					Me.SendPropertyChanging
+					Me._leader_sso_guid = value
+					Me.SendPropertyChanged("leader_sso_guid")
+					Me.Onleader_sso_guidChanged
+				End If
+			End Set
+		End Property
+		
+		Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+		
+		Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+		
+		Protected Overridable Sub SendPropertyChanging()
+			If ((Me.PropertyChangingEvent Is Nothing)  _
+						= false) Then
+				RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+			End If
+		End Sub
+		
+		Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+			If ((Me.PropertyChangedEvent Is Nothing)  _
+						= false) Then
+				RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+			End If
+		End Sub
+	End Class
+	
+	<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.AP_mpd_AreaAdmins")>  _
+	Partial Public Class AP_mpd_AreaAdmin
+		Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+		
+		Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+		
+		Private _Id As Integer
+		
+		Private _area As String
+		
+		Private _sso_guid As String
+		
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIdChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnIdChanged()
+    End Sub
+    Partial Private Sub OnareaChanging(value As String)
+    End Sub
+    Partial Private Sub OnareaChanged()
+    End Sub
+    Partial Private Sub Onsso_guidChanging(value As String)
+    End Sub
+    Partial Private Sub Onsso_guidChanged()
+    End Sub
+    #End Region
+		
+		Public Sub New()
+			MyBase.New
+			OnCreated
+		End Sub
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Id", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+		Public Property Id() As Integer
+			Get
+				Return Me._Id
+			End Get
+			Set
+				If ((Me._Id = value)  _
+							= false) Then
+					Me.OnIdChanging(value)
+					Me.SendPropertyChanging
+					Me._Id = value
+					Me.SendPropertyChanged("Id")
+					Me.OnIdChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_area", DbType:="NVarChar(16) NOT NULL", CanBeNull:=false)>  _
+		Public Property area() As String
+			Get
+				Return Me._area
+			End Get
+			Set
+				If (String.Equals(Me._area, value) = false) Then
+					Me.OnareaChanging(value)
+					Me.SendPropertyChanging
+					Me._area = value
+					Me.SendPropertyChanged("area")
+					Me.OnareaChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_sso_guid", DbType:="Char(36) NOT NULL", CanBeNull:=false)>  _
+		Public Property sso_guid() As String
+			Get
+				Return Me._sso_guid
+			End Get
+			Set
+				If (String.Equals(Me._sso_guid, value) = false) Then
+					Me.Onsso_guidChanging(value)
+					Me.SendPropertyChanging
+					Me._sso_guid = value
+					Me.SendPropertyChanged("sso_guid")
+					Me.Onsso_guidChanged
 				End If
 			End Set
 		End Property

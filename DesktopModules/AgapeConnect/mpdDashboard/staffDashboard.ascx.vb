@@ -27,16 +27,21 @@ Namespace DotNetNuke.Modules.AgapeConnect
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
 
             Dim ssoGuid = UserInfo.Profile.GetPropertyValue("ssoGUID")
-
+           
             'ssoGuid = "126AA989-238B-2EBD-5BE2-187DA7EDE3B7"  'Beni
             ' ssoGuid = "109764C9-CD24-CF94-839C-65F41C9C2E5C"  ' Eric
             'ssoGuid = "C17C80EC-D8C5-484C-0A43-4CE345ADFADF"  ' Tomas
             'ssoGuid = "1FF92F95-DD56-AFCA-9489-FC6E8F253237" ' Goce
+            ' ssoGuid = "3925839A-F828-4087-8223-816DE32A7BAF" 'Chontelle
 
+            mpdDashboardMenu.CountryURL = EditUrl("countryDashboard")
+            mpdDashboardMenu.StaffUrl = EditUrl("staffDashboard")
+
+            mpdDashboardMenu.ssoGuid = ssoGuid
             Dim mpdu = (From c In d.Ap_mpd_Users Where c.AP_mpd_UserId = Request.QueryString("mpd_user_id")).First
 
 
-            If String.IsNullOrEmpty(ssoGuid) Or (PortalId <> 2 And mpdu.Key_GUID <> ssoGuid And (mpdu.AP_mpd_Country.AP_MPD_CountryAdmins.Where(Function(c) c.sso_guid = ssoGuid).Count = 0)) Then
+            If String.IsNullOrEmpty(ssoGuid) Or (d.AP_mpd_AreaAdmins.Where(Function(c) c.area = mpdu.AP_mpd_Country.Area).Count = 0 And mpdu.Key_GUID <> ssoGuid And (mpdu.AP_mpd_Country.AP_MPD_CountryAdmins.Where(Function(c) c.sso_guid = ssoGuid).Count = 0)) Then
                 'TODO display error message
                 pnlError.Visible = True
                 pnlMain.Visible = False
@@ -45,8 +50,17 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
 
 
-            lblStaffName.Text = mpdu.Name
-            Dim incomeData = (From c In mpdu.AP_mpd_UserAccountInfos Where c.period >= Today.AddMonths(-13).ToString("yyyy-MM")).ToList
+            mpdDashboardMenu.Title = mpdu.Name
+
+            If Not String.IsNullOrEmpty(Request.QueryString("country")) Then
+                hlBack.Text = "&lt;&lt;Back to " & mpdu.AP_mpd_Country.name
+                hlBack.NavigateUrl = EditUrl("countryDashboard") & "?country=" & Request.QueryString("country")
+            Else
+                hlBack.Visible = False
+                mpdDashboardMenu.Mode = DesktopModules_AgapeConnect_mpdCalc_controls_mpdAdmin.mpdMenuMode.Staff
+            End If
+
+            Dim incomeData = (From c In mpdu.AP_mpd_UserAccountInfos Where c.period >= Today.AddMonths(-14).ToString("yyyy-MM") And c.period <= Today.AddMonths(-1).ToString("yyyy-MM")).ToList
 
 
             jsonLi = ""
@@ -75,8 +89,37 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 lblQuarter.Text = mpdu.AvgSupLevel3.ToString("0.0%")
                 lblMonth.Text = mpdu.AvgSupLevel1.ToString("0.0%")
             End If
+            Dim period = Today.AddMonths(-1).ToString("yyyy-MM")
+            Dim curBal = incomeData.Where(Function(c) c.period = period).Select(Function(c) c.balance).FirstOrDefault()
+            If curBal < 0 Then
+                'negative account balance
+                imgMpdHealth.ImageURL = "/DesktopModules/AgapeConnect/GlobalStatusDashboard/red_light.png"
+                lblMpdHealth.Text = "Account balance is currently negative"
+            Else
+                If mpdu.AvgIncome12 < -mpdu.AvgExpenses Then
+                    'negative tragectory
+                    Dim death_date = -CInt((curBal + mpdu.AvgExpenses) / (mpdu.AvgIncome12 + mpdu.AvgExpenses))
+                    If death_date < 1 Then
+                        imgMpdHealth.ImageURL = "/DesktopModules/AgapeConnect/GlobalStatusDashboard/red_light.png"
+                        lblMpdHealth.Text = "This account does not have enough balance to cover 1 months expenses"
+                    ElseIf death_date <= 6 Then
+                        imgMpdHealth.ImageURL = "/DesktopModules/AgapeConnect/GlobalStatusDashboard/red_light.png"
+                        lblMpdHealth.Text = "Our analysis shows that this account will have insufficient funds within " & death_date & " months."
+                    ElseIf death_date <= 12 Then
+                        imgMpdHealth.ImageURL = "/DesktopModules/AgapeConnect/GlobalStatusDashboard/yellow_light.png"
+                        lblMpdHealth.Text = "Our analysis shows that this account will have insufficient funds within " & death_date & " months."
+                    End If
+                Else
+                    imgMpdHealth.ImageURL = "/DesktopModules/AgapeConnect/GlobalStatusDashboard/green_light.png"
+                    lblMpdHealth.Text = "This staff account appears healthy. "
+                End If
+            End If
+
            
-          
+
+
+
+
 
 
 
