@@ -2359,7 +2359,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
             ddlLineTypes.DataBind()
 
             pnlElecReceipts.Attributes("style") = "display: none;"
-            ifReceipt.Attributes("src") = "https://" & PortalSettings.PortalAlias.HTTPAlias & "/DesktopModules/AgapeConnect/StaffRmb/ReceiptEditor.aspx?RmbNo=" & hfRmbNo.Value & "&RmbLine=New"
+            ifReceipt.Attributes("src") = "https://" & PortalSettings.DefaultPortalAlias & "/DesktopModules/AgapeConnect/StaffRmb/ReceiptEditor.aspx?RmbNo=" & hfRmbNo.Value & "&RmbLine=New"
 
             ResetNewExpensePopup(True)
             cbRecoverVat.Checked = False
