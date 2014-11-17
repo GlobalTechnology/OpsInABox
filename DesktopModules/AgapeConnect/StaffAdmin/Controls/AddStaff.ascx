@@ -14,7 +14,7 @@
         <table align="center">        
             <tr valign="top">
                 <td>
-                    <uc1:labelcontrol ID="labelcontrol1" runat="server" Text="GCX Username" HelpText="Enter the staff members GCX Username. If the user does not have an account on this site, click 'Create' and enter their name." />
+                    <uc1:labelcontrol ID="labelcontrol1" runat="server" Text="TheKey Username" HelpText="Enter the staff members TheKey Username. If the user does not have an account on this site, click 'Create' and enter their name." />
                 </td>
                 <td>
                     <asp:TextBox ID="tbGCXUserName" runat="server" Width="220px"></asp:TextBox>
