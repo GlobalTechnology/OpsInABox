@@ -131,7 +131,7 @@
                 // $(this).siblings('.mpd-tax-allowance').show();
                 var r = $(ddl).siblings('.mpd-tax-allowance').find('.rate').val();
                 var th = $(ddl).siblings('.mpd-tax-allowance').find('.threshold').val();
-                f = 'Math.max((({NET}*12)-' + th + '/ ( ( 100 / ' + r + ' ) -1 ),0)/12';
+                f = 'Math.max((({NET}*12)-' + th + '/ ( ( 100 / ' + r + ' ) -1 ),0)/12)';
                 $(ddl).parent().find('.tax-formula').text(f);
                 $(ddl).parent().find('.tax-formula').siblings("input:hidden").val(f);
 

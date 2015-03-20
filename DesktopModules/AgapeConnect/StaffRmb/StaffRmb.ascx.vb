@@ -342,6 +342,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                 Dim Team = StaffBrokerFunctions.GetTeam(UserId)
                 Dim CostCentres = StaffBrokerFunctions.GetDepartments(UserId)
                 If isAcc Then
+                    AgapeLogger.WriteEventLog(UserId, "loading menu")
                     pnlSubmittedView.Visible = False
                     pnlApprovedAcc.Visible = True
                     pnlApprovedView.Visible = False
@@ -354,6 +355,8 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                     AllStaffNode2.SelectAction = TreeNodeSelectAction.Expand
                     AllStaffNode2.Expanded = False
                     For Each person In allStaff
+                        '  AgapeLogger.WriteEventLog(UserId, person.DisplayName)
+                        '  AgapeLogger.WriteEventLog(UserId, "loading Submitted")
                         Dim Submitted = (From c In d.AP_Staff_Rmbs Where c.Status = RmbStatus.Submitted And c.PortalId = PortalId And (c.UserId = person.UserID) Order By c.RID Descending Select c.RMBNo, c.RmbDate, c.UserRef, c.RID, c.UserId).Take(MenuSize)
                         Dim node As New TreeNode(person.DisplayName)
                         node.Expanded = False
@@ -370,7 +373,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                                 AllStaffNode.Expanded = True
                             End If
                         Next
-
+                        '     AgapeLogger.WriteEventLog(UserId, "loading Submitted Adv")
                         Dim SubmittedAdv = (From c In d.AP_Staff_AdvanceRequests Where c.RequestStatus = RmbStatus.Submitted And c.PortalId = PortalId And c.UserId = person.UserID Order By c.LocalAdvanceId Descending Select c.AdvanceId, c.RequestDate, c.LocalAdvanceId).Take(MenuSize)
                         For Each row In SubmittedAdv
                             Dim node2 As New TreeNode()
@@ -382,7 +385,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                                 AllStaffNode.Expanded = True
                             End If
                         Next
-
+                        '     AgapeLogger.WriteEventLog(UserId, "loading Processed")
                         Dim nodeB As New TreeNode(person.DisplayName)
                         nodeB.Expanded = False
                         nodeB.SelectAction = TreeNodeSelectAction.Expand
@@ -398,6 +401,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                                 AllStaffNode2.Expanded = True
                             End If
                         Next
+                        '  AgapeLogger.WriteEventLog(UserId, "loading processed Adv")
                         Dim ProcessedAdv = (From c In d.AP_Staff_AdvanceRequests Where c.RequestStatus = RmbStatus.Processed And c.PortalId = PortalId And c.UserId = person.UserID Order By c.LocalAdvanceId Descending Select c.AdvanceId, c.RequestDate, c.LocalAdvanceId).Take(MenuSize)
                         For Each row In ProcessedAdv
                             Dim node2 As New TreeNode()
@@ -419,7 +423,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                     tvAllSubmitted.Nodes.Add(AllStaffNode)
                     tvProcessed.Nodes.Add(AllStaffNode2)
 
-
+                    AgapeLogger.WriteEventLog(UserId, "loading approved")
                     Dim AllApproved = (From c In d.AP_Staff_Rmbs
                                        Where (c.Status = RmbStatus.Approved Or c.Status >= RmbStatus.PendingDownload) And c.PortalId = PortalId Order By c.RID Descending
                Select c.RMBNo, c.RmbDate, c.UserRef, c.RID, c.UserId, c.Status, Receipts = ((c.AP_Staff_RmbLines.Where(Function(x) x.Receipt And (x.ReceiptImageId Is Nothing))).Count > 0)).Take(MenuSize)
@@ -450,7 +454,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                     dlAdvNoReceipts.AlternatingItemStyle.CssClass = IIf(dlNoReceipts.Items.Count Mod 2 = 1, "dnnGridItem", "dnnGridAltItem")
                     dlAdvNoReceipts.ItemStyle.CssClass = IIf(dlNoReceipts.Items.Count Mod 2 = 1, "dnnGridAltItem", "dnnGridItem")
 
-
+                    '  AgapeLogger.WriteEventLog(UserId, "loading pending download")
 
                     If PendingDownload.Count + PendingDownloadAdv.Count = 0 Then
                         pnlPendingDownload.Visible = False
@@ -524,7 +528,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
 
                     'Add in your team's reimbursements that are awaiting approval
                     For Each row In From c In Team Where c.UserID <> UserId
-                       
+
                         Dim tAdv = (From c In d.AP_Staff_AdvanceRequests Where c.UserId = row.UserID And c.RequestStatus = RmbStatus.Submitted And (c.RequestAmount < LargeTransaction) And c.PortalId = PortalId
                                    Select c.AdvanceId, c.RequestDate, c.LocalAdvanceId, c.UserId)
                         For Each row2 In tAdv
@@ -546,7 +550,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                     Dim Over1000Adv = From c In d.AP_Staff_AdvanceRequests Where c.RequestAmount > LargeTransaction And c.PortalId = PortalId
 
                     If UserId = Settings("AuthUser") Then
-                       
+
 
                         'Adv over Limit
                         Dim tAdv = (From c In Over1000Adv Where c.UserId <> UserId And c.RequestStatus = RmbStatus.Submitted
@@ -572,7 +576,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                     'Get AuthUser's Departmental Reimbursements for Auth Auth User
                     If UserId = Settings("AuthAuthUser") Then
                         Dim AuthUser = CInt(Settings("AuthUser"))
-                       
+
 
                         'Adv over Limit
                         Dim tAdv = (From c In Over1000Adv Where c.UserId = AuthUser And c.RequestStatus = RmbStatus.Submitted

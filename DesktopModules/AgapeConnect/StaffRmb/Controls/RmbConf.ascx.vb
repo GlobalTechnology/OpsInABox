@@ -108,10 +108,10 @@ Partial Class controls_RmbConf
 
     Public Property Amount() As Double
         Get
-            Return tbAmount.Text
+            Return Double.Parse(tbAmount.Text, New CultureInfo("en-US").NumberFormat)
         End Get
         Set(ByVal value As Double)
-            tbAmount.Text = value.ToString("n2")
+            tbAmount.Text = value.ToString("n2", New CultureInfo("en-US"))
         End Set
     End Property
     Public Property ErrorText() As String

@@ -83,9 +83,9 @@ Namespace DotNetNuke.Modules.AgapePortal
                 End If
 
 
-                ' Response.Redirect("https://thekey.me/cas/login.htm?service=" & Service & "&template=https://www.agape.org.uk/sso/template2.css")
+                ' Response.Redirect("https://thekey.me/cas/login?service=" & Service & "&template=https://www.agape.org.uk/sso/template2.css")
 
-                Response.Redirect("https://thekey.me/cas/login.htm?service=" & _service)
+                Response.Redirect("https://thekey.me/cas/login?service=" & _service)
 
 
             Else
@@ -95,7 +95,7 @@ Namespace DotNetNuke.Modules.AgapePortal
 
 
 
-            '   Response.Redirect("https://signin.mygcx.org/cas/login.htm?service=" & Request.Url.GetLeftPart(UriPartial.Path) & "&template=https://www.agape.org.uk/sso/template2.css")
+            '   Response.Redirect("https://signin.mygcx.org/cas/login?service=" & Request.Url.GetLeftPart(UriPartial.Path) & "&template=https://www.agape.org.uk/sso/template2.css")
 
         End Sub
 

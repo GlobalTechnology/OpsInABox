@@ -48,7 +48,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                     ShowTeam(ssoGuid, False, True)
                 Else
                     Dim thisCountry = (From c In d.AP_mpd_Countries Where c.isoCode = Request.QueryString("country")).FirstOrDefault
-                    If String.IsNullOrEmpty(ssoGuid) Or (d.AP_mpd_AreaAdmins.Where(Function(c) c.area = thisCountry.Area And c.sso_guid = ssoGuid).Count = 0 And (thisCountry.AP_MPD_CountryAdmins.Where(Function(c) c.sso_guid = ssoGuid).Count = 0)) Then
+                    If String.IsNullOrEmpty(ssoGuid) Or (d.AP_mpd_AreaAdmins.Where(Function(c) c.area = thisCountry.Area And c.sso_guid = ssoGuid).Count = 0 And (thisCountry.AP_MPD_CountryAdmins.Where(Function(c) c.sso_guid = ssoGuid).Count = 0) And d.AP_mpd_AreaAdmins.Where(Function(c) c.area = "GLBL" And c.sso_guid = ssoGuid).Count = 0) Then
                         'TODO display error message
                         pnlError.Visible = True
                         pnlMain.Visible = False

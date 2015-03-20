@@ -73,11 +73,11 @@ Namespace DotNetNuke.Modules.StaffAdmin
 
                         Dim theOldUserAfter = UserController.GetUserByName(PortalId, ouName & tbNewUsername.Text)
                         If Not theOldUserAfter Is Nothing Then
-                            UserController.RemoveUser(theOldUserAfter)
+                            ' UserController.RemoveUser(theOldUserAfter)
                             Dim rc As New DotNetNuke.Security.Roles.RoleController
                             Dim staffRole = rc.GetRoleByName(PortalId, "Staff")
                             DotNetNuke.Security.Roles.RoleController.DeleteUserRole(theOldUserAfter, staffRole, PortalSettings, False)
-                            UserController.DeleteUser(theOldUserAfter, False, False)
+                            'UserController.DeleteUser(theOldUserAfter, False, False)
                         End If
                     Catch ex As Exception
 

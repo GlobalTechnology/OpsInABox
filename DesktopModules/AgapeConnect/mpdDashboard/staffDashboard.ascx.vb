@@ -41,7 +41,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
             Dim mpdu = (From c In d.Ap_mpd_Users Where c.AP_mpd_UserId = Request.QueryString("mpd_user_id")).First
 
 
-            If String.IsNullOrEmpty(ssoGuid) Or (d.AP_mpd_AreaAdmins.Where(Function(c) c.area = mpdu.AP_mpd_Country.Area).Count = 0 And mpdu.Key_GUID <> ssoGuid And (mpdu.AP_mpd_Country.AP_MPD_CountryAdmins.Where(Function(c) c.sso_guid = ssoGuid).Count = 0)) Then
+            If String.IsNullOrEmpty(ssoGuid) Or (d.AP_mpd_AreaAdmins.Where(Function(c) c.area = mpdu.AP_mpd_Country.Area).Count = 0 And mpdu.Key_GUID <> ssoGuid And (mpdu.AP_mpd_Country.AP_MPD_CountryAdmins.Where(Function(c) c.sso_guid = ssoGuid).Count = 0) And d.AP_mpd_AreaAdmins.Where(Function(c) c.area = "GLBL" And c.sso_guid = ssoGuid).Count = 0) Then
                 'TODO display error message
                 pnlError.Visible = True
                 pnlMain.Visible = False

@@ -383,7 +383,7 @@ Partial Class DesktopModules_StaffRmb_RmbPrintout
             Return sm.DisplayName & "(" & CostCentre & ")"
         End If
         Dim d As New StaffBroker.StaffBrokerDataContext
-        Dim dept = From c In d.AP_StaffBroker_Departments Where c.CostCentre = CostCentre
+        Dim dept = From c In d.AP_StaffBroker_Departments Where c.CostCentre = CostCentre And c.PortalId = PortalId
 
         If dept.Count > 0 Then
             Return dept.First.Name & "(" & CostCentre & ")"

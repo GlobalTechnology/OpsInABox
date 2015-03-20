@@ -13,6 +13,7 @@ Partial Class DesktopModules_AgapeConnect_gr_mapping_gr_sub
 
             If Request.HttpMethod = "POST" Then
                 Dim json = New StreamReader(Request.InputStream).ReadToEnd
+                AgapeLogger.WriteEventLog(0, "GR sub  received:" & json)
                 Dim jss = New System.Web.Script.Serialization.JavaScriptSerializer()
                 Dim resp = jss.Deserialize(Of Dictionary(Of String, Object))(json)
 
@@ -33,29 +34,31 @@ Partial Class DesktopModules_AgapeConnect_gr_mapping_gr_sub
                     Dim old_id = resp("old_id")
                     Dim new_id = resp("new_id")
                     AgapeLogger.WriteEventLog(0, "Merge From: " & old_id & ", to: " & new_id)
-                    Dim d As New StaffBroker.StaffBrokerDataContext
-                    Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
-                    Dim q = From c In d.UserProfiles Where c.ProfilePropertyDefinition.PortalID = PS.PortalId And c.ProfilePropertyDefinition.PropertyName = "gr_person_id" And c.PropertyValue = old_id
-                    If q.Count > 0 Then
-                        q.First.PropertyValue = new_id
+                    'Dim d As New StaffBroker.StaffBrokerDataContext
+                    'Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
+                    'Dim q = From c In d.UserProfiles Where c.ProfilePropertyDefinition.PortalID = PS.PortalId And c.ProfilePropertyDefinition.PropertyName = "gr_person_id" And c.PropertyValue = old_id
+                    'If q.Count > 0 Then
+                    '    q.First.PropertyValue = new_id
 
 
-                        'The relationship to ministry may have changed.
-                        Dim r = From c In q.First.User.UserProfiles Where c.ProfilePropertyDefinition.PropertyName = "gr_ministry_membership_id"
-                        If r.Count > 0 Then
-                            r.First.PropertyValue = ""
+                    '    'The relationship to ministry may have changed.
+                    '    Dim r = From c In q.First.User.UserProfiles Where c.ProfilePropertyDefinition.PropertyName = "gr_ministry_membership_id"
+                    '    If r.Count > 0 Then
+                    '        r.First.PropertyValue = ""
 
-                        End If
-                        d.SubmitChanges()
+                    '    End If
+                    '    d.SubmitChanges()
 
 
-                        AgapeLogger.WriteEventLog(0, "Merged user: " & q.First.User.DisplayName)
-                    End If
+                    '    AgapeLogger.WriteEventLog(0, "Merged user: " & q.First.User.DisplayName)
+                    'End If
 
 
 
 
                 ElseIf resp("action") = "updated" Then
+                    AgapeLogger.WriteEventLog(0, "Updated Id:" & resp("id"))
+
 
                     Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
                     Dim gr As New GR(StaffBrokerFunctions.GetSetting("gr_api_key", PS.PortalId), StaffBrokerFunctions.GetSetting("gr_api_url", PS.PortalId))
