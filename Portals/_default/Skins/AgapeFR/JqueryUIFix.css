@@ -1,0 +1,37 @@
+.ui-widget-overlay {
+    z-index: 200;
+}
+
+.ui-dialog {
+    z-index: 1001;
+}
+
+div.ui-dialog-titlebar > .ui-dialog-titlebar-close {
+    top: 3px;
+    right: 3px;
+}
+
+.dnnFormPopup .dnnModalCtrl {
+    top: 7px;
+    right: 7px;
+}
+
+    .dnnFormPopup .dnnModalCtrl .ui-dialog-titlebar-close {
+        margin: -9px 0 0 0;
+        padding: 0;
+        right: 3.5px;
+    }
+
+.ui-dialog .ui-dialog-titlebar-close span {
+    display: none;
+}
+
+.dnnFormPopup #iPopUp {
+    padding: 0;
+}
+
+.ui-dialog-titlebar-close {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+

@@ -1,0 +1,80 @@
+
+/*========================== MODULE CONTAINER =======================*/
+#ContentContainer {
+    text-align: left;
+    position: relative;
+}
+
+
+/*========================== PHOTO =======================*/
+
+#ContentContainer .PhotoPane .DNNModuleContent img {
+    width: 975px;
+    border-width: 0;
+    margin: 0;
+    padding: 0;   
+}
+
+#ContentContainer .PhotoPane {
+    display: inline-block;
+	zoom: 1; *display: inline; /* IE fix for inline-block display */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+#ContentContainer .PhotoPane .c_contentpane {
+    padding: 0;  
+}
+
+#ContentContainer .PhotoPane .DNNModuleContent {
+    height: 300px;
+    overflow: hidden;
+}
+
+/*========================== PHOTO OVERLAY =======================*/
+
+#ContentContainer #PhotoOverlay {
+	width: 100%;
+	height: 325px;
+	position: absolute;
+    top: 0;
+    left: 0;
+    background: url('images/HeaderPhotoOverlay.png') no-repeat center;
+    z-index: 1;
+    pointer-events: none; /* pour que l'élément n'empêche pas l'affichage du menu admin */
+}
+
+/*========================== TITLE =======================*/
+
+#ContentContainer #ContentTitle {
+	display: inline-block;
+	zoom: 1; *display: inline; /* IE fix for inline-block display */
+    position: relative;
+    z-index: 200;
+    line-height: 40px;
+    height: 40px;
+    margin: 150px 0 0 180px;
+	padding: 0 10px 0 10px;
+    color: white;
+    background: #3A8BC2;
+    font-family: OpenSansLight;
+	font-size: 20px;
+    white-space: nowrap; /* Needed for first iPad */
+}
+
+/*========================== CONTENT =======================*/
+
+#ContentContainer .ContentPane {
+    position: relative;
+    z-index: 300;
+    margin: 0 150px 0 150px;
+    padding-bottom: 100px;
+    background-color: white;
+    min-height: 300px;
+}
+
+
+
+

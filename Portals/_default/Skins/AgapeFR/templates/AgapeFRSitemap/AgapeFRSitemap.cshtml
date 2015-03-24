@@ -1,0 +1,44 @@
+﻿@using DotNetNuke.Web.DDRMenu;
+@using System.Dynamic; 
+@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic>
+@{ var root = Model.Source.root; }
+
+@helper RenderNodes(IList<MenuNode> nodes)
+{
+    if (nodes.Count > 0)
+    {
+        <div id="sitemap">
+        @foreach (var node in nodes)
+        {
+            <div class="level1">
+                @if (node.Enabled)
+                {
+                    <a href="@node.Url">@node.Text</a>
+                 }
+                else
+                {
+                    @node.Text
+                }
+                @if (node.Children.Count > 0)
+                {
+                    <div class="level2">    
+                    @foreach (var child in node.Children)
+                        {
+                            if (child.Enabled)
+                            {
+                                <a href="@child.Url">@child.Text</a>
+                             }
+                            else
+                            {
+                                @child.Text
+                            }
+                        }
+                    </div>
+                }
+            </div>
+        }
+        </div>
+    }
+}
+
+@RenderNodes(root.Children)

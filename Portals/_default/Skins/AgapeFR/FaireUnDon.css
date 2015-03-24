@@ -1,0 +1,276 @@
+/*========================== BANNER =======================*/
+
+#bannerbar {
+    background: url('images/Dons-Banner-Shadow.png') repeat-x bottom #f2f2f2;
+}
+
+.BannerPane img {
+    display: inline-block;
+	zoom: 1; *display: inline; /* IE fix for inline-block display */
+    vertical-align: middle;
+}
+
+.BannerPane div {
+    text-align: left;
+    position: relative; /* Fix for IE7 */
+}
+
+.BannerPane .Normal p {
+    margin: 0;
+}
+
+.BannerPane .Normal p.videos {
+    margin: 20px 0 0 0;
+    text-align: center;
+}
+
+.BannerPane .videos iframe.centerframe {
+    padding: 0 10px 0 10px;
+}
+
+
+
+/*========================== CONTENT CONTAINER =======================*/
+#ContentContainer 
+{
+    text-align: left;
+}
+
+#ContentContainer .DNNModuleContent .Normal, #ContentContainer .DNNModuleContent .Normal a:link, #ContentContainer .DNNModuleContent .Normal a:active, #ContentContainer .DNNModuleContent .Normal a:visited, #ContentContainer .DNNModuleContent .Normal a:hover {
+    text-align: left;
+    font-size: inherit;
+}
+
+/*========================== TOP PANE =======================*/
+
+.TopPane .c_contentpane {
+    padding-bottom: 0px;
+}
+
+.TopPane .Normal p {
+    margin: 0;
+}
+
+.TopPane h1 {
+    background: url('images/faireundon4.png') no-repeat top right;
+}
+
+/*========================== LEFT MENU =======================*/
+
+.LeftMenu {
+    display: inline-block;
+	zoom: 1; *display: inline; /* IE fix for inline-block display */
+    vertical-align: top;
+    margin-right: 15px;
+    margin-left: 20px;
+    width: 233px;
+    text-align: left;
+}
+
+.LeftMenu #TopImg {
+    height: 32px;
+    line-height: 32px;
+    background: url('images/Dons-LeftMenu-Top.png') no-repeat;
+}
+
+.LeftMenu #BottomImg {
+    height: 48px;
+    line-height: 48px;
+    background: url('images/Dons-LeftMenu-Bottom.png') no-repeat;
+}
+
+.LeftMenuPane div {
+    padding: 0px;
+    margin: 0px;
+}
+
+.LeftMenuPane a {
+    height: 101px;
+    line-height: 101px;
+    display: block;
+    overflow: hidden;
+    border-bottom: 1px white solid;
+}
+
+.LeftMenuPane a div {
+    vertical-align: middle;
+    display: inline-block;
+    padding: 0 30px 0 15px;
+}
+
+.LeftMenuPane h1, .LeftMenuPane h2 {
+    display: block;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.LeftMenuPane h1 {
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: -1px;
+    padding-bottom: 5px;
+    color: #3a8bc1;
+    white-space: nowrap;
+    text-transform: none;
+}
+
+.LeftMenuPane h2 {
+    font-size: 12px;
+    font-weight: normal;
+    letter-spacing: normal;
+    color: #727272;
+    white-space: normal;
+    text-transform: none;
+}
+
+.LeftMenuPane a:hover {
+    text-decoration: none;
+}
+
+/*.LeftMenuPane a:hover h1 {
+    text-decoration: underline;
+}*/
+
+.LeftMenuPane a {
+    background: url('images/Dons-LeftMenu-NotSelected.png') no-repeat #c9c9c9;
+}
+
+ .LeftMenuPane a:hover /*.LeftMenuPane a.selected*/ {
+    background: url('images/Dons-LeftMenu-Selected.png') no-repeat;
+   /* pointer-events: none;
+    cursor: text;*/
+}
+
+ /*.LeftMenuPane a.selected:hover h1 {
+    text-decoration: none;
+}*/
+
+  .LeftMenuPane a:hover h1 /*.LeftMenuPane a.selected h1*/ {
+    color: white;
+}
+
+.LeftMenuPane a:hover h2 /*.LeftMenuPane a.selected h2*/ {
+    color: #90cef8;
+}
+
+
+/*========================== MAIN CENTER PANE =======================*/
+
+.CenterPane {
+    display: inline-block;
+	zoom: 1; *display: inline; /* IE fix for inline-block display */
+    width: 682px; /* wider breaks display in some browsers (IE and FF at least) */
+    background-color: #f2f2f2;
+    margin-top: 32px;
+    margin-right: 20px;
+    margin-bottom: 35px;
+    /* cross-browser min-height */
+    min-height: 386px;
+    height:auto !important; 
+    height: 386px; /* for IE */
+}
+
+.CenterPane .c_contentpane {
+    padding: 30px 0 0 0;
+}
+
+.ListPane .Normal p {
+    margin: 0;
+}
+
+/*========================== MAIN CENTER PANE - TABS =======================*/
+
+#ongletsdon {
+    font-family: inherit;
+    font-size: inherit;
+    margin: 15px;
+    position: relative;
+    padding: 0;
+    zoom: 1;
+} /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+
+#ongletsdon, #ongletsdon .ui-tabs-panel {
+    display: block;
+    border: none;
+    padding: 0;
+    background: none;
+    color: inherit;
+}
+
+#ongletsdon .ui-tabs-panel {
+    margin: 5px;
+}
+
+#ongletsdon .ui-tabs-panel a {
+    color: #3A8BC2;
+}
+
+#ongletsdon .ui-tabs-nav {
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px #c7c7c7 solid;
+    background: none;
+    color: inherit;
+    font-weight: inherit;
+}
+#ongletsdon .ui-tabs-nav li {
+    list-style: none;
+    float: left;
+    position: relative;
+    top: 0;
+    margin: 0;
+    border: none;
+    padding: 0;
+    white-space: nowrap;
+}
+#ongletsdon .ui-tabs-nav li a {
+    float: left;
+    padding: 8px;
+    color: #3A8BC2;
+    text-decoration: none;
+    display: block;
+    margin: 0;
+    letter-spacing: inherit;
+    background: none;
+    filter: none;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    text-shadow: none;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+}
+#ongletsdon .ui-tabs-nav li a:hover {
+    text-decoration: underline;
+}
+#ongletsdon .ui-tabs-nav li.ui-tabs-active a,
+#ongletsdon .ui-tabs-nav li.ui-state-disabled a,
+#ongletsdon .ui-tabs-nav li.ui-state-processing a {
+    cursor: text 
+}
+
+#ongletsdon .ui-tabs-nav li a,
+#ongletsdon.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active a {
+    cursor: pointer
+} /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+
+#ongletsdon .ui-tabs-nav li.ui-tabs-active a {
+    color: white;
+    text-decoration: none;
+}
+
+#ongletsdon .ui-tabs-nav li.ui-tabs-active {
+    background: url('images/BlueTab.png') repeat-x #3784cd;
+    border: none;
+    border-radius: 0;
+    filter: none;
+    color: white;
+}
+
+#ongletsdon-panel { position: relative }
+#ongletsdon-hide { display: none !important } 
+

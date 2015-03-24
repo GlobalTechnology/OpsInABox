@@ -1,0 +1,30 @@
+@import url("./HeaderPhotoAndTitle.css");
+
+#ContentContainer .ContentPane {
+    margin: 0; padding: 0;
+    text-align: center;
+    padding-bottom: 100px;
+}
+
+#ContentContainer #ContentTitle {
+    margin: 150px 0 0 30px;
+}
+
+.LeftPane, .CenterPane {
+    display: inline-table;
+    vertical-align: top;
+    margin: 0;
+}
+
+.LeftPane {
+    width: 307px;
+}
+
+.CenterPane {
+    width: 663px;
+}
+
+.CenterPane .c_contentpane {
+    padding-left: 0px;
+}
+

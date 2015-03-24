@@ -1,0 +1,57 @@
+﻿@using DotNetNuke.Web.DDRMenu;
+@using System.Dynamic; 
+@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic>
+@{ var root = Model.Source.root; }
+
+@helper RenderNodes(IList<MenuNode> nodes)
+{
+    if (nodes.Count > 0)
+    {
+    <ul class="navhor">
+        @foreach (var node in nodes)
+        {
+            if (IsVisible(node))
+            {
+                var cssClasses = new List<string>();
+                if (node.Selected || HasSelectedChild(node)) { cssClasses.Add("selected"); }
+                var classString = new HtmlString((cssClasses.Count == 0) ? "" :
+                                    (" class=\"" + String.Join(" ", cssClasses.ToArray()) + "\""));
+                <li @classString>
+                    @if (node.Enabled)
+                    {
+                        <a href="@node.Url">@node.Text</a>
+                        <div id="pointer"></div>
+                        }
+                    else
+                    {
+                        @node.Text
+                    }
+                </li>
+            }
+        }
+    </ul>
+    }
+}
+
+@functions{
+
+    public int portalId = DotNetNuke.Entities.Portals.PortalController.GetCurrentPortalSettings().PortalId;
+    public DotNetNuke.Entities.Tabs.TabController tc = new DotNetNuke.Entities.Tabs.TabController();
+
+    Boolean HasSelectedChild(MenuNode node)
+    {
+        foreach (var child in node.Children)
+        {
+            if (child.Selected || HasSelectedChild(child)) { return true; }
+        }
+        return false;
+    }
+ 
+    public Boolean IsVisible(MenuNode node)
+    {
+        DotNetNuke.Entities.Tabs.TabInfo tab = tc.GetTab(node.TabId, portalId, false);
+        return tab.IsVisible;
+    }   
+}
+
+@RenderNodes(root.Children)

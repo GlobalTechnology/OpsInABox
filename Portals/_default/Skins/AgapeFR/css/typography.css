@@ -1,0 +1,145 @@
+﻿body, .Normal {
+	font-size: medium;
+    line-height: 1.5;
+}
+
+body, p, ul, ol, a:link, a:active, a:visited, a:hover {
+    font-weight: normal;
+	font-family: OpenSansRegular;
+    font-size: inherit;
+    color: #5f5f5f;
+    -webkit-text-size-adjust: 100%; /*Prevent iPhone Text Enlargement*/
+}
+
+p {
+    margin-top: 8px;
+    margin-bottom: 10px;
+    font-size: medium;
+}
+
+a:link, a:active, a:visited, a:hover {
+	color: #3A8BC2;
+}
+
+a:link, a:active, a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    display: block;
+    font-weight: normal;
+	font-family: OpenSansRegular;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    font-weight: inherit;
+}
+
+h1 {
+    font-size: 28px;
+    line-height: 54px;
+    letter-spacing: -0.03em;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #3A8BC2;
+}
+
+h2 {
+    font-size: 26px;
+    line-height: 36px;
+    letter-spacing: -0.03em;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    color: #5f5f5f;
+}
+
+h3 {
+    font-size: 22px;
+    line-height: 36px;
+    letter-spacing: -1px;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    color: #3A8BC2;
+}
+
+h4 {
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -1px;
+    color: #3A8BC2;
+}
+
+h5 {
+    font-size: 18px;
+    line-height: 22px;
+    color: #3A8BC2;
+}
+
+h6 {
+    font-size: 16px;
+    line-height: 18px;
+    color: #5f5f5f;
+}
+
+.highlight {
+    font-family: OpenSansBold;
+    color: #383838;
+    display: inline;
+}
+
+.introduction {
+    color: #3A8BC2;
+    font-weight: normal;
+    font-size: medium;
+}
+
+.quote {
+    background: white url(/Portals/_default/Skins/AgapeFR/images/quote.png) no-repeat;
+    margin: 15px 0 0 0;
+    padding: 5px 0 0 60px;
+    color: #545454;
+    font-style: italic;
+    font-size: 20px;
+    min-height: 39px;
+    line-height: 28px;
+}
+
+.draft {
+    background: yellow;
+    color: red;
+}
+
+ul, ol {
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    -webkit-padding-start: 0;
+    padding-left: 40px;
+}
+
+ul {
+    list-style: disc;
+}
+
+ol {
+    list-style: decimal;
+}
+
+ul li, ol li {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+em, i {
+    font-family: OpenSansItalic;
+}
+
+strong, b {
+    font-family: OpenSansBold;
+}
