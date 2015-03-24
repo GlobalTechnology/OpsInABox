@@ -32,6 +32,8 @@ cd ..\DesktopModules\
 
 mklink /J %var%DesktopModules\AgapeConnect AgapeConnect
 
+mklink /J %var%DesktopModules\AgapeFR AgapeFR
+
 REM SETUP APP_WebRefereces
 cd ..\App_WebReferences
 IF NOT EXIST %var%App_WebReferences ( 
