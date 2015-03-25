@@ -53,16 +53,22 @@
                     $('#more').hide();
                 }*/
 
+
+
                 function initialize() {
                     var myLatlng = new google.maps.LatLng(<%= location %>);
                 
                     var mapOptions = {
-                        zoom: 4,
+                        zoom: <%= zoomLevel%>,
                         center: myLatlng,
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     };
+
+
                     var map = new google.maps.Map(document.getElementById('map_canvas'),
             mapOptions);
+
+
 
                     var marker = new google.maps.Marker({
                         position: myLatlng,
@@ -114,8 +120,7 @@
         width: 100%;
         height: 200px;
       }
-
-
+      
     .textAreaSmall {
         height: 400px;
         overflow: hidden;

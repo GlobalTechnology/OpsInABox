@@ -407,13 +407,13 @@
 </div>
 <br /><br />
 <div style="width: 100%; text-align: center">
-    <asp:LinkButton ID="SaveBtn" runat="server" class="aButton" ResourceKey="btnSave">Save</asp:LinkButton>
+    <asp:LinkButton ID="SaveBtn" runat="server" class="aButton btn" ResourceKey="btnSave">Save</asp:LinkButton>
     &nbsp;
-    <asp:LinkButton ID="CancelBtn" runat="server" class="aButton" ResourceKey="btnCancel">Done</asp:LinkButton>
+    <asp:LinkButton ID="CancelBtn" runat="server" class="aButton btn" ResourceKey="btnCancel">Done</asp:LinkButton>
     &nbsp;
-    <asp:LinkButton ID="btnCache" runat="server" class="aButton">Refresh Cache</asp:LinkButton>
+    <asp:LinkButton ID="btnCache" runat="server" class="aButton btn">Refresh Cache</asp:LinkButton>
  &nbsp;
-    <input type="button" value="Add New Channel"  onclick="showPopup();" class="aButton" style="font-size: 8pt" />
+    <input type="button" value="Add New Channel"  onclick="showPopup();" class="aButton btn" style="font-size: 8pt" />
  
 </div>
 
@@ -492,10 +492,10 @@
     </table>
 
     <div style="width: 100%; text-align: center; margin-top: 1em;">
-     <asp:Button ID="btnAddChannel" runat="server" class="aButton" Enabled="false" Text="Add Channel"></asp:Button>
-     <asp:Button ID="btnEditChannel" runat="server" class="aButton" visible="false" Text="Save"></asp:Button>
+     <asp:Button ID="btnAddChannel" runat="server" class="aButton btn" Enabled="false" Text="Add Channel"></asp:Button>
+     <asp:Button ID="btnEditChannel" runat="server" class="aButton btn" visible="false" Text="Save"></asp:Button>
  &nbsp;
-  <asp:Button ID="btnAddCancel" runat="server" class="aButton"  Text="Cancel"></asp:Button>
+  <asp:Button ID="btnAddCancel" runat="server" class="aButton btn"  Text="Cancel"></asp:Button>
     </div>
     </ContentTemplate>  
     <Triggers>

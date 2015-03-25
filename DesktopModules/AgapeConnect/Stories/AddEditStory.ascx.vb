@@ -406,7 +406,18 @@ Namespace DotNetNuke.Modules.Stories
 
                 StoryFunctions.RefreshLocalChannel(CInt(ddlChannels.SelectedValue))
 
-                Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
+                ' Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
+                If CType(Settings("ViewTab"), String) <> "" Then
+                    If Settings("ViewTab") <> TabId Then
+                        Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
+                    Else
+                        Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
+                    End If
+                Else
+                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
+                End If
+
+
             Else
                 Dim insert As New AP_Story
                 insert.Headline = Headline.Text
@@ -501,17 +512,39 @@ Namespace DotNetNuke.Modules.Stories
                 Next
 
                 StoryFunctions.RefreshLocalChannel(CInt(ddlChannels.SelectedValue))
-                Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & insert.StoryId)
+                'Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & insert.StoryId)
+
+                If CType(Settings("ViewTab"), String) <> "" Then
+                    If Settings("ViewTab") <> TabId Then
+                        Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & "?StoryId=" & insert.StoryId & "&origTabId=" & TabId & "&origModId=" & ModuleId)
+                    Else
+                        Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & insert.StoryId)
+                    End If
+                Else
+                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & insert.StoryId)
+                End If
             End If
 
 
         End Sub
 
         Protected Sub btnCancel_Click(sender As Object, e As System.EventArgs) Handles btnCancel.Click
+           
+
             If Request.QueryString("StoryId") = "" Then
                 Response.Redirect(NavigateURL())
             Else
-                Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
+                If CType(Settings("ViewTab"), String) <> "" Then
+                    If Settings("ViewTab") <> TabId Then
+                        Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
+                    Else
+                        Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
+                    End If
+                Else
+                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
+                End If
+
+
 
             End If
         End Sub

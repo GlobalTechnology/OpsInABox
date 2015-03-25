@@ -19,6 +19,9 @@ Namespace DotNetNuke.Modules.FullStory
         Public IsBoosted As Boolean = False
         Public IsBlocked As Boolean = False
         Public location As String = ""
+        Public zoomLevel As Integer = 4
+        Public eventIcon As String = "/DesktopModules/AgapeConnect/Stories/images/eventIcon.png"
+        Public articleIcon As String = "/DesktopModules/AgapeConnect/Stories/images/articleIcon.png"
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
             Dim d As New StoriesDataContext
             Dim r = (From c In d.AP_Stories Where c.StoryId = Request.QueryString("StoryID")).First
@@ -93,19 +96,25 @@ Namespace DotNetNuke.Modules.FullStory
                     ReplaceField(sv, "[HEADLINE]", r.Headline)
                     Page.Title = "Agap&eacute; - " & r.Headline
                     location = r.Latitude.Value.ToString(New CultureInfo("")) & ", " & r.Longitude.Value.ToString(New CultureInfo(""))
-                    ReplaceField(sv, "[MAP]", " <div id=""map_canvas""></div>")
 
 
 
 
+                '    r.StoryText.Replace("[MAP]", " <div id=""map_event""></div>")
 
 
 
-                    ReplaceField(sv, "[STORYTEXT]", r.StoryText)
+
+                ReplaceField(sv, "[STORYTEXT]", r.StoryText)
+                ReplaceField(sv, "[MAP]", " <div id=""map_canvas""></div>")
                     Dim thePhoto = DotNetNuke.Services.FileSystem.FileManager.Instance.GetFile(r.PhotoId)
 
                     Dim URL = "http://" & PortalSettings.PortalAlias.HTTPAlias & DotNetNuke.Services.FileSystem.FileManager.Instance.GetUrl(thePhoto)
-                    ReplaceField(sv, "[IMAGEURL]", URL)
+                ReplaceField(sv, "[IMAGEURL]", URL)
+
+        
+
+
                     Dim meta As New HtmlMeta
                     meta.Attributes.Add("property", "og:image")
                     meta.Content = URL
@@ -146,11 +155,12 @@ Namespace DotNetNuke.Modules.FullStory
 
 
                     ReplaceField(sv, "[AUTHOR]", r.Author)
-                    ReplaceField(sv, "[DATE]", r.StoryDate.ToString("d MMM yyyy"))
+                ReplaceField(sv, "[DATE]", r.StoryDate.ToString("d MMMM yyyy"))
+
                     If (Not r.UpdatedDate Is Nothing) Then
                         If (DateDiff(DateInterval.Day, r.StoryDate, r.UpdatedDate.Value) > 14) Then
                             'Only show updated date if the update was more than two weeks after the creation date
-                            ReplaceField(sv, "[UPDATEDDATE]", "(updated " & r.UpdatedDate.Value.ToString("d MMM yyyy") & ")")
+                        ReplaceField(sv, "[UPDATEDDATE]", "(updated " & r.UpdatedDate.Value.ToString("d MMM yyyy") & ")")
                         End If
 
                     End If
@@ -160,6 +170,25 @@ Namespace DotNetNuke.Modules.FullStory
                     ReplaceField(sv, "[SUBTITLE]", r.Subtitle)
                     ReplaceField(sv, "[FIELD1]", r.Field1)
                     ReplaceField(sv, "[FIELD2]", r.Field2)
+
+                Dim isEventTag As Boolean = (From c In r.AP_Stories_Tag_Metas Where c.AP_Stories_Tag.TagName = "Evénement").Count > 0
+
+                ReplaceField(sv, "[TYPEICON]", IIf(isEventTag, eventIcon, articleIcon))
+                ReplaceField(sv, "[TYPENAME]", IIf(isEventTag, "Evénement", "Article"))
+
+                If (isEventTag) Then
+                    'Show the Agenda Module
+                    Dim upcoming = From c In d.AP_Stories Where c.PortalID = PortalId And c.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0 And c.StoryDate >= Today And c.StoryId <> r.StoryId
+
+                  
+                    ReplaceField(sv, "[AGENDA]", GetAgenda(r.StoryId))
+                    zoomLevel = 15
+
+                Else
+                    ReplaceField(sv, "[AGENDA]", GetStoryAgenda(r.AP_Stories_Tag_Metas.Select(Function(c) c.AP_Stories_Tag.StoryTagId).ToList, r.Author))
+                End If
+
+
 
 
                     If r.Field3.Contains("#selAuth#") Then
@@ -193,6 +222,7 @@ Namespace DotNetNuke.Modules.FullStory
                     ReplaceField(sv, "[RELATEDSTORIES]", GetRelatedStories(r.AP_Stories_Tag_Metas.Select(Function(c) c.AP_Stories_Tag.StoryTagId).ToList, r.Author))
 
 
+                ReplaceField(sv, "[RELATEDARTICLES]", GetRelatedArticles(r.AP_Stories_Tag_Metas.Select(Function(c) c.AP_Stories_Tag.StoryTagId).ToList, r.Author))
 
 
 
@@ -362,6 +392,114 @@ Namespace DotNetNuke.Modules.FullStory
 
             Return rtn
         End Function
+
+        Protected Function GetRelatedArticles(ByVal Tags As List(Of Integer), ByVal Author As String) As String
+            Dim d As New StoriesDataContext
+            Dim rtn As String = ""
+
+
+            'Dim q = From c In d.AP_Stories Where c.PortalID = PortalId And c.IsVisible And (c.Author.ToLower = Author.ToLower Or c.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) And Not c.StoryId = Request.QueryString("StoryId")
+
+            Dim q = From c In d.AP_Stories Where c.PortalID = PortalId And c.IsVisible And c.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count = 0 And (c.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) And Not c.StoryId = Request.QueryString("StoryId")
+
+
+            If q.Count > 0 Then
+
+
+                rtn &= "<div class=""agendaTitle"">Autres articles:</div>"
+                For Each row In q.Take(5).OrderByDescending(Function(c) c.StoryDate)
+                    rtn &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & """>"
+                    rtn &= "<table><tr><td style='vertical-align: top;'>"
+                    rtn &= "<img src='/DesktopModules/AgapeConnect/Stories/images/articleIcon.png' style='width:30px;' /></td><td style='padding-left: 12px;'>"
+                    rtn &= "<div class='eventTitle'>" & row.Headline & "</div>"
+
+                    rtn &= "<span  class='eventSample'>" & row.StoryDate.ToString("dd MMMM yyyy", New CultureInfo("fr-fr")) & "</span></td></tr></table></a></div>"
+                    
+                Next
+
+
+                rtn &= "</ul>"
+
+
+            End If
+
+            Return rtn
+        End Function
+
+
+        Protected Function GetAgenda(ByVal StoryId As String) As String
+            Dim d As New StoriesDataContext
+            Dim rtn As String = ""
+
+
+            'Dim q = From c In d.AP_Stories Where c.PortalID = PortalId And c.IsVisible And (c.Author.ToLower = Author.ToLower Or c.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) And Not c.StoryId = Request.QueryString("StoryId")
+
+            Dim q = From c In d.AP_Stories Where c.PortalID = PortalId And c.IsVisible And (c.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0) And c.StoryDate > Today And Not c.StoryId = StoryId
+
+
+            If q.Count > 0 Then
+
+
+                rtn &= "<div class=""agendaTitle"">Agenda</div>"
+                For Each row In q.Take(3).OrderBy(Function(c) c.StoryDate)
+
+                    rtn &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & """>"
+                    rtn &= "<table><tr><td style='vertical-align: top;'><div class='eventDay' >" & row.StoryDate.Day & "</div>"
+                    rtn &= "<div class='eventMonth'>" & row.StoryDate.ToString("MMM", New CultureInfo("fr-fr")) & "</div>"
+                    rtn &= "<img src='/DesktopModules/AgapeConnect/Stories/images/cal.png' style='width:32px;' /></td><td style='padding-left: 12px;'>"
+                    rtn &= "<div class='eventTitle'>" & row.Headline & "</div>"
+
+                    rtn &= "<span  class='eventSample'>" & row.TextSample & "</span></td></tr></table></a></div>"
+
+                Next
+
+
+
+
+
+            End If
+
+            Return rtn
+        End Function
+
+
+        Protected Function GetStoryAgenda(ByVal Tags As List(Of Integer), ByVal Author As String) As String
+            Dim d As New StoriesDataContext
+            Dim rtn As String = ""
+
+
+            'Dim q = From c In d.AP_Stories Where c.PortalID = PortalId And c.IsVisible And (c.Author.ToLower = Author.ToLower Or c.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) And Not c.StoryId = Request.QueryString("StoryId")
+
+            Dim q = From c In d.AP_Stories Where c.PortalID = PortalId And c.IsVisible And c.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0 And (c.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) And Not c.StoryId = Request.QueryString("StoryId")
+
+
+            If q.Count > 0 Then
+
+
+                rtn &= "<div class=""agendaTitle"">Agenda</div>"
+                For Each row In q.Take(3).OrderBy(Function(c) c.StoryDate)
+
+                    rtn &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & """>"
+                    rtn &= "<table><tr><td style='vertical-align: top;'><div class='eventDay' >" & row.StoryDate.Day & "</div>"
+                    rtn &= "<div class='eventMonth'>" & row.StoryDate.ToString("MMM", New CultureInfo("fr-fr")) & "</div>"
+                    rtn &= "<img src='/DesktopModules/AgapeConnect/Stories/images/cal.png' style='width:32px;' /></td><td style='padding-left: 12px;'>"
+                    rtn &= "<div class='eventTitle'>" & row.Headline & "</div>"
+
+                    rtn &= "<span  class='eventSample'>" & row.TextSample & "</span></td></tr></table></a></div>"
+
+                Next
+
+
+
+
+
+            End If
+
+            Return rtn
+        End Function
+
+
+
 
         'Protected Sub btnNew_Click(sender As Object, e As System.EventArgs) Handles btnNew.Click
         '    Response.Redirect(EditUrl("AddEditStory"))
