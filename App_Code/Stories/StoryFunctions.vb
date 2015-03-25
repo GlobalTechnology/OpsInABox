@@ -251,9 +251,7 @@ Public Class StoryFunctions
     Public Shared Sub RefreshFeed(ByVal tabModuleId As Integer, ByVal ChannelId As Integer, Optional ByVal ClearCache As Boolean = False)
 
         'StaffBrokerFunctions.EventLog("Refreshing Channel: " & ChannelId, "", 1)
-        Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
-        Dim objEventLog As New DotNetNuke.Services.Log.EventLog.EventLogController
-        objEventLog.AddLog("refreshFeed", "starting", PS, 1, DotNetNuke.Services.Log.EventLog.EventLogController.EventLogType.ADMIN_ALERT)
+       
         Dim d As New Stories.StoriesDataContext
 
         If d.AP_Stories_Modules.Where(Function(x) x.TabModuleId = tabModuleId).Count = 0 Then
@@ -270,7 +268,7 @@ Public Class StoryFunctions
         'Dim reader = XmlReader.Create("http://rss.cnn.com/rss/edition.rss")
         ' Dim reader = XmlReader.Create("http://feeds.bbci.co.uk/news/rss.xml")
         ' Dim reader = XmlReader.Create("http://www.agapeeurope.com/?feed=rss2")
-        objEventLog.AddLog("refreshFeed", "TabModuleId: " & tabModuleId & " ChannelId: " & ChannelId, PS, 1, DotNetNuke.Services.Log.EventLog.EventLogController.EventLogType.ADMIN_ALERT)
+
         Try
 
 
@@ -298,11 +296,10 @@ Public Class StoryFunctions
             'set_if(theChannel.Language, feed.Language)
 
 
-            objEventLog.AddLog("refreshFeed", "iterating feed", PS, 1, DotNetNuke.Services.Log.EventLog.EventLogController.EventLogType.ADMIN_ALERT)
+
             For Each row In feed.Items
                 Try
-                    objEventLog.AddLog("refreshFeed", "reading feed item " & row.Title.Text, PS, 1, DotNetNuke.Services.Log.EventLog.EventLogController.EventLogType.ADMIN_ALERT)
-
+                   
                     Dim existingStory = From c In theChannel.AP_Stories_Module_Channel_Caches Where c.Link = row.Links.First.Uri.AbsoluteUri
                     If existingStory.Count = 0 Then
                         Dim insert As New Stories.AP_Stories_Module_Channel_Cache
