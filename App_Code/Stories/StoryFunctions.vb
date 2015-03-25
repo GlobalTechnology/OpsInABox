@@ -270,7 +270,7 @@ Public Class StoryFunctions
         'Dim reader = XmlReader.Create("http://rss.cnn.com/rss/edition.rss")
         ' Dim reader = XmlReader.Create("http://feeds.bbci.co.uk/news/rss.xml")
         ' Dim reader = XmlReader.Create("http://www.agapeeurope.com/?feed=rss2")
-        objEventLog.AddLog("refreshFeed", "Found Module", PS, 1, DotNetNuke.Services.Log.EventLog.EventLogController.EventLogType.ADMIN_ALERT)
+        objEventLog.AddLog("refreshFeed", "TabModuleId: " & tabModuleId & " ChannelId: " & ChannelId, PS, 1, DotNetNuke.Services.Log.EventLog.EventLogController.EventLogType.ADMIN_ALERT)
         Try
 
 
