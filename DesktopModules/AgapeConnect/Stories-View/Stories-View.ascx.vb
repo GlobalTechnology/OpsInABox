@@ -29,8 +29,8 @@ Namespace DotNetNuke.Modules.FullStory
 
 
         ''SET THESE TO CONTAIN Old TabIds (key) and New Tab Ids (Value)... likewise for modules
-        Private tabTranslation As New Dictionary(Of String, String) 'From {{"123", "456"}, {"789", "987"}}
-        Private modTranslation As New Dictionary(Of String, String) 'From {{"123", "456"}, {"789", "987"}}
+        Private tabTranslation As New Dictionary(Of String, String) From {{"190", "2342"}, {"55", "2335"}, {"200", "2386"}}
+        Private modTranslation As New Dictionary(Of String, String) From {{"419", "5547"}, {"434", "5522"}, {"507", "5604"}}
 
 
 
