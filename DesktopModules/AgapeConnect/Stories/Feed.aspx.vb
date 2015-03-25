@@ -9,6 +9,7 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
     Const maxItemsInfeed = 50
 
     Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
+        AgapeLogger.WriteEventLog(1, "Staring feed")
         Dim d As New StoriesDataContext
         Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
         Dim mc As New DotNetNuke.Entities.Modules.ModuleController
@@ -23,8 +24,8 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
             Stories = From c In d.AP_Stories Where c.PortalID = PS.PortalId And c.IsVisible = True
                       Order By c.StoryDate Descending
         End If
-        
-        
+
+
 
         Response.ContentType = "application/rss+xml"
         Dim myFeed As New SyndicationFeed()
@@ -36,7 +37,7 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
         myFeed.Copyright = SyndicationContent.CreatePlaintextContent("Copyright " & PS.PortalName)
         myFeed.Language = PS.DefaultLanguage
         Dim myList As New List(Of SyndicationItem)
-
+        AgapeLogger.WriteEventLog(1, "Iterating Stories")
         For Each row In Stories.Take(maxItemsInfeed)
             Dim insert As New SyndicationItem
 
@@ -53,7 +54,7 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
                 summary = summary.Substring(0, summary.LastIndexOf(".") + 1)
 
             End If
-            
+
             insert.Summary = TextSyndicationContent.CreatePlaintextContent(summary)
 
             insert.PublishDate = row.StoryDate
@@ -110,7 +111,7 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
 
 
         Next
-
+        AgapeLogger.WriteEventLog(1, "Finished Iterating Stories")
         myFeed.Items = myList
         myFeed.ImageUrl = New Uri("http://" & PS.PortalAlias.HTTPAlias & PS.HomeDirectory & PS.LogoFile)
         Dim feedWriter = System.Xml.XmlWriter.Create(Response.OutputStream)
@@ -120,7 +121,7 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
 
         rssFormatter.WriteTo(feedWriter)
         feedWriter.Close()
-
+        AgapeLogger.WriteEventLog(1, "Finished Feed")
 
 
 
