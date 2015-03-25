@@ -21,7 +21,19 @@ Namespace DotNetNuke.Modules.FullStory
 
 
     Partial Class acViewFullStory
+
+
+
+
         Inherits Entities.Modules.PortalModuleBase
+
+
+        ''SET THESE TO CONTAIN Old TabIds (key) and New Tab Ids (Value)... likewise for modules
+        Private tabTranslation As New Dictionary(Of String, String) 'From {{"123", "456"}, {"789", "987"}}
+        Private modTranslation As New Dictionary(Of String, String) 'From {{"123", "456"}, {"789", "987"}}
+
+
+
         Public IsBoosted As Boolean = False
         Public IsBlocked As Boolean = False
         Public location As String = ""
@@ -252,7 +264,7 @@ Namespace DotNetNuke.Modules.FullStory
 
                         For Each row In Translist
                             Dim Lang = GetLanguageName(row.Language)
-                            Flags &= "<a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & "&origModId=" & Request.QueryString("origModId") & "&origTabId=" & Request.QueryString("origTabId") & """ target=""_self""><span title=""" & Lang & """><img  src=""" & GetFlag(row.Language) & """ alt=""" & Lang & """  /></span></a>"
+                            Flags &= "<a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & "&origModId=" & GetModId(Request.QueryString("origModId")) & "&origTabId=" & GetTabId(Request.QueryString("origTabId")) & """ target=""_self""><span title=""" & Lang & """><img  src=""" & GetFlag(row.Language) & """ alt=""" & Lang & """  /></span></a>"
 
                         Next
 
@@ -286,7 +298,7 @@ Namespace DotNetNuke.Modules.FullStory
 
                     End If
                     SuperPowers.SuperEditor = UserInfo.IsSuperUser
-                    SuperPowers.EditUrl = NavigateURL(CInt(Request.QueryString("origTabId")), "AddEditStory", {"mid", Request.QueryString("origModId")})
+                    SuperPowers.EditUrl = NavigateURL(CInt(GetTabId(Request.QueryString("origTabId"))), "AddEditStory", {"mid", GetModId(Request.QueryString("origModId"))})
                     SuperPowers.PortalId = PortalId
                     SuperPowers.SetControls()
 
@@ -319,7 +331,20 @@ Namespace DotNetNuke.Modules.FullStory
 
 
         End Sub
-
+        Private Function GetTabId(ByVal OrigTabId As String) As String
+            If modTranslation.ContainsKey(OrigTabId) Then
+                Return modTranslation(OrigTabId)
+            Else
+                Return OrigTabId
+            End If
+        End Function
+        Private Function GetModId(ByVal OrigModId As String) As String
+            If modTranslation.ContainsKey(OrigModId) Then
+                Return modTranslation(OrigModId)
+            Else
+                Return OrigModId
+            End If
+        End Function
         Private Sub ReplaceField(ByRef sv As String, ByVal fieldName As String, ByVal fieldValue As String)
             If Not String.IsNullOrEmpty(fieldValue) Then
                 sv = sv.Replace(fieldName, fieldValue)
@@ -393,7 +418,7 @@ Namespace DotNetNuke.Modules.FullStory
                 rtn &= "<h3>Related News Items:</h3><ul class=""nav nav-tabs nav-stacked"">"
                 For Each row In q.Take(5).OrderByDescending(Function(c) c.StoryDate)
 
-                    rtn &= "<li><a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & "&origModId=" & Request.QueryString("origModId") & "&origTabId=" & Request.QueryString("origTabId") & """>" & row.Headline & "</a></li>"
+                    rtn &= "<li><a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & "&origModId=" & GetModId(Request.QueryString("origModId")) & "&origTabId=" & GetTabId(Request.QueryString("origTabId")) & """>" & row.Headline & "</a></li>"
 
                 Next
 
@@ -420,7 +445,7 @@ Namespace DotNetNuke.Modules.FullStory
 
                 rtn &= "<h2 class=""agendaTitle"">A lire aussi</h2>"
                 For Each row In q.Take(3).OrderByDescending(Function(c) c.StoryDate)
-                    rtn &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & "&origModId=" & Request.QueryString("origModId") & "&origTabId=" & Request.QueryString("origTabId") & """>"
+                    rtn &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & "&origModId=" & GetModId(Request.QueryString("origModId")) & "&origTabId=" & GetTabId(Request.QueryString("origTabId")) & """>"
                     rtn &= "<table><tr><td style='vertical-align: top;'>"
                     rtn &= "<img src='/DesktopModules/AgapeConnect/Stories/images/articleIcon.png' style='width:30px;' /></td><td style='padding-left: 12px;'>"
                     rtn &= "<h4 class='eventTitle'>" & row.Headline & "</h4>"
@@ -454,7 +479,7 @@ Namespace DotNetNuke.Modules.FullStory
                 rtn &= "<h2 class=""agendaTitle"">Agenda</h2>"
                 For Each row In q.Take(3)
 
-                    rtn &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & "&origModId=" & Request.QueryString("origModId") & "&origTabId=" & Request.QueryString("origTabId") & """>"
+                    rtn &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & "&origModId=" & GetModId(Request.QueryString("origModId")) & "&origTabId=" & GetTabId(Request.QueryString("origTabId")) & """>"
                     rtn &= "<table><tr><td style='vertical-align: top;'><div class='eventDay' >" & row.StoryDate.Day & "</div>"
                     rtn &= "<div class='eventMonth'>" & row.StoryDate.ToString("MMM", New CultureInfo("fr-fr")) & "</div>"
                     rtn &= "<img src='/DesktopModules/AgapeConnect/Stories/images/cal.png' style='width:32px;' /></td><td style='padding-left: 12px;'>"
@@ -474,14 +499,14 @@ Namespace DotNetNuke.Modules.FullStory
             Dim rtn As String = ""
 
             'gets all stories tagged Evénement and having the same tag as current and with date of today or future
-            Dim q = From c In d.AP_Stories Where c.PortalID = PortalId And c.TabModuleId = TabModuleId And c.IsVisible And c.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0 And (c.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) And c.StoryDate >= Today And Not c.StoryId = Request.QueryString("StoryId") Order By c.StoryDate Ascending
+            Dim q = From c In d.AP_Stories Where c.PortalID = PortalId And c.TabModuleId = TabModuleID And c.IsVisible And c.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0 And (c.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) And c.StoryDate >= Today And Not c.StoryId = Request.QueryString("StoryId") Order By c.StoryDate Ascending
 
             If q.Count > 0 Then
 
                 rtn &= "<h2 class=""agendaTitle"">Agenda</h2>"
                 For Each row In q.Take(3).OrderBy(Function(c) c.StoryDate)
 
-                    rtn &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & "&origModId=" & Request.QueryString("origModId") & "&origTabId=" & Request.QueryString("origTabId") & """>"
+                    rtn &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & "&origModId=" & GetModId(Request.QueryString("origModId")) & "&origTabId=" & GetTabId(Request.QueryString("origTabId")) & """>"
                     rtn &= "<table><tr><td style='vertical-align: top;'><div class='eventDay' >" & row.StoryDate.Day & "</div>"
                     rtn &= "<div class='eventMonth'>" & row.StoryDate.ToString("MMM", New CultureInfo("fr-fr")) & "</div>"
                     rtn &= "<img src='/DesktopModules/AgapeConnect/Stories/images/cal.png' style='width:32px;' /></td><td style='padding-left: 12px;'>"
