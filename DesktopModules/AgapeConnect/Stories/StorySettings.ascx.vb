@@ -296,7 +296,7 @@ Namespace DotNetNuke.Modules.Stories
 
       
 
-        Protected Sub btnAddTag_Click(sender As Object, e As EventArgs) Handles btnAddTag.Click
+        Protected Sub btnAddTag_Click(sender As Object, e As System.EventArgs) Handles btnAddTag.Click
             Dim insert As New AP_Stories_Tag
             insert.PortalId = PortalId
             insert.TagName = tbAddTag.Text
