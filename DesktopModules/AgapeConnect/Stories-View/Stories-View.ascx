@@ -6,7 +6,6 @@
 
 
 
-
 <script type="text/javascript" src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-500677234debf3af"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
@@ -38,32 +37,38 @@
 
                 $('.boost').prop("checked", <%= CStr(SuperPowers.IsBoosted).ToLower%>).change();
                 $('.block').prop("checked", <%= CStr(SuperPowers.IsBlocked).ToLower%>).change();
-                   
-                //var height = parseInt($(".Agape_FullStory_bodytext").css("height"));
-                //if(height>420)
-                //{
-                //    $('.Agape_FullStory_bodytext').addClass('preview');
-                //    $('#more').click(function() {
-                   
-                //        $('.Agape_FullStory_bodytext').removeClass("preview", 2000);
-                //        $('#more').hide();
-                //    });}
-                //else
-                //{
+                /* 
+              var height = parseInt($(".Agape_FullStory_bodytext").css("height"));
+              if(height>420)
+              {
+                  $('.Agape_FullStory_bodytext').addClass('preview');
+                  $('#more').click(function() {
+                 
+                      $('.Agape_FullStory_bodytext').removeClass("preview", 2000);
+                      $('#more').hide();
+                  });}
+              else
+              {
 
-                //    $('#more').hide();
-                //}
+                  $('#more').hide();
+              }*/
+
+
 
                 function initialize() {
                     var myLatlng = new google.maps.LatLng(<%= location %>);
                 
                     var mapOptions = {
-                        zoom: 5,
+                        zoom: <%= zoomLevel%>,
                         center: myLatlng,
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     };
+
+
                     var map = new google.maps.Map(document.getElementById('map_canvas'),
             mapOptions);
+
+
 
                     var marker = new google.maps.Marker({
                         position: myLatlng,
@@ -94,11 +99,12 @@
         {
             var boosted = $('.boost').attr("checked") == 'checked' ;
             var blocked = $('.block').attr("checked") == 'checked' ;
-            $('#lblPowerStatus').html(blocked ? 'This story has been blocked, and won\'t appear in the channel feed.' : (boosted ? 'Boosted until <%= today.AddDays(7).ToString("dd MMM yyy") %> ' : '' ));
+            $('.PowerStatus').html(blocked ? 'This story has been blocked, and won\'t appear in the channel feed.' : (boosted ? 'Boosted until <%= Today.AddDays(StoryFunctions.GetBoostDuration(PortalId)).ToString("dd MMM yyy")%> ' : '' ));
+            $.post(window.location.href,{ Boosted:  boosted, Blocked: blocked});
 
-            $.ajax({ type: 'POST', url: '<%= NavigateURL() & "?StoryId=" & Request.QueryString("StoryId")  %>',
-                data: ({ Boosted: boosted, Blocked: blocked })
-            });
+            //$.ajax({ type: 'POST', url: '<%= NavigateURL() & "?StoryId=" & Request.QueryString("StoryId")  %>',
+            //     data: ({ Boosted: "'" + boosted +"'", Blocked: "'" + blocked + "'" })
+            //});
 
 
         }
@@ -114,8 +120,7 @@
         width: 100%;
         height: 200px;
       }
-
-
+      
     .textAreaSmall {
         height: 400px;
         overflow: hidden;
@@ -180,7 +185,10 @@
         height: 400px;
         overflow: hidden;
     }
-
+    [for=block].ui-state-active,  [for=block].ui-widget-content  [for=block].ui-state-active,   [for=block].ui-widget-header   [for=block].ui-state-active {
+        background: red !important;
+        border-color: red !important;
+    }
     </style>
 <asp:HiddenField ID="StoryIdHF" runat="server" />
 <asp:HiddenField ID="ShortTextHF" runat="server" />

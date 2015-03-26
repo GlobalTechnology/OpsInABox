@@ -6,6 +6,7 @@ Imports System.Xml
 Imports System.Net
 Imports Stories
 Imports DotNetNuke.Services.FileSystem
+Imports DotNetNuke.Entities.Modules
 
 
 Namespace DotNetNuke.Modules.Stories
@@ -128,7 +129,8 @@ Namespace DotNetNuke.Modules.Stories
             PreviewResults()
 
             If newSettings Then
-                SynchronizeModule()
+                'SynchronizeModule()
+                ModuleController.SynchronizeModule(ModuleId)
             End If
         End Sub
 
@@ -250,7 +252,8 @@ Namespace DotNetNuke.Modules.Stories
             d.SubmitChanges()
 
             ' refresh cache
-            SynchronizeModule()
+            'SynchronizeModule()
+            ModuleController.SynchronizeModule(ModuleId)
 
             StoryFunctions.PrecalAllCaches(TabModuleId)
             LoadMixer()
@@ -597,7 +600,7 @@ Namespace DotNetNuke.Modules.Stories
 
 
             If CType(TabModuleSettings("Aspect"), String) <> "" Then
-                icImage.Aspect = CDbl(TabModuleSettings("Aspect")).ToString(New CultureInfo(""))
+                icImage.Aspect = TabModuleSettings("Aspect")
 
             Else
                 icImage.Aspect = "1.0"

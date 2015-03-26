@@ -74,9 +74,9 @@
 <asp:Panel ID="PagePanel" runat="server" Style="margin-right: 0px; margin-left: 0px;
     padding-left 0px;">
     <div class="Agape_Story_storymain">
-        <div class="AgapeH2">
+        <h1 class="AgapeH2">
            <asp:TextBox ID="Headline" CssClass="AgapeH2"  style="border-bottom-style: none; width: 100%;" runat="server" ></asp:TextBox>
-        </div>
+        </h1>
         <div class="Agape_Story_subtitle">
             <table width="100%">
                 <tr>
@@ -236,8 +236,8 @@
   
     <div style="clear: both;" />
     <div align="center">
-<asp:Button ID="btnSave" runat="server" Text="Save" class="aButton" />
-<asp:Button ID="btnCancel" runat="server" Text="Cancel" class="aButton" />
+<asp:Button ID="btnSave" runat="server" Text="Save" class="aButton btn" />
+<asp:Button ID="btnCancel" runat="server" Text="Cancel" class="aButton btn" />
 </div>
     </asp:Panel> 
 

@@ -9,6 +9,7 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
     Const maxItemsInfeed = 50
 
     Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
+
         Dim d As New StoriesDataContext
         Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
         Dim mc As New DotNetNuke.Entities.Modules.ModuleController
@@ -23,8 +24,8 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
             Stories = From c In d.AP_Stories Where c.PortalID = PS.PortalId And c.IsVisible = True
                       Order By c.StoryDate Descending
         End If
-        
-        
+
+
 
         Response.ContentType = "application/rss+xml"
         Dim myFeed As New SyndicationFeed()
@@ -53,7 +54,7 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
                 summary = summary.Substring(0, summary.LastIndexOf(".") + 1)
 
             End If
-            
+
             insert.Summary = TextSyndicationContent.CreatePlaintextContent(summary)
 
             insert.PublishDate = row.StoryDate

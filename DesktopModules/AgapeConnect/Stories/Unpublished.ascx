@@ -71,6 +71,6 @@
 
 <div style="width: 100%; text-align: center">
   
-    <asp:LinkButton ID="CancelBtn" runat="server" class="aButton">Done</asp:LinkButton>
+    <asp:LinkButton ID="CancelBtn" runat="server" class="aButton btn">Done</asp:LinkButton>
  
 </div>

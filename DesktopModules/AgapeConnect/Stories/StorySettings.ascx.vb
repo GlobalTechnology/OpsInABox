@@ -126,7 +126,7 @@ Namespace DotNetNuke.Modules.Stories
 
                 End If
 
-                lblRssPrefix.Text = Request.Url.Authority & Request.ApplicationPath & "DesktopModules/Stories/Feed.aspx?name="
+                lblRssPrefix.Text = Request.Url.Authority & Request.ApplicationPath & "DesktopModules/AgapeConnect/Stories/Feed.aspx?name="
 
                 If CType(TabModuleSettings("RssName"), String) = "" Then
                     objModules.UpdateTabModuleSetting(TabModuleId, "RssName", TabController.CurrentPage.TabName)
@@ -289,14 +289,14 @@ Namespace DotNetNuke.Modules.Stories
 
         End Sub
 
-        Protected Sub CancelBtn_Click(sender As Object, e As EventArgs) Handles CancelBtn.Click
+        Protected Sub CancelBtn_Click(sender As Object, e As System.EventArgs) Handles CancelBtn.Click
             Response.Redirect(NavigateURL())
 
         End Sub
 
       
 
-        Protected Sub btnAddTag_Click(sender As Object, e As EventArgs) Handles btnAddTag.Click
+        Protected Sub btnAddTag_Click(sender As Object, e As System.EventArgs) Handles btnAddTag.Click
             Dim insert As New AP_Stories_Tag
             insert.PortalId = PortalId
             insert.TagName = tbAddTag.Text

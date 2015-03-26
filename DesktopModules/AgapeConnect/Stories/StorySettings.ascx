@@ -304,7 +304,7 @@
 
 
 
-              <asp:TextBox ID="tbAddTag" runat="server"></asp:TextBox><asp:Button ID="btnAddTag" runat="server" Text="Add" CssClass="aButton" Font-Size="X-Small" /> 
+              <asp:TextBox ID="tbAddTag" runat="server"></asp:TextBox><asp:Button ID="btnAddTag" runat="server" Text="Add" CssClass="aButton btn" Font-Size="X-Small" /> 
             <br />*Warning: Deleting a tag will remove this tag from all stories. This cannot be undone!
         </td>
     </tr>
@@ -361,9 +361,9 @@
 
  <br /><br />
 <div style="width: 100%; text-align: center">
-    <asp:LinkButton ID="SaveBtn" runat="server" class="aButton" ResourceKey="btnSave">Save</asp:LinkButton>
+    <asp:LinkButton ID="SaveBtn" runat="server" class="aButton btn" ResourceKey="btnSave">Save</asp:LinkButton>
     &nbsp;
-    <asp:LinkButton ID="CancelBtn" runat="server" class="aButton" ResourceKey="btnCancel">Cancel</asp:LinkButton>
+    <asp:LinkButton ID="CancelBtn" runat="server" class="aButton btn" ResourceKey="btnCancel">Cancel</asp:LinkButton>
  
 </div>
     </div>

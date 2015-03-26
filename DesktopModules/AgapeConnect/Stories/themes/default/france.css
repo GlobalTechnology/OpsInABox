@@ -1,0 +1,154 @@
+/*
+Skin Name: Nivo Slider Default Theme
+Skin URI: http://nivo.dev7studios.com
+Skin Type: flexible
+Description: The default skin for the Nivo Slider.
+Version: 1.2
+Author: Gilbert Pellegrom
+Author URI: http://dev7studios.com
+*/
+
+.theme-default .nivoSlider {
+	position:relative;
+	background:#fff url(loading.gif) no-repeat 50% 50%;
+    
+    -webkit-box-shadow: 0px 1px 9px 0px #4a4a4a;
+    -moz-box-shadow: 0px 1px 9px 0px #4a4a4a;
+    box-shadow: 0px 1px 9px 0px #4a4a4a;
+}
+.theme-default .nivoSlider img     
+{
+    position: relative;
+	/*position:absolute;
+	top:0px;
+	left:0px;
+	display:none;*/
+    overflow: hidden;
+}
+.theme-default .nivoSlider a {
+	border:0;
+	display:block;
+}
+
+.theme-default .nivo-controlNav 
+{
+    position: absolute;
+   
+    height: 10px;
+	text-align: right;
+	margin-top: 5px;
+	/*bottom: -20px;*/
+   color: transparent;
+	z-index: 9;
+	padding:  0;
+}
+.theme-default .nivo-controlNav a {
+	display:inline-block;
+	width:18px;
+	height:18px;
+	background:url(bulletsIcon.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+	margin: 0 0px;
+    color: transparent;
+}
+.theme-default .nivo-controlNav a.active {
+	background-position:0 -22px;
+    color: transparent;
+}
+
+.theme-default .nivo-directionNav a {
+	display:block;
+	width:30px;
+	height:30px;
+	background:url(arrows.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+}
+.theme-default a.nivo-nextNav {
+	background-position:-30px 0;
+	right:15px;
+}
+.theme-default a.nivo-prevNav {
+	left:15px;
+}
+
+
+.theme-default .nivo-caption {
+
+    /*padding-bottom: 22px;*/   
+}
+.theme-default .nivo-caption a {
+    color:#3A8BC2;
+    border-bottom:1px dotted #fff;
+}
+.theme-default .nivo-caption a:hover {
+    color:#3A8BC2;
+}
+.theme-default a.nivo-caption, .theme-default a.nivo-caption:hover,  .theme-default a.nivo-caption:link,  .theme-default a.nivoCaption:visited
+{
+    color: #3A8BC2;
+    text-decoration: none;
+}
+
+.theme-default .nivo-controlNav.nivo-thumbs-enabled {
+	width: 100%;
+}
+.theme-default .nivo-controlNav.nivo-thumbs-enabled a {
+	width: auto;
+	height: auto;
+	background: none;
+	margin-bottom: 5px;
+}
+.theme-default .nivo-controlNav.nivo-thumbs-enabled img {
+	display: block;
+	width: 120px;
+	height: auto;
+}
+
+.theme-default .nivo-caption {
+	    font-family: Helvetica, Arial, sans-serif;
+    font-size: x-large ;
+
+
+	background:transparent;
+   color:#3A8BC2;
+   position: absolute ;
+   bottom: -120px;
+   overflow-y: hidden;
+   overflow-x: hidden;
+   /*max-width: 650px;*/
+   white-space: normal;
+   vertical-align: top;
+    height : 120px !important;
+    
+     padding: 10px 0 10px 0;
+}
+
+.theme-default .nivo-capiton h3 span {
+  
+    white-space: normal ;
+     height : 120px;
+    
+}
+
+.theme-default .nivo-box {
+
+	overflow: visible;
+}
+.nivo-box img { display:block; }
+
+
+
+.theme-default .nivoSlider {
+	position:relative;
+	width: 100%;
+	height:auto;
+	overflow: visible;
+   
+	 /*background:url(/DesktopModules/AgapeConnect/Stories/themes/default/loading.gif) no-repeat 50% 50%;*/
+}
+
+.dnnGridItem:hover span.storyTitle, .dnnGridAltItem:hover span.storyTitle {
+    text-decoration: none;
+}
