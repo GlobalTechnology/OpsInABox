@@ -64,29 +64,7 @@ Namespace DotNetNuke.Modules.AgapePortal
                     Session("returnurl") = returnUrl
                 End If
 
-                If PortalSettings.DefaultPortalSkin.ToLower.Contains("agape") Then
-
-
-                    If Request.QueryString("renew") = "true" Or PortalId = 5 Then
-
-                        Dim template = "http://" & Request.Url.Authority & Request.ApplicationPath & "sso/template-agapebluev4-no-FB.css"
-                        'Service &= "&renew=true&template=" & template
-                        _service &= "&template=" & template
-
-                    Else
-                        Dim template = "http://" & Request.Url.Authority & Request.ApplicationPath & "sso/template-agapebluev4.css"
-                        _service &= "&template=" & template
-                    End If
-                Else
-                    ' Dim template = "http://" & Request.Url.Authority & Request.ApplicationPath & "sso/template-agapebluev3.css"
-                    'Service &= "&template=" & template
-                End If
-
-
-                ' Response.Redirect("https://thekey.me/cas/login?service=" & Service & "&template=https://www.agape.org.uk/sso/template2.css")
-
                 Response.Redirect("https://thekey.me/cas/login?service=" & _service)
-
 
             Else
                 StaffLogin()
