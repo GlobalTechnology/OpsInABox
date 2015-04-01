@@ -65,9 +65,8 @@ a.BlocLienRapide {
    text-align: left;
 }
 
-.verticalcentered {    
-    vertical-align: middle;
-    display: inline-block;
+.verticalcentered {
+	margin-top: 25px;
 }
 
 .BlocLienRapide-Right {
