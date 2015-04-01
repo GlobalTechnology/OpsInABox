@@ -50,13 +50,17 @@
 }
 
 .PromotionBox .contentpane div.Normal img {
-    margin: -10px -10px 5px -10px;
+    margin: -10px -10px 10px -10px;
 }
 
 .PromotionBox .contentpane {
     padding: 0;
     text-align:left;
     vertical-align:top;
+}
+#ContentContainer .PromotionBox .ContentPane {
+    padding-bottom: 0px;
+	margin: 0px;
 }
 
 .PromotionBox .contentContainer div.Normal {
@@ -75,8 +79,8 @@
 
 .PromotionBox .contentContainer div.Normal .button {
     position: absolute;
-    bottom: 10px;
-    left: 10px;
+    bottom: 0px;
+    left: 0px;
     height: 29px;
     line-height: 29px;
     min-width: 65px;
