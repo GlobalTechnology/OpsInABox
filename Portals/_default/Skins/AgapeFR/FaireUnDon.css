@@ -87,7 +87,7 @@
 .LeftMenuPane a {
     height: 101px;
     line-height: 101px;
-    display: block;
+    display: list-item;
     overflow: hidden;
     border-bottom: 1px white solid;
 }
