@@ -48,12 +48,15 @@
     border-top: 1px solid white;
     position: relative;
 }
-
+#ContentContainer .BluePromotionBox .ContentPane {
+    padding-bottom: 0px;
+	margin: 0px;
+}
 .BluePromotionBox .contentpane div.Normal img {
     position: absolute; z-index: -1;
     top: 0;
     left: 0;
-    margin-bottom: -20px -20px 0 -20px;
+    margin: -20px -20px 0 -20px;
 }
 
 .BluePromotionBox div.contentpane {
