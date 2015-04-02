@@ -317,3 +317,54 @@ hr {
 hr.dotted {
     border-style: dotted;
 }
+
+/*===================== RADEDITOR FIXES ===================== */
+
+/*.ImageManager,
+.InsertImage
+{
+	background-position: -366px center;
+}*/
+
+span.ImageManager,
+span.InsertImage
+{
+    background: url('/Portals/0/RadEditor/images/InsertMedia.png') no-repeat center center;
+}
+
+/*.DocumentManager,
+.InsertDocument
+{
+	background-position: -1476px center;
+}*/
+
+span.DocumentManager,
+span.InsertDocument
+{
+    background: url('/Portals/0/RadEditor/images/DocumentManager.png') no-repeat center center;
+}
+
+/*.ImageMapDialog {
+  background-position: -396px center;
+}*/
+
+span.ImageMapDialog {
+  background: url('/Portals/0/RadEditor/images/ImageMapEditor.png') no-repeat center center;
+}
+
+/*.InsertCodeSnippet,
+.InsertSnippet
+{
+	background-position: -2164px center;
+}*/
+
+.reTool span.InsertCodeSnippet,
+.reTool span.InsertSnippet
+{
+    background: url('/Portals/0/RadEditor/images/snippet.png') no-repeat center center;
+}
+
+/* Set font size for snippet list */
+.reDropDownBody table td {
+  font-size: 12px !important;
+}

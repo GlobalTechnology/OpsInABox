@@ -18,7 +18,7 @@ IF Not %var:~-1%==\ set var=%var%\
  echo %var%
  echo setting up symbolic links...
  
- REM SETUP APP_CODE
+REM SETUP APP_CODE
  IF NOT EXIST %var%App_Code ( 
 	echo Creating App_Code folder
 	mkdir %var%App_Code
@@ -27,17 +27,24 @@ IF Not %var:~-1%==\ set var=%var%\
  FOR /d %%G in (*) DO   mklink /J %var%App_Code\%%G %%G
   FOR %%G in (*) DO   mklink /H %var%App_Code\%%G %%G
  
- REM SETUP DESKTOP MODULES
+REM SETUP DESKTOP MODULES
 cd ..\DesktopModules\
 
 mklink /J %var%DesktopModules\AgapeConnect AgapeConnect
 
 mklink /J %var%DesktopModules\AgapeFR AgapeFR
 
+REM SETUP FRANCE PORTAL SPECIFIC RADEDITOR CONFIG FILES
+cd ..\DesktopModules\Admin\RadEditorProvider\ConfigFile
+mklink /H %var%DesktopModules\Admin\RadEditorProvider\ConfigFile\ConfigFile.PortalId.0.xml ConfigFile.PortalId.0.xml
+cd ..\ToolsFile
+mklink /H %var%DesktopModules\Admin\RadEditorProvider\ToolsFile\ToolsFile.PortalId.0.xml ToolsFile.PortalId.0.xml
+cd ..\..\..
+
 REM SETUP APP_WebRefereces
 cd ..\App_WebReferences
 IF NOT EXIST %var%App_WebReferences ( 
-	echo Creating App_Code folder
+	echo Creating App_WebReferences folder
 	mkdir %var%App_WebReferences
 )
 FOR /d %%G in (*) DO  mklink /J %var%App_WebReferences\%%G %%G

@@ -1,0 +1,14 @@
+﻿/*===================== RESET CSS ===================== */
+@import url("/Portals/_default/Skins/AgapeFR/css/reset.css");
+
+/*===================== FONTS ===================== */
+@import url("/Portals/_default/Skins/AgapeFR/css/font.css");
+
+/*===================== TYPOGRAPHY ===================== */
+@import url("/Portals/_default/Skins/AgapeFR/css/typography.css");
+
+body {
+    background-color: white;
+    text-align: left;
+}
+

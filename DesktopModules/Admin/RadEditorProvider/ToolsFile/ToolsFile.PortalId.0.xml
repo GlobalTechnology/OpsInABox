@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+
+    <modules>
+        <module name="RadEditorStatistics" dockingZone="Bottom"/>
+    </modules>
+
+    <tools name="MainToolbar">
+        <tool name="AjaxSpellCheck"/>
+        <tool name="FindAndReplace" shortcut="CTRL+F"/>
+        <tool name="PasteStrip"/>
+        <tool separator="true"/>
+        <tool name="Undo" shortcut="CTRL+Z"/>
+        <tool name="Redo" shortcut="CTRL+Y"/>
+    </tools>
+
+    <tools name="InsertToolbar" >
+
+        <EditorToolStrip Name="InsertOptions" Text="Insérer un média" PopupWidth="252px" PopupHeight="86px">
+            <EditorTool Name="ImageManager" Text="Insérer une image" />
+            <EditorTool Name="DocumentManager" />
+<!--
+            <EditorTool Name="FlashManager" />
+            <EditorTool Name="MediaManager" />
+-->
+            <EditorTool Name="ImageMapDialog"/>
+        </EditorToolStrip>
+      
+        <tool name="InsertSnippet" Text="Insérer un élément spécifique" PopupHeight="54px" />
+      
+
+        <EditorToolStrip Name="TemplateOptions" PopupHeight="80px">
+            <EditorTool Name="SaveTemplate" />
+            <EditorTool Name="TemplateManager" />
+        </EditorToolStrip>
+
+        <tool separator="true"/>
+        <tool name="LinkManager" shortcut="CTRL+K"/>
+        <tool name="Unlink" shortcut="CTRL+SHIFT+K"/>
+<!--
+        <tool name="InsertCustomLink" shortcut="CTRL+ALT+K"/>
+-->
+    </tools>
+
+    <tools name="DropdownToolbar" >
+        <tool name="InsertSymbol"/>
+        <tool name="InsertTable"/>
+        <tool name="InsertParagraph" />
+        <tool name="ToggleScreenMode" shortcut="F11"/>
+        <tool name="InsertDate" />
+        <tool name="InsertTime" />
+    </tools>
+
+    <tools>
+        <tool name="Bold" shortcut="CTRL+B"/>
+        <tool name="Italic" shortcut="CTRL+I"/>
+        <tool name="Underline" shortcut="CTRL+U"/>
+        <tool name="StrikeThrough" />
+        <tool name="Superscript" />
+        <tool name="Subscript" />
+    </tools>
+
+    <tools>
+        <tool name="Indent" />
+        <tool name="Outdent" />
+    </tools>
+
+    <tools>
+        <tool name="InsertOrderedList" />
+        <tool name="InsertUnorderedList" />
+    </tools>
+    <tools>
+        <tool name="ConvertToLower" />
+        <tool name="ConvertToUpper" />
+        <tool name="InsertHorizontalRule" />
+    </tools>
+<!--
+    <tools>
+        <tool name="ForeColor" />
+        <tool name="BackColor" />
+        <tool name="FontName" />
+        <tool name="FontSize" />
+    </tools>
+-->  
+    <tools>
+        <tool name="JustifyLeft" />
+        <tool name="JustifyCenter" />
+        <tool name="JustifyRight" />
+        <tool name="JustifyFull" />    
+    </tools>
+    <tools>
+        <tool name="FormatBlock"/>
+        <tool separator="true"/>
+        <tool name="ApplyClass" Text="Style CSS"/>      
+        <tool name="FormatStripper" PopupWidth="250px"/>
+    </tools>
+
+    <paragraphs>
+        <paragraph name="&lt;P>Paragraphe standard&lt;/P&gt;" value="&lt;P&gt;" />
+        <paragraph name="&lt;H1>Titre 1&lt;/H1&gt;" value="&lt;H1&gt;" />
+        <paragraph name="&lt;H2>Titre 2&lt;/H2&gt;" value="&lt;H2&gt;" />
+        <paragraph name="&lt;H3>Titre 3&lt;/H3&gt;" value="&lt;H3&gt;" />
+        <paragraph name="&lt;H4>Titre 4&lt;/H4&gt;" value="&lt;H4&gt;" />
+        <paragraph name="&lt;H5>Titre 5&lt;/H5&gt;" value="&lt;H5&gt;" />
+        <paragraph name="&lt;H6>Titre 6&lt;/H6&gt;" value="&lt;H6&gt;" />
+        <paragraph name="&lt;P class='introduction'&gt;Introduction&lt;/P&gt;" value="&lt;P class='introduction'&gt;" />
+        <paragraph name="&lt;P class='quote'&gt;Citation&lt;/P&gt;" value="&lt;P class='quote'&gt;" />
+    </paragraphs>
+
+    <classes>
+        <class name="Texte renforcé" value=".highlight" />
+        <class name="Texte temporaire à modifier" value=".draft" />
+    </classes>
+
+    <snippets>
+      <snippet name="&lt;img src='/Portals/0/RadEditor/images/map.png' /&gt; Insérer une carte">
+        <![CDATA[         
+            <br />[MAP]
+        ]]>
+      </snippet>
+      <snippet name="&lt;img src='/Portals/0/RadEditor/images/video.png' /&gt; Insérer une vidéo YouTube">
+        <![CDATA[         
+            <br /><iframe width="640" height="360" src="https://www.youtube.com/embed/[ID VIDEO YOUTUBE]?rel=0&amp;autohide=1&amp;color=white&amp;showinfo=0" frameborder="0" webkitallowfullscreen ="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
+        ]]>
+      </snippet>  
+    </snippets>
+
+</root>
