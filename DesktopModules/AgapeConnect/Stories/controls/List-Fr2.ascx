@@ -80,7 +80,7 @@
 
     .seachImage {
         width: 100%;
-        border: 1pt solid black;
+        border: 0;
         margin-right: 5px;
     }
     .storyTitle {
