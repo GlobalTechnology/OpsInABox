@@ -63,6 +63,7 @@ IF NOT EXIST %var%Portals\0 (
 	mkdir %var%Portals\0
 )
 FOR %%G in (*) DO  mklink /H %var%Portals\0\%%G %%G
+FOR /d %%G in (*) DO  mklink /J %var%Portals\0\%%G %%G
 
 REM SETUP js Directory
 cd ../../js
