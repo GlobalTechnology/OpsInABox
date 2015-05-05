@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddCustomColor">
+    <value xml:space="preserve">Ajouter couleur personnalisée...</value>
+  </data>
+  <data name="AddCustomHexColor">
+    <value xml:space="preserve">Ajoutet couleur en Hexa...</value>
+  </data>
+  <data name="AddCustomWordSuccess">
+    <value xml:space="preserve">ajouté au dictionnaire</value>
+  </data>
+  <data name="AddToDictionary">
+    <value xml:space="preserve">Ajouter au dictionnaire</value>
+  </data>
+  <data name="AskWordCleaning">
+    <value xml:space="preserve">Le contenu que vous essayez de coller contient des codes Word.
+ Voules-vous les nettoyer ?</value>
+  </data>
+  <data name="CancelButton">
+    <value xml:space="preserve">Annuler</value>
+  </data>
+  <data name="CancelTable">
+    <value xml:space="preserve">Annuler</value>
+  </data>
+  <data name="CellProperties">
+    <value xml:space="preserve">Propriétés de cellule</value>
+  </data>
+  <data name="CellWarning">
+    <value xml:space="preserve">Veuillez sélectionner une cellule pour définir ses propriétés !</value>
+  </data>
+  <data name="ChangeWordString">
+    <value xml:space="preserve">Modifier manuellement</value>
+  </data>
+  <data name="Class">
+    <value xml:space="preserve">Classe CSS</value>
+  </data>
+  <data name="ClearAllHtmlTags">
+    <value xml:space="preserve">Toutes les balises HTML</value>
+  </data>
+  <data name="ClearClass">
+    <value xml:space="preserve">Classe clair</value>
+  </data>
+  <data name="ClearCssFormatting">
+    <value xml:space="preserve">Feuilles de Style en cascade</value>
+  </data>
+  <data name="ClearFontTags">
+    <value xml:space="preserve">Balises de polices</value>
+  </data>
+  <data name="ClearFormatting">
+    <value xml:space="preserve">Désactiver la mise en forme</value>
+  </data>
+  <data name="ClearSpanTags">
+    <value xml:space="preserve">Balises span</value>
+  </data>
+  <data name="ClearStyle">
+    <value xml:space="preserve">Supprimer le style</value>
+  </data>
+  <data name="ClearWordFormatting">
+    <value xml:space="preserve">Formattage Word</value>
+  </data>
+  <data name="CorrectSpelling">
+    <value xml:space="preserve">Modifications d'orthographe</value>
+  </data>
+  <data name="CreateLink">
+    <value xml:space="preserve">Créer un lien</value>
+  </data>
+  <data name="DialogToolbar">
+    <value xml:space="preserve">Boîtes de dialogue</value>
+  </data>
+  <data name="DropdownToolbar">
+    <value xml:space="preserve">Listes déroulantes</value>
+  </data>
+  <data name="EnhancedEditToolbar">
+    <value xml:space="preserve">Editeur amélioré</value>
+  </data>
+  <data name="ExceededHtmlLength">
+    <value xml:space="preserve">Le code HTML ajouté a dépassé la limite de caractères</value>
+  </data>
+  <data name="ExceededTextLength">
+    <value xml:space="preserve">Le texte ajouté a dépassé la limite de caractères</value>
+  </data>
+  <data name="FileOpen">
+    <value xml:space="preserve">Ouvrir le fichier...</value>
+  </data>
+  <data name="FileSaveAs">
+    <value xml:space="preserve">Enregistrer sous...</value>
+  </data>
+  <data name="FormButton">
+    <value xml:space="preserve">Bouton</value>
+  </data>
+  <data name="FormCheckbox">
+    <value xml:space="preserve">Case à cocher</value>
+  </data>
+  <data name="FormForm">
+    <value xml:space="preserve">Formulaire</value>
+  </data>
+  <data name="FormHidden">
+    <value xml:space="preserve">Caché</value>
+  </data>
+  <data name="FormPassword">
+    <value xml:space="preserve">Mot de passe</value>
+  </data>
+  <data name="FormRadio">
+    <value xml:space="preserve">Bouton radio</value>
+  </data>
+  <data name="FormReset">
+    <value xml:space="preserve">Réinitialiser</value>
+  </data>
+  <data name="FormSelect">
+    <value xml:space="preserve">Sélectionnez</value>
+  </data>
+  <data name="FormSubmit">
+    <value xml:space="preserve">Envoyer</value>
+  </data>
+  <data name="FormText">
+    <value xml:space="preserve">TextBox</value>
+  </data>
+  <data name="FormTextarea">
+    <value xml:space="preserve">TextArea</value>
+  </data>
+  <data name="HtmlMode">
+    <value xml:space="preserve">Mode HTML</value>
+  </data>
+  <data name="IgnoreAllString">
+    <value xml:space="preserve">Ignorer tous les</value>
+  </data>
+  <data name="IgnoreString">
+    <value xml:space="preserve">Ignorer</value>
+  </data>
+  <data name="ImageMapWarning">
+    <value xml:space="preserve">Veuillez sélectionner une image pour définir des propriétés de la carte de son image !</value>
+  </data>
+  <data name="IndentHtml">
+    <value xml:space="preserve">Indentation HTML</value>
+  </data>
+  <data name="InsertToolbar">
+    <value xml:space="preserve">INSERT</value>
+  </data>
+  <data name="MainToolbar">
+    <value xml:space="preserve">Barre d'outils principale</value>
+  </data>
+  <data name="MoreThanOnceMessage">
+    <value xml:space="preserve">Ce mot revient plus d'une fois dans le texte. Souhaitez-vous remplacer toutes les occurences ?</value>
+  </data>
+  <data name="MoveCommand">
+    <value xml:space="preserve">Déplacer</value>
+  </data>
+  <data name="NoSpellingMistakes">
+    <value xml:space="preserve">Aucune erreur trouvée.</value>
+  </data>
+  <data name="NoSuggestions">
+    <value xml:space="preserve">(aucune suggestion)</value>
+  </data>
+  <data name="PromptColor">
+    <value xml:space="preserve">Veuillez fournir la couleur personnalisée valeur HEX :</value>
+  </data>
+  <data name="RadEditorDesignMode">
+    <value xml:space="preserve">Conception</value>
+  </data>
+  <data name="RadEditorHtmlMode">
+    <value xml:space="preserve">HTML</value>
+  </data>
+  <data name="RadEditorPreviewMode">
+    <value xml:space="preserve">Aperçu</value>
+  </data>
+  <data name="ReduceTheConentLength">
+    <value xml:space="preserve">Veuillez, réduire le contenu du champ</value>
+  </data>
+  <data name="ReservedResource">
+    <value xml:space="preserve">Ne pas supprimer cette chaîne. Sert à déterminer si un fichier de ressources externes existe dans App_GlobalResources</value>
+  </data>
+  <data name="ResizeCommand">
+    <value xml:space="preserve">Redimensionner l'objet</value>
+  </data>
+  <data name="SetHtml">
+    <value xml:space="preserve">Définir HTML</value>
+  </data>
+  <data name="ShowToolbarTooltip">
+    <value xml:space="preserve">Afficher la barre d'outils</value>
+  </data>
+  <data name="SpellCheckComplete">
+    <value xml:space="preserve">Vérification orthographique complet !</value>
+  </data>
+  <data name="SpellCheckEnd">
+    <value xml:space="preserve">Terminer la vérification orthographique</value>
+  </data>
+  <data name="SpellingChange">
+    <value xml:space="preserve">Changement d'orthographe</value>
+  </data>
+  <data name="SpellingInProgress">
+    <value xml:space="preserve">Orthographique en cours...</value>
+  </data>
+  <data name="SpellingMode">
+    <value xml:space="preserve">Mode de vérification orthographique. Les mots mal orthographiés sont surlignés en jaune.</value>
+  </data>
+  <data name="Table">
+    <value xml:space="preserve">Table</value>
+  </data>
+  <data name="TableToolbar">
+    <value xml:space="preserve">Table</value>
+  </data>
+  <data name="TableWarning">
+    <value xml:space="preserve">Veuillez sélectionner une table pour définir ses propriétés !</value>
+  </data>
+  <data name="ToolbarCaption">
+    <value xml:space="preserve">Barre d'outils RadEditor</value>
+  </data>
+  <data name="ToolNotSupportedByNetscape">
+    <value xml:space="preserve">Cet outil n'est pas pris en charge par les navigateurs Mozilla/Netscape.</value>
+  </data>
+  <data name="Typing">
+    <value xml:space="preserve">Dactylographie...</value>
+  </data>
+  <data name="UndoDisabledMessage">
+    <value xml:space="preserve">Vous ne peut annuler davantage dans le mode de vérification orthographique. Finissez d'abord de vérification orthographique.</value>
+  </data>
+  <data name="UpdateButton">
+    <value xml:space="preserve">Mise à jour</value>
+  </data>
+  <data name="UseCtrlC">
+    <value xml:space="preserve">Veuillez utiliser Ctrl + C pour copie</value>
+  </data>
+  <data name="UseCtrlV">
+    <value xml:space="preserve">Veuillez utiliser Ctrl + V pour coller</value>
+  </data>
+  <data name="UseCtrlX">
+    <value xml:space="preserve">Veuillez utiliser Ctrl + X pour couper</value>
+  </data>
+</root>
