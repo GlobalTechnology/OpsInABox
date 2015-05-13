@@ -15,13 +15,12 @@
 }
 
 .LeftColumn, .CenterPane {
-    display: inline-table;
+    display: table-cell;
     vertical-align: top;
 }
 
 .LeftColumn {
     width: 307px;
-    height: 100%;
     position: relative;
 }
 
