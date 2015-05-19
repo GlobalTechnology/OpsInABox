@@ -17,28 +17,17 @@ Namespace DotNetNuke.Modules.Stories
         Dim d As New StoriesDataContext
 #Region "Base Method Implementations"
 
-        Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
-            jQuery.RegisterJQuery(Page)
-        End Sub
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
             Try
-
 
                 If (Page.IsPostBack = False) Then
                     LoadMixer()
 
                 End If
 
-
-
-
-
-
             Catch exc As Exception           'Module failed to load
                 ProcessModuleLoadException(Me, exc)
             End Try
-
-
 
         End Sub
         Protected Sub LoadMixer()
@@ -49,7 +38,6 @@ Namespace DotNetNuke.Modules.Stories
             Dim theModule = StoryFunctions.GetStoryModule(TabModuleId)
             Dim objModules As New Entities.Modules.ModuleController
             Dim newSettings As Boolean = False
-
 
             If theModule.AP_Stories_Module_Channels.Where(Function(x) x.Type = 2).Count = 0 Then
                 'add a local channel!
@@ -65,9 +53,7 @@ Namespace DotNetNuke.Modules.Stories
                 Dim l = Location.GetLocation(Request.ServerVariables("remote_addr"))
                 Dim logoFile = StoryFunctions.SetLogo("http://" & PortalSettings.PortalAlias.HTTPAlias & PortalSettings.HomeDirectory & PortalSettings.LogoFile, PortalId)
 
-
                 Dim imageId = "http://" & PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(logoFile))
-
 
                 StoryFunctions.AddLocalChannel(TabModuleId, PortalAlias.HTTPAlias, RssName, l.longitude, l.latitude, imageId)
 
@@ -75,13 +61,9 @@ Namespace DotNetNuke.Modules.Stories
 
             End If
 
-
-
             hfStoryModuleId.Value = theModule.StoryModuleId
 
-
             '  Dim channels = From c In d.AP_Stories_Module_Channels Where c.AP_Stories_Module.TabModuleId = TabModuleId
-
 
             Dim volumes = ""
             For Each row In theModule.AP_Stories_Module_Channels
@@ -89,8 +71,6 @@ Namespace DotNetNuke.Modules.Stories
             Next
 
             hfLoadVolumes.Value = volumes
-
-
 
             If CType(TabModuleSettings("NumberOfStories"), String) <> "" Then
                 lblNumberOfStories.Text = CType(TabModuleSettings("NumberOfStories"), Integer)
@@ -134,9 +114,6 @@ Namespace DotNetNuke.Modules.Stories
             End If
         End Sub
 
-
-
-
 #End Region
         Private Sub PreviewResults()
             Dim l As Location = Location.GetLocation(Request.ServerVariables("remote_addr"))
@@ -150,7 +127,6 @@ Namespace DotNetNuke.Modules.Stories
             Dim P As Double = hfPopular.Value / 100
             Dim N As Integer = hfNumberOfStories.Value
 
-
             Dim culture = CultureInfo.CurrentCulture.Name.ToLower
             Dim r = From c In d.AP_Stories_Module_Channel_Caches Select c, c.Clicks, Age = DateDiff(DateInterval.Day, c.StoryDate.Value, Today),
                   Distance = (0.0 + (1 * (CDbl(1.0) - CDbl(CDbl(Math.Min(CDbl(200), ((Math.Acos(CDbl(Math.Sin(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Sin(deg2Rad * CDbl(c.Latitude))) + CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(c.Latitude))) * CDbl(Math.Cos(CDbl(deg2Rad) * (CDbl(lg) - CDbl(c.Longitude)))))) / CDbl(Math.PI) * CDbl(180.0)) * CDbl(1.1515) * CDbl(60.0))) / CDbl(200.0)))) / CDbl(2.0)),
@@ -161,9 +137,6 @@ Namespace DotNetNuke.Modules.Stories
                 Dim tagList = Request.QueryString("tags").Split(",")
 
                 r = From c In r Join b In d.AP_Stories On CInt(c.c.GUID) Equals b.StoryId Where b.AP_Stories_Tag_Metas.Where(Function(x) tagList.Contains(x.AP_Stories_Tag.TagName)).Count > 0 Select c
-
-
-
 
             End If
 
@@ -176,21 +149,15 @@ Namespace DotNetNuke.Modules.Stories
             gvPreview.DataBind()
         End Sub
 
-
-
-
         Protected Sub SaveBtn_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles SaveBtn.Click
             Dim objModules As New Entities.Modules.ModuleController
 
             ' objModules.UpdateTabModuleSetting(TabModuleId, "Aspect", Double.Parse(hfAspect.Value, New CultureInfo("")).ToString(New CultureInfo("")))
 
-
             objModules.UpdateTabModuleSetting(TabModuleId, "NumberOfStories", CInt(hfNumberOfStories.Value))
             objModules.UpdateTabModuleSetting(TabModuleId, "WeightPopular", CDbl(IIf(hfPopular.Value = "", 0, hfPopular.Value / 100)).ToString(New CultureInfo("")))
             objModules.UpdateTabModuleSetting(TabModuleId, "WeightRegional", CDbl(IIf(hfRegional.Value = "", 0, hfRegional.Value / 100)).ToString(New CultureInfo("")))
             objModules.UpdateTabModuleSetting(TabModuleId, "WeightRecent", CDbl(IIf(hfRecent.Value = "", 0, hfRecent.Value / 100)).ToString(New CultureInfo("")))
-
-
 
             'Save each channel weight:
             Dim x = hfVolumes.Value.Split(";")
@@ -203,13 +170,11 @@ Namespace DotNetNuke.Modules.Stories
                 End If
             Next
 
-
             Dim channels = From c In d.AP_Stories_Module_Channels Where c.StoryModuleId = CInt(hfStoryModuleId.Value)
 
             For Each row In channels
                 row.Weight = CDbl(Volumes(row.ChannelId)) / 30
             Next
-
 
             Dim boosts = hfBoosts.Value.Split(";")
             For Each boost In boosts
@@ -248,7 +213,6 @@ Namespace DotNetNuke.Modules.Stories
                 StoryFunctions.UnBlockStoryAccrossSite(row.Link)
             Next
 
-
             d.SubmitChanges()
 
             ' refresh cache
@@ -258,10 +222,6 @@ Namespace DotNetNuke.Modules.Stories
             StoryFunctions.PrecalAllCaches(TabModuleId)
             LoadMixer()
         End Sub
-
-
-
-
 
         Protected Sub CancelBtn_Click(sender As Object, e As System.EventArgs) Handles CancelBtn.Click
             Response.Redirect(NavigateURL())
@@ -277,7 +237,6 @@ Namespace DotNetNuke.Modules.Stories
             SaveBtn_Click(Me, Nothing)
         End Sub
 
-
         Protected Sub lbVerifyURL_Click(sender As Object, e As System.EventArgs) Handles lbVerifyURL.Click
             Try
                 Dim q = From c In d.AP_Stories_Module_Channels Where c.URL = tbRssFeed.Text And c.StoryModuleId = CInt(hfStoryModuleId.Value)
@@ -286,11 +245,8 @@ Namespace DotNetNuke.Modules.Stories
                     Return
                 End If
 
-
                 Dim reader = XmlReader.Create(tbRssFeed.Text)
                 Dim feed = SyndicationFeed.Load(reader)
-
-
 
                 If Not feed.BaseUri Is Nothing Then
                     tbRssFeed.Text = feed.BaseUri.AbsoluteUri
@@ -319,8 +275,6 @@ Namespace DotNetNuke.Modules.Stories
                     If simpleURL.IndexOf("/") > 0 Then
                         simpleURL = simpleURL.Substring(0, simpleURL.IndexOf("/"))
                     End If
-
-
 
                     Dim ls As New LookupService(Server.MapPath("~/App_Data/GeoLiteCity.dat"), LookupService.GEOIP_STANDARD)
                     Dim ip = System.Net.Dns.GetHostAddresses(simpleURL)
@@ -358,12 +312,8 @@ Namespace DotNetNuke.Modules.Stories
             End Try
         End Sub
 
-
-
-
         'Private Function SetImage(ByVal ChannelImage As String) As Integer
         '    Try
-
 
         '        Dim req = WebRequest.Create(ChannelImage)
         '        Dim response = req.GetResponse
@@ -380,8 +330,6 @@ Namespace DotNetNuke.Modules.Stories
 
         '        Return theFile.FileId
 
-
-
         '    Catch ex As Exception
         '        Return -1
         '    End Try
@@ -393,9 +341,6 @@ Namespace DotNetNuke.Modules.Stories
             If tbRssFeed.Text = "" Then
                 lblFeedError.Text = "No feed found!<br />"
             End If
-
-
-
 
             Dim check = From c In d.AP_Stories_Module_Channels Where c.StoryModuleId = CInt(hfStoryModuleId.Value) And c.URL = tbRssFeed.Text
             If check.Count > 0 Then
@@ -426,11 +371,7 @@ Namespace DotNetNuke.Modules.Stories
                 End Try
             End If
 
-
             insert.ImageId = "http://" & PortalSettings.PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(icImage.FileId))
-
-
-
 
             If lblFeedError.Text <> "" Then
                 Dim t As Type = icImage.GetType()
@@ -442,11 +383,8 @@ Namespace DotNetNuke.Modules.Stories
                 Return
             End If
 
-
-
             d.AP_Stories_Module_Channels.InsertOnSubmit(insert)
             d.SubmitChanges()
-
 
             StoryFunctions.RefreshFeed(TabModuleId, insert.ChannelId, False)
             Dim d2 As New StoriesDataContext
@@ -454,8 +392,6 @@ Namespace DotNetNuke.Modules.Stories
 
             dlChannelMixer.DataSource = channels.OrderByDescending(Function(x) x.Type = 2).ThenBy(Function(x) x.ChannelId)
             dlChannelMixer.DataBind()
-
-
 
             tbRssFeed.Text = ""
             tbRssFeed.Enabled = True
@@ -527,7 +463,6 @@ Namespace DotNetNuke.Modules.Stories
                     btnEditChannel.Visible = True
                     tbRssFeed.Enabled = False
 
-
                     'Need to re popup the form.
 
                     Dim t As Type = Page.GetType()
@@ -541,7 +476,6 @@ Namespace DotNetNuke.Modules.Stories
 
             End If
         End Sub
-
 
         Public Function IsBoosted(ByVal CacheId As String, ByVal Boosted As Date?) As String
             If Boosted Is Nothing Then
@@ -557,7 +491,6 @@ Namespace DotNetNuke.Modules.Stories
                 Return "/DesktopModules/AgapeConnect/Stories/images/thumb_up_off.png"
             End If
 
-
         End Function
 
         Public Function IsBlocked(ByVal CacheId As String, ByVal Blocked As Boolean?) As String
@@ -568,12 +501,9 @@ Namespace DotNetNuke.Modules.Stories
                     hfBlocks.Value &= CacheId & ";"
                 End If
                 Return "/DesktopModules/AgapeConnect/Stories/images/thumb_down.png"
-
-
             Else
                 Return "/DesktopModules/AgapeConnect/Stories/images/thumb_down_off.png"
             End If
-
 
         End Function
 
@@ -597,7 +527,6 @@ Namespace DotNetNuke.Modules.Stories
 
         Protected Sub icImage_Uploaded() Handles icImage.Uploaded
             'Need to re popup the form.
-
 
             If CType(TabModuleSettings("Aspect"), String) <> "" Then
                 icImage.Aspect = TabModuleSettings("Aspect")
@@ -643,11 +572,7 @@ Namespace DotNetNuke.Modules.Stories
                     End Try
                 End If
 
-
                 theChannel.First.ImageId = "http://" & PortalSettings.PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(icImage.FileId))
-
-
-
 
                 If lblFeedError.Text <> "" Then
                     Dim t As Type = icImage.GetType()
@@ -661,14 +586,12 @@ Namespace DotNetNuke.Modules.Stories
 
                 d.SubmitChanges()
 
-
                 StoryFunctions.RefreshFeed(TabModuleId, theChannel.First.ChannelId, False)
                 Dim d2 As New StoriesDataContext
                 Dim channels = From c In d2.AP_Stories_Module_Channels Where c.StoryModuleId = CInt(hfStoryModuleId.Value)
 
                 dlChannelMixer.DataSource = channels.OrderByDescending(Function(c) c.Type = 2).ThenBy(Function(c) c.ChannelId)
                 dlChannelMixer.DataBind()
-
 
             End If
 
@@ -685,4 +608,3 @@ Namespace DotNetNuke.Modules.Stories
     End Class
 
 End Namespace
-
