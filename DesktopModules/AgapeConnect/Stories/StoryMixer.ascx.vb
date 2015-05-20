@@ -19,16 +19,12 @@ Namespace DotNetNuke.Modules.Stories
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
             Try
-
                 If (Page.IsPostBack = False) Then
                     LoadMixer()
-
                 End If
-
             Catch exc As Exception           'Module failed to load
                 ProcessModuleLoadException(Me, exc)
             End Try
-
         End Sub
         Protected Sub LoadMixer()
             ddlLanguages.DataSource = From c In CultureInfo.GetCultures(CultureTypes.AllCultures) Order By c.EnglishName Select Name = c.Name.ToLower, EnglishName = c.EnglishName
