@@ -470,7 +470,10 @@ Namespace DotNetNuke.Modules.FullStory
 
 
             'gets all stories with date of today or future and tagged Evénement. 
-            Dim q = From c In d.AP_Stories Where c.PortalID = PortalId And c.TabModuleId = TabModuleID And c.IsVisible And (c.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0) And c.StoryDate >= Today And Not c.StoryId = StoryId Order By c.StoryDate Ascending
+            'Dim q = From c In d.AP_Stories Where c.PortalID = PortalId And c.TabModuleId = TabModuleID And c.IsVisible And (c.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0) And c.StoryDate >= Today And Not c.StoryId = StoryId Order By c.StoryDate Ascending
+            Dim q = From story In d.AP_Stories Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId Where story.PortalID = PortalId And story.TabModuleId = TabModuleID And story.IsVisible And (story.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0) And story.StoryDate >= Today And Not story.StoryId = StoryId And Not channel.Block = True And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId Order By story.StoryDate Ascending
+
+
 
             'prints results under Agenda heading on left hand side of each story
             If q.Count > 0 Then
@@ -479,13 +482,13 @@ Namespace DotNetNuke.Modules.FullStory
                 rtn &= "<h2 class=""agendaTitle"">Agenda</h2>"
                 For Each row In q.Take(3)
 
-                    rtn &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & "&origModId=" & GetModId(Request.QueryString("origModId")) & "&origTabId=" & GetTabId(Request.QueryString("origTabId")) & """>"
-                    rtn &= "<table><tr><td style='vertical-align: top;'><div class='eventDay' >" & row.StoryDate.Day & "</div>"
-                    rtn &= "<div class='eventMonth'>" & row.StoryDate.ToString("MMM", New CultureInfo("fr-fr")) & "</div>"
+                    rtn &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?StoryId=" & row.story.StoryId & "&origModId=" & GetModId(Request.QueryString("origModId")) & "&origTabId=" & GetTabId(Request.QueryString("origTabId")) & """>"
+                    rtn &= "<table><tr><td style='vertical-align: top;'><div class='eventDay' >" & row.story.StoryDate.Day & "</div>"
+                    rtn &= "<div class='eventMonth'>" & row.story.StoryDate.ToString("MMM", New CultureInfo("fr-fr")) & "</div>"
                     rtn &= "<img src='/DesktopModules/AgapeConnect/Stories/images/cal.png' style='width:32px;' /></td><td style='padding-left: 12px;'>"
-                    rtn &= "<h4 class='eventTitle'>" & row.Headline & "</h4>"
+                    rtn &= "<h4 class='eventTitle'>" & row.story.Headline & "</h4>"
 
-                    rtn &= "<h6  class='eventSample'>" & row.TextSample & "</h6></td></tr></table></a></div>"
+                    rtn &= "<h6  class='eventSample'>" & row.story.TextSample & "</h6></td></tr></table></a></div>"
 
                 Next
             End If
@@ -493,13 +496,12 @@ Namespace DotNetNuke.Modules.FullStory
             Return rtn
         End Function
 
-        'The story is an article. This finds the first 3 upcoming events with the same tag (with same TabModuleID to exclude stories from other installed Stories module instances).
+        'The story is an article. This finds the first 3 upcoming events with the same tag (with same TabModuleID to exclude stories from other installed Stories module instances and is not blocked in the cache table).
         Protected Function GetArticleAgenda(ByVal Tags As List(Of Integer), ByVal TabModuleID As Integer) As String
             Dim d As New StoriesDataContext
             Dim rtn As String = ""
 
             'gets all stories tagged Evénement and having the same tag as current and with date of today or future
-            'Dim q = From c In d.AP_Stories Where c.PortalID = PortalId And c.TabModuleId = TabModuleID And c.IsVisible And c.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0 And (c.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) And c.StoryDate >= Today And Not c.StoryId = Request.QueryString("StoryId") Order By c.StoryDate Ascending
             Dim q = From story In d.AP_Stories Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId Where story.PortalID = PortalId And story.TabModuleId = TabModuleID And story.IsVisible And story.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0 And (story.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) And story.StoryDate >= Today And Not story.StoryId = Request.QueryString("StoryId") And Not channel.Block = True And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId Order By story.StoryDate Ascending
 
             If q.Count > 0 Then
