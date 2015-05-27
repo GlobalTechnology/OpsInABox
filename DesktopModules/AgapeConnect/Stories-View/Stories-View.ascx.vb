@@ -431,13 +431,11 @@ Namespace DotNetNuke.Modules.FullStory
             Return rtn
         End Function
 
-        'The story is an event or an article. This finds the related articles (with same TabModuleID to exclude stories from other installed Stories module instances).
+        'The story is an event or an article. This finds the related articles (with same TabModuleID to exclude stories from other installed Stories module instances and is not blocked in the cache table).
         Protected Function GetRelatedArticles(ByVal Tags As List(Of Integer), ByVal TabModuleID As Integer) As String
             Dim d As New StoriesDataContext
             Dim rtn As String = ""
 
-
-            'Dim q = From c In d.AP_Stories Where c.PortalID = PortalId And c.TabModuleId = TabModuleID And c.IsVisible And c.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count = 0 And (c.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) And Not c.StoryId = Request.QueryString("StoryId") Order By c.StoryDate Descending Distinct
             Dim q = From story In d.AP_Stories Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId Where story.PortalID = PortalId And story.TabModuleId = TabModuleID And story.IsVisible And story.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count = 0 And (story.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) And Not story.StoryId = Request.QueryString("StoryId") And Not channel.Block = True And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId Order By story.StoryDate Descending
 
             If q.Count > 0 Then
@@ -460,13 +458,12 @@ Namespace DotNetNuke.Modules.FullStory
             Return rtn
         End Function
 
-        'The story is an event. This finds the first 3 upcoming events (with same TabModuleID to exclude stories from other installed Stories module instances).
+        'The story is an event. This finds the first 3 upcoming events (with same TabModuleID to exclude stories from other installed Stories module instances and is not blocked in the cache table).
         Protected Function GetEventAgenda(ByVal StoryId As String, ByVal TabModuleID As Integer) As String
             Dim d As New StoriesDataContext
             Dim rtn As String = ""
 
             'gets all stories with date of today or future and tagged Evénement that are not blocked in the cache and are in the same channel. 
-            'Dim q = From c In d.AP_Stories Where c.PortalID = PortalId And c.TabModuleId = TabModuleID And c.IsVisible And (c.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0) And c.StoryDate >= Today And Not c.StoryId = StoryId Order By c.StoryDate Ascending
             Dim q = From story In d.AP_Stories Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId Where story.PortalID = PortalId And story.TabModuleId = TabModuleID And story.IsVisible And (story.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0) And story.StoryDate >= Today And Not story.StoryId = StoryId And Not channel.Block = True And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId Order By story.StoryDate Ascending
 
             'prints results under Agenda heading on left hand side of each story
