@@ -30,8 +30,12 @@
         <div class="ContentPane">
             <div id="TopPane" class="TopPane" runat="server">
 		    </div>
-            <div id="LeftPane" class="LeftPane" runat="server">
-		    </div>
+            <div class="LeftColumn">
+                <div id="LeftPane" class="LeftPane" runat="server">
+		        </div>
+                <div id="BottomLeftPane" class="BottomLeftPane" runat="server">
+		        </div>
+            </div>
             <div id="ContentPane" class="CenterPane" runat="server">
 		    </div>
 		</div>

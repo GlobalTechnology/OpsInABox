@@ -10,14 +10,23 @@
     margin: 150px 0 0 30px;
 }
 
-.LeftPane, .CenterPane {
-    display: inline-table;
-    vertical-align: top;
+.LeftColumn, .LeftPane, .BottomLeftPane, .CenterPane {
     margin: 0;
 }
 
-.LeftPane {
+.LeftColumn, .CenterPane {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.LeftColumn {
     width: 307px;
+    position: relative;
+}
+
+.BottomLeftPane {
+    position: absolute;
+    bottom: 0px;
 }
 
 .CenterPane {
