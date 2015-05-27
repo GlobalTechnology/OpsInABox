@@ -332,14 +332,18 @@ Namespace DotNetNuke.Modules.FullStory
 
         End Sub
         Private Function GetTabId(ByVal OrigTabId As String) As String
-            If modTranslation.ContainsKey(OrigTabId) Then
+            If String.IsNullOrEmpty(OrigTabId) Then
+                Return OrigTabId
+            ElseIf modTranslation.ContainsKey(OrigTabId) Then
                 Return modTranslation(OrigTabId)
             Else
                 Return OrigTabId
             End If
         End Function
         Private Function GetModId(ByVal OrigModId As String) As String
-            If modTranslation.ContainsKey(OrigModId) Then
+            If String.IsNullOrEmpty(OrigModId) Then
+                Return OrigModId
+            ElseIf modTranslation.ContainsKey(OrigModId) Then
                 Return modTranslation(OrigModId)
             Else
                 Return OrigModId
