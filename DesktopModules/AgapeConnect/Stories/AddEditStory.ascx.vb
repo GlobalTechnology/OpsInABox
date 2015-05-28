@@ -261,9 +261,6 @@ Namespace DotNetNuke.Modules.Stories
             Dim q = From c In d.AP_Stories Where c.StoryId = Request.QueryString("StoryId")
             Dim sd As Date = DateTime.Parse(StoryDate.Text, CultureInfo.CurrentCulture)
             If q.Count > 0 Then
-                q.First.TabModuleId = CInt(TabModuleId)
-                'TODO if selected is different than original tabmoduleid, then we need to update the cache as well...
-
                 q.First.StoryText = StoryText.Text
                 q.First.Headline = Headline.Text
                 q.First.StoryDate = sd
