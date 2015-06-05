@@ -54,7 +54,7 @@
             change: function (event, ui) {$("#<%= hfRecent.ClientId %>").val(ui.value);}
         });
         $("#numberOfStories").slider({
-            value: <%= lblNumberOfStories.Text %>,
+            value: <%= hfNumberOfStories.value %>,
             orientation: "horizontal",
             range: "min",
             animate: true,
@@ -66,7 +66,7 @@
                  $("#<%= hfNumberOfStories.ClientId %>").val( ui.value);
             }
         });
-        $("#numberOfStories").slider('refresh');
+        //$("#numberOfStories").slider('refresh');
         $("#<%= lblNumberOfStories.ClientId %>").html($("#numberOfStories").slider("value"));
       
          $("#<%= tbLocation.ClientId %>").locationPicker();
@@ -74,12 +74,17 @@
            $('.picker-search-button').css('font-size','x-small');
     }
 
-    $(document).ready(function () {
+	function pageLoad() {
+		setUpMyTabs();
+		setDials();
+	}
+	
+    /*$(document).ready(function () {
         setUpMyTabs();
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyTabs(); });
         setDials();
 
-    });
+    });*/
 
     function setDials()
     {
