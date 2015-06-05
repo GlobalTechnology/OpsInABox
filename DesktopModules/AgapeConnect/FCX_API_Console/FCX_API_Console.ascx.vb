@@ -62,34 +62,34 @@ Namespace DotNetNuke.Modules.AgapeConnect
         '    End Try
 
         'End Sub
-        'Protected Sub WhilstlistCommand(ByVal sender As Object, ByVal e As GridViewCommandEventArgs)
+        Protected Sub WhilstlistCommand(ByVal sender As Object, ByVal e As GridViewCommandEventArgs)
 
-        '    If e.CommandName = "Remove" Then
-        '        Dim arg = CStr(e.CommandArgument)
-        '        Dim DeveloperId As Integer = arg.Substring(0, arg.IndexOf(";"))
-        '        Dim Value = arg.Substring(arg.IndexOf(";") + 1)
-
-
-        '        Dim d As New FCX.FCXDataContext
-        '        Dim q = From c In d.FCX_API_Keys Where c.DeveloperId = DeveloperId And c.PortalId = PortalId
-        '        Dim newWhitelist = ""
-        '        If q.Count > 0 Then
-
-        '            For Each row In q.First.WhiteList.Split(",")
-        '                If row.Trim(",").Trim(" ") <> Value Then
-        '                    newWhitelist &= IIf(String.IsNullOrEmpty(newWhitelist), "", ",") & row.Trim(",").Trim(" ")
-        '                End If
-        '            Next
-        '            q.First.WhiteList = newWhitelist
-        '            d.SubmitChanges()
-        '            DataList1.DataBind()
-        '        End If
+            '    If e.CommandName = "Remove" Then
+            '        Dim arg = CStr(e.CommandArgument)
+            '        Dim DeveloperId As Integer = arg.Substring(0, arg.IndexOf(";"))
+            '        Dim Value = arg.Substring(arg.IndexOf(";") + 1)
 
 
-        '    End If
+            '        Dim d As New FCX.FCXDataContext
+            '        Dim q = From c In d.FCX_API_Keys Where c.DeveloperId = DeveloperId And c.PortalId = PortalId
+            '        Dim newWhitelist = ""
+            '        If q.Count > 0 Then
+
+            '            For Each row In q.First.WhiteList.Split(",")
+            '                If row.Trim(",").Trim(" ") <> Value Then
+            '                    newWhitelist &= IIf(String.IsNullOrEmpty(newWhitelist), "", ",") & row.Trim(",").Trim(" ")
+            '                End If
+            '            Next
+            '            q.First.WhiteList = newWhitelist
+            '            d.SubmitChanges()
+            '            DataList1.DataBind()
+            '        End If
 
 
-        'End Sub
+            '    End If
+
+
+        End Sub
 
 
 
