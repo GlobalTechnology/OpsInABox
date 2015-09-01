@@ -177,4 +177,7 @@
   <data name="lblWarning.Text">
     <value>Ne oubliez pas de cliquer sur la mise à jour (en bas de la page) pour enregistrer vos modifications.</value>
   </data>
+  <data name="lblJointPhoto.Text">
+    <value>Choisissez votre photo publique. Cette photo ne sera pas affichée pour les équipiers dans les pays sensibles.</value>
+  </data>
 </root>

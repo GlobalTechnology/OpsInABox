@@ -298,7 +298,7 @@
             </fieldset>
                 </div>
                 <div style="width: 300px; float: right;">
-                    <asp:Label ID="lblJointPhoto" runat="server" CssClass="AgapeH5" />                    
+                    <asp:Label ID="lblJointPhoto" runat="server" />                    
                     <uc1:acImage ID="JointPhoto" runat="server" Aspect="1" Width="300" />
                     <br />
                     <asp:Button ID="ProfileButton" runat="server" Text="See Public Page" CssClass="aButton btn" />

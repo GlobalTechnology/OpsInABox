@@ -66,6 +66,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 lblCustomize.Text = Translate("lblCustomize")
                 lblGivePage.Text = Translate("lblGivePage")
                 lblGiveInstructions.Text = Translate("lblGiveInstructions")
+                lblJointPhoto.Text = Translate("lblJointPhoto")
             End If
 
 
@@ -89,7 +90,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
             lbl2Name1.Text = staff.User.FirstName
             tbEmail1.Text = staff.User.Email
             tbGivingText.Text = StaffBrokerFunctions.GetStaffProfileProperty(staff.StaffId, "GivingText")
-            lblJointPhoto.Text = "Choose your public photo. This Photo will not appear for staff in sensitive countries."
 
             If User1.Profile.GetPropertyValue("Photo") <> "" Then
                 profileImage1.FileId = User1.Profile.GetPropertyValue("Photo")
@@ -151,7 +151,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
         Public Function Translate(ByVal ResourceString As String) As String
             Return DotNetNuke.Services.Localization.Localization.GetString(ResourceString & ".Text", LocalResourceFile)
-
         End Function
 
         Public Function GetTextFromNullable(ByVal TextIn As String, ByVal AlternateText As String) As String

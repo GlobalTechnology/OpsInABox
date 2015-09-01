@@ -138,6 +138,9 @@
   <data name="lblGivePage.Text" xml:space="preserve">
     <value>Your giving page is at:</value>
   </data>
+  <data name="lblJointPhoto.Text" xml:space="preserve">
+    <value>Choose your public photo. This Photo will not appear for staff in sensitive countries.</value>
+  </data>
   <data name="lblLeadership.Text" xml:space="preserve">
     <value>Leadership Relationships</value>
   </data>
