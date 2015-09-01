@@ -180,4 +180,10 @@
   <data name="lblJointPhoto.Text">
     <value>Choisissez votre photo publique. Cette photo ne sera pas affichée pour les équipiers dans les pays sensibles.</value>
   </data>
+  <data name="btnUpdate.Text">
+    <value>Mettre à jour</value>
+  </data>
+  <data name="btnSettings.Text">
+    <value>Paramètres</value>
+  </data>
 </root>

@@ -107,7 +107,7 @@ $('#<%= helpText.ClientId() %>').fadeIn( 8000) ;
 Click and drag to crop</div>
 <div>
  <input type="button" value="New Image"  onclick="showPopup<%= NewImage.ClientId %>();" class="aButton btn" width="100px"  style="font-size: 8pt ;width=100px;" />
-<asp:Button ID="btnUpdate" runat="server" Text="Update" Width="100px" CssClass="aButton btn" style="font-size: 8pt" />
+<asp:Button ID="btnUpdate" runat="server" resourcekey="btnUpdate" Text="Update" Width="100px" CssClass="aButton btn" style="font-size: 8pt" />
 </div>
 </div>
 

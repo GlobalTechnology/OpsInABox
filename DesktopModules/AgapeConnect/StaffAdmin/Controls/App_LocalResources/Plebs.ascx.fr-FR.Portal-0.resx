@@ -117,73 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnSettings.Text" xml:space="preserve">
-    <value>Settings</value>
+  <data name="lblTesting.Text">
+    <value>Déléguer tout le monde que relève de moi à cet équipier</value>
   </data>
-  <data name="btnUpdate.Text" xml:space="preserve">
-    <value>Update</value>
-  </data>
-  <data name="lblCustomize.Text" xml:space="preserve">
-    <value>Customize your Personal Giving Page</value>
-  </data>
-  <data name="lblEmail.Text" xml:space="preserve">
-    <value>Email:</value>
-  </data>
-  <data name="lblEmailHelpText.Text" xml:space="preserve">
-    <value>Please keep your email address up-to-date, as this is the email we will use to contact you.</value>
-  </data>
-  <data name="lblEmployment.Text" xml:space="preserve">
-    <value>Employment Settings</value>
-  </data>
-  <data name="lblFinance.Text" xml:space="preserve">
-    <value>Finance and Giving</value>
-  </data>
-  <data name="lblGiveInstructions.Text" xml:space="preserve">
-    <value>The following text will appear at the top of your Giving Page. Make your page more inviting by inserting in a picture (the paperclip icon on the toolbar) of you or your family, and some information about who you are and what you do. But be careful not to make it too long, as you will put off some visitors and the important giving options will disapear off the bottom of the page.</value>
-  </data>
-  <data name="lblGivePage.Text" xml:space="preserve">
-    <value>Your giving page is at:</value>
-  </data>
-  <data name="lblJointPhoto.Text" xml:space="preserve">
-    <value>Choose your public photo. This Photo will not appear for staff in sensitive countries.</value>
-  </data>
-  <data name="lblLeadership.Text" xml:space="preserve">
-    <value>Leadership Relationships</value>
-  </data>
-  <data name="lblLeading.Text" xml:space="preserve">
-    <value>The following report to this staff member:</value>
-  </data>
-  <data name="lblLeadingHelpText.Text" xml:space="preserve">
-    <value>These staff report to this staff member. You can remove reporting relationships here, but you must add the reporting relationship on the staff members profile.</value>
-  </data>
-  <data name="lblManager.Text" xml:space="preserve">
-    <value>Manager of these Departments:</value>
-  </data>
-  <data name="lblManagerHelpText.Text" xml:space="preserve">
-    <value>This user is setup as the Manager, or Delegate Manager for the following Responsibility Centers. A department must always have a manager, so please click on the department to change the manager on the Departments page.</value>
-  </data>
-  <data name="lblPhoto.Text" xml:space="preserve">
-    <value>Photo:</value>
-  </data>
-  <data name="lblPhotoHelpText.Text" xml:space="preserve">
-    <value>Please upload a photo of yourself. Please crop it to the right shape (square), by draging a box over the image and clicking update.</value>
-  </data>
-  <data name="lblProfile.Text" xml:space="preserve">
-    <value>Profile</value>
-  </data>
-  <data name="lblReport.Text" xml:space="preserve">
-    <value>This staff member reports to:</value>
-  </data>
-  <data name="lblReportHelpText.Text" xml:space="preserve">
-    <value>Enter the person/people that his staff member reports to. They should be setup as a staff member in this portal.</value>
-  </data>
-  <data name="lblResponsibility.Text" xml:space="preserve">
-    <value>Responsability Center</value>
-  </data>
-  <data name="lblResponsibilityHelpText.Text" xml:space="preserve">
-    <value>Your Financial Responsibility Center (a.k.a Cost Center) - this is the Financial Account that will be used as your personal Cost Center</value>
-  </data>
-  <data name="lblWarning.Text" xml:space="preserve">
-    <value>Don't forget to click update (bottom of the page) to save your changes.</value>
+  <data name="btnDelegate.Text">
+    <value>Déléguer</value>
   </data>
 </root>

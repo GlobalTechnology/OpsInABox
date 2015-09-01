@@ -3,8 +3,8 @@ Imports DotNetNuke.Security
 Imports StaffBroker
 
 Partial Class DesktopModules_AgapePortal_StaffBroker_Leaders
-    Inherits System.Web.UI.UserControl
-
+    'Inherits System.Web.UI.UserControl
+    Inherits Entities.Modules.PortalModuleBase
 
     Private _UID As Integer
     Public Property UID() As Integer

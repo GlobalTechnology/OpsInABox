@@ -74,11 +74,11 @@
     <asp:HiddenField ID="hfDeptId" runat="server" />
 
             <br />
-    <asp:CheckBox ID="CheckBox1" runat="server" Checked="false" Text="Delegate all my undelegated Departments to this staff member" />
+    <asp:CheckBox ID="CheckBox1" runat="server" Checked="false" resourcekey="cbDelegate" Text="Delegate all my undelegated Departments to this staff member" />
 
 
 
  <br /><br />
     <asp:Label ID="Label1" runat="server" ForeColor="Red" Font-Italic="true"></asp:Label>
- <asp:Button ID="btnDelegate" runat="server" Text="Delegate" Width="100px" CssClass="aButton btn"   />
+ <asp:Button ID="btnDelegate" resourcekey="btnDelegate" runat="server" Text="Delegate" Width="100px" CssClass="aButton btn"   />
 </div>

@@ -67,6 +67,8 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 lblGivePage.Text = Translate("lblGivePage")
                 lblGiveInstructions.Text = Translate("lblGiveInstructions")
                 lblJointPhoto.Text = Translate("lblJointPhoto")
+                btnUpdate.Text = Translate("btnUpdate")
+                btnSettings.Text = Translate("btnSettings")
             End If
 
 
