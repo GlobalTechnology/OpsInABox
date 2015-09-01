@@ -46,6 +46,8 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 If hfUserId2.Value <= 0 Then
                     tbEmail2.Visible = False
                 End If
+                lblWarning.Text = Translate("lblWarning")
+
             End If
 
 
@@ -128,6 +130,11 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
 
         End Sub
+
+        Public Function Translate(ByVal ResourceString As String) As String
+            Return DotNetNuke.Services.Localization.Localization.GetString(ResourceString & ".Text", LocalResourceFile)
+
+        End Function
 
         Public Function GetTextFromNullable(ByVal TextIn As String, ByVal AlternateText As String) As String
             If String.IsNullOrEmpty(TextIn) Then
