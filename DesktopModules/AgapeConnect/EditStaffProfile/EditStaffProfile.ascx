@@ -54,10 +54,10 @@
 <asp:Label ID="lblWarning" runat="server" Font-Italic="true" ForeColor="Gray">Don't forget to click update (bottom of the page) to save your changes.</asp:Label>
 <div id="tabs" style="width: 100%; text-align: Left;">
     <ul>
-        <li><a href='#Tab0-tab'>Profile</a></li>
-        <li><a href='#Tab1-tab'>Employment Settings</a></li>
-        <li><a href='#Tab2-tab'>Leadership Relationships</a></li>
-        <li><a  href='#Tab3-tab'>Finance and Giving</a></li>
+        <li><a href='#Tab0-tab'><asp:Label ID="lblProfile" runat="server" ></asp:Label></a></li>
+        <li><a href='#Tab1-tab'><asp:Label ID="lblEmployment" runat="server" ></asp:Label></a></li>
+        <li><a href='#Tab2-tab'><asp:Label ID="lblLeadership" runat="server" ></asp:Label></a></li>
+        <li><a href='#Tab3-tab'><asp:Label ID="lblFinance" runat="server" ></asp:Label></a></li>
         
     </ul>
     <div style="width: 100%; min-height: 350px; background-color: #FFFFFF;">
@@ -85,7 +85,7 @@
             </tr>
             <tr >
                 <td width="100px">
-                    <uc1:labelcontrol ID="Labelcontrol2" runat="server" Width="100px" Text="Email:" HelpText="Please keep your email address up-to-date, as this is the email we will use to contact you." />
+                    <uc1:labelcontrol ID="lblEmail" runat="server" Width="100px" Text="Email:" HelpText="Please keep your email address up-to-date, as this is the email we will use to contact you." />
                 </td>
                 <td width="50%" align="left">
                     <asp:TextBox ID="tbEmail1" runat="server" Width="90%"></asp:TextBox>
@@ -129,7 +129,7 @@
             <table>
                 <tr>
                     <td>
-                        <uc1:labelcontrol ID="Labelcontrol1" runat="server" Width="200px" Text="Responsibility Center" HelpText="Your Financial Responsibility Center (a.k.a Cost Center) - this is the Financial Account that will be used as your personal Cost Center" />
+                        <uc1:labelcontrol ID="lblResponsibility" runat="server" Width="200px" Text="Responsibility Center" HelpText="Your Financial Responsibility Center (a.k.a Cost Center) - this is the Financial Account that will be used as your personal Cost Center" />
                     </td>
                     <td>
                         <asp:TextBox ID="tbCostCenter" runat="server" Enabled="false" ></asp:TextBox>
@@ -193,7 +193,7 @@
                         </tr>
                         <tr valign="top">
                             <td >
-                                <uc1:labelcontrol ID="labelcontrol7" runat="server" Width="120px" Text="This staff member reports to:"
+                                <uc1:labelcontrol ID="lblReport" runat="server" Width="120px" Text="This staff member reports to:"
                                     HelpText="Enter the person/people that his staff member reports to. They should be setup as a staff member in this portal." />
                             </td>
                             <td>
@@ -214,7 +214,7 @@
 
                          <tr valign="top">
                             <td>
-                                <uc1:labelcontrol ID="labelcontrol8" runat="server"  Width="120px" Text="The following report to this staff member:"
+                                <uc1:labelcontrol ID="lblLeading" runat="server"  Width="120px" Text="The following report to this staff member:"
                                     HelpText="These staff report to this staff member. You can remove reporting relationships here, but you must add the reporting relationship on the staff members profile." />
                             </td>
                             <td>
@@ -233,7 +233,7 @@
                         </tr>
                         <tr valign="top">
                             <td>
-                                <uc1:labelcontrol ID="labelcontrol9" runat="server"  Width="120px" Text="Manager of these Departments:"
+                                <uc1:labelcontrol ID="lblManager" runat="server"  Width="120px" Text="Manager of these Departments:"
                                     HelpText="This user is setup as the Manager, or Delegate Manager for the following Responsibility Centers. A department must always have a manager, so please click on the department to change the manager on the Departments page. " />
                             </td>
                             <td>
@@ -286,13 +286,11 @@
                  </div>
                 <div style="width: 680px; float: left;">
                    <fieldset style="width: 100%; text-align: left">
-                <legend class="AgapeH3">Customize your Personal Giving Page</legend>
-                <b>Your giving page is at:</b> <span style="  font-weight: bold; color: Gray; font-size: 11pt">http://Don'tknowyet.com</span><br />
+                <legend class="AgapeH3"><asp:Label ID="lblCustomize" runat="server"></asp:Label></legend>
+                <b><asp:Label ID="lblGivePage" runat="server"></asp:Label></b> <span style="font-weight: bold; color: Gray; font-size: 11pt">http://Don'tknowyet.com</span><br />
 
                
-         <p>The following text will appear at the top of your Giving Page. Make your page more inviting by inserting in a picture (the paperclip icon on the toolbar) of you or your family, 
-         and some information about who you are and what you do. But be careful not to make it too long, as you will put of some visitors and the important 
-         giving options will disapear off the bottom of the page.</p>
+         <p><asp:Label ID="lblGiveInstructions" runat="server"></asp:Label></p>
 
             <br />
             

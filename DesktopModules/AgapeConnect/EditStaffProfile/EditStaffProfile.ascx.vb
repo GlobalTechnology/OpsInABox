@@ -47,7 +47,25 @@ Namespace DotNetNuke.Modules.AgapeConnect
                     tbEmail2.Visible = False
                 End If
                 lblWarning.Text = Translate("lblWarning")
-
+                lblPhoto.Text = Translate("lblPhoto")
+                lblPhoto.HelpText = Translate("lblPhotoHelpText")
+                lblProfile.Text = Translate("lblProfile")
+                lblEmployment.Text = Translate("lblEmployment")
+                lblLeadership.Text = Translate("lblLeadership")
+                lblFinance.Text = Translate("lblFinance")
+                lblEmail.Text = Translate("lblEmail")
+                lblEmail.HelpText = Translate("lblEmailHelpText")
+                lblResponsibility.Text = Translate("lblResponsibility")
+                lblResponsibility.HelpText = Translate("lblResponsibilityHelpText")
+                lblReport.Text = Translate("lblReport")
+                lblReport.HelpText = Translate("lblReportHelpText")
+                lblLeading.Text = Translate("lblLeading")
+                lblLeading.HelpText = Translate("lblLeadingHelpText")
+                lblManager.Text = Translate("lblManager")
+                lblManager.HelpText = Translate("lblManagerHelpText")
+                lblCustomize.Text = Translate("lblCustomize")
+                lblGivePage.Text = Translate("lblGivePage")
+                lblGiveInstructions.Text = Translate("lblGiveInstructions")
             End If
 
 
