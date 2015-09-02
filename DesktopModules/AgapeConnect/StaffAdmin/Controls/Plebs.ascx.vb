@@ -70,6 +70,9 @@ Partial Class DesktopModules_AgapePortal_StaffBroker_Plebs
             hfUserId.Value = _UID
         End If
 
+        'Localize the text for default choice in dropdownlist
+        ddlDelegate.Items.FindByValue(0).Text = LocalizeString("liNotSet")
+
     End Sub
 
     Protected Sub DataList2_ItemCommand(ByVal source As Object, ByVal e As System.Web.UI.WebControls.DataListCommandEventArgs) Handles DataList2.ItemCommand

@@ -196,6 +196,8 @@ Partial Class DesktopModules_AgapePortal_StaffBroker_acImage
            
             PreRender()
 
+            btnNewImage.Value = Translate("btnNewImage")
+
         End If
     End Sub
 
@@ -241,6 +243,10 @@ Partial Class DesktopModules_AgapePortal_StaffBroker_acImage
             theImage.Height = _Width / Double.Parse(Aspect, New CultureInfo(""))
         End If
     End Sub
+
+    Public Function Translate(ByVal ResourceString As String) As String
+        Return DotNetNuke.Services.Localization.Localization.GetString(ResourceString & ".Text", LocalResourceFile)
+    End Function
 
     Public Sub LazyLoad(Optional ByVal Async As Boolean = False, Optional Bound As Boolean = False)
         If Async Then

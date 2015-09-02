@@ -69,6 +69,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 lblJointPhoto.Text = Translate("lblJointPhoto")
                 btnUpdate.Text = Translate("btnUpdate")
                 btnSettings.Text = Translate("btnSettings")
+                btnProfile.Text = Translate("btnProfile")
             End If
 
 
@@ -477,7 +478,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
         End Sub
 
 
-        Protected Sub ProfileButton_Click(sender As Object, e As System.EventArgs) Handles ProfileButton.Click
+        Protected Sub btnProfile_Click(sender As Object, e As System.EventArgs) Handles btnProfile.Click
             Try
                 staff = StaffBrokerFunctions.GetStaffMember(UserId)
                 If Not staff Is Nothing Then

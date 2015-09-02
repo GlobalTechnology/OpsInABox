@@ -58,6 +58,8 @@ Partial Class DesktopModules_AgapePortal_StaffBroker_Depts
             hfUserId.Value = _UID
         End If
 
+        ddlDelegate.Items.FindByValue(0).Text = LocalizeString("liNotSet")
+
     End Sub
 
 

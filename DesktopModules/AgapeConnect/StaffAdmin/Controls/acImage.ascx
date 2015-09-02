@@ -106,7 +106,7 @@ $('#<%= helpText.ClientId() %>').fadeIn( 8000) ;
 <div id="helpText" runat="server"  title="helpText" style="display: none; margin-top: -15px;  -moz-opacity:.50; filter:alpha(opacity=70); opacity:.50; width: 200px; background-color: Black; color:white"  >
 Click and drag to crop</div>
 <div>
- <input type="button" value="New Image"  onclick="showPopup<%= NewImage.ClientId %>();" class="aButton btn" width="100px"  style="font-size: 8pt ;width=100px;" />
+ <input type="button" runat="server" id="btnNewImage" value="New Image"  onclick="showPopup<%= NewImage.ClientId %>();" class="aButton btn" width="100px"  style="font-size: 8pt ;width=100px;" />
 <asp:Button ID="btnUpdate" runat="server" resourcekey="btnUpdate" Text="Update" Width="100px" CssClass="aButton btn" style="font-size: 8pt" />
 </div>
 </div>
@@ -116,5 +116,5 @@ Click and drag to crop</div>
  <asp:FileUpload ID="FileUpload1" runat="server" width="240px"/>
  <br /><br />
     <asp:Label ID="Label1" runat="server" ForeColor="Red" Font-Italic="true"></asp:Label>
- <asp:Button ID="btnUpload" runat="server" Text="Upload" Width="100px" CssClass="aButton btn" Enabled="false" />
+ <asp:Button ID="btnUpload" runat="server" resourcekey="btnUpload" CssClass="aButton btn" Enabled="false" />
 </div>

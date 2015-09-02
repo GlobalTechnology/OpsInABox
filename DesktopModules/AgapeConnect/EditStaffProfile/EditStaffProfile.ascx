@@ -301,7 +301,7 @@
                     <asp:Label ID="lblJointPhoto" runat="server" />                    
                     <uc1:acImage ID="JointPhoto" runat="server" Aspect="1" Width="300" />
                     <br />
-                    <asp:Button ID="ProfileButton" runat="server" Text="See Public Page" CssClass="aButton btn" />
+                    <asp:Button ID="btnProfile" runat="server" Text="See Public Page" CssClass="aButton btn" />
                 </div>
                 <div style="clear: both;">
                 </div>

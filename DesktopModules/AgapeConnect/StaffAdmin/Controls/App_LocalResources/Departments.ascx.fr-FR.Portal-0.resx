@@ -123,4 +123,7 @@
   <data name="btnDelegate.Text">
     <value>Déléguer</value>
   </data>
+  <data name="liNotSet.Text">
+    <value>Non défini</value>
+  </data>
 </root>

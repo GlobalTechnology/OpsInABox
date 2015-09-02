@@ -120,4 +120,10 @@
   <data name="btnUpdate.Text">
     <value>Mettre à jour</value>
   </data>
+  <data name="btnNewImage.Text">
+    <value>Nouvelle image</value>
+  </data>
+  <data name="btnUpload.Text">
+    <value>Télécharger</value>
+  </data>
 </root>

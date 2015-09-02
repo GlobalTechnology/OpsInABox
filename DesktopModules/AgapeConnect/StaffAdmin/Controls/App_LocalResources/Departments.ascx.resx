@@ -123,4 +123,7 @@
   <data name="cbDelegate.Text" xml:space="preserve">
     <value>Delegate all my undelegated Departments to this staff member</value>
   </data>
+  <data name="liNotSet.Text" xml:space="preserve">
+    <value>Not set</value>
+  </data>
 </root>

@@ -186,4 +186,7 @@
   <data name="btnSettings.Text">
     <value>Paramètres</value>
   </data>
+  <data name="btnProfile.Text">
+    <value>Voir la page publique</value>
+  </data>
 </root>

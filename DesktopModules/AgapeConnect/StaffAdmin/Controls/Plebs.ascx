@@ -70,7 +70,7 @@
 <div id="pnlDelegate" runat="server" style="text-align: center; ">
  <asp:DropDownList ID="ddlDelegate" runat="server" Font-Size="XX-Small"  DataSource='<%#  StaffBrokerFunctions.GetStaff(hfUserId.value ) %>'
                  DataTextField="DisplayName" DataValueField="UserID" AppendDataBoundItems="true">
-                 <asp:ListItem Value="0">Not Set</asp:ListItem>
+                 <asp:ListItem Value="0"></asp:ListItem>
             </asp:DropDownList>
     <asp:HiddenField ID="hfPlebId" runat="server" />
 

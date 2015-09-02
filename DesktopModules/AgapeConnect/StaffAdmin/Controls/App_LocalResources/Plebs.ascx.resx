@@ -123,4 +123,7 @@
   <data name="lblTesting.Text" xml:space="preserve">
     <value>Delegate everyone that reports to me to this staff member</value>
   </data>
+  <data name="liNotSet.Text" xml:space="preserve">
+    <value>Not Set</value>
+  </data>
 </root>
