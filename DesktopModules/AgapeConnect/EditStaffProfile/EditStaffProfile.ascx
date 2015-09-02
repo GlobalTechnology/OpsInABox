@@ -39,7 +39,7 @@
         });
     } (jQuery, window.Sys));
 
-    function removeTab(i) { $('#tabs').tabs("remove", i); }
+    function removeTab(i) { $('#tabs').tabs({disabled: [i]}); }
 
 
 </script>
