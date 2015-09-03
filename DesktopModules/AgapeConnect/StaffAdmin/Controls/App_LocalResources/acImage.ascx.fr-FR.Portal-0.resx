@@ -126,4 +126,7 @@
   <data name="btnUpload.Text">
     <value>Télécharger</value>
   </data>
+  <data name="lblCrop.Text">
+    <value>Cliquez et glissez pour recadrer</value>
+  </data>
 </root>

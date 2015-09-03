@@ -196,8 +196,6 @@ Partial Class DesktopModules_AgapePortal_StaffBroker_acImage
            
             PreRender()
 
-            btnNewImage.Value = Translate("btnNewImage")
-
         End If
     End Sub
 

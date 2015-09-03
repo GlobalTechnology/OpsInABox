@@ -126,4 +126,7 @@
   <data name="btnUpload.Text" xml:space="preserve">
     <value>Upload</value>
   </data>
+  <data name="lblCrop.Text" xml:space="preserve">
+    <value>Click and drag to crop</value>
+  </data>
 </root>
