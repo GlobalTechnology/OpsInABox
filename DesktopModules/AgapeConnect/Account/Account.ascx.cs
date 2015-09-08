@@ -66,7 +66,7 @@ namespace DotNetNuke.Modules.Account
         protected void Page_Load(object sender, EventArgs e)
         {
             openAddCountry.ToolTip = Translate("btnAddCountryTooltip");
-
+            lblNew.Text = Translate("lblNew");
             _startDate = FirstDayOfMonthFromDateTime(DateTime.Today.AddMonths(-12));
             _endDate = LastDayOfMonthFromDateTime(DateTime.Today);
            
