@@ -163,60 +163,41 @@
         display:none;
     }
 </style>
-
-
-<table width="100%">
-    <tr valign="top">
-        <td style="width: 100%">
-            <div style="text-align: left">
-                <div style="width: auto">
-                    <div>
-                        <asp:Label ID="Label1" runat="server" Font-Bold="true" ResourceKey="lblCountry" Text="Country:"></asp:Label><br />
-                        <asp:DropDownList ID="MyCountries" runat="server" AutoPostBack="true" Font-Bold="true" Style="margin-bottom: 10px;"
-                            Width="100%" Font-Size="8pt" OnSelectedIndexChanged="MyCountries_SelectedIndexChanged">
-                        </asp:DropDownList><br />
-                        <span class="label label-success">New</span>
-                        <asp:HyperLink ID="openAddCountry" runat="server" data-placement="right" ToolTip="Do you have donations from a country not listed here (like USA)? Add this country here..." onclick=" $('#divAddCountry').dialog('open');" resourcekey="btnAddCountry" >Add Country...</asp:HyperLink>
-                       
-                    </div>
-                    <div>
-                        <asp:Label ID="Label2" runat="server" Font-Bold="true" ResourceKey="lblProfile" Text="Profile:"></asp:Label><br />
-                        <asp:DropDownList ID="MyProfiles" runat="server" AutoPostBack="true" Width="100%" Style="margin-bottom: 10px;"
-                            Font-Size="8pt" OnSelectedIndexChanged="MyProfiles_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </div>
-                    <div>
-                        <asp:Label ID="Label3" runat="server" Font-Bold="true" ResourceKey="lblRC" Text="Responsibility Center:"></asp:Label><br />
-                        
-                        <asp:DropDownList ID="MyAccounts" runat="server" AutoPostBack="true" Width="100%" Style="margin-bottom: 10px;"
-                            Font-Size="8pt" OnSelectedIndexChanged="MyAccounts_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </div>
-                    <div ID="pnlError" runat="server" class="alert  alert-error alert-block"  Visible="false" >
-                        <asp:Label ID="lblError" runat="server" Font-Size="smaller" ></asp:Label>
-                    </div>
-                    <div ID="lblDonationOnly" runat="server" class="alert alert-block"  Visible="false" >
-                        <asp:Label ID="lbl1" runat="server" Font-Size="smaller" ResourceKey="lblDonationOnly"></asp:Label>
-                    </div>
-                    
-                    
-
-                </div>
-            </div>
-
-        </td>
-        <td style="width: 100%">
-            <asp:Label ID="lblMessage" runat="server" Text="" ForColor="#777" Visible="false" Font-Italic="true"></asp:Label>
-            <div id="IncExpGraph" style="width: 875px; height: 400px;"></div>
-        </td>
-    </tr>
-
-</table>
-
-
-
-
-
+<div>
+    <div id="leftddl" style="float:left; width:200px;">
+        <div>
+            <asp:Label ID="Label1" runat="server" Font-Bold="true" ResourceKey="lblCountry" Text="Country:"></asp:Label><br />
+            <asp:DropDownList ID="MyCountries" runat="server" AutoPostBack="true" Font-Bold="true" Style="margin-bottom: 10px;"
+                Width="100%" Font-Size="8pt" OnSelectedIndexChanged="MyCountries_SelectedIndexChanged">
+            </asp:DropDownList><br />
+            <span class="label label-success">New</span>
+            <asp:HyperLink ID="openAddCountry" runat="server" data-placement="right" ToolTip="Do you have donations from a country not listed here (like USA)? Add this country here..." onclick=" $('#divAddCountry').dialog('open');" resourcekey="btnAddCountry" >Add Country...</asp:HyperLink>
+        </div>
+        <div>
+            <asp:Label ID="Label2" runat="server" Font-Bold="true" ResourceKey="lblProfile" Text="Profile:"></asp:Label><br />
+            <asp:DropDownList ID="MyProfiles" runat="server" AutoPostBack="true" Width="100%" Style="margin-bottom: 10px;"
+                Font-Size="8pt" OnSelectedIndexChanged="MyProfiles_SelectedIndexChanged">
+            </asp:DropDownList>
+        </div>
+        <div>
+            <asp:Label ID="Label3" runat="server" Font-Bold="true" ResourceKey="lblRC" Text="Responsibility Center:"></asp:Label><br />
+            <asp:DropDownList ID="MyAccounts" runat="server" AutoPostBack="true" Width="100%" Style="margin-bottom: 10px;"
+                Font-Size="8pt" OnSelectedIndexChanged="MyAccounts_SelectedIndexChanged">
+            </asp:DropDownList>
+        </div>
+        <div ID="pnlError" runat="server" class="alert  alert-error alert-block"  Visible="false" >
+            <asp:Label ID="lblError" runat="server" Font-Size="smaller" ></asp:Label>
+        </div>
+        <div ID="lblDonationOnly" runat="server" class="alert alert-block"  Visible="false" >
+            <asp:Label ID="lbl1" runat="server" Font-Size="smaller" ResourceKey="lblDonationOnly"></asp:Label>
+        </div>
+    </div>
+    <div id="rightgraph" style="float:right">
+        <asp:Label ID="lblMessage" runat="server" Text="" ForColor="#777" Visible="false" Font-Italic="true"></asp:Label>
+        <div id="IncExpGraph" style="width:960px; height: 400px;"></div>
+    </div>
+    <div style="clear:both"></div>
+</div>
 
 <div id="accordion" class="accordion">
     <div class="accordion-group">
