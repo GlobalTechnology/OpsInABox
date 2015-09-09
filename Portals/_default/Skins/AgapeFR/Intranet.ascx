@@ -21,8 +21,6 @@
 
 <div id="bar3" class="bar">
 	<div id="ContentContainer" class="centeredbox">
-        <div id="ContentTitle">
-		</div>
         <div id="ContentPane" class="ContentPane" runat="server">
 		</div>
 	</div>
