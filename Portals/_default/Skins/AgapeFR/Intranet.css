@@ -18,3 +18,8 @@
 #ContentContainer #ContentTitle {
     margin: 5px 0 0 30px;
 }
+#accordion h3, #accordion a, #accordion, a {
+    font-weight:normal;
+    font-size:medium;
+    font-family: OpenSansRegular;
+}
