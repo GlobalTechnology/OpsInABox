@@ -208,7 +208,7 @@
     </a>
             </h3></div>
   
-    <div id="income-detail" class="accordion-body collapse" style="margin: 0px 0px 0px 0px; padding: 5px 6px 5px 29px">
+    <div id="income-detail" class="accordion-body collapse" style="margin: 0px 0px 0px 0px; padding: 5px 0px;">
         <div class="accordion-inner color1-link">
          <asp:GridView ID="gvIncomeGLSummary" runat="server" ShowHeader="False"
             GridLines="None" RowStyle-BorderStyle="None" CellPadding="0" Width="100%"
@@ -249,7 +249,7 @@
         </asp:GridView>
     </a>
             </h3> </div>
-    <div id="expense-detail" class="accordion-body collapse" style="margin: 0px 0px 0px 0px; padding: 5px 6px 5px 29px">
+    <div id="expense-detail" class="accordion-body collapse" style="margin: 0px 0px 0px 0px; padding: 5px 0px;">
         <div class="accordion-inner color3-link">
          <asp:GridView ID="gvExpensesGLSummary" runat="server" ShowHeader="False"
             GridLines="None" CellPadding="0" Width="100%"
