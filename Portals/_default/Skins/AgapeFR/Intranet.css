@@ -12,9 +12,13 @@
 }
 
 .centeredbox {
-    width: 1200px;
+    width: 1150px;
 }
 
 #ContentContainer #ContentTitle {
     margin: 5px 0 0 30px;
+}
+
+.accordion-heading .accordion-toggle {
+    padding: 0px 15px;
 }

@@ -9,23 +9,19 @@
     google.load("visualization", "1", { packages: ["corechart"] });
     google.setOnLoadCallback(function () { drawVisualization() });
     $(function () {
-        $("#accordion").accordion({
-            autoHeight: false,
-            navigation: true,
-            collapsible: true,
-            active: false,
-            change: function (event, ui) {
-                var newIndex = $(ui.newHeader).index('h3');
-                if (newIndex == 2) {
-                    var oldIndex = $(ui.oldHeader).index('h3');
-                    $(this).accordion("activate", oldIndex);
-                }
-            }
-        });
-
-
-
-
+        //$("#accordion").accordion({
+        //    autoHeight: false,
+        //    navigation: true,
+        //    collapsible: true,
+        //    active: false,
+        //    change: function (event, ui) {
+        //        var newIndex = $(ui.newHeader).index('h3');
+        //        if (newIndex == 2) {
+        //            var oldIndex = $(ui.oldHeader).index('h3');
+        //            $(this).accordion("activate", oldIndex);
+        //        }
+        //    }
+        //});
         $("#divTransDetail").dialog({
             autoOpen: false,
             height: 300,
