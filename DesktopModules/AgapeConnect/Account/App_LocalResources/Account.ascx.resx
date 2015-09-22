@@ -171,6 +171,9 @@
   <data name="lblIncome.Text" xml:space="preserve">
     <value>Income</value>
   </data>
+  <data name="lblNew.Text" xml:space="preserve">
+    <value>New</value>
+  </data>
   <data name="lblPassword.Text" xml:space="preserve">
     <value>Password:</value>
   </data>
