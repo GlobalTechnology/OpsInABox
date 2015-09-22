@@ -166,7 +166,7 @@
             <asp:DropDownList ID="MyCountries" runat="server" AutoPostBack="true" Font-Bold="true" Style="margin-bottom: 10px;"
                 Width="100%" Font-Size="8pt" OnSelectedIndexChanged="MyCountries_SelectedIndexChanged">
             </asp:DropDownList><br />
-                        <span class="label label-success"><asp:Label ID="lblNew" runat="server"></asp:Label></span>
+                <span class="label label-success"><asp:Label ID="lblNew" runat="server"></asp:Label></span>
             <asp:HyperLink ID="openAddCountry" runat="server" data-placement="right" ToolTip="Do you have donations from a country not listed here (like USA)? Add this country here..." onclick=" $('#divAddCountry').dialog('open');" resourcekey="btnAddCountry" >Add Country...</asp:HyperLink>
         </div>
         <div>
