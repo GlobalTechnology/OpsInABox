@@ -140,7 +140,7 @@
         padding: 3px 10px;
         cursor: pointer;
         position: relative;
-        background-color: #E2CB9A;
+        background-color: #5eb6e4;
         border-bottom-style: dashed;
         border-width: 1px;
         text-align: center;
@@ -230,7 +230,7 @@
                 OnRowDataBound="gvDonationSummary_RowDataBound">
                 <AlternatingRowStyle BackColor="White" />
 
-                <RowStyle BackColor="#fff8c8" BorderStyle="None" HorizontalAlign="Right" />
+                <RowStyle BackColor="#cce8f6" BorderStyle="None" HorizontalAlign="Right" />
                 <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" />
 
 

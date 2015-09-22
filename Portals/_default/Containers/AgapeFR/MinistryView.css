@@ -1,7 +1,16 @@
-#accordion h3, #accordion a, #accordion, a {
+#accordion {
+    font-weight:normal;
+    font-size:14px;
+    font-family: OpenSansRegular;
+}
+#accordion h3, a {
     font-weight:normal;
     font-size:medium;
     font-family: OpenSansRegular;
+}
+
+#accordion a {
+    font-weight:bold;
 }
 
     #accordion .heading {
@@ -9,7 +18,6 @@
         padding: 3px 10px;
         cursor: pointer;
         position: relative;
-        background-color: #5eb6e4;
         border-bottom-style: dashed;
         border-width: 1px;
         text-align: center;
@@ -17,3 +25,7 @@
         color:white;
     }
 
+.accordion-heading .accordion-toggle {
+        line-height: 18px;
+        background-color:#EFF3FB;
+}
