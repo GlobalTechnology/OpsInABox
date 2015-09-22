@@ -46,6 +46,30 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 If hfUserId2.Value <= 0 Then
                     tbEmail2.Visible = False
                 End If
+                lblWarning.Text = Translate("lblWarning")
+                lblPhoto.Text = Translate("lblPhoto")
+                lblPhoto.HelpText = Translate("lblPhotoHelpText")
+                lblProfile.Text = Translate("lblProfile")
+                lblEmployment.Text = Translate("lblEmployment")
+                lblLeadership.Text = Translate("lblLeadership")
+                lblFinance.Text = Translate("lblFinance")
+                lblEmail.Text = Translate("lblEmail")
+                lblEmail.HelpText = Translate("lblEmailHelpText")
+                lblResponsibility.Text = Translate("lblResponsibility")
+                lblResponsibility.HelpText = Translate("lblResponsibilityHelpText")
+                lblReport.Text = Translate("lblReport")
+                lblReport.HelpText = Translate("lblReportHelpText")
+                lblLeading.Text = Translate("lblLeading")
+                lblLeading.HelpText = Translate("lblLeadingHelpText")
+                lblManager.Text = Translate("lblManager")
+                lblManager.HelpText = Translate("lblManagerHelpText")
+                lblCustomize.Text = Translate("lblCustomize")
+                lblGivePage.Text = Translate("lblGivePage")
+                lblGiveInstructions.Text = Translate("lblGiveInstructions")
+                lblJointPhoto.Text = Translate("lblJointPhoto")
+                btnUpdate.Text = Translate("btnUpdate")
+                btnSettings.Text = Translate("btnSettings")
+                btnProfile.Text = Translate("btnProfile")
             End If
 
 
@@ -69,7 +93,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
             lbl2Name1.Text = staff.User.FirstName
             tbEmail1.Text = staff.User.Email
             tbGivingText.Text = StaffBrokerFunctions.GetStaffProfileProperty(staff.StaffId, "GivingText")
-            lblJointPhoto.Text = "Choose your public photo. This Photo will not appear for staff in sensitive countries."
 
             If User1.Profile.GetPropertyValue("Photo") <> "" Then
                 profileImage1.FileId = User1.Profile.GetPropertyValue("Photo")
@@ -128,6 +151,10 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
 
         End Sub
+
+        Public Function Translate(ByVal ResourceString As String) As String
+            Return DotNetNuke.Services.Localization.Localization.GetString(ResourceString & ".Text", LocalResourceFile)
+        End Function
 
         Public Function GetTextFromNullable(ByVal TextIn As String, ByVal AlternateText As String) As String
             If String.IsNullOrEmpty(TextIn) Then
@@ -451,7 +478,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
         End Sub
 
 
-        Protected Sub ProfileButton_Click(sender As Object, e As System.EventArgs) Handles ProfileButton.Click
+        Protected Sub btnProfile_Click(sender As Object, e As System.EventArgs) Handles btnProfile.Click
             Try
                 staff = StaffBrokerFunctions.GetStaffMember(UserId)
                 If Not staff Is Nothing Then

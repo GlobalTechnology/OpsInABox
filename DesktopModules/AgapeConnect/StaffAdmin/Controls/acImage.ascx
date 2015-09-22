@@ -52,7 +52,7 @@
     }
 });
 
-$('#<%= helpText.ClientId() %>').fadeIn( 8000) ;
+            $('#helpText').fadeIn( 8000) ;
 
 
 
@@ -99,15 +99,15 @@ $('#<%= helpText.ClientId() %>').fadeIn( 8000) ;
 <asp:HiddenField ID="hfH" runat="server" />
 <asp:HiddenField ID="hfLoaded" runat="server" Value="false" />
 <asp:HiddenField ID="hfAspect" runat="server" />
-<div style="width: 200px; text-align: center">
+<div style="width: 200px; text-align: center; position: relative">
 <asp:Image ID="theImage" runat="server" />
 
 
-<div id="helpText" runat="server"  title="helpText" style="display: none; margin-top: -15px;  -moz-opacity:.50; filter:alpha(opacity=70); opacity:.50; width: 200px; background-color: Black; color:white"  >
-Click and drag to crop</div>
+<div id="helpText" title="<%=LocalizeString("lblCrop") %>" style="display: none;  -moz-opacity:.50; filter:alpha(opacity=70); opacity:.50; width: 200px; background-color: Black; color:white; position: absolute; top: 0;"  >
+<%=LocalizeString("lblCrop") %></div>
 <div>
- <input type="button" value="New Image"  onclick="showPopup<%= NewImage.ClientId %>();" class="aButton btn" width="100px"  style="font-size: 8pt ;width=100px;" />
-<asp:Button ID="btnUpdate" runat="server" Text="Update" Width="100px" CssClass="aButton btn" style="font-size: 8pt" />
+ <input type="button" id="btnNewImage" value="<%=LocalizeString("btnNewImage") %>"  onclick='showPopup<%= NewImage.ClientId %>();' class="aButton btn" style="font-size: 8pt" />
+<asp:Button ID="btnUpdate" runat="server" resourcekey="btnUpdate" Text="Update" CssClass="aButton btn" style="font-size: 8pt" />
 </div>
 </div>
 
@@ -116,5 +116,5 @@ Click and drag to crop</div>
  <asp:FileUpload ID="FileUpload1" runat="server" width="240px"/>
  <br /><br />
     <asp:Label ID="Label1" runat="server" ForeColor="Red" Font-Italic="true"></asp:Label>
- <asp:Button ID="btnUpload" runat="server" Text="Upload" Width="100px" CssClass="aButton btn" Enabled="false" />
+ <asp:Button ID="btnUpload" runat="server" resourcekey="btnUpload" CssClass="aButton btn" Enabled="false" />
 </div>

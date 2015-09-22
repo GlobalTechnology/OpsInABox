@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="lblCustomize.Text">
+    <value>Personnalisez votre page dons personnel</value>
+  </data>
+  <data name="lblEmail.Text">
+    <value>Email </value>
+  </data>
+  <data name="lblEmailHelpText.Text">
+    <value>Merci de garder votre adresse email à jour, comme cela est l'adresse que nous allons utiliser pour communiquer avec vous.</value>
+  </data>
+  <data name="lblEmployment.Text">
+    <value>Paramètres de l'emploi</value>
+  </data>
+  <data name="lblFinance.Text">
+    <value>Finances et dons</value>
+  </data>
+  <data name="lblGiveInstructions.Text">
+    <value>Le texte suivant apparaîtra en haut de votre page dons. Faites votre page plus accueillante en insérant dans une image (l'icône en forme de trombone sur la barre d'outils) de vous ou votre famille, et quelques informations sur qui vous êtes et ce que vous faites. Mais attention à ne pas faire trop long, comme vous pourrez le rebuter certains visiteurs et les importantes options donnant disparaitra vers le bas de la page.</value>
+  </data>
+  <data name="lblGivePage.Text">
+    <value>Votre page de dons se trouve à </value>
+  </data>
+  <data name="lblLeadership.Text">
+    <value>Leadership</value>
+  </data>
+  <data name="lblLeading.Text">
+    <value>Les personnes suivantes sont sous la direction de cet équipier</value>
+  </data>
+  <data name="lblLeadingHelpText.Text">
+    <value>Ces employés rapportent à ce membre du personnel. Vous pouvez supprimer des rapports hiérarchiques ici, mais vous devez ajouter le lien hiérarchique sur le profil des membres du personnel.</value>
+  </data>
+  <data name="lblManager.Text">
+    <value>Responsable de ces ministères </value>
+  </data>
+  <data name="lblManagerHelpText.Text">
+    <value>Cet utilisateur est configuré en tant que gestionnaire, ou délégué gestionnaire pour les ministères suivants. Un ministère doit toujours avoir un gestionnaire, alors merci de cliquez sur le département de changer le gestionnaire sur la page ministères.</value>
+  </data>
+  <data name="lblPhoto.Text">
+    <value>Photo </value>
+  </data>
+  <data name="lblPhotoHelpText.Text">
+    <value>Merci de télécharger une photo de vous-même. Merci de la recadrer à la forme carré, par en glissant une boîte sur l'image et en cliquant sur la mise à jour.</value>
+  </data>
+  <data name="lblProfile.Text">
+    <value>Profil</value>
+  </data>
+  <data name="lblReport.Text">
+    <value>Cet équipier est sous la direction de </value>
+  </data>
+  <data name="lblReportHelpText.Text">
+    <value>Entrez le directeur ou les directeurs de cet équipier. Ils devraient être mis en place en tant que équipier dans ce portail.</value>
+  </data>
+  <data name="lblResponsibility.Text">
+    <value>Ministère</value>
+  </data>
+  <data name="lblResponsibilityHelpText.Text">
+    <value>Votre SA - ce qui est le compte financier qui sera utilisé pour les dépenses personnels</value>
+  </data>
+  <data name="lblWarning.Text">
+    <value>Ne oubliez pas de cliquer sur la mise à jour (en bas de la page) pour enregistrer vos modifications.</value>
+  </data>
+  <data name="lblJointPhoto.Text">
+    <value>Choisissez votre photo publique. Cette photo ne sera pas affichée pour les équipiers dans les pays sensibles.</value>
+  </data>
+  <data name="btnUpdate.Text">
+    <value>Mettre à jour</value>
+  </data>
+  <data name="btnSettings.Text">
+    <value>Paramètres</value>
+  </data>
+  <data name="btnProfile.Text">
+    <value>Voir la page publique</value>
+  </data>
+</root>
