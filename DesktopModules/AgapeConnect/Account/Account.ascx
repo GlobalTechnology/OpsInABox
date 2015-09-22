@@ -9,23 +9,19 @@
     google.load("visualization", "1", { packages: ["corechart"] });
     google.setOnLoadCallback(function () { drawVisualization() });
     $(function () {
-        $("#accordion").accordion({
-            autoHeight: false,
-            navigation: true,
-            collapsible: true,
-            active: false,
-            change: function (event, ui) {
-                var newIndex = $(ui.newHeader).index('h3');
-                if (newIndex == 2) {
-                    var oldIndex = $(ui.oldHeader).index('h3');
-                    $(this).accordion("activate", oldIndex);
-                }
-            }
-        });
-
-
-
-
+        //$("#accordion").accordion({
+        //    autoHeight: false,
+        //    navigation: true,
+        //    collapsible: true,
+        //    active: false,
+        //    change: function (event, ui) {
+        //        var newIndex = $(ui.newHeader).index('h3');
+        //        if (newIndex == 2) {
+        //            var oldIndex = $(ui.oldHeader).index('h3');
+        //            $(this).accordion("activate", oldIndex);
+        //        }
+        //    }
+        //});
         $("#divTransDetail").dialog({
             autoOpen: false,
             height: 300,
@@ -100,7 +96,7 @@
          // create and draw the visualization.
          var chart = new google.visualization.LineChart(document.getElementById("IncExpGraph"));
          //  chart.draw(data,  {chartArea:{left:70,top:10,width:805,height:360}, legend: { position: 'in' }, pointSize: 5, vAxis:{gridLines: {color: '#333',format:'#,###'}}, hAxis:{font: 'Arial Bold'} ,   colors:['#3366cc','#3366cc','#dc3912','#dc3912','#ff9900','#ff9900'] });
-         chart.draw(data, { chartArea: { left: 70, top: 10, width: 805, height: 360 }, legend: { position: 'in' }, pointSize: 5, vAxis: { gridLines: { color: '#333', format: '#,###' } }, hAxis: { font: 'Arial Bold' }, series: [{ color: '#3366cc' }, { color: '#b2c2e0', visibleInLegend: false, lineWidth: 2, pointSize: 0 }, { color: '#dc3912' }, { color: '#ff9900' }] });
+         chart.draw(data, { chartArea: { left: 70, top: 10, width: 860, height: 360 }, legend: { position: 'in' }, pointSize: 5, vAxis: { gridLines: { color: '#333', format: '#,###' } }, hAxis: { font: 'Arial Bold' }, series: [{ color: '#3366cc' }, { color: '#b2c2e0', visibleInLegend: false, lineWidth: 2, pointSize: 0 }, { color: '#dc3912' }, { color: '#ff9900' }] });
 
 
      }
@@ -144,7 +140,7 @@
         padding: 3px 10px;
         cursor: pointer;
         position: relative;
-        background-color: #E2CB9A;
+        background-color: #5eb6e4;
         border-bottom-style: dashed;
         border-width: 1px;
         text-align: center;
@@ -163,60 +159,41 @@
         display:none;
     }
 </style>
-
-
-<table width="100%">
-    <tr valign="top">
-        <td style="width: 100%">
-            <div style="text-align: left">
-                <div style="width: auto">
-                    <div>
-                        <asp:Label ID="Label1" runat="server" Font-Bold="true" ResourceKey="lblCountry" Text="Country:"></asp:Label><br />
-                        <asp:DropDownList ID="MyCountries" runat="server" AutoPostBack="true" Font-Bold="true" Style="margin-bottom: 10px;"
-                            Width="100%" Font-Size="8pt" OnSelectedIndexChanged="MyCountries_SelectedIndexChanged">
-                        </asp:DropDownList><br />
-                        <span class="label label-success"><asp:Label ID="lblNew" runat="server"></asp:Label></span>
-                        <asp:HyperLink ID="openAddCountry" runat="server" data-placement="right" ToolTip="Do you have donations from a country not listed here (like USA)? Add this country here..." onclick=" $('#divAddCountry').dialog('open');" resourcekey="btnAddCountry" >Add Country...</asp:HyperLink>
-                       
-                    </div>
-                    <div>
-                        <asp:Label ID="Label2" runat="server" Font-Bold="true" ResourceKey="lblProfile" Text="Profile:"></asp:Label><br />
-                        <asp:DropDownList ID="MyProfiles" runat="server" AutoPostBack="true" Width="100%" Style="margin-bottom: 10px;"
-                            Font-Size="8pt" OnSelectedIndexChanged="MyProfiles_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </div>
-                    <div>
-                        <asp:Label ID="Label3" runat="server" Font-Bold="true" ResourceKey="lblRC" Text="Responsibility Center:"></asp:Label><br />
-                        
-                        <asp:DropDownList ID="MyAccounts" runat="server" AutoPostBack="true" Width="100%" Style="margin-bottom: 10px;"
-                            Font-Size="8pt" OnSelectedIndexChanged="MyAccounts_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </div>
-                    <div ID="pnlError" runat="server" class="alert  alert-error alert-block"  Visible="false" >
-                        <asp:Label ID="lblError" runat="server" Font-Size="smaller" ></asp:Label>
-                    </div>
-                    <div ID="lblDonationOnly" runat="server" class="alert alert-block"  Visible="false" >
-                        <asp:Label ID="lbl1" runat="server" Font-Size="smaller" ResourceKey="lblDonationOnly"></asp:Label>
-                    </div>
-                    
-                    
-
-                </div>
-            </div>
-
-        </td>
-        <td style="width: 100%">
-            <asp:Label ID="lblMessage" runat="server" Text="" ForColor="#777" Visible="false" Font-Italic="true"></asp:Label>
-            <div id="IncExpGraph" style="width: 875px; height: 400px;"></div>
-        </td>
-    </tr>
-
-</table>
-
-
-
-
-
+<div>
+    <div id="leftddl" style="float:left; width:180px;">
+        <div>
+            <asp:Label ID="Label1" runat="server" Font-Bold="true" ResourceKey="lblCountry" Text="Country:"></asp:Label><br />
+            <asp:DropDownList ID="MyCountries" runat="server" AutoPostBack="true" Font-Bold="true" Style="margin-bottom: 10px;"
+                Width="100%" Font-Size="8pt" OnSelectedIndexChanged="MyCountries_SelectedIndexChanged">
+            </asp:DropDownList><br />
+                <span class="label label-success"><asp:Label ID="lblNew" runat="server"></asp:Label></span>
+            <asp:HyperLink ID="openAddCountry" runat="server" data-placement="right" ToolTip="Do you have donations from a country not listed here (like USA)? Add this country here..." onclick=" $('#divAddCountry').dialog('open');" resourcekey="btnAddCountry" >Add Country...</asp:HyperLink>
+        </div>
+        <div>
+            <asp:Label ID="Label2" runat="server" Font-Bold="true" ResourceKey="lblProfile" Text="Profile:"></asp:Label><br />
+            <asp:DropDownList ID="MyProfiles" runat="server" AutoPostBack="true" Width="100%" Style="margin-bottom: 10px;"
+                Font-Size="8pt" OnSelectedIndexChanged="MyProfiles_SelectedIndexChanged">
+            </asp:DropDownList>
+        </div>
+        <div>
+            <asp:Label ID="Label3" runat="server" Font-Bold="true" ResourceKey="lblRC" Text="Responsibility Center:"></asp:Label><br />
+            <asp:DropDownList ID="MyAccounts" runat="server" AutoPostBack="true" Width="100%" Style="margin-bottom: 10px;"
+                Font-Size="8pt" OnSelectedIndexChanged="MyAccounts_SelectedIndexChanged">
+            </asp:DropDownList>
+        </div>
+        <div ID="pnlError" runat="server" class="alert  alert-error alert-block"  Visible="false" >
+            <asp:Label ID="lblError" runat="server" Font-Size="smaller" ></asp:Label>
+        </div>
+        <div ID="lblDonationOnly" runat="server" class="alert alert-block"  Visible="false" >
+            <asp:Label ID="lbl1" runat="server" Font-Size="smaller" ResourceKey="lblDonationOnly"></asp:Label>
+        </div>
+    </div>
+    <div id="rightgraph" style="float:right">
+        <asp:Label ID="lblMessage" runat="server" Text="" ForColor="#777" Visible="false" Font-Italic="true"></asp:Label>
+        <div id="IncExpGraph" style="width:930px; height: 400px;"></div>
+    </div>
+    <div style="clear:both"></div>
+</div>
 
 <div id="accordion" class="accordion">
     <div class="accordion-group">
@@ -231,7 +208,7 @@
     </a>
             </h3></div>
   
-    <div id="income-detail" class="accordion-body collapse" style="margin: 0px 0px 0px 0px; padding: 5px 6px 5px 29px">
+    <div id="income-detail" class="accordion-body collapse" style="margin: 0px 0px 0px 0px; padding: 5px 0px;">
         <div class="accordion-inner color1-link">
          <asp:GridView ID="gvIncomeGLSummary" runat="server" ShowHeader="False"
             GridLines="None" RowStyle-BorderStyle="None" CellPadding="0" Width="100%"
@@ -253,7 +230,7 @@
                 OnRowDataBound="gvDonationSummary_RowDataBound">
                 <AlternatingRowStyle BackColor="White" />
 
-                <RowStyle BackColor="#fff8c8" BorderStyle="None" HorizontalAlign="Right" />
+                <RowStyle BackColor="#cce8f6" BorderStyle="None" HorizontalAlign="Right" />
                 <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" />
 
 
@@ -272,7 +249,7 @@
         </asp:GridView>
     </a>
             </h3> </div>
-    <div id="expense-detail" class="accordion-body collapse" style="margin: 0px 0px 0px 0px; padding: 5px 6px 5px 29px">
+    <div id="expense-detail" class="accordion-body collapse" style="margin: 0px 0px 0px 0px; padding: 5px 0px;">
         <div class="accordion-inner color3-link">
          <asp:GridView ID="gvExpensesGLSummary" runat="server" ShowHeader="False"
             GridLines="None" CellPadding="0" Width="100%"
