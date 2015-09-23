@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Application Offline</title>
+  <style type="text/css">
+    body, .background
+    {
+    background: url(http://agapeconnect.me/Portals/_default/skins/AgapeBlue/images/BackgroundRepeat.gif) repeat top left;
+    height: 100%;
+    width: 100%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    }
+    .headerLeft
+    {
+    background-image: url(http://agapeconnect.me/Portals/_default/skins/AgapeBlue/images/MenuDTL.jpg);
+    background-repeat: no-repeat;
+    height: 46px;
+    margin: -1px;
+    }
+    .headerRepeat
+    {
+    background-image: url(http://agapeconnect.me/Portals/_default/skins/AgapeBlue/images/MenuD.jpg);
+    background-repeat: repeat-x;
+    max-height: 46px;
+    padding-top: 15px;
+    }
+    .headerRight
+    {
+    background-image: url(http://agapeconnect.me/Portals/_default/skins/AgapeBlue/images/MenuDTR.jpg);
+    background-repeat: no-repeat;
+    height: 46px;
+    width: 26px;
+    max-height: 46px;
+    max-width: 26px;
+    margin: -1px;
+    }
+    .mainLeft
+    {
+    background-image: url(http://agapeconnect.me/Portals/_default/skins/AgapeBlue/images/MastheadLeft.gif);
+    background-repeat: repeat-y;
+    border-style: none;
+    border-width: 0px;
+    margin: -1px;
+    }
+    .mainContentContainer
+    {
+    background-color: white;
+    text-align: left;
+    width: 100%;
+    height: 100px;
+    font-size: large;
+    padding: 20px;
+    }
+    .mainRight
+    {
+    background-image: url(http://agapeconnect.me/Portals/_default/skins/AgapeBlue/images/MastheadRight.gif);
+    background-repeat: repeat-y;
+    border-style: none;
+    border-width: 0px;
+    margin: -1px;
+    }
+    .footerLeft
+    {
+    background-image: url(http://agapeconnect.me/Portals/_default/skins/AgapeBlue/images/FooterLeftD.jpg);
+    background-repeat: no-repeat;
+    height: 42px;
+    min-width: 25px; /*float: left;*/
+    margin: 0px;
+    }
+    .footerCentre
+    {
+    background-image: url(http://agapeconnect.me/Portals/_default/skins/AgapeBlue/images/FooterD.jpg);
+    background-repeat: repeat-x;
+    vertical-align: top;
+    padding-top: 10px;
+    }
+    .footerRight
+    {
+    background-image: url(http://agapeconnect.me/Portals/_default/skins/AgapeBlue/images/FooterRightD.jpg);
+    background-repeat: no-repeat;
+    height: 42px;
+    min-width: 26px; /*float: right;*/
+    margin: 0px;
+    }
+    .indoc_bodycopyname {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    line-height: 16px;
+    color: #999999;
+    font-style: italic;
+    text-align: justify;
+    padding-top: 3px;
+    padding-right: 15px;
+    padding-bottom: 3px;
+    padding-left: 1px;
+    }
+    div, p, span
+    {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    }
+</style>
+</head>
+<body>
+   
+<div class="background" style="text-align: center;">
+<div id="outerContainer" style="width: 100%; margin-left: 0px; margin-right: 0px;">
+<div>
+<div id="innerContainer" style="width: 800px; display: inline-block;">
+<!-- The Control Panel -->
+<table cellpadding="0" cellspacing="0" style="width: 100%; background-color: #ffffff;">
+    <colgroup><col /><col /><col /></colgroup>
+    <tbody>
+        <tr>
+            <td class="headerLeft">
+            </td>
+            <td class="headerRepeat">
+            </td>
+            <td class="headerRight">
+            </td>
+        </tr>
+        <tr valign="top">
+            <td class="mainLeft">
+            &nbsp;
+            </td>
+            <td class="mainContentContainer">
+                <img alt="" src="/sso/GetLogo.aspx" style="float:right;  background-color: #ffffff;" />
+                This website is currently offline. 
+                We are making some improvements and should have things running again in a couple of hours. We appreciate your patience.
+
+
+            </td>
+          
+             <td class="mainRight">
+            &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td class="footerLeft">
+            </td>
+            <td class="footerCentre">
+            </td>
+            <td class="footerRight">
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
