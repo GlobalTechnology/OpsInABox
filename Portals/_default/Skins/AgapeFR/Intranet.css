@@ -7,8 +7,8 @@
     width: 100%;
 }
 
-#ContentContainer #ContentTitle {
-    margin: 150px 0 0 30px;
+html, body, form {
+    min-width: 1150px;
 }
 
 .centeredbox {
