@@ -29,3 +29,7 @@
         line-height: 18px;
         background-color:#EFF3FB;
 }
+
+#divTransDetail #DetailTable td {
+	padding: 3px 8px;
+}
