@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
-    <title>Application Offline</title>
+    <title>Application Offline / Site en maintenance</title>
   <style type="text/css">
     body, .background
     {
@@ -124,11 +124,13 @@
             &nbsp;
             </td>
             <td class="mainContentContainer">
-                <img alt="" src="/sso/GetLogo.aspx" style="float:right;  background-color: #ffffff;" />
-                This website is currently offline. 
-                We are making some improvements and should have things running again in a couple of hours. We appreciate your patience.
-
-
+                This website is currently offline.<br/>
+                We are making some improvements and should have things running again in a couple of hours.<br/>
+				We appreciate your patience.
+				<br/><br/>
+				Ce site est actuellement hors ligne car nous y apportons des am&eacute;liorations.<br/>
+				Le site devrait &ecirc;tre &agrave; nouveau en ligne dans les prochaines heures.<br/>
+				Merci de votre patience.
             </td>
           
              <td class="mainRight">
