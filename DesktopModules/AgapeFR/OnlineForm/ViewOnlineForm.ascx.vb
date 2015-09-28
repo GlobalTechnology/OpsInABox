@@ -12,7 +12,7 @@ Imports System.Xml.Linq
 Imports System.Linq
 Imports System.Xml
 
-Imports UK.OnlineForm
+Imports AgapeFR.OnlineForm
 Imports DotNetNuke.UI.Skins.Controls.ModuleMessage
 Imports DotNetNuke.Entities.Modules
 

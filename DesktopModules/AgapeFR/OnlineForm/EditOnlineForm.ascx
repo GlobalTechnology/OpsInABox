@@ -152,7 +152,7 @@
 
 
 <asp:LinqDataSource ID="QuestionsDS" runat="server" 
-    ContextTypeName="UK.OnlineForm.OnlineFormDataContext" EnableDelete="True" 
+    ContextTypeName="AgapeFR.OnlineForm.OnlineFormDataContext" EnableDelete="True" 
     EnableInsert="True" EnableUpdate="True" 
     TableName="Agape_Public_OnlineForm_Questions" Where="FormId == @FormId">
     <WhereParameters>
@@ -172,7 +172,7 @@
                 <asp:ListBox ID="DDLListBox" runat="server" DataSourceID="DDLDataSource" 
                     DataTextField="RowText" DataValueField="DDLRowId"></asp:ListBox>
                 <asp:LinqDataSource ID="DDLDataSource" runat="server" 
-                    ContextTypeName="uk.OnlineForm.OnlineFormDataContext" 
+                    ContextTypeName="AgapeFR.OnlineForm.OnlineFormDataContext" 
                     Select="new (DDLRowId, RowText)" TableName="Agape_Public_OnlineForm_DDLs" 
                     Where="QuestionId == @QuestionId">
                     <WhereParameters>

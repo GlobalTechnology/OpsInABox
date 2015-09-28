@@ -10,7 +10,7 @@ Imports System.Net.Mail
 Imports System.Collections.Specialized
 Imports System.Xml.Linq
 Imports System.Linq
-Imports UK.OnlineForm
+Imports AgapeFR.OnlineForm
 
 
 Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
