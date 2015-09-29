@@ -67,6 +67,7 @@
                     <asp:ListItem Value="3">DDL</asp:ListItem>
                     <asp:ListItem Value="4">CheckBox</asp:ListItem>
                     <asp:ListItem Value="5">Radio Button</asp:ListItem>
+                    <asp:ListItem Value="6">Email Address</asp:ListItem>
                 </asp:DropDownList>
             </EditItemTemplate>
             <FooterTemplate>
@@ -77,6 +78,7 @@
                     <asp:ListItem Value="3">DDL</asp:ListItem>
                     <asp:ListItem Value="4">CheckBox</asp:ListItem>
                     <asp:ListItem Value="5">Radio Button</asp:ListItem>
+                    <asp:ListItem Value="6">Email Address</asp:ListItem>
                 </asp:DropDownList>
             </FooterTemplate>
             <ItemTemplate>
@@ -88,6 +90,7 @@
                     <asp:ListItem Value="3">DDL</asp:ListItem>
                     <asp:ListItem Value="4">CheckBox</asp:ListItem>
                     <asp:ListItem Value="5">Radio Button</asp:ListItem>
+                    <asp:ListItem Value="6">Email Address</asp:ListItem>
                 </asp:DropDownList>
             </ItemTemplate>
         </asp:TemplateField>
@@ -138,6 +141,7 @@
                     <asp:ListItem Value="3">DDL</asp:ListItem>
                     <asp:ListItem Value="4">CheckBox</asp:ListItem>
                     <asp:ListItem Value="5">Radio Button</asp:ListItem>
+                    <asp:ListItem Value="6">Email Address</asp:ListItem>
                 </asp:DropDownList></td>
                 <td><asp:CheckBox ID="NewReq" runat="server" /></td>
                 <td><asp:LinkButton ID="AddNew" runat="server" CommandName="AddNew">Add</asp:LinkButton> </td>

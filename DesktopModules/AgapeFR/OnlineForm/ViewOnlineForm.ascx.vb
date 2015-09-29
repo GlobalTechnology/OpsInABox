@@ -108,10 +108,27 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
                             Dim ddl = From b In d.Agape_Public_OnlineForm_DDLs Where b.QuestionId = qid
                             For Each row In ddl
                                 c.Items.Add(New ListItem(row.RowText))
-
                             Next
                             c.DataBind()
                             QuPlaceHolder.Controls.Add(c)
+
+                        Case 6 'email address
+                            Dim c As New TextBox()
+                            c.ID = "Q" & question.FormQuestionId
+                            QuPlaceHolder.Controls.Add(c)
+
+                            Dim regexEmail As New RegularExpressionValidator()
+                            regexEmail.ID = "regexEmail" & question.FormQuestionId
+                            regexEmail.ControlToValidate = "Q" & question.FormQuestionId
+                            regexEmail.ValidationExpression = "\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                            regexEmail.ErrorMessage = LocalizeString("EmailAddressValid")
+                            regexEmail.Text = LocalizeString("InvalidEmail")
+                            regexEmail.Display = ValidatorDisplay.Dynamic
+                            QuPlaceHolder.Controls.Add(regexEmail)
+                            QuPlaceHolder.Controls.Add(New LiteralControl("<div class=""MandatoryFieldErrorMsg"">"))
+                            QuPlaceHolder.Controls.Add(regexEmail)
+                            QuPlaceHolder.Controls.Add(New LiteralControl("</div>"))
+
                     End Select
                     If (question.Required) Then
                         Dim req As New RequiredFieldValidator()
@@ -151,7 +168,7 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
             For Each question In questions
                 Dim answer As New Agape_Public_OnlineForm_Answer
                 Select Case question.QuestionType
-                    Case 0 To 1 'TextBox
+                    Case 0 To 1, 6 'TextBox and email Address
                         Dim c As TextBox = FindControl("Q" & question.FormQuestionId)
                         answer.AnswerText = c.Text
                     Case 2 To 3 ' Yes/No
@@ -264,6 +281,7 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
                     End If
                 Next
                 Email.Text = ""
+                AgapeLogger.Info(UserId, "Contact us form sucessfully sent: " & ModuleConfiguration.ModuleTitle & "  Recipient address: " & Email.Text & "  Message: " & message)
             End If
 
         End Sub
