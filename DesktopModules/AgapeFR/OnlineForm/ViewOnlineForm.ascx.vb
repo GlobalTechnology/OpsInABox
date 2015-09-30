@@ -121,7 +121,7 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
                             regexEmail.ID = "regexEmail" & question.FormQuestionId
                             regexEmail.ControlToValidate = "Q" & question.FormQuestionId
                             regexEmail.ValidationExpression = "\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
-                            regexEmail.ErrorMessage = LocalizeString("EmailAddressValid")
+                            regexEmail.ErrorMessage = LocalizeString("InvalidEmail")
                             regexEmail.Text = LocalizeString("InvalidEmail")
                             regexEmail.Display = ValidatorDisplay.Dynamic
                             QuPlaceHolder.Controls.Add(regexEmail)
