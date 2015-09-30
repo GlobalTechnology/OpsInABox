@@ -129,4 +129,7 @@
   <data name="lblCrop.Text" xml:space="preserve">
     <value>Click and drag to crop</value>
   </data>
+  <data name="lblUploadNewImage.Text" xml:space="preserve">
+    <value>Upload New Image!</value>
+  </data>
 </root>

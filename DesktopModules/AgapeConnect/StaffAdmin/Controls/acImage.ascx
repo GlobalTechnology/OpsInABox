@@ -7,7 +7,7 @@
             $('#<%= NewImage.ClientId() %>').dialog({
                 autoOpen: false,
                 modal: true,
-                title: "Upload New Image"
+                title: "<%=LocalizeString("lblUploadNewImage") %>"
             });
 
             $('#<%= NewImage.ClientId() %>').parent().appendTo($("form:first"));

@@ -117,16 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnUpdate.Text">
+  <data name="btnUpdate.Text" xml:space="preserve">
     <value>Mettre à jour</value>
   </data>
-  <data name="btnNewImage.Text">
+  <data name="btnNewImage.Text" xml:space="preserve">
     <value>Nouvelle image</value>
   </data>
-  <data name="btnUpload.Text">
+  <data name="btnUpload.Text" xml:space="preserve">
     <value>Télécharger</value>
   </data>
-  <data name="lblCrop.Text">
+  <data name="lblCrop.Text" xml:space="preserve">
     <value>Cliquez et glissez pour recadrer</value>
+  </data>
+  <data name="lblUploadNewImage.Text" xml:space="preserve">
+    <value>Ajouter une image</value>
   </data>
 </root>
