@@ -195,7 +195,10 @@
   <data name="Star.Text" xml:space="preserve">
     <value>*</value>
   </data>
-  <data name="EmailAddressValid.Text" xml:space="preserve">
+  <data name="InvalidEmail.Text" xml:space="preserve">
+    <value>Veuillez renseigner une adresse email valide.</value>
+  </data>
+  <data name="InvalidEmail.ErrorMessage" xml:space="preserve">
     <value>Veuillez renseigner une adresse email valide.</value>
   </data>
 </root>
