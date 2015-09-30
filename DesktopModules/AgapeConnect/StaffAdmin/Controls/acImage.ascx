@@ -6,22 +6,16 @@
         function setUpMyTabs<%= NewImage.ClientId() %>() {
             $('#<%= NewImage.ClientId() %>').dialog({
                 autoOpen: false,
-                height: 140,
-                width: 300,
                 modal: true,
-                title: "Upload New Image",
-                close: function () {
-                    allFields.val("").removeClass("ui-state-error");
-                }
+                title: "Upload New Image"
             });
 
             $('#<%= NewImage.ClientId() %>').parent().appendTo($("form:first"));
 
-
             $('#<%= theImage.ClientId() %>').Jcrop({
             onChange:  updateHFs<%= theImage.ClientId() %>,
         onSelect:  updateHFs<%= theImage.ClientId() %>,
-        aspectRatio: <%= Aspect %> 
+        aspectRatio: <%= Aspect %>
         }, function(){
         // Use the API to get the real image size
         var bounds = this.getBounds();
@@ -32,11 +26,8 @@
       
       });
 
-   
        $('.aButton').button();
          
-
-
          $('#<%= FileUpload1.ClientId() %>').change(function() {
 
     var val = $(this).val();
