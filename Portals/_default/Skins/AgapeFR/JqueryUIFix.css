@@ -1,5 +1,6 @@
-.ui-widget-overlay {
+body .ui-widget-overlay {
     z-index: 300;
+    position: fixed;
 }
 
 .ui-dialog {
@@ -34,4 +35,3 @@ div.ui-dialog-titlebar > .ui-dialog-titlebar-close {
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
 }
-
