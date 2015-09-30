@@ -118,84 +118,72 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AcknowledgementMsgSubject.Text" xml:space="preserve">
-    <value>Merci d'avoir contacté Agapé France.</value>
-  </data>
-  <data name="EditButton.Text" xml:space="preserve">
-    <value>Editer</value>
-  </data>
-  <data name="FirstNameQuestion.Text" xml:space="preserve">
-    <value>Prénom</value>
+    <value>Thank you for contacting Agapé France.</value>
   </data>
   <data name="LastNameQuestion.Text" xml:space="preserve">
-    <value>Nom</value>
+    <value>Last Name</value>
   </data>
   <data name="LblEmailAddress.Text" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="LblMsgSent.Text" xml:space="preserve">
-    <value>Merci de nous avoir contactés. Nous essaierons de vous répondre au plus vite.</value>
-  </data>
-  <data name="MsgModuleNotConfigured.Text" xml:space="preserve">
-    <value>Ce module n'a pas encore été configuré...</value>
+    <value>Thank you for contacting Agapé France. We will respond to your request as soon as possible.</value>
   </data>
   <data name="MsgRequiredQuestion.Text" xml:space="preserve">
-    <value>Veuillez répondre à cette question :</value>
+    <value>Please fill in required field.</value>
   </data>
   <data name="No.Text" xml:space="preserve">
-    <value>Non</value>
+    <value>No</value>
   </data>
   <data name="ReqEmail.ErrorMessage" xml:space="preserve">
-    <value>Veuillez renseigner votre adresse email.</value>
+    <value>Please type a valid email address.</value>
   </data>
   <data name="Required.Text" xml:space="preserve">
-    <value>Veuillez remplir ce champ.</value>
+    <value>Please fill in required field.</value>
   </data>
   <data name="ResultsButton.Text" xml:space="preserve">
-    <value>Résultats</value>
+    <value>Results</value>
   </data>
   <data name="SentMsgDateSubmitted.Text" xml:space="preserve">
-    <value>Date d'envoi :</value>
+    <value>Sent Date: </value>
   </data>
   <data name="SentMsgEmailAddress.Text" xml:space="preserve">
-    <value>Email :</value>
+    <value>Email: </value>
   </data>
   <data name="SentMsgFrom.Text" xml:space="preserve">
-    <value>De la part de :</value>
+    <value>From: </value>
   </data>
   <data name="SentMsgIntro.Text" xml:space="preserve">
-    <value>La demande de contact ci-dessous a été envoyée via le site d'Agapé France :</value>
+    <value>This Contact Us Form was sent from the website of Agapé France:</value>
   </data>
   <data name="SentMsgIPAddress.Text" xml:space="preserve">
-    <value>Adresse IP :</value>
+    <value>IP Address: </value>
   </data>
   <data name="SentMsgSubjectPart1.Text" xml:space="preserve">
-    <value>Formulaire de contact</value>
+    <value>Contact Us Form</value>
   </data>
   <data name="SubmitButton.Text" xml:space="preserve">
-    <value>Envoyer</value>
+    <value>Submit</value>
   </data>
   <data name="Yes.Text" xml:space="preserve">
-    <value>Oui</value>
+    <value>Yes</value>
   </data>
   <data name="LblMandatoryFields.Text" xml:space="preserve">
-    <value>Champs obligatoires</value>
-  </data>
-  <data name="AdminEditAction.Text" xml:space="preserve">
-    <value>Editer le formulaire</value>
-  </data>
-  <data name="AdminResultsAction.Text" xml:space="preserve">
-    <value>Voir les résultats</value>
-  </data>
-  <data name="AdminSectionTitle.Text" xml:space="preserve">
-    <value>Formulaire</value>
+    <value>Required field</value>
   </data>
   <data name="ErrorMsgNotSent.Text" xml:space="preserve">
-    <value>Nous sommes désolés. Votre message n'a pas pu être envoyé.&lt;br /&gt;Veuillez nous contacter par email à l'adresse &lt;a href="mailto:adm@agapefrance.org" target=_blank&gt;adm@agapefrance.org&lt;/a&gt;</value>
+    <value>Unfortunately you message was not able to be sent.&lt;br /&gt;Please contact us directly by email at &lt;a href="mailto:adm@agapefrance.org" target=_blank&gt;adm@agapefrance.org&lt;/a&gt;</value>
   </data>
   <data name="Star.Text" xml:space="preserve">
     <value>*</value>
   </data>
-  <data name="EmailAddressValid.Text" xml:space="preserve">
-    <value>Veuillez renseigner une adresse email valide.</value>
+  <data name="InvalidEmail.Text" xml:space="preserve">
+    <value>Please type a valid email address.</value>
+  </data>
+  <data name="InvalidEmail.ErrorMessage" xml:space="preserve">
+    <value>Please type a valid email address.</value>
+  </data>
+  <data name="FirstNameQuestion.Text" xml:space="preserve">
+    <value>First Name</value>
   </data>
 </root>

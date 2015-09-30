@@ -67,6 +67,7 @@
                     <asp:ListItem Value="3">DDL</asp:ListItem>
                     <asp:ListItem Value="4">CheckBox</asp:ListItem>
                     <asp:ListItem Value="5">Radio Button</asp:ListItem>
+                    <asp:ListItem Value="6">Email Address</asp:ListItem>
                 </asp:DropDownList>
             </EditItemTemplate>
             <FooterTemplate>
@@ -77,6 +78,7 @@
                     <asp:ListItem Value="3">DDL</asp:ListItem>
                     <asp:ListItem Value="4">CheckBox</asp:ListItem>
                     <asp:ListItem Value="5">Radio Button</asp:ListItem>
+                    <asp:ListItem Value="6">Email Address</asp:ListItem>
                 </asp:DropDownList>
             </FooterTemplate>
             <ItemTemplate>
@@ -88,6 +90,7 @@
                     <asp:ListItem Value="3">DDL</asp:ListItem>
                     <asp:ListItem Value="4">CheckBox</asp:ListItem>
                     <asp:ListItem Value="5">Radio Button</asp:ListItem>
+                    <asp:ListItem Value="6">Email Address</asp:ListItem>
                 </asp:DropDownList>
             </ItemTemplate>
         </asp:TemplateField>
@@ -138,6 +141,7 @@
                     <asp:ListItem Value="3">DDL</asp:ListItem>
                     <asp:ListItem Value="4">CheckBox</asp:ListItem>
                     <asp:ListItem Value="5">Radio Button</asp:ListItem>
+                    <asp:ListItem Value="6">Email Address</asp:ListItem>
                 </asp:DropDownList></td>
                 <td><asp:CheckBox ID="NewReq" runat="server" /></td>
                 <td><asp:LinkButton ID="AddNew" runat="server" CommandName="AddNew">Add</asp:LinkButton> </td>
@@ -152,7 +156,7 @@
 
 
 <asp:LinqDataSource ID="QuestionsDS" runat="server" 
-    ContextTypeName="UK.OnlineForm.OnlineFormDataContext" EnableDelete="True" 
+    ContextTypeName="AgapeFR.OnlineForm.OnlineFormDataContext" EnableDelete="True" 
     EnableInsert="True" EnableUpdate="True" 
     TableName="Agape_Public_OnlineForm_Questions" Where="FormId == @FormId">
     <WhereParameters>
@@ -172,7 +176,7 @@
                 <asp:ListBox ID="DDLListBox" runat="server" DataSourceID="DDLDataSource" 
                     DataTextField="RowText" DataValueField="DDLRowId"></asp:ListBox>
                 <asp:LinqDataSource ID="DDLDataSource" runat="server" 
-                    ContextTypeName="uk.OnlineForm.OnlineFormDataContext" 
+                    ContextTypeName="AgapeFR.OnlineForm.OnlineFormDataContext" 
                     Select="new (DDLRowId, RowText)" TableName="Agape_Public_OnlineForm_DDLs" 
                     Where="QuestionId == @QuestionId">
                     <WhereParameters>
