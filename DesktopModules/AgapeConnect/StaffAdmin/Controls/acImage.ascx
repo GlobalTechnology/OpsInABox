@@ -51,11 +51,6 @@
             break;
     }
 });
-
-            $('#helpText').fadeIn( 8000) ;
-
-
-
         }
 
         $(document).ready(function () {
@@ -103,7 +98,7 @@
 <asp:Image ID="theImage" runat="server" />
 
 
-<div id="helpText" title="<%=LocalizeString("lblCrop") %>" style="display: none;  -moz-opacity:.50; filter:alpha(opacity=70); opacity:.50; width: 200px; background-color: Black; color:white; position: absolute; top: 0;"  >
+<div id="helpText" title="<%=LocalizeString("lblCrop") %>" style="-moz-opacity:.50; filter:alpha(opacity=70); opacity:.50; width: 200px; background-color: Black; color:white; position: absolute; top: 0;"  >
 <%=LocalizeString("lblCrop") %></div>
 <div>
  <input type="button" id="btnNewImage" value="<%=LocalizeString("btnNewImage") %>"  onclick='showPopup<%= NewImage.ClientId %>();' class="aButton btn" style="font-size: 8pt" />
