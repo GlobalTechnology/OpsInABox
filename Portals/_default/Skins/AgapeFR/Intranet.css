@@ -7,10 +7,6 @@
     width: 100%;
 }
 
-html, body, form {
-    min-width: 1150px;
-}
-
 .centeredbox {
     width: 1150px;
 }
