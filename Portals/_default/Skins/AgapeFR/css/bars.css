@@ -1,4 +1,4 @@
-﻿.bar {
+.bar {
 	width: 100%;
 	text-align: center; /* To center header in older IE */
 }
@@ -40,4 +40,8 @@
 
 #bar7 {
 	background: url('../images/FooterBandPatt.png') repeat;
+}
+
+#bar1 .centeredbox {
+	width: 1150px;
 }
