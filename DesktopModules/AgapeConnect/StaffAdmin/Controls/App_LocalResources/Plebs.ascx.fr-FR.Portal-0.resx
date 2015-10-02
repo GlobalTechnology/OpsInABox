@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="lblTesting.Text">
-    <value>Déléguer tout le monde que relève de moi à cet équipier</value>
+    <value>Déléguer toutes les personnes que j'encadre à cet équipier</value>
   </data>
   <data name="btnDelegate.Text">
     <value>Déléguer</value>
