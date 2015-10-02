@@ -1095,7 +1095,7 @@ Public Class DatatSync
     Private Sub ProcessRMB(ByRef rtn As DownloadResponse)
 
 
-
+        'AgapeLogger.WriteEventLog(0, "RmbDownload start")
 
         Dim d As New StaffRmb.StaffRmbDataContext
         Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
@@ -1153,13 +1153,17 @@ Public Class DatatSync
         Dim r = From c In d.AP_Staff_AdvanceRequests Where (c.RequestStatus >= StaffRmb.RmbStatus.PendingDownload) And c.PortalId = PS.PortalId
 
         If q.Count + r.Count = 0 Then
+            'AgapeLogger.WriteEventLog(0, "RmbDownload Error nothing")
             Return
         End If
 
         If rtn.Status = "Error" Then
+
+            'AgapeLogger.WriteEventLog(0, "RmbDownload Error" & rtn.Message)
             Return
         End If
         For Each row In q
+            ' AgapeLogger.WriteEventLog(0, "RmbDownload Rmb" & row.RID)
             Dim newRmb As New Rmb
             newRmb.RmbNo = row.RMBNo
             newRmb.RID = row.RID
@@ -1233,6 +1237,7 @@ Public Class DatatSync
 
         Dim Advs As New List(Of Adv)
         For Each row In r
+            AgapeLogger.WriteEventLog(0, "RmbDownload Adv" & row.LocalAdvanceId)
             Dim newAdv As New Adv
             newAdv.AdvanceId = row.AdvanceId
             newAdv.LocalAdvanceId = row.LocalAdvanceId
@@ -1274,7 +1279,7 @@ Public Class DatatSync
 
         rtn.Status = "New Data"
         'SetSetting("rmbFlag", "Clean", PS.PortalId)
-
+        'AgapeLogger.WriteEventLog(0, "RmbDownload " & rtn.Rmbs.Count & ":" & rtn.Advances.Count)
     End Sub
 
     Private Sub GetBudgets(ByRef rtn As DownloadResponse, ByVal PortalId As Integer)
