@@ -1,0 +1,680 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AD.Name" xml:space="preserve">
+    <value>Andorra</value>
+  </data>
+  <data name="AD.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AD.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AL.Name" xml:space="preserve">
+    <value>Albania</value>
+  </data>
+  <data name="AL.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AL.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AM.Name" xml:space="preserve">
+    <value>Armenia</value>
+  </data>
+  <data name="AM.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AM.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AT.Name" xml:space="preserve">
+    <value>Austria</value>
+  </data>
+  <data name="AT.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AT.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AZ.Name" xml:space="preserve">
+    <value>Azerbaijan</value>
+  </data>
+  <data name="AZ.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AZ.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BA.Name" xml:space="preserve">
+    <value>Bosnia/Herzegovina</value>
+  </data>
+  <data name="BA.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BA.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BE.Name" xml:space="preserve">
+    <value>Belgium</value>
+  </data>
+  <data name="BE.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BE.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BG.Name" xml:space="preserve">
+    <value>Bulgaria</value>
+  </data>
+  <data name="BG.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BG.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BY.Name" xml:space="preserve">
+    <value>Belarus</value>
+  </data>
+  <data name="BY.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BY.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CH.Name" xml:space="preserve">
+    <value>Switzerland</value>
+  </data>
+  <data name="CH.Text" xml:space="preserve">
+    <value>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet massa est, at luctus erat. Cras ultrices pharetra cursus. Maecenas rutrum, libero quis vestibulum hendrerit, sapien felis tincidunt justo, nec vestibulum lectus risus sed ipsum. Suspendisse a leo nisl. Vivamus dignissim facilisis massa vel viverra. Nunc nec nulla mauris, eget ornare ligula. Donec sodales gravida venenatis.&lt;/p&gt;&lt;p&gt; Nam at augue diam, sed sollicitudin nulla. Vestibulum ultrices orci id tellus ultrices ultrices. Nunc sit amet dolor et dui volutpat vestibulum. Phasellus a lectus sit amet felis interdum elementum aliquet nec sem. Morbi ut massa mi, vitae ultrices magna. Nulla vitae dolor.&lt;/p&gt;</value>
+  </data>
+  <data name="CH.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CY.Name" xml:space="preserve">
+    <value>Cyprus</value>
+  </data>
+  <data name="CY.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CY.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CZ.Name" xml:space="preserve">
+    <value>Czech Republic</value>
+  </data>
+  <data name="CZ.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CZ.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DE.Name" xml:space="preserve">
+    <value>Germany</value>
+  </data>
+  <data name="DE.Text" xml:space="preserve">
+    <value>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet massa est, at luctus erat. Cras ultrices pharetra cursus. Maecenas rutrum, libero quis vestibulum hendrerit, sapien felis tincidunt justo, nec vestibulum lectus risus sed ipsum. Suspendisse a leo nisl. Vivamus dignissim facilisis massa vel viverra. Nunc nec nulla mauris, eget ornare ligula. Donec sodales gravida venenatis.&lt;/p&gt;&lt;p&gt; Nam at augue diam, sed sollicitudin nulla. Vestibulum ultrices orci id tellus ultrices ultrices. Nunc sit amet dolor et dui volutpat vestibulum. Phasellus a lectus sit amet felis interdum elementum aliquet nec sem. Morbi ut massa mi, vitae ultrices magna. Nulla vitae dolor.&lt;/p&gt;</value>
+  </data>
+  <data name="DE.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DK.Name" xml:space="preserve">
+    <value>Denmark</value>
+  </data>
+  <data name="DK.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DK.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DZ.Name" xml:space="preserve">
+    <value>Algeria</value>
+  </data>
+  <data name="DZ.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DZ.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EE.Name" xml:space="preserve">
+    <value>Estonia</value>
+  </data>
+  <data name="EE.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EE.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EEU.Name" xml:space="preserve">
+    <value>Eastern Europe Area</value>
+  </data>
+  <data name="EEU.Text" xml:space="preserve">
+    <value>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet massa est, at luctus erat. Cras ultrices pharetra cursus. Maecenas rutrum, libero quis vestibulum hendrerit, sapien felis tincidunt justo, nec vestibulum lectus risus sed ipsum. Suspendisse a leo nisl. Vivamus dignissim facilisis massa vel viverra. Nunc nec nulla mauris, eget ornare ligula. Donec sodales gravida venenatis.&lt;/p&gt;&lt;p&gt; Nam at augue diam, sed sollicitudin nulla. Vestibulum ultrices orci id tellus ultrices ultrices. Nunc sit amet dolor et dui volutpat vestibulum. Phasellus a lectus sit amet felis interdum elementum aliquet nec sem. Morbi ut massa mi, vitae ultrices magna. Nulla vitae dolor.&lt;/p&gt;</value>
+  </data>
+  <data name="EEU.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ES.Name" xml:space="preserve">
+    <value>Spain</value>
+  </data>
+  <data name="ES.Text" xml:space="preserve">
+    <value>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet massa est, at luctus erat. Cras ultrices pharetra cursus. Maecenas rutrum, libero quis vestibulum hendrerit, sapien felis tincidunt justo, nec vestibulum lectus risus sed ipsum. Suspendisse a leo nisl. Vivamus dignissim facilisis massa vel viverra. Nunc nec nulla mauris, eget ornare ligula. Donec sodales gravida venenatis.&lt;/p&gt;&lt;p&gt; Nam at augue diam, sed sollicitudin nulla. Vestibulum ultrices orci id tellus ultrices ultrices. Nunc sit amet dolor et dui volutpat vestibulum. Phasellus a lectus sit amet felis interdum elementum aliquet nec sem. Morbi ut massa mi, vitae ultrices magna. Nulla vitae dolor.&lt;/p&gt;</value>
+  </data>
+  <data name="ES.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FI.Name" xml:space="preserve">
+    <value>Finland</value>
+  </data>
+  <data name="FI.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FI.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FR.Name" xml:space="preserve">
+    <value>France</value>
+  </data>
+  <data name="FR.Text" xml:space="preserve">
+    <value>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet massa est, at luctus erat. Cras ultrices pharetra cursus. Maecenas rutrum, libero quis vestibulum hendrerit, sapien felis tincidunt justo, nec vestibulum lectus risus sed ipsum. Suspendisse a leo nisl. Vivamus dignissim facilisis massa vel viverra. Nunc nec nulla mauris, eget ornare ligula. Donec sodales gravida venenatis.&lt;/p&gt;&lt;p&gt; Nam at augue diam, sed sollicitudin nulla. Vestibulum ultrices orci id tellus ultrices ultrices. Nunc sit amet dolor et dui volutpat vestibulum. Phasellus a lectus sit amet felis interdum elementum aliquet nec sem. Morbi ut massa mi, vitae ultrices magna. Nulla vitae dolor.&lt;/p&gt;</value>
+  </data>
+  <data name="FR.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GB.Name" xml:space="preserve">
+    <value>United Kingdom</value>
+  </data>
+  <data name="GB.Text" xml:space="preserve">
+    <value>&lt;p&gt;Our vision is to help build spiritual movements everywhere so that everyone knows someone who truly follows Jesus. A true spiritual movement is more than an organisation or a Christian group. It can be messy and unpredictable. But it&amp;rsquo;s also dynamic and uncontrollable, changing the lives of everyone it touches.&lt;/p&gt;
+&lt;p&gt;
+We want to help transformational spiritual movements to grow. And we want to start by empowering people to address the spiritual needs of their universities, workplaces, communities, families and cultures.&lt;/p&gt; &lt;p&gt;Our vision is to help build spiritual movements everywhere so that everyone knows someone who truly follows Jesus. A true spiritual movement is more than an organisation or a Christian group. It can be messy and unpredictable. But it&amp;rsquo;s also dynamic and uncontrollable, changing the lives of everyone it touches.&lt;/p&gt;</value>
+  </data>
+  <data name="GB.URL" xml:space="preserve">
+    <value>http://www.agape.org.uk</value>
+  </data>
+  <data name="GE.Name" xml:space="preserve">
+    <value>Georgia</value>
+  </data>
+  <data name="GE.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GE.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GL.Name" xml:space="preserve">
+    <value>Greenland</value>
+  </data>
+  <data name="GL.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GL.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GR.Name" xml:space="preserve">
+    <value>Greece</value>
+  </data>
+  <data name="GR.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GR.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HR.Name" xml:space="preserve">
+    <value>Croatia</value>
+  </data>
+  <data name="HR.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HR.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HU.Name" xml:space="preserve">
+    <value>Hungary</value>
+  </data>
+  <data name="HU.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HU.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IE.Name" xml:space="preserve">
+    <value>Ireland</value>
+  </data>
+  <data name="IE.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IE.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IL.Name" xml:space="preserve">
+    <value>Israel</value>
+  </data>
+  <data name="IL.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IL.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IQ.Name" xml:space="preserve">
+    <value>Iraq</value>
+  </data>
+  <data name="IQ.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IQ.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IR.Name" xml:space="preserve">
+    <value>Iran</value>
+  </data>
+  <data name="IR.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IR.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IS.Name" xml:space="preserve">
+    <value>Iceland</value>
+  </data>
+  <data name="IS.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IS.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IT.Name" xml:space="preserve">
+    <value>Italy</value>
+  </data>
+  <data name="IT.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IT.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="JO.Name" xml:space="preserve">
+    <value>Jordan</value>
+  </data>
+  <data name="JO.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="JO.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="KZ.Name" xml:space="preserve">
+    <value>Kazakhstan</value>
+  </data>
+  <data name="KZ.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="KZ.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LB.Name" xml:space="preserve">
+    <value>Lebanon</value>
+  </data>
+  <data name="LB.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LB.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LI.Name" xml:space="preserve">
+    <value>Liechtenstein</value>
+  </data>
+  <data name="LI.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LI.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LT.Name" xml:space="preserve">
+    <value>Lithuania</value>
+  </data>
+  <data name="LT.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LT.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LU.Name" xml:space="preserve">
+    <value>Luxembourg</value>
+  </data>
+  <data name="LU.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LU.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LV.Name" xml:space="preserve">
+    <value>Latvia</value>
+  </data>
+  <data name="LV.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LV.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MA.Name" xml:space="preserve">
+    <value>Morocco</value>
+  </data>
+  <data name="MA.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MA.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MC.Name" xml:space="preserve">
+    <value>Monaco</value>
+  </data>
+  <data name="MC.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MC.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MD.Name" xml:space="preserve">
+    <value>Maldova</value>
+  </data>
+  <data name="MD.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MD.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ME.Name" xml:space="preserve">
+    <value>Montenegro</value>
+  </data>
+  <data name="ME.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ME.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MK.Name" xml:space="preserve">
+    <value>Macedonia</value>
+  </data>
+  <data name="MK.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MK.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MT.Name" xml:space="preserve">
+    <value>Malta</value>
+  </data>
+  <data name="MT.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MT.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NL.Name" xml:space="preserve">
+    <value>Netherlands</value>
+  </data>
+  <data name="NL.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NL.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NO.Name" xml:space="preserve">
+    <value>Norway</value>
+  </data>
+  <data name="NO.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NO.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PL.Name" xml:space="preserve">
+    <value>Poland</value>
+  </data>
+  <data name="PL.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PL.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PT.Name" xml:space="preserve">
+    <value>Portugal</value>
+  </data>
+  <data name="PT.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PT.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RO.Name" xml:space="preserve">
+    <value>Romania</value>
+  </data>
+  <data name="RO.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RO.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RU.Name" xml:space="preserve">
+    <value>Russia</value>
+  </data>
+  <data name="RU.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RU.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SA.Name" xml:space="preserve">
+    <value>Saudi Arabia</value>
+  </data>
+  <data name="SA.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SA.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SE.Name" xml:space="preserve">
+    <value>Sweden</value>
+  </data>
+  <data name="SE.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SE.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SI.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SI.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SK.Name" xml:space="preserve">
+    <value>Slovakia</value>
+  </data>
+  <data name="SK.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SK.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SL.Name" xml:space="preserve">
+    <value>Slovenia</value>
+  </data>
+  <data name="SM.Name" xml:space="preserve">
+    <value>SanMarino</value>
+  </data>
+  <data name="SM.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SM.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SR.Name" xml:space="preserve">
+    <value>Suruname</value>
+  </data>
+  <data name="SR.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SR.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SY.Name" xml:space="preserve">
+    <value>Syrian Arab Republic</value>
+  </data>
+  <data name="SY.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SY.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TM.Name" xml:space="preserve">
+    <value>Turkmenistan</value>
+  </data>
+  <data name="TM.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TM.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TN.Name" xml:space="preserve">
+    <value>Tunisia</value>
+  </data>
+  <data name="TN.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TN.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TR.Name" xml:space="preserve">
+    <value>Turkey</value>
+  </data>
+  <data name="TR.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TR.URL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UA.Name" xml:space="preserve">
+    <value>Ukraine</value>
+  </data>
+  <data name="UA.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UA.URL" xml:space="preserve">
+    <value />
+  </data>
+</root>
