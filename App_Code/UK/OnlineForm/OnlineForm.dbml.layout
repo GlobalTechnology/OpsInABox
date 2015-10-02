@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="OnlineForm">
+  <DataContextMoniker Name="/OnlineFormDataContext" />
+  <nestedChildShapes>
+    <classShape Id="1430db29-6f94-41dd-b073-fc53c62cb0ba" absoluteBounds="1.375, 3.375, 2, 2.5401025390624996">
+      <DataClassMoniker Name="/OnlineFormDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4f0ac496-a48f-4949-91bf-dd1d1b2e15e3" absoluteBounds="1.3900000000000001, 3.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bc5515b4-9655-4235-8e8c-bc5a3218ae2e" absoluteBounds="4, 0.625, 2.75, 1.7708968098958331">
+      <DataClassMoniker Name="/OnlineFormDataContext/Agape_Public_OnlineForm_Question" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d501f356-1516-4857-a2d9-74f18a18af79" absoluteBounds="4.015, 1.085, 2.7199999999999998, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="93fd2133-fc76-4d89-af62-fc9539875f9c" absoluteBounds="4.625, 3.625, 2.625, 2.3478011067708326">
+      <DataClassMoniker Name="/OnlineFormDataContext/Agape_Public_OnlineForm_Answer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="41df5528-13aa-4adb-8ef0-0199296fdbfc" absoluteBounds="4.64, 4.085, 2.5949999999999998, 1.7878011067708333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.96875 : 2.39589680989583); (5.96875 : 3.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/OnlineFormDataContext/Agape_Public_OnlineForm_Question/Agape_Public_OnlineForm_Question_Agape_Public_OnlineForm_Answer" />
+      <nodes>
+        <classShapeMoniker Id="bc5515b4-9655-4235-8e8c-bc5a3218ae2e" />
+        <classShapeMoniker Id="93fd2133-fc76-4d89-af62-fc9539875f9c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.375 : 4.62329223632813); (4.625 : 4.62329223632813)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/OnlineFormDataContext/User/User_Agape_Public_OnlineForm_Answer" />
+      <nodes>
+        <classShapeMoniker Id="1430db29-6f94-41dd-b073-fc53c62cb0ba" />
+        <classShapeMoniker Id="93fd2133-fc76-4d89-af62-fc9539875f9c" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="532cf7f4-4b21-416e-9780-f78df1f464b0" absoluteBounds="7.375, 1, 2.375, 1.3862939453125">
+      <DataClassMoniker Name="/OnlineFormDataContext/Agape_Public_OnlineForm_DDL" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7f5a5308-fbce-40b3-a729-b22eefb6bf5f" absoluteBounds="7.39, 1.46, 2.3449999999999998, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.75 : 1.60709757486979); (7.375 : 1.60709757486979)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/OnlineFormDataContext/Agape_Public_OnlineForm_Question/Agape_Public_OnlineForm_Question_Agape_Public_OnlineForm_DDL" />
+      <nodes>
+        <classShapeMoniker Id="bc5515b4-9655-4235-8e8c-bc5a3218ae2e" />
+        <classShapeMoniker Id="532cf7f4-4b21-416e-9780-f78df1f464b0" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="26c41a5c-88c7-4235-a6ce-a061785bfefc" absoluteBounds="1.125, 0.5, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/OnlineFormDataContext/Agape_Public_OnlineForm" />
+      <nestedChildShapes>
+        <elementListCompartment Id="376c2fd6-3d3f-4b25-9991-894936c80a21" absoluteBounds="1.1400000000000001, 0.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.125 : 1.51044840494792); (4 : 1.51044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/OnlineFormDataContext/Agape_Public_OnlineForm/Agape_Public_OnlineForm_Agape_Public_OnlineForm_Question" />
+      <nodes>
+        <classShapeMoniker Id="26c41a5c-88c7-4235-a6ce-a061785bfefc" />
+        <classShapeMoniker Id="bc5515b4-9655-4235-8e8c-bc5a3218ae2e" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
