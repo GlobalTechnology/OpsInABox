@@ -70,10 +70,10 @@ Namespace DotNetNuke.Modules.Stories
                         newSettings = True
                     End If
 
-                    Dim logoFile = StoryFunctions.SetLogo("http://" & PortalSettings.PortalAlias.HTTPAlias & PortalSettings.HomeDirectory & PortalSettings.LogoFile, PortalId)
+                    Dim logoFile = StoryFunctions.SetLogo("https://" & PortalSettings.PortalAlias.HTTPAlias & PortalSettings.HomeDirectory & PortalSettings.LogoFile, PortalId)
 
 
-                    Dim imageId = "http://" & PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(logoFile))
+                    Dim imageId = "https://" & PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(logoFile))
 
                     StoryFunctions.AddLocalChannel(TabModuleId, PortalAlias.HTTPAlias, RssName, l.longitude, l.latitude, imageId)
 

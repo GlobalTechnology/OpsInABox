@@ -130,7 +130,7 @@ Namespace DotNetNuke.Modules.FullStory
                 ReplaceField(sv, "[MAP]", " <div id=""map_canvas""></div>")
                 Dim thePhoto = DotNetNuke.Services.FileSystem.FileManager.Instance.GetFile(r.PhotoId)
 
-                Dim URL = "http://" & PortalSettings.PortalAlias.HTTPAlias & DotNetNuke.Services.FileSystem.FileManager.Instance.GetUrl(thePhoto)
+                Dim URL = "https://" & PortalSettings.PortalAlias.HTTPAlias & DotNetNuke.Services.FileSystem.FileManager.Instance.GetUrl(thePhoto)
                 ReplaceField(sv, "[IMAGEURL]", URL)
 
 
