@@ -71,9 +71,9 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
 
                 Dim photourl = FileManager.Instance.GetUrl(thePhoto)
                 If photourl.StartsWith("/") Then
-                    photourl = "http://" & PortalSettings.Current.PortalAlias.HTTPAlias & photourl
+                    photourl = "https://" & PortalSettings.Current.PortalAlias.HTTPAlias & photourl
                 ElseIf Not photourl.StartsWith("http") Then
-                    photourl = "http://" & photourl
+                    photourl = "https://" & photourl
                 End If
 
                 insert.ElementExtensions.Add(New XElement(media + "thumbnail", New XAttribute(XNamespace.Xmlns + "media", "http://www.w3.org/2003/01/media/wgs84_pos#"), New XAttribute("url", photourl), New XAttribute("width", thePhoto.Width), New XAttribute("height", thePhoto.Height)))
@@ -113,7 +113,7 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
         Next
 
         myFeed.Items = myList
-        myFeed.ImageUrl = New Uri("http://" & PS.PortalAlias.HTTPAlias & PS.HomeDirectory & PS.LogoFile)
+        myFeed.ImageUrl = New Uri("https://" & PS.PortalAlias.HTTPAlias & PS.HomeDirectory & PS.LogoFile)
         Dim feedWriter = System.Xml.XmlWriter.Create(Response.OutputStream)
 
         Dim rssFormatter As New System.ServiceModel.Syndication.Rss20FeedFormatter(myFeed)
