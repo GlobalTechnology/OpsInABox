@@ -1,111 +1,75 @@
-<%@ Control Language="vb" AutoEventWireup="false" CodeFile="DocumentSettings.ascx.vb"
-    Inherits="DotNetNuke.Modules.Documents.DocumentSettings" %>
+<%@ Control Language="vb" AutoEventWireup="false" CodeFile="DocumentSettings.ascx.vb" Inherits="DotNetNuke.Modules.Documents.DocumentSettings" %>
 <%@ Register Assembly="DotNetNuke" Namespace="DotNetNuke.UI.WebControls" TagPrefix="uc1" %>
-<%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
+<%--<%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>--%>
 
-<script src="/js/jquery.numeric.js" type="text/javascript"></script>
-<script type="text/javascript">
-
-    function setUpMyTabs() {
-
-        $('.numeric').numeric();
-
-        $('#<%= ddlRoot.ClientID  %>').change(function () {
-
-            if ($(this).val() == -3) {
-
-                $('#<%= pnlSearch.ClientID  %>').show();
-            }
-            else {
-                $('#<%= pnlSearch.ClientID  %>').hide();
-            }
-        });
-        $('#<%= ddlRoot.ClientID  %>').change();
-
-        $('#<%= ddlStyle.ClientID  %>').change(function () {
-
-            if ($('#<%= ddlStyle.ClientID  %> input:checked').val() == 'Explorer') {
-
-                $('#<%= pnlExplorer.ClientID  %>').show();
-                $('#<%= pnlTable.ClientID  %>').hide();
-                $('#<%= pnlTree.ClientID  %>').hide();
-            }
-            else if ($('#<%= ddlStyle.ClientID  %> input:checked').val() == 'Table') {
-                $('#<%= pnlExplorer.ClientID  %>').hide();
-                $('#<%= pnlTable.ClientID  %>').show();
-                $('#<%= pnlTree.ClientID  %>').hide();
-            }
-            else if ($('#<%= ddlStyle.ClientID  %> input:checked').val() == 'GTree') {
-                $('#<%= pnlExplorer.ClientID  %>').hide();
-                $('#<%= pnlTable.ClientID  %>').hide();
-                $('#<%= pnlTree.ClientID  %>').show();
-            }
-            else {
-                $('#<%= pnlExplorer.ClientID  %>').show();
-                $('#<%= pnlTable.ClientID  %>').hide();
-                $('#<%= pnlTree.ClientID  %>').hide();
-            }
-        });
-        $('#<%= ddlStyle.ClientID  %>').change();
-
-
-        $('#<%= ddlTreeStyle.ClientID  %>').change(function () {
-           
-            if ($(this).val() == "GTree") {
-
-                $('#<%= pnlTreeColor.ClientID  %>').show();
-            }
-            else {
-                $('#<%= pnlTreeColor.ClientID  %>').hide();
-            }
-        });
-        $('#<%= ddlTreeStyle.ClientID  %>').change();
-
-
-
-
-        $('.aButton').button();
-
-    }
-
-    $(document).ready(function () {
-        setUpMyTabs();
-
-
-        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyTabs(); });
-    });
-   
-
-
-    
-
-
-
-   
-
-</script>
-<style type="text/css">
-    .SettingsTable
-    {
-        border-top: 1px solid #e5eff8;
-        border-right: 1px solid #e5eff8;
-        margin: 1em auto;
-        border-collapse: collapse;
-    }
-    .SettingsTable td
-    {
-        color: #678197;
-        border-bottom: 1px solid #e5eff8;
-        border-left: 1px solid #e5eff8;
-        padding: .3em 1em;
-    }
-    .SettingsTable td td
-    {
-        border-style: none;
-    }
-</style>
 <asp:HiddenField ID="hfPortalId" runat="server" />
-<table cellpadding="4px" border="1" class="SettingsTable">
+<asp:HiddenField runat="server" ID="_repostcheckcode" />
+
+<div>
+    <div>
+        <asp:Label ID="lblFolder" runat="server" ResourceKey="Root"></asp:Label>
+        <asp:DropDownList ID="ddlRoot" runat="server"></asp:DropDownList>
+    </div>
+
+    <div>
+        <hr />
+        <asp:Label ID="lblStyle" runat="server" ResourceKey="Style"></asp:Label>
+
+        <asp:RadioButtonList ID="rblStyle" runat="server" OnSelectedIndexChanged="rbStyle_SelectedIndexChanged" AutoPostBack="true">
+            <asp:ListItem Text="Basic Search" Value="BasicSearch" />
+            <asp:ListItem Text="Icon View" Value="Icons" />
+            <asp:ListItem Text="Table View" Value="Table" />
+            <asp:ListItem Text="Tree View" Value="Tree" />
+        </asp:RadioButtonList>
+
+        <hr />
+        <asp:Label ID="lblOptions" runat="server" ResourceKey="Options"></asp:Label>
+
+        <asp:UpdatePanel ID="updatePanelStyle" runat="server">
+            <ContentTemplate></ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="rblStyle" EventName="SelectedIndexChanged" />
+            </Triggers>
+        </asp:UpdatePanel>
+                
+            <hr />
+    </div>
+
+    <div>
+        <asp:Label ID="lblTags" runat="server" ResourceKey="Tags"></asp:Label>
+        <br />
+        
+        <div>
+            <%--<asp:ListBox ID="lbTags" runat="server" SelectionMode="Single" OnSelectedIndexChanged="lbTags_SelectedIndexChanged" AutoPostBack="true"></asp:ListBox>--%>
+            <asp:ListBox ID="lbTags" runat="server" SelectionMode="Single"></asp:ListBox>
+            <asp:TextBox ID="tbAddTag" runat="server"></asp:TextBox>
+            <asp:Button ID="btnAddTag" runat="server" ResourceKey="BtnAddTag" />
+            <br />
+            <asp:TextBox ID="tbRemoveTag" runat="server" ReadOnly="true"></asp:TextBox>
+            <asp:Button ID="btnRemoveTag" runat="server" ResourceKey="BtnRemoveTag" />
+        </div>
+        <div>
+            
+          
+        </div>
+        
+       <%-- <asp:LinkButton ID="btnRemove" runat="server">Remove</asp:LinkButton><br />
+        <asp:TextBox ID="tbNewTag" runat="server"></asp:TextBox>
+        <asp:LinkButton ID="btnAddTag" runat="server">add</asp:LinkButton>--%>
+    </div>
+    
+</div>
+
+
+
+
+<hr />
+
+
+
+
+
+<%--<table cellpadding="4px" border="1" class="SettingsTable">
     <tr valign="top">
         <td>
             <dnn:Label ID="Label1" runat="server" ResourceKey="Root" />
@@ -238,4 +202,4 @@
     <asp:LinkButton ID="SaveBtn" runat="server" class="aButton btn" ResourceKey="btnSave">Save</asp:LinkButton>
     &nbsp;
     <asp:LinkButton ID="CancelBtn" runat="server" class="aButton btn" ResourceKey="btnCancel">Cancel</asp:LinkButton>
-</div>
+</div>--%>
