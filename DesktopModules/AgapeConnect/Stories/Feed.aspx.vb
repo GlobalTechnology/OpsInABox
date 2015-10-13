@@ -31,9 +31,9 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
         Dim myFeed As New SyndicationFeed()
 
         myFeed.Title = TextSyndicationContent.CreatePlaintextContent(TabController.CurrentPage.TabName)
-        myFeed.Description = TextSyndicationContent.CreatePlaintextContent("Latest news from " & PS.PortalName & "/" & TabController.CurrentPage.TabName)
-        myFeed.Links.Add(SyndicationLink.CreateAlternateLink(New Uri(NavigateURL())))
-        myFeed.Links.Add(SyndicationLink.CreateSelfLink(New Uri(NavigateURL(x.TabID))))
+        myFeed.Description = TextSyndicationContent.CreatePlaintextContent(PS.PortalName & "/" & TabController.CurrentPage.TabName)
+        myFeed.Links.Add(SyndicationLink.CreateAlternateLink(New Uri(NavigateURL().Replace("http://", "https://"))))
+        myFeed.Links.Add(SyndicationLink.CreateSelfLink(New Uri(NavigateURL(x.TabID).Replace("http://", "https://"))))
         myFeed.Copyright = SyndicationContent.CreatePlaintextContent("Copyright " & PS.PortalName)
         myFeed.Language = PS.DefaultLanguage
         Dim myList As New List(Of SyndicationItem)
@@ -43,7 +43,7 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
 
             insert.Title = TextSyndicationContent.CreatePlaintextContent(row.Headline)
 
-            insert.Links.Add(New SyndicationLink(New Uri(NavigateURL(CInt(row.TabId)).Replace("en-us/", "") & "?StoryId=" & row.StoryId)))
+            insert.Links.Add(New SyndicationLink(New Uri(NavigateURL(CInt(row.TabId)).Replace("en-us/", "").Replace("http://", "https://") & "?StoryId=" & row.StoryId)))
             Dim summary As String = ""
             If String.IsNullOrEmpty(row.TextSample) Then
                 summary = Left(StoryFunctions.StripTags(row.StoryText), 500)
