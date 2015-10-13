@@ -198,7 +198,7 @@ Public Class StoryFunctions
         insert.StoryModuleId = theModule.StoryModuleId
         insert.Weight = 1.0
         insert.Type = 2
-        insert.URL = "http://" & PortalAlias & "/DesktopModules/AgapeConnect/Stories/Feed.aspx?channel=" & tabModuleId
+        insert.URL = "https://" & PortalAlias & "/DesktopModules/AgapeConnect/Stories/Feed.aspx?channel=" & tabModuleId
 
         Name = Name
 
