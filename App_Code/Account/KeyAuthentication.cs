@@ -107,7 +107,7 @@ namespace KeyUser
             if (!(string.IsNullOrEmpty(_username) || (string.IsNullOrEmpty(_password))))
             {
                // string server = "https://thekey.me/cas/";
-                string restServer = server + "v1/tickets/";
+                string restServer = server + "v1/tickets";
                //string service = "http://localhost:13059/Default.aspx";
                 string service = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Path);
 

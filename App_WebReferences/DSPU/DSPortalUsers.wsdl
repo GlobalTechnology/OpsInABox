@@ -32,7 +32,6 @@
           <s:element minOccurs="0" maxOccurs="1" name="PortalName" type="s:string" />
         </s:sequence>
       </s:complexType>
-      <s:element name="ArrayOfDataserverPortalUser" nillable="true" type="tns:ArrayOfDataserverPortalUser" />
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="guid">
@@ -48,38 +47,10 @@
   <wsdl:message name="GetPortalsForUserSoapOut">
     <wsdl:part name="parameters" element="tns:GetPortalsForUserResponse" />
   </wsdl:message>
-  <wsdl:message name="GetPortalsForUserHttpGetIn">
-    <wsdl:part name="Username" type="s:string" />
-    <wsdl:part name="Password" type="s:string" />
-    <wsdl:part name="SsoCode" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="GetPortalsForUserHttpGetOut">
-    <wsdl:part name="Body" element="tns:ArrayOfDataserverPortalUser" />
-  </wsdl:message>
-  <wsdl:message name="GetPortalsForUserHttpPostIn">
-    <wsdl:part name="Username" type="s:string" />
-    <wsdl:part name="Password" type="s:string" />
-    <wsdl:part name="SsoCode" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="GetPortalsForUserHttpPostOut">
-    <wsdl:part name="Body" element="tns:ArrayOfDataserverPortalUser" />
-  </wsdl:message>
   <wsdl:portType name="DSPortalUsersSoap">
     <wsdl:operation name="GetPortalsForUser">
       <wsdl:input message="tns:GetPortalsForUserSoapIn" />
       <wsdl:output message="tns:GetPortalsForUserSoapOut" />
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:portType name="DSPortalUsersHttpGet">
-    <wsdl:operation name="GetPortalsForUser">
-      <wsdl:input message="tns:GetPortalsForUserHttpGetIn" />
-      <wsdl:output message="tns:GetPortalsForUserHttpGetOut" />
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:portType name="DSPortalUsersHttpPost">
-    <wsdl:operation name="GetPortalsForUser">
-      <wsdl:input message="tns:GetPortalsForUserHttpPostIn" />
-      <wsdl:output message="tns:GetPortalsForUserHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="DSPortalUsersSoap" type="tns:DSPortalUsersSoap">
@@ -106,42 +77,12 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="DSPortalUsersHttpGet" type="tns:DSPortalUsersHttpGet">
-    <http:binding verb="GET" />
-    <wsdl:operation name="GetPortalsForUser">
-      <http:operation location="/GetPortalsForUser" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="DSPortalUsersHttpPost" type="tns:DSPortalUsersHttpPost">
-    <http:binding verb="POST" />
-    <wsdl:operation name="GetPortalsForUser">
-      <http:operation location="/GetPortalsForUser" />
-      <wsdl:input>
-        <mime:content type="application/x-www-form-urlencoded" />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
   <wsdl:service name="DSPortalUsers">
     <wsdl:port name="DSPortalUsersSoap" binding="tns:DSPortalUsersSoap">
       <soap:address location="https://tntdataserver.eu/portalusers/DSPortalUsers.asmx" />
     </wsdl:port>
     <wsdl:port name="DSPortalUsersSoap12" binding="tns:DSPortalUsersSoap12">
       <soap12:address location="https://tntdataserver.eu/portalusers/DSPortalUsers.asmx" />
-    </wsdl:port>
-    <wsdl:port name="DSPortalUsersHttpGet" binding="tns:DSPortalUsersHttpGet">
-      <http:address location="https://tntdataserver.eu/portalusers/DSPortalUsers.asmx" />
-    </wsdl:port>
-    <wsdl:port name="DSPortalUsersHttpPost" binding="tns:DSPortalUsersHttpPost">
-      <http:address location="https://tntdataserver.eu/portalusers/DSPortalUsers.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

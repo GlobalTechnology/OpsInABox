@@ -142,8 +142,9 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                 Next
                 ddlDownloadExpensePeriod.SelectedValue = Today.AddMonths(-1).Month
 
-                
+
                 hfAccountingCurrency.Value = StaffBrokerFunctions.GetSetting("AccountingCurrency", PortalId)
+
                 If hfAccountingCurrency.Value = "" Then
                     hfAccountingCurrency.Value = "USD"
                     StaffBrokerFunctions.SetSetting("AccountingCurrency", "USD", PortalId)
@@ -153,8 +154,10 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                 Dim PayOnly As Boolean = False
                 Dim PAC = StaffBrokerFunctions.GetStaffProfileProperty(staff.StaffId, "PersonalAccountCode")
                 Dim CC = ""
+               
                 If staff Is Nothing Then
                     'Cannot Use
+
                     lblError.Text = "Access Denied. You have not been setup as a staff member on this website. Please ask your accounts team or administrator to setup your staff profile."
 
                     lblError.Visible = True
@@ -171,7 +174,9 @@ Namespace DotNetNuke.Modules.StaffRmbMod
 
                 Else
                     CC = staff.CostCenter
-                    PayOnly = StaffBrokerFunctions.GetStaffProfileProperty(staff.StaffId, "PayOnly")
+
+                    PayOnly = (StaffBrokerFunctions.GetStaffProfileProperty(staff.StaffId, "PayOnly") = "True")
+
                     'PAC = StaffBrokerFunctions.GetStaffProfileProperty(staff.StaffId, "PersonalAccountCode")
                     If CC = "" And PAC = "" Then
                         'cannot use
@@ -246,7 +251,6 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                 pnlSplash.Visible = True
 
                 '  btnSettings.Visible = IsEditable
-
 
 
 
@@ -341,8 +345,9 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                 Dim allStaff As IQueryable(Of StaffBroker.User)
                 Dim Team = StaffBrokerFunctions.GetTeam(UserId)
                 Dim CostCentres = StaffBrokerFunctions.GetDepartments(UserId)
+                ' AgapeLogger.WriteEventLog(UserId, "TP1")
                 If isAcc Then
-                    AgapeLogger.WriteEventLog(UserId, "loading menu")
+                    ' AgapeLogger.WriteEventLog(UserId, "loading menu")
                     pnlSubmittedView.Visible = False
                     pnlApprovedAcc.Visible = True
                     pnlApprovedView.Visible = False
@@ -494,7 +499,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
 
                         PlaceHolder1.Controls.Add(hyp)
                     Next
-
+                    ' AgapeLogger.WriteEventLog(UserId, "TP2")
 
                     Dim Pending = (From c In d.AP_Staff_Rmbs Where c.Status = RmbStatus.Draft And c.PortalId = PortalId And (c.UserId = UserId) Order By c.RID Descending Select c.RMBNo, c.RmbDate, c.UserRef, c.RID, c.UserId).Take(MenuSize)
                     dlPending.DataSource = Pending
@@ -514,7 +519,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
 
                     dlAdvSubmitted.AlternatingItemStyle.CssClass = IIf(dlSubmitted.Items.Count Mod 2 = 1, "dnnGridItem", "dnnGridAltItem")
                     dlAdvSubmitted.ItemStyle.CssClass = IIf(dlSubmitted.Items.Count Mod 2 = 1, "dnnGridAltItem", "dnnGridItem")
-
+                    '   AgapeLogger.WriteEventLog(UserId, "TP3")
 
                     'Select Reimbursements that you have to approve
 
@@ -542,7 +547,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
 
 
 
-
+                    '    AgapeLogger.WriteEventLog(UserId, "TP4")
 
 
                     Dim Over1000 = From c In d.AP_Staff_RmbLines Where c.GrossAmount > LargeTransaction And c.AP_Staff_Rmb.PortalId = PortalId Select c.AP_Staff_Rmb Distinct
@@ -588,7 +593,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
 
                     End If
 
-
+                    '  AgapeLogger.WriteEventLog(UserId, "TP5")
                     'btnToApprove.Visible = (list.Count > 0)
 
                     'Add the full list of reimbursements needing to be approved by the user to the data list
@@ -622,7 +627,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                         lblSubmittedCount.Text = ""
                         pnlSubmitted.CssClass = ""
                     End If
-
+                    'AgapeLogger.WriteEventLog(UserId, "TP6")
 
                     'Create a list of all the cancelled reimbursements made by the user
                     Dim Cancelled = (From c In d.AP_Staff_Rmbs Where c.Status = RmbStatus.Cancelled And c.PortalId = PortalId And (c.UserId = UserId) Order By c.RID Descending Select c.RMBNo, c.RmbDate, c.UserRef, c.RID, c.UserId).Take(MenuSize)
@@ -644,7 +649,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
 
 
 
-
+                    ' AgapeLogger.WriteEventLog(UserId, "TP7")
 
 
                     Dim myteamIds = From c In Team Select c.UserID
@@ -681,7 +686,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
 
                     tvProcessed.Nodes.Add(YouNode)
 
-
+                    '  AgapeLogger.WriteEventLog(UserId, "TP8")
                     'add the approvedTeam tree
                     If Team.Count > 0 Then
                         Dim TeamNode As New TreeNode("Team")
@@ -723,7 +728,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                         Next
                         tvProcessed.Nodes.Add(TeamNode)
                     End If
-
+                    ' AgapeLogger.WriteEventLog(UserId, "TP9")
                     'add the approved Departements 
                     If CostCentres.Count > 0 Then
                         Dim DeptNode As New TreeNode("Departments")
@@ -751,6 +756,7 @@ Namespace DotNetNuke.Modules.StaffRmbMod
                         Next
                         tvProcessed.Nodes.Add(DeptNode)
                     End If
+                    AgapeLogger.WriteEventLog(UserId, "TP10")
                 End If
 
             Catch ex As Exception

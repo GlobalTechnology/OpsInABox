@@ -74,29 +74,34 @@ Namespace DotNetNuke.Modules.Portals
             Return rmbs + adv
 
         End Function
+        Public Function GRLink(ByVal thePortalId As Integer) As Boolean
+            Return StaffBrokerFunctions.GetSetting("gr_api_key", thePortalId) <> ""
+          
+
+        End Function
         Public Function LastProcDate(ByVal thePortalId As Integer) As String
             Dim d As New StaffRmb.StaffRmbDataContext
-            Dim procRmb = From c In d.AP_Staff_Rmbs Where c.PortalId = thePortalId And c.Status = StaffRmb.RmbStatus.Processed Select c.ProcDate Order By ProcDate Descending
-            Dim lastRmb As Date = Nothing
+            Dim lastRmb = (From c In d.AP_Staff_Rmbs Where c.PortalId = thePortalId And c.Status = StaffRmb.RmbStatus.Processed Select c.ProcDate Order By ProcDate Descending).FirstOrDefault
+            '  Dim lastRmb As Date = Nothing
 
-            If procRmb.Count > 0 Then
-                lastRmb = procRmb.First
-            End If
+            '  If procRmb.Count > 0 Then
+            ' lastRmb = procRmb.First
+            ' End If
 
-            Dim procAdv = From c In d.AP_Staff_AdvanceRequests Where c.PortalId = thePortalId And c.RequestStatus = StaffRmb.RmbStatus.Processed Select c.ProcessedDate Order By ProcessedDate Descending
-            Dim lastAdv As Date = Nothing
+            Dim lastAdv = (From c In d.AP_Staff_AdvanceRequests Where c.PortalId = thePortalId And c.RequestStatus = StaffRmb.RmbStatus.Processed Select c.ProcessedDate Order By ProcessedDate Descending).FirstOrDefault
+            ' Dim lastAdv As Date = Nothing
 
-            If procAdv.Count > 0 Then
-                lastAdv = procRmb.First
-            End If
+            '  If procAdv.Count > 0 Then
+            ' ' lastAdv = procRmb.First
+            ' End If
 
-            If lastAdv = Nothing And lastRmb = Nothing Then
+            If lastAdv Is Nothing And lastRmb Is Nothing Then
                 Return ""
             End If
-            If lastRmb = Nothing Then
+            If lastRmb Is Nothing Then
                 Return lastAdv
             End If
-            If lastAdv = Nothing Then
+            If lastAdv Is Nothing Then
                 Return lastRmb
             End If
 

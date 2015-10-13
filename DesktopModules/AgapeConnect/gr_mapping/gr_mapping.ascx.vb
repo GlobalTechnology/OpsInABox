@@ -209,17 +209,56 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
                 End If
                 gr = New GR(tbRootKey.Text, gr_server, False)
-                gr.CreateSystem("oib_" & tbName.Text.ToLower)
+
+                gr.CreateSystem("oib_" & tbName.Text.ToLower, {"137.117.228.149", "137.117.228.150", "137.117.228.217", "137.117.225.138", "198.61.229.144", "137.117.233.126"}.ToList)
                 Dim systems = GR_NET.GR.GetSystems(tbRootKey.Text, gr_server)
                 Dim thisSystem = From c In systems Where c.Name = "oib_" & tbName.Text.ToLower
+
+
+
+                Using d As New gr_mapping.gr_mappingDataContext
+                    Dim q = From c In d.gr_mappings Where c.PortalId = PortalId Select c.LocalName
+
+                    If Not q.Contains("FirstName") Then
+                        AddMapping(d, "FirstName", "person.first_name", "string", "U", True)
+                    End If
+                    If Not q.Contains("LastName") Then
+                        AddMapping(d, "LastName", "person.last_name", "string", "U", True)
+                    End If
+                    If Not q.Contains("Email") Then
+                        AddMapping(d, "Email", "person.email_address.email", "email", "U", False)
+                    End If
+                    If Not q.Contains("R/C") Then
+                        AddMapping(d, "R/C", "person:{in_this_min}.staff_account", "string", "S", False)
+                    End If
+
+
+
+
+
+                End Using
 
                 If thisSystem.Count > 0 Then
                     StaffBrokerFunctions.SetSetting("gr_api_key", thisSystem.First.AccessToken, PortalId)
                     Response.Redirect(NavigateURL())
                 End If
             End If
-           
+
 
         End Sub
+        _
+        Private Sub AddMapping(ByRef d As gr_mapping.gr_mappingDataContext, ByVal LocalName As String, ByVal gr_name As String, ByVal Field_Type As String, ByVal LocalSource As Char, Optional ByVal CanBeUpdated As Boolean = False)
+            Dim insert As New gr_mapping.gr_mapping()
+            insert.PortalId = PortalId
+            insert.LocalName = LocalName
+            insert.LocalSource = LocalSource
+            insert.gr_dot_notated_name = gr_name
+            insert.FieldType = Field_Type
+            insert.replace = ""
+            insert.can_be_updated = CanBeUpdated
+            d.gr_mappings.InsertOnSubmit(insert)
+            d.SubmitChanges()
+        End Sub
+
     End Class
 End Namespace

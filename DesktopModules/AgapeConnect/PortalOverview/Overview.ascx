@@ -57,6 +57,12 @@
 
             </ItemTemplate>
         </asp:TemplateField>
+             <asp:TemplateField HeaderText="GR" >
+            <ItemTemplate>
+                <asp:Label ID="Label1" runat="server" Text='<%# GRLink(Eval("PortalId"))%>'></asp:Label>
+
+            </ItemTemplate>
+        </asp:TemplateField>
       
     </Columns>
     <FooterStyle BackColor="#CCCC99" />

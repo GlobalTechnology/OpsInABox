@@ -52,7 +52,7 @@ Public Class tntWebUsers
 
 
             Dim service = "https://agapeconnect.me"
-            Dim restServer As String = "https://thekey.me/cas/v1/tickets/"
+            Dim restServer As String = "https://thekey.me/cas/v1/tickets"
             Dim postData = "service=" & service & "&username=trusteduser@agapeconnect.me&password=" & tuPass
 
             Dim request As WebRequest = WebRequest.Create(restServer)

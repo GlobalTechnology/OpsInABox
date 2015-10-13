@@ -56,7 +56,7 @@ Namespace DotNetNuke.Modules.StaffAdmin
                     Dim MyCommand As New OleDbCommand()
                     MyCommand.Connection = MyConnection
 
-                    MyCommand.CommandText = "Select * from [Staff$A3:K1000] "
+                    MyCommand.CommandText = "Select * from [Staff$A3:M1000] "
 
                     Dim data = MyCommand.ExecuteReader()
 
@@ -75,7 +75,9 @@ Namespace DotNetNuke.Modules.StaffAdmin
                          IIf(IsDBNull(data.Item(7)), "", data.Item(7)),
                          IIf(IsDBNull(data.Item(8)), "", data.Item(8)),
                          IIf(IsDBNull(data.Item(9)), "", data.Item(9)),
-                         IIf(IsDBNull(data.Item(10)), "", data.Item(10)))
+                         IIf(IsDBNull(data.Item(10)), "", data.Item(10)),
+                         IIf(IsDBNull(data.Item(11)), 0, data.Item(11)),
+                         IIf(IsDBNull(data.Item(12)), 0, data.Item(12)))
                         Catch ex As Exception
                             lblResponse.Text &= "There was a problem creating user: " & ex.ToString() & "<br />"
 
@@ -105,7 +107,7 @@ Namespace DotNetNuke.Modules.StaffAdmin
 
         End Sub
 
-        Private Sub AddStaffRecord(ByVal FirstName As String, ByVal LastName As String, ByVal GCXEmail As String, ByVal MaritalStatus As Integer, ByVal StaffType As Integer, ByVal RC As String, ByVal PayOnly As String, ByVal Designation As String, ByVal SpFirstName As String, ByVal SpLastName As String, ByVal SpGCXEmail As String)
+        Private Sub AddStaffRecord(ByVal FirstName As String, ByVal LastName As String, ByVal GCXEmail As String, ByVal MaritalStatus As Integer, ByVal StaffType As Integer, ByVal RC As String, ByVal PayOnly As String, ByVal Designation As String, ByVal SpFirstName As String, ByVal SpLastName As String, ByVal SpGCXEmail As String, ByVal ExpenseBudget As Double, ByVal MPDBudget As Double)
             Dim d As New StaffBrokerDataContext
             lblResponse.Text &= "<br /><b>" & LastName & ", " & FirstName & ":</b> "
 
@@ -126,7 +128,7 @@ Namespace DotNetNuke.Modules.StaffAdmin
                         MaritalStatus = 1
                     Else
                         If String.IsNullOrEmpty(SpLastName) Then
-                            SpLastName=LastName
+                            SpLastName = LastName
                         End If
                         MaritalStatus = 3
                     End If
@@ -140,8 +142,8 @@ Namespace DotNetNuke.Modules.StaffAdmin
                 user = StaffBrokerFunctions.CreateUser(PortalId, GCXEmail, FirstName, LastName)
             End If
             If spouse Is Nothing And MaritalStatus = 2 Then
-               
-                    spouse = StaffBrokerFunctions.CreateUser(PortalId, SpGCXEmail, SpFirstName, SpLastName)
+
+                spouse = StaffBrokerFunctions.CreateUser(PortalId, SpGCXEmail, SpFirstName, SpLastName)
 
             End If
 
@@ -225,7 +227,7 @@ Namespace DotNetNuke.Modules.StaffAdmin
 
 
 
-            Dim s =( From c In d.AP_StaffBroker_Staffs Where c.StaffId = theStaff.StaffId).first
+            Dim s = (From c In d.AP_StaffBroker_Staffs Where c.StaffId = theStaff.StaffId).first
             s.StaffTypeId = st
 
             If RC <> "" Then
@@ -242,7 +244,8 @@ Namespace DotNetNuke.Modules.StaffAdmin
             If {"Y", "y", "N", "n"}.Contains(PayOnly) Then
                 StaffBrokerFunctions.AddProfileValue(PortalId, theStaff.StaffId, "PayOnly", PayOnly.ToUpper = "Y")
             End If
-
+            StaffBrokerFunctions.AddProfileValue(PortalId, theStaff.StaffId, "DefaultExpenseBudget", ExpenseBudget)
+            StaffBrokerFunctions.AddProfileValue(PortalId, theStaff.StaffId, "DefaultMPDBudget", MPDBudget)
 
 
             lblResponse.Text &= "<span style=""color: Green ;"">Success<span>" & append
