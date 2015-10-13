@@ -121,7 +121,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
                 If IsEditMode() Then
                     Dim includeTypes = mpdDef.StaffTypes.Split(";")
-                    ' Label5.Text = mpdDef.StaffTypes
 
                     Dim ds As New StaffBroker.StaffBrokerDataContext
                    
