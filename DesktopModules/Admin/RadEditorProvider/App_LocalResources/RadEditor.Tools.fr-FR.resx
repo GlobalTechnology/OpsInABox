@@ -163,10 +163,10 @@
     <value>Supprimer la cellule</value>
   </data>
   <data name="DeleteColumn" xml:space="preserve">
-    <value>Supprimez la colonne</value>
+    <value>Supprimer la colonne</value>
   </data>
   <data name="DeleteRow" xml:space="preserve">
-    <value>Supprimez la ligne</value>
+    <value>Supprimer la ligne</value>
   </data>
   <data name="DeleteTable" xml:space="preserve">
     <value>Supprimer le tableau</value>

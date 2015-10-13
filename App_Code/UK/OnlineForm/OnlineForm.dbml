@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AgapeBetaSVN" Class="OnlineFormDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ABAPPS01;Initial Catalog=AgapeBetaSVN;Persist Security Info=True;User ID=remotelogin" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSuperUser" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AffiliateId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatePassword" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="User_Agape_Public_OnlineForm_Answer" Member="Agape_Public_OnlineForm_Answers" ThisKey="UserID" OtherKey="UserId" Type="Agape_Public_OnlineForm_Answer" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Agape_Public_OnlineForm_Questions" Member="Agape_Public_OnlineForm_Questions">
+    <Type Name="Agape_Public_OnlineForm_Question">
+      <Column Name="FormQuestionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FormId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="QuestionText" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="QuestionType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Required" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Agape_Public_OnlineForm_Question_Agape_Public_OnlineForm_Answer" Member="Agape_Public_OnlineForm_Answers" ThisKey="FormQuestionId" OtherKey="Questionid" Type="Agape_Public_OnlineForm_Answer" />
+      <Association Name="Agape_Public_OnlineForm_Question_Agape_Public_OnlineForm_DDL" Member="Agape_Public_OnlineForm_DDLs" ThisKey="FormQuestionId" OtherKey="QuestionId" Type="Agape_Public_OnlineForm_DDL" />
+      <Association Name="Agape_Public_OnlineForm_Agape_Public_OnlineForm_Question" Member="Agape_Public_OnlineForm" ThisKey="FormId" OtherKey="FormId" Type="Agape_Public_OnlineForm" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Agape_Public_OnlineForm_Answers" Member="Agape_Public_OnlineForm_Answers">
+    <Type Name="Agape_Public_OnlineForm_Answer">
+      <Column Name="AnswerId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FormId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Questionid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AnswerText" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DateSubmitted" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="UserIP" Type="System.String" DbType="VarChar(16)" CanBeNull="true" />
+      <Column Name="AnswerSet" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Agape_Public_OnlineForm_Question_Agape_Public_OnlineForm_Answer" Member="Agape_Public_OnlineForm_Question" ThisKey="Questionid" OtherKey="FormQuestionId" Type="Agape_Public_OnlineForm_Question" IsForeignKey="true" />
+      <Association Name="User_Agape_Public_OnlineForm_Answer" Member="User" ThisKey="UserId" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Agape_Public_OnlineForm_DDL" Member="Agape_Public_OnlineForm_DDLs">
+    <Type Name="Agape_Public_OnlineForm_DDL">
+      <Column Name="DDLRowId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="QuestionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RowText" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Association Name="Agape_Public_OnlineForm_Question_Agape_Public_OnlineForm_DDL" Member="Agape_Public_OnlineForm_Question" ThisKey="QuestionId" OtherKey="FormQuestionId" Type="Agape_Public_OnlineForm_Question" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Agape_Public_OnlineForms" Member="Agape_Public_OnlineForms">
+    <Type Name="Agape_Public_OnlineForm">
+      <Column Name="FormId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ModuleId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Intro" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="FootNote" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EmailTo" Type="System.String" DbType="VarChar(70)" CanBeNull="true" />
+      <Column Name="Ack" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AckText" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ReqEmail" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RDSLoginName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RDSPassword" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Agape_Public_OnlineForm_Agape_Public_OnlineForm_Question" Member="Agape_Public_OnlineForm_Questions" ThisKey="FormId" OtherKey="FormId" Type="Agape_Public_OnlineForm_Question" />
+    </Type>
+  </Table>
+</Database>

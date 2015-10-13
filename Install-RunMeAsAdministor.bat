@@ -31,8 +31,9 @@ REM SETUP DESKTOP MODULES
 cd ..\DesktopModules\
 
 mklink /J %var%DesktopModules\AgapeConnect AgapeConnect
-
 mklink /J %var%DesktopModules\AgapeFR AgapeFR
+mklink /J %var%DesktopModules\AgapeEurope AgapeEurope
+mklink /J %var%DesktopModules\AgapeUK AgapeUK
 
 REM SETUP FRANCE PORTAL SPECIFIC RADEDITOR CONFIG FILES
 cd ..\DesktopModules\Admin\RadEditorProvider\ConfigFile
