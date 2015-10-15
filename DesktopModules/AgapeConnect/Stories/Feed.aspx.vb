@@ -31,9 +31,9 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
         Dim myFeed As New SyndicationFeed()
 
         myFeed.Title = TextSyndicationContent.CreatePlaintextContent(TabController.CurrentPage.TabName)
-        myFeed.Description = TextSyndicationContent.CreatePlaintextContent("Latest news from " & PS.PortalName & "/" & TabController.CurrentPage.TabName)
-        myFeed.Links.Add(SyndicationLink.CreateAlternateLink(New Uri(NavigateURL())))
-        myFeed.Links.Add(SyndicationLink.CreateSelfLink(New Uri(NavigateURL(x.TabID))))
+        myFeed.Description = TextSyndicationContent.CreatePlaintextContent(PS.PortalName & "/" & TabController.CurrentPage.TabName)
+        myFeed.Links.Add(SyndicationLink.CreateAlternateLink(New Uri(NavigateURL().Replace("http://", "https://"))))
+        myFeed.Links.Add(SyndicationLink.CreateSelfLink(New Uri(NavigateURL(x.TabID).Replace("http://", "https://"))))
         myFeed.Copyright = SyndicationContent.CreatePlaintextContent("Copyright " & PS.PortalName)
         myFeed.Language = PS.DefaultLanguage
         Dim myList As New List(Of SyndicationItem)
@@ -43,7 +43,7 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
 
             insert.Title = TextSyndicationContent.CreatePlaintextContent(row.Headline)
 
-            insert.Links.Add(New SyndicationLink(New Uri(NavigateURL(CInt(row.TabId)).Replace("en-us/", "") & "?StoryId=" & row.StoryId)))
+            insert.Links.Add(New SyndicationLink(New Uri(NavigateURL(CInt(row.TabId)).Replace("en-us/", "").Replace("http://", "https://") & "?StoryId=" & row.StoryId)))
             Dim summary As String = ""
             If String.IsNullOrEmpty(row.TextSample) Then
                 summary = Left(StoryFunctions.StripTags(row.StoryText), 500)
@@ -71,9 +71,9 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
 
                 Dim photourl = FileManager.Instance.GetUrl(thePhoto)
                 If photourl.StartsWith("/") Then
-                    photourl = "http://" & PortalSettings.Current.PortalAlias.HTTPAlias & photourl
+                    photourl = "https://" & PortalSettings.Current.PortalAlias.HTTPAlias & photourl
                 ElseIf Not photourl.StartsWith("http") Then
-                    photourl = "http://" & photourl
+                    photourl = "https://" & photourl
                 End If
 
                 insert.ElementExtensions.Add(New XElement(media + "thumbnail", New XAttribute(XNamespace.Xmlns + "media", "http://www.w3.org/2003/01/media/wgs84_pos#"), New XAttribute("url", photourl), New XAttribute("width", thePhoto.Width), New XAttribute("height", thePhoto.Height)))
@@ -113,7 +113,7 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
         Next
 
         myFeed.Items = myList
-        myFeed.ImageUrl = New Uri("http://" & PS.PortalAlias.HTTPAlias & PS.HomeDirectory & PS.LogoFile)
+        myFeed.ImageUrl = New Uri("https://" & PS.PortalAlias.HTTPAlias & PS.HomeDirectory & PS.LogoFile)
         Dim feedWriter = System.Xml.XmlWriter.Create(Response.OutputStream)
 
         Dim rssFormatter As New System.ServiceModel.Syndication.Rss20FeedFormatter(myFeed)

@@ -47,9 +47,9 @@ Namespace DotNetNuke.Modules.Stories
                     newSettings = True
                 End If
                 Dim l = Location.GetLocation(Request.ServerVariables("remote_addr"))
-                Dim logoFile = StoryFunctions.SetLogo("http://" & PortalSettings.PortalAlias.HTTPAlias & PortalSettings.HomeDirectory & PortalSettings.LogoFile, PortalId)
+                Dim logoFile = StoryFunctions.SetLogo("https://" & PortalSettings.PortalAlias.HTTPAlias & PortalSettings.HomeDirectory & PortalSettings.LogoFile, PortalId)
 
-                Dim imageId = "http://" & PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(logoFile))
+                Dim imageId = "https://" & PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(logoFile))
 
                 StoryFunctions.AddLocalChannel(TabModuleId, PortalAlias.HTTPAlias, RssName, l.longitude, l.latitude, imageId)
 
@@ -291,7 +291,7 @@ Namespace DotNetNuke.Modules.Stories
 
                 Else
                     Dim logo = FileManager.Instance.GetFile(PortalId, PortalSettings.LogoFile)
-                    icImage.FileId = StoryFunctions.SetLogo("http://" & PortalSettings.DefaultPortalAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(logo.FileId)), PortalId)
+                    icImage.FileId = StoryFunctions.SetLogo("https://" & PortalSettings.DefaultPortalAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(logo.FileId)), PortalId)
 
                 End If
                 'icImage.Aspect = lblAspect.Text
@@ -367,7 +367,7 @@ Namespace DotNetNuke.Modules.Stories
                 End Try
             End If
 
-            insert.ImageId = "http://" & PortalSettings.PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(icImage.FileId))
+            insert.ImageId = "https://" & PortalSettings.PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(icImage.FileId))
 
             If lblFeedError.Text <> "" Then
                 Dim t As Type = icImage.GetType()
@@ -568,7 +568,7 @@ Namespace DotNetNuke.Modules.Stories
                     End Try
                 End If
 
-                theChannel.First.ImageId = "http://" & PortalSettings.PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(icImage.FileId))
+                theChannel.First.ImageId = "https://" & PortalSettings.PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(icImage.FileId))
 
                 If lblFeedError.Text <> "" Then
                     Dim t As Type = icImage.GetType()
