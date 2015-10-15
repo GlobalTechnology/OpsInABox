@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="ColumnWidth.Help" xml:space="preserve">
     <value>Enter the width of column. The module will try to squeeze in as many columns (of this width) that will fit in the space provided.</value>
   </data>
@@ -164,5 +170,8 @@
   </data>
   <data name="TreeStyle.Text" xml:space="preserve">
     <value>Style:</value>
+  </data>
+  <data name="TreeOption.Text" xml:space="preserve">
+    <value>Show the folder tree with the icons.</value>
   </data>
 </root>

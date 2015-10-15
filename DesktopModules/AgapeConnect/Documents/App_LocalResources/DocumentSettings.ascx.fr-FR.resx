@@ -120,8 +120,14 @@
   <data name="BtnAddTag.Text" xml:space="preserve">
     <value>Ajouter nouveau</value>
   </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
   <data name="BtnRemoveTag.Text" xml:space="preserve">
     <value>Supprimer</value>
+  </data>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Sauvegarder</value>
   </data>
   <data name="ColorOlive.Text" xml:space="preserve">
     <value>olive</value>
