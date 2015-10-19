@@ -75,7 +75,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
             End If
 
-            btnSettings.Visible = IsEditable
+            editbuttons.Visible = IsEditable
 
             Dim rootFolderId As Integer = -1
 
@@ -294,33 +294,33 @@ Namespace DotNetNuke.Modules.AgapeConnect
             If search = "" Then
                 Folders = From c In d.AP_Documents_Folders Where c.ParentFolder = FolderId
                 Docs = From c In d.AP_Documents_Docs Where c.FolderId = FolderId
-                lblDisplayingSearch.Visible = False
-                lblDisplaying.Visible = True
+                'lblDisplayingSearch.Visible = False
+                'lblDisplaying.Visible = True
                 
 
             ElseIf Request.QueryString("mode") = "tags" Then
                 Folders = From c In d.AP_Documents_Folders Where 1 = 0
                 Docs = From c In d.AP_Documents_Docs Where c.AP_Documents_Folder.PortalId = PortalId And (c.AP_Documents_TagMetas.Where(Function(x) x.AP_Documents_Tag.TagName = search).Count > 0)
-                lblDisplayingSearch.Visible = True
-                lblDisplaying.Visible = False
-                lblFolder.Text = " Tag<: " & search
+                'lblDisplayingSearch.Visible = True
+                'lblDisplaying.Visible = False
+                'lblFolder.Text = " Tag<: " & search
 
             ElseIf Request.QueryString("mode") = "keywords" Then
 
                 Folders = From c In d.AP_Documents_Folders Where 1 = 0
                 Docs = From c In d.AP_Documents_Docs Where c.AP_Documents_Folder.PortalId = PortalId And c.Keywords.Contains("search")
-                lblDisplayingSearch.Visible = True
-                lblDisplaying.Visible = False
-                lblFolder.Text = " Keyword(s): " & search
+                'lblDisplayingSearch.Visible = True
+                'lblDisplaying.Visible = False
+                'lblFolder.Text = " Keyword(s): " & search
             Else
 
 
                 Folders = From c In d.AP_Documents_Folders Where c.PortalId = PortalId And (c.Name.Contains(search) Or c.Description.Contains(search))
 
                 Docs = From c In d.AP_Documents_Docs Where c.AP_Documents_Folder.PortalId = PortalId And (c.DisplayName.Contains(search) Or c.Description.Contains(search) Or c.Keywords.Contains("search") Or (c.AP_Documents_TagMetas.Where(Function(x) x.AP_Documents_Tag.TagName.Contains(search)).Count > 0))
-                lblDisplayingSearch.Visible = True
-                lblDisplaying.Visible = False
-                lblFolder.Text = ": " & search
+                'lblDisplayingSearch.Visible = True
+                'lblDisplaying.Visible = False
+                'lblFolder.Text = ": " & search
 
 
             End If
@@ -418,7 +418,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                             ancestors = ancestors.Parent
 
                         End While
-                        lblFolder.Text = breadcrumb
+                        'lblFolder.Text = breadcrumb
                     End If
 
 

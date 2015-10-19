@@ -567,18 +567,13 @@ word-wrap: break-word;
             </asp:TreeView>
         </div>
         <div id="RightPane" class="aBlank">
-            <div style="height: 20px; float: right;">
-                <asp:HyperLink ID="hlFolderButton" runat="server" onclick="showNewFolder();" class="FolderButton">New Folder</asp:HyperLink>
-                <asp:HyperLink ID="hlNewLink" runat="server" onclick="showNewLink();" class="LinkButton">New Link</asp:HyperLink>
-                <asp:HyperLink ID="hlUpload" runat="server" onclick="showUpload();" class="Upload">Upload Files</asp:HyperLink>
-            </div>
-            <div style="white-space: normal; color: #CCC; font-size: small; font-style: italic;
+            <%--<div style="white-space: normal; color: #CCC; font-size: small; font-style: italic;
                 margin-left: 5px">
                 <asp:Label ID="lblDisplaying" runat="server" resourceKey="lblDisplaying"></asp:Label>
                 <asp:Label ID="lblDisplayingSearch" runat="server" resourceKey="lblDisplayingSearch"
                     Visible="false"></asp:Label>
                 <asp:Label ID="lblFolder" runat="server"></asp:Label>
-            </div>
+            </div>--%>
             <div style="clear: both;">
             </div>
             <br />
@@ -1144,11 +1139,16 @@ word-wrap: break-word;
             Add Files...</li>
     </ul>
 </div>
+<div id="editbuttons" runat="server" style="height: 20px; float: right;">
+    <asp:HyperLink ID="hlFolderButton" runat="server" onclick="showNewFolder();" class="aButton">New Folder</asp:HyperLink>
+    <asp:HyperLink ID="hlNewLink" runat="server" onclick="showNewLink();" class="aButton">New Link</asp:HyperLink>
+    <asp:HyperLink ID="hlUpload" runat="server" onclick="showUpload();" class="aButton">Upload Files</asp:HyperLink>
+    <asp:LinkButton ID="btnSettings" runat="server" CssClass="aButton">Settings</asp:LinkButton>
+</div>
 <asp:HiddenField ID="hfEditFolderId" runat="server" Value="-1" />
 <input type="hidden" value="false" id="movable" />
 <asp:HiddenField ID="hfMoveId" runat="server" Value="" />
 <asp:HiddenField ID="hfMoveToId" runat="server" Value="" />
 <asp:HiddenField ID="hfFileMoveId" runat="server" Value="" />
-<asp:LinkButton ID="btnSettings" runat="server">Settings</asp:LinkButton>
 <asp:HiddenField ID="hfSelectedIcon" runat="server" />
 <%--<asp:Label ID="lblDebug" runat="server"></asp:Label>--%>
