@@ -68,6 +68,8 @@
 
         $("#divEditFile").dialog({
             autoOpen: false,
+            height: 600,
+            width: 850,
             modal: true,
             title: 'Edit File'
         });
