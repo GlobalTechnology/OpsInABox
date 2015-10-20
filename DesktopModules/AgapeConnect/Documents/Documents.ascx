@@ -528,9 +528,9 @@
                         </asp:HyperLink>
                     </div>
                     <div id="docbuttons" runat="server" style="float:right">
-                        <asp:HyperLink ID="btnEditDoc" runat="server" class="aButton">Edit</asp:HyperLink>
+                        <asp:HyperLink ID="btnEditDoc" runat="server" CssClass="aButton">Edit</asp:HyperLink>
                         <br />
-                        <asp:HyperLink ID="btnDeleteDoc" runat="server" class="aButton">Delete</asp:HyperLink>
+                        <asp:HyperLink ID="btnDeleteDoc" runat="server" CssClass="aButton">Delete</asp:HyperLink>
                     </div>
                     <div id="docbuttons" runat="server" style="float:right">
                         <asp:HyperLink ID="btnEditDoc" runat="server" CssClass="aButton">Edit</asp:HyperLink>
