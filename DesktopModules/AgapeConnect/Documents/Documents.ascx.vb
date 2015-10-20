@@ -328,7 +328,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 End If
 
             Next
-
             dlFolderView.DataSource = Items
             dlFolderView.DataBind()
 
