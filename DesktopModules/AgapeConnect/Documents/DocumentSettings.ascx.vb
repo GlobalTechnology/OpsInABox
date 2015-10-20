@@ -19,7 +19,6 @@ Namespace DotNetNuke.Modules.Documents
             Try
 
                 hfPortalId.Value = PortalId
-                AgapeLogger.Info(UserId, "TOP OF PAGELOAD " & rblStyle.SelectedValue)
                
                 If (Page.IsPostBack = False) Then
                     Session("Check_Page_Refresh") = DateTime.Now.ToString()
@@ -31,10 +30,9 @@ Namespace DotNetNuke.Modules.Documents
                     For Each folder In folders
                         pathName = GetPathName(folder, pathName)
                         ddlRoot.Items.Add(New ListItem(pathName, folder.FolderId))
+
                         pathName = ""
                     Next
-
-                    'ddlRoot.Items.Add(New ListItem("Search Results...", -3))
 
                     'Build list of tags
                     Dim tags = From c In d.AP_Documents_Tags Where c.PortalId = PortalId Order By c.TagName Select TagName = c.TagName, c.TagId
@@ -51,16 +49,6 @@ Namespace DotNetNuke.Modules.Documents
                         Else
                             ddlRoot.SelectedValue = CType(TabModuleSettings("RootFolder"), Integer)
                         End If
-
-                        'If CType(TabModuleSettings("RootFolder"), String) = "-3" Then
-                        '    If CType(TabModuleSettings("SearchType"), String) <> "" Then
-                        '        ddlSearchType.SelectedValue = CType(TabModuleSettings("SearchType"), String)
-                        '    End If
-                        '    If CType(TabModuleSettings("SearchValue"), String) <> "" Then
-                        '        tbSearchValue.Text = CType(TabModuleSettings("SearchValue"), String)
-                        '    End If
-
-                        'End If
 
                         'Load page with values saved previously
                         If CType(TabModuleSettings("DisplayStyle"), String) <> "" Then
@@ -83,14 +71,10 @@ Namespace DotNetNuke.Modules.Documents
                                 Case "Table"
                                     rblStyle.SelectedValue = "Table"
                                     SetupTable()
-                                    'tbcolumnwidth.Text = CType(TabModuleSettings("ColumnWidth"), String)
 
                                 Case "Tree"
                                     rblStyle.SelectedValue = "Tree"
                                     SetupTree()
-                                    'If CType(TabModuleSettings("TreeColor"), String) <> "" Then
-                                    '    ddlColors.SelectedValue = CType(TabModuleSettings("TreeColor"), String)
-                                    'End If
                             End Select
 
                         End If
@@ -127,19 +111,15 @@ Namespace DotNetNuke.Modules.Documents
             Select Case rblStyle.SelectedValue
 
                 Case "BasicSearch"
-                    AgapeLogger.Info(UserId, rblStyle.SelectedValue)
                     SetupBasicSearch()
 
                 Case "Icons"
-                    AgapeLogger.Info(UserId, rblStyle.SelectedValue)
                     SetupIcons()
 
                 Case "Table"
-                    AgapeLogger.Info(UserId, rblStyle.SelectedValue)
                     SetupTable()
 
                 Case "Tree"
-                    AgapeLogger.Info(UserId, rblStyle.SelectedValue)
                     SetupTree()
 
             End Select
@@ -178,6 +158,7 @@ Namespace DotNetNuke.Modules.Documents
 
             If ViewState("Check_Page_Refresh").ToString() = Session("Check_Page_Refresh").ToString() Then
 
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "alertMessage", " alertMessage();", True)
                 If lbTags.SelectedIndex > -1 Then
 
                     Dim removeTag = From c In d.AP_Documents_Tags Where c.PortalId = PortalId And c.TagId = lbTags.SelectedValue
@@ -218,11 +199,6 @@ Namespace DotNetNuke.Modules.Documents
 
             objModules.UpdateTabModuleSetting(TabModuleId, "RootFolder", ddlRoot.SelectedValue)
 
-            '    If ddlRoot.SelectedValue = -3 Then
-            '        objModules.UpdateTabModuleSetting(TabModuleId, "SearchType", ddlSearchType.SelectedValue)
-            '        objModules.UpdateTabModuleSetting(TabModuleId, "SearchValue", tbSearchValue.Text)
-            '    End If
-
             Dim displaystyle = rblStyle.SelectedValue
             Select Case displaystyle
                 Case "Icons"
@@ -231,14 +207,6 @@ Namespace DotNetNuke.Modules.Documents
                     End If
 
                 Case "Table"
-                    AgapeLogger.Info(UserId, "ABOVE intOnly")
-
-                    'If Not intOnly.IsValid Then
-                    '    AgapeLogger.Info(UserId, "In not intOnly")
-                    '    tbcolumnwidth.Focus()
-                    '    tbcolumnwidth.BackColor = Color.DarkRed
-
-                    'End If
                     objModules.UpdateTabModuleSetting(TabModuleId, "ColumnWidth", tbcolumnwidth.Text)
 
                 Case "Tree"
@@ -260,7 +228,6 @@ Namespace DotNetNuke.Modules.Documents
         End Sub
 
         Protected Sub SetupBasicSearch()
-            AgapeLogger.Info(UserId, "In SetupBasicSearch()")
             cbshowtree.Visible = False
 
             lblColumnWidth.Visible = False
@@ -272,7 +239,6 @@ Namespace DotNetNuke.Modules.Documents
         End Sub
 
         Protected Sub SetupIcons()
-            AgapeLogger.Info(UserId, "In SetupIcons()")
             cbshowtree.Visible = True
 
             lblColumnWidth.Visible = False
@@ -284,7 +250,6 @@ Namespace DotNetNuke.Modules.Documents
         End Sub
 
         Protected Sub SetupTable()
-            AgapeLogger.Info(UserId, "In SetupTable()")
             cbshowtree.Visible = False
 
             lblColumnWidth.Visible = True
@@ -298,7 +263,6 @@ Namespace DotNetNuke.Modules.Documents
         End Sub
 
         Protected Sub SetupTree()
-            AgapeLogger.Info(UserId, "In SetupTree()")
             cbshowtree.Visible = False
 
             lblColumnWidth.Visible = False
