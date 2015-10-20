@@ -26,10 +26,7 @@
             height: 300,
             width: 500,
             modal: true,
-            title: 'New Folder',
-            close: function () {
-                allFields.val("").removeClass("ui-state-error");
-            }
+            title: 'New Folder'
         });
         $("#divNewFolder").parent().appendTo($("form:first"));
 
@@ -38,10 +35,7 @@
             height: 300,
             width: 500,
             modal: true,
-            title: 'New Version',
-            close: function () {
-                allFields.val("").removeClass("ui-state-error");
-            }
+            title: 'New Version'
         });
         $("#divNewVersion").parent().appendTo($("form:first"));
 
@@ -50,10 +44,7 @@
             height: 300,
             width: 500,
             modal: true,
-            title: 'New Icon',
-            close: function () {
-                allFields.val("").removeClass("ui-state-error");
-            }
+            title: 'New Icon'
         });
         $("#divNewIcon").parent().appendTo($("form:first"));
 
@@ -62,10 +53,7 @@
             height: 450,
             width: 500,
             modal: true,
-            title: 'New Link',
-            close: function () {
-                allFields.val("").removeClass("ui-state-error");
-            }
+            title: 'New Link'
         });
         $("#divNewLink").parent().appendTo($("form:first"));
 
@@ -74,22 +62,14 @@
             height: 500,
             width: 750,
             modal: true,
-            title: 'Edit Folder',
-            close: function () {
-                allFields.val("").removeClass("ui-state-error");
-            }
+            title: 'Edit Folder'
         });
         $("#divEditFolder").parent().appendTo($("form:first"));
 
         $("#divEditFile").dialog({
             autoOpen: false,
-            height: 500,
-            width: 750,
             modal: true,
-            title: 'Edit File',
-            close: function () {
-                allFields.val("").removeClass("ui-state-error");
-            }
+            title: 'Edit File'
         });
         $("#divEditFile").parent().appendTo($("form:first"));
 
@@ -98,10 +78,7 @@
             height: 320,
             width: 500,
             modal: true,
-            title: 'Upload Files',
-            close: function () {
-                allFields.val("").removeClass("ui-state-error");
-            }
+            title: 'Upload Files'
         });
         $("#divUpload").parent().appendTo($("form:first"));
 
@@ -114,43 +91,6 @@
 
             }
         });
-        //        $(".aFolder").unbind("mousemove.splitter mouseup.splitter");
-        //RightClickMenuStart
-        $('.aFolder').contextMenu('FolderMenu', {
-            bindings: {
-                'Edit': function (t) { $('#<%= hfEditFolderId.ClientID %>').val(getFolderId(t.href)); $('#<%= tbEditFolderName.ClientID %>').val("Loading..."); $('#<%= tbEditFolderDescription.ClientID %>').val(""); __doPostBack('<%= upEditFolder.ClientID %>', ''); showEditFolder(); },
-                'Move': function (t) { moveMode(t); $('#<%= hfMoveId.ClientID %>').val(getFolderId(t.href)); },
-                'Delete': function (t) { alert('Trigger was ' + t.id + '\nAction was Delete');  }
-            }
-        });
-
-        $('.aFile').contextMenu('FileMenu', {
-            bindings: {
-                'Edit': function (t) { $('#<%= hfEditFileId.ClientID %>').val(getFileId(t.href)); $('#<%= tbEditFileName.ClientID %>').val("Loading..."); $('#<%= tbEditFileDescription.ClientID %>').val(""); __doPostBack('<%= upEditFIle.ClientID %>', ''); showEditFile(); },
-                'Move': function (t) { moveMode(t); $('#<%= hfFileMoveId.ClientID %>').val(getFileId(t.href));  },
-                'Versions': function (t) { alert('Trigger was ' + t.id + '\nAction was Versions'); },
-                'Delete': function (t) { alert('Trigger was ' + t.id + '\nAction was Delete'); }
-            }
-        });
-        $('.aFileRead').contextMenu('FileReadMenu', {
-            bindings: {
-
-              // 'Versions': function (t) { alert('Trigger was ' + t.id + '\nAction was Versions'); }
-            }
-        });
-        $('.aFolderRead').contextMenu('FolderReadMenu', {
-            bindings: {
-
-            }
-        });
-        $('.aBlank').contextMenu('BlankMenu', {
-            bindings: {
-                'NewFolder': function (t) { showNewFolder(); },
-                'AddFiles': function (t) { showUpload(); }
-            }
-        });
-
-        //RightClickMenuEnd
 
         //MuliFile Uploader
         $('.multi').MultiFile({
@@ -279,9 +219,9 @@
     function closeUpload() { $("#divUpload").dialog("close"); }
     function showNewFolder() { $("#divNewFolder").dialog("open"); return false; }
     function closeNewFolder() { $("#divNewFolder").dialog("close"); }
-    function showEditFolder() {$("#divEditFolder").dialog("open");return false; }
+    function showEditFolder() { $("#divEditFolder").dialog("open"); return false; }
     function closeEditFolder() { $("#divEditFolder").dialog("close"); }
-    function showEditFile() {  $("#divEditFile").dialog("open"); return false; }
+    function showEditFile() { $("#divEditFile").dialog("open"); return false; }
     function closeEditFile() { $("#divEditFile").dialog("close"); }
     function showNewVersion() { $("#divNewVersion").dialog("open"); return false; }
     function closeNewVersion() { $("#divNewVersion").dialog("close"); }
@@ -289,10 +229,7 @@
     function closeNewIcon() { $("#divNewIcon").dialog("close"); }
     function showNewLink() { $("#divNewLink").dialog("open"); return false; }
     function closeNewLink() { $("#divNewLink").dialog("close"); }
-    function triggerFileUpload() {
-        document.getElementById("File1").click();
-    }
-
+    function triggerFileUpload() {document.getElementById("File1").click(); }
     function saveVersion() {
         alert($('#<%= fuNewVersion.ClientID %>').val());
        // $('#<%= hfFileName.ClientID %>').val($('#<%= fuNewVersion.ClientID %>').value);
@@ -301,16 +238,13 @@
 
     function moveMode(t) {
         $('#movable').val('true');
-       $('#MySplitter, .aFile, .aLink').css('cursor', 'move');
-       
+        $('#MySplitter, .aFile, .aLink').css('cursor', 'move');
         $('.aFile, .aLink, .aFile div, .aLink div').css('opacity', '0.4');
         $('.aFile, .aLink, .aFile div, .aLink div').css('filter', 'alpha(opacity=40)');
-
         $(t).css('cursor', 'move');
-
    }
     function editButtonClick(t) { $('#<%= hfEditFileId.ClientID %>').val(getFileId(t.href)); $('#<%= tbEditFileName.ClientID %>').val("Loading..."); $('#<%= tbEditFileDescription.ClientID %>').val(""); __doPostBack('<%= upEditFIle.ClientID %>', ''); showEditFile(); }
-    function deleteButtonClick(t) { alert("You clicked it!"); }
+    function deleteButtonClick(t) { alert('Trigger was ' + t.href + '\nAction was Delete'); }
     //function editButtonClick(t) { alert("You clicked it!"); }
 
 </script>
@@ -592,7 +526,7 @@
                             </div>
                         </asp:HyperLink>
                     </div>
-                    <div id="docbuttons" style="float:right">
+                    <div id="docbuttons" runat="server" style="float:right">
                         <asp:HyperLink ID="btnEditDoc" runat="server" class="aButton">Edit</asp:HyperLink>
                         <br />
                         <asp:HyperLink ID="btnDeleteDoc" runat="server" class="aButton">Delete</asp:HyperLink>

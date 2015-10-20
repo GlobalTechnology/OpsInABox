@@ -874,12 +874,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
         End Sub
 
         Protected Sub btnSaveVersion_Click(sender As Object, e As System.EventArgs) Handles btnSaveNewVersion.Click
-
-
-
-
             Dim folder As IFolderInfo
-
             If Not FolderManager.Instance.FolderExists(PortalId, "acDocuments") Then
                 folder = FolderManager.Instance.AddFolder(PortalId, "acDocuments")
             Else
@@ -887,29 +882,21 @@ Namespace DotNetNuke.Modules.AgapeConnect
             End If
             'Dim newFile = FileManager.Instance.AddFile(folder,   , fuNewVersion.FileContent)
             ' Dim hfc As HttpFileCollection = Request.Files
-
-
             Dim i As Integer = 0
             Dim fileName = fuNewVersion.FileName
-
             While FileManager.Instance.FileExists(folder, fileName)
                 fileName = fuNewVersion.FileName.Insert(fuNewVersion.FileName.LastIndexOf("."), "_" & i)
-
                 i += 1
             End While
-
             Dim newFile = FileManager.Instance.AddFile(folder, fileName, fuNewVersion.FileContent)
             AddVersion(newFile.FileId, hfVersionDocId.Value)
             upEditFile_Load(Me, Nothing)
-
-
             Dim t1 As Type = Me.GetType()
             Dim sb1 As System.Text.StringBuilder = New System.Text.StringBuilder()
             sb1.Append("<script language='javascript'>")
             sb1.Append(" $(document).ready(function () { showEditFile(); }); ")
             sb1.Append("</script>")
             ScriptManager.RegisterStartupScript(Page, t1, "popup", sb1.ToString, False)
-
         End Sub
 
         Protected Function GetFileIcon(ByVal FileId As Integer?, ByVal LinkType As Integer, Optional IconId As Integer? = -1) As String
@@ -1089,7 +1076,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
             Dim newFile = FileManager.Instance.AddFile(folder, fileName, fuNewIcon.FileContent)
 
-
             If hfNewIconMode.Value = "Folder" Then
 
                 Dim thisFolder = From c In d.AP_Documents_Folders Where c.FolderId = CInt(hfEditFolderId.Value)
@@ -1108,7 +1094,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 thisDoc.First.CustomIcon = newFile.FileId
                 d.SubmitChanges()
 
-
                 upEditFile_Load(Me, Nothing)
                 LoadFolder(thisDoc.First.FolderId)
 
@@ -1120,9 +1105,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 ScriptManager.RegisterStartupScript(Page, t1, "popup", sb1.ToString, False)
             End If
 
-
-
-          
         End Sub
 
         Protected Sub btnSettings_Click(sender As Object, e As System.EventArgs) Handles btnSettings.Click
