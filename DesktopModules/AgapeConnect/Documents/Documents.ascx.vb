@@ -1134,11 +1134,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
         End Sub
 
-     
-
-
-
-
     End Class
 
     Public Class RolePermission
