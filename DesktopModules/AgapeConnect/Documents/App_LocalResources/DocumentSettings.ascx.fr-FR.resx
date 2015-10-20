@@ -139,13 +139,13 @@
     <value>turquoise</value>
   </data>
   <data name="ColumnWidth.Help" xml:space="preserve">
-    <value>Enter the width of column. The module will try to squeeze in as many columns (of this width) that will fit in the space provided.</value>
+    <value />
   </data>
   <data name="ColumnWidth.Text" xml:space="preserve">
     <value>Column Width</value>
   </data>
   <data name="ColumnWidthLabel.Text" xml:space="preserve">
-    <value>La largeur de colonne</value>
+    <value>La largeur de colonne :</value>
   </data>
   <data name="InvalidInteger.ErrorMessage" xml:space="preserve">
     <value>Entrée un nombre entier</value>
@@ -157,13 +157,13 @@
     <value>Options :</value>
   </data>
   <data name="Root.Help" xml:space="preserve">
-    <value>You may have multiple instances of the documents module on your site. Each one can be configured to start at a different folder. Select the folder you would like as the "root" for this module.</value>
+    <value />
   </data>
   <data name="Root.Text" xml:space="preserve">
     <value>Répertoire :</value>
   </data>
   <data name="SearchType.Help" xml:space="preserve">
-    <value>Instead of showing the contents of a folder, you can show all files and folders that have been marked with a specific tag or keyword.</value>
+    <value />
   </data>
   <data name="SearchType.Text" xml:space="preserve">
     <value>Search Type:</value>
@@ -181,7 +181,7 @@
     <value>Style :</value>
   </data>
   <data name="Tags.Help" xml:space="preserve">
-    <value>You can categorize your documents using tags. Enter the tags that users can select from when uploading new documents. </value>
+    <value />
   </data>
   <data name="Tags.Text" xml:space="preserve">
     <value>Tags :</value>
