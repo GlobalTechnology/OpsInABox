@@ -529,9 +529,9 @@
                         </asp:HyperLink>
                     </div>
                     <div id="docbuttons" runat="server" style="float:right">
-                        <asp:HyperLink ID="btnEditDoc" runat="server" class="aButton">Edit</asp:HyperLink>
+                        <asp:HyperLink ID="btnEditDoc" runat="server" CssClass="aButton">Edit</asp:HyperLink>
                         <br />
-                        <asp:HyperLink ID="btnDeleteDoc" runat="server" class="aButton">Delete</asp:HyperLink>
+                        <asp:HyperLink ID="btnDeleteDoc" runat="server" CssClass="aButton">Delete</asp:HyperLink>
                     </div>
                 </ItemTemplate>
             </asp:ListView>
@@ -550,7 +550,7 @@
         <asp:Label ID="Label1" runat="server" Font-Size="X-Small" ForeColor="Gray" Font-Italic="true"
             ResourceKey="lblSelectFilesHelp"></asp:Label>
     </div>
-    <asp:Button ID="btnUpoadFiles" runat="server" Text="Upload Selected Files" class="aButton btn"
+    <asp:Button ID="btnUpoadFiles" runat="server" Text="Upload Selected Files" CssClass="aButton btn"
         Font-Size="X-Large" Style="margin-top: 30px;" />
 </div>
 <div id="divNewFolder" style="text-align: center">
@@ -561,7 +561,7 @@
             </td>
             <td>
                 <asp:TextBox ID="tbNewFolderName" runat="server" Width="100%" Columns="100" Font-Size="X-Large"
-                    class="ui-state-default"></asp:TextBox>
+                    CssClass="ui-state-default"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -578,7 +578,7 @@
     <div style="margin-top: 12px">
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbNewFolderName"
             Display="static" Text="" ValidationGroup="NewFolder" ErrorMessage="* You must Enter a Folder Name<br />"></asp:RequiredFieldValidator>
-        <asp:Button ID="btnAddFolder" runat="server" Text="Add Folder" class="aButton btn" ValidationGroup="NewFolder" />
+        <asp:Button ID="btnAddFolder" runat="server" Text="Add Folder" CssClass="aButton btn" ValidationGroup="NewFolder" />
         <input id="btnCancel" type="button" value='<%= Translate("btnCancel") %>' onclick="closeNewFolder();"
             class="aButton btn" />
     </div>
@@ -598,7 +598,7 @@
     <div style="margin-top: 12px">
         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="fuNewVersion"
             Display="static" Text="" ValidationGroup="NewVersion" ErrorMessage="* You must select a file<br />"></asp:RequiredFieldValidator>
-        <asp:Button ID="btnSaveNewVersion" runat="server" Text="Add Version" class="aButton btn"
+        <asp:Button ID="btnSaveNewVersion" runat="server" Text="Add Version" CssClass="aButton btn"
             ValidationGroup="NewVersion" />
         <input id="Button5" type="button" value='<%= Translate("btnCancel") %>' onclick="closeNewVersion();"
             class="aButton btn" />
@@ -620,7 +620,7 @@
     <div style="margin-top: 12px">
         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="fuNewIcon"
             Display="static" Text="" ValidationGroup="NewIcon" ErrorMessage="* You must select a file<br />"></asp:RequiredFieldValidator>
-        <asp:Button ID="btnNewIcon" runat="server" Text="Add Icon" class="aButton btn" ValidationGroup="NewIcon" />
+        <asp:Button ID="btnNewIcon" runat="server" Text="Add Icon" CssClass="aButton btn" ValidationGroup="NewIcon" />
         <input id="Button7" type="button" value='<%= Translate("btnCancel") %>' onclick="closeNewIcon();"
             class="aButton btn" />
     </div>
@@ -633,7 +633,7 @@
             </td>
             <td>
                 <asp:TextBox ID="tbNewLinkName" runat="server" Width="100%" MaxLength="100" Font-Size="X-Large"
-                    class="ui-state-default"></asp:TextBox>
+                    CssClass="ui-state-default"></asp:TextBox>
             </td>
         </tr>
         <tr valign="top">
@@ -697,7 +697,7 @@
         </tr>
     </table>
     <div style="margin-top: 12px">
-        <asp:Button ID="btnNewLink" runat="server" Text="Add Link" class="aButton btn" ValidationGroup="NewLink" />
+        <asp:Button ID="btnNewLink" runat="server" Text="Add Link" CssClass="aButton btn" ValidationGroup="NewLink" />
         <input id="Button6" type="button" value='<%= Translate("btnCancel") %>' onclick="closeNewLink();"
             class="aButton btn" />
     </div>
@@ -716,7 +716,7 @@
                                     </td>
                                     <td>
                                         <asp:TextBox ID="tbEditFolderName" runat="server" Width="100%" MaxLength="100" Font-Size="X-Large"
-                                            class="ui-state-default"></asp:TextBox>
+                                            CssClass="ui-state-default"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr valign="top">
@@ -823,7 +823,7 @@
     <div style="margin-top: 12px">
         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbEditFolderName"
             Display="static" Text="" ValidationGroup="NewFolder" ErrorMessage="* You must Enter a Folder Name<br />"></asp:RequiredFieldValidator>
-        <asp:Button ID="btnEditFolder" runat="server" ResourceKey="Save" class="aButton btn"
+        <asp:Button ID="btnEditFolder" runat="server" ResourceKey="Save" CssClass="aButton btn"
             ValidationGroup="EditFolder" />
         <input id="Button3" type="button" value='<%= Translate("btnCancel") %>' onclick="closeEditFolder();"
             class="aButton btn" />
@@ -843,7 +843,7 @@
                                     </td>
                                     <td>
                                         <asp:TextBox ID="tbEditFileName" runat="server" Width="100%" MaxLength="100" Font-Size="X-Large"
-                                            class="ui-state-default"></asp:TextBox>
+                                            CssClass="ui-state-default"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -1017,7 +1017,7 @@
     <div style="margin-top: 12px">
         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbEditFileName"
             Display="static" Text="" ValidationGroup="EditFile" ErrorMessage="* You must Enter a Display Name<br />"></asp:RequiredFieldValidator>
-        <asp:Button ID="btnEditFile" runat="server" ResourceKey="Save" class="aButton btn" UseSubmitBehavior="true"
+        <asp:Button ID="btnEditFile" runat="server" ResourceKey="Save" CssClass="aButton btn" UseSubmitBehavior="true"
             ValidationGroup="EditFile" />
         <input id="Button4" type="button" value='<%= Translate("btnCancel") %>' onclick="closeEditFile();"
             class="aButton btn" />
@@ -1071,9 +1071,9 @@
     </ul>
 </div>
 <div id="editbuttons" runat="server" style="height: 20px; float: right;">
-    <asp:HyperLink ID="hlFolderButton" runat="server" onclick="showNewFolder();" class="aButton">New Folder</asp:HyperLink>
-    <asp:HyperLink ID="hlNewLink" runat="server" onclick="showNewLink();" class="aButton">New Link</asp:HyperLink>
-    <asp:HyperLink ID="hlUpload" runat="server" onclick="showUpload();" class="aButton">Upload Files</asp:HyperLink>
+    <asp:HyperLink ID="hlFolderButton" runat="server" onclick="showNewFolder();" CssClass="aButton">New Folder</asp:HyperLink>
+    <asp:HyperLink ID="hlNewLink" runat="server" onclick="showNewLink();" CssClass="aButton">New Link</asp:HyperLink>
+    <asp:HyperLink ID="hlUpload" runat="server" onclick="showUpload();" CssClass="aButton">Upload Files</asp:HyperLink>
     <asp:LinkButton ID="btnSettings" runat="server" CssClass="aButton">Settings</asp:LinkButton>
 </div>
 <asp:HiddenField ID="hfEditFolderId" runat="server" Value="-1" />
