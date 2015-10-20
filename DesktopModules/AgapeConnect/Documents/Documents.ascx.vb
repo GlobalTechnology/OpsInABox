@@ -28,6 +28,8 @@ Namespace DotNetNuke.Modules.AgapeConnect
         Dim doc As Object
         Dim GTreeColor As String
         Dim TreeStyles() As String = {"Explorer", "GTree", "Tree"}
+        Dim DocumentsModuleRoot As String = "acDocuments"
+
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
 
 
@@ -52,6 +54,53 @@ Namespace DotNetNuke.Modules.AgapeConnect
             Return "images/ArrowWin"
         End Function
 
+        Protected Function GetCurrentRootDirectory() As String
+            Dim parentFolder As Integer = -1
+            Dim rootFolderId As Integer
+
+            If Not String.IsNullOrEmpty(Settings("RootFolder")) Then
+                AgapeLogger.Info(UserId, " Settings rootFolder " & Settings("RootFolder"))
+                rootFolderId = Settings("RootFolder")
+            Else
+
+                If Not Page.IsPostBack Then
+
+                    Dim rootNode = From c In d.AP_Documents_Folders Where c.PortalId = PortalId And c.ParentFolder = parentFolder
+
+                    'No rootNode found
+                    If rootNode.Count = 0 Then
+
+                        'See if acDocuments directory exists in the file system
+                        If FolderManager.Instance.GetFolder(PortalId, DocumentsModuleRoot) Is Nothing Then
+                            AgapeLogger.Info(UserId, " acDocuments directory does not exist ")
+                            FolderManager.Instance.AddFolder(PortalId, DocumentsModuleRoot)
+
+                        Else
+                            AgapeLogger.Info(UserId, " acDocuments directory exists! ")
+                        End If
+
+                        'Add the rootNode acDocuments in the database
+                        Dim insert As New AP_Documents_Folder
+                        insert.CustomIcon = Nothing
+                        insert.ParentFolder = -1
+                        insert.Name = DocumentsModuleRoot
+                        insert.Description = DocumentsModuleRoot & " root directory"
+                        insert.Permission = Settings("DefaultPermissions")
+                        insert.PortalId = PortalId
+                        d.AP_Documents_Folders.InsertOnSubmit(insert)
+                        d.SubmitChanges()
+                        DotNetNuke.Entities.Modules.ModuleController.SynchronizeModule(ModuleId)
+
+                        'Get the new rootNode that has been inserted in the database
+                        rootNode = From c In d.AP_Documents_Folders Where c.PortalId = PortalId And c.ParentFolder = parentFolder
+                    End If
+
+                    LoadTree(rootNode.First)
+
+                End If
+            End If
+            Return rootFolderId
+        End Function
 
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -77,13 +126,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
             btnSettings.Visible = IsEditable
 
-            Dim rootFolderId As Integer = -1
-
-
-            If Not String.IsNullOrEmpty(Settings("RootFolder")) Then
-                rootFolderId = Settings("RootFolder")
-            End If
-            FolderId = rootFolderId
+            FolderId = GetCurrentRootDirectory()
 
             If Request.QueryString("DocId") <> "" Then
                 'Open the Document!
@@ -100,7 +143,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                     hfMoveToId.Value = ""
                     hfFileMoveId.Value = ""
                     FolderId = tvFolders.SelectedValue.TrimStart("F")
-                    Dim rootNode = From c In d.AP_Documents_Folders Where c.PortalId = PortalId And c.FolderId = rootFolderId
+                    Dim rootNode = From c In d.AP_Documents_Folders Where c.PortalId = PortalId And c.FolderId = FolderId
 
 
                     LoadTree(rootNode.First)
@@ -114,7 +157,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                     hfMoveToId.Value = ""
                     hfFileMoveId.Value = ""
                     FolderId = tvFolders.SelectedValue.TrimStart("F")
-                    Dim rootNode = From c In d.AP_Documents_Folders Where c.PortalId = PortalId And c.FolderId = rootFolderId
+                    Dim rootNode = From c In d.AP_Documents_Folders Where c.PortalId = PortalId And c.FolderId = FolderId
 
 
 
@@ -140,37 +183,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
 
             If Not Page.IsPostBack Then
-                Dim rootNode = From c In d.AP_Documents_Folders Where c.PortalId = PortalId And c.FolderId = rootFolderId
-
-
-
-
-                If rootNode.Count = 0 Then
-                    'Add a rootNode
-                    Dim insert As New AP_Documents_Folder
-                    insert.CustomIcon = Nothing
-                    insert.ParentFolder = -1
-                    insert.Name = "root"
-                    insert.Description = ""
-                    insert.Permission = Settings("DefaultPermissions")
-                    insert.PortalId = PortalId
-                    d.AP_Documents_Folders.InsertOnSubmit(insert)
-                    d.SubmitChanges()
-                    Dim objModules As New Entities.Modules.ModuleController
-                    objModules.UpdateTabModuleSetting(TabModuleId, "RootFolder", insert.FolderId)
-                    SynchronizeModule()
-
-                    LoadTree(insert)
-
-                    ' Dim objModules As New Entities.Modules.ModuleController
-                    'objModules.UpdateTabModuleSetting(TabModuleId, "RootFolder", insert.FolderId)
-
-                Else
-                    LoadTree(rootNode.First)
-                End If
-
-
-
 
                 Dim folder = FolderManager.Instance.GetFolder(PortalId, "acDocuments")
                 If Not folder Is Nothing Then
@@ -191,15 +203,13 @@ Namespace DotNetNuke.Modules.AgapeConnect
             End If
 
 
-            tbNewLinkAuthor.Text = UserInfo.DisplayName
-            LoadFolder(FolderId)
+                tbNewLinkAuthor.Text = UserInfo.DisplayName
+                LoadFolder(FolderId)
 
         End Sub
 
         Public Sub LoadTree(ByVal StartNode As AP_Documents_Folder)
-
-
-
+            AgapeLogger.Info(UserId, "In top of LoadTree")
             tvFolders.Nodes.Clear()
             UserRoles = rc.GetUserRoles(PortalId, UserId)
 
