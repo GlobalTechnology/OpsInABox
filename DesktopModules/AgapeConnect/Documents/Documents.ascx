@@ -69,7 +69,6 @@
         });
         $("#divNewLink").parent().appendTo($("form:first"));
 
-
         $("#divEditFolder").dialog({
             autoOpen: false,
             height: 500,
@@ -111,8 +110,6 @@
             if (e.which === 3) {
                 /* Right Mousebutton was clicked! */
 
-
-
                 $('#myMenu1').css({ 'top': e.pageX, 'left': e.pageY })
 
             }
@@ -153,19 +150,12 @@
             }
         });
 
-
         //RightClickMenuEnd
-
-
-
 
         //MuliFile Uploader
         $('.multi').MultiFile({
             list: '#fileUploadList'
         });
-
-
-       
        
          <% if Settings("DisplayStyle")="ExplorerNoTree" or Settings("DisplayStyle")="Table" or Request.QueryString("search")<>"" Then %>
             $("#LeftPane").hide();
@@ -182,7 +172,6 @@
             resizeToWidth: false
         });
         <% End If %>
-        
 
         // Here initialize the menou
         //Collapsable FieldSets
@@ -191,7 +180,6 @@
 			    header: "> div > h3",
 			    navigate: false
 			});
-
 
 			$('.SelectIcon').click(function (e) {
 			   
@@ -207,7 +195,6 @@
 			        return;
 			    }
 
-
 			    // Unhighlight all the images
 			    $('.SelectIcon').removeClass('iconHighlight');
 
@@ -216,10 +203,7 @@
 
 			    $('#<%= hfSelectedIcon.ClientID %>').val(getImgFileId($(this).attr('src')));
 
-
-
 			});
-
 
 //        $('.Draggable').draggable({ start: handleDragStart });
 //        $('.Droppable').droppable({
@@ -230,13 +214,11 @@
            
             if ($(this).css("cursor") == "move") return false;
             
-            
         });
 
         $('.aFolder').click(function (ev) {
             
             if ($(this).css("cursor") == "move") return false;
-
            
             if ($('#movable').val() == "true") {
 
@@ -246,9 +228,7 @@
                 $('.aFile, .aLink, .aFile div, .aLink div').css('opacity', '');
                 $('.aFile, .aLink, .aFile div, .aLink div').css('filter', '');
 
-
                 $('#<%= hfMoveToId.ClientID %>').val(getFolderId($(ev.target).closest("a").attr("href")));
-
 
                 $('#movable').val('false');
 
@@ -256,11 +236,8 @@
                 return false;
             }
         });
-        
-
 
         $('#deselectIcon').click(function () { $('.SelectIcon').removeClass('iconHighlight'); $(this).addClass('iconHighlight'); $('#<%= hfSelectedIcon.ClientID %>').val(-1); });
-
 
         $("input:radio").click(function () {
             $(".linkLabels").hide();
@@ -282,17 +259,8 @@
         $(document).ready(function () {
             setUpMyTabs();
 
-
             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyTabs(); });
         });
-   
-
-
-    
-
-
-
-        
 
      function getFolderId(c){
          var FLoc = c.indexOf("FolderId=");
@@ -340,208 +308,228 @@
 
         $(t).css('cursor', 'move');
 
-        
-     
    }
-
-   
+    function editButtonClick(t) { $('#<%= hfEditFileId.ClientID %>').val(getFileId(t.href)); $('#<%= tbEditFileName.ClientID %>').val("Loading..."); $('#<%= tbEditFileDescription.ClientID %>').val(""); __doPostBack('<%= upEditFIle.ClientID %>', ''); showEditFile(); }
 
 </script>
 <style type="text/css">
-    
-   .cbList
-   {
-       white-space: nowrap ;
-       width: 100%;
-       text-align: left;    
-   }
-   
-   .cbList input 
-{ 
-    margin-left: -20px; 
-}
-.cbList td 
-{ 
-    padding-left: 20px; 
-}
-    
-    .TreeView img
-    {
+    .cbList {
+        white-space: nowrap;
+        width: 100%;
+        text-align: left;
+    }
+
+        .cbList input {
+            margin-left: -20px;
+        }
+
+        .cbList td {
+            padding-left: 20px;
+        }
+
+    .TreeView img {
         width: 16px;
     }
-    
-    
-    .GTreeView a.aLink
-    {
+
+    .GTreeView a.aLink {
         color: #28686E;
     }
-   
-    .iconHighlight
-    {
+
+    .iconHighlight {
         border: 2px inset Blue !important;
-       
     }
-    
-    .iconHighlightStart
-    {
+
+    .iconHighlightStart {
         border: 2px inset #CCC !important;
-       
     }
-    
-    .SelectIcon
-    {
-        
+
+    .SelectIcon {
         border: 2px insert transparent !important;
-        cursor:pointer;   
+        cursor: pointer;
     }
-    
-    .ui-state-default { background-color: #aca }
-.ui-state-hover { background-color: #bdb }
-.ui-state-highlight { background-color: #add }
-.ui-state-error { background-color: #eaa }
-    
-.splitter {
-	height: 400px;
-	margin: 1em 3em;
-	border: 2px solid #79C9EC;
-	background: #fff;   
-	
-	
-}
-.splitter-pane {
-	overflow: auto;
-}
-.splitter-bar-vertical {
-	width: 6px;
-	background-image: url(img/vgrabber.gif);
-	background-repeat: no-repeat;
-	background-position: center;
-	opacity: 0.7;
-}
-.splitter-bar-vertical-docked {
-	width: 10px;
-	background-image: url(img/vdockbar-trans.gif);
-	background-repeat: no-repeat;
-	background-position: center;
-}
-.splitter-bar.ui-state-highlight {
-	opacity: 0.7;
-}
-.splitter-iframe-hide {
-	visibility: hidden;
-}
-.splitter-bar {
-	width: 6px;
-	background: #F6F6F6;
-	opacity: 1.0;
-}
- .vmenu{border:1px solid #aaa;position:absolute;background:#fff;	display:none;font-size:0.75em;}
-       .vmenu .first_li span{width:100px;display:block;padding:5px 10px;cursor:pointer}
-       .vmenu .inner_li{display:none;margin-left:120px;position:absolute;border:1px solid #aaa;
-        border-left:1px solid #ccc;margin-top:-28px;background:#fff;}
-       .vmenu .sep_li{border-top: 1px ridge #aaa;margin:5px 0}
-       .vmenu .fill_title{font-size:11px;font-weight:bold;/height:15px;/overflow:hidden;word-wrap:break-word;}
 
+    .ui-state-default {
+        background-color: #aca;
+    }
 
-    .MultiFile-list
-    {
-        
+    .ui-state-hover {
+        background-color: #bdb;
+    }
+
+    .ui-state-highlight {
+        background-color: #add;
+    }
+
+    .ui-state-error {
+        background-color: #eaa;
+    }
+
+    .splitter {
+        height: 400px;
+        margin: 1em 3em;
+        border: 2px solid #79C9EC;
+        background: #fff;
+    }
+
+    .splitter-pane {
+        overflow: auto;
+    }
+
+    .splitter-bar-vertical {
+        width: 6px;
+        background-image: url(img/vgrabber.gif);
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0.7;
+    }
+
+    .splitter-bar-vertical-docked {
+        width: 10px;
+        background-image: url(img/vdockbar-trans.gif);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .splitter-bar.ui-state-highlight {
+        opacity: 0.7;
+    }
+
+    .splitter-iframe-hide {
+        visibility: hidden;
+    }
+
+    .splitter-bar {
+        width: 6px;
+        background: #F6F6F6;
+        opacity: 1.0;
+    }
+
+    .vmenu {
+        border: 1px solid #aaa;
+        position: absolute;
+        background: #fff;
+        display: none;
+        font-size: 0.75em;
+    }
+
+        .vmenu .first_li span {
+            width: 100px;
+            display: block;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .vmenu .inner_li {
+            display: none;
+            margin-left: 120px;
+            position: absolute;
+            border: 1px solid #aaa;
+            border-left: 1px solid #ccc;
+            margin-top: -28px;
+            background: #fff;
+        }
+
+        .vmenu .sep_li {
+            border-top: 1px ridge #aaa;
+            margin: 5px 0;
+        }
+
+        .vmenu .fill_title {
+            font-size: 11px;
+            font-weight: bold;
+            height: 15px;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+
+    .MultiFile-list {
         border: 2pt solid gray;
         margin: 10px;
-        padding: 3px 3px 0px 10px;   
+        padding: 3px 3px 0px 10px;
         height: 100px;
-         text-align: left;
+        text-align: left;
         overflow: auto;
-       
     }
-    .MultiFile-label
-    {
-         font-size: large;
+
+    .MultiFile-label {
+        font-size: large;
     }
-  .ui-widget-content .MultiFile-remove
-    {
-     color: Red;
-     font-weight: bold;  
-      
+
+    .ui-widget-content .MultiFile-remove {
+        color: Red;
+        font-weight: bold;
     }
-    
-     .AcPane
-     {
-         height: 180px;
-         
-     }
-     
-  .tblImage
-  {
-      float: left;
-      width: 80px;  
-  }
-  
-  .tblTitle
-  {
-     
-      
-  }
-   .tblText
-  {
-      font-size: x-small;
-      
-  }
-  a.aFile:hover,a.aFileRead:hover,a.aFolder:hover,a.aFolderRead:hover
-  {
-      
-      text-decoration: none;
-      
-  }
-  .Draggable
- {
-     border: 1px inset transparent;
- }
-  .Draggable:hover
-  {
-      border: 1px inset blue;
-  }
-  
-  .tblIconsDiv
-  {
-      Display:inline-table ; text-align: center; padding: 5px; 
-      
-      -webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	border-radius:5px;
-      
-      margin:0;  border: 1pt  outset #EEE;
-  }
-  .tblContainer
-  {
-   text-align: left;  width: 100%;  height:90px; overflow: auto ;
-  }
-.IconsDiv
-{
-   Display:inline-table ; text-align: center; padding: 10px; width: 100px; max-height: 100px;
-}
-.normalImage
-{
-    height: 70px
-}
-.normalTitle
-{
 
-height: 30px; 
-word-wrap: break-word;
- width: 100%; 
- font-size: 8pt;
-}
-.normalContainer
-{
-    text-align: center;  width: 100%; 
-}
+    .AcPane {
+        height: 180px;
+    }
 
-.hideRoot
-{
- background-color: Blue;  
-}
+    .tblImage {
+        float: left;
+        width: 80px;
+    }
 
+    .tblText {
+        font-size: x-small;
+    }
+
+    a.aFile:hover, a.aFileRead:hover, a.aFolder:hover, a.aFolderRead:hover {
+        text-decoration: none;
+    }
+
+    .Draggable {
+        border: 1px inset transparent;
+    }
+
+        .Draggable:hover {
+            border: 1px inset blue;
+        }
+
+    .tblIconsDiv {
+        Display: inline-table;
+        text-align: center;
+        padding: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        margin: 0;
+        border: 1pt outset #EEE;
+    }
+
+    .tblContainer {
+        text-align: left;
+        width: 100%;
+        height: 90px;
+        overflow: auto;
+    }
+
+    .IconsDiv {
+        Display: inline-table;
+        text-align: center;
+        padding: 10px;
+        width: 100px;
+        max-height: 100px;
+    }
+
+    .normalImage {
+        height: 70px;
+    }
+
+    .normalTitle {
+        height: 30px;
+        word-wrap: break-word;
+        width: 100%;
+        font-size: 8pt;
+    }
+
+    .normalContainer {
+        text-align: center;
+        width: 100%;
+    }
+
+    .hideRoot {
+        background-color: Blue;
+    }
 </style>
 <div style="width: 100%">
     <div id="cover" style="position: absolute; width: 100%; height: 100%; z-index: 1;
@@ -601,6 +589,7 @@ word-wrap: break-word;
                                 </div>
                             </div>
                         </asp:HyperLink>
+                        <asp:HyperLink ID="btnEditDoc" runat="server" onclick="editButtonClick();" class="aButton">Edit</asp:HyperLink>
                     </div>
                 </ItemTemplate>
             </asp:ListView>
