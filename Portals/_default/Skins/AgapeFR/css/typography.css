@@ -3,7 +3,7 @@
     line-height: 1.5;
 }
 
-body, p, ul, ol, a:link, a:active, a:visited, a:hover {
+body, p, ul, ol, a:link, a:active, a:visited, a:hover, select {
     font-weight: normal;
 	font-family: OpenSansRegular;
     font-size: inherit;
