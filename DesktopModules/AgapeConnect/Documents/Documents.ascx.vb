@@ -363,9 +363,9 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 End If
             Next
 
-
             dlFolderView.DataSource = Items
             dlFolderView.DataBind()
+
             Dim thisNode = From c As TreeNode In tvFolders.Nodes Where c.Value.TrimStart("F").TrimStart("D") = FolderId
 
             If thisNode.Count > 0 Then
@@ -380,10 +380,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
 
         End Sub
-
-
-
-
 
         Protected Sub AddSubFolders(ByVal ParentId As Integer, ByRef ParentNode As TreeNode)
             Dim folders = From c In d.AP_Documents_Folders Where c.PortalId = PortalId And c.ParentFolder = ParentId Order By c.Name
@@ -1131,6 +1127,13 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
         End Sub
 
+        Protected Sub dlFolderView_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles dlFolderView.ItemDataBound
+            Dim btneditdoc As HyperLink = CType(e.Item.FindControl("btnEditDoc"), HyperLink)
+            Dim btndeletedoc As HyperLink = CType(e.Item.FindControl("btnDeleteDoc"), HyperLink)
+            Dim hyperlink1 As HyperLink = CType(e.Item.FindControl("HyperLink1"), HyperLink)
+            btneditdoc.NavigateUrl = "javascript:editButtonClick(" & hyperlink1.ClientID & ")"
+            btndeletedoc.NavigateUrl = "javascript:deleteButtonClick(" & hyperlink1.ClientID & ")"
+        End Sub
     End Class
 
     Public Class RolePermission

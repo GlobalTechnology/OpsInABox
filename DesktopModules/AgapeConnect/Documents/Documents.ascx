@@ -310,6 +310,8 @@
 
    }
     function editButtonClick(t) { $('#<%= hfEditFileId.ClientID %>').val(getFileId(t.href)); $('#<%= tbEditFileName.ClientID %>').val("Loading..."); $('#<%= tbEditFileDescription.ClientID %>').val(""); __doPostBack('<%= upEditFIle.ClientID %>', ''); showEditFile(); }
+    function deleteButtonClick(t) { alert("You clicked it!"); }
+    //function editButtonClick(t) { alert("You clicked it!"); }
 
 </script>
 <style type="text/css">
@@ -589,7 +591,11 @@
                                 </div>
                             </div>
                         </asp:HyperLink>
-                        <asp:HyperLink ID="btnEditDoc" runat="server" onclick="editButtonClick();" class="aButton">Edit</asp:HyperLink>
+                    </div>
+                    <div id="docbuttons" style="float:right">
+                        <asp:HyperLink ID="btnEditDoc" runat="server" class="aButton">Edit</asp:HyperLink>
+                        <br />
+                        <asp:HyperLink ID="btnDeleteDoc" runat="server" class="aButton">Delete</asp:HyperLink>
                     </div>
                 </ItemTemplate>
             </asp:ListView>
