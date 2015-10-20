@@ -1074,7 +1074,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
             btneditdoc.Visible = IsEditable
             'btndeletedoc.Visible = IsEditable
         End Sub
-
     End Class
 
     Public Class RolePermission

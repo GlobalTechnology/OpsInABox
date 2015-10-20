@@ -93,7 +93,6 @@
 
             }
         });
-
         //MuliFile Uploader
         $('.multi').MultiFile({
             list: '#fileUploadList'
@@ -527,6 +526,7 @@
                                 </div>
                             </div>
                         </asp:HyperLink>
+                        <asp:HyperLink ID="btnEditDoc" runat="server" onclick="editButtonClick();" class="aButton">Edit</asp:HyperLink>
                     </div>
                     <div id="docbuttons" runat="server" style="float:right">
                         <asp:HyperLink ID="btnEditDoc" runat="server" CssClass="aButton">Edit</asp:HyperLink>
