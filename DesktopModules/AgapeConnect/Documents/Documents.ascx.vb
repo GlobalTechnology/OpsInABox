@@ -16,10 +16,6 @@ Imports DotNetNuke.Services.FileSystem
 Namespace DotNetNuke.Modules.AgapeConnect
     Partial Class Documents
         Inherits Entities.Modules.PortalModuleBase
-
-
-
-
         Dim d As New DocumentsDataContext()
         Public templateMode As String = "Icons"
         Dim FolderId As Integer = -1
@@ -28,17 +24,15 @@ Namespace DotNetNuke.Modules.AgapeConnect
         Dim doc As Object
         Dim GTreeColor As String
         Dim TreeStyles() As String = {"Explorer", "GTree", "Tree"}
+
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
-
-
-
 
             GTreeColor = Settings("GTreeColor")
             graphicalTreeView.CollapseImageUrl = GetGTreeImageURL() & "D.gif"
             graphicalTreeView.ExpandImageUrl = GetGTreeImageURL() & "R.gif"
 
-
         End Sub
+
         Protected Function GetGTreeImageURL() As String
             Select Case GTreeColor
                 Case "#28686E" : Return "images/ArrowWin"
@@ -51,8 +45,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
             End Select
             Return "images/ArrowWin"
         End Function
-
-
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -102,7 +94,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
                     FolderId = tvFolders.SelectedValue.TrimStart("F")
                     Dim rootNode = From c In d.AP_Documents_Folders Where c.PortalId = PortalId And c.FolderId = rootFolderId
 
-
                     LoadTree(rootNode.First)
 
                 ElseIf hfFileMoveId.Value <> "" Then
@@ -116,34 +107,19 @@ Namespace DotNetNuke.Modules.AgapeConnect
                     FolderId = tvFolders.SelectedValue.TrimStart("F")
                     Dim rootNode = From c In d.AP_Documents_Folders Where c.PortalId = PortalId And c.FolderId = rootFolderId
 
-
-
                     LoadTree(rootNode.First)
 
-
-
-
                 End If
-
 
                 If Request.QueryString("FolderId") <> "" Then
                     FolderId = Request.QueryString("FolderId")
 
                 End If
 
-
-
             End If
-
-
-
-
 
             If Not Page.IsPostBack Then
                 Dim rootNode = From c In d.AP_Documents_Folders Where c.PortalId = PortalId And c.FolderId = rootFolderId
-
-
-
 
                 If rootNode.Count = 0 Then
                     'Add a rootNode
@@ -169,9 +145,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
                     LoadTree(rootNode.First)
                 End If
 
-
-
-
                 Dim folder = FolderManager.Instance.GetFolder(PortalId, "acDocuments")
                 If Not folder Is Nothing Then
                     ddlFiles.DataSource = FolderManager.Instance.GetFiles(folder)
@@ -185,11 +158,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 ddlPages.DataValueField = "TabId"
                 ddlPages.DataBind()
 
-
-
-
             End If
-
 
             tbNewLinkAuthor.Text = UserInfo.DisplayName
             LoadFolder(FolderId)
@@ -197,9 +166,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
         End Sub
 
         Public Sub LoadTree(ByVal StartNode As AP_Documents_Folder)
-
-
-
             tvFolders.Nodes.Clear()
             UserRoles = rc.GetUserRoles(PortalId, UserId)
 
@@ -209,7 +175,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
             If Settings("DisplayStyle") = "GTree" Then
 
-                
+
                 graphicalTreeView.Nodes.Clear()
                 ' rootNode.ChildNodes.RemoveAt(0)
                 Dim RootNodes(rootNode.ChildNodes(0).ChildNodes.Count() - 1) As TreeNode
@@ -232,11 +198,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
                 tvFolders.Nodes.Add(rootNode.ChildNodes(0))
             End If
-
-
         End Sub
-
-
 
         Public Function GetFilePermission(ByVal Permissions As String) As String
             If UserInfo.IsSuperUser Or UserInfo.IsInRole("Administrators") Then
@@ -276,9 +238,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
             End If
             Return "None"
         End Function
-
-       
-
 
         Protected Sub LoadFolder(ByVal FolderId As Integer)
             If FolderId = -1 Then
@@ -461,10 +420,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 End If
 
             Next
-
-
-
-
         End Sub
 
         Public Function GetIcon(ByVal FileId As Integer?, ByVal Folderid As Integer) As String
@@ -475,9 +430,9 @@ Namespace DotNetNuke.Modules.AgapeConnect
             End If
 
         End Function
+
         Public Function Translate(ByVal ResourceString As String) As String
             Return DotNetNuke.Services.Localization.Localization.GetString(ResourceString & ".Text", LocalResourceFile)
-
         End Function
 
         Protected Sub btnAddFolder_Click(sender As Object, e As System.EventArgs) Handles btnAddFolder.Click
@@ -491,7 +446,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
             d.AP_Documents_Folders.InsertOnSubmit(insert)
             d.SubmitChanges()
         End Sub
-
 
         Protected Sub btnUpoadFiles_Click(sender As Object, e As System.EventArgs) Handles btnUpoadFiles.Click
             Try
@@ -622,9 +576,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
             End If
 
         End Sub
-
-
-
 
         Protected Sub upEditFile_Load(sender As Object, e As System.EventArgs) Handles upEditFile.PreRender
 
@@ -818,8 +769,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
                     Return
                 End If
 
-
-
                 Dim insert As New AP_Documents_Version
 
                 insert.DocId = DocId
@@ -832,8 +781,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 d.SubmitChanges()
             End If
         End Sub
-
-
 
         Protected Sub btnEditFolder_Click(sender As Object, e As System.EventArgs) Handles btnEditFolder.Click
             'Save Folder (Edit)
@@ -968,6 +915,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
 
         End Function
+
         Public Function GetFileUrl(ByVal DocId As Integer, ByVal FileId As Integer) As String
             If FileId = -2 Then
                 Dim theDoc = From c In d.AP_Documents_Docs Where c.DocId = DocId
@@ -996,6 +944,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 Return EditUrl("DocumentViewer") & "?DocId=" & DocId
             End If
         End Function
+
         Public Function GetFileDate(ByVal FileId As Integer) As String
             Return DotNetNuke.Services.FileSystem.FileManager.Instance.GetFile(FileId).LastModificationTime.ToString("dd MMM yyyy")
 
@@ -1115,7 +1064,10 @@ Namespace DotNetNuke.Modules.AgapeConnect
             Dim hyperlink1 As HyperLink = CType(e.Item.FindControl("HyperLink1"), HyperLink)
             btneditdoc.NavigateUrl = "javascript:editButtonClick(" & hyperlink1.ClientID & ")"
             btndeletedoc.NavigateUrl = "javascript:deleteButtonClick(" & hyperlink1.ClientID & ")"
+            btneditdoc.Visible = IsEditable
+            btndeletedoc.Visible = IsEditable
         End Sub
+
     End Class
 
     Public Class RolePermission
@@ -1128,7 +1080,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 _roleName = value
             End Set
         End Property
-
 
         Private _edit As Boolean
         Public Property Edit() As Boolean
@@ -1159,7 +1110,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
             End Set
         End Property
 
-
         Public Sub New(ByVal rId As Integer, ByVal name As String, ByVal canRead As Boolean, ByVal canEdit As Boolean)
             RoleName = name
             Read = canRead
@@ -1167,7 +1117,5 @@ Namespace DotNetNuke.Modules.AgapeConnect
             RoleId = rId
         End Sub
     End Class
-
-
 
 End Namespace
