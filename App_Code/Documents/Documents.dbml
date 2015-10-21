@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AgapeConnect" Class="DocumentsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=AgapeConnect;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=oib;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AP_Documents_Docs" Member="AP_Documents_Docs">
     <Type Name="AP_Documents_Doc">
       <Column Name="DocId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -14,6 +14,7 @@
       <Column Name="VersionNumber" Type="System.String" DbType="nvarchar(10)" CanBeNull="true" />
       <Column Name="LinkType" Type="System.String" DbType="nvarchar(10)" CanBeNull="true" />
       <Column Name="LinkValue" Type="System.String" DbType="nvarchar(Max)" CanBeNull="true" />
+      <Column Member="Trashed" Type="System.Boolean" CanBeNull="true" />
       <Association Name="AP_Documents_Doc_AP_Documents_TagMeta" Member="AP_Documents_TagMetas" ThisKey="DocId" OtherKey="DocId" Type="AP_Documents_TagMeta" />
       <Association Name="AP_Documents_Doc_AP_Documents_Comment" Member="AP_Documents_Comments" ThisKey="DocId" OtherKey="DocId" Type="AP_Documents_Comment" />
       <Association Name="AP_Documents_Doc_AP_Documents_Version" Member="AP_Documents_Versions" ThisKey="FileId" OtherKey="FileId" Type="AP_Documents_Version" Cardinality="One" />

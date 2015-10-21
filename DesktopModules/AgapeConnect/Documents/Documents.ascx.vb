@@ -87,8 +87,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
         End Function
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-
-
             If Request.QueryString("search") <> "" Then
                 Dim SearchURL = EditUrl("searchDocs") & "?search=" & Request.QueryString("search")
                 If Request.QueryString("mode") <> "" Then
@@ -102,7 +100,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 Dim rc As New DotNetNuke.Security.Roles.RoleController()
                 Dim RoleId = rc.GetRoleByName(PortalId, "Administrators").RoleID
                 Settings("DefaultPermissions") = RoleId & ":-1;" & RoleId
-
 
             End If
 
