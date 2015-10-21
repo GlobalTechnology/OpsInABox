@@ -586,7 +586,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 tbEditFileAuthor.Text = doc.First.Author
                 tbVersion.Text = doc.First.VersionNumber
                 tbKeywords.Text = doc.First.Keywords
-
+                cbTrashed.Checked = doc.First.Trashed
 
 
                 Dim ReadRoleIds As New ArrayList
@@ -693,6 +693,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 theDoc.First.Author = tbEditFileAuthor.Text
                 theDoc.First.Keywords = tbKeywords.Text
                 theDoc.First.VersionNumber = tbVersion.Text
+                theDoc.First.Trashed = cbTrashed.Checked
                 If hfSelectedIcon.Value = "" Then
                     theDoc.First.CustomIcon = Nothing
                 Else

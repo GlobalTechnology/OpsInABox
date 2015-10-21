@@ -892,6 +892,14 @@
                                             Font-Size="Large"></asp:TextBox>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        <dnn:Label ID="lblTrashed" runat="server" ResourceKey="lblTrashed" />
+                                    </td>
+                                    <td>
+                                        <asp:CheckBox ID="cbTrashed" runat="server" />
+                                    </td>
+                                </tr>
                             </table>
                         </td>
                         <td>
