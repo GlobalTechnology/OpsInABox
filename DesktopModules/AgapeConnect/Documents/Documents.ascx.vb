@@ -180,9 +180,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
                     ddlFiles.DataTextField = "FileName"
                     ddlFiles.DataValueField = "FileId"
                     ddlFiles.DataBind()
-                    AgapeLogger.Info(UserId, " Inside here ")
-                Else
-                    AgapeLogger.Info(UserId, " acDocuments directory does not exist!!!! ")
                 End If
                 Dim pages = TabController.GetPortalTabs(PortalId, TabId, False, False)
                 ddlPages.DataSource = pages.OrderBy(Function(x) x.TabName)
@@ -202,7 +199,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
         End Sub
 
         Public Sub LoadTree(ByVal StartNode As AP_Documents_Folder)
-            AgapeLogger.Info(UserId, "In top of LoadTree")
             tvFolders.Nodes.Clear()
             UserRoles = rc.GetUserRoles(PortalId, UserId)
 
