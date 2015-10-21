@@ -312,18 +312,21 @@ Namespace DotNetNuke.Modules.AgapeConnect
             Next
 
             For Each docu In Docs
-                Dim perm = ""
-                If docu.LinkType < 4 Then
-                    perm = "Link"
-                Else
-                    perm = GetFilePermission(docu.Permissions)
+                If docu.Trashed = False Then
+                    Dim perm = ""
+                    If docu.LinkType < 4 Then
+                        perm = "Link"
+                    Else
+                        perm = GetFilePermission(docu.Permissions)
+                    End If
+
+                    If perm = "Edit" Or perm = "Read" Or perm = "Link" Then
+                        'doc.Permissions = perm
+
+                        Items.Add(docu)
+                    End If
                 End If
 
-                If perm = "Edit" Or perm = "Read" Or perm = "Link" Then
-                    'doc.Permissions = perm
-
-                    Items.Add(docu)
-                End If
             Next
 
             dlFolderView.DataSource = Items
@@ -478,6 +481,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                         insert.CustomIcon = -1
                         insert.LinkType = "4"  ' a File
                         insert.Permissions = (From c In d.AP_Documents_Folders Where c.FolderId = insert.FolderId Select c.Permission).First
+                        insert.Trashed = False
                         d.AP_Documents_Docs.InsertOnSubmit(insert)
 
                     End If
