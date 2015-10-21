@@ -48,8 +48,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-
-
             If Request.QueryString("search") <> "" Then
                 Dim SearchURL = EditUrl("searchDocs") & "?search=" & Request.QueryString("search")
                 If Request.QueryString("mode") <> "" Then
@@ -64,13 +62,11 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 Dim RoleId = rc.GetRoleByName(PortalId, "Administrators").RoleID
                 Settings("DefaultPermissions") = RoleId & ":-1;" & RoleId
 
-
             End If
 
             editbuttons.Visible = IsEditable
 
             Dim rootFolderId As Integer = -1
-
 
             If Not String.IsNullOrEmpty(Settings("RootFolder")) Then
                 rootFolderId = Settings("RootFolder")
