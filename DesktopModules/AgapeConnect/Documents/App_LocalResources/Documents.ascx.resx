@@ -243,4 +243,7 @@
   <data name="lblDisplayingSearch.Text" xml:space="preserve">
     <value>Display Search Results for</value>
   </data>
+  <data name="lblTrashed.Text" xml:space="preserve">
+    <value>Trashed?</value>
+  </data>
 </root>
