@@ -164,8 +164,8 @@ Namespace DotNetNuke.Modules.AgapeConnect
 
             End If
 
-                tbNewLinkAuthor.Text = UserInfo.DisplayName
-                LoadFolder(FolderId)
+            tbNewLinkAuthor.Text = UserInfo.DisplayName
+            LoadFolder(FolderId)
 
         End Sub
 
