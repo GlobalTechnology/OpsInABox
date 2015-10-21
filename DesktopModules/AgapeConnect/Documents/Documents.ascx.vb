@@ -26,7 +26,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
         Dim TreeStyles() As String = {"Explorer", "GTree", "Tree"}
         Dim DocumentsModuleRoot As String = "acDocuments"
 
-
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
 
             GTreeColor = Settings("GTreeColor")
@@ -51,15 +50,12 @@ Namespace DotNetNuke.Modules.AgapeConnect
         Protected Function GetCurrentRootDirectory() As String
             Dim parentFolder As Integer = -1
             Dim rootFolderId As Integer
-
             If Not String.IsNullOrEmpty(Settings("RootFolder")) Then
                 rootFolderId = Settings("RootFolder")
             Else
-
                 If Not Page.IsPostBack Then
 
                     Dim rootNode = From c In d.AP_Documents_Folders Where c.PortalId = PortalId And c.ParentFolder = parentFolder
-
                     'No rootNode found
                     If rootNode.Count = 0 Then
 
@@ -86,7 +82,6 @@ Namespace DotNetNuke.Modules.AgapeConnect
             Return rootFolderId
         End Function
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
             If Request.QueryString("search") <> "" Then
                 Dim SearchURL = EditUrl("searchDocs") & "?search=" & Request.QueryString("search")
                 If Request.QueryString("mode") <> "" Then
