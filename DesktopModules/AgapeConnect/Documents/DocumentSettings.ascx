@@ -2,7 +2,6 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
 <asp:HiddenField ID="hfPortalId" runat="server" />
-<asp:HiddenField runat="server" ID="_repostcheckcode" />
 
 <div class="Documents DocumentSettings">
     <div  class="FieldRow">
