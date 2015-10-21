@@ -530,8 +530,8 @@
                     </div>
                     <div id="docbuttons" runat="server" style="float:right">
                         <asp:HyperLink ID="btnEditDoc" runat="server" CssClass="aButton">Edit</asp:HyperLink>
-                        <br />
-                        <asp:HyperLink ID="btnDeleteDoc" runat="server" CssClass="aButton">Delete</asp:HyperLink>
+                        <%--<br />
+                        <asp:HyperLink ID="btnDeleteDoc" runat="server" CssClass="aButton">Delete</asp:HyperLink>--%>
                     </div>
                 </ItemTemplate>
             </asp:ListView>
