@@ -334,10 +334,8 @@ Namespace DotNetNuke.Modules.AgapeConnect
                 Dim thisPerm = GetFilePermission((From c In d.AP_Documents_Folders Where c.FolderId = FolderId Select c.Permission).First)
                 hlUpload.Visible = thisPerm = "Edit"
                 hlNewLink.Visible = thisPerm = "Edit"
-                hlFolderButton.Visible = thisPerm = "Edit"
+                'hlFolderButton.Visible = thisPerm = "Edit"
             End If
-
-
         End Sub
 
         Protected Sub AddSubFolders(ByVal ParentId As Integer, ByRef ParentNode As TreeNode)

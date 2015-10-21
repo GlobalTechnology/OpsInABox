@@ -1036,22 +1036,6 @@
             Delete</li>
     </ul>
 </div>
-<div id="FileMenu" class="contextMenu" style="z-index: 1000">
-    <ul>
-        <li id="Edit">
-            <img src="/icons/sigma/Edit_16X16_Standard.png" />
-            Edit...</li>
-        <li id="Move">
-            <img src="/icons/sigma/DragDrop_15x15_Standard.png" />
-            Move...</li>
-        <li id="Versions">
-            <img src="/icons/sigma/CopyFile_16x16_Standard.png" />
-            Versions...</li>
-        <li id="Delete">
-            <img src="/icons/sigma/Delete_16X16_Standard.png" />
-            Delete</li>
-    </ul>
-</div>
 <div id="FileReadMenu" class="contextMenu" style="z-index: 1000">
     <ul>
     </ul>
@@ -1071,7 +1055,7 @@
     </ul>
 </div>
 <div id="editbuttons" runat="server" style="height: 20px; float: right;">
-    <asp:HyperLink ID="hlFolderButton" runat="server" onclick="showNewFolder();" CssClass="aButton">New Folder</asp:HyperLink>
+    <%--<asp:HyperLink ID="hlFolderButton" runat="server" onclick="showNewFolder();" CssClass="aButton">New Folder</asp:HyperLink>--%>
     <asp:HyperLink ID="hlNewLink" runat="server" onclick="showNewLink();" CssClass="aButton">New Link</asp:HyperLink>
     <asp:HyperLink ID="hlUpload" runat="server" onclick="showUpload();" CssClass="aButton">Upload Files</asp:HyperLink>
     <asp:LinkButton ID="btnSettings" runat="server" CssClass="aButton">Settings</asp:LinkButton>
