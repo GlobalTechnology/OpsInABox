@@ -162,7 +162,7 @@ Namespace Documents
 		
 		Private _LinkValue As String
 		
-		Private _Trashed As System.Nullable(Of Boolean)
+		Private _Trashed As Boolean
 		
 		Private _AP_Documents_TagMetas As EntitySet(Of AP_Documents_TagMeta)
 		
@@ -227,7 +227,7 @@ Namespace Documents
     End Sub
     Partial Private Sub OnLinkValueChanged()
     End Sub
-    Partial Private Sub OnTrashedChanging(value As System.Nullable(Of Boolean))
+    Partial Private Sub OnTrashedChanging(value As Boolean)
     End Sub
     Partial Private Sub OnTrashedChanged()
     End Sub
@@ -440,12 +440,13 @@ Namespace Documents
 		End Property
 		
 		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Trashed")>  _
-		Public Property Trashed() As System.Nullable(Of Boolean)
+		Public Property Trashed() As Boolean
 			Get
 				Return Me._Trashed
 			End Get
 			Set
-				If (Me._Trashed.Equals(value) = false) Then
+				If ((Me._Trashed = value)  _
+							= false) Then
 					Me.OnTrashedChanging(value)
 					Me.SendPropertyChanging
 					Me._Trashed = value
