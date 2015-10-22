@@ -14,7 +14,7 @@
       <Column Name="VersionNumber" Type="System.String" DbType="nvarchar(10)" CanBeNull="true" />
       <Column Name="LinkType" Type="System.String" DbType="nvarchar(10)" CanBeNull="true" />
       <Column Name="LinkValue" Type="System.String" DbType="nvarchar(Max)" CanBeNull="true" />
-      <Column Member="Trashed" Type="System.Boolean" CanBeNull="true" />
+      <Column Name="Trashed" Type="System.Boolean" CanBeNull="false" />
       <Association Name="AP_Documents_Doc_AP_Documents_TagMeta" Member="AP_Documents_TagMetas" ThisKey="DocId" OtherKey="DocId" Type="AP_Documents_TagMeta" />
       <Association Name="AP_Documents_Doc_AP_Documents_Comment" Member="AP_Documents_Comments" ThisKey="DocId" OtherKey="DocId" Type="AP_Documents_Comment" />
       <Association Name="AP_Documents_Doc_AP_Documents_Version" Member="AP_Documents_Versions" ThisKey="FileId" OtherKey="FileId" Type="AP_Documents_Version" Cardinality="One" />
