@@ -2,7 +2,6 @@
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <%@ Register Src="~/controls/urlcontrol.ascx" TagName="urlcontrol" TagPrefix="uc1" %>
 <%@ Register Assembly="DotNetNuke" Namespace="DotNetNuke.UI.WebControls" TagPrefix="cc1" %>
-
 <div id="DocumentsMain" class="documents">
     <asp:ListView ID="dlFolderView" runat="server">
         <ItemTemplate>
@@ -27,11 +26,6 @@
                     <asp:HyperLink ID="btnDeleteDoc" CssClass="btnDeleteDoc" runat="server"></asp:HyperLink>
                 </div>
             </div>
-                    <div id="docbuttons" runat="server" style="float:right">
-                        <asp:HyperLink ID="btnEditDoc" runat="server" CssClass="aButton">Edit</asp:HyperLink>
-                        <%--<br />
-                        <asp:HyperLink ID="btnDeleteDoc" runat="server" CssClass="aButton">Delete</asp:HyperLink>--%>
-                    </div>
         </ItemTemplate>
     </asp:ListView>
 </div>

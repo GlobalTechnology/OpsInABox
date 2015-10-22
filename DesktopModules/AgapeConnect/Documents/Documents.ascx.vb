@@ -7,7 +7,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         'Dim d As New DocumentsDataContext()
         'Public templateMode As String = "Icons"
 
-
         'Dim rc As New DotNetNuke.Security.Roles.RoleController
         'Dim UserRoles As ArrayList
         'Dim doc As Object
@@ -17,16 +16,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
         End Sub
 
-
-
-
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
             If Not IsPostBack Then
                 LoadFolder()
-            End If
-        End Sub
-
         Protected Sub LoadFolder()
             Dim FolderId As Integer = DocumentsController.GetRootFolderId(Settings)
             Dim Items As New ArrayList
@@ -36,12 +28,13 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             For Each document In Docs
                 If document.Trashed = False Then
                     Items.Add(document)
-                End If
+            Dim Docs = DocumentsController.GetDocuments(Settings)
+            For Each document In Docs
+                If document.Trashed = False Then
+                    Items.Add(document)
             Next
             dlFolderView.DataSource = Items
             dlFolderView.DataBind()
-        End Sub
-
         Public Function GetIcon(ByVal FileId As Integer?, ByVal Folderid As Integer) As String
             Return DocumentsController.GetFileIcon(FileId, 4)
         End Function
@@ -81,25 +74,16 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             End If
         End Function
 
-        Protected Sub dlFolderView_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles dlFolderView.ItemDataBound
-            Dim btneditdoc As HyperLink = CType(e.Item.FindControl("btnEditDoc"), HyperLink)
             Dim btndeletedoc As HyperLink = CType(e.Item.FindControl("btnDeleteDoc"), HyperLink)
-            Dim hyperlink1 As HyperLink = CType(e.Item.FindControl("HyperLink1"), HyperLink)
             Dim docbuttons As HtmlGenericControl = CType(e.Item.FindControl("docButtons"), HtmlGenericControl)
-            btneditdoc.NavigateUrl = "javascript:editButtonClick(" & hyperlink1.ClientID & ")"
             btndeletedoc.NavigateUrl = "javascript:deleteButtonClick(" & hyperlink1.ClientID & ")"
             docbuttons.Visible = IsEditable
-        End Sub
-
 #Region "Optional Interfaces"
         Public ReadOnly Property ModuleActions() As Entities.Modules.Actions.ModuleActionCollection Implements Entities.Modules.IActionable.ModuleActions
-            Get
                 Dim Actions As New Entities.Modules.Actions.ModuleActionCollection
                 Actions.Add(GetNextActionID, Translate("DocumentsSettings"), "DocumentSettings", "", "action_settings.gif", EditUrl("DocumentSettings"), False, SecurityAccessLevel.Admin, True, False)
                 Actions.Add(GetNextActionID, Translate("AddDocuemnt"), "AddDocument", "", "action_settings.gif", EditUrl("AddDocument"), False, SecurityAccessLevel.Edit, True, False)
                 Return Actions
-            End Get
-        End Property
 #End Region
     End Class
 End Namespace

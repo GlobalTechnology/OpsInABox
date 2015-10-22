@@ -1,6 +1,6 @@
 ﻿Imports Microsoft.VisualBasic
 'Imports DotNetNuke
-Imports DotNetNuke.Services.FileSystem
+'Imports DotNetNuke.Services.FileSystem
 Imports Documents
 
 
@@ -50,6 +50,8 @@ Public Class DocumentsController
 
                 rootFolderId = insert.FolderId
             End If
+        Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
+        Dim rootFolderId As Integer = moduleSettings(RootFolderSettingKey)
 
         End If
         Return rootFolderId
@@ -62,7 +64,16 @@ Public Class DocumentsController
 
         ' TODO filter by rootfolder
         Return docs
+                insert.Name = DocumentsModuleRootFolderName
+                insert.Permission = moduleSettings("DefaultPermissions")
+                insert.PortalId = PS.PortalId
+                d.AP_Documents_Folders.InsertOnSubmit(insert)
+                d.SubmitChanges()
 
+                rootFolderId = insert.FolderId
+
+        End If
+        Return rootFolderId
     End Function
 
     Public Shared Function GetDocument(ByVal DocId As Integer) As AP_Documents_Doc
@@ -70,6 +81,8 @@ Public Class DocumentsController
         Dim theDoc = From c In d.AP_Documents_Docs Where c.DocId = DocId
         Return theDoc.First
     End Function
+        ' TODO filter by rootfolder
+        Return docs
 
     Public Shared Function GetFileIcon(ByVal FileId As Integer?, ByVal LinkType As Integer, Optional IconId As Integer? = -1) As String
         If Not IconId Is Nothing And IconId > 0 Then
@@ -90,6 +103,8 @@ Public Class DocumentsController
         End If
         If Not theFile Is Nothing Then
             Select Case theFile.Extension.ToLower
+'End Function
+'Public Function GetSearchItems(ModInfo As DotNetNuke.Entities.Modules.ModuleInfo) As DotNetNuke.Services.Search.SearchItemInfoCollection Implements DotNetNuke.Entities.Modules.ISearchable.GetSearchItems
                 Case "gif"
                     Return Path & "GIF.png"
                 Case "bmp"
@@ -120,12 +135,25 @@ Public Class DocumentsController
                     Return Path & "WAV.png"
                 Case "zip"
                     Return Path & "ZIP.png"
+'    For Each row In Folders
                 Case Else
                     Return Path & "Blank.png"
             End Select
+'        SearchItem = New Services.Search.SearchItemInfo _
+'        (row.Name, _
+'        row.Description, _
+'        1, _
+'       Today, ModInfo.ModuleID, _
+'        "F" & row.FolderId, _
+'     row.Name & " " & row.Description, Guid:="FolderId=" & row.FolderId)
+'        SearchItemCollection.Add(SearchItem)
+'    Next
+'    Dim Docs = From c In d.AP_Documents_Docs Where c.AP_Documents_Folder.PortalId = ModInfo.PortalID
         End If
         Return "images/Blank.png"
     End Function
+'            tags &= tag.AP_Documents_Tag.TagName & " "
+'        Next
 
 #End Region
 
@@ -204,5 +232,33 @@ End Class
 
 
 '    Return SearchItemCollection
+
+'End Function
+'                Return Path & "MPG.png"
+'            Case "pdf"
+'                Return Path & "PDF.png"
+
+'            Case "png"
+'                Return Path & "PNG.png"
+'            Case "psd"
+'                Return Path & "PSD.png"
+'            Case "tiff"
+'                Return Path & "TIFF.png"
+'            Case "txt"
+'                Return Path & "TXT.png"
+'            Case "wav"
+'                Return Path & "WAV.png"
+'            Case "zip"
+'                Return Path & "ZIP.png"
+
+
+'            Case Else
+'                Return Path & "Blank.png"
+
+'        End Select
+
+'    End If
+'    Return "images/Blank.png"
+
 
 'End Function
