@@ -1,4 +1,4 @@
-﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="DocumentViewer.ascx.vb" Inherits="DotNetNuke.Modules.Documents.DocumentViewer" %>
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="DocumentViewer.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Documents.DocumentViewer" %>
 <%@ Register Assembly="PdfViewer" Namespace="PdfViewer" TagPrefix="cc1" %>
  <script src="/js/jquery.watermarkinput.js" type="text/javascript"></script>
  <script src="/js/jquery.contextmenu.r2.js" type="text/javascript"></script>
