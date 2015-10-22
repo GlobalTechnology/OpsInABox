@@ -6,7 +6,7 @@ Imports Documents
 
 
 
-Namespace DotNetNuke.Modules.Documents
+Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
     Partial Class DocumentSettings
         Inherits Entities.Modules.ModuleSettingsBase
@@ -19,10 +19,10 @@ Namespace DotNetNuke.Modules.Documents
             Try
 
                 hfPortalId.Value = PortalId
-               
+
                 If (Page.IsPostBack = False) Then
                     Session("Check_Page_Refresh") = DateTime.Now.ToString()
-                  
+
                     'Build list of paths to choose from to select the root folder where the acDocuments folder will start.
                     Dim folders = (From c In d.AP_Documents_Folders Where c.PortalId = PortalId Order By c.FolderId Descending)
                     Dim pathName As String = ""
@@ -202,7 +202,7 @@ Namespace DotNetNuke.Modules.Documents
             Dim displaystyle = rblStyle.SelectedValue
             Select Case displaystyle
                 Case "Icons"
-                    If cbShowTree.Checked = False Then
+                    If cbshowtree.Checked = False Then
                         displaystyle = "IconsNoTree"
                     End If
 

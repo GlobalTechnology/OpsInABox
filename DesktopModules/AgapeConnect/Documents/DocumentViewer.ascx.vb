@@ -13,7 +13,7 @@ Imports DotNetNuke
 Imports DotNetNuke.Security
 Imports Documents
 Imports DotNetNuke.Services.FileSystem
-Namespace DotNetNuke.Modules.Documents
+Namespace DotNetNuke.Modules.AgapeConnect.Documents
     Partial Class DocumentViewer
         Inherits Entities.Modules.PortalModuleBase
         Dim d As New DocumentsDataContext
@@ -157,7 +157,7 @@ Namespace DotNetNuke.Modules.Documents
                     phComments.Controls.Add(New LiteralControl(bubble))
 
                 End If
-               
+
 
 
 
