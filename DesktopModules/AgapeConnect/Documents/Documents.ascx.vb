@@ -4,6 +4,7 @@ Imports DotNetNuke.Services.FileSystem
 Namespace DotNetNuke.Modules.AgapeConnect.Documents
     Partial Class Documents
         Inherits Entities.Modules.PortalModuleBase
+        Implements Entities.Modules.IActionable
         'Dim d As New DocumentsDataContext()
         'Public templateMode As String = "Icons"
 
@@ -181,6 +182,15 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
         'End Sub
 
-    End Class
 
+#Region "Optional Interfaces"
+        Public ReadOnly Property ModuleActions() As Entities.Modules.Actions.ModuleActionCollection Implements Entities.Modules.IActionable.ModuleActions
+            Get
+                Dim Actions As New Entities.Modules.Actions.ModuleActionCollection
+                Actions.Add(GetNextActionID, "Documents Settings", "DocumentSettings", "", "action_settings.gif", EditUrl("DocumentSettings"), False, SecurityAccessLevel.Edit, True, False)
+                Return Actions
+            End Get
+        End Property
+#End Region
+    End Class
 End Namespace
