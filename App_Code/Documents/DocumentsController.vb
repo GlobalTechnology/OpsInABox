@@ -65,31 +65,10 @@ Public Class DocumentsController
 
     End Function
 
-    Public Shared Function GetFileUrl(ByVal DocId As Integer, ByVal FileId As Integer) As String
+    Public Shared Function GetDocument(ByVal DocId As Integer) As AP_Documents_Doc
         Dim d As New DocumentsDataContext()
-        If FileId = -2 Then
-            Dim theDoc = From c In d.AP_Documents_Docs Where c.DocId = DocId
-            Select Case theDoc.First.LinkType
-                Case 0, 2
-                    Return theDoc.First.LinkValue
-                Case 1
-                    Return "https://www.youtube.com"
-                Case 3
-                    Return NavigateURL(CInt(theDoc.First.LinkValue))
-            End Select
-        End If
-        Dim theFile = FileManager.Instance.GetFile(FileId)
-        If Not theFile Is Nothing Then
-            Dim rtn = FileManager.Instance.GetUrl(theFile)
-            If rtn.Contains("?") Then
-                rtn &= "&DocId=" & DocId
-            Else
-                rtn &= "?DocId=" & DocId
-            End If
-            Return rtn
-        Else
-            Return FileManager.Instance.GetUrl(theFile) & "?DocId=" & DocId
-        End If
+        Dim theDoc = From c In d.AP_Documents_Docs Where c.DocId = DocId
+        Return theDoc.First
     End Function
 
     Public Shared Function GetFileIcon(ByVal FileId As Integer?, ByVal LinkType As Integer, Optional IconId As Integer? = -1) As String
