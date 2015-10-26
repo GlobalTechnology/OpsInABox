@@ -92,6 +92,62 @@ Public Class DocumentsController
         End If
     End Function
 
+    Public Shared Function GetFileIcon(ByVal FileId As Integer?, ByVal LinkType As Integer, Optional IconId As Integer? = -1) As String
+        If Not IconId Is Nothing And IconId > 0 Then
+            Return FileManager.Instance.GetUrl(FileManager.Instance.GetFile(IconId))
+        End If
+        If FileId Is Nothing Then
+            Return "images/folder.png"
+        End If
+        Dim Path As String = "images/"
+        Dim theFile = FileManager.Instance.GetFile(FileId)
+        If FileId = -2 Then
+            Select Case LinkType
+                Case 0 : Return Path & "URL.png"
+                Case 1 : Return Path & "YouTube.png"
+                Case 2 : Return Path & "GoogleDoc.png"
+                Case 3 : Return Path & "Url.png"
+            End Select
+        End If
+        If Not theFile Is Nothing Then
+            Select Case theFile.Extension
+                Case "gif"
+                    Return Path & "GIF.png"
+                Case "bmp"
+                    Return Path & "BMP.png"
+                Case "doc"
+                    Return Path & "DOC.png"
+                Case "jpg"
+                    Return Path & "JPG.png"
+                Case "mov"
+                    Return Path & "MOV.png"
+                Case "mp3"
+                    Return Path & "MP3.png"
+                Case "mp4"
+                    Return Path & "MP4.png"
+                Case "mpg"
+                    Return Path & "MPG.png"
+                Case "pdf"
+                    Return Path & "PDF.png"
+                Case "png"
+                    Return Path & "PNG.png"
+                Case "psd"
+                    Return Path & "PSD.png"
+                Case "tiff"
+                    Return Path & "TIFF.png"
+                Case "txt"
+                    Return Path & "TXT.png"
+                Case "wav"
+                    Return Path & "WAV.png"
+                Case "zip"
+                    Return Path & "ZIP.png"
+                Case Else
+                    Return Path & "Blank.png"
+            End Select
+        End If
+        Return "images/Blank.png"
+    End Function
+
 #End Region
 
 End Class
