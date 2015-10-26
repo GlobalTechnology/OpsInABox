@@ -48,31 +48,13 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
         End Function
 
-        Public Function GetFileUrl(ByVal DocId As Integer, ByVal FileId As Integer) As String
             If FileId = -2 Then 'the file is a link
                 Dim theDoc = DocumentsController.GetDocument(DocId)
                 Select Case theDoc.LinkType
-                    Case 0, 2
                         Return theDoc.LinkValue
-                    Case 1
                         Return "https://www.youtube.com"
-                    Case 3
                         Return NavigateURL(CInt(theDoc.LinkValue))
-                End Select
-            End If
-            Dim theFile = FileManager.Instance.GetFile(FileId)
-            If Not theFile Is Nothing Then
                 Dim rtn = EditUrl("DocumentViewer")
-                If rtn.Contains("?") Then
-                    rtn &= "&DocId=" & DocId
-                Else
-                    rtn &= "?DocId=" & DocId
-                End If
-                Return rtn
-            Else
-                Return EditUrl("DocumentViewer") & "?DocId=" & DocId
-            End If
-        End Function
 
             Dim btndeletedoc As HyperLink = CType(e.Item.FindControl("btnDeleteDoc"), HyperLink)
             Dim docbuttons As HtmlGenericControl = CType(e.Item.FindControl("docButtons"), HtmlGenericControl)

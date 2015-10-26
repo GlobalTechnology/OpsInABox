@@ -1,6 +1,6 @@
 ﻿Imports Microsoft.VisualBasic
 'Imports DotNetNuke
-'Imports DotNetNuke.Services.FileSystem
+Imports DotNetNuke.Services.FileSystem
 Imports Documents
 
 
@@ -175,6 +175,10 @@ Public Class DocumentsController
         d.AP_Documents_Docs.InsertOnSubmit(insert)
         d.SubmitChanges()
     End Sub
+
+            Return FileManager.Instance.GetUrl(theFile) & "?DocId=" & DocId
+        End If
+    End Function
 
 #End Region
 
