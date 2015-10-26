@@ -85,5 +85,14 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 Actions.Add(GetNextActionID, Translate("AddDocuemnt"), "AddDocument", "", "action_settings.gif", EditUrl("AddDocument"), False, SecurityAccessLevel.Edit, True, False)
                 Return Actions
 #End Region
+#Region "Optional Interfaces"
+        Public ReadOnly Property ModuleActions() As Entities.Modules.Actions.ModuleActionCollection Implements Entities.Modules.IActionable.ModuleActions
+            Get
+                Dim Actions As New Entities.Modules.Actions.ModuleActionCollection
+                Actions.Add(GetNextActionID, "Documents Settings", "DocumentSettings", "", "action_settings.gif", EditUrl("DocumentSettings"), False, SecurityAccessLevel.Edit, True, False)
+                Return Actions
+            End Get
+        End Property
+#End Region
     End Class
 End Namespace
