@@ -1,17 +1,5 @@
-﻿'Imports System.IO
-'Imports System.Xml
-'Imports System.Net
-'Imports DotNetNuke.Entities.Tabs
-'Imports DotNetNuke.Security.Permissions
-'Imports DotNetNuke.UI.Skins
-'Imports DotNetNuke.UI.Utilities
-'Imports DotNetNuke.Security.Membership
-'Imports DotNetNuke.Services.Authentication
-'Imports System.Linq
-Imports Documents ' TODO after moving GetFileUrl delete this
+﻿Imports Documents ' TODO after moving GetFileUrl delete this
 Imports DotNetNuke.Services.FileSystem
-'Imports Resources
-
 
 Namespace DotNetNuke.Modules.AgapeConnect.Documents
     Partial Class Documents
