@@ -55,7 +55,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                         Return "https://www.youtube.com"
                         Return NavigateURL(CInt(theDoc.LinkValue))
                 Dim rtn = EditUrl("DocumentViewer")
-
             Dim btndeletedoc As HyperLink = CType(e.Item.FindControl("btnDeleteDoc"), HyperLink)
             Dim docbuttons As HtmlGenericControl = CType(e.Item.FindControl("docButtons"), HtmlGenericControl)
             btndeletedoc.NavigateUrl = "javascript:deleteButtonClick(" & hyperlink1.ClientID & ")"
