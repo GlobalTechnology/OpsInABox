@@ -90,9 +90,7 @@ Public Class DocumentsController
         End If
         If FileId Is Nothing Then
             Return "images/folder.png"
-        End If
         Dim Path As String = "images/"
-        Dim theFile = FileManager.Instance.GetFile(FileId)
         If FileId = -2 Then
             Select Case LinkType
                 Case 0 : Return Path & "URL.png"
@@ -101,7 +99,6 @@ Public Class DocumentsController
                 Case 3 : Return Path & "Url.png"
             End Select
         End If
-        If Not theFile Is Nothing Then
             Select Case theFile.Extension.ToLower
 'End Function
 'Public Function GetSearchItems(ModInfo As DotNetNuke.Entities.Modules.ModuleInfo) As DotNetNuke.Services.Search.SearchItemInfoCollection Implements DotNetNuke.Entities.Modules.ISearchable.GetSearchItems
@@ -176,8 +173,6 @@ Public Class DocumentsController
         d.SubmitChanges()
     End Sub
 
-            Return FileManager.Instance.GetUrl(theFile) & "?DocId=" & DocId
-        End If
     End Function
 
     Public Shared Function GetFileIcon(ByVal FileId As Integer?, ByVal LinkType As Integer, Optional IconId As Integer? = -1) As String
