@@ -246,4 +246,7 @@
   <data name="lblTrashed.Text" xml:space="preserve">
     <value>Trashed?</value>
   </data>
+  <data name="DocumentsSettings.Text" xml:space="preserve">
+    <value>Documents Settings</value>
+  </data>
 </root>
