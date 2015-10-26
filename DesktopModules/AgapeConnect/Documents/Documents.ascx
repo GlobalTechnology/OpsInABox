@@ -22,7 +22,7 @@
                             NavigateUrl='<%# IIf(Eval("FileId") Is Nothing, NavigateURL() & "?FolderId=" & Eval("FolderId"), DocumentsController.GetFileUrl(Eval("DocId"), Eval("FileId")))%>'>
                             <div>
                                 <asp:Image ID="icon" runat="server"
-                                    ImageUrl='<%# GetFileIcon(Eval("FileId"), Eval("LinkType"), Eval("CustomIcon") ) %>'
+                                    ImageUrl='<%# DocumentsController.GetFileIcon(Eval("FileId"), Eval("LinkType"), Eval("CustomIcon"))%>'
                                     ToolTip='<%# IIf(Eval("FileId") Is Nothing, "", vbNewLine & "Author: " & Eval("Author"))%>' />
                                 
                                 <div style="padding: 0; margin: 0;">
