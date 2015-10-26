@@ -139,36 +139,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
         End Function
 
-        Public Function GetFileUrl(ByVal DocId As Integer, ByVal FileId As Integer) As String
-            Dim d As New DocumentsDataContext()
-
-            If FileId = -2 Then
-                Dim theDoc = From c In d.AP_Documents_Docs Where c.DocId = DocId
-
-                Select Case theDoc.First.LinkType
-                    Case 0, 2
-                        Return theDoc.First.LinkValue
-                    Case 1
-                        Return "http://www.youtube.com"
-                    Case 3
-                        Return NavigateURL(CInt(theDoc.First.LinkValue))
-                End Select
-            End If
-
-            Dim theFile = FileManager.Instance.GetFile(FileId)
-            If Not theFile Is Nothing Then
-                Dim rtn = EditUrl("DocumentViewer") ' FileManager.Instance.GetUrl(theFile)
-
-                If rtn.Contains("?") Then
-                    rtn &= "&DocId=" & DocId
-                Else
-                    rtn &= "?DocId=" & DocId
-                End If
-                Return rtn
-            Else
-                Return EditUrl("DocumentViewer") & "?DocId=" & DocId
-            End If
-        End Function
+        
 
         Public Function GetFileDate(ByVal FileId As Integer) As String
             Return DotNetNuke.Services.FileSystem.FileManager.Instance.GetFile(FileId).LastModificationTime.ToString("dd MMM yyyy")

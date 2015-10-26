@@ -19,7 +19,7 @@
                     <div id="Icons" runat="server" style="width:1000px">
                         <asp:HyperLink ID="HyperLink1" runat="server" ToolTip='<%# Eval("Description") & IIF(Eval("FileId") is nothing, "", vbnewline & "Author: " & Eval("Author"))  %>'
                             Target='<%# IIF((Eval("LinkType") =0 or Eval("LinkType")=2) and not Eval("FileId") is nothing, "_blank", "_self") %>'
-                            NavigateUrl='<%#  IIF(Eval("FileId") is nothing, NavigateURL() & "?FolderId=" & Eval("FolderId"), GetFileUrl(Eval("DocId"), Eval("FileId")) ) %>'>
+                            NavigateUrl='<%# IIf(Eval("FileId") Is Nothing, NavigateURL() & "?FolderId=" & Eval("FolderId"), DocumentsController.GetFileUrl(Eval("DocId"), Eval("FileId")))%>'>
                             <div>
                                 <asp:Image ID="icon" runat="server"
                                     ImageUrl='<%# GetFileIcon(Eval("FileId"), Eval("LinkType"), Eval("CustomIcon") ) %>'
@@ -46,4 +46,3 @@
         </div>
     </div>
 </div>
-<div style="clear: both;" />
