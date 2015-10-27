@@ -22,6 +22,10 @@
                         </div>
                     </div>
                 </asp:HyperLink>
+                <div class="docButtons">
+                    <asp:HyperLink ID="btnEditDoc" runat="server"><asp:Image ID="imgEditDoc" runat="server" ImageUrl="/"/></asp:HyperLink>
+
+                </div>
             </div>
         </ItemTemplate>
     </asp:ListView>
