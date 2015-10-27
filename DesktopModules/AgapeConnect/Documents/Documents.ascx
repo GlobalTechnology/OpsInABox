@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </asp:HyperLink>
-                <div class="docButtons">
+                <div id="docButtons" class="docButtons" runat="server">
                     <asp:HyperLink ID="btnEditDoc" CssClass="btnEditDoc" runat="server"></asp:HyperLink>
                     <asp:HyperLink ID="btnDeleteDoc" CssClass="btnDeleteDoc" runat="server"></asp:HyperLink>
                 </div>
