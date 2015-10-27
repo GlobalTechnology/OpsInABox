@@ -12,12 +12,12 @@
                     NavigateUrl='<%# IIf(Eval("FileId") Is Nothing, NavigateURL() & "?FolderId=" & Eval("FolderId"), GetFileUrl(Eval("DocId"), Eval("FileId")))%>'>
                     <div>
                         <asp:Image ID="icon" CssClass="icon" runat="server" ImageUrl='<%# DocumentsController.GetFileIcon(Eval("FileId"), Eval("LinkType"), Eval("CustomIcon"))%>' />
-                        <div class="right">
+                        <div>
                             <div>
-                                <asp:Label ID="lblItemName" runat="server" Text='<%# Eval("DisplayName") %>'></asp:Label>
+                                <asp:Label ID="lblItemName" CssClass="docTitle" runat="server" Text='<%# Eval("DisplayName") %>'></asp:Label>
                             </div>
                             <div id="theDesc" runat="server">
-                                <asp:Label ID="Label21" runat="server" CssClass="tblText" Text='<%# Eval("Description") %>'></asp:Label>
+                                <asp:Label ID="Label21" runat="server" CssClass="docText" Text='<%# Eval("Description") %>'></asp:Label>
                             </div>
                         </div>
                     </div>

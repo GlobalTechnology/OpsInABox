@@ -1,4 +1,17 @@
 ﻿/*DocumentsMain Section Begin*/
+
+#DocumentsMain .docTitle {
+    font-size: larger;
+}
+
+#DocumentsMain .doctext {
+    font-size: small;
+    color:gray;
+}
+
+#DocumentsMain a {
+    text-decoration: none;
+}
 #DocumentsMain .icons{
     position: relative; /* To center the inner image vertically */
     display: block;
@@ -11,9 +24,24 @@
     /* Not for first element */
     border-top: 1px solid transparent;
 }
-
-
-
+#DocumentsMain .icon {
+    height:72px;
+    width:72px;
+}
+#DocumentsMain .icons:hover {
+    border: 2px solid lightgrey; /* Top, left and right borders when hover */
+    border-bottom: 1px solid lightgrey; /* Bottom border when hover, to be combined whith top border of following element */
+    background-color: #f1f1f1;
+}
+#DocumentsMain .icons + .icons:hover, #DocumentsMain .icons:hover + .icons {
+    /* Not for first element. Applied if element or previous element is hover. */
+    border-top: 1px solid lightgrey;
+}
+#DocumentsMain .icons:last-of-type:hover {
+    /* Only for last element */
+    border-bottom: 1px solid lightgrey;
+    box-shadow: 0 1px 0 lightgrey; /* To avoid moving text when adding a border on hover */
+}
 
 /*DocumentsMain Section End*/
 
