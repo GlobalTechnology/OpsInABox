@@ -12,7 +12,7 @@
                     <div>
                         <asp:Image ID="icon" CssClass="icon" runat="server" ImageUrl='<%# DocumentsController.GetFileIcon(Eval("FileId"), Eval("LinkType"), Eval("CustomIcon"))%>' />
                         <div class="docInfo">
-                        <div>
+                            <div>
                                 <asp:Label ID="lblItemName" CssClass="docTitle" runat="server" Text='<%# Eval("DisplayName") %>'></asp:Label>
                                 <asp:Label ID="lblItemName" CssClass="docTitle" runat="server" Text='<%# Eval("DisplayName") %>'></asp:Label>
                             </div>
