@@ -1,0 +1,166 @@
+
+.PromotionBoxGamified {
+    width: 310px;
+    margin-bottom: 12px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+	border: 1px solid #DFDFDF;
+    -moz-box-shadow:    1px 1px 5px 2px #F4F4F4;
+    -webkit-box-shadow: 1px 1px 5px 2px #F4F4F4;
+    box-shadow:         1px 1px 5px 2px #F4F4F4;
+}
+
+.PromotionBoxGamified .titleContainer {
+    position: relative;
+    height: 48px;
+    line-height: 48px;
+    vertical-align: middle;
+    text-align: left;
+    padding: 0px 10px 0 10px;
+    background-image: url('images/GreyBoxTitle.png');
+    background-repeat: repeat-x;
+    background-color: inherit;
+    -webkit-border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+	border: none;
+}
+
+.PromotionBoxGamified .title {
+    color: #272727;
+    text-transform: uppercase;
+    font-family: 'OpenSansBold';
+    font-size: 20px;
+    letter-spacing : -1px;
+    position: relative;
+}
+
+.PromotionBoxGamified .titleRays {
+    height: 48px;
+    width: 261px;
+    position: absolute;
+    right: 0; top: 0;
+    background-image: url('images/BoxTitleRays.png');
+    background-repeat: no-repeat;
+    background-color: inherit;
+}
+
+.PromotionBoxGamified .contentContainer {
+    padding: 10px;
+    height: 305px;
+    border-top: 1px solid white;
+    position: relative;
+}
+
+.PromotionBoxGamified .contentpane div.Normal img {
+    margin: -10px -10px 10px -10px;
+}
+
+.PromotionBoxGamified .contentpane {
+    padding: 0;
+    text-align:left;
+    vertical-align:top;
+}
+#ContentContainer .PromotionBoxGamified .ContentPane {
+    padding-bottom: 0px;
+	margin: 0px;
+}
+
+.PromotionBoxGamified .contentContainer div.Normal {
+    text-align: left;
+}
+
+.PromotionBoxGamified .contentContainer div.Normal p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.PromotionBoxGamified .contentContainer div.Normal h1 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.PromotionBoxGamified .contentContainer div.Normal .button {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 29px;
+    line-height: 29px;
+    min-width: 65px;
+    background-image: url('images/GreyBoxButton.png');
+    background-repeat: repeat-x;
+    background-color: inherit;
+    display: inline-block;
+    padding: 0px 10px 0 10px;
+    margin-top: 10px;
+    border: 1px #ABACAE solid;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-family: OpenSansSemiBold;
+    font-size: 16px;
+    font-weight: normal;
+    color: #3A3B3F;
+    white-space: nowrap;  
+}
+
+.PromotionBoxGamified .contentContainer div.Normal .button::after {
+    font-size: 16px;
+    padding-left: 10px;
+    content: '\25B6'; /* Add a triangle after the button text */
+}
+
+.PromotionBoxGamified .contentContainer div.Normal .button:hover {
+    text-decoration: none;
+    color: #ABACAE;
+}
+
+.PromotionBoxGamified .Normal h1 {
+    font-size: 20px;
+    white-space: nowrap;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: #3A8BC2;
+    text-transform: none;
+    line-height: normal;
+}
+
+.PromotionBoxGamified .Normal h2 {
+    font-size: 18px;
+    white-space: nowrap;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: #3A8BC2;
+    line-height: normal;
+}
+
+.PromotionBoxGamified .Normal h3 {
+    font-size: 16px;
+    white-space: nowrap;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: #3A8BC2;
+    line-height: normal;
+}
+
+/* Gamification */
+.PromotionBoxGamified:hover {
+    border: 1px solid lightgrey;
+    background-color: #f1f1f1;
+    -moz-box-shadow:    1px 1px 5px 4px #F4F4F4;
+    -webkit-box-shadow: 1px 1px 5px 4px #F4F4F4;
+    box-shadow:         1px 1px 5px 4px #F4F4F4;
+    cursor:pointer; /* Change mouse cursor to simulate a link */
+}
+#ContentContainer .ContentPane .PromotionBoxGamified:hover div {
+    background-color: #f1f1f1;
+}
+.PromotionBoxGamified .titleContainer {
+    background-image: none;
+}
+.PromotionBoxGamified:hover .contentContainer div.Normal .button {
+    text-decoration: none;
+    color: #ABACAE;
+}
+    
