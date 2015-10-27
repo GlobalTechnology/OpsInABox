@@ -28,7 +28,7 @@
 #DocumentsMain .icon {
     height:60px;
     width:60px;
-    position:fixed;
+    position:absolute;
 }
 #DocumentsMain .icons:hover {
     border: 2px solid lightgrey; /* Top, left and right borders when hover */
