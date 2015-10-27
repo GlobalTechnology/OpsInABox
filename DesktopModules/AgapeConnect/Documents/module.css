@@ -76,11 +76,11 @@
     height: 16px;
     width: 16px;
     display:block;
-    margin:10px 0;
+
 }
 
 #DocumentsMain .btnDeleteDoc:hover {
-    background:transparent url('/DesktopModules/AgapeConnect/Documents/images/Delete_gray.png')
+    background:transparent url('/DesktopModules/AgapeConnect/Documents/images/Delete_gray.png') center top no-repeat;
 }
 
 /*DocumentsMain Section End*/
