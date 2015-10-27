@@ -1,14 +1,14 @@
 ﻿/*DocumentsMain Section Begin*/
-
+#DocumentsMain .docInfo{
+    margin-left: 100px;
+}
 #DocumentsMain .docTitle {
     font-size: larger;
 }
-
 #DocumentsMain .doctext {
     font-size: small;
     color:gray;
 }
-
 #DocumentsMain a {
     text-decoration: none;
 }
@@ -19,14 +19,16 @@
     padding: 10px;
     border: 2px solid transparent; /* To avoid moving text when adding a border on hover */
     border-bottom: 1px solid #ddd; /* Horizontal separator */
+    min-height:60px;
 }
 #DocumentsMain .icons + .icons{
     /* Not for first element */
     border-top: 1px solid transparent;
 }
 #DocumentsMain .icon {
-    height:72px;
-    width:72px;
+    height:60px;
+    width:60px;
+    position:fixed;
 }
 #DocumentsMain .icons:hover {
     border: 2px solid lightgrey; /* Top, left and right borders when hover */
