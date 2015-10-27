@@ -44,6 +44,12 @@
     border-bottom: 1px solid lightgrey;
     box-shadow: 0 1px 0 lightgrey; /* To avoid moving text when adding a border on hover */
 }
+#DocumentsMain .docButtons {
+    position:absolute;
+    right:10px;
+    top:10px;
+}
+
 
 /*DocumentsMain Section End*/
 
