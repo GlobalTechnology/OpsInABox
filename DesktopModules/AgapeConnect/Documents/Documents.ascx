@@ -23,8 +23,8 @@
                     </div>
                 </asp:HyperLink>
                 <div class="docButtons">
-                    <asp:HyperLink ID="btnEditDoc" runat="server"><asp:Image ID="imgEditDoc" runat="server" ImageUrl="/"/></asp:HyperLink>
-
+                    <asp:HyperLink ID="btnEditDoc" CssClass="btnEditDoc" runat="server"></asp:HyperLink>
+                    <asp:HyperLink ID="btnDeleteDoc" CssClass="btnDeleteDoc" runat="server"></asp:HyperLink>
                 </div>
             </div>
         </ItemTemplate>
