@@ -3,46 +3,31 @@
 <%@ Register Src="~/controls/urlcontrol.ascx" TagName="urlcontrol" TagPrefix="uc1" %>
 <%@ Register Assembly="DotNetNuke" Namespace="DotNetNuke.UI.WebControls" TagPrefix="cc1" %>
 
-<div style="width: 100%">
-    <div id="cover" style="position: absolute; width: 100%; height: 100%; z-index: 1;
-        top: 0px; left: 0px; cursor: move; background: red; display: none;">
-        &nbsp;
-    </div>
-    <div id="MySplitter">
-       
-        <div id="RightPane" class="aBlank">
-           <div style="clear: both;">
-            </div>
-            <br />
-            <asp:ListView ID="dlFolderView" runat="server">
-                <ItemTemplate>
-                    <div id="Icons" runat="server" style="width:1000px">
-                        <asp:HyperLink ID="HyperLink1" runat="server" ToolTip='<%# Eval("Description") & IIF(Eval("FileId") is nothing, "", vbnewline & "Author: " & Eval("Author"))  %>'
-                            Target='<%# IIF((Eval("LinkType") =0 or Eval("LinkType")=2) and not Eval("FileId") is nothing, "_blank", "_self") %>'
-                            NavigateUrl='<%# IIf(Eval("FileId") Is Nothing, NavigateURL() & "?FolderId=" & Eval("FolderId"), GetFileUrl(Eval("DocId"), Eval("FileId")))%>'>
+<div id="DocumentsMain" class="documents">
+    <asp:ListView ID="dlFolderView" runat="server">
+        <ItemTemplate>
+            <div id="Icons" class="icons" runat="server">
+                <asp:HyperLink ID="HyperLink1" runat="server"
+                    Target='<%# IIF((Eval("LinkType") =0 or Eval("LinkType")=2) and not Eval("FileId") is nothing, "_blank", "_self") %>'
+                    NavigateUrl='<%# IIf(Eval("FileId") Is Nothing, NavigateURL() & "?FolderId=" & Eval("FolderId"), GetFileUrl(Eval("DocId"), Eval("FileId")))%>'>
+                    <div>
+                        <asp:Image ID="icon" CssClass="icon" runat="server" ImageUrl='<%# DocumentsController.GetFileIcon(Eval("FileId"), Eval("LinkType"), Eval("CustomIcon"))%>' />
+                        <div class="right">
                             <div>
-                                <asp:Image ID="icon" runat="server"
-                                    ImageUrl='<%# DocumentsController.GetFileIcon(Eval("FileId"), Eval("LinkType"), Eval("CustomIcon"))%>'
-                                    ToolTip='<%# IIf(Eval("FileId") Is Nothing, "", vbNewLine & "Author: " & Eval("Author"))%>' />
-                                
-                                <div style="padding: 0; margin: 0;">
-                                    <asp:Label ID="lblItemName" runat="server"
-                                        Text='<%# Eval("DisplayName") %>'></asp:Label>
-                                </div>
-                                <div id="theDesc" runat="server">
-                                    <asp:Label ID="Label21" runat="server" CssClass="tblText" Text='<%# Eval("Description") %>'
-                                        Style="word-wrap: break-word;"></asp:Label>
-                                </div>
+                                <asp:Label ID="lblItemName" runat="server" Text='<%# Eval("DisplayName") %>'></asp:Label>
                             </div>
-                        </asp:HyperLink>
+                            <div id="theDesc" runat="server">
+                                <asp:Label ID="Label21" runat="server" CssClass="tblText" Text='<%# Eval("Description") %>'></asp:Label>
+                            </div>
+                        </div>
                     </div>
+                </asp:HyperLink>
+            </div>
                     <div id="docbuttons" runat="server" style="float:right">
                         <asp:HyperLink ID="btnEditDoc" runat="server" CssClass="aButton">Edit</asp:HyperLink>
                         <%--<br />
                         <asp:HyperLink ID="btnDeleteDoc" runat="server" CssClass="aButton">Delete</asp:HyperLink>--%>
                     </div>
-                </ItemTemplate>
-            </asp:ListView>
-        </div>
-    </div>
+        </ItemTemplate>
+    </asp:ListView>
 </div>
