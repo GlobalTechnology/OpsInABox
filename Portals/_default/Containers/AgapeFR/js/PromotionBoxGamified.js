@@ -1,6 +1,9 @@
 ﻿function initOnClick() {
+
+    /* This enables the click on the whole box to follow the link on the <a> with "button" class. */
     $('.PromotionBoxGamified').click(function () {
-        document.location = $(this).find('.button').attr('href');
+        var link = $(this).find('.button');
+        window.open(link.attr('href'), link.attr('target') != null ? link.attr('target') : '_self');
         return false;
     });
 }
