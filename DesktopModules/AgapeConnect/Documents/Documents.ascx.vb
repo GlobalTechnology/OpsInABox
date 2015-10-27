@@ -69,7 +69,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             End If
             Dim theFile = FileManager.Instance.GetFile(FileId)
             If Not theFile Is Nothing Then
-                Dim rtn = EditUrl("DocumentViewer") ' FileManager.Instance.GetUrl(theFile)
+                Dim rtn = EditUrl("DocumentViewer")
                 If rtn.Contains("?") Then
                     rtn &= "&DocId=" & DocId
                 Else

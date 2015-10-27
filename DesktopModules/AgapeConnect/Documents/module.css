@@ -49,7 +49,28 @@
     right:10px;
     top:10px;
 }
+#DocumentsMain .btnEditDoc {
+    background: transparent url('/DesktopModules/AgapeConnect/Documents/images/Edit_lightgray.png') center top no-repeat;
+    height: 16px;
+    width: 16px;
+    display:block;
+    margin:10px 0;
+}
 
+#DocumentsMain .btnEditDoc:hover {
+    background:transparent url('/DesktopModules/AgapeConnect/Documents/images/Edit_gray.png')
+}
+#DocumentsMain .btnDeleteDoc {
+    background: transparent url('/DesktopModules/AgapeConnect/Documents/images/Delete_lightgray.png') center top no-repeat;
+    height: 16px;
+    width: 16px;
+    display:block;
+    margin:10px 0;
+}
+
+#DocumentsMain .btnDeleteDoc:hover {
+    background:transparent url('/DesktopModules/AgapeConnect/Documents/images/Delete_gray.png')
+}
 
 /*DocumentsMain Section End*/
 
