@@ -29,6 +29,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 Next i
             Catch ex As Exception
             End Try
+            Response.Redirect(NavigateURL())
         End Sub
 
     End Class
