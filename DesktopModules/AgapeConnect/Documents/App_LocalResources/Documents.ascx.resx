@@ -249,4 +249,7 @@
   <data name="DocumentsSettings.Text" xml:space="preserve">
     <value>Documents Settings</value>
   </data>
+  <data name="AddDocuemnt.Text" xml:space="preserve">
+    <value>Add Document</value>
+  </data>
 </root>
