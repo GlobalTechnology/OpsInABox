@@ -16,6 +16,7 @@
                 case "5": $("#divUpload").show(); break;
             }
         });
+
     }
     $(document).ready(function () {
         setUpMyTabs();

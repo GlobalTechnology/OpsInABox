@@ -193,7 +193,7 @@ Public Class DocumentsController
             End Select
         End If
         If Not theFile Is Nothing Then
-            Select Case theFile.Extension
+            Select Case theFile.Extension.ToLower
                 Case "gif"
                     Return Path & "GIF.png"
                 Case "bmp"
@@ -236,10 +236,10 @@ Public Class DocumentsController
 #Region "Add/Edit"
 
     'Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, Permissions As String)
-    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String)
+    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, ByRef moduleSettings As System.Collections.Hashtable)
         Dim d As New DocumentsDataContext()
         Dim insert As New AP_Documents_Doc
-        insert.FolderId = 47
+        insert.FolderId = GetRootFolderId(moduleSettings)
         insert.FileId = FileId
         insert.DisplayName = FileName
         insert.Author = Author
@@ -308,33 +308,5 @@ End Class
 
 
 '    Return SearchItemCollection
-
-'End Function
-'                Return Path & "MPG.png"
-'            Case "pdf"
-'                Return Path & "PDF.png"
-
-'            Case "png"
-'                Return Path & "PNG.png"
-'            Case "psd"
-'                Return Path & "PSD.png"
-'            Case "tiff"
-'                Return Path & "TIFF.png"
-'            Case "txt"
-'                Return Path & "TXT.png"
-'            Case "wav"
-'                Return Path & "WAV.png"
-'            Case "zip"
-'                Return Path & "ZIP.png"
-
-
-'            Case Else
-'                Return Path & "Blank.png"
-
-'        End Select
-
-'    End If
-'    Return "images/Blank.png"
-
 
 'End Function
