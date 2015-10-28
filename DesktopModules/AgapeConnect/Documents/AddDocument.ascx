@@ -66,4 +66,5 @@
         <asp:Button ID="btnNewLink" runat="server" Text="Add Link" />
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
     </div>
+        Font-Size="X-Large" Style="margin-top: 30px;" />
 </div>
