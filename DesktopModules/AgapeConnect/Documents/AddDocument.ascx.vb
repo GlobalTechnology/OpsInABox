@@ -24,7 +24,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                         ' hpf.SaveAs(Server.MapPath("MyFiles") & "\" & System.IO.Path.GetFileName(hpf.FileName))
                         'Need to add the files to the dnn file system
                         Dim theFile = DotNetNuke.Services.FileSystem.FileManager.Instance.AddFile(folder, hpf.FileName, hpf.InputStream)
-                        DocumentsController.InsertDocument(theFile.FileId, theFile.FileName, UserInfo.DisplayName) 'need to add permissions eventually
+                        DocumentsController.InsertDocument(theFile.FileId, theFile.FileName, UserInfo.DisplayName, Settings) 'need to add permissions eventually
                     End If
                 Next i
             Catch ex As Exception
