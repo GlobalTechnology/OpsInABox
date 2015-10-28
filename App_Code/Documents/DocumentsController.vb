@@ -233,6 +233,27 @@ Public Class DocumentsController
 
 #End Region
 
+#Region "Add/Edit"
+
+    'Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, Permissions As String)
+    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String)
+        Dim d As New DocumentsDataContext()
+        Dim insert As New AP_Documents_Doc
+        insert.FolderId = 47
+        insert.FileId = FileId
+        insert.DisplayName = FileName
+        insert.Author = Author
+        insert.VersionNumber = "1.0"
+        insert.CustomIcon = -1
+        insert.LinkType = "4"  ' a File
+        'insert.Permissions = Permissions  Todo: determine permissions implementation
+        d.AP_Documents_Docs.InsertOnSubmit(insert)
+        d.SubmitChanges()
+    End Sub
+
+#End Region
+
+
 End Class
 
 ' Implements Entities.Modules.ISearchable
