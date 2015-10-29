@@ -8,7 +8,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
         End Sub
 
-        Protected Sub btnUpoadFiles_Click(sender As Object, e As System.EventArgs) Handles btnUpoadFiles.Click
+        Protected Sub btnUploadFiles_Click(sender As Object, e As System.EventArgs) Handles btnUploadFiles.Click
             Try
                 Dim folder As IFolderInfo
                 If Not FolderManager.Instance.FolderExists(PortalId, "acDocuments") Then
@@ -16,17 +16,13 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 Else
                     folder = FolderManager.Instance.GetFolder(PortalId, "acDocuments")
                 End If
-                ' Get the HttpFileCollection
-                Dim hfc As HttpFileCollection = Request.Files
-                For i As Integer = 0 To hfc.Count - 1
-                    Dim hpf As HttpPostedFile = hfc(i)
-                    If hpf.ContentLength > 0 Then
-                        ' hpf.SaveAs(Server.MapPath("MyFiles") & "\" & System.IO.Path.GetFileName(hpf.FileName))
-                        'Need to add the files to the dnn file system
-                        Dim theFile = DotNetNuke.Services.FileSystem.FileManager.Instance.AddFile(folder, hpf.FileName, hpf.InputStream)
-                        DocumentsController.InsertDocument(theFile.FileId, theFile.FileName, UserInfo.DisplayName, Settings) 'need to add permissions eventually
-                    End If
-                Next i
+
+                If (FileUpload1.HasFile) Then
+                    'Need to add the files to the dnn file system
+                    Dim theFile = DotNetNuke.Services.FileSystem.FileManager.Instance.AddFile(folder, FileUpload1.FileName, FileUpload1.FileContent)
+                    'Now instert the document into the database
+                    DocumentsController.InsertDocument(theFile.FileId, tbName.Text, UserInfo.DisplayName, Settings, tbDescription.Text) 'need to add permissions eventually
+                End If
             Catch ex As Exception
             End Try
             Response.Redirect(NavigateURL())
