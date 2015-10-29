@@ -236,7 +236,7 @@ Public Class DocumentsController
 #Region "Add/Edit"
 
     'Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, Permissions As String)
-    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, ByRef moduleSettings As System.Collections.Hashtable)
+    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, ByRef moduleSettings As System.Collections.Hashtable, ByVal Description As String)
         Dim d As New DocumentsDataContext()
         Dim insert As New AP_Documents_Doc
         insert.FolderId = GetRootFolderId(moduleSettings)
@@ -246,13 +246,13 @@ Public Class DocumentsController
         insert.VersionNumber = "1.0"
         insert.CustomIcon = -1
         insert.LinkType = "4"  ' a File
+        insert.Description = Description
         'insert.Permissions = Permissions  Todo: determine permissions implementation
         d.AP_Documents_Docs.InsertOnSubmit(insert)
         d.SubmitChanges()
     End Sub
 
 #End Region
-
 
 End Class
 

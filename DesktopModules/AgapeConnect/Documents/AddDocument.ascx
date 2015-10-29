@@ -1,5 +1,4 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="AddDocument.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Documents.AddDocument" %>
-<script type="text/javascript">
     function setUpMyTabs() {
         $("input:radio").click(function () {
             $(".docOption").hide();
@@ -16,13 +15,10 @@
                 case "5": $("#divUpload").show(); break;
             }
         });
-
-    }
     $(document).ready(function () {
         setUpMyTabs();
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyTabs(); });
     });
-</script>
 <div id="divAddDocument">
     <asp:Label ID="lblName" runat="server">Document Name</asp:Label>
     <asp:TextBox ID="tbName" runat="server"></asp:TextBox>
@@ -39,7 +35,6 @@
     </asp:RadioButtonList>
     <div id="divURL" class="docOption">
         <asp:Label ID="lblURL" runat="server" ResourceKey="lblURL" />
-    </div>
     <div id="divYouTube" class="docOption" style="display: none">
         <asp:Label ID="lblYouTube" runat="server" ResourceKey="lblYouTube" />
     </div>
@@ -66,6 +61,4 @@
         <asp:Button ID="btnUploadFiles" runat="server" Text="Upload" />
         <asp:Button ID="btnNewLink" runat="server" Text="Add Link" />
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
-    </div>
-        Font-Size="X-Large" Style="margin-top: 30px;" />
 </div>
