@@ -21,6 +21,9 @@
     });
 <div id="divAddDocument">
     <asp:Label ID="lblName" runat="server">Document Name</asp:Label>
+</script>
+<div id="divAddDocument">
+    <asp:Label ID="lblName" runat="server">Document Name</asp:Label>
     <asp:TextBox ID="tbName" runat="server"></asp:TextBox>
     <br />
     <asp:Label ID="lblDescription" runat="server">Document Description</asp:Label>
@@ -61,4 +64,6 @@
         <asp:Button ID="btnUploadFiles" runat="server" Text="Upload" />
         <asp:Button ID="btnNewLink" runat="server" Text="Add Link" />
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+    </div>
 </div>
