@@ -78,27 +78,9 @@
 /*DocumentsMain Section End*/
 
 /*AddDocument Section Start*/
-#divUpload {
+
+#divAddDocument {
     width: 600px;
-}
-
-.MultiFile-list {
-    border: 2pt solid gray;
-    margin: 10px;
-    padding: 3px 3px 0px 10px;
-    height: 100px;
-    width: 500px;
-    text-align: left;
-    overflow: auto;
-}
-
-.MultiFile-label {
-    font-size: large;
-}
-
-.ui-widget-content .MultiFile-remove {
-    color: Red;
-    font-weight: bold;
 }
 
 /*AddDocument End*/
