@@ -50,8 +50,11 @@ Public Class DocumentsController
 
                 rootFolderId = insert.FolderId
             End If
+<<<<<<< HEAD
         Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
         Dim rootFolderId As Integer = moduleSettings(RootFolderSettingKey)
+=======
+>>>>>>> 42ae5970a33b8c7e6befeb030cb6746a548eb3db
 
         End If
         Return rootFolderId
@@ -64,6 +67,7 @@ Public Class DocumentsController
 
         ' TODO filter by rootfolder
         Return docs
+<<<<<<< HEAD
                 insert.Name = DocumentsModuleRootFolderName
                 insert.Permission = moduleSettings("DefaultPermissions")
                 insert.PortalId = PS.PortalId
@@ -74,6 +78,9 @@ Public Class DocumentsController
 
         End If
         Return rootFolderId
+=======
+
+>>>>>>> 42ae5970a33b8c7e6befeb030cb6746a548eb3db
     End Function
 
     Public Shared Function GetDocument(ByVal DocId As Integer) As AP_Documents_Doc
@@ -81,6 +88,7 @@ Public Class DocumentsController
         Dim theDoc = From c In d.AP_Documents_Docs Where c.DocId = DocId
         Return theDoc.First
     End Function
+<<<<<<< HEAD
         ' TODO filter by rootfolder
         Return docs
 
@@ -174,6 +182,8 @@ Public Class DocumentsController
     End Sub
 
     End Function
+=======
+>>>>>>> 42ae5970a33b8c7e6befeb030cb6746a548eb3db
 
     Public Shared Function GetFileIcon(ByVal FileId As Integer?, ByVal LinkType As Integer, Optional IconId As Integer? = -1) As String
         If Not IconId Is Nothing And IconId > 0 Then
@@ -236,7 +246,7 @@ Public Class DocumentsController
 #Region "Add/Edit"
 
     'Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, Permissions As String)
-    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, ByRef moduleSettings As System.Collections.Hashtable)
+    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, ByRef moduleSettings As System.Collections.Hashtable, ByVal Description As String)
         Dim d As New DocumentsDataContext()
         Dim insert As New AP_Documents_Doc
         insert.FolderId = GetRootFolderId(moduleSettings)
@@ -246,13 +256,13 @@ Public Class DocumentsController
         insert.VersionNumber = "1.0"
         insert.CustomIcon = -1
         insert.LinkType = "4"  ' a File
+        insert.Description = Description
         'insert.Permissions = Permissions  Todo: determine permissions implementation
         d.AP_Documents_Docs.InsertOnSubmit(insert)
         d.SubmitChanges()
     End Sub
 
 #End Region
-
 
 End Class
 
@@ -310,34 +320,3 @@ End Class
 '    Return SearchItemCollection
 
 'End Function
-<<<<<<< HEAD
-'                Return Path & "MPG.png"
-'            Case "pdf"
-'                Return Path & "PDF.png"
-
-'            Case "png"
-'                Return Path & "PNG.png"
-'            Case "psd"
-'                Return Path & "PSD.png"
-'            Case "tiff"
-'                Return Path & "TIFF.png"
-'            Case "txt"
-'                Return Path & "TXT.png"
-'            Case "wav"
-'                Return Path & "WAV.png"
-'            Case "zip"
-'                Return Path & "ZIP.png"
-
-
-'            Case Else
-'                Return Path & "Blank.png"
-
-'        End Select
-
-'    End If
-'    Return "images/Blank.png"
-
-
-'End Function
-=======
->>>>>>> uploading files now.

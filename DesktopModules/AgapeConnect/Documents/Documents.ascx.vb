@@ -47,7 +47,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             Return DotNetNuke.Services.FileSystem.FileManager.Instance.GetFile(FileId).LastModificationTime.ToString("dd MMM yyyy")
 
         End Function
-
+            If FileId = -2 Then 'the file is a link
+                Dim theDoc = DocumentsController.GetDocument(DocId)
+                Select Case theDoc.LinkType
             If FileId = -2 Then 'the file is a link
                 Dim theDoc = DocumentsController.GetDocument(DocId)
                 Select Case theDoc.LinkType

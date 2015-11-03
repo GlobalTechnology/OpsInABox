@@ -2,7 +2,7 @@
 <<<<<<< HEAD
 =======
 <script type="text/javascript">
->>>>>>> Added add link options
+>>>>>>> 42ae5970a33b8c7e6befeb030cb6746a548eb3db
     function setUpMyTabs() {
         $("input:radio").click(function () {
             $(".docOption").hide();
@@ -22,15 +22,17 @@
 <<<<<<< HEAD
 =======
     }
->>>>>>> Added add link options
+>>>>>>> 42ae5970a33b8c7e6befeb030cb6746a548eb3db
     $(document).ready(function () {
         setUpMyTabs();
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyTabs(); });
     });
 <<<<<<< HEAD
+<div id="divAddDocument">
+    <asp:Label ID="lblName" runat="server">Document Name</asp:Label>
 =======
+>>>>>>> 42ae5970a33b8c7e6befeb030cb6746a548eb3db
 </script>
->>>>>>> Added add link options
 <div id="divAddDocument">
     <asp:Label ID="lblName" runat="server">Document Name</asp:Label>
     <asp:TextBox ID="tbName" runat="server"></asp:TextBox>
@@ -50,7 +52,7 @@
 <<<<<<< HEAD
 =======
     </div>
->>>>>>> Added add link options
+>>>>>>> 42ae5970a33b8c7e6befeb030cb6746a548eb3db
     <div id="divYouTube" class="docOption" style="display: none">
         <asp:Label ID="lblYouTube" runat="server" ResourceKey="lblYouTube" />
     </div>
@@ -78,7 +80,8 @@
         <asp:Button ID="btnNewLink" runat="server" Text="Add Link" />
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
 <<<<<<< HEAD
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
 =======
+>>>>>>> 42ae5970a33b8c7e6befeb030cb6746a548eb3db
     </div>
->>>>>>> Added add link options
 </div>

@@ -57,7 +57,13 @@
     height: 16px;
     width: 16px;
     display:block;
+<<<<<<< HEAD
 }
+=======
+
+}
+
+>>>>>>> 42ae5970a33b8c7e6befeb030cb6746a548eb3db
 #DocumentsMain .btnEditDoc:hover {
     background:transparent url('/DesktopModules/AgapeConnect/Documents/images/Edit_gray.png') center top no-repeat;
 }
@@ -66,6 +72,7 @@
     height: 16px;
     width: 16px;
     display:block;
+<<<<<<< HEAD
 }
 
 #DocumentsMain .btnDeleteDoc:hover {
@@ -76,6 +83,8 @@
     height: 16px;
     width: 16px;
     display:block;
+=======
+>>>>>>> 42ae5970a33b8c7e6befeb030cb6746a548eb3db
 
 }
 
@@ -86,34 +95,15 @@
 /*DocumentsMain Section End*/
 
 /*AddDocument Section Start*/
+
+#divAddDocument {
+    width: 600px;
+}
+
+/*AddDocument End*/
+
 <<<<<<< HEAD
-
-#divAddDocument {
-    width: 600px;
-}
-
-/*AddDocument End*/
-
 /*AddDocument Section Start*/
-#divUpload {
-    width: 600px;
-}
-
-.MultiFile-list {
-    border: 2pt solid gray;
-    margin: 10px;
-    padding: 3px 3px 0px 10px;
-    height: 100px;
-    width: 500px;
-    text-align: left;
-    overflow: auto;
-}
-
-.MultiFile-label {
-    font-size: large;
-}
-=======
->>>>>>> Added add link options
 
 #divAddDocument {
     width: 600px;
@@ -121,6 +111,8 @@
 
 /*AddDocument End*/
 
+=======
+>>>>>>> 42ae5970a33b8c7e6befeb030cb6746a548eb3db
 .Documents .FieldRow {
     margin-bottom: 10px;
     
