@@ -16,6 +16,7 @@ Public Module FolderConstants
     Public Const NoParentFolderId As Integer = -1
     Public Const RootFolderSettingKey As String = "RootFolder" 'cooresponds to a folder id in the settings table
     Public Const DocumentsModuleRootFolderName As String = "acDocuments"
+    Public Const PortalSettingKey As String = "PortalSettings"
 
 End Module
 
@@ -23,11 +24,31 @@ End Module
 
 Public Class DocumentsController
 
-#Region "????"
+#Region "Document Settings"
+
+    Public Shared Function GetFolders() As List(Of AP_Documents_Folder)
+        Dim d As New DocumentsDataContext()
+        Dim PS = CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings)
+        Return (From c In d.AP_Documents_Folders Where c.PortalId = PS.PortalId Order By c.FolderId Descending).ToList
+    End Function
+
+    Public Shared Function GetPathName(ByVal Folder As AP_Documents_Folder, ByRef pathName As String) As String
+        Dim d As New DocumentsDataContext()
+        Dim PS = CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings)
+        pathName = Folder.Name & "/" & pathName
+
+        If Folder.ParentFolder > 0 Then
+            Dim parent = From c In d.AP_Documents_Folders Where c.FolderId = Folder.ParentFolder And c.PortalId = PS.PortalId
+            If parent.Count > 0 Then
+                GetPathName(parent.First, pathName)
+            End If
+        End If
+        Return pathName
+    End Function
 
     Public Shared Function GetRootFolderId(ByRef moduleSettings As System.Collections.Hashtable) As Integer
         Dim d As New DocumentsDataContext()
-        Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
+        Dim PS = CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings)
         Dim rootFolderId As Integer = moduleSettings(RootFolderSettingKey)
 
         If String.IsNullOrEmpty(rootFolderId) Then
@@ -54,6 +75,10 @@ Public Class DocumentsController
         End If
         Return rootFolderId
     End Function
+
+#End Region
+
+#Region "Add/Edit"
 
     Public Shared Function GetDocuments(ByRef moduleSettings As System.Collections.Hashtable) As IQueryable(Of AP_Documents_Doc)
         Dim d As New DocumentsDataContext()
@@ -127,9 +152,9 @@ Public Class DocumentsController
         Return "images/Blank.png"
     End Function
 
-#End Region
 
-#Region "Add/Edit"
+
+
 
     'Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, Permissions As String)
     Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, ByRef moduleSettings As System.Collections.Hashtable, ByVal Description As String)
