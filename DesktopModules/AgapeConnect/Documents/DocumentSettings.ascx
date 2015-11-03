@@ -1,7 +1,7 @@
 <%@ Control Language="vb" AutoEventWireup="false" CodeFile="DocumentSettings.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Documents.DocumentSettings" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
-<div class="Documents DocumentSettings">
+<div id="DocumentSettings" class="Documents">
 
     <div  class="FieldRow">
         <asp:Label ID="lblFolder" runat="server" ResourceKey="Root" CssClass="FieldLabel"></asp:Label>

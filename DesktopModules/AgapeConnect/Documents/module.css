@@ -85,6 +85,15 @@
 
 /*AddDocument End*/
 
+/*DocumentSettings Section Start*/
+
+#DocumentSettings {
+    margin: 50px;
+}
+
+/*DocumentSettings End*/
+
+
 .Documents .FieldRow {
     margin-bottom: 10px;
     
