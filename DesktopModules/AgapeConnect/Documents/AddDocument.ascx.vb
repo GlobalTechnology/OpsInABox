@@ -36,9 +36,15 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                     End If
                 Catch ex As Exception
                 End Try
+            ElseIf rbLinkType.SelectedValue = 1 Then 'Radio button selected was Google Doc
+                DocumentsController.InsertDocument("-2", tbName.Text, UserInfo.DisplayName, "2", tbURL.Text, "False", Settings, tbDescription.Text)
+            ElseIf rbLinkType.SelectedValue = 2 Then 'Radio button selected was external URL
+                DocumentsController.InsertDocument("-2", tbName.Text, UserInfo.DisplayName, "0", tbURL.Text, "False", Settings, tbDescription.Text)
+            ElseIf rbLinkType.SelectedValue = 3 Then 'Radio button selected was internal page
+                DocumentsController.InsertDocument("-2", tbName.Text, UserInfo.DisplayName, "3", ddlPages.SelectedValue, "False", Settings, tbDescription.Text)
+            ElseIf rbLinkType.SelectedValue = 4 Then 'Radio button selected was youtube
+                DocumentsController.InsertDocument("-2", tbName.Text, UserInfo.DisplayName, "1", tbURL.Text, "False", Settings, tbDescription.Text)
             End If
-
-            
             Response.Redirect(NavigateURL())
         End Sub
 
