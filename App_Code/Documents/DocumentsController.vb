@@ -152,12 +152,7 @@ Public Class DocumentsController
         Return "images/Blank.png"
     End Function
 
-
-
-
-
-    'Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, Permissions As String)
-    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, ByRef moduleSettings As System.Collections.Hashtable, ByVal Description As String)
+    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, LinkType As String, LinkURL As String, Trashed As Boolean, ByRef moduleSettings As System.Collections.Hashtable, ByVal Description As String)
         Dim d As New DocumentsDataContext()
         Dim insert As New AP_Documents_Doc
         insert.FolderId = GetRootFolderId(moduleSettings)
@@ -166,8 +161,10 @@ Public Class DocumentsController
         insert.Author = Author
         insert.VersionNumber = "1.0"
         insert.CustomIcon = -1
-        insert.LinkType = "4"  ' a File
+        insert.LinkType = LinkType
         insert.Description = Description
+        insert.LinkValue = LinkURL
+        insert.Trashed = Trashed
         'insert.Permissions = Permissions  Todo: determine permissions implementation
         d.AP_Documents_Docs.InsertOnSubmit(insert)
         d.SubmitChanges()

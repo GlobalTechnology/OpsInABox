@@ -32,7 +32,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                         'Need to add the files to the dnn file system
                         Dim theFile = DotNetNuke.Services.FileSystem.FileManager.Instance.AddFile(folder, FileUpload1.FileName, FileUpload1.FileContent)
                         'Now instert the document into the database
-                        DocumentsController.InsertDocument(theFile.FileId, tbName.Text, UserInfo.DisplayName, Settings, tbDescription.Text) 'need to add permissions eventually
+                        DocumentsController.InsertDocument(theFile.FileId, tbName.Text, UserInfo.DisplayName, "4", "", "False", Settings, tbDescription.Text) 'need to add permissions eventually
                     End If
                 Catch ex As Exception
                 End Try
