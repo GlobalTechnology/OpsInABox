@@ -2,6 +2,7 @@
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <%@ Register Src="~/controls/urlcontrol.ascx" TagName="urlcontrol" TagPrefix="uc1" %>
 <%@ Register Assembly="DotNetNuke" Namespace="DotNetNuke.UI.WebControls" TagPrefix="cc1" %>
+
 <div id="DocumentsMain" class="documents">
     <asp:ListView ID="dlFolderView" runat="server">
         <ItemTemplate>
@@ -13,7 +14,6 @@
                         <asp:Image ID="icon" CssClass="icon" runat="server" ImageUrl='<%# DocumentsController.GetFileIcon(Eval("FileId"), Eval("LinkType"), Eval("CustomIcon"))%>' />
                         <div class="docInfo">
                             <div>
-                                <asp:Label ID="lblItemName" CssClass="docTitle" runat="server" Text='<%# Eval("DisplayName") %>'></asp:Label>
                                 <asp:Label ID="lblItemName" CssClass="docTitle" runat="server" Text='<%# Eval("DisplayName") %>'></asp:Label>
                             </div>
                             <div id="theDesc" runat="server">

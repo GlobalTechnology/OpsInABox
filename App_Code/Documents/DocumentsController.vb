@@ -50,8 +50,6 @@ Public Class DocumentsController
 
                 rootFolderId = insert.FolderId
             End If
-        Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
-        Dim rootFolderId As Integer = moduleSettings(RootFolderSettingKey)
 
         End If
         Return rootFolderId
@@ -64,117 +62,13 @@ Public Class DocumentsController
 
         ' TODO filter by rootfolder
         Return docs
-                insert.Name = DocumentsModuleRootFolderName
-                insert.Permission = moduleSettings("DefaultPermissions")
-                insert.PortalId = PS.PortalId
-                d.AP_Documents_Folders.InsertOnSubmit(insert)
-                d.SubmitChanges()
 
-                rootFolderId = insert.FolderId
-
-        End If
-        Return rootFolderId
     End Function
 
     Public Shared Function GetDocument(ByVal DocId As Integer) As AP_Documents_Doc
         Dim d As New DocumentsDataContext()
         Dim theDoc = From c In d.AP_Documents_Docs Where c.DocId = DocId
         Return theDoc.First
-    End Function
-        ' TODO filter by rootfolder
-        Return docs
-
-    Public Shared Function GetFileIcon(ByVal FileId As Integer?, ByVal LinkType As Integer, Optional IconId As Integer? = -1) As String
-        If Not IconId Is Nothing And IconId > 0 Then
-            Return FileManager.Instance.GetUrl(FileManager.Instance.GetFile(IconId))
-        End If
-        If FileId Is Nothing Then
-            Return "images/folder.png"
-        Dim Path As String = "images/"
-        If FileId = -2 Then
-            Select Case LinkType
-                Case 0 : Return Path & "URL.png"
-                Case 1 : Return Path & "YouTube.png"
-                Case 2 : Return Path & "GoogleDoc.png"
-                Case 3 : Return Path & "Url.png"
-            End Select
-        End If
-            Select Case theFile.Extension.ToLower
-'End Function
-'Public Function GetSearchItems(ModInfo As DotNetNuke.Entities.Modules.ModuleInfo) As DotNetNuke.Services.Search.SearchItemInfoCollection Implements DotNetNuke.Entities.Modules.ISearchable.GetSearchItems
-                Case "gif"
-                    Return Path & "GIF.png"
-                Case "bmp"
-                    Return Path & "BMP.png"
-                Case "doc"
-                    Return Path & "DOC.png"
-                Case "jpg"
-                    Return Path & "JPG.png"
-                Case "mov"
-                    Return Path & "MOV.png"
-                Case "mp3"
-                    Return Path & "MP3.png"
-                Case "mp4"
-                    Return Path & "MP4.png"
-                Case "mpg"
-                    Return Path & "MPG.png"
-                Case "pdf"
-                    Return Path & "PDF.png"
-                Case "png"
-                    Return Path & "PNG.png"
-                Case "psd"
-                    Return Path & "PSD.png"
-                Case "tiff"
-                    Return Path & "TIFF.png"
-                Case "txt"
-                    Return Path & "TXT.png"
-                Case "wav"
-                    Return Path & "WAV.png"
-                Case "zip"
-                    Return Path & "ZIP.png"
-'    For Each row In Folders
-                Case Else
-                    Return Path & "Blank.png"
-            End Select
-'        SearchItem = New Services.Search.SearchItemInfo _
-'        (row.Name, _
-'        row.Description, _
-'        1, _
-'       Today, ModInfo.ModuleID, _
-'        "F" & row.FolderId, _
-'     row.Name & " " & row.Description, Guid:="FolderId=" & row.FolderId)
-'        SearchItemCollection.Add(SearchItem)
-'    Next
-'    Dim Docs = From c In d.AP_Documents_Docs Where c.AP_Documents_Folder.PortalId = ModInfo.PortalID
-        End If
-        Return "images/Blank.png"
-    End Function
-'            tags &= tag.AP_Documents_Tag.TagName & " "
-'        Next
-
-#End Region
-        Dim d As New DocumentsDataContext()
-#Region "Add/Edit"
-        Return theDoc.First
-    End Function
-
-    'Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, Permissions As String)
-    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, ByRef moduleSettings As System.Collections.Hashtable, ByVal Description As String)
-        Dim d As New DocumentsDataContext()
-        Dim insert As New AP_Documents_Doc
-        insert.FolderId = GetRootFolderId(moduleSettings)
-        insert.FileId = FileId
-        insert.DisplayName = FileName
-        insert.Author = Author
-        insert.VersionNumber = "1.0"
-        insert.CustomIcon = -1
-        insert.LinkType = "4"  ' a File
-        insert.Description = Description
-        'insert.Permissions = Permissions  Todo: determine permissions implementation
-        d.AP_Documents_Docs.InsertOnSubmit(insert)
-        d.SubmitChanges()
-    End Sub
-
     End Function
 
     Public Shared Function GetFileIcon(ByVal FileId As Integer?, ByVal LinkType As Integer, Optional IconId As Integer? = -1) As String
@@ -238,23 +132,6 @@ Public Class DocumentsController
 #Region "Add/Edit"
 
     'Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, Permissions As String)
-    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, ByRef moduleSettings As System.Collections.Hashtable, ByVal Description As String)
-        Dim d As New DocumentsDataContext()
-        Dim insert As New AP_Documents_Doc
-        insert.FolderId = GetRootFolderId(moduleSettings)
-        insert.FileId = FileId
-        insert.DisplayName = FileName
-        insert.Author = Author
-        insert.VersionNumber = "1.0"
-        insert.CustomIcon = -1
-        insert.LinkType = "4"  ' a File
-        insert.Description = Description
-        'insert.Permissions = Permissions  Todo: determine permissions implementation
-        d.AP_Documents_Docs.InsertOnSubmit(insert)
-        d.SubmitChanges()
-    End Sub
-
-#End Region
     Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, ByRef moduleSettings As System.Collections.Hashtable, ByVal Description As String)
         Dim d As New DocumentsDataContext()
         Dim insert As New AP_Documents_Doc

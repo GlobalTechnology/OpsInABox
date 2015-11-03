@@ -57,19 +57,11 @@
     height: 16px;
     width: 16px;
     display:block;
-}
-#DocumentsMain .btnEditDoc:hover {
-    background:transparent url('/DesktopModules/AgapeConnect/Documents/images/Edit_gray.png') center top no-repeat;
-}
-#DocumentsMain .btnDeleteDoc {
-    background: transparent url('/DesktopModules/AgapeConnect/Documents/images/Delete_lightgray.png') center top no-repeat;
-    height: 16px;
-    width: 16px;
-    display:block;
+
 }
 
-#DocumentsMain .btnDeleteDoc:hover {
-    background:transparent url('/DesktopModules/AgapeConnect/Documents/images/Delete_gray.png') center top no-repeat;
+#DocumentsMain .btnEditDoc:hover {
+    background:transparent url('/DesktopModules/AgapeConnect/Documents/images/Edit_gray.png') center top no-repeat;
 }
 #DocumentsMain .btnDeleteDoc {
     background: transparent url('/DesktopModules/AgapeConnect/Documents/images/Delete_lightgray.png') center top no-repeat;
@@ -84,14 +76,6 @@
 }
 
 /*DocumentsMain Section End*/
-
-/*AddDocument Section Start*/
-
-#divAddDocument {
-    width: 600px;
-}
-
-/*AddDocument End*/
 
 /*AddDocument Section Start*/
 

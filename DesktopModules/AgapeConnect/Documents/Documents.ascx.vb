@@ -19,6 +19,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             If Not IsPostBack Then
                 LoadFolder()
+            End If
+        End Sub
+
         Protected Sub LoadFolder()
             Dim FolderId As Integer = DocumentsController.GetRootFolderId(Settings)
             Dim Items As New ArrayList
@@ -28,13 +31,12 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             For Each document In Docs
                 If document.Trashed = False Then
                     Items.Add(document)
-            Dim Docs = DocumentsController.GetDocuments(Settings)
-            For Each document In Docs
-                If document.Trashed = False Then
-                    Items.Add(document)
+                End If
             Next
             dlFolderView.DataSource = Items
             dlFolderView.DataBind()
+        End Sub
+
         Public Function GetIcon(ByVal FileId As Integer?, ByVal Folderid As Integer) As String
             Return DocumentsController.GetFileIcon(FileId, 4)
         End Function
@@ -47,27 +49,25 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             Return DotNetNuke.Services.FileSystem.FileManager.Instance.GetFile(FileId).LastModificationTime.ToString("dd MMM yyyy")
 
         End Function
+
+        Public Function GetFileUrl(ByVal DocId As Integer, ByVal FileId As Integer) As String
             If FileId = -2 Then 'the file is a link
                 Dim theDoc = DocumentsController.GetDocument(DocId)
                 Select Case theDoc.LinkType
-            If FileId = -2 Then 'the file is a link
-                Dim theDoc = DocumentsController.GetDocument(DocId)
-                Select Case theDoc.LinkType
+                    Case 0, 2
                         Return theDoc.LinkValue
+                    Case 1
                         Return "https://www.youtube.com"
+                    Case 3
                         Return NavigateURL(CInt(theDoc.LinkValue))
+                End Select
+            End If
+            Dim theFile = FileManager.Instance.GetFile(FileId)
+            If Not theFile Is Nothing Then
                 Dim rtn = EditUrl("DocumentViewer")
-            Dim btndeletedoc As HyperLink = CType(e.Item.FindControl("btnDeleteDoc"), HyperLink)
-            Dim docbuttons As HtmlGenericControl = CType(e.Item.FindControl("docButtons"), HtmlGenericControl)
-            btndeletedoc.NavigateUrl = "javascript:deleteButtonClick(" & hyperlink1.ClientID & ")"
-            docbuttons.Visible = IsEditable
-#Region "Optional Interfaces"
-        Public ReadOnly Property ModuleActions() As Entities.Modules.Actions.ModuleActionCollection Implements Entities.Modules.IActionable.ModuleActions
-                Dim Actions As New Entities.Modules.Actions.ModuleActionCollection
-                Actions.Add(GetNextActionID, Translate("DocumentsSettings"), "DocumentSettings", "", "action_settings.gif", EditUrl("DocumentSettings"), False, SecurityAccessLevel.Admin, True, False)
-                Actions.Add(GetNextActionID, Translate("AddDocuemnt"), "AddDocument", "", "action_settings.gif", EditUrl("AddDocument"), False, SecurityAccessLevel.Edit, True, False)
-                Return Actions
-#End Region
+                If rtn.Contains("?") Then
+                    rtn &= "&DocId=" & DocId
+                Else
                     rtn &= "?DocId=" & DocId
                 End If
                 Return rtn
@@ -90,8 +90,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Public ReadOnly Property ModuleActions() As Entities.Modules.Actions.ModuleActionCollection Implements Entities.Modules.IActionable.ModuleActions
             Get
                 Dim Actions As New Entities.Modules.Actions.ModuleActionCollection
-                Actions.Add(GetNextActionID, Translate("DocumentsSettings"), "DocumentSettings", "", "action_settings.gif", EditUrl("DocumentSettings"), False, SecurityAccessLevel.Admin, True, False)
-                Actions.Add(GetNextActionID, Translate("AddDocuemnt"), "AddDocument", "", "action_settings.gif", EditUrl("AddDocument"), False, SecurityAccessLevel.Edit, True, False)
+                Actions.Add(GetNextActionID, Translate("DocumentsSettings"), "DocumentSettings", "", "action_settings.gif", EditUrl("DocumentSettings"), False, SecurityAccessLevel.Edit, True, False)
                 Return Actions
             End Get
         End Property
