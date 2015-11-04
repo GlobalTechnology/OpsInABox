@@ -1,11 +1,14 @@
 ﻿/*DocumentsMain Section Begin*/
 #DocumentsMain .docInfo{
     display:inline-block;
-    vertical-align: top;
-    margin-left:25px;
+    vertical-align: middle;
+    margin-left: 15px;
+    line-height: normal; /* To fix the 6px height added otherwise */
+    max-width: 975px;
 }
 #DocumentsMain .docTitle {
     font-size: larger;
+    margin-bottom: 5px;
 }
 #DocumentsMain .doctext {
     font-size: small;
@@ -15,6 +18,7 @@
     text-decoration: none;
     display:block;
     padding:10px;
+    line-height: 0px; /* To fix the 6px height added otherwise */
 }
 #DocumentsMain .icons{
     position: relative; /* To center the inner image vertically */
@@ -22,7 +26,6 @@
     margin: 0;
     border: 2px solid transparent; /* To avoid moving text when adding a border on hover */
     border-bottom: 1px solid #ddd; /* Horizontal separator */
-
 }
 #DocumentsMain .icons + .icons{
     /* Not for first element */
@@ -32,6 +35,7 @@
     height:60px;
     width:60px;
     display:inline-block;
+    vertical-align: middle;
 }
 #DocumentsMain .icons:hover {
     border: 2px solid lightgrey; /* Top, left and right borders when hover */
@@ -50,7 +54,7 @@
 #DocumentsMain .docButtons {
     position:absolute;
     right:10px;
-    top:10px;
+    top:13px;
 }
 #DocumentsMain .btnEditDoc {
     background: transparent url('/DesktopModules/AgapeConnect/Documents/images/Edit_lightgray.png') center top no-repeat;

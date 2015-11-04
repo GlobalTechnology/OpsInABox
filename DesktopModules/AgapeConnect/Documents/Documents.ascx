@@ -10,15 +10,13 @@
                 <asp:HyperLink ID="HyperLink1" runat="server"
                     Target='<%# IIF((Eval("LinkType") =0 or Eval("LinkType")=2) and not Eval("FileId") is nothing, "_blank", "_self") %>'
                     NavigateUrl='<%# IIf(Eval("FileId") Is Nothing, NavigateURL() & "?FolderId=" & Eval("FolderId"), GetFileUrl(Eval("DocId"), Eval("FileId")))%>'>
-                    <div>
-                        <asp:Image ID="icon" CssClass="icon" runat="server" ImageUrl='<%# DocumentsController.GetFileIcon(Eval("FileId"), Eval("LinkType"), Eval("CustomIcon"))%>' />
-                        <div class="docInfo">
-                            <div>
-                                <asp:Label ID="lblItemName" CssClass="docTitle" runat="server" Text='<%# Eval("DisplayName") %>'></asp:Label>
-                            </div>
-                            <div id="theDesc" runat="server">
-                                <asp:Label ID="Label21" runat="server" CssClass="docText" Text='<%# Eval("Description") %>'></asp:Label>
-                            </div>
+                    <asp:Image ID="icon" CssClass="icon" runat="server" ImageUrl='<%# DocumentsController.GetFileIcon(Eval("FileId"), Eval("LinkType"), Eval("CustomIcon"))%>' />
+                    <div class="docInfo">
+                        <div class="docTitle">
+                            <asp:Label ID="lblItemName" runat="server" Text='<%# Eval("DisplayName") %>'></asp:Label>
+                        </div>
+                        <div id="theDesc" runat="server" class="docText">
+                            <asp:Label ID="Label21" runat="server" Text='<%# Eval("Description") %>'></asp:Label>
                         </div>
                     </div>
                 </asp:HyperLink>
