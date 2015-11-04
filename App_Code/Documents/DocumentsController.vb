@@ -16,7 +16,21 @@ Public Module FolderConstants
     Public Const NoParentFolderId As Integer = -1
     Public Const RootFolderSettingKey As String = "RootFolder" 'cooresponds to a folder id in the settings table
     Public Const DocumentsModuleRootFolderName As String = "acDocuments"
-    Public Const PortalSettingKey As String = "PortalSettings"
+End Module
+
+'Document constants
+Public Module DocumentConstants
+
+    'Link types
+    Public Const LinkTypeUrl As Integer = 0
+    Public Const LinkTypeYouTube As Integer = 1
+    Public Const LinkTypeGoogleDoc As Integer = 2
+    Public Const LinkTypePage As Integer = 3
+    Public Const LinkTypeFile As Integer = 4
+
+    'FileId
+    'TODO: See if we can get rid of FileId -2 as we have FileType
+    Public Const FileIdForLinks As Integer = -2 'All documents that are not a real uploaded file have that FileId.
 
 End Module
 
@@ -24,31 +38,11 @@ End Module
 
 Public Class DocumentsController
 
-#Region "Document Settings"
-
-    Public Shared Function GetFolders() As List(Of AP_Documents_Folder)
-        Dim d As New DocumentsDataContext()
-        Dim PS = CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings)
-        Return (From c In d.AP_Documents_Folders Where c.PortalId = PS.PortalId Order By c.FolderId Descending).ToList
-    End Function
-
-    Public Shared Function GetPathName(ByVal Folder As AP_Documents_Folder, ByRef pathName As String) As String
-        Dim d As New DocumentsDataContext()
-        Dim PS = CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings)
-        pathName = Folder.Name & "/" & pathName
-
-        If Folder.ParentFolder > 0 Then
-            Dim parent = From c In d.AP_Documents_Folders Where c.FolderId = Folder.ParentFolder And c.PortalId = PS.PortalId
-            If parent.Count > 0 Then
-                GetPathName(parent.First, pathName)
-            End If
-        End If
-        Return pathName
-    End Function
+#Region "????"
 
     Public Shared Function GetRootFolderId(ByRef moduleSettings As System.Collections.Hashtable) As Integer
         Dim d As New DocumentsDataContext()
-        Dim PS = CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings)
+        Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
         Dim rootFolderId As Integer = moduleSettings(RootFolderSettingKey)
 
         If String.IsNullOrEmpty(rootFolderId) Then
@@ -76,10 +70,6 @@ Public Class DocumentsController
         Return rootFolderId
     End Function
 
-#End Region
-
-#Region "Add/Edit"
-
     Public Shared Function GetDocuments(ByRef moduleSettings As System.Collections.Hashtable) As IQueryable(Of AP_Documents_Doc)
         Dim d As New DocumentsDataContext()
         Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
@@ -104,15 +94,15 @@ Public Class DocumentsController
             Return "images/folder.png"
         End If
         Dim Path As String = "images/"
-        Dim theFile = FileManager.Instance.GetFile(FileId)
-        If FileId = -2 Then
+        If Not LinkType = DocumentConstants.LinkTypeFile Then
             Select Case LinkType
-                Case 0 : Return Path & "URL.png"
-                Case 1 : Return Path & "YouTube.png"
-                Case 2 : Return Path & "GoogleDoc.png"
-                Case 3 : Return Path & "Url.png"
+                Case DocumentConstants.LinkTypeUrl : Return Path & "URL.png"
+                Case DocumentConstants.LinkTypeYouTube : Return Path & "YouTube.png"
+                Case DocumentConstants.LinkTypeGoogleDoc : Return Path & "GoogleDoc.png"
+                Case DocumentConstants.LinkTypePage : Return Path & "Url.png"
             End Select
         End If
+        Dim theFile = FileManager.Instance.GetFile(FileId)
         If Not theFile Is Nothing Then
             Select Case theFile.Extension.ToLower
                 Case "gif"
@@ -152,7 +142,12 @@ Public Class DocumentsController
         Return "images/Blank.png"
     End Function
 
-    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, LinkType As String, LinkURL As String, Trashed As Boolean, ByRef moduleSettings As System.Collections.Hashtable, ByVal Description As String)
+#End Region
+
+#Region "Add/Edit"
+
+    'Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, Permissions As String)
+    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, ByRef moduleSettings As System.Collections.Hashtable, ByVal Description As String)
         Dim d As New DocumentsDataContext()
         Dim insert As New AP_Documents_Doc
         insert.FolderId = GetRootFolderId(moduleSettings)
@@ -161,10 +156,8 @@ Public Class DocumentsController
         insert.Author = Author
         insert.VersionNumber = "1.0"
         insert.CustomIcon = -1
-        insert.LinkType = LinkType
+        insert.LinkType = DocumentConstants.LinkTypeFile
         insert.Description = Description
-        insert.LinkValue = LinkURL
-        insert.Trashed = Trashed
         'insert.Permissions = Permissions  Todo: determine permissions implementation
         d.AP_Documents_Docs.InsertOnSubmit(insert)
         d.SubmitChanges()

@@ -50,30 +50,55 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
         End Function
 
-        Public Function GetFileUrl(ByVal DocId As Integer, ByVal FileId As Integer) As String
-            If FileId = -2 Then 'the file is a link
-                Dim theDoc = DocumentsController.GetDocument(DocId)
-                Select Case theDoc.LinkType
-                    Case 0, 2
-                        Return theDoc.LinkValue
-                    Case 1
-                        Return "https://www.youtube.com"
-                    Case 3
-                        Return NavigateURL(CInt(theDoc.LinkValue))
-                End Select
-            End If
-            Dim theFile = FileManager.Instance.GetFile(FileId)
-            If Not theFile Is Nothing Then
-                Dim rtn = EditUrl("DocumentViewer")
-                If rtn.Contains("?") Then
-                    rtn &= "&DocId=" & DocId
-                Else
-                    rtn &= "?DocId=" & DocId
-                End If
-                Return rtn
-            Else
-                Return EditUrl("DocumentViewer") & "?DocId=" & DocId
-            End If
+        Public Function GetDocUrl(ByVal DocId As Integer) As String
+            Dim theDoc = DocumentsController.GetDocument(DocId)
+            Select Case theDoc.LinkType
+                Case DocumentConstants.LinkTypeUrl 'The document is an external URL
+                    Return theDoc.LinkValue
+                Case DocumentConstants.LinkTypeGoogleDoc 'The document is a Google Doc
+                    'TODO: This should be displayed by the DocumentViewer in an iframe
+                    Return theDoc.LinkValue
+                Case DocumentConstants.LinkTypeYouTube 'The document is a YouTube video
+                    'TODO: This should be displayed by the DocumentViewer in an iframe
+                    Return "https://www.youtube.com/watch?v=" & theDoc.LinkValue
+                    'Dim rtn = EditUrl("DocumentViewer")
+                    'If rtn.Contains("?") Then
+                    '    rtn &= "&DocId=" & DocId
+                    'Else
+                    '    rtn &= "?DocId=" & DocId
+                    'End If
+                    'Return rtn
+                Case DocumentConstants.LinkTypePage 'The document is a page on this site
+                    Return NavigateURL(CInt(theDoc.LinkValue))
+                Case DocumentConstants.LinkTypeFile 'The document is an uploaded file
+                    Dim theFile = FileManager.Instance.GetFile(theDoc.FileId)
+                    If Not theFile Is Nothing Then
+                        Return FileManager.Instance.GetUrl(theFile)
+                    End If
+            End Select
+            Return ""
+        End Function
+
+        Public Function GetDocTarget(ByVal DocId As Integer) As String
+            Const _BLANK As String = "_blank"
+            Const _SELF As String = "_self"
+
+            Dim theDoc = DocumentsController.GetDocument(DocId)
+            Select Case theDoc.LinkType
+                Case DocumentConstants.LinkTypeUrl 'The document is an external URL
+                    Return _BLANK
+                Case DocumentConstants.LinkTypeGoogleDoc 'The document is a Google Doc
+                    'TODO: This should be displayed by the DocumentViewer in an iframe
+                    Return _BLANK
+                Case DocumentConstants.LinkTypeYouTube 'The document is a YouTube video
+                    'TODO: This should be displayed by the DocumentViewer in an iframe
+                    Return _BLANK
+                Case DocumentConstants.LinkTypePage 'The document is a page on this site
+                    Return _SELF
+                Case DocumentConstants.LinkTypeFile 'The document is an uploaded file
+                    Return _BLANK
+            End Select
+            Return _SELF
         End Function
 
         Protected Sub dlFolderView_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles dlFolderView.ItemDataBound
