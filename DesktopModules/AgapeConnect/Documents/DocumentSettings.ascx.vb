@@ -10,6 +10,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
             Try
 
+                CType(Page, DotNetNuke.Framework.CDefault).Title = "Configuration"
+
                 If Not IsPostBack Then
 
                     'Build the list of paths
