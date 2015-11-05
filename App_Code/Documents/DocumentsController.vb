@@ -184,7 +184,7 @@ Public Class DocumentsController
 
 #Region "Add/Edit"
 
-    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, _
+    Public Shared Sub InsertResource(ByVal FileId As Integer, FileName As String, _
                                      Author As String, LinkType As String, LinkURL As String, _
                                      Trashed As Boolean, ByVal tabModuleId As Integer, _
                                      ByVal Description As String)
@@ -196,7 +196,7 @@ Public Class DocumentsController
         insert.Author = Author
         insert.VersionNumber = "1.0"
         insert.CustomIcon = -1
-        insert.LinkType = DocumentConstants.LinkTypeFile
+        insert.LinkType = LinkType
         insert.Description = Description
         insert.LinkValue = LinkURL
         insert.Trashed = Trashed
