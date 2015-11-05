@@ -95,6 +95,11 @@
 #divAddEditResource .FieldHelp {
     margin-left:200px;
 }
+
+#divResType .FieldLabel {
+    float:left;
+}
+
 /*AddEditResource End*/
 
 /*DocumentSettings Section Start*/
