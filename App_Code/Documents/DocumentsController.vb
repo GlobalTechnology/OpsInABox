@@ -17,7 +17,7 @@ End Module
 ' Folder constants
 Public Module FolderConstants
     Public Const NoParentFolderId As Integer = -1
-    Public Const RootFolderSettingKey As String = "RootFolder" 'cooresponds to a folder id in the settings table
+    Public Const ModuleFolderSettingKey As String = "RootFolder" 'cooresponds to a folder id in the settings table
     Public Const DocumentsModuleRootFolderName As String = "acDocuments"
 End Module
 
@@ -45,17 +45,15 @@ Public Class DocumentsController
 
     Public Shared Function GetFolders() As List(Of AP_Documents_Folder)
         Dim d As New DocumentsDataContext()
-        Dim PS = CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings)
-        Return (From c In d.AP_Documents_Folders Where c.PortalId = PS.PortalId Order By c.FolderId Descending).ToList
+        Return (From c In d.AP_Documents_Folders Where c.PortalId = GetPortalId() Order By c.FolderId Descending).ToList
     End Function
 
     Public Shared Function GetPathName(ByVal Folder As AP_Documents_Folder, ByRef pathName As String) As String
         Dim d As New DocumentsDataContext()
-        Dim PS = CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings)
         pathName = Folder.Name & "/" & pathName
 
         If Folder.ParentFolder > 0 Then
-            Dim parent = From c In d.AP_Documents_Folders Where c.FolderId = Folder.ParentFolder And c.PortalId = PS.PortalId
+            Dim parent = From c In d.AP_Documents_Folders Where c.FolderId = Folder.ParentFolder And c.PortalId = GetPortalId()
             If parent.Count > 0 Then
                 GetPathName(parent.First, pathName)
             End If
@@ -63,46 +61,59 @@ Public Class DocumentsController
         Return pathName
     End Function
 
-    Public Shared Function GetRootFolderId(ByRef moduleSettings As System.Collections.Hashtable) As Integer
+    Public Shared Function GetModuleFolderId(ByVal tabModuleId As Integer) As Integer
         Dim d As New DocumentsDataContext()
-        Dim PS = CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings)
-        Dim rootFolderId As Integer = moduleSettings(RootFolderSettingKey)
 
-        If String.IsNullOrEmpty(rootFolderId) Then
+        Dim objModules As New Entities.Modules.ModuleController
+        Dim tabModuleSettings As Hashtable = objModules.GetTabModule(tabModuleId).TabModuleSettings
 
-            Dim rootNode = From c In d.AP_Documents_Folders Where c.PortalId = PS.PortalId And c.ParentFolder = FolderConstants.NoParentFolderId
+        Dim moduleFolderId As Integer = tabModuleSettings(ModuleFolderSettingKey)
+
+        If String.IsNullOrEmpty(moduleFolderId) Then
+
+            Dim rootNode = From c In d.AP_Documents_Folders Where c.PortalId = GetPortalId() And c.ParentFolder = FolderConstants.NoParentFolderId
             'No rootNode found
             If rootNode.Count = 0 Then
-
-                'TODO : regarde si acDocuments existe
 
                 'Add the rootNode acDocuments in the database
                 Dim insert As New AP_Documents_Folder
                 insert.CustomIcon = Nothing
                 insert.ParentFolder = NoParentFolderId
                 insert.Name = DocumentsModuleRootFolderName
-                insert.Permission = moduleSettings("DefaultPermissions")
-                insert.PortalId = PS.PortalId
+                insert.Permission = tabModuleSettings("DefaultPermissions")
+                insert.PortalId = GetPortalId()
                 d.AP_Documents_Folders.InsertOnSubmit(insert)
                 d.SubmitChanges()
 
-                rootFolderId = insert.FolderId
+                moduleFolderId = insert.FolderId
             End If
 
         End If
-        Return rootFolderId
+        Return moduleFolderId
     End Function
+
+    Public Shared Sub SetModuleFolderId(ByVal tabModuleId As Integer, ByVal folderId As Integer)
+        Dim objModules As New Entities.Modules.ModuleController
+
+        objModules.UpdateTabModuleSetting(tabModuleId, ModuleFolderSettingKey, folderId)
+
+        ' refresh cache
+        Dim moduleId As Integer = objModules.GetTabModule(tabModuleId).ModuleID
+        DotNetNuke.Entities.Modules.ModuleController.SynchronizeModule(moduleId)
+    End Sub
 
 #End Region 'Document Settings
 
 #Region "Document Main"
 
-    Public Shared Function GetDocuments(ByRef moduleSettings As System.Collections.Hashtable) As IQueryable(Of AP_Documents_Doc)
+    Public Shared Function GetDocuments(ByVal tabModuleId As Integer) As IQueryable(Of AP_Documents_Doc)
         Dim d As New DocumentsDataContext()
-        Dim PS = CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings)
-        Dim docs As IQueryable(Of AP_Documents_Doc) = From c In d.AP_Documents_Docs Where c.AP_Documents_Folder.PortalId = PS.PortalId
+        Dim folderId = GetModuleFolderId(tabModuleId)
 
-        ' TODO filter by rootfolder
+        Dim docs As IQueryable(Of AP_Documents_Doc) = From c In d.AP_Documents_Docs Where _
+                             c.AP_Documents_Folder.PortalId = GetPortalId() And _
+                             c.AP_Documents_Folder.FolderId = folderId
+
         Return docs
 
     End Function
@@ -173,10 +184,13 @@ Public Class DocumentsController
 
 #Region "Add/Edit"
 
-    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, LinkType As String, LinkURL As String, Trashed As Boolean, ByRef moduleSettings As System.Collections.Hashtable, ByVal Description As String)
+    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, _
+                                     Author As String, LinkType As String, LinkURL As String, _
+                                     Trashed As Boolean, ByVal tabModuleId As Integer, _
+                                     ByVal Description As String)
         Dim d As New DocumentsDataContext()
         Dim insert As New AP_Documents_Doc
-        insert.FolderId = GetRootFolderId(moduleSettings)
+        insert.FolderId = GetModuleFolderId(tabModuleId)
         insert.FileId = FileId
         insert.DisplayName = FileName
         insert.Author = Author
@@ -191,6 +205,13 @@ Public Class DocumentsController
         d.AP_Documents_Docs.InsertOnSubmit(insert)
         d.SubmitChanges()
     End Sub
+
+#End Region
+
+#Region "Private functions"
+    Private Shared Function GetPortalId() As Integer
+        Return CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings).PortalId
+    End Function
 
 #End Region
 

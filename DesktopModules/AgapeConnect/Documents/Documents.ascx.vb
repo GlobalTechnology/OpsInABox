@@ -23,11 +23,11 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         End Sub
 
         Protected Sub LoadFolder()
-            Dim FolderId As Integer = DocumentsController.GetRootFolderId(Settings)
+            Dim FolderId As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
             Dim Items As New ArrayList
             Dim rc As New DotNetNuke.Security.Roles.RoleController
             'Dim UserRoles = rc.GetUserRoles(PortalId, UserId)
-            Dim Docs = DocumentsController.GetDocuments(Settings)
+            Dim Docs = DocumentsController.GetDocuments(TabModuleId)
             For Each document In Docs
                 If document.Trashed = False Then
                     Items.Add(document)
