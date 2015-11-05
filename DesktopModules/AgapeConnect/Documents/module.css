@@ -81,13 +81,18 @@
 
 /*DocumentsMain Section End*/
 
-/*AddDocument Section Start*/
+/*AddEditResource Section Start*/
 
 #divAddEditResource {
-    width: 600px;
+    width: 800px;
+    margin: 50px;
 }
 
-/*AddDocument End*/
+#divAddEditResource .rbLinkType {
+    margin-left:200px;
+}
+
+/*AddEditResource End*/
 
 /*DocumentSettings Section Start*/
 
@@ -100,7 +105,6 @@
 
 .Documents .FieldRow {
     margin-bottom: 10px;
-    
 }
 
 .Documents .FieldRow input[type="text"], .Documents .FieldRow textarea {
@@ -113,12 +117,12 @@
 .Documents .FieldRow input[type="text"] {
     height: 25px;
     line-height: 25px;
-    width: 200px;
+    width: 400px;
 }
 
 .Documents .FieldRow textarea {
     width: 400px;
-    height: 150px;
+    height: 100px;
 }
 
 .Documents .FieldSubRow input[type="text"], .Documents .FieldRow .ListBox textarea {

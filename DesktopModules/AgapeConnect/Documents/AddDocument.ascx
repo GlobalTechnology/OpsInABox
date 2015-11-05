@@ -20,26 +20,30 @@
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyTabs(); });
     });
 </script>
-<div id="divAddEditResource">
-    <div id="divResName">
-        <asp:Label ID="lblName" runat="server">Document Name:</asp:Label>
+<div id="divAddEditResource" class="Documents">
+    <div id="divResName" class="FieldRow">
+        <asp:Label ID="lblName" runat="server" CssClass="FieldLabel">Document Name:</asp:Label>
         <asp:TextBox ID="tbName" runat="server"></asp:TextBox>
+        <hr />
     </div>
-    <div id="divResDesc">
-        <asp:Label ID="lblDescription" runat="server">Document Description:</asp:Label>
-        <asp:TextBox ID="tbDescription" runat="server"></asp:TextBox>
+    <div id="divResDesc" class="FieldRow">
+        <asp:Label ID="lblDescription" runat="server" CssClass="FieldLabel">Document Description:</asp:Label>
+        <asp:TextBox TextMode="MultiLine" ID="tbDescription" runat="server" CssClass="tbResDesc" ></asp:TextBox>
+        <hr />
     </div>
-    <div id="divResType">
-        <asp:Label ID="lblType" runat="server">Resource Type:</asp:Label>
-        <asp:RadioButtonList ID="rbLinkType" runat="server">
+    <div id="divResType" class="FieldRow">
+        <asp:Label ID="lblType" runat="server" CssClass="FieldLabel">Resource Type:</asp:Label>
+        <asp:RadioButtonList ID="rbLinkType" CssClass="rbLinkType" runat="server">
             <asp:ListItem Text="Upload a new file" Value="0" Selected="True" />
             <asp:ListItem Text="Google Doc" Value="1" />
             <asp:ListItem Text="External URL" Value="2" />
             <asp:ListItem Text="A Page on this site" Value="3" />
             <asp:ListItem Text="YouTube Video" Value="4" />
         </asp:RadioButtonList>
+        <hr />
     </div>
-    <div id="divResDef">
+    <div id="divResDef" class="FieldRow">
+
         <asp:DropDownList ID="ddlPages" runat="server" Style="display: none;" />
         <asp:TextBox ID="tbURL" runat="server" Style="display: none;" />
         <asp:FileUpload ID="FileUpload1" runat="server" />
@@ -58,9 +62,10 @@
         <div id="divYouTube" class="docOption" style="display: none">
             <asp:Label ID="lblYouTube" runat="server" ResourceKey="lblYouTube" />youtube.
         </div>
+        <hr />
     </div>
-    <div id="divAddEditButtons">
-        <asp:Button ID="btnOk" runat="server" Text="OK" />
-        <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+    <div id="divAddEditButtons" class="SubmitPanel">
+        <asp:Button ID="btnOk" runat="server" CssClass="button" Text="OK" />
+        <asp:Button ID="btnCancel" runat="server" CssClass="button" Text="Cancel" />
     </div>
 </div>
