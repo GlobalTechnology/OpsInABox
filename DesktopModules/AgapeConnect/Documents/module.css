@@ -56,28 +56,6 @@
     right:10px;
     top:13px;
 }
-#DocumentsMain .btnEditDoc {
-    background: transparent url('/DesktopModules/AgapeConnect/Documents/images/Edit_lightgray.png') center top no-repeat;
-    height: 16px;
-    width: 16px;
-    display:block;
-
-}
-
-#DocumentsMain .btnEditDoc:hover {
-    background:transparent url('/DesktopModules/AgapeConnect/Documents/images/Edit_gray.png') center top no-repeat;
-}
-#DocumentsMain .btnDeleteDoc {
-    background: transparent url('/DesktopModules/AgapeConnect/Documents/images/Delete_lightgray.png') center top no-repeat;
-    height: 16px;
-    width: 16px;
-    display:block;
-
-}
-
-#DocumentsMain .btnDeleteDoc:hover {
-    background:transparent url('/DesktopModules/AgapeConnect/Documents/images/Delete_gray.png') center top no-repeat;
-}
 
 /*DocumentsMain Section End*/
 
@@ -106,6 +84,21 @@
 
 #DocumentSettings {
     margin: 50px;
+}
+
+#DocumentSettings .btnEdit {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#DocumentSettings .btnDelete {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#DocumentSettings .btnAdd {
+    display: inline-block;
+    margin-left: 10px;
 }
 
 /*DocumentSettings End*/
@@ -208,4 +201,37 @@
 .Documents .Menu_Suffix
 {
 
+}
+
+.Documents .btnEdit {
+    background: transparent url('/DesktopModules/AgapeConnect/Documents/images/Edit_lightgray.png') center top no-repeat;
+    height: 16px;
+    width: 16px;
+    
+}
+
+.Documents .btnEdit:hover {
+    background:transparent url('/DesktopModules/AgapeConnect/Documents/images/Edit_gray.png') center top no-repeat;
+}
+
+.Documents .btnDelete {
+    background: transparent url('/DesktopModules/AgapeConnect/Documents/images/Delete_lightgray.png') center top no-repeat;
+    height: 16px;
+    width: 16px;
+    
+}
+
+.Documents .btnDelete:hover {
+    background: transparent url('/DesktopModules/AgapeConnect/Documents/images/Delete_gray.png') center top no-repeat;
+}
+
+.Documents .btnAdd {
+    background: transparent url('/DesktopModules/AgapeConnect/Documents/images/Add_lightgray.png') center top no-repeat;
+    height: 16px;
+    width: 16px;
+    
+}
+
+.Documents .btnAdd:hover {
+    background: transparent url('/DesktopModules/AgapeConnect/Documents/images/Add_gray.png') center top no-repeat;
 }
