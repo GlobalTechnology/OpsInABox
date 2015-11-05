@@ -89,9 +89,12 @@
 }
 
 #divAddEditResource .rbLinkType {
-    margin-left:200px;
+    margin-left: 200px;
 }
 
+#divAddEditResource .FieldHelp {
+    margin-left:200px;
+}
 /*AddEditResource End*/
 
 /*DocumentSettings Section Start*/

@@ -3,15 +3,12 @@
     function setUpMyTabs() {
         $("input:radio").click(function () {
             $(".docOption").hide();
-            $('#<%= tbURL.ClientID %>').hide();
-            $('#<%= ddlPages.ClientID %>').hide();
-            $('#<%= FileUpload1.ClientID %>').hide();
             switch (this.value) {
-                case "0": $("#divUpload").show(); $('#<%= FileUpload1.ClientID %>').show(); break;
-                case "1": $("#divGoogle").show(); $('#<%= tbURL.ClientID %>').show(); break;
-                case "2": $("#divURL").show(); $('#<%= tbURL.ClientID %>').show(); break;
-                case "3": $("#divPage").show(); $('#<%= ddlPages.ClientID %>').show(); break;
-                case "4": $("#divYouTube").show(); $('#<%= tbURL.ClientID %>').show(); break;                
+                case "0": $("#divUpload").show(); break;
+                case "1": $("#divGoogle").show(); break;
+                case "2": $("#divURL").show(); break;
+                case "3": $("#divPage").show(); break;
+                case "4": $("#divYouTube").show(); break;                
             }
         });
     }
@@ -43,24 +40,40 @@
         <hr />
     </div>
     <div id="divResDef" class="FieldRow">
-
-        <asp:DropDownList ID="ddlPages" runat="server" Style="display: none;" />
-        <asp:TextBox ID="tbURL" runat="server" Style="display: none;" />
-        <asp:FileUpload ID="FileUpload1" runat="server" />
         <div id="divUpload" class="docOption">
-            <asp:Label ID="lblUpload" runat="server" ResourceKey="lblUpload" />upload.
+            <asp:Label ID="lblUpload" runat="server" Text="File to upload:" CssClass="FieldLabel" ResourceKey="lblUpload" />
+            <asp:FileUpload ID="FileUpload1" runat="server" />
+            <p class="FieldHelp">
+                <asp:Label ID="lblUploadHelp" runat="server" Text="You are going to add a file from your computer." />
+            </p>
         </div>
         <div id="divGoogle" class="docOption" style="display: none">
-            <asp:Label ID="lblGoogle" runat="server" ResourceKey="lblGoogle" />googledoc.
+            <asp:Label ID="lblGoogle" runat="server" Text="Google Document:" ResourceKey="lblGoogle" CssClass="FieldLabel" />
+            <asp:TextBox ID="tbGoogle" runat="server" />
+            <p class="FieldHelp">
+                <asp:Label ID="lblGoogleHelp" runat="server" Text="You are going to embed a Google Document." />
+            </p>
         </div>
         <div id="divURL" class="docOption" style="display: none">
-            <asp:Label ID="lblURL" runat="server" ResourceKey="lblURL" />url.
+            <asp:Label ID="lblURL" runat="server" ResourceKey="lblURL" Text="URL:" CssClass="FieldLabel" />
+            <asp:TextBox ID="tbURL" runat="server" />
+            <p class="FieldHelp">
+                <asp:Label ID="lblURLHelp" runat="server" Text="Please enter an external web address." />
+            </p>
         </div>
         <div id="divPage" class="docOption" style="display: none">
-            <asp:Label ID="lblPage" runat="server" ResourceKey="lblPage" />page.
+            <asp:Label ID="lblPage" runat="server" ResourceKey="lblPage" Text="Site page:" CssClass="FieldLabel" />
+            <asp:DropDownList ID="ddlPages" runat="server" />
+            <p class="FieldHelp">
+                <asp:Label ID="lblPageHelp" runat="server" Text="Please choose a page from this list." />
+            </p>
         </div>
         <div id="divYouTube" class="docOption" style="display: none">
-            <asp:Label ID="lblYouTube" runat="server" ResourceKey="lblYouTube" />youtube.
+            <asp:Label ID="lblYouTube" runat="server" ResourceKey="lblYouTube" Text="Youtube ID:" CssClass="FieldLabel" />
+            <asp:TextBox ID="tbYouTube" runat="server" />
+            <p class="FieldHelp">
+                <asp:Label ID="lblYouTubeHelp" runat="server" Text="The ID can be found in the URL of the page. For example, in https://www.youtube.com/watch?v=XXXXXXX the 'XXXXXXX' is the ID. " />
+            </p>
         </div>
         <hr />
     </div>
