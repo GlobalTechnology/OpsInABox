@@ -35,6 +35,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Protected Sub btnOk_Click(sender As Object, e As System.EventArgs) Handles btnOk.Click
             If rbLinkType.SelectedValue = 0 Then 'Radio button selected was upload
                 Try
+                    'TODO: Externalize in DocumentsController
                     Dim folder As IFolderInfo
                     If Not FolderManager.Instance.FolderExists(PortalId, "acDocuments") Then
                         folder = FolderManager.Instance.AddFolder(PortalId, "acDocuments")
@@ -50,13 +51,13 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                     End If
                 Catch ex As Exception
                 End Try
-            ElseIf rbLinkType.SelectedValue = 1 Then 'Radio button selected was Google Doc
+            ElseIf rbLinkType.SelectedValue = DocumentConstants.LinkTypeGoogleDoc Then 'Radio button selected was Google Doc
                 DocumentsController.InsertResource(DocumentConstants.FileIdForLinks, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeGoogleDoc, tbGoogle.Text, "False", TabModuleId, tbDescription.Text)
-            ElseIf rbLinkType.SelectedValue = 2 Then 'Radio button selected was external URL
+            ElseIf rbLinkType.SelectedValue = DocumentConstants.LinkTypeUrl Then 'Radio button selected was external URL
                 DocumentsController.InsertResource(DocumentConstants.FileIdForLinks, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeUrl, tbURL.Text, "False", TabModuleId, tbDescription.Text)
-            ElseIf rbLinkType.SelectedValue = 3 Then 'Radio button selected was internal page
+            ElseIf rbLinkType.SelectedValue = DocumentConstants.LinkTypePage Then 'Radio button selected was internal page
                 DocumentsController.InsertResource(DocumentConstants.FileIdForLinks, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypePage, ddlPages.SelectedValue, "False", TabModuleId, tbDescription.Text)
-            ElseIf rbLinkType.SelectedValue = 4 Then 'Radio button selected was youtube
+            ElseIf rbLinkType.SelectedValue = DocumentConstants.LinkTypeYouTube Then 'Radio button selected was youtube
                 DocumentsController.InsertResource(DocumentConstants.FileIdForLinks, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeYouTube, tbYouTube.Text, "False", TabModuleId, tbDescription.Text)
             End If
             Response.Redirect(NavigateURL())
