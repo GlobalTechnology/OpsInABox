@@ -4,11 +4,11 @@
         $("input:radio").click(function () {
             $(".docOption").hide();
             switch (this.value) {
-                case "0": $("#divUpload").show(); break;
-                case "1": $("#divGoogle").show(); break;
-                case "2": $("#divURL").show(); break;
-                case "3": $("#divPage").show(); break;
-                case "4": $("#divYouTube").show(); break;                
+                case "<%= DocumentConstants.LinkTypeFile %>": $("#divUpload").show(); break;
+                case "<%= DocumentConstants.LinkTypeGoogleDoc %>": $("#divGoogle").show(); break;
+                case "<%= DocumentConstants.LinkTypeUrl %>": $("#divURL").show(); break;
+                case "<%= DocumentConstants.LinkTypePage %>": $("#divPage").show(); break;
+                case "<%= DocumentConstants.LinkTypeYouTube %>": $("#divYouTube").show(); break;
             }
         });
     }
@@ -30,17 +30,11 @@
     </div>
     <div id="divResType" class="FieldRow">
         <asp:Label ID="lblType" runat="server" CssClass="FieldLabel">Resource Type:</asp:Label>
-        <asp:RadioButtonList ID="rbLinkType" CssClass="rbLinkType" runat="server">
-            <asp:ListItem Text="Upload a new file" Value="0" Selected="True" />
-            <asp:ListItem Text="Google Doc" Value="1" />
-            <asp:ListItem Text="External URL" Value="2" />
-            <asp:ListItem Text="A Page on this site" Value="3" />
-            <asp:ListItem Text="YouTube Video" Value="4" />
-        </asp:RadioButtonList>
+        <asp:RadioButtonList ID="rbLinkType" CssClass="rbLinkType" runat="server" />
         <hr />
     </div>
     <div id="divResDef" class="FieldRow">
-        <div id="divUpload" class="docOption">
+        <div id="divUpload" class="docOption" style="display:none">
             <asp:Label ID="lblUpload" runat="server" Text="File to upload:" CssClass="FieldLabel" ResourceKey="lblUpload" />
             <asp:FileUpload ID="FileUpload1" runat="server" />
             <p class="FieldHelp">

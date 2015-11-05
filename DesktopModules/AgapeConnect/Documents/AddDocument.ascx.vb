@@ -15,6 +15,20 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 ddlPages.DataTextField = "TabName"
                 ddlPages.DataValueField = "TabId"
                 ddlPages.DataBind()
+                rbLinkType.Items.Add(New ListItem("Upload a new file", DocumentConstants.LinkTypeFile))
+                rbLinkType.Items.Add(New ListItem("Google Doc", DocumentConstants.LinkTypeGoogleDoc))
+                rbLinkType.Items.Add(New ListItem("External URL", DocumentConstants.LinkTypeUrl))
+                rbLinkType.Items.Add(New ListItem("A Page on this site", DocumentConstants.LinkTypePage))
+                rbLinkType.Items.Add(New ListItem("YouTube Video", DocumentConstants.LinkTypeYouTube))
+            End If
+            If Request.QueryString("edit") <> "" Then
+                CType(Page, DotNetNuke.Framework.CDefault).Title = "Edit Resource"
+                Dim editDoc = DocumentsController.GetDocument(Request.QueryString("edit"))
+                tbName.Text = editDoc.DisplayName
+                tbDescription.Text = editDoc.Description
+                rbLinkType.SelectedValue = editDoc.LinkType
+            Else
+                CType(Page, DotNetNuke.Framework.CDefault).Title = "Add Resource"
             End If
         End Sub
 
