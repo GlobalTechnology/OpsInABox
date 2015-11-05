@@ -1,10 +1,13 @@
 ﻿Imports Microsoft.VisualBasic
-'Imports DotNetNuke
 Imports DotNetNuke.Services.FileSystem
 Imports Documents
 
-
 #Region "Modules defining constant values"
+
+' Controller global constants
+Public Module DocumentsControllerConstants
+    Public Const PortalSettingKey As String = "PortalSettings"
+End Module
 
 ' List of view styles
 Public Module StyleType
@@ -38,11 +41,31 @@ End Module
 
 Public Class DocumentsController
 
-#Region "????"
+#Region "Document Settings"
+
+    Public Shared Function GetFolders() As List(Of AP_Documents_Folder)
+        Dim d As New DocumentsDataContext()
+        Dim PS = CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings)
+        Return (From c In d.AP_Documents_Folders Where c.PortalId = PS.PortalId Order By c.FolderId Descending).ToList
+    End Function
+
+    Public Shared Function GetPathName(ByVal Folder As AP_Documents_Folder, ByRef pathName As String) As String
+        Dim d As New DocumentsDataContext()
+        Dim PS = CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings)
+        pathName = Folder.Name & "/" & pathName
+
+        If Folder.ParentFolder > 0 Then
+            Dim parent = From c In d.AP_Documents_Folders Where c.FolderId = Folder.ParentFolder And c.PortalId = PS.PortalId
+            If parent.Count > 0 Then
+                GetPathName(parent.First, pathName)
+            End If
+        End If
+        Return pathName
+    End Function
 
     Public Shared Function GetRootFolderId(ByRef moduleSettings As System.Collections.Hashtable) As Integer
         Dim d As New DocumentsDataContext()
-        Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
+        Dim PS = CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings)
         Dim rootFolderId As Integer = moduleSettings(RootFolderSettingKey)
 
         If String.IsNullOrEmpty(rootFolderId) Then
@@ -70,9 +93,13 @@ Public Class DocumentsController
         Return rootFolderId
     End Function
 
+#End Region 'Document Settings
+
+#Region "Document Main"
+
     Public Shared Function GetDocuments(ByRef moduleSettings As System.Collections.Hashtable) As IQueryable(Of AP_Documents_Doc)
         Dim d As New DocumentsDataContext()
-        Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
+        Dim PS = CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings)
         Dim docs As IQueryable(Of AP_Documents_Doc) = From c In d.AP_Documents_Docs Where c.AP_Documents_Folder.PortalId = PS.PortalId
 
         ' TODO filter by rootfolder
@@ -142,12 +169,11 @@ Public Class DocumentsController
         Return "images/Blank.png"
     End Function
 
-#End Region
+#End Region 'Document Main
 
 #Region "Add/Edit"
 
-    'Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, Permissions As String)
-    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, ByRef moduleSettings As System.Collections.Hashtable, ByVal Description As String)
+    Public Shared Sub InsertDocument(ByVal FileId As Integer, FileName As String, Author As String, LinkType As String, LinkURL As String, Trashed As Boolean, ByRef moduleSettings As System.Collections.Hashtable, ByVal Description As String)
         Dim d As New DocumentsDataContext()
         Dim insert As New AP_Documents_Doc
         insert.FolderId = GetRootFolderId(moduleSettings)
@@ -158,7 +184,10 @@ Public Class DocumentsController
         insert.CustomIcon = -1
         insert.LinkType = DocumentConstants.LinkTypeFile
         insert.Description = Description
-        'insert.Permissions = Permissions  Todo: determine permissions implementation
+        insert.LinkValue = LinkURL
+        insert.Trashed = Trashed
+        'insert.Permissions = Permissions
+        'Todo: determine permissions implementation
         d.AP_Documents_Docs.InsertOnSubmit(insert)
         d.SubmitChanges()
     End Sub
