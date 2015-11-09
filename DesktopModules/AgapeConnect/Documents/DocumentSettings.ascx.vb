@@ -14,6 +14,11 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
                 If Not IsPostBack Then
 
+                    'Translate the action buttons tooltips
+                    btnEdit.ToolTip = LocalizeString("btnEdit")
+                    btnDelete.ToolTip = LocalizeString("btnDelete")
+                    btnAdd.ToolTip = LocalizeString("btnAdd")
+
                     'Build the list of paths
                     Dim pathName As String = ""
 
