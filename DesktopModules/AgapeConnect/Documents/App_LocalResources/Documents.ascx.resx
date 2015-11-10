@@ -141,4 +141,7 @@
   <data name="DocumentSettingsAction.Text" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="lblNoResource.Text" xml:space="preserve">
+    <value>No resource.</value>
+  </data>
 </root>

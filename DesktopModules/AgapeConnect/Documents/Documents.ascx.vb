@@ -21,12 +21,11 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             If Not IsPostBack Then
-                LoadFolder()
+                LoadDocuments()
             End If
         End Sub
 
-        Protected Sub LoadFolder()
-            Dim FolderId As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
+        Protected Sub LoadDocuments()
             Dim Items As New ArrayList
             Dim rc As New DotNetNuke.Security.Roles.RoleController
             'TODO: Modify GetDocuments in Controller to add a boolean parameter 'includeTrashed' and delete loop below
@@ -50,10 +49,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 Case DocumentConstants.LinkTypeUrl 'The document is an external URL
                     Return theDoc.LinkValue
                 Case DocumentConstants.LinkTypeGoogleDoc 'The document is a Google Doc
-                    'TODO: This should be displayed by the DocumentViewer in an iframe
                     Return theDoc.LinkValue
                 Case DocumentConstants.LinkTypeYouTube 'The document is a YouTube video
-                    'TODO: This should be displayed by the DocumentViewer in an iframe
+                    'TODO: This should be displayed by the DocumentViewer in an iframe within a modal popup
                     Return "https://www.youtube.com/watch?v=" & theDoc.LinkValue
                     'Dim rtn = EditUrl("DocumentViewer")
                     'If rtn.Contains("?") Then
@@ -82,10 +80,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 Case DocumentConstants.LinkTypeUrl 'The document is an external URL
                     Return _BLANK
                 Case DocumentConstants.LinkTypeGoogleDoc 'The document is a Google Doc
-                    'TODO: This should be displayed by the DocumentViewer in an iframe
                     Return _BLANK
                 Case DocumentConstants.LinkTypeYouTube 'The document is a YouTube video
-                    'TODO: This should be displayed by the DocumentViewer in an iframe
+                    'TODO: This should be displayed by the DocumentViewer in an iframe within a modal popup
                     Return _BLANK
                 Case DocumentConstants.LinkTypePage 'The document is a page on this site
                     Return _SELF
@@ -110,16 +107,18 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             'Configure "Delete resource" command
             btndeletedoc.CommandName = DELETE_DOC_COMMAND_NAME
 
-            btneditdoc.NavigateUrl = "javascript:editButtonClick('" & hyperlink1.ClientID & "')"
+            btneditdoc.NavigateUrl = "javascript:editButtonClick('" & hyperlink1.ClientID & "')" 'TODO: Open "AddDocument" in modal popup
             docbuttons.Visible = IsEditable
         End Sub
 
         Protected Sub dlFolderView_ItemCommand(sender As Object, e As ListViewCommandEventArgs) Handles dlFolderView.ItemCommand
             'Handle "Delete resource" action
             If e.CommandName = DELETE_DOC_COMMAND_NAME Then
-                DocumentsController.DeleteDocument(CType(e.CommandArgument, Integer))
-                dlFolderView.DeleteItem(e.Item.DataItemIndex)
+                DocumentsController.DeleteDocument(CType(e.CommandArgument, Integer)) 'e.CommandArgument contains the DocId
             End If
+
+            'Reload the documents to update the list view
+            LoadDocuments()
         End Sub
 
 #Region "Optional Interfaces"
