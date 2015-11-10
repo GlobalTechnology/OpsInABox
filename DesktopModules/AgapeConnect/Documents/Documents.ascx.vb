@@ -7,6 +7,12 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Inherits Entities.Modules.PortalModuleBase
         Implements Entities.Modules.IActionable
 
+#Region "Constants"
+        'Command names for actions event handlers
+        Private Const DELETE_DOC_COMMAND_NAME As String = "DeleteDoc"
+
+#End Region 'Constants
+
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             ' Register DNN Jquery plugins
             ClientAPI.RegisterClientReference(Me.Page, ClientAPI.ClientNamespaceReferences.dnn)
@@ -101,8 +107,19 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             btneditdoc.ToolTip = LocalizeString("btnEditDoc")
             btndeletedoc.ToolTip = LocalizeString("btnDeleteDoc")
 
+            'Configure "Delete resource" command
+            btndeletedoc.CommandName = DELETE_DOC_COMMAND_NAME
+
             btneditdoc.NavigateUrl = "javascript:editButtonClick('" & hyperlink1.ClientID & "')"
             docbuttons.Visible = IsEditable
+        End Sub
+
+        Protected Sub dlFolderView_ItemCommand(sender As Object, e As ListViewCommandEventArgs) Handles dlFolderView.ItemCommand
+            'Handle "Delete resource" action
+            If e.CommandName = DELETE_DOC_COMMAND_NAME Then
+                DocumentsController.DeleteDocument(CType(e.CommandArgument, Integer))
+                dlFolderView.DeleteItem(e.Item.DataItemIndex)
+            End If
         End Sub
 
 #Region "Optional Interfaces"
@@ -115,5 +132,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             End Get
         End Property
 #End Region
+
     End Class
 End Namespace

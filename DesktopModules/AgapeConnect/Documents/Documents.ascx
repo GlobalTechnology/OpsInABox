@@ -51,7 +51,7 @@
                 </asp:HyperLink>
                 <div id="docButtons" class="docButtons" runat="server">
                     <asp:HyperLink ID="btnEditDoc" CssClass="btnEdit" runat="server"></asp:HyperLink>
-                    <asp:LinkButton ID="btnDeleteDoc" CssClass="btnDelete" runat="server"></asp:LinkButton>
+                    <asp:LinkButton ID="btnDeleteDoc" CssClass="btnDelete" runat="server" CommandArgument='<%# Eval("DocId")%>'></asp:LinkButton>
                 </div>
             </div>
         </ItemTemplate>

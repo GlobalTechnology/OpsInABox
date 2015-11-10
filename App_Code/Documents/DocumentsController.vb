@@ -180,6 +180,15 @@ Public Class DocumentsController
         Return "images/Blank.png"
     End Function
 
+    Public Shared Sub DeleteDocument(ByVal DocId As Integer)
+        Dim d As New DocumentsDataContext()
+
+        ' Mark the document as Trashed
+        Dim theDoc = From c In d.AP_Documents_Docs Where c.DocId = DocId
+        theDoc.First.Trashed = True
+        d.SubmitChanges()
+    End Sub
+
 #End Region 'Document Main
 
 #Region "Add/Edit"
