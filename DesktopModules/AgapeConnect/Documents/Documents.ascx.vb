@@ -1,19 +1,16 @@
 ﻿Imports DotNetNuke.Services.FileSystem
+Imports DotNetNuke.Framework.JavaScriptLibraries
+Imports DotNetNuke.UI.Utilities
 
 Namespace DotNetNuke.Modules.AgapeConnect.Documents
     Partial Class Documents
         Inherits Entities.Modules.PortalModuleBase
         Implements Entities.Modules.IActionable
-        'Dim d As New DocumentsDataContext()
-        'Public templateMode As String = "Icons"
-
-        'Dim rc As New DotNetNuke.Security.Roles.RoleController
-        'Dim UserRoles As ArrayList
-        'Dim doc As Object
-        'Dim GTreeColor As String
-        'Dim TreeStyles() As String = {"Explorer", "GTree", "Tree"}
 
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
+            ' Register DNN Jquery plugins
+            ClientAPI.RegisterClientReference(Me.Page, ClientAPI.ClientNamespaceReferences.dnn)
+            JavaScript.RequestRegistration(CommonJs.DnnPlugins)
         End Sub
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -26,7 +23,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             Dim FolderId As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
             Dim Items As New ArrayList
             Dim rc As New DotNetNuke.Security.Roles.RoleController
-            'Dim UserRoles = rc.GetUserRoles(PortalId, UserId)
+            'TODO: Modify GetDocuments in Controller to add a boolean parameter 'includeTrashed' and delete loop below
             Dim Docs = DocumentsController.GetDocuments(TabModuleId)
             For Each document In Docs
                 If document.Trashed = False Then
@@ -39,15 +36,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
         Public Function GetIcon(ByVal FileId As Integer?, ByVal Folderid As Integer) As String
             Return DocumentsController.GetFileIcon(FileId, 4)
-        End Function
-
-        Public Function Translate(ByVal ResourceString As String) As String
-            Return DotNetNuke.Services.Localization.Localization.GetString(ResourceString & ".Text", LocalResourceFile)
-        End Function
-
-        Public Function GetFileDate(ByVal FileId As Integer) As String
-            Return DotNetNuke.Services.FileSystem.FileManager.Instance.GetFile(FileId).LastModificationTime.ToString("dd MMM yyyy")
-
         End Function
 
         Public Function GetDocUrl(ByVal DocId As Integer) As String
@@ -102,12 +90,18 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         End Function
 
         Protected Sub dlFolderView_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles dlFolderView.ItemDataBound
+            'For each resource
+
             Dim btneditdoc As HyperLink = CType(e.Item.FindControl("btnEditDoc"), HyperLink)
-            Dim btndeletedoc As HyperLink = CType(e.Item.FindControl("btnDeleteDoc"), HyperLink)
+            Dim btndeletedoc As LinkButton = CType(e.Item.FindControl("btnDeleteDoc"), LinkButton)
             Dim hyperlink1 As HyperLink = CType(e.Item.FindControl("HyperLink1"), HyperLink)
             Dim docbuttons As HtmlGenericControl = CType(e.Item.FindControl("docButtons"), HtmlGenericControl)
-            btneditdoc.NavigateUrl = "javascript:editButtonClick(" & hyperlink1.ClientID & ")"
-            btndeletedoc.NavigateUrl = "javascript:deleteButtonClick(" & hyperlink1.ClientID & ")"
+
+            'Translate the action buttons tooltips
+            btneditdoc.ToolTip = LocalizeString("btnEditDoc")
+            btndeletedoc.ToolTip = LocalizeString("btnDeleteDoc")
+
+            btneditdoc.NavigateUrl = "javascript:editButtonClick('" & hyperlink1.ClientID & "')"
             docbuttons.Visible = IsEditable
         End Sub
 
@@ -115,8 +109,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Public ReadOnly Property ModuleActions() As Entities.Modules.Actions.ModuleActionCollection Implements Entities.Modules.IActionable.ModuleActions
             Get
                 Dim Actions As New Entities.Modules.Actions.ModuleActionCollection
-                Actions.Add(GetNextActionID, Translate("DocumentsSettings"), "DocumentSettings", "", "action_settings.gif", EditUrl("DocumentSettings"), False, SecurityAccessLevel.Admin, True, False)
-                Actions.Add(GetNextActionID, Translate("AddDocument"), "AddDocument", "", "action_settings.gif", EditUrl("AddDocument"), False, SecurityAccessLevel.Edit, True, False)
+                Actions.Add(GetNextActionID, LocalizeString("DocumentSettingsAction"), "DocumentSettings", "", "action_settings.gif", EditUrl("DocumentSettings"), False, SecurityAccessLevel.Admin, True, False)
+                Actions.Add(GetNextActionID, LocalizeString("AddDocumentAction"), "AddDocument", "", "action_settings.gif", EditUrl("AddDocument"), False, SecurityAccessLevel.Edit, True, False)
                 Return Actions
             End Get
         End Property

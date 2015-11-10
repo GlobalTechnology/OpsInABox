@@ -3,6 +3,35 @@
 <%@ Register Src="~/controls/urlcontrol.ascx" TagName="urlcontrol" TagPrefix="uc1" %>
 <%@ Register Assembly="DotNetNuke" Namespace="DotNetNuke.UI.WebControls" TagPrefix="cc1" %>
 
+<script>
+
+    (function ($, Sys) {
+
+        function setUpMyModule() {
+            
+            //Initialize confirmation popup for delete buttons
+            $('.btnDelete').each(function(){
+                $(this).dnnConfirm({
+                    text: '<%=LocalizeString("deleteResourceConfirmationQuestion")%>'.replace("[RESOURCE]", $(this).closest('.icons').find('.docTitle').find('span').text()),
+                    yesText: '<%=LocalizeString("deleteResourceConfirmationYes")%>',
+                    noText: '<%=LocalizeString("deleteResourceConfirmationNo")%>',
+                    title: '<%=LocalizeString("deleteResourceConfirmationTitle")%>'
+                });
+            })
+
+        }
+
+        $(document).ready(function () {
+            setUpMyModule();
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
+                setUpMyModule();
+            });
+        });
+
+    }(jQuery, window.Sys)); // pass in the globals. Note the safe access of the jQuery object.
+
+</script>
+
 <div id="DocumentsMain" class="documents">
     <asp:ListView ID="dlFolderView" runat="server">
         <ItemTemplate>
@@ -22,7 +51,7 @@
                 </asp:HyperLink>
                 <div id="docButtons" class="docButtons" runat="server">
                     <asp:HyperLink ID="btnEditDoc" CssClass="btnEdit" runat="server"></asp:HyperLink>
-                    <asp:HyperLink ID="btnDeleteDoc" CssClass="btnDelete" runat="server"></asp:HyperLink>
+                    <asp:LinkButton ID="btnDeleteDoc" CssClass="btnDelete" runat="server"></asp:LinkButton>
                 </div>
             </div>
         </ItemTemplate>

@@ -117,139 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
+  <data name="AddDocumentAction.Text" xml:space="preserve">
+    <value>Add resource</value>
   </data>
-  <data name="lblDescription.Help" xml:space="preserve">
-    <value>Enter a short description (optional)</value>
+  <data name="btnDeleteDoc.Text" xml:space="preserve">
+    <value>Delete ressource</value>
   </data>
-  <data name="lblDescription.Text" xml:space="preserve">
-    <value>Description:</value>
+  <data name="btnEditDoc.Text" xml:space="preserve">
+    <value>Edit ressource</value>
   </data>
-  <data name="lblDisplaying.Text" xml:space="preserve">
-    <value>Displaying contents of:</value>
+  <data name="deleteResourceConfirmationNo.Text" xml:space="preserve">
+    <value>No</value>
   </data>
-  <data name="lblDisplayName.Help" xml:space="preserve">
-    <value>Choose a name for this documents (max 100 characters). It does not have to be the same as the filename.</value>
+  <data name="deleteResourceConfirmationQuestion.Text" xml:space="preserve">
+    <value>Are you sure you want to delete "[RESOURCE]"?</value>
   </data>
-  <data name="lblDisplayName.Text" xml:space="preserve">
-    <value>Display Name:</value>
+  <data name="deleteResourceConfirmationTitle.Text" xml:space="preserve">
+    <value>Delete the resource</value>
   </data>
-  <data name="lblExpand.Text" xml:space="preserve">
-    <value>(Click to expand/colapse)</value>
+  <data name="deleteResourceConfirmationYes.Text" xml:space="preserve">
+    <value>Yes</value>
   </data>
-  <data name="lblFile.Help" xml:space="preserve">
-    <value>Select the file you would like to link to. The link will appear like any other file, and will also include all of the version and comments associated with the file. If the file you are looking for does not yet exist on the server, you will need to upload it using the "Upload Files" option.</value>
-  </data>
-  <data name="lblFile.Text" xml:space="preserve">
-    <value>File:</value>
-  </data>
-  <data name="lblFileAuthor.Help" xml:space="preserve">
-    <value>Enter the name of the author/owner (optional)</value>
-  </data>
-  <data name="lblFileAuthor.Text" xml:space="preserve">
-    <value>Author:</value>
-  </data>
-  <data name="lblFileDescription.Help" xml:space="preserve">
-    <value>Enter a short description of this file (optional)</value>
-  </data>
-  <data name="lblFileDescription.Text" xml:space="preserve">
-    <value>Description:</value>
-  </data>
-  <data name="lblFolderName.Help" xml:space="preserve">
-    <value>Choose a name for your new folder (max 100 characters)</value>
-  </data>
-  <data name="lblFolderName.Text" xml:space="preserve">
-    <value>Folder Name:</value>
-  </data>
-  <data name="lblGoogle.Help" xml:space="preserve">
-    <value>This is identical to External URL, except the link will have a Google Icon. When users click on this link, the googledoc will open in a new tab.</value>
-  </data>
-  <data name="lblGoogle.Text" xml:space="preserve">
-    <value>Google Doc URL:</value>
-  </data>
-  <data name="lblIcon.Text" xml:space="preserve">
-    <value>Icon:</value>
-  </data>
-  <data name="lblKeywords.Help" xml:space="preserve">
-    <value>Enter keywords associated with this file. Separate multiple keywords with a comma. Keywords help your users search for documents.</value>
-  </data>
-  <data name="lblKeywords.Text" xml:space="preserve">
-    <value>Keywords:</value>
-  </data>
-  <data name="lblLinkType.Help" xml:space="preserve">
-    <value>Select the link type. </value>
-  </data>
-  <data name="lblLinkType.Text" xml:space="preserve">
-    <value>Link Type:</value>
-  </data>
-  <data name="lblPage.Help" xml:space="preserve">
-    <value>Select the page you would like to link to. When users click on this link, it will open in the same widow.</value>
-  </data>
-  <data name="lblPage.Text" xml:space="preserve">
-    <value>Page:</value>
-  </data>
-  <data name="lblPermissions.Text" xml:space="preserve">
-    <value>Permissions:</value>
-  </data>
-  <data name="lblSelectFile.Help" xml:space="preserve">
-    <value>Select a file to upload as a new version, then click Save Version. </value>
-  </data>
-  <data name="lblSelectFile.Text" xml:space="preserve">
-    <value>Select File:</value>
-  </data>
-  <data name="lblSelectFiles.Text" xml:space="preserve">
-    <value>Select the files you want to upload:</value>
-  </data>
-  <data name="lblSelectFilesHelp.Text" xml:space="preserve">
-    <value>You can select as many files as you want. When you have selected your files, click upload. If you would like to change the files details (e.g. Name or Description) or location, right click on the file (after you have uploaded it).</value>
-  </data>
-  <data name="lblSelectIcon.Help" xml:space="preserve">
-    <value>Select an image file (png, gif or jpg). Whilst any image file can be used, we suggest that you use a sqaure image of 128px x 128px. Png files tend to work the best, as they can provide high quality with transparent backgrounds.  Avoid very high resolution files as these will slow down your loading times.</value>
-  </data>
-  <data name="lblSelectIcon.Text" xml:space="preserve">
-    <value>Select Image File:</value>
-  </data>
-  <data name="lblTags.Help" xml:space="preserve">
-    <value>Select the tags that best describe the type of resource. Documents can be listed and searched by Tag. </value>
-  </data>
-  <data name="lblTags.Text" xml:space="preserve">
-    <value>Tags:</value>
-  </data>
-  <data name="lblURL.Help" xml:space="preserve">
-    <value>Enter the website url (including http://). When users click on this link, the website will open in a new tab.</value>
-  </data>
-  <data name="lblURL.Text" xml:space="preserve">
-    <value>Website URL:</value>
-  </data>
-  <data name="lblVersion.Help" xml:space="preserve">
-    <value>Enter a version number for this documents (Optional)</value>
-  </data>
-  <data name="lblVersion.Text" xml:space="preserve">
-    <value>Version:</value>
-  </data>
-  <data name="lblVersions.Text" xml:space="preserve">
-    <value>Versions:</value>
-  </data>
-  <data name="lblYouTube.Help" xml:space="preserve">
-    <value>Enter the url of your YouTube video, or just the you tube video id. When users click on this link, they will view this video on this site. </value>
-  </data>
-  <data name="lblYouTube.Text" xml:space="preserve">
-    <value>YouTube URL:</value>
-  </data>
-  <data name="Save.Text" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="lblDisplayingSearch.Text" xml:space="preserve">
-    <value>Display Search Results for</value>
-  </data>
-  <data name="lblTrashed.Text" xml:space="preserve">
-    <value>Trashed?</value>
-  </data>
-  <data name="DocumentsSettings.Text" xml:space="preserve">
-    <value>Documents Settings</value>
-  </data>
-  <data name="AddDocument.Text" xml:space="preserve">
-    <value>Add Document</value>
+  <data name="DocumentSettingsAction.Text" xml:space="preserve">
+    <value>Settings</value>
   </data>
 </root>
