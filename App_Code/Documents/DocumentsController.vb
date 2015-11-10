@@ -50,12 +50,12 @@ Public Class DocumentsController
 
     Public Shared Function GetPathName(ByVal Folder As AP_Documents_Folder, ByRef pathName As String) As String
         Dim d As New DocumentsDataContext()
-        pathName = Folder.Name & "/" & pathName
+        pathName = Folder.Name & pathName
 
         If Folder.ParentFolder > 0 Then
             Dim parent = From c In d.AP_Documents_Folders Where c.FolderId = Folder.ParentFolder And c.PortalId = GetPortalId()
             If parent.Count > 0 Then
-                GetPathName(parent.First, pathName)
+                GetPathName(parent.First, "/" & pathName)
             End If
         End If
         Return pathName
