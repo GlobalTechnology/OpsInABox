@@ -38,7 +38,17 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             End Try
         End Sub
 
-        Protected Sub SaveBtn_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles SaveBtn.Click
+        Protected Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+            lblAddSubFolder.Visible = True
+            tbAddSubFolder.Visible = True
+            btnAddSubFolder.Visible = True
+        End Sub
+
+        Protected Sub btnAddSubFolder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAddSubFolder.Click
+            ' DocumentsController.SetFolder(tbAddSubFolder.Text.ddlRoot.SelectedValue)
+        End Sub
+
+        Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSave.Click
 
             'update module folder in settings
             DocumentsController.SetModuleFolderId(TabModuleId, ddlRoot.SelectedValue)
@@ -48,11 +58,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
         End Sub
 
-
-        Protected Sub CancelBtn_Click(sender As Object, e As System.EventArgs) Handles CancelBtn.Click
+        Protected Sub btnCancel_Click(sender As Object, e As System.EventArgs) Handles btnCancel.Click
             Response.Redirect(NavigateURL())
         End Sub
-
 
     End Class
 

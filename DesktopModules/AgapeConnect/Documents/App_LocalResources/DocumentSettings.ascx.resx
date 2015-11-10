@@ -135,4 +135,10 @@
   <data name="btnEdit.Text" xml:space="preserve">
     <value>rename folder</value>
   </data>
+  <data name="btnAddSubFolder.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="lblAddSubFolder.Text" xml:space="preserve">
+    <value>Add a subfolder :</value>
+  </data>
 </root>

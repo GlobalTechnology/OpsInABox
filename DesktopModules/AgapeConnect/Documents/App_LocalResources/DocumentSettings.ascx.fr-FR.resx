@@ -135,4 +135,10 @@
   <data name="lblRoot.Text" xml:space="preserve">
     <value>Répertoire racine :</value>
   </data>
+  <data name="btnAddSubFolder.Text" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="lblAddSubFolder.Text" xml:space="preserve">
+    <value>Ajouter un sous-répertoire :</value>
+  </data>
 </root>
