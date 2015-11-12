@@ -141,4 +141,22 @@
   <data name="lblAddSubFolder.Text" xml:space="preserve">
     <value>Ajouter un sous-répertoire :</value>
   </data>
+  <data name="deleteRepertoireConfirmationNo.Text" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="deleteRepertoireConfirmationQuestion.Text" xml:space="preserve">
+    <value>Etes-vous sûr de vouloir supprimer le répertoire ?</value>
+  </data>
+  <data name="deleteRepertoireConfirmationTitle.Text" xml:space="preserve">
+    <value>Supprimer le répertoire</value>
+  </data>
+  <data name="deleteRepertoireConfirmationYes.Text" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="folderExists.Text" xml:space="preserve">
+    <value>Le sous-répertoire existe déjà</value>
+  </data>
+  <data name="validFolderName.Text" xml:space="preserve">
+    <value>Le nom d'un répertoire ne peut pas avoir les characters / ni \</value>
+  </data>
 </root>

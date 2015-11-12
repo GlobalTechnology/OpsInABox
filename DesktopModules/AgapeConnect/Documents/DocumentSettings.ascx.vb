@@ -45,7 +45,16 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         End Sub
 
         Protected Sub btnAddSubFolder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAddSubFolder.Click
-            ' DocumentsController.SetFolder(tbAddSubFolder.Text.ddlRoot.SelectedValue)
+            If Page.IsValid Then
+                DocumentsController.SetFolder(tbAddSubFolder.Text, ddlRoot.SelectedValue)
+
+                'TODO ddl list isn't refreshing after add...
+                'TODO add a success message
+
+                ddlRoot.DataBind()
+                tbAddSubFolder.Text = ""
+
+            End If
         End Sub
 
         Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSave.Click
@@ -62,6 +71,10 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             Response.Redirect(NavigateURL())
         End Sub
 
+        Protected Sub IsFolder(sender As Object, e As ServerValidateEventArgs)
+            'IsValid should be true when folder does not exist so boolean is reversed here
+            e.IsValid = Not DocumentsController.IsFolder(tbAddSubFolder.Text, ddlRoot.SelectedValue)
+        End Sub
     End Class
 
 End Namespace
