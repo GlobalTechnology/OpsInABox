@@ -43,28 +43,13 @@ Public Class DocumentsController
 
 #Region "Document Settings"
 
+    'Returns a list of all folders in the portal
     Public Shared Function GetFolders() As List(Of AP_Documents_Folder)
         Dim d As New DocumentsDataContext()
-        Return (From c In d.AP_Documents_Folders Where c.PortalId = GetPortalId() Order By c.Name Descending).ToList
+        Return (From c In d.AP_Documents_Folders Where c.PortalId = GetPortalId()).ToList
     End Function
 
-    Public Shared Function IsFolder(ByVal newFolder As String, ByVal parentFolderId As Integer) As Boolean
-
-        Dim d As New DocumentsDataContext()
-
-        ' retrieve all folders with same parent folder as the newFolder and same name as the newFolder
-        Dim foldersWithSameParentAndSameName As List(Of AP_Documents_Folder) = (From c In d.AP_Documents_Folders _
-                                                           Where c.ParentFolder = parentFolderId _
-                                                           And c.PortalId = GetPortalId() _
-                                                           And c.Name = newFolder).ToList
-
-        If foldersWithSameParentAndSameName.Count > 0 Then
-            Return True
-        Else
-            Return False
-        End If
-    End Function
-
+    'Saves in the database the newFolder
     Public Shared Sub SetFolder(ByVal newFolder As String, ByVal parentFolderId As Integer)
         Dim d As New DocumentsDataContext()
 
@@ -79,19 +64,34 @@ Public Class DocumentsController
 
     End Sub
 
-    Public Shared Function GetPathName(ByVal Folder As AP_Documents_Folder, ByRef pathName As String) As String
-        Dim d As New DocumentsDataContext()
-        pathName = Folder.Name & pathName
+    'Determines if newFolder already exists, respects the path that newFolder is in
+    Public Shared Function IsFolder(ByVal newFolder As String, ByVal parentFolderId As Integer) As Boolean
 
-        If Folder.ParentFolder > 0 Then
-            Dim parent = From c In d.AP_Documents_Folders Where c.FolderId = Folder.ParentFolder And c.PortalId = GetPortalId()
-            If parent.Count > 0 Then
-                pathName = "/" & pathName
-                GetPathName(parent.First, pathName)
-            End If
+        Dim d As New DocumentsDataContext()
+
+        ' retrieve all folders with same parent folder as the newFolder and same name as the newFolder
+        Dim foldersWithSameParentAndSameName As List(Of AP_Documents_Folder) = (From c In d.AP_Documents_Folders _
+                                                           Where c.ParentFolder = parentFolderId _
+                                                           And c.PortalId = GetPortalId() _
+                                                           And c.Name = newFolder).ToList
+
+        If foldersWithSameParentAndSameName.Count > 0 Then
+            'newFolder exists already
+            Return True
+        Else
+            'newFolder does not exist
+            Return False
         End If
-        Return pathName
     End Function
+
+    'Intermediate function that calls the recursive function BuildPath()
+    Public Shared Function GetFullPath(ByVal Folder As AP_Documents_Folder) As String
+        Dim pathName As String = ""
+        Return BuildPath(Folder, pathName)
+    End Function
+
+
+    
 
     Public Shared Function GetModuleFolderId(ByVal tabModuleId As Integer) As Integer
         Dim d As New DocumentsDataContext()
@@ -252,6 +252,21 @@ Public Class DocumentsController
 #Region "Private functions"
     Private Shared Function GetPortalId() As Integer
         Return CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings).PortalId
+    End Function
+
+    'Recursive function that builds the full path from the inside out
+    Private Shared Function BuildPath(ByVal Folder As AP_Documents_Folder, ByRef pathName As String) As String
+        Dim d As New DocumentsDataContext()
+        pathName = Folder.Name & pathName
+
+        If Folder.ParentFolder > 0 Then
+            Dim parent = From c In d.AP_Documents_Folders Where c.FolderId = Folder.ParentFolder And c.PortalId = GetPortalId()
+            If parent.Count > 0 Then
+                pathName = "/" & pathName
+                BuildPath(parent.First, pathName)
+            End If
+        End If
+        Return pathName
     End Function
 
 #End Region
