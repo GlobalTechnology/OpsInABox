@@ -2,23 +2,29 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
 <script type="text/javascript">
-    function setUpMyTabs() {
 
-        // Show/hide the right option div depending on selected radio button
-        $("input:radio").click(function () {
-            $(".docOption").hide();
-            switch (this.value) {
-                case "<%= DocumentConstants.LinkTypeFile %>": $("#divUpload").show(); break;
+    // Show/hide the right option div depending on selected radio button
+    function showAppropriateOptionPanel() {
+        $(".docOption").hide();
+        switch ($(".rbLinkType input:checked").val()) {
+            case "<%= DocumentConstants.LinkTypeFile %>": $("#divUpload").show(); break;
                 case "<%= DocumentConstants.LinkTypeGoogleDoc %>": $("#divGoogle").show(); break;
                 case "<%= DocumentConstants.LinkTypeUrl %>": $("#divURL").show(); break;
                 case "<%= DocumentConstants.LinkTypePage %>": $("#divPage").show(); break;
                 case "<%= DocumentConstants.LinkTypeYouTube %>": $("#divYouTube").show(); break;
             }
+    }
+
+    function setUpMyPage() {
+        
+        $(".rbLinkType input:radio").click(function () {
+            showAppropriateOptionPanel();
         });
     }
     $(document).ready(function () {
-        setUpMyTabs();
-        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyTabs(); });
+        setUpMyPage();
+        showAppropriateOptionPanel()
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyPage(); showAppropriateOptionPanel() });
     });
 </script>
 <div id="divAddEditResource" class="Documents">

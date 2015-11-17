@@ -58,7 +58,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 If IsEditMode AndAlso editDoc.LinkType = DocumentConstants.LinkTypeFile Then
                     rbLinkType.Items.Add(New ListItem("Garder le fichier actuel", DocumentConstants.LinkTypeKeepFileForUpdate))
                 End If
-                rbLinkType.Items.Add(New ListItem("Upload a new file", DocumentConstants.LinkTypeFile))
+                rbLinkType.Items.Add(New ListItem("Upload a file", DocumentConstants.LinkTypeFile))
                 rbLinkType.Items.Add(New ListItem("Google Doc", DocumentConstants.LinkTypeGoogleDoc))
                 rbLinkType.Items.Add(New ListItem("External URL", DocumentConstants.LinkTypeUrl))
                 rbLinkType.Items.Add(New ListItem("A Page on this site", DocumentConstants.LinkTypePage))
@@ -71,8 +71,25 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                     ' Fill in existing values for edited resource
                     tbName.Text = editDoc.DisplayName
                     tbDescription.Text = editDoc.Description
-                    rbLinkType.SelectedValue = editDoc.LinkType
+
                     'TODO: Select the right Option panel to display and set the corresponding value to edit
+
+                    If editDoc.LinkType = DocumentConstants.LinkTypeFile Then 'If type file, select option to keep existing file.
+                        rbLinkType.SelectedValue = DocumentConstants.LinkTypeKeepFileForUpdate
+                    Else 'select option according to link type
+                        rbLinkType.SelectedValue = editDoc.LinkType
+                    End If
+
+                    If editDoc.LinkType = DocumentConstants.LinkTypeGoogleDoc Then 'Radio button selected was Google Doc
+                        tbGoogle.Text = editDoc.LinkValue
+                    ElseIf editDoc.LinkType = DocumentConstants.LinkTypeUrl Then 'Radio button selected was external URL
+                        tbURL.Text = editDoc.LinkValue
+                    ElseIf editDoc.LinkType = DocumentConstants.LinkTypePage Then 'Radio button selected was internal page
+                        ddlPages.SelectedValue = editDoc.LinkValue
+                    ElseIf editDoc.LinkType = DocumentConstants.LinkTypeYouTube Then 'Radio button selected was youtube
+                        tbYouTube.Text = editDoc.LinkValue
+                    End If
+
                 Else
                     ' Set page title for add mode
                     CType(Page, DotNetNuke.Framework.CDefault).Title = "Add Resource" 'TODO: Title to be translated
@@ -136,7 +153,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 Try
                     If (FileUpload1.HasFile) Then
                         'Need to add the files to the dnn file system
-                        Dim theFile = DotNetNuke.Services.FileSystem.FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), FileUpload1.FileName, FileUpload1.FileContent)
+                        Dim theFile = FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), FileUpload1.FileName, FileUpload1.FileContent)
                         'Now instert the document into the database
                         DocumentsController.InsertResource(theFile.FileId, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text) 'need to add permissions eventually
                     End If
@@ -154,13 +171,19 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         End Sub
 
         Protected Sub UpdateResource()
-            If rbLinkType.SelectedValue = DocumentConstants.LinkTypeFile Then 'Radio button selected was upload
+            If rbLinkType.SelectedValue = DocumentConstants.LinkTypeKeepFileForUpdate Then 'Radio button selected was "Keep existing file"
+                ' Update all values but the FileId
+                DocumentsController.UpdateResource(DocId, DocumentsController.GetDocument(DocId).FileId, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text)
+            ElseIf rbLinkType.SelectedValue = DocumentConstants.LinkTypeFile Then 'Radio button selected was upload
                 Try
                     If (FileUpload1.HasFile) Then
-                        'Need to add the files to the dnn file system
-                        Dim theFile = DotNetNuke.Services.FileSystem.FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), FileUpload1.FileName, FileUpload1.FileContent)
+                        'Add new file to the dnn file system
+                        Dim theFile = FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), FileUpload1.FileName, FileUpload1.FileContent)
+                        'Delete old file from dnn file system
+                        FileManager.Instance.DeleteFile(FileManager.Instance.GetFile(DocumentsController.GetDocument(DocId).FileId))
+
                         'Now update the document into the database
-                        DocumentsController.UpdateResource(DocId, theFile.FileId, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text) 'need to add permissions eventually
+                        DocumentsController.UpdateResource(DocId, theFile.FileId, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text)
                     End If
                 Catch ex As Exception
                 End Try
