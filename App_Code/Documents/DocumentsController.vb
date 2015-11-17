@@ -64,7 +64,7 @@ Public Class DocumentsController
 
     End Sub
 
-    'Determines if newFolder already exists, respects the path that newFolder is in
+    'Determines if newFolder already exists, respecting the path that newFolder is in
     Public Shared Function IsFolder(ByVal newFolder As String, ByVal parentFolderId As Integer) As Boolean
 
         Dim d As New DocumentsDataContext()
@@ -84,18 +84,52 @@ Public Class DocumentsController
         End If
     End Function
 
+    Public Shared Function IsFolderEmpty(ByVal folderID As Integer) As Boolean
+        Dim d As New DocumentsDataContext()
+
+        Dim docs As IQueryable(Of AP_Documents_Doc) = From c In d.AP_Documents_Docs Where _
+                             c.AP_Documents_Folder.PortalId = GetPortalId() And _
+                             c.AP_Documents_Folder.FolderId = folderID
+
+        Dim childFolders As IQueryable(Of AP_Documents_Folder) = From c In d.AP_Documents_Folders Where _
+                             c.PortalId = GetPortalId() And _
+                             c.ParentFolder = folderID
+
+        If (docs.Count > 0 Or childFolders.Count > 0) Then
+            Return False
+        End If
+        Return True
+    End Function
+
+    Public Shared Sub DeleteFolder(ByVal folderID As Integer)
+        Dim d As New DocumentsDataContext()
+
+        Dim deleteFolder As IQueryable(Of AP_Documents_Folder) = From c In d.AP_Documents_Folders Where _
+                             c.PortalId = GetPortalId() And _
+                             c.FolderId = folderID
+
+        d.AP_Documents_Folders.DeleteOnSubmit(deleteFolder.First)
+
+        Try
+            d.SubmitChanges()
+        Catch ex As Exception
+            'TODO 
+        End Try
+
+    End Sub
+
     'Intermediate function that calls the recursive function BuildPath()
     Public Shared Function GetFullPath(ByVal Folder As AP_Documents_Folder) As String
         Dim pathName As String = ""
         Return BuildPath(Folder, pathName)
     End Function
 
-
-    
-
+    'Sees if the root folder has been chosen and saved in Settings. 
+    'If it has it returns the folderID of the saved setting
+    'If not it returns the folderId of the folder that has no parent
+    'If there are no folders it creates one
     Public Shared Function GetModuleFolderId(ByVal tabModuleId As Integer) As Integer
         Dim d As New DocumentsDataContext()
-
         Dim objModules As New Entities.Modules.ModuleController
         Dim tabModuleSettings As Hashtable = objModules.GetTabModule(tabModuleId).TabModuleSettings
 
