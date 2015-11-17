@@ -52,7 +52,8 @@
                                 </div>
                             </asp:HyperLink>
                             <div id="docButtons" class="docButtons" runat="server">
-                                <asp:HyperLink ID="btnEditDoc" CssClass="btnEdit" runat="server"></asp:HyperLink>
+                                <asp:HyperLink ID="btnEditDoc" CssClass="btnEdit" runat="server" 
+                                    NavigateUrl='<%# EditUrl("", "", "AddDocument", "edit", Eval("DocId"))%>'></asp:HyperLink>
                                 <asp:LinkButton ID="btnDeleteDoc" CssClass="btnDelete" runat="server" CommandArgument='<%# Eval("DocId")%>'></asp:LinkButton>
                             </div>
                         </div>

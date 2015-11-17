@@ -138,13 +138,18 @@ Public Class DocumentsController
 
 #Region "Document Main"
 
-    Public Shared Function GetDocuments(ByVal tabModuleId As Integer) As IQueryable(Of AP_Documents_Doc)
+    Public Shared Function GetDocuments(ByVal tabModuleId As Integer, ByVal includeTrashed As Boolean) As IQueryable(Of AP_Documents_Doc)
         Dim d As New DocumentsDataContext()
         Dim folderId = GetModuleFolderId(tabModuleId)
 
         Dim docs As IQueryable(Of AP_Documents_Doc) = From c In d.AP_Documents_Docs Where _
                              c.AP_Documents_Folder.PortalId = GetPortalId() And _
                              c.AP_Documents_Folder.FolderId = folderId
+
+        ' Filter on non trashed docs if requested 
+        If includeTrashed = False Then
+            docs = From c In docs Where c.Trashed = False
+        End If
 
         Return docs
 
@@ -244,6 +249,33 @@ Public Class DocumentsController
         'insert.Permissions = Permissions
         'Todo: determine permissions implementation
         d.AP_Documents_Docs.InsertOnSubmit(insert)
+        d.SubmitChanges()
+    End Sub
+
+    Public Shared Sub UpdateResource(ByVal DocId As Integer, ByVal FileId As Integer, FileName As String, _
+                                 Author As String, LinkType As String, LinkURL As String, _
+                                 Trashed As Boolean, ByVal tabModuleId As Integer, _
+                                 ByVal Description As String)
+        Dim d As New DocumentsDataContext()
+
+        'Get resource to update
+        Dim theDoc = (From c In d.AP_Documents_Docs Where c.DocId = DocId).First
+
+        'Update resource values
+        theDoc.FolderId = GetModuleFolderId(tabModuleId)
+        theDoc.FileId = FileId
+        theDoc.DisplayName = FileName
+        theDoc.Author = Author
+        theDoc.VersionNumber = "1.0"
+        theDoc.CustomIcon = -1
+        theDoc.LinkType = LinkType
+        theDoc.Description = Description
+        theDoc.LinkValue = LinkURL
+        theDoc.Trashed = Trashed
+        'insert.Permissions = Permissions
+        'Todo: determine permissions implementation
+
+        'Submit in DB
         d.SubmitChanges()
     End Sub
 

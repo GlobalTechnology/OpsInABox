@@ -1,4 +1,6 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="AddDocument.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Documents.AddDocument" %>
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+
 <script type="text/javascript">
     function setUpMyTabs() {
         $("input:radio").click(function () {
@@ -57,7 +59,7 @@
         </div>
         <div id="divPage" class="docOption" style="display: none">
             <asp:Label ID="lblPage" runat="server" ResourceKey="lblPage" Text="Site page:" CssClass="FieldLabel" />
-            <asp:DropDownList ID="ddlPages" runat="server" />
+            <telerik:RadComboBox ID="ddlPages" runat="server" />
             <p class="FieldHelp">
                 <asp:Label ID="lblPageHelp" runat="server" Text="Please choose a page from this list." />
             </p>

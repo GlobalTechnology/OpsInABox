@@ -1,6 +1,7 @@
 ﻿Imports DotNetNuke.Services.FileSystem
 Imports DotNetNuke.Framework.JavaScriptLibraries
 Imports DotNetNuke.UI.Utilities
+Imports Documents
 
 Namespace DotNetNuke.Modules.AgapeConnect.Documents
     Partial Class Documents
@@ -26,16 +27,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         End Sub
 
         Protected Sub LoadDocuments()
-            Dim Items As New ArrayList
-            Dim rc As New DotNetNuke.Security.Roles.RoleController
-            'TODO: Modify GetDocuments in Controller to add a boolean parameter 'includeTrashed' and delete loop below
-            Dim Docs = DocumentsController.GetDocuments(TabModuleId)
-            For Each document In Docs
-                If document.Trashed = False Then
-                    Items.Add(document)
-                End If
-            Next
-            dlFolderView.DataSource = Items
+            dlFolderView.DataSource = DocumentsController.GetDocuments(TabModuleId, False) 'Get non trashed docs
             dlFolderView.DataBind()
         End Sub
 
@@ -107,7 +99,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             'Configure "Delete resource" command
             btndeletedoc.CommandName = DELETE_DOC_COMMAND_NAME
 
-            btneditdoc.NavigateUrl = "javascript:editButtonClick('" & hyperlink1.ClientID & "')" 'TODO: Open "AddDocument" in modal popup
+            'Show edition buttons in Edit mode
             docbuttons.Visible = IsEditable
         End Sub
 
