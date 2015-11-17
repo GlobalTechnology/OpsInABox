@@ -205,6 +205,12 @@
     margin: 50px;
 }
 
+#divAddEditResource .docOption {
+    /* Simulate <hr> after div */
+    margin-bottom: 17px;
+    border-bottom: solid #ddd 1px;
+}
+
 #divAddEditResource .rbLinkType {
     margin-left: 200px;
 }

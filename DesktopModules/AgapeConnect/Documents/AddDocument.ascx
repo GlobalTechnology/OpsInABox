@@ -3,6 +3,8 @@
 
 <script type="text/javascript">
     function setUpMyTabs() {
+
+        // Show/hide the right option div depending on selected radio button
         $("input:radio").click(function () {
             $(".docOption").hide();
             switch (this.value) {
@@ -71,7 +73,6 @@
                 <asp:Label ID="lblYouTubeHelp" runat="server" Text="The ID can be found in the URL of the page. For example, in https://www.youtube.com/watch?v=XXXXXXX the 'XXXXXXX' is the ID. " />
             </p>
         </div>
-        <hr />
     </div>
     <div id="divAddEditButtons" class="SubmitPanel">
         <asp:Button ID="btnOk" runat="server" CssClass="button" Text="OK" />

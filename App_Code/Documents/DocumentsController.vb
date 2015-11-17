@@ -25,6 +25,7 @@ End Module
 Public Module DocumentConstants
 
     'Link types
+    Public Const LinkTypeKeepFileForUpdate As Integer = -1
     Public Const LinkTypeUrl As Integer = 0
     Public Const LinkTypeYouTube As Integer = 1
     Public Const LinkTypeGoogleDoc As Integer = 2
@@ -171,6 +172,18 @@ Public Class DocumentsController
 #End Region 'Document Settings
 
 #Region "Document Main"
+
+
+    Public Shared Function GetPhysicalFolderForFiles() As IFolderInfo
+
+        Dim folderPath = FolderConstants.DocumentsModuleRootFolderName + "/"
+        If Not FolderManager.Instance.FolderExists(GetPortalId(), folderPath) Then
+            Return FolderManager.Instance.AddFolder(GetPortalId(), folderPath)
+        Else
+            Return FolderManager.Instance.GetFolder(GetPortalId(), folderPath)
+        End If
+
+    End Function
 
     Public Shared Function GetDocuments(ByVal tabModuleId As Integer, ByVal includeTrashed As Boolean) As IQueryable(Of AP_Documents_Doc)
         Dim d As New DocumentsDataContext()

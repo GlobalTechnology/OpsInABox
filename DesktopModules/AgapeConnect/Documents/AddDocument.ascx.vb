@@ -1,5 +1,6 @@
 ﻿Imports DotNetNuke.Services.FileSystem
 Imports Telerik.Web.UI
+Imports Documents
 
 Namespace DotNetNuke.Modules.AgapeConnect.Documents
     Partial Class AddDocument
@@ -31,9 +32,21 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
             If Not IsPostBack Then
 
-                ' Get DocId from request if provided
+                Dim editDoc As AP_Documents_Doc 'Resource to be edited if edit mode
+
+                ' Get DocId from request if provided (to be done first as needed afterwards)
                 If Not String.IsNullOrEmpty(Request.QueryString("edit")) Then
                     DocId = CInt(HttpUtility.UrlDecode(Request.QueryString("edit")))
+
+                    'Retrieve existing values for resource to be edited
+                    editDoc = DocumentsController.GetDocument(DocId)
+                End If
+
+                ' Set page title for add mode or edit mode
+                If IsEditMode Then
+                    CType(Page, DotNetNuke.Framework.CDefault).Title = "Edit Resource" 'TODO: Title to be translated
+                Else
+                    CType(Page, DotNetNuke.Framework.CDefault).Title = "Add Resource" 'TODO: Title to be translated
                 End If
 
                 ' Load list of portal pages
@@ -41,7 +54,10 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
                 ' Init resource types
                 'TODO: Items to be translated
-                'TODO: Si c'est déjà un fichier, ajouter l'option "Garder le fichier actuel"
+                'If edit mode and resource is already a file, add option to keep existing file.
+                If IsEditMode AndAlso editDoc.LinkType = DocumentConstants.LinkTypeFile Then
+                    rbLinkType.Items.Add(New ListItem("Garder le fichier actuel", DocumentConstants.LinkTypeKeepFileForUpdate))
+                End If
                 rbLinkType.Items.Add(New ListItem("Upload a new file", DocumentConstants.LinkTypeFile))
                 rbLinkType.Items.Add(New ListItem("Google Doc", DocumentConstants.LinkTypeGoogleDoc))
                 rbLinkType.Items.Add(New ListItem("External URL", DocumentConstants.LinkTypeUrl))
@@ -53,7 +69,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                     CType(Page, DotNetNuke.Framework.CDefault).Title = "Edit Resource" 'TODO: Title to be translated
 
                     ' Fill in existing values for edited resource
-                    Dim editDoc = DocumentsController.GetDocument(DocId)
                     tbName.Text = editDoc.DisplayName
                     tbDescription.Text = editDoc.Description
                     rbLinkType.SelectedValue = editDoc.LinkType
@@ -119,19 +134,11 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Protected Sub AddResource()
             If rbLinkType.SelectedValue = DocumentConstants.LinkTypeFile Then 'Radio button selected was upload
                 Try
-                    'TODO: Externalize in DocumentsController
-                    Dim folder As IFolderInfo
-                    If Not FolderManager.Instance.FolderExists(PortalId, "acDocuments") Then
-                        folder = FolderManager.Instance.AddFolder(PortalId, "acDocuments")
-                    Else
-                        folder = FolderManager.Instance.GetFolder(PortalId, "acDocuments")
-                    End If
-
                     If (FileUpload1.HasFile) Then
                         'Need to add the files to the dnn file system
-                        Dim theFile = DotNetNuke.Services.FileSystem.FileManager.Instance.AddFile(folder, FileUpload1.FileName, FileUpload1.FileContent)
+                        Dim theFile = DotNetNuke.Services.FileSystem.FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), FileUpload1.FileName, FileUpload1.FileContent)
                         'Now instert the document into the database
-                        DocumentsController.InsertResource(theFile.FileId, tbName.Text, userInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text) 'need to add permissions eventually
+                        DocumentsController.InsertResource(theFile.FileId, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text) 'need to add permissions eventually
                     End If
                 Catch ex As Exception
                 End Try
@@ -149,17 +156,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Protected Sub UpdateResource()
             If rbLinkType.SelectedValue = DocumentConstants.LinkTypeFile Then 'Radio button selected was upload
                 Try
-                    'TODO: Externalize in DocumentsController
-                    Dim folder As IFolderInfo
-                    If Not FolderManager.Instance.FolderExists(PortalId, "acDocuments") Then
-                        folder = FolderManager.Instance.AddFolder(PortalId, "acDocuments")
-                    Else
-                        folder = FolderManager.Instance.GetFolder(PortalId, "acDocuments")
-                    End If
-
                     If (FileUpload1.HasFile) Then
                         'Need to add the files to the dnn file system
-                        Dim theFile = DotNetNuke.Services.FileSystem.FileManager.Instance.AddFile(folder, FileUpload1.FileName, FileUpload1.FileContent)
+                        Dim theFile = DotNetNuke.Services.FileSystem.FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), FileUpload1.FileName, FileUpload1.FileContent)
                         'Now update the document into the database
                         DocumentsController.UpdateResource(DocId, theFile.FileId, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text) 'need to add permissions eventually
                     End If
