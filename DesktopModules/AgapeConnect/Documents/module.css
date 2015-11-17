@@ -1,125 +1,4 @@
-﻿/*DocumentsMain Section Begin*/
-#DocumentsMain .docInfo{
-    display:inline-block;
-    vertical-align: middle;
-    margin-left: 15px;
-    line-height: normal; /* To fix the 6px height added otherwise */
-    max-width: 975px;
-}
-#DocumentsMain .docTitle {
-    font-size: larger;
-    margin-bottom: 5px;
-}
-#DocumentsMain .doctext {
-    font-size: small;
-    color:gray;
-}
-#DocumentsMain a {
-    text-decoration: none;
-    display:block;
-    padding:10px;
-    line-height: 0px; /* To fix the 6px height added otherwise */
-}
-#DocumentsMain .icons{
-    position: relative; /* To center the inner image vertically */
-    display: block;
-    margin: 0;
-    border: 2px solid transparent; /* To avoid moving text when adding a border on hover */
-    border-bottom: 1px solid #ddd; /* Horizontal separator */
-}
-#DocumentsMain .icons + .icons{
-    /* Not for first element */
-    border-top: 1px solid transparent;
-}
-#DocumentsMain .icon {
-    height:60px;
-    width:60px;
-    display:inline-block;
-    vertical-align: middle;
-}
-#DocumentsMain .icons:hover {
-    border: 2px solid lightgrey; /* Top, left and right borders when hover */
-    border-bottom: 1px solid lightgrey; /* Bottom border when hover, to be combined whith top border of following element */
-    background-color: #f1f1f1;
-}
-#DocumentsMain .icons + .icons:hover, #DocumentsMain .icons:hover + .icons {
-    /* Not for first element. Applied if element or previous element is hover. */
-    border-top: 1px solid lightgrey;
-}
-#DocumentsMain .icons:last-of-type:hover {
-    /* Only for last element */
-    border-bottom: 1px solid lightgrey;
-    box-shadow: 0 1px 0 lightgrey; /* To avoid moving text when adding a border on hover */
-}
-#DocumentsMain .docButtons {
-    position:absolute;
-    right:10px;
-    top:13px;
-}
-#DocumentsMain .noresource {
-    text-align: center;
-}
-
-/*DocumentsMain Section End*/
-
-/*AddEditResource Section Start*/
-
-#divAddEditResource {
-    width: 800px;
-    margin: 50px;
-}
-
-#divAddEditResource .rbLinkType {
-    margin-left: 200px;
-}
-
-#divAddEditResource .FieldHelp {
-    margin-left:200px;
-}
-
-#divResType .FieldLabel {
-    float:left;
-}
-
-/*AddEditResource End*/
-
-/*DocumentSettings Section Start*/
-
-#DocumentSettings {
-    margin: 50px;
-}
-
-#DocumentSettings .btnEdit {
-    display: inline-block;
-    margin-left: 10px;
-}
-
-#DocumentSettings .btnDelete {
-    display: inline-block;
-    margin-left: 10px;
-}
-
-#DocumentSettings .btnAdd {
-    display: inline-block;
-    margin-left: 10px;
-}
-
-#divButtonAdd .button {
-    margin-top: 0px;
-    font-size: small;
-    height: 27px;
-    line-height: 25px;
-    margin-left: 5px;
-    padding: 0px 10px 0px 10px;
-}
-
-#divButtonAdd {
-    margin-top: 30px;
-}
-
-
-/*DocumentSettings End*/
-
+﻿/* Documents global Section Begin */
 
 .Documents .FieldRow {
     margin-bottom: 10px;
@@ -252,3 +131,132 @@
 .Documents .btnAdd:hover {
     background: transparent url('/DesktopModules/AgapeConnect/Documents/images/Add_gray.png') center top no-repeat;
 }
+
+/* Documents Global Section End */
+
+/*DocumentsMain Section Begin*/
+#DocumentsMain .docInfo{
+    display:inline-block;
+    vertical-align: middle;
+    margin-left: 15px;
+    line-height: normal; /* To fix the 6px height added otherwise */
+    max-width: 975px;
+}
+#DocumentsMain .docTitle {
+    font-size: larger;
+    margin-bottom: 5px;
+}
+#DocumentsMain .doctext {
+    font-size: small;
+    color:gray;
+}
+#DocumentsMain a {
+    text-decoration: none;
+    display:block;
+    padding:10px;
+    line-height: 0px; /* To fix the 6px height added otherwise */
+}
+#DocumentsMain .icons{
+    position: relative; /* To center the inner image vertically */
+    display: block;
+    margin: 0;
+    border: 2px solid transparent; /* To avoid moving text when adding a border on hover */
+    border-bottom: 1px solid #ddd; /* Horizontal separator */
+}
+#DocumentsMain .icons + .icons{
+    /* Not for first element */
+    border-top: 1px solid transparent;
+}
+#DocumentsMain .icon {
+    height:60px;
+    width:60px;
+    display:inline-block;
+    vertical-align: middle;
+}
+#DocumentsMain .icons:hover {
+    border: 2px solid lightgrey; /* Top, left and right borders when hover */
+    border-bottom: 1px solid lightgrey; /* Bottom border when hover, to be combined whith top border of following element */
+    background-color: #f1f1f1;
+}
+#DocumentsMain .icons + .icons:hover, #DocumentsMain .icons:hover + .icons {
+    /* Not for first element. Applied if element or previous element is hover. */
+    border-top: 1px solid lightgrey;
+}
+#DocumentsMain .icons:last-of-type:hover {
+    /* Only for last element */
+    border-bottom: 1px solid lightgrey;
+    box-shadow: 0 1px 0 lightgrey; /* To avoid moving text when adding a border on hover */
+}
+#DocumentsMain .docButtons {
+    position:absolute;
+    right:10px;
+    top:13px;
+}
+#DocumentsMain .noresource {
+    text-align: center;
+}
+
+/*DocumentsMain Section End*/
+
+/*AddEditResource Section Start*/
+
+#divAddEditResource {
+    width: 800px;
+    margin: 50px;
+}
+
+#divAddEditResource .rbLinkType {
+    margin-left: 200px;
+}
+
+#divAddEditResource .FieldHelp {
+    margin-left:200px;
+}
+
+#divResType .FieldLabel {
+    float:left;
+}
+
+#divAddEditResource .RadComboBox input[type="text"] {
+    border: none;
+    line-height: 16px;
+    height: 16px;
+}
+
+/*AddEditResource End*/
+
+/*DocumentSettings Section Start*/
+
+#DocumentSettings {
+    margin: 50px;
+}
+
+#DocumentSettings .btnEdit {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#DocumentSettings .btnDelete {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#DocumentSettings .btnAdd {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#divButtonAdd .button {
+    margin-top: 0px;
+    font-size: small;
+    height: 27px;
+    line-height: 25px;
+    margin-left: 5px;
+    padding: 0px 10px 0px 10px;
+}
+
+#divButtonAdd {
+    margin-top: 30px;
+}
+
+/*DocumentSettings End*/
