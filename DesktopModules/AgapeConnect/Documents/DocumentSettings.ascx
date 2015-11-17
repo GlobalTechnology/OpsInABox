@@ -42,40 +42,68 @@
     class="MandatoryFieldErrorMsg">
 </asp:CustomValidator>
 
+<asp:CustomValidator 
+    ID="cvIsFolderEmpty" 
+    runat="server"
+    ControlToValidate="ddlRoot"
+    OnServerValidate="IsFolderEmpty"
+    ErrorMessage="folderNotEmpty"
+    ResourceKey="folderNotEmpty"
+    Display="Dynamic"
+    class="MandatoryFieldErrorMsg">
+</asp:CustomValidator>
+
 <%-- Validator Section End --%>
 
 <div id="DocumentSettings" class="Documents">
 
-    <div id="divFolder" class="FieldRow">
-        <asp:Label ID="lblFolder" runat="server" ResourceKey="lblRoot" CssClass="FieldLabel"></asp:Label>
-        <asp:DropDownList ID="ddlRoot" runat="server" AutoPostBack="true"></asp:DropDownList>
-        <asp:HyperLink ID="btnEdit" CssClass="btnEdit" runat="server"></asp:HyperLink>
-        <asp:LinkButton ID="btnDelete" CssClass="btnDelete" runat="server"></asp:LinkButton>
-        <asp:LinkButton ID="btnAdd" CssClass="btnAdd" runat="server"></asp:LinkButton>     
-    </div>
-
-    <div id="divButtonAdd">
-        <asp:UpdatePanel ID="upButtonAdd" runat="server">
+        <asp:UpdatePanel ID="upFolderList" runat="server">
             <ContentTemplate>
-                <div class="FieldSubRow">
-                    <asp:Label ID="lblAddSubFolder" runat="server" ResourceKey="lblAddSubFolder" CssClass="FieldSubLabel" visible="false"></asp:Label>
-                    <asp:textbox ID="tbAddSubFolder" runat="server" visible="false"></asp:textbox>
-                    <asp:Button ID="btnAddSubFolder" runat="server"
-                        ResourceKey="btnAddSubFolder" visible="false" CssClass="button">
-                    </asp:Button>
+                <div id="divFolder" class="FieldRow">
+                    <asp:Label ID="lblFolder" runat="server" ResourceKey="lblRoot" CssClass="FieldLabel"></asp:Label>
+                    <asp:DropDownList ID="ddlRoot" runat="server" AutoPostBack="true"></asp:DropDownList>
+                    <asp:HyperLink ID="btnEdit" CssClass="btnEdit" runat="server"></asp:HyperLink>
+                    <asp:LinkButton ID="btnDelete" CssClass="btnDelete" runat="server"></asp:LinkButton>
+                    <asp:LinkButton ID="btnAdd" CssClass="btnAdd" runat="server"></asp:LinkButton>     
                 </div>
-                <div class="FieldSubRow">
-                    <asp:ValidationSummary ID="ValSum1" runat="server" DisplayMode="List" CssClass="MandatoryFieldErrorMsg"></asp:ValidationSummary>
-                    <asp:Label ID="lblFolderExistsError" runat="server" ResourceKey="lblFolderExistsError" CssClass="FieldSubLabel" visible="false"></asp:Label>
+
+                <asp:UpdatePanel ID="upDelete" runat="server">
+                    <ContentTemplate>
+                         <div class="FieldSubRow">
+                                <asp:ValidationSummary ID="ValSum1" runat="server" DisplayMode="List" CssClass="MandatoryFieldErrorMsg"></asp:ValidationSummary>
+                        </div>
+                    </ContentTemplate>
+                    <Triggers>
+
+                    </Triggers>
+                </asp:UpdatePanel>
+
+                <div id="divButtonAdd">
+                    <asp:UpdatePanel ID="upAdd" runat="server" Visible="false">
+                        <ContentTemplate>
+                            <div class="FieldSubRow">
+                                <asp:Label ID="lblAddSubFolder" runat="server" ResourceKey="lblAddSubFolder" CssClass="FieldSubLabel"></asp:Label>
+                                <asp:textbox ID="tbAddSubFolder" runat="server"></asp:textbox>
+                                <asp:Button ID="btnAddSubFolder" runat="server" ResourceKey="btnAddSubFolder" CssClass="button"></asp:Button>
+                            </div>
+                            <div class="FieldSubRow">
+                                <asp:ValidationSummary ID="ValSum2" runat="server" DisplayMode="List" CssClass="MandatoryFieldErrorMsg"></asp:ValidationSummary>
+                            </div>
+                        </ContentTemplate>
+                        <Triggers>
+                        
+                        </Triggers>
+                    </asp:UpdatePanel>
                 </div>
+                
             </ContentTemplate>
             <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnDelete" EventName = "Click"/>
                 <asp:AsyncPostBackTrigger ControlID="btnAdd" EventName = "Click"/>
-
+                <asp:AsyncPostBackTrigger ControlID="btnAddSubFolder" EventName = "Click"/>
             </Triggers>
         </asp:UpdatePanel>
         <hr />   
-    </div>
      
     <div class="SubmitPanel">
         <asp:Button ID="btnSave" runat="server" ResourceKey="btnSave" CssClass="button"></asp:Button>

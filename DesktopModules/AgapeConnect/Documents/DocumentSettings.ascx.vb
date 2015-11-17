@@ -19,17 +19,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                     btnDelete.ToolTip = LocalizeString("btnDelete")
                     btnAdd.ToolTip = LocalizeString("btnAdd")
 
-                    'Build the list of paths
-                    Dim pathName As String = ""
-
-                    For Each folder In DocumentsController.GetFolders()
-                        pathName = DocumentsController.GetPathName(folder, pathName)
-                        ddlRoot.Items.Add(New ListItem(pathName, folder.FolderId))
-                        pathName = ""
-                    Next
-
-                    'Populate the dropdown list with correct path 
-                    ddlRoot.SelectedValue = DocumentsController.GetModuleFolderId(TabModuleId)
+                    BuildPathList()
 
                 End If                       'IsPostBack
 
@@ -38,20 +28,45 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             End Try
         End Sub
 
+        Protected Sub BuildPathList()
+            Dim pathName As String = ""
+
+            Dim folders As List(Of AP_Documents_Folder) = DocumentsController.GetFolders()
+
+            'Name is replaced by path
+            For Each folder In folders
+                folder.Name = DocumentsController.GetFullPath(folder)
+            Next
+
+            ddlRoot.DataSource = folders
+            ddlRoot.DataTextField = "Name"
+            ddlRoot.DataValueField = "FolderId"
+            ddlRoot.DataBind()
+
+            'Populate the dropdown list with correct path 
+            ddlRoot.SelectedValue = DocumentsController.GetModuleFolderId(TabModuleId)
+
+            ' TODO alphabetize ddlRoot http://stackoverflow.com/questions/222572/sorting-a-dropdownlist-c-asp-net
+
+        End Sub
+
+        Protected Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+            upAdd.Visible = False
+
+
+        End Sub
+
         Protected Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
-            lblAddSubFolder.Visible = True
-            tbAddSubFolder.Visible = True
-            btnAddSubFolder.Visible = True
+            upAdd.Visible = True
         End Sub
 
         Protected Sub btnAddSubFolder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAddSubFolder.Click
             If Page.IsValid Then
                 DocumentsController.SetFolder(tbAddSubFolder.Text, ddlRoot.SelectedValue)
 
-                'TODO ddl list isn't refreshing after add...
-                'TODO add a success message
+                'Rebuild the list of paths after a new directory was added
+                BuildPathList()
 
-                ddlRoot.DataBind()
                 tbAddSubFolder.Text = ""
 
             End If
@@ -75,6 +90,12 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             'IsValid should be true when folder does not exist so boolean is reversed here
             e.IsValid = Not DocumentsController.IsFolder(tbAddSubFolder.Text, ddlRoot.SelectedValue)
         End Sub
+
+        Protected Sub IsFolderEmpty(sender As Object, e As ServerValidateEventArgs)
+
+            e.IsValid = False
+        End Sub
+
     End Class
 
 End Namespace

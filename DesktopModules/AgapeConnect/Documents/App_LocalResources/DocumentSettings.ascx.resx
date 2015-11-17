@@ -123,8 +123,8 @@
   <data name="btnSave.Text" xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="lblRoot.Text" xml:space="preserve">
-    <value>Root Folder:</value>
+  <data name="lblAddSubFolder.Text" xml:space="preserve">
+    <value>Add a subfolder:</value>
   </data>
   <data name="btnAdd.Text" xml:space="preserve">
     <value>add a subfolder</value>
@@ -138,11 +138,8 @@
   <data name="btnAddSubFolder.Text" xml:space="preserve">
     <value>Add</value>
   </data>
-  <data name="cvIsNotFolder" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblAddSubFolder.Text" xml:space="preserve">
-    <value>Add a subfolder :</value>
+  <data name="folderExists.Text" xml:space="preserve">
+    <value>The subfolder already exists</value>
   </data>
   <data name="deleteRepertoireConfirmationNo.Text" xml:space="preserve">
     <value>No</value>
@@ -155,5 +152,11 @@
   </data>
   <data name="deleteRepertoireConfirmationYes.Text" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="lblRoot.Text" xml:space="preserve">
+    <value>Root Folder:</value>
+  </data>
+  <data name="validFolderName.Text" xml:space="preserve">
+    <value>A folder name cannot have the caracters / nor \</value>
   </data>
 </root>

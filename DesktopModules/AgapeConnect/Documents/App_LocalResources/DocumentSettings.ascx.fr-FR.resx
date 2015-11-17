@@ -159,4 +159,7 @@
   <data name="validFolderName.Text" xml:space="preserve">
     <value>Le nom d'un répertoire ne peut pas avoir les characters / ni \</value>
   </data>
+  <data name="folderNotEmpty.Text" xml:space="preserve">
+    <value>Il n’est pas possible de supprimer ce répertoire car il contient des ressources.</value>
+  </data>
 </root>
