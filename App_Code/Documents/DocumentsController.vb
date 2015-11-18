@@ -1,5 +1,7 @@
 ﻿Imports Microsoft.VisualBasic
 Imports DotNetNuke.Services.FileSystem
+Imports DotNetNuke.Services.Search
+Imports DotNetNuke.Entities.Modules
 Imports Documents
 
 #Region "Modules defining constant values"
@@ -41,6 +43,7 @@ End Module
 #End Region ' Modules defining constant values
 
 Public Class DocumentsController
+    Inherits ModuleSearchBase
 
 #Region "Document Settings"
 
@@ -131,7 +134,7 @@ Public Class DocumentsController
     'If there are no folders it creates one
     Public Shared Function GetModuleFolderId(ByVal tabModuleId As Integer) As Integer
         Dim d As New DocumentsDataContext()
-        Dim objModules As New Entities.Modules.ModuleController
+        Dim objModules As New ModuleController
         Dim tabModuleSettings As Hashtable = objModules.GetTabModule(tabModuleId).TabModuleSettings
 
         Dim moduleFolderId As Integer = tabModuleSettings(ModuleFolderSettingKey)
@@ -160,7 +163,7 @@ Public Class DocumentsController
     End Function
 
     Public Shared Sub SetModuleFolderId(ByVal tabModuleId As Integer, ByVal folderId As Integer)
-        Dim objModules As New Entities.Modules.ModuleController
+        Dim objModules As New ModuleController
 
         objModules.UpdateTabModuleSetting(tabModuleId, ModuleFolderSettingKey, folderId)
 
@@ -329,6 +332,49 @@ Public Class DocumentsController
 
 #End Region
 
+#Region "Search implementation"
+
+    'Needed so that resources can be searchable
+    Public Overrides Function GetModifiedSearchDocuments(moduleInfo As ModuleInfo, beginDateUtc As Date) As IList(Of Entities.SearchDocument)
+
+        Dim searchDocuments As New List(Of Entities.SearchDocument)
+
+        Dim d As New DocumentsDataContext
+        Dim Docs = From c In d.AP_Documents_Docs Where c.AP_Documents_Folder.PortalId = moduleInfo.PortalID
+
+        For Each row In Docs
+            Dim tags As String = ""
+            For Each tag In row.AP_Documents_TagMetas
+                tags &= tag.AP_Documents_Tag.TagName & " "
+            Next
+
+            Dim SearchText = (row.DisplayName & " " & row.LinkType & " " & row.Keywords & " " & tags & " " & row.Description).Replace(".", " ").Replace(";", " ").Replace("-", " ").Replace(":", " ")
+
+            Dim searchDoc As Entities.SearchDocument = New Entities.SearchDocument
+
+            With searchDoc
+                .Title = row.DisplayName
+                .Description = row.Description
+                .UniqueKey = "D" & row.DocId
+                .ModuleId = moduleInfo.ModuleID
+                '.AuthorUserId = 
+                .Body = SearchText
+                .IsActive = Not row.Trashed
+                .PortalId = moduleInfo.PortalID
+                .ModifiedTimeUtc = Today
+
+            End With
+
+            searchDocuments.Add(searchDoc)
+
+        Next
+
+        Return searchDocuments
+
+    End Function
+
+#End Region 'Search implementation
+
 #Region "Private functions"
     Private Shared Function GetPortalId() As Integer
         Return CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings).PortalId
@@ -352,58 +398,3 @@ Public Class DocumentsController
 #End Region
 
 End Class
-
-' Implements Entities.Modules.ISearchable
-
-'Public Function CheckPermissions() As Boolean  ' want a different type: Read Write None
-'    Return True
-'End Function
-
-
-'Public Function GetSearchItems(ModInfo As DotNetNuke.Entities.Modules.ModuleInfo) As DotNetNuke.Services.Search.SearchItemInfoCollection Implements DotNetNuke.Entities.Modules.ISearchable.GetSearchItems
-
-'    Dim d As New DocumentsDataContext
-
-'    Dim SearchItemCollection As New Services.Search.SearchItemInfoCollection
-'    Dim Folders = From c In d.AP_Documents_Folders Where c.PortalId = ModInfo.PortalID
-
-'    For Each row In Folders
-
-
-'        Dim SearchItem As Services.Search.SearchItemInfo
-'        SearchItem = New Services.Search.SearchItemInfo _
-'        (row.Name, _
-'        row.Description, _
-'        1, _
-'       Today, ModInfo.ModuleID, _
-'        "F" & row.FolderId, _
-'     row.Name & " " & row.Description, Guid:="FolderId=" & row.FolderId)
-'        SearchItemCollection.Add(SearchItem)
-'    Next
-'    Dim Docs = From c In d.AP_Documents_Docs Where c.AP_Documents_Folder.PortalId = ModInfo.PortalID
-
-'    For Each row In Docs
-'        Dim tags As String = ""
-'        For Each tag In row.AP_Documents_TagMetas
-'            tags &= tag.AP_Documents_Tag.TagName & " "
-'        Next
-
-'        Dim SearchText = (row.DisplayName & " " & row.LinkType & " " & row.Keywords & " " & tags & " " & row.Description).Replace(".", " ").Replace(";", " ").Replace("-", " ").Replace(":", " ")
-
-
-'        Dim SearchItem As Services.Search.SearchItemInfo
-'        SearchItem = New Services.Search.SearchItemInfo _
-'        (row.DisplayName, _
-'        row.Description, _
-'        1, _
-'       Today, ModInfo.ModuleID, _
-'        "D" & row.DocId, _
-'      SearchText, Guid:="DocId=" & row.DocId)
-'        SearchItemCollection.Add(SearchItem)
-'    Next
-
-
-
-'    Return SearchItemCollection
-
-'End Function
