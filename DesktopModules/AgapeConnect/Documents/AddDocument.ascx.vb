@@ -53,6 +53,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 BuildDdlPages()
 
                 ' Init resource types
+
                 'TODO: Items to be translated
                 'If edit mode and resource is already a file, add option to keep existing file.
                 If IsEditMode AndAlso editDoc.LinkType = DocumentConstants.LinkTypeFile Then
@@ -65,14 +66,11 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 rbLinkType.Items.Add(New ListItem("YouTube Video", DocumentConstants.LinkTypeYouTube))
 
                 If IsEditMode Then
-                    ' Set page title for edit mode
-                    CType(Page, DotNetNuke.Framework.CDefault).Title = "Edit Resource" 'TODO: Title to be translated
-
                     ' Fill in existing values for edited resource
                     tbName.Text = editDoc.DisplayName
                     tbDescription.Text = editDoc.Description
 
-                    'TODO: Select the right Option panel to display and set the corresponding value to edit
+                    'Select the right Option panel to display and set the corresponding value to edit
 
                     If editDoc.LinkType = DocumentConstants.LinkTypeFile Then 'If type file, select option to keep existing file.
                         rbLinkType.SelectedValue = DocumentConstants.LinkTypeKeepFileForUpdate
@@ -90,9 +88,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                         tbYouTube.Text = editDoc.LinkValue
                     End If
 
-                Else
-                    ' Set page title for add mode
-                    CType(Page, DotNetNuke.Framework.CDefault).Title = "Add Resource" 'TODO: Title to be translated
                 End If
 
             End If
@@ -100,6 +95,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         End Sub
 
         Protected Sub btnOk_Click(sender As Object, e As System.EventArgs) Handles btnOk.Click
+
+            'TODO: Add client and server validations
+
             If IsEditMode Then
                 UpdateResource()
             Else 'Add mode
