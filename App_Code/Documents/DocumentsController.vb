@@ -192,6 +192,7 @@ Public Class DocumentsController
         Dim docs As IQueryable(Of AP_Documents_Doc) = From c In d.AP_Documents_Docs Where _
                              c.AP_Documents_Folder.PortalId = GetPortalId() And _
                              c.AP_Documents_Folder.FolderId = folderId
+                             Order By c.DisplayName Ascending 'Display resources ordered alphabetically by their title
 
         ' Filter on non trashed docs if requested 
         If includeTrashed = False Then
