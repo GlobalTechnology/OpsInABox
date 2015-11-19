@@ -51,8 +51,14 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         End Sub
 
         Protected Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+            AgapeLogger.Info(UserId, "inside btnDelete_Click " & Page.IsValid)
             upAdd.Visible = False
+            If Page.IsValid Then
+                DocumentsController.DeleteFolder(ddlRoot.SelectedItem.Value)
 
+                'Rebuild the list of paths after directory was deleted
+                BuildPathList()
+            End If
 
         End Sub
 
@@ -61,15 +67,14 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         End Sub
 
         Protected Sub btnAddSubFolder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAddSubFolder.Click
+            AgapeLogger.Info(UserId, "inside btnAddSubFolder_Click " & Page.IsValid)
             If Page.IsValid Then
                 DocumentsController.SetFolder(tbAddSubFolder.Text, ddlRoot.SelectedValue)
 
                 'Rebuild the list of paths after a new directory was added
                 BuildPathList()
-
-                tbAddSubFolder.Text = ""
-
             End If
+            tbAddSubFolder.Text = ""
         End Sub
 
         Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSave.Click
@@ -86,15 +91,24 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             Response.Redirect(NavigateURL())
         End Sub
 
+#Region "Validators"
+
         Protected Sub IsFolder(sender As Object, e As ServerValidateEventArgs)
             'IsValid should be true when folder does not exist so boolean is reversed here
             e.IsValid = Not DocumentsController.IsFolder(tbAddSubFolder.Text, ddlRoot.SelectedValue)
         End Sub
 
-        Protected Sub IsFolderEmpty(sender As Object, e As ServerValidateEventArgs)
+        Protected Sub IsFolderDeletable(sender As Object, e As ServerValidateEventArgs)
 
-            e.IsValid = False
+            If (DocumentsController.IsFolderEmpty(ddlRoot.SelectedItem.Value) And _
+                DocumentsController.HasParentFolder(ddlRoot.SelectedItem.Value)) Then
+                e.IsValid = True
+            Else
+                e.IsValid = False
+            End If
         End Sub
+
+#End Region 'Validators
 
     End Class
 

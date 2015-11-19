@@ -28,7 +28,8 @@
     ErrorMessage="validFolderName"
     ResourceKey="validFolderName"
     Display="Dynamic"
-    class="MandatoryFieldErrorMsg">
+    class="MandatoryFieldErrorMsg"
+    ValidationGroup="vgAdd">
 </asp:RegularExpressionValidator>
 
 <asp:CustomValidator 
@@ -39,18 +40,20 @@
     ErrorMessage="folderExists"
     ResourceKey="folderExists"
     Display="Dynamic"
-    class="MandatoryFieldErrorMsg">
+    class="MandatoryFieldErrorMsg"
+    ValidationGroup="vgAdd">
 </asp:CustomValidator>
 
 <asp:CustomValidator 
-    ID="cvIsFolderEmpty" 
+    ID="cvIsFolderDeletable" 
     runat="server"
     ControlToValidate="ddlRoot"
-    OnServerValidate="IsFolderEmpty"
-    ErrorMessage="folderNotEmpty"
-    ResourceKey="folderNotEmpty"
+    OnServerValidate="IsFolderDeletable"
+    ErrorMessage="folderNotDeletable"
+    ResourceKey="folderNotDeletable"
     Display="Dynamic"
-    class="MandatoryFieldErrorMsg">
+    class="MandatoryFieldErrorMsg"
+    ValidationGroup="vgDelete">
 </asp:CustomValidator>
 
 <%-- Validator Section End --%>
@@ -63,20 +66,9 @@
                     <asp:Label ID="lblFolder" runat="server" ResourceKey="lblRoot" CssClass="FieldLabel"></asp:Label>
                     <asp:DropDownList ID="ddlRoot" runat="server" AutoPostBack="true"></asp:DropDownList>
                     <asp:HyperLink ID="btnEdit" CssClass="btnEdit" runat="server"></asp:HyperLink>
-                    <asp:LinkButton ID="btnDelete" CssClass="btnDelete" runat="server"></asp:LinkButton>
+                    <asp:LinkButton ID="btnDelete" CssClass="btnDelete" runat="server" ValidationGroup="vgDelete"></asp:LinkButton>
                     <asp:LinkButton ID="btnAdd" CssClass="btnAdd" runat="server"></asp:LinkButton>     
                 </div>
-
-                <asp:UpdatePanel ID="upDelete" runat="server">
-                    <ContentTemplate>
-                         <div class="FieldSubRow">
-                                <asp:ValidationSummary ID="ValSum1" runat="server" DisplayMode="List" CssClass="MandatoryFieldErrorMsg"></asp:ValidationSummary>
-                        </div>
-                    </ContentTemplate>
-                    <Triggers>
-
-                    </Triggers>
-                </asp:UpdatePanel>
 
                 <div id="divButtonAdd">
                     <asp:UpdatePanel ID="upAdd" runat="server" Visible="false">
@@ -84,16 +76,21 @@
                             <div class="FieldSubRow">
                                 <asp:Label ID="lblAddSubFolder" runat="server" ResourceKey="lblAddSubFolder" CssClass="FieldSubLabel"></asp:Label>
                                 <asp:textbox ID="tbAddSubFolder" runat="server"></asp:textbox>
-                                <asp:Button ID="btnAddSubFolder" runat="server" ResourceKey="btnAddSubFolder" CssClass="button"></asp:Button>
-                            </div>
-                            <div class="FieldSubRow">
-                                <asp:ValidationSummary ID="ValSum2" runat="server" DisplayMode="List" CssClass="MandatoryFieldErrorMsg"></asp:ValidationSummary>
+                                <asp:Button ID="btnAddSubFolder" runat="server" ResourceKey="btnAddSubFolder" CssClass="button" ValidationGroup="vgAdd"></asp:Button>
                             </div>
                         </ContentTemplate>
                         <Triggers>
-                        
                         </Triggers>
                     </asp:UpdatePanel>
+                </div>
+
+                <div class="FieldSubRow">
+                    <asp:ValidationSummary ID="vsDelete" runat="server" DisplayMode="List"
+                        CssClass="MandatoryFieldErrorMsg" ValidationGroup="vgDelete">
+                    </asp:ValidationSummary>
+                    <asp:ValidationSummary ID="vsAdd" runat="server" DisplayMode="List"
+                        CssClass="MandatoryFieldErrorMsg" ValidationGroup="vgAdd">
+                    </asp:ValidationSummary>
                 </div>
                 
             </ContentTemplate>
