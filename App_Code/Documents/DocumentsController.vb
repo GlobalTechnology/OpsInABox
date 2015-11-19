@@ -53,6 +53,16 @@ Public Class DocumentsController
         Return (From c In d.AP_Documents_Folders Where c.PortalId = GetPortalId()).ToList
     End Function
 
+    Public Shared Function GetFolder(ByVal folderID As Integer) As IQueryable(Of AP_Documents_Folder)
+        Dim d As New DocumentsDataContext()
+        Return From c In d.AP_Documents_Folders Where c.PortalId = GetPortalId() And c.FolderId = folderID
+    End Function
+
+    Public Shared Function GetChildFolders(ByVal parentFolderID As Integer) As IQueryable(Of AP_Documents_Folder)
+        Dim d As New DocumentsDataContext()
+        Return From c In d.AP_Documents_Folders Where c.PortalId = GetPortalId() And c.ParentFolder = parentFolderID
+    End Function
+
     'Saves in the database the newFolder
     Public Shared Sub SetFolder(ByVal newFolder As String, ByVal parentFolderId As Integer)
         Dim d As New DocumentsDataContext()
@@ -88,18 +98,17 @@ Public Class DocumentsController
         End If
     End Function
 
+    'Determines if the folder corresponding to folderID is empty
+    'Empty means without docs trashed, withougt docs not trashed and without any subfolders
     Public Shared Function IsFolderEmpty(ByVal folderID As Integer) As Boolean
-        Dim d As New DocumentsDataContext()
+        If (GetDocuments(folderID, True).Count > 0 Or GetChildFolders(folderID).Count > 0) Then
+            Return False
+        End If
+        Return True
+    End Function
 
-        Dim docs As IQueryable(Of AP_Documents_Doc) = From c In d.AP_Documents_Docs Where _
-                             c.AP_Documents_Folder.PortalId = GetPortalId() And _
-                             c.AP_Documents_Folder.FolderId = folderID
-
-        Dim childFolders As IQueryable(Of AP_Documents_Folder) = From c In d.AP_Documents_Folders Where _
-                             c.PortalId = GetPortalId() And _
-                             c.ParentFolder = folderID
-
-        If (docs.Count > 0 Or childFolders.Count > 0) Then
+    Public Shared Function HasParentFolder(ByVal folderID As Integer) As Boolean
+        If (GetFolder(folderID).First.ParentFolder = NoParentFolderId) Then
             Return False
         End If
         Return True
@@ -188,9 +197,8 @@ Public Class DocumentsController
 
     End Function
 
-    Public Shared Function GetDocuments(ByVal tabModuleId As Integer, ByVal includeTrashed As Boolean) As IQueryable(Of AP_Documents_Doc)
+    Public Shared Function GetDocuments(ByVal folderId As Integer, ByVal includeTrashed As Boolean) As IQueryable(Of AP_Documents_Doc)
         Dim d As New DocumentsDataContext()
-        Dim folderId = GetModuleFolderId(tabModuleId)
 
         Dim docs As IQueryable(Of AP_Documents_Doc) = From c In d.AP_Documents_Docs Where _
                              c.AP_Documents_Folder.PortalId = GetPortalId() And _
