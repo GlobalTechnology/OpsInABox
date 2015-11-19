@@ -59,10 +59,10 @@
         <classShapeMoniker Id="d1ce0bb7-21ec-4af1-8802-f4ee86a73c2c" />
       </nodes>
     </associationConnector>
-    <classShape Id="6874e732-fcd7-4f1a-adda-ed2fc7209157" absoluteBounds="7.375, 8.875, 2, 1.7708968098958331">
+    <classShape Id="6874e732-fcd7-4f1a-adda-ed2fc7209157" absoluteBounds="7.375, 8.875, 2, 2.1554996744791666">
       <DataClassMoniker Name="/StoriesDataContext/AP_Stories_Tag" />
       <nestedChildShapes>
-        <elementListCompartment Id="acf872b9-5d92-424d-b982-3284a4bd77c8" absoluteBounds="7.3900000000000006, 9.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="acf872b9-5d92-424d-b982-3284a4bd77c8" absoluteBounds="7.3900000000000006, 9.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(7.375 : 9.56814697265625); (5.875 : 9.56814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
