@@ -38,7 +38,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 folder.Name = DocumentsController.GetFullPath(folder)
             Next
 
-            ddlRoot.DataSource = folders
+            ddlRoot.DataSource = folders.OrderBy(Function(x) x.Name).ToList()
             ddlRoot.DataTextField = "Name"
             ddlRoot.DataValueField = "FolderId"
             ddlRoot.DataBind()
@@ -46,14 +46,14 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             'Populate the dropdown list with correct path 
             ddlRoot.SelectedValue = DocumentsController.GetModuleFolderId(TabModuleId)
 
-            ' TODO alphabetize ddlRoot http://stackoverflow.com/questions/222572/sorting-a-dropdownlist-c-asp-net
-
         End Sub
 
-        Protected Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click, ddlRoot.SelectedIndexChanged
-            upEdit.Visible = True
+        Protected Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
             upAdd.Visible = False
-            tbEditSubFolder.Text = DocumentsController.GetFolder(ddlRoot.SelectedValue).Name
+            If Page.IsValid Then
+                upEdit.Visible = True
+                tbEditSubFolder.Text = DocumentsController.GetFolder(ddlRoot.SelectedValue).Name
+            End If
         End Sub
 
         Protected Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
@@ -99,8 +99,10 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         End Sub
 
         Protected Sub ddlRoot_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ddlRoot.SelectedIndexChanged
-            If (upEdit.Visible) Then
+            If (upEdit.Visible And DocumentsController.HasParentFolder(ddlRoot.SelectedItem.Value)) Then
                 tbEditSubFolder.Text = DocumentsController.GetFolder(ddlRoot.SelectedValue).Name
+            Else
+                upEdit.Visible = False
             End If
         End Sub
 

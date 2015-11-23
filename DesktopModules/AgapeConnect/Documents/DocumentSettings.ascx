@@ -115,9 +115,6 @@
                                 <asp:Button ID="btnEditSubFolder" runat="server" ResourceKey="btnEditSubFolder" CssClass="button" ValidationGroup="vgEdit"></asp:Button>
                             </div>
                         </ContentTemplate>
-                        <Triggers>
-                            
-                        </Triggers>
                     </asp:UpdatePanel>
                 </div>
 
@@ -130,8 +127,6 @@
                                 <asp:Button ID="btnAddSubFolder" runat="server" ResourceKey="btnAddSubFolder" CssClass="button" ValidationGroup="vgAdd"></asp:Button>
                             </div>
                         </ContentTemplate>
-                        <Triggers>
-                        </Triggers>
                     </asp:UpdatePanel>
                 </div>
 
