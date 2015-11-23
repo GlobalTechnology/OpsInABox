@@ -43,7 +43,7 @@ End Module
 #End Region ' Modules defining constant values
 
 Public Class DocumentsController
-    Inherits ModuleSearchBase
+    'Inherits ModuleSearchBase
 
 #Region "Document Settings"
 
@@ -343,43 +343,43 @@ Public Class DocumentsController
 #Region "Search implementation"
 
     'Needed so that resources can be searchable
-    Public Overrides Function GetModifiedSearchDocuments(moduleInfo As ModuleInfo, beginDateUtc As Date) As IList(Of Entities.SearchDocument)
+    'Public Overrides Function GetModifiedSearchDocuments(moduleInfo As ModuleInfo, beginDateUtc As Date) As IList(Of Entities.SearchDocument)
 
-        Dim searchDocuments As New List(Of Entities.SearchDocument)
+    '    Dim searchDocuments As New List(Of Entities.SearchDocument)
 
-        Dim d As New DocumentsDataContext
-        Dim Docs = From c In d.AP_Documents_Docs Where c.AP_Documents_Folder.PortalId = moduleInfo.PortalID
+    '    Dim d As New DocumentsDataContext
+    '    Dim Docs = From c In d.AP_Documents_Docs Where c.AP_Documents_Folder.PortalId = moduleInfo.PortalID
 
-        For Each row In Docs
-            Dim tags As String = ""
-            For Each tag In row.AP_Documents_TagMetas
-                tags &= tag.AP_Documents_Tag.TagName & " "
-            Next
+    '    For Each row In Docs
+    '        Dim tags As String = ""
+    '        For Each tag In row.AP_Documents_TagMetas
+    '            tags &= tag.AP_Documents_Tag.TagName & " "
+    '        Next
 
-            Dim SearchText = (row.DisplayName & " " & row.LinkType & " " & row.Keywords & " " & tags & " " & row.Description).Replace(".", " ").Replace(";", " ").Replace("-", " ").Replace(":", " ")
+    '        Dim SearchText = (row.DisplayName & " " & row.LinkType & " " & row.Keywords & " " & tags & " " & row.Description).Replace(".", " ").Replace(";", " ").Replace("-", " ").Replace(":", " ")
 
-            Dim searchDoc As Entities.SearchDocument = New Entities.SearchDocument
+    '        Dim searchDoc As Entities.SearchDocument = New Entities.SearchDocument
 
-            With searchDoc
-                .Title = row.DisplayName
-                .Description = row.Description
-                .UniqueKey = "D" & row.DocId
-                .ModuleId = moduleInfo.ModuleID
-                '.AuthorUserId = 
-                .Body = SearchText
-                .IsActive = Not row.Trashed
-                .PortalId = moduleInfo.PortalID
-                .ModifiedTimeUtc = Today
+    '        With searchDoc
+    '            .Title = row.DisplayName
+    '            .Description = row.Description
+    '            .UniqueKey = "D" & row.DocId
+    '            .ModuleId = moduleInfo.ModuleID
+    '            '.AuthorUserId = 
+    '            .Body = SearchText
+    '            .IsActive = Not row.Trashed
+    '            .PortalId = moduleInfo.PortalID
+    '            .ModifiedTimeUtc = Today
 
-            End With
+    '        End With
 
-            searchDocuments.Add(searchDoc)
+    '        searchDocuments.Add(searchDoc)
 
-        Next
+    '    Next
 
-        Return searchDocuments
+    '    Return searchDocuments
 
-    End Function
+    'End Function
 
 #End Region 'Search implementation
 
