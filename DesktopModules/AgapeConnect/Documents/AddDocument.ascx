@@ -27,6 +27,13 @@
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyPage(); showAppropriateOptionPanel() });
     });
 </script>
+
+<%-- Validator Section --%>
+
+<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="tbName"></asp:RequiredFieldValidator>
+
+<%-- Validator Section End --%>
+
 <div id="divAddEditResource" class="Documents">
     <div id="divResName" class="FieldRow">
         <asp:Label ID="lblName" runat="server" resourcekey="lblName.Text" CssClass="FieldLabel" />
