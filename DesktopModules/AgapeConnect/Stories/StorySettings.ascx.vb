@@ -302,6 +302,7 @@ Namespace DotNetNuke.Modules.Stories
             insert.TagName = tbAddTag.Text
             insert.Master = False
             insert.Keywords = ""
+            insert.StoryModuleId = StoryFunctions.GetStoryModule(TabModuleId).StoryModuleId 'TODO: A tester
             d.AP_Stories_Tags.InsertOnSubmit(insert)
             d.SubmitChanges()
 
