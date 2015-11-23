@@ -28,7 +28,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
         Protected Sub LoadDocuments()
             Dim folderId As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
-            dlFolderView.DataSource = DocumentsController.GetDocuments(folderId, False) 'Get no trashed docs
+            dlFolderView.DataSource = DocumentsController.GetDocuments(folderId, False, False) 'Get no trashed docs
             dlFolderView.DataBind()
         End Sub
 

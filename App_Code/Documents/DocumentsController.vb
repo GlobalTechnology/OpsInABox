@@ -113,7 +113,7 @@ Public Class DocumentsController
     'Determines if the folder corresponding to folderID is empty
     'Empty means without docs trashed, withougt docs not trashed and without any subfolders
     Public Shared Function IsFolderEmpty(ByVal folderID As Integer) As Boolean
-        If (GetDocuments(folderID, True).Count > 0 Or GetChildFolders(folderID).Count > 0) Then
+        If (GetDocuments(folderID, True, False).Count > 0 Or GetChildFolders(folderID).Count > 0) Then
             Return False
         End If
         Return True
@@ -209,20 +209,31 @@ Public Class DocumentsController
 
     End Function
 
-    Public Shared Function GetDocuments(ByVal folderId As Integer, ByVal includeTrashed As Boolean) As IQueryable(Of AP_Documents_Doc)
+    Public Shared Function GetDocuments(ByVal folderId As Integer, ByVal includeTrashed As Boolean, ByVal includeDocsInSubFolders As Boolean) As IQueryable(Of AP_Documents_Doc)
+
         Dim d As New DocumentsDataContext()
 
-        Dim docs As IQueryable(Of AP_Documents_Doc) = From c In d.AP_Documents_Docs Where _
+        ' The list of folder IDs to return documents from
+        Dim folderIDs As New List(Of Integer)
+
+        ' Add requested folder in the list
+        folderIDs.Add(folderId)
+
+        If includeDocsInSubFolders = True Then ' Add recursively all sub folder IDs if requested
+            'TODO: Create function to add recursively all subfolder IDs in folderIDs list
+        End If
+
+        'Get docs from all folders in folderIDs list
+        Dim docs As IQueryable(Of AP_Documents_Doc) = (From c In d.AP_Documents_Docs Where _
                              c.AP_Documents_Folder.PortalId = GetPortalId() And _
-                             c.AP_Documents_Folder.FolderId = folderId
-                             Order By c.DisplayName Ascending 'Display resources ordered alphabetically by their title
+                             folderIDs.Contains(c.AP_Documents_Folder.FolderId))
 
         ' Filter on non trashed docs if requested 
         If includeTrashed = False Then
             docs = From c In docs Where c.Trashed = False
         End If
 
-        Return docs
+        Return docs.OrderBy(Function(x) x.DisplayName).AsQueryable() 'Display resources ordered alphabetically by their title
 
     End Function
 
@@ -396,6 +407,7 @@ Public Class DocumentsController
 #End Region 'Search implementation
 
 #Region "Private functions"
+
     Private Shared Function GetPortalId() As Integer
         Return CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings).PortalId
     End Function
