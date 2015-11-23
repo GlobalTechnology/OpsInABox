@@ -29,59 +29,59 @@
 </script>
 <div id="divAddEditResource" class="Documents">
     <div id="divResName" class="FieldRow">
-        <asp:Label ID="lblName" runat="server" CssClass="FieldLabel">Document Name:</asp:Label>
+        <asp:Label ID="lblName" runat="server" resourcekey="lblName.Text" CssClass="FieldLabel" />
         <asp:TextBox ID="tbName" runat="server"></asp:TextBox>
         <hr />
     </div>
     <div id="divResDesc" class="FieldRow">
-        <asp:Label ID="lblDescription" runat="server" CssClass="FieldLabel">Document Description:</asp:Label>
+        <asp:Label ID="lblDescription" runat="server" resourcekey="lblDescription.Text" CssClass="FieldLabel" />
         <asp:TextBox TextMode="MultiLine" ID="tbDescription" runat="server" CssClass="tbResDesc" ></asp:TextBox>
         <hr />
     </div>
     <div id="divResType" class="FieldRow">
-        <asp:Label ID="lblType" runat="server" CssClass="FieldLabel">Resource Type:</asp:Label>
+        <asp:Label ID="lblType" runat="server" resourcekey="lblType.Text" CssClass="FieldLabel" />
         <asp:RadioButtonList ID="rbLinkType" CssClass="rbLinkType" runat="server" />
         <hr />
     </div>
     <div id="divResDef" class="FieldRow">
         <div id="divUpload" class="docOption" style="display:none">
-            <asp:Label ID="lblUpload" runat="server" Text="File to upload:" CssClass="FieldLabel" ResourceKey="lblUpload" />
+            <asp:Label ID="lblUpload" runat="server" resourcekey="lblUpload.Text" CssClass="FieldLabel" />
             <asp:FileUpload ID="FileUpload1" runat="server" />
             <p class="FieldHelp">
-                <asp:Label ID="lblUploadHelp" runat="server" Text="You are going to add a file from your computer." />
+                <asp:Label ID="lblUploadHelp" runat="server" resourcekey="lblUploadHelp.Text" />
             </p>
         </div>
         <div id="divGoogle" class="docOption" style="display: none">
-            <asp:Label ID="lblGoogle" runat="server" Text="Google Document:" ResourceKey="lblGoogle" CssClass="FieldLabel" />
+            <asp:Label ID="lblGoogle" runat="server" resourcekey="lblGoogle.Text" CssClass="FieldLabel" />
             <asp:TextBox ID="tbGoogle" runat="server" />
             <p class="FieldHelp">
-                <asp:Label ID="lblGoogleHelp" runat="server" Text="You are going to embed a Google Document." />
+                <asp:Label ID="lblGoogleHelp" runat="server" resourcekey="lblGoogleHelp.Text" />
             </p>
         </div>
         <div id="divURL" class="docOption" style="display: none">
-            <asp:Label ID="lblURL" runat="server" ResourceKey="lblURL" Text="URL:" CssClass="FieldLabel" />
+            <asp:Label ID="lblURL" runat="server" resourcekey="lblURL.Text" CssClass="FieldLabel" />
             <asp:TextBox ID="tbURL" runat="server" />
             <p class="FieldHelp">
-                <asp:Label ID="lblURLHelp" runat="server" Text="Please enter an external web address." />
+                <asp:Label ID="lblURLHelp" runat="server" resourcekey="lblURLHelp.Text" />
             </p>
         </div>
         <div id="divPage" class="docOption" style="display: none">
-            <asp:Label ID="lblPage" runat="server" ResourceKey="lblPage" Text="Site page:" CssClass="FieldLabel" />
+            <asp:Label ID="lblPage" runat="server" resourcekey="lblPage.Text" CssClass="FieldLabel" />
             <telerik:RadComboBox ID="ddlPages" runat="server" />
             <p class="FieldHelp">
-                <asp:Label ID="lblPageHelp" runat="server" Text="Please choose a page from this list." />
+                <asp:Label ID="lblPageHelp" runat="server" resourcekey="lblPageHelp.Text" />
             </p>
         </div>
         <div id="divYouTube" class="docOption" style="display: none">
-            <asp:Label ID="lblYouTube" runat="server" ResourceKey="lblYouTube" Text="Youtube ID:" CssClass="FieldLabel" />
+            <asp:Label ID="lblYouTube" runat="server" resourcekey="lblYouTube.Text" CssClass="FieldLabel" />
             <asp:TextBox ID="tbYouTube" runat="server" />
             <p class="FieldHelp">
-                <asp:Label ID="lblYouTubeHelp" runat="server" Text="The ID can be found in the URL of the page. For example, in https://www.youtube.com/watch?v=XXXXXXX the 'XXXXXXX' is the ID. " />
+                <asp:Label ID="lblYouTubeHelp" runat="server" resourcekey="lblYouTubeHelp.Text" />
             </p>
         </div>
     </div>
     <div id="divAddEditButtons" class="SubmitPanel">
-        <asp:Button ID="btnOk" runat="server" CssClass="button" Text="OK" />
-        <asp:Button ID="btnCancel" runat="server" CssClass="button" Text="Cancel" />
+        <asp:Button ID="btnOk" runat="server" resourcekey="btnOk.Text" CssClass="button" />
+        <asp:Button ID="btnCancel" runat="server" resourcekey="btnCancel.Text" CssClass="button" />
     </div>
 </div>

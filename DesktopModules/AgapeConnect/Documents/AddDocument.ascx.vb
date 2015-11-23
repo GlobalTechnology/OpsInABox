@@ -44,9 +44,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
                 ' Set page title for add mode or edit mode
                 If IsEditMode Then
-                    CType(Page, DotNetNuke.Framework.CDefault).Title = "Edit Resource" 'TODO: Title to be translated
+                    CType(Page, DotNetNuke.Framework.CDefault).Title = LocalizeString("TitleEditResource")
                 Else
-                    CType(Page, DotNetNuke.Framework.CDefault).Title = "Add Resource" 'TODO: Title to be translated
+                    CType(Page, DotNetNuke.Framework.CDefault).Title = LocalizeString("TitleAddResource")
                 End If
 
                 ' Load list of portal pages
@@ -54,16 +54,15 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
                 ' Init resource types
 
-                'TODO: Items to be translated
                 'If edit mode and resource is already a file, add option to keep existing file.
                 If IsEditMode AndAlso editDoc.LinkType = DocumentConstants.LinkTypeFile Then
-                    rbLinkType.Items.Add(New ListItem("Garder le fichier actuel", DocumentConstants.LinkTypeKeepFileForUpdate))
+                    rbLinkType.Items.Add(New ListItem(LocalizeString("rbKeepResource"), DocumentConstants.LinkTypeKeepFileForUpdate))
                 End If
-                rbLinkType.Items.Add(New ListItem("Upload a file", DocumentConstants.LinkTypeFile))
-                rbLinkType.Items.Add(New ListItem("Google Doc", DocumentConstants.LinkTypeGoogleDoc))
-                rbLinkType.Items.Add(New ListItem("External URL", DocumentConstants.LinkTypeUrl))
-                rbLinkType.Items.Add(New ListItem("A Page on this site", DocumentConstants.LinkTypePage))
-                rbLinkType.Items.Add(New ListItem("YouTube Video", DocumentConstants.LinkTypeYouTube))
+                rbLinkType.Items.Add(New ListItem(LocalizeString("rbUpload"), DocumentConstants.LinkTypeFile))
+                rbLinkType.Items.Add(New ListItem(LocalizeString("rbGoogleDoc"), DocumentConstants.LinkTypeGoogleDoc))
+                rbLinkType.Items.Add(New ListItem(LocalizeString("rbUrl"), DocumentConstants.LinkTypeUrl))
+                rbLinkType.Items.Add(New ListItem(LocalizeString("rbPage"), DocumentConstants.LinkTypePage))
+                rbLinkType.Items.Add(New ListItem(LocalizeString("rbYouTube"), DocumentConstants.LinkTypeYouTube))
 
                 If IsEditMode Then
                     ' Fill in existing values for edited resource
