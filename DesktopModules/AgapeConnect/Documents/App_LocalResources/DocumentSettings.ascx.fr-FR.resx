@@ -162,4 +162,13 @@
   <data name="folderNotDeletable.Text" xml:space="preserve">
     <value>Il n’est pas possible de supprimer ce répertoire car il contient des ressources (potentiellement dans la corbeille).</value>
   </data>
+  <data name="btnEditSubFolder.Text" xml:space="preserve">
+    <value>Renommer</value>
+  </data>
+  <data name="folderNotRenamable.Text" xml:space="preserve">
+    <value>Il n’est pas possible de renommer ce répertoire.</value>
+  </data>
+  <data name="lblEditSubFolder.Text" xml:space="preserve">
+    <value>Renommer ce répertoire :</value>
+  </data>
 </root>

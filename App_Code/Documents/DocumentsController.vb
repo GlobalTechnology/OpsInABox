@@ -53,9 +53,9 @@ Public Class DocumentsController
         Return (From c In d.AP_Documents_Folders Where c.PortalId = GetPortalId()).ToList
     End Function
 
-    Public Shared Function GetFolder(ByVal folderID As Integer) As IQueryable(Of AP_Documents_Folder)
+    Public Shared Function GetFolder(ByVal folderID As Integer) As AP_Documents_Folder
         Dim d As New DocumentsDataContext()
-        Return From c In d.AP_Documents_Folders Where c.PortalId = GetPortalId() And c.FolderId = folderID
+        Return (From c In d.AP_Documents_Folders Where c.PortalId = GetPortalId() And c.FolderId = folderID).First
     End Function
 
     Public Shared Function GetChildFolders(ByVal parentFolderID As Integer) As IQueryable(Of AP_Documents_Folder)
@@ -64,7 +64,7 @@ Public Class DocumentsController
     End Function
 
     'Saves in the database the newFolder
-    Public Shared Sub SetFolder(ByVal newFolder As String, ByVal parentFolderId As Integer)
+    Public Shared Sub InsertFolder(ByVal newFolder As String, ByVal parentFolderId As Integer)
         Dim d As New DocumentsDataContext()
 
         Dim insert As New AP_Documents_Folder
@@ -74,6 +74,18 @@ Public Class DocumentsController
         insert.PortalId = GetPortalId()
         insert.Permission = (From c In d.AP_Documents_Folders Where c.FolderId = insert.ParentFolder Select c.Permission).First
         d.AP_Documents_Folders.InsertOnSubmit(insert)
+        d.SubmitChanges()
+
+    End Sub
+
+    'Updates only the name of the folder
+    Public Shared Sub UpdateFolder(ByVal newFolderName As String, ByVal folderId As Integer)
+        Dim d As New DocumentsDataContext()
+
+        'Get resource to update
+        Dim folderToUpdate = (From c In d.AP_Documents_Folders Where c.PortalId = GetPortalId() And c.FolderId = folderId).First
+
+        folderToUpdate.Name = newFolderName
         d.SubmitChanges()
 
     End Sub
@@ -108,7 +120,7 @@ Public Class DocumentsController
     End Function
 
     Public Shared Function HasParentFolder(ByVal folderID As Integer) As Boolean
-        If (GetFolder(folderID).First.ParentFolder = NoParentFolderId) Then
+        If (GetFolder(folderID).ParentFolder = NoParentFolderId) Then
             Return False
         End If
         Return True

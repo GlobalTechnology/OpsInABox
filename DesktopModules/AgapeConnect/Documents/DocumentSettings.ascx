@@ -21,7 +21,19 @@
 <%-- Validator Section --%>
 
 <asp:RegularExpressionValidator
-    ID="validFolderName"
+    ID="validFolderNameEdit"
+    runat="server"
+    ControlToValidate="tbEditSubFolder"
+    ValidationExpression = "^[^\\\/]+$"
+    ErrorMessage="validFolderName"
+    ResourceKey="validFolderName"
+    Display="Dynamic"
+    class="MandatoryFieldErrorMsg"
+    ValidationGroup="vgEdit">
+</asp:RegularExpressionValidator>
+
+<asp:RegularExpressionValidator
+    ID="validFolderNameAdd"
     runat="server"
     ControlToValidate="tbAddSubFolder"
     ValidationExpression = "^[^\\\/]+$"
@@ -33,15 +45,39 @@
 </asp:RegularExpressionValidator>
 
 <asp:CustomValidator 
-    ID="cvIsFolder" 
+    ID="cvFolderEdit" 
+    runat="server"
+    ControlToValidate="tbEditSubFolder"
+    OnServerValidate="EditFolder"
+    ErrorMessage="folderExists"
+    ResourceKey="folderExists"
+    Display="Dynamic"
+    class="MandatoryFieldErrorMsg"
+    ValidationGroup="vgEdit">
+</asp:CustomValidator>
+
+<asp:CustomValidator 
+    ID="cvFolderAdd" 
     runat="server"
     ControlToValidate="tbAddSubFolder"
-    OnServerValidate="IsFolder"
+    OnServerValidate="AddFolder"
     ErrorMessage="folderExists"
     ResourceKey="folderExists"
     Display="Dynamic"
     class="MandatoryFieldErrorMsg"
     ValidationGroup="vgAdd">
+</asp:CustomValidator>
+
+<asp:CustomValidator 
+    ID="cvIsFolderRenamable" 
+    runat="server" 
+    ControlToValidate="ddlRoot"
+    OnServerValidate="IsFolderRenamable"
+    ErrorMessage="folderNotRenamable"
+    ResourceKey="folderNotRenamable"
+    Display="Dynamic"
+    class="MandatoryFieldErrorMsg"
+    ValidationGroup="vgRename">
 </asp:CustomValidator>
 
 <asp:CustomValidator 
@@ -65,9 +101,24 @@
                 <div id="divFolder" class="FieldRow">
                     <asp:Label ID="lblFolder" runat="server" ResourceKey="lblRoot" CssClass="FieldLabel"></asp:Label>
                     <asp:DropDownList ID="ddlRoot" runat="server" AutoPostBack="true"></asp:DropDownList>
-                    <asp:HyperLink ID="btnEdit" CssClass="btnEdit" runat="server"></asp:HyperLink>
+                    <asp:LinkButton ID="btnEdit" CssClass="btnEdit" runat="server" ValidationGroup="vgRename"></asp:LinkButton>
                     <asp:LinkButton ID="btnDelete" CssClass="btnDelete" runat="server" ValidationGroup="vgDelete"></asp:LinkButton>
                     <asp:LinkButton ID="btnAdd" CssClass="btnAdd" runat="server"></asp:LinkButton>     
+                </div>
+
+                <div id="divButtonEdit">
+                    <asp:UpdatePanel ID="upEdit" runat="server" Visible="false">
+                        <ContentTemplate>
+                            <div class="FieldSubRow">
+                                <asp:Label ID="lblEditSubFolder" runat="server" ResourceKey="lblEditSubFolder" CssClass="FieldSubLabel"></asp:Label>
+                                <asp:textbox ID="tbEditSubFolder" runat="server"></asp:textbox>
+                                <asp:Button ID="btnEditSubFolder" runat="server" ResourceKey="btnEditSubFolder" CssClass="button" ValidationGroup="vgEdit"></asp:Button>
+                            </div>
+                        </ContentTemplate>
+                        <Triggers>
+                            
+                        </Triggers>
+                    </asp:UpdatePanel>
                 </div>
 
                 <div id="divButtonAdd">
@@ -85,19 +136,28 @@
                 </div>
 
                 <div class="FieldSubRow">
+                    <asp:ValidationSummary ID="vsRename" runat="server" DisplayMode="List"
+                        CssClass="MandatoryFieldErrorMsg" ValidationGroup="vgRename">
+                    </asp:ValidationSummary>
                     <asp:ValidationSummary ID="vsDelete" runat="server" DisplayMode="List"
                         CssClass="MandatoryFieldErrorMsg" ValidationGroup="vgDelete">
                     </asp:ValidationSummary>
-                    <asp:ValidationSummary ID="vsAdd" runat="server" DisplayMode="List"
+                    <asp:ValidationSummary ID="vsEdit" runat="server" DisplayMode="List"
+                        CssClass="MandatoryFieldErrorMsg" ValidationGroup="vgEdit">
+                    </asp:ValidationSummary>
+                     <asp:ValidationSummary ID="vsAdd" runat="server" DisplayMode="List"
                         CssClass="MandatoryFieldErrorMsg" ValidationGroup="vgAdd">
                     </asp:ValidationSummary>
                 </div>
                 
             </ContentTemplate>
             <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnEdit" EventName = "Click"/>
                 <asp:AsyncPostBackTrigger ControlID="btnDelete" EventName = "Click"/>
                 <asp:AsyncPostBackTrigger ControlID="btnAdd" EventName = "Click"/>
+                <asp:AsyncPostBackTrigger ControlID="btnEditSubFolder" EventName = "Click"/>
                 <asp:AsyncPostBackTrigger ControlID="btnAddSubFolder" EventName = "Click"/>
+                <asp:AsyncPostBackTrigger ControlID="ddlRoot" EventName = "SelectedIndexChanged"/>
             </Triggers>
         </asp:UpdatePanel>
         <hr />   

@@ -252,7 +252,7 @@
     margin-left: 10px;
 }
 
-#divButtonAdd .button {
+#divButtonAdd .button, #divButtonEdit .button {
     margin-top: 0px;
     font-size: small;
     height: 27px;
@@ -261,7 +261,7 @@
     padding: 0px 10px 0px 10px;
 }
 
-#divButtonAdd {
+#divButtonAdd, #divButtonEdit {
     margin-top: 30px;
 }
 

@@ -50,9 +50,16 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
         End Sub
 
-        Protected Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-            AgapeLogger.Info(UserId, "inside btnDelete_Click " & Page.IsValid)
+        Protected Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click, ddlRoot.SelectedIndexChanged
+            upEdit.Visible = True
             upAdd.Visible = False
+            tbEditSubFolder.Text = DocumentsController.GetFolder(ddlRoot.SelectedValue).Name
+        End Sub
+
+        Protected Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+            upEdit.Visible = False
+            upAdd.Visible = False
+
             If Page.IsValid Then
                 DocumentsController.DeleteFolder(ddlRoot.SelectedItem.Value)
 
@@ -63,18 +70,38 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         End Sub
 
         Protected Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+            upEdit.Visible = False
             upAdd.Visible = True
         End Sub
 
-        Protected Sub btnAddSubFolder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAddSubFolder.Click
-            AgapeLogger.Info(UserId, "inside btnAddSubFolder_Click " & Page.IsValid)
+        Protected Sub btnEditSubFolder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEditSubFolder.Click
+
             If Page.IsValid Then
-                DocumentsController.SetFolder(tbAddSubFolder.Text, ddlRoot.SelectedValue)
+                DocumentsController.UpdateFolder(tbEditSubFolder.Text, ddlRoot.SelectedValue)
+
+                'Rebuild the list of paths after a new directory was added
+                BuildPathList()
+            End If
+            tbEditSubFolder.Text = ""
+            upEdit.Visible = False
+        End Sub
+
+        Protected Sub btnAddSubFolder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAddSubFolder.Click
+
+            If Page.IsValid Then
+                DocumentsController.InsertFolder(tbAddSubFolder.Text, ddlRoot.SelectedValue)
 
                 'Rebuild the list of paths after a new directory was added
                 BuildPathList()
             End If
             tbAddSubFolder.Text = ""
+            upAdd.Visible = False
+        End Sub
+
+        Protected Sub ddlRoot_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ddlRoot.SelectedIndexChanged
+            If (upEdit.Visible) Then
+                tbEditSubFolder.Text = DocumentsController.GetFolder(ddlRoot.SelectedValue).Name
+            End If
         End Sub
 
         Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSave.Click
@@ -93,9 +120,25 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
 #Region "Validators"
 
-        Protected Sub IsFolder(sender As Object, e As ServerValidateEventArgs)
+        Protected Sub IsFolderRenamable(sender As Object, e As ServerValidateEventArgs)
+            If (DocumentsController.HasParentFolder(ddlRoot.SelectedItem.Value)) Then
+                e.IsValid = True
+            Else
+                e.IsValid = False
+            End If
+        End Sub
+
+        Protected Sub EditFolder(sender As Object, e As ServerValidateEventArgs)
+            'in an Edit the parent folder is one step to the left of what is chosen in the dropdownlist
+            Dim parentFolder As Integer = DocumentsController.GetFolder(ddlRoot.SelectedValue).ParentFolder
+            e.IsValid = Not DocumentsController.IsFolder(tbEditSubFolder.Text, parentFolder)
+
+        End Sub
+
+        Protected Sub AddFolder(sender As Object, e As ServerValidateEventArgs)
             'IsValid should be true when folder does not exist so boolean is reversed here
             e.IsValid = Not DocumentsController.IsFolder(tbAddSubFolder.Text, ddlRoot.SelectedValue)
+
         End Sub
 
         Protected Sub IsFolderDeletable(sender As Object, e As ServerValidateEventArgs)
