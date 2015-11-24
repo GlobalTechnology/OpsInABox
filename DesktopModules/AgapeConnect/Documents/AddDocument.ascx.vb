@@ -63,6 +63,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 rbLinkType.Items.Add(New ListItem(LocalizeString("rbUrl"), DocumentConstants.LinkTypeUrl))
                 rbLinkType.Items.Add(New ListItem(LocalizeString("rbPage"), DocumentConstants.LinkTypePage))
                 rbLinkType.Items.Add(New ListItem(LocalizeString("rbYouTube"), DocumentConstants.LinkTypeYouTube))
+                rbLinkType.SelectedValue = DocumentConstants.LinkTypeFile
 
                 If IsEditMode Then
                     ' Fill in existing values for edited resource
