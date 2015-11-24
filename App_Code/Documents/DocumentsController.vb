@@ -53,11 +53,13 @@ Public Class DocumentsController
         Return (From c In d.AP_Documents_Folders Where c.PortalId = GetPortalId()).ToList
     End Function
 
+    'Returns the folder asked for
     Public Shared Function GetFolder(ByVal folderID As Integer) As AP_Documents_Folder
         Dim d As New DocumentsDataContext()
         Return (From c In d.AP_Documents_Folders Where c.PortalId = GetPortalId() And c.FolderId = folderID).First
     End Function
 
+    'Returns child folders of specified folder, only looks one level down.
     Public Shared Function GetChildFolders(ByVal parentFolderID As Integer) As IQueryable(Of AP_Documents_Folder)
         Dim d As New DocumentsDataContext()
         Return From c In d.AP_Documents_Folders Where c.PortalId = GetPortalId() And c.ParentFolder = parentFolderID

@@ -65,6 +65,12 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             If Page.IsValid Then
                 DocumentsController.DeleteFolder(ddlRoot.SelectedItem.Value)
 
+                'If the selected root folder is deleted then the new selected root folder will be "acDocuments" of the module
+                If (ddlRoot.SelectedItem.Value = DocumentsController.GetModuleFolderId(TabModuleId)) Then
+                    ddlRoot.SelectedIndex = 0
+                    DocumentsController.SetModuleFolderId(TabModuleId, ddlRoot.SelectedValue)
+                End If
+
                 'Rebuild the list of paths after directory was deleted
                 BuildPathList()
             End If
