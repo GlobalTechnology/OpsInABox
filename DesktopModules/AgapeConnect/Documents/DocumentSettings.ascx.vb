@@ -32,19 +32,24 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             Dim pathName As String = ""
 
             Dim folders As List(Of AP_Documents_Folder) = DocumentsController.GetFolders()
+            Dim savedRootFolder As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
 
-            'Name is replaced by path
             For Each folder In folders
+                'Name is replaced by path
                 folder.Name = DocumentsController.GetFullPath(folder)
+
+                'If the saved "RootFolder" in TabModuleSettings is in the list of folders then
+                'it becomes the selected item in ddlRoot. It potentially could have been
+                'deleted by a different installation of the module
+                If (savedRootFolder = folder.FolderId) Then
+                    ddlRoot.SelectedValue = savedRootFolder
+                End If
             Next
 
             ddlRoot.DataSource = folders.OrderBy(Function(x) x.Name).ToList()
             ddlRoot.DataTextField = "Name"
             ddlRoot.DataValueField = "FolderId"
             ddlRoot.DataBind()
-
-            'Populate the dropdown list with correct path 
-            ddlRoot.SelectedValue = DocumentsController.GetModuleFolderId(TabModuleId)
 
         End Sub
 
