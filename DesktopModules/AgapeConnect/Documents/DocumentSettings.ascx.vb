@@ -48,6 +48,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
         End Sub
 
+#Region "Events"
+
         Protected Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
             upAdd.Visible = False
             If Page.IsValid Then
@@ -119,6 +121,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Protected Sub btnCancel_Click(sender As Object, e As System.EventArgs) Handles btnCancel.Click
             Response.Redirect(NavigateURL())
         End Sub
+
+#End Region 'Events
 
 #Region "Validators"
 

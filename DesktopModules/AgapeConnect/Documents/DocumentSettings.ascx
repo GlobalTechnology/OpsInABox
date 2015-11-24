@@ -2,22 +2,6 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register Assembly="DotNetNuke" Namespace="DotNetNuke.UI.WebControls" TagPrefix="cc1" %>
 
-<%--<script>
-
-    (function ($, Sys) {
-
-            //Initialize confirmation popup for delete button
-            $('.btnDelete').dnnConfirm({
-                    text: '<%=LocalizeString("deleteRepertoireConfirmationQuestion")%>',
-                    yesText: '<%=LocalizeString("deleteRepertoireConfirmationYes")%>',
-                    noText: '<%=LocalizeString("deleteRepertoireConfirmationNo")%>',
-                    title: '<%=LocalizeString("deleteRepertoireConfirmationTitle")%>'
-                });
-
-    }(jQuery, window.Sys)); // pass in the globals. Note the safe access of the jQuery object.
-
-</script>--%>
-
 <%-- Validator Section --%>
 
 <asp:RegularExpressionValidator

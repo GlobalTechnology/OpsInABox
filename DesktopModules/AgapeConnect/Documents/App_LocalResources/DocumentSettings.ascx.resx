@@ -138,18 +138,6 @@
   <data name="folderExists.Text" xml:space="preserve">
     <value>The subfolder already exists</value>
   </data>
-  <data name="deleteRepertoireConfirmationNo.Text" xml:space="preserve">
-    <value>No</value>
-  </data>
-  <data name="deleteRepertoireConfirmationQuestion.Text" xml:space="preserve">
-    <value>Are you sure you want to delete the folder ?</value>
-  </data>
-  <data name="deleteRepertoireConfirmationTitle.Text" xml:space="preserve">
-    <value>Delete the folder</value>
-  </data>
-  <data name="deleteRepertoireConfirmationYes.Text" xml:space="preserve">
-    <value>Yes</value>
-  </data>
   <data name="folderNotDeletable.Text" xml:space="preserve">
     <value>It is not possible to delete this folder because it contains ressources (including ressources in the trash).</value>
   </data>
@@ -161,5 +149,14 @@
   </data>
   <data name="validFolderName.Text" xml:space="preserve">
     <value>A folder name cannot have the caracters / nor \</value>
+  </data>
+  <data name="btnEditSubFolder.Text" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="folderNotRenamable.Text" xml:space="preserve">
+    <value>It is not possible to rename this folder.</value>
+  </data>
+  <data name="lblEditSubFolder.Text" xml:space="preserve">
+    <value>Rename this folder:</value>
   </data>
 </root>
