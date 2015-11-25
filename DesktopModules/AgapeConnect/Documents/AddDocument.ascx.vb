@@ -97,14 +97,15 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Protected Sub btnOk_Click(sender As Object, e As System.EventArgs) Handles btnOk.Click
 
             'TODO: Add client and server validations
+            If Page.IsValid Then
+                If IsEditMode Then
+                    UpdateResource()
+                Else 'Add mode
+                    AddResource()
+                End If
 
-            If IsEditMode Then
-                UpdateResource()
-            Else 'Add mode
-                AddResource()
+                Response.Redirect(NavigateURL()) 'Close modal popup and refresh Resource list
             End If
-
-            Response.Redirect(NavigateURL()) 'Close modal popup and refresh Resource list
         End Sub
 
         Protected Sub btnCancel_Click(sender As Object, e As System.EventArgs) Handles btnCancel.Click
@@ -198,5 +199,32 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
 #End Region 'Add/update resource
 
+#Region "Validation"
+
+        Protected Sub ValidateUpload(sender As Object, e As ServerValidateEventArgs)
+            If rbLinkType.SelectedValue = DocumentConstants.LinkTypeFile Then
+                If FileUpload1.HasFile Then
+                    e.IsValid = False
+                Else
+                    e.IsValid = False
+                End If
+            Else
+                e.IsValid = False
+            End If
+        End Sub
+
+        Protected Sub ValidateGoogle(sender As Object, e As ServerValidateEventArgs)
+            If rbLinkType.SelectedValue = DocumentConstants.LinkTypeGoogleDoc Then
+                If tbGoogle.Text = "" Then
+                    e.IsValid = False
+                Else
+                    e.IsValid = False
+                End If
+            Else
+                e.IsValid = False
+            End If
+        End Sub
+
+#End Region 'Validation
     End Class
 End Namespace
