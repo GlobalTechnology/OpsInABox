@@ -29,8 +29,28 @@
 </script>
 
 <%-- Validator Section --%>
-
-<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="tbName"></asp:RequiredFieldValidator>
+<asp:CustomValidator 
+    ID="cvUpload" 
+    runat="server"
+    ControlToValidate="FileUpload1"
+    OnServerValidate="ValidateUpload"
+    ErrorMessage="cvUpload"
+    ResourceKey="cvUpload"
+    Display="Dynamic"
+    class="MandatoryFieldErrorMsg"
+    ValidationGroup="vgAddEdit">
+</asp:CustomValidator>
+<asp:CustomValidator 
+    ID="cvGoogle" 
+    runat="server"
+    ControlToValidate="tbGoogle"
+    OnServerValidate="ValidateGoogle"
+    ErrorMessage="cvGoogle"
+    ResourceKey="cvGoogle"
+    Display="Dynamic"
+    class="MandatoryFieldErrorMsg"
+    ValidationGroup="vgAddEdit">
+</asp:CustomValidator>
 
 <%-- Validator Section End --%>
 
@@ -38,6 +58,7 @@
     <div id="divResName" class="FieldRow">
         <asp:Label ID="lblName" runat="server" resourcekey="lblName.Text" CssClass="FieldLabel" />
         <asp:TextBox ID="tbName" runat="server"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" resourcekey="rfName" ControlToValidate="tbName" ValidationGroup="vgAddEdit"></asp:RequiredFieldValidator>
         <hr />
     </div>
     <div id="divResDesc" class="FieldRow">
@@ -88,7 +109,7 @@
         </div>
     </div>
     <div id="divAddEditButtons" class="SubmitPanel">
-        <asp:Button ID="btnOk" runat="server" resourcekey="btnOk.Text" CssClass="button" />
+        <asp:Button ID="btnOk" runat="server" resourcekey="btnOk.Text" CssClass="button" ValidationGroup="vgAddEdit" />
         <asp:Button ID="btnCancel" runat="server" resourcekey="btnCancel.Text" CssClass="button" />
     </div>
 </div>

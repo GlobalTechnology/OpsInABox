@@ -186,4 +186,7 @@
   <data name="TitleEditResource.Text" xml:space="preserve">
     <value>Editer la ressource</value>
   </data>
+  <data name="rfName.Text" xml:space="preserve">
+    <value>Il vous faut un nom.</value>
+  </data>
 </root>
