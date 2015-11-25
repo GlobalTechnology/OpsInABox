@@ -32,7 +32,7 @@
     <div id="divResName" class="FieldRow">
         <asp:Label ID="lblName" runat="server" resourcekey="lblName.Text" CssClass="FieldLabel" />
         <asp:TextBox ID="tbName" runat="server"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" resourcekey="rfName" ControlToValidate="tbName" class="MandatoryFieldErrorMsg" ValidationGroup="vgAddEdit"></asp:RequiredFieldValidator>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" resourcekey="rfName" ControlToValidate="tbName" class="MandatoryFieldErrorMsg" ValidationGroup="vgAddEdit" Display="Dynamic"></asp:RequiredFieldValidator>
         <hr />
     </div>
     <div id="divResDesc" class="FieldRow">
