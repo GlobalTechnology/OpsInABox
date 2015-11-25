@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="GENERIC_ERROR_MSG.Text" xml:space="preserve">
-    <value>An error occured. Unfortunately we cannot display the document.</value>
+    <value>Une erreur s'est produite. Nous ne pouvons malheureusement pas afficher la ressource demandée.</value>
   </data>
   <data name="NOT_AUTHORIZED_ERROR_MSG.Text" xml:space="preserve">
-    <value>You are not authorized to see the requested document.</value>
+    <value>Vous n'êtes pas autorisé à voir la ressource demandée.</value>
   </data>
 </root>

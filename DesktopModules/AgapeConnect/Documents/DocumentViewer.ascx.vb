@@ -8,13 +8,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
     Partial Class DocumentViewer
         Inherits Entities.Modules.PortalModuleBase
 
-#Region "Constants"
-        ' Error messages
-        Private Const GENERIC_ERROR_MSG As String = "Une erreur s'est produite. Nous ne pouvons malheureusement pas afficher la ressource demandée." 'TODO: To be translated
-        Private Const NOT_AUTHORIZED_ERROR_MSG As String = "Vous n'êtes pas autorisé à voir la ressource demandée." 'TODO: To be translated
-
-#End Region 'Constants
-
 #Region "Page properties"
 
         'DocId retrieved in request
@@ -45,11 +38,18 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+            ' Translate error messages
+            Dim GENERIC_ERROR_MSG As String = LocalizeString("GENERIC_ERROR_MSG")
+            Dim NOT_AUTHORIZED_ERROR_MSG As String = LocalizeString("NOT_AUTHORIZED_ERROR_MSG")
+
             ' Display error message if no DocId was provided
             If Not DocId.HasValue Then
 
                 'Display error message
                 AddModuleMessage(Me, GENERIC_ERROR_MSG, ModuleMessageType.RedError)
+
+                'Log error
+                AgapeLogger.Warn(UserId, GENERIC_ERROR_MSG + " - No DocId in request")
 
                 Return
 
@@ -65,6 +65,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                     'Display error message
                     AddModuleMessage(Me, NOT_AUTHORIZED_ERROR_MSG, ModuleMessageType.RedError)
 
+                    'Log error
+                    AgapeLogger.Warn(UserId, NOT_AUTHORIZED_ERROR_MSG + " - User not authorized for DocId '" + DocId + "'")
+
                     Return
 
                 End If
@@ -74,6 +77,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
                     'Display error message
                     AddModuleMessage(Me, GENERIC_ERROR_MSG, ModuleMessageType.RedError)
+
+                    'Log error
+                    AgapeLogger.Warn(UserId, GENERIC_ERROR_MSG + " - Unhandled LinkType '" + theDoc.LinkType + "'")
 
                     Return
 
@@ -88,10 +94,13 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 ' Show the video panel
                 pnlVideo.Visible = True
 
-            Catch 'Unexisting DocId throws an exception when calling GetDocument
+            Catch ex As Exception 'Unexisting DocId throws an exception when calling GetDocument
 
                 'Display error message
                 AddModuleMessage(Me, GENERIC_ERROR_MSG, ModuleMessageType.RedError)
+
+                'Log error
+                AgapeLogger.Warn(UserId, GENERIC_ERROR_MSG + " - Exception: " + ex.Message + " - " + ex.StackTrace)
 
                 Return
 
