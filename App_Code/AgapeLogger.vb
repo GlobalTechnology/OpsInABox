@@ -3,10 +3,12 @@ Imports DotNetNuke.Instrumentation
 
 Public Class AgapeLogger
 
+    Private Shared ReadOnly _logger As ILog = LoggerSource.Instance.GetLogger(GetType(AgapeLogger))
+
     Public Shared Sub [Error](ByVal UserID As Integer, ByVal Msg As String)
 
         ' Write to Log4net appenders
-        DnnLog.Error(Msg)
+        _logger.Error(Msg)
 
         ' Write to DNN EventLog
         WriteEventLog(UserID, Msg)
@@ -16,7 +18,7 @@ Public Class AgapeLogger
     Public Shared Sub Warn(ByVal UserID As Integer, ByVal Msg As String)
 
         ' Write to Log4net appenders
-        DnnLog.Warn(Msg)
+        _logger.Warn(Msg)
 
         ' Write to DNN EventLog
         WriteEventLog(UserID, Msg)
@@ -26,7 +28,9 @@ Public Class AgapeLogger
     Public Shared Sub Info(ByVal UserID As Integer, ByVal Msg As String)
 
         ' Write to Log4net appenders
-        DnnLog.Info(Msg)
+        If _logger.IsInfoEnabled Then
+            _logger.Info(Msg)
+        End If
 
         ' Write to DNN EventLog
         WriteEventLog(UserID, Msg)
@@ -36,7 +40,9 @@ Public Class AgapeLogger
     Public Shared Sub Debug(ByVal UserID As Integer, ByVal Msg As String)
 
         ' Write to Log4net appenders
-        DnnLog.Debug(Msg)
+        If _logger.IsDebugEnabled Then
+            _logger.Debug(Msg)
+        End If
 
         ' Write to DNN EventLog
         'WriteEventLog(UserID, Msg)
