@@ -136,6 +136,10 @@
 
 /*DocumentsMain Section Begin*/
 
+#DocumentsMain {
+    min-height: 500px;
+}
+
 #DocumentsMain .docInfo{
     display:inline-block;
     vertical-align: middle;
@@ -194,7 +198,7 @@
     top:13px;
 }
 #DocumentsMain .noresource {
-    height: 500px;
+
 }
 
 /*DocumentsMain Section End*/
