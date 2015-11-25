@@ -178,9 +178,10 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                     If (FileUpload1.HasFile) Then
                         'Add new file to the dnn file system
                         Dim theFile = FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), FileUpload1.FileName, FileUpload1.FileContent)
-                        'Delete old file from dnn file system
-                        FileManager.Instance.DeleteFile(FileManager.Instance.GetFile(DocumentsController.GetDocument(DocId).FileId))
-
+                        'Delete old file from dnn file system if type was already file
+                        If DocumentsController.GetDocument(DocId).LinkType = DocumentConstants.LinkTypeFile Then
+                            FileManager.Instance.DeleteFile(FileManager.Instance.GetFile(DocumentsController.GetDocument(DocId).FileId))
+                        End If
                         'Now update the document into the database
                         DocumentsController.UpdateResource(DocId, theFile.FileId, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text)
                     End If
@@ -204,24 +205,52 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Protected Sub ValidateUpload(sender As Object, e As ServerValidateEventArgs)
             If rbLinkType.SelectedValue = DocumentConstants.LinkTypeFile Then
                 If FileUpload1.HasFile Then
-                    e.IsValid = False
+                    e.IsValid = True
                 Else
                     e.IsValid = False
                 End If
             Else
-                e.IsValid = False
+                e.IsValid = True
             End If
         End Sub
 
         Protected Sub ValidateGoogle(sender As Object, e As ServerValidateEventArgs)
             If rbLinkType.SelectedValue = DocumentConstants.LinkTypeGoogleDoc Then
-                If tbGoogle.Text = "" Then
-                    e.IsValid = False
+                Dim pattern As String
+                pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
+                If Regex.IsMatch(tbGoogle.Text, pattern) Then
+                    e.IsValid = True
                 Else
                     e.IsValid = False
                 End If
             Else
-                e.IsValid = False
+                e.IsValid = True
+            End If
+        End Sub
+
+        Protected Sub ValidateUrl(sender As Object, e As ServerValidateEventArgs)
+            If rbLinkType.SelectedValue = DocumentConstants.LinkTypeUrl Then
+                Dim pattern As String
+                pattern = "http(s)?://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?"
+                If Regex.IsMatch(tbURL.Text, pattern) Then
+                    e.IsValid = True
+                Else
+                    e.IsValid = False
+                End If
+            Else
+                e.IsValid = True
+            End If
+        End Sub
+
+        Protected Sub ValidateYouTube(sender As Object, e As ServerValidateEventArgs)
+            If rbLinkType.SelectedValue = DocumentConstants.LinkTypeYouTube Then
+                If tbYouTube.Text = "" Then
+                    e.IsValid = False
+                Else
+                    e.IsValid = True
+                End If
+            Else
+                e.IsValid = True
             End If
         End Sub
 

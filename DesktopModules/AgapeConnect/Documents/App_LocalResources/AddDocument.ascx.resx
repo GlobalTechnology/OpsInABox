@@ -189,4 +189,16 @@
   <data name="rfName.Text" xml:space="preserve">
     <value>You need a name.</value>
   </data>
+  <data name="cvGoogle.Text" xml:space="preserve">
+    <value>You need to enter an address.</value>
+  </data>
+  <data name="cvUpload.Text" xml:space="preserve">
+    <value>You need to choose a file.</value>
+  </data>
+  <data name="cvUrl.Text" xml:space="preserve">
+    <value>Please enter a valid address.</value>
+  </data>
+  <data name="cvYouTube.Text" xml:space="preserve">
+    <value>You need to enter a YouTube ID.</value>
+  </data>
 </root>
