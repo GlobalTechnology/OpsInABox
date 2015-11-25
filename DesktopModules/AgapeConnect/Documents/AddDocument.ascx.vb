@@ -35,8 +35,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 Dim editDoc As AP_Documents_Doc 'Resource to be edited if edit mode
 
                 ' Get DocId from request if provided (to be done first as needed afterwards)
-                If Not String.IsNullOrEmpty(Request.QueryString("edit")) Then
-                    DocId = CInt(HttpUtility.UrlDecode(Request.QueryString("edit")))
+                If Not String.IsNullOrEmpty(Request.QueryString(DocumentsControllerConstants.DocIdParamKey)) Then
+                    DocId = CInt(HttpUtility.UrlDecode(Request.QueryString(DocumentsControllerConstants.DocIdParamKey)))
 
                     'Retrieve existing values for resource to be edited
                     editDoc = DocumentsController.GetDocument(DocId)

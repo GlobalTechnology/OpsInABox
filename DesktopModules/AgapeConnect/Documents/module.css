@@ -135,6 +135,7 @@
 /* Documents Global Section End */
 
 /*DocumentsMain Section Begin*/
+
 #DocumentsMain .docInfo{
     display:inline-block;
     vertical-align: middle;
@@ -266,3 +267,21 @@
 }
 
 /*DocumentSettings End*/
+
+/*ViewDocument Section Start*/
+
+#ViewDocument {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+ 
+#ViewDocument iframe,
+#ViewDocument object,
+#ViewDocument embed {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/*ViewDocument End*/

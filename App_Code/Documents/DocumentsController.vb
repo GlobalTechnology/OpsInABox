@@ -9,11 +9,14 @@ Imports Documents
 ' Controller global constants
 Public Module DocumentsControllerConstants
     Public Const PortalSettingKey As String = "PortalSettings"
-End Module
 
-' List of view styles
-Public Module StyleType
-    Public Const View1 As String = "List"
+    ' Module control keys used in DNN extension definition
+    Public Const ViewDocumentControlKey As String = "DocumentViewer" 'TODO: To be renamed to "ViewDocument"
+    Public Const AddEditDocumentControlKey As String = "AddDocument" 'TODO: To be renamed to "AddEditDocument"
+    Public Const DocumentSettingsControlKey As String = "DocumentSettings"
+
+    ' Request param keys
+    Public Const DocIdParamKey As String = "DocId"
 End Module
 
 ' Folder constants
@@ -408,7 +411,7 @@ Public Class DocumentsController
 
 #End Region 'Search implementation
 
-#Region "Private functions"
+#Region "Helper functions"
 
     Private Shared Function GetPortalId() As Integer
         Return CType(HttpContext.Current.Items(PortalSettingKey), PortalSettings).PortalId
@@ -429,6 +432,14 @@ Public Class DocumentsController
         Return pathName
     End Function
 
-#End Region
+    ' Check if the current user is authorized to view the document
+    Public Shared Function IsAuthorized(ByVal userId As Integer, ByVal docId As Integer) As Boolean
+
+        Dim user = DotNetNuke.Entities.Users.UserController.GetUserById(GetPortalId(), userId)
+        Return user.IsSuperUser Or user.IsInRole("Administrators") Or user.IsInRole("Staff") 'TODO: Check permission given for the particular ressource when handled
+
+    End Function
+
+#End Region 'Helper functions
 
 End Class

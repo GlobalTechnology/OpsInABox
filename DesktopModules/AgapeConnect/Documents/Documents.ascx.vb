@@ -44,15 +44,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 Case DocumentConstants.LinkTypeGoogleDoc 'The document is a Google Doc
                     Return theDoc.LinkValue
                 Case DocumentConstants.LinkTypeYouTube 'The document is a YouTube video
-                    'TODO: This should be displayed by the DocumentViewer in an iframe within a modal popup
-                    Return "https://www.youtube.com/watch?v=" & theDoc.LinkValue
-                    'Dim rtn = EditUrl("DocumentViewer")
-                    'If rtn.Contains("?") Then
-                    '    rtn &= "&DocId=" & DocId
-                    'Else
-                    '    rtn &= "?DocId=" & DocId
-                    'End If
-                    'Return rtn
+                    'Displayed by the ViewDocument control in a modal popup
+                    Return EditUrl("", "", DocumentsControllerConstants.ViewDocumentControlKey, DocumentsControllerConstants.DocIdParamKey, HttpUtility.UrlEncode(theDoc.DocId))
                 Case DocumentConstants.LinkTypePage 'The document is a page on this site
                     Return NavigateURL(CInt(theDoc.LinkValue))
                 Case DocumentConstants.LinkTypeFile 'The document is an uploaded file
@@ -75,8 +68,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 Case DocumentConstants.LinkTypeGoogleDoc 'The document is a Google Doc
                     Return _BLANK
                 Case DocumentConstants.LinkTypeYouTube 'The document is a YouTube video
-                    'TODO: This should be displayed by the DocumentViewer in an iframe within a modal popup
-                    Return _BLANK
+                    'Displayed in a modal popup on the same page
+                    Return _SELF
                 Case DocumentConstants.LinkTypePage 'The document is a page on this site
                     Return _SELF
                 Case DocumentConstants.LinkTypeFile 'The document is an uploaded file
@@ -118,8 +111,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Public ReadOnly Property ModuleActions() As Entities.Modules.Actions.ModuleActionCollection Implements Entities.Modules.IActionable.ModuleActions
             Get
                 Dim Actions As New Entities.Modules.Actions.ModuleActionCollection
-                Actions.Add(GetNextActionID, LocalizeString("DocumentSettingsAction"), "DocumentSettings", "", "action_settings.gif", EditUrl("DocumentSettings"), False, SecurityAccessLevel.Admin, True, False)
-                Actions.Add(GetNextActionID, LocalizeString("AddDocumentAction"), "AddDocument", "", "action_settings.gif", EditUrl("AddDocument"), False, SecurityAccessLevel.Edit, True, False)
+                Actions.Add(GetNextActionID, LocalizeString("DocumentSettingsAction"), DocumentsControllerConstants.DocumentSettingsControlKey, "", "action_settings.gif", EditUrl(DocumentsControllerConstants.DocumentSettingsControlKey), False, SecurityAccessLevel.Admin, True, False)
+                Actions.Add(GetNextActionID, LocalizeString("AddDocumentAction"), DocumentsControllerConstants.AddEditDocumentControlKey, "", "action_settings.gif", EditUrl(DocumentsControllerConstants.AddEditDocumentControlKey), False, SecurityAccessLevel.Edit, True, False)
                 Return Actions
             End Get
         End Property
