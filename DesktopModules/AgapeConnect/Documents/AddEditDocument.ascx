@@ -1,4 +1,4 @@
-﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="AddDocument.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Documents.AddDocument" %>
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="AddEditDocument.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Documents.AddEditDocument" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
 <script type="text/javascript">

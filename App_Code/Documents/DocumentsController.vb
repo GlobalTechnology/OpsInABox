@@ -12,7 +12,7 @@ Public Module DocumentsControllerConstants
 
     ' Module control keys used in DNN extension definition
     Public Const ViewDocumentControlKey As String = "DocumentViewer" 'TODO: To be renamed to "ViewDocument"
-    Public Const AddEditDocumentControlKey As String = "AddDocument" 'TODO: To be renamed to "AddEditDocument"
+    Public Const AddEditDocumentControlKey As String = "AddEditDocument"
     Public Const DocumentSettingsControlKey As String = "DocumentSettings"
 
     ' Request param keys
