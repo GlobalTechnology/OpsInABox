@@ -443,7 +443,11 @@ Public Class DocumentsController
     Public Shared Function IsAuthorized(ByVal userId As Integer, ByVal docId As Integer) As Boolean
 
         Dim user = DotNetNuke.Entities.Users.UserController.GetUserById(GetPortalId(), userId)
-        Return user.IsSuperUser Or user.IsInRole("Administrators") Or user.IsInRole("Staff") 'TODO: Check permission given for the particular ressource when handled
+
+        'TODO: Check permission given for the particular ressource when handled
+
+        'Return user.IsSuperUser Or user.IsInRole("Administrators") Or user.IsInRole("Staff")
+        Return True 'Access to ViewDocument and DownloadDocument is already restricted depending on the module access permissions.
 
     End Function
 
