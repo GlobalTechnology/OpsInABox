@@ -160,7 +160,7 @@
     <value>Identifiant de la vidéo :</value>
   </data>
   <data name="lblYouTubeHelp.Text" xml:space="preserve">
-    <value>L'identifiant se trouve dans l'adresse web de la vidéo. Par example, dans "https://www.youtube.com/watch?v=XXXXXXX", l'identifiant est "XXXXXXX".</value>
+    <value>L'identifiant se trouve dans l'adresse web de la vidéo. Par exemple, dans "https://www.youtube.com/watch?v=XXXXXXX", l'identifiant est "XXXXXXX".</value>
   </data>
   <data name="rbGoogleDoc.Text" xml:space="preserve">
     <value>Lien vers un fichier Google Drive</value>
@@ -199,7 +199,7 @@
     <value>Il vous faut une addresse valide.</value>
   </data>
   <data name="cvYouTube.Text" xml:space="preserve">
-    <value>Il vous faut une identifiante de video YouTube.</value>
+    <value>Il vous faut un identifiant de video YouTube.</value>
   </data>
   <data name="ADD_FILE_INVALID_EXTENSION_ERROR_MSG.Text" xml:space="preserve">
     <value>L'extension "[extension]" n'est pas autorisée. La ressource n'a pas été ajoutée.</value>
