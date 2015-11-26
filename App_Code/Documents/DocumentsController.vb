@@ -324,7 +324,7 @@ Public Class DocumentsController
 
 #Region "Add/Edit"
 
-    Public Shared Sub InsertResource(ByVal FileId As Integer, FileName As String, _
+    Public Shared Sub InsertResource(ByVal FileId As Integer, DisplayName As String, _
                                      Author As String, LinkType As String, LinkURL As String, _
                                      Trashed As Boolean, ByVal tabModuleId As Integer, _
                                      ByVal Description As String)
@@ -332,7 +332,7 @@ Public Class DocumentsController
         Dim insert As New AP_Documents_Doc
         insert.FolderId = GetModuleFolderId(tabModuleId)
         insert.FileId = FileId
-        insert.DisplayName = FileName
+        insert.DisplayName = DisplayName
         insert.Author = Author
         insert.VersionNumber = "1.0"
         insert.CustomIcon = -1
@@ -346,7 +346,7 @@ Public Class DocumentsController
         d.SubmitChanges()
     End Sub
 
-    Public Shared Sub UpdateResource(ByVal DocId As Integer, ByVal FileId As Integer, FileName As String, _
+    Public Shared Sub UpdateResource(ByVal DocId As Integer, ByVal FileId As Integer, DisplayName As String, _
                                  Author As String, LinkType As String, LinkURL As String, _
                                  Trashed As Boolean, ByVal tabModuleId As Integer, _
                                  ByVal Description As String)
@@ -358,7 +358,7 @@ Public Class DocumentsController
         'Update resource values
         theDoc.FolderId = GetModuleFolderId(tabModuleId)
         theDoc.FileId = FileId
-        theDoc.DisplayName = FileName
+        theDoc.DisplayName = DisplayName
         theDoc.Author = Author
         theDoc.VersionNumber = "1.0"
         theDoc.CustomIcon = -1
@@ -372,6 +372,20 @@ Public Class DocumentsController
         'Submit in DB
         d.SubmitChanges()
     End Sub
+
+    ' Add file in DNN file system
+    Public Shared Function AddFile(ByVal fileName As String, ByVal fileContent As IO.Stream) As Integer 'Returns the added fileId
+        Return FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), fileName, fileContent).FileId
+    End Function
+
+    ' Update file for a resource (delete old file and create new file in DNN file system)
+    Public Shared Function UpdateFile(ByVal fileId As Integer, ByVal fileName As String, ByVal fileContent As IO.Stream) As Integer 'Returns the new fileId
+        'Try first to add the file (extension could be rejected)
+        Dim newFileId = FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), fileName, fileContent).FileId
+        'If file added, delete old one
+        FileManager.Instance.DeleteFile(FileManager.Instance.GetFile(fileId))
+        Return newFileId
+    End Function
 
 #End Region
 

@@ -1,6 +1,8 @@
 ﻿Imports DotNetNuke.Services.FileSystem
 Imports Telerik.Web.UI
 Imports Documents
+Imports DotNetNuke.UI.Skins.Skin
+Imports DotNetNuke.UI.Skins.Controls.ModuleMessage
 
 Namespace DotNetNuke.Modules.AgapeConnect.Documents
     Partial Class AddEditDocument
@@ -99,12 +101,30 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             'TODO: Add client and server validations
             If Page.IsValid Then
                 If IsEditMode Then
-                    UpdateResource()
-                Else 'Add mode
-                    AddResource()
-                End If
+                    Try
+                        UpdateResource()
+                        Response.Redirect(NavigateURL()) 'Close modal popup and refresh Resource list
 
-                Response.Redirect(NavigateURL()) 'Close modal popup and refresh Resource list
+                    Catch ex As InvalidFileExtensionException
+                        'Log error
+                        AgapeLogger.Error(UserId, ex.ToString)
+
+                        'Display error message
+                        AddModuleMessage(Me, LocalizeString("UPDATE_FILE_INVALID_EXTENSION_ERROR_MSG").Replace("[extension]", System.IO.Path.GetExtension(FileUpload1.FileName)), ModuleMessageType.RedError)
+                    End Try
+                Else 'Add mode
+                    Try
+                        AddResource()
+                        Response.Redirect(NavigateURL()) 'Close modal popup and refresh Resource list
+
+                    Catch ex As InvalidFileExtensionException
+                        'Log error
+                        AgapeLogger.Error(UserId, ex.ToString)
+
+                        'Display error message
+                        AddModuleMessage(Me, LocalizeString("ADD_FILE_INVALID_EXTENSION_ERROR_MSG").Replace("[extension]", System.IO.Path.GetExtension(FileUpload1.FileName)), ModuleMessageType.RedError)
+                    End Try
+                End If
             End If
         End Sub
 
@@ -149,15 +169,10 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
         Protected Sub AddResource()
             If rbLinkType.SelectedValue = DocumentConstants.LinkTypeFile Then 'Radio button selected was upload
-                Try
-                    If (FileUpload1.HasFile) Then
-                        'Need to add the files to the dnn file system
-                        Dim theFile = FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), FileUpload1.FileName, FileUpload1.FileContent)
-                        'Now instert the document into the database
-                        DocumentsController.InsertResource(theFile.FileId, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text) 'need to add permissions eventually
-                    End If
-                Catch ex As Exception
-                End Try
+                'Add file to dnn file system
+                Dim theFileId = DocumentsController.AddFile(FileUpload1.FileName, FileUpload1.FileContent)
+                'Now instert the document into the database
+                DocumentsController.InsertResource(theFileId, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text) 'need to add permissions eventually
             ElseIf rbLinkType.SelectedValue = DocumentConstants.LinkTypeGoogleDoc Then 'Radio button selected was Google Doc
                 DocumentsController.InsertResource(DocumentConstants.FileIdForLinks, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeGoogleDoc, tbGoogle.Text, "False", TabModuleId, tbDescription.Text)
             ElseIf rbLinkType.SelectedValue = DocumentConstants.LinkTypeUrl Then 'Radio button selected was external URL
@@ -174,19 +189,17 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 ' Update all values but the FileId
                 DocumentsController.UpdateResource(DocId, DocumentsController.GetDocument(DocId).FileId, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text)
             ElseIf rbLinkType.SelectedValue = DocumentConstants.LinkTypeFile Then 'Radio button selected was upload
-                Try
-                    If (FileUpload1.HasFile) Then
-                        'Add new file to the dnn file system
-                        Dim theFile = FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), FileUpload1.FileName, FileUpload1.FileContent)
-                        'Delete old file from dnn file system if type was already file
-                        If DocumentsController.GetDocument(DocId).LinkType = DocumentConstants.LinkTypeFile Then
-                            FileManager.Instance.DeleteFile(FileManager.Instance.GetFile(DocumentsController.GetDocument(DocId).FileId))
-                        End If
-                        'Now update the document into the database
-                        DocumentsController.UpdateResource(DocId, theFile.FileId, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text)
+                    Dim theFileId As Integer
+
+                    'Update file in dnn file system if type was already file, simply add file otherwise
+                    If DocumentsController.GetDocument(DocId).LinkType = DocumentConstants.LinkTypeFile Then
+                        theFileId = DocumentsController.UpdateFile(DocumentsController.GetDocument(DocId).FileId, FileUpload1.FileName, FileUpload1.FileContent)
+                    Else
+                        theFileId = DocumentsController.AddFile(FileUpload1.FileName, FileUpload1.FileContent)
                     End If
-                Catch ex As Exception
-                End Try
+
+                    'Now update the document into the database
+                    DocumentsController.UpdateResource(DocId, theFileId, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text)
             ElseIf rbLinkType.SelectedValue = DocumentConstants.LinkTypeGoogleDoc Then 'Radio button selected was Google Doc
                 DocumentsController.UpdateResource(DocId, DocumentConstants.FileIdForLinks, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeGoogleDoc, tbGoogle.Text, "False", TabModuleId, tbDescription.Text)
             ElseIf rbLinkType.SelectedValue = DocumentConstants.LinkTypeUrl Then 'Radio button selected was external URL

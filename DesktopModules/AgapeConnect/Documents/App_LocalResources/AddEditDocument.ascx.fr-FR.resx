@@ -201,4 +201,10 @@
   <data name="cvYouTube.Text" xml:space="preserve">
     <value>Il vous faut une identifiante de video YouTube.</value>
   </data>
+  <data name="ADD_FILE_INVALID_EXTENSION_ERROR_MSG.Text" xml:space="preserve">
+    <value>L'extension "[extension]" n'est pas autorisée. La ressource n'a pas été ajoutée.</value>
+  </data>
+  <data name="UPDATE_FILE_INVALID_EXTENSION_ERROR_MSG.Text" xml:space="preserve">
+    <value>L'extension "[extension]" n'est pas autorisée. La ressource n'a pas été modifiée.</value>
+  </data>
 </root>

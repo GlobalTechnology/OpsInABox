@@ -201,4 +201,10 @@
   <data name="cvYouTube.Text" xml:space="preserve">
     <value>You need to enter a YouTube ID.</value>
   </data>
+  <data name="ADD_FILE_INVALID_EXTENSION_ERROR_MSG.Text" xml:space="preserve">
+    <value>The extension "[extension]" is not authorized. The ressource has not been added.</value>
+  </data>
+  <data name="UPDATE_FILE_INVALID_EXTENSION_ERROR_MSG.Text" xml:space="preserve">
+    <value>The extension "[extension]" is not authorized. The ressource has not been updated.</value>
+  </data>
 </root>

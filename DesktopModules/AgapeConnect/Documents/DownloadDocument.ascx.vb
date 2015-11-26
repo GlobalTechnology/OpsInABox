@@ -96,7 +96,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                     AddModuleMessage(Me, GENERIC_ERROR_MSG, ModuleMessageType.RedError)
 
                     'Log error
-                    AgapeLogger.Warn(UserId, GENERIC_ERROR_MSG + " - File with ID '" + theDoc.FileId + "' doesn't exist.")
+                    AgapeLogger.Warn(UserId, GENERIC_ERROR_MSG + " - File with ID '" + theDoc.FileId.ToString + "' doesn't exist.")
                 End If
 
             Catch ex As Exception 'Unexisting DocId throws an exception when calling GetDocument
