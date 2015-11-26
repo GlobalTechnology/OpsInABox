@@ -49,10 +49,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 Case DocumentConstants.LinkTypePage 'The document is a page on this site
                     Return NavigateURL(CInt(theDoc.LinkValue))
                 Case DocumentConstants.LinkTypeFile 'The document is an uploaded file
-                    Dim theFile = FileManager.Instance.GetFile(theDoc.FileId)
-                    If Not theFile Is Nothing Then
-                        Return FileManager.Instance.GetUrl(theFile)
-                    End If
+                    'Displayed by the DownloadDocument control
+                    Return EditUrl("", "", DocumentsControllerConstants.DownloadDocumentControlKey, DocumentsControllerConstants.DocIdParamKey, HttpUtility.UrlEncode(theDoc.DocId))
             End Select
             Return ""
         End Function
@@ -63,16 +61,15 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
             Dim theDoc = DocumentsController.GetDocument(DocId)
             Select Case theDoc.LinkType
-                Case DocumentConstants.LinkTypeUrl 'The document is an external URL
+                Case DocumentConstants.LinkTypeUrl 'Open external URL in new tab
                     Return _BLANK
-                Case DocumentConstants.LinkTypeGoogleDoc 'The document is a Google Doc
+                Case DocumentConstants.LinkTypeGoogleDoc 'Open Google Doc in new tab
                     Return _BLANK
-                Case DocumentConstants.LinkTypeYouTube 'The document is a YouTube video
-                    'Displayed in a modal popup on the same page
+                Case DocumentConstants.LinkTypeYouTube 'Open YouTube video in current window (opened in a modal popup)
                     Return _SELF
-                Case DocumentConstants.LinkTypePage 'The document is a page on this site
+                Case DocumentConstants.LinkTypePage 'Open page on this site in current window
                     Return _SELF
-                Case DocumentConstants.LinkTypeFile 'The document is an uploaded file
+                Case DocumentConstants.LinkTypeFile 'Open uploaded file in new tab
                     Return _BLANK
             End Select
             Return _SELF

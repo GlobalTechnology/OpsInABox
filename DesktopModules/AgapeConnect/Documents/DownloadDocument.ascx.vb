@@ -87,10 +87,17 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
                 End If
 
-                'Get file info
+                'Write file content into response if file exists
                 Dim theFile = FileManager.Instance.GetFile(theDoc.FileId)
-                'TODO: Check that file exists
-                DownloadFile(theFile.PhysicalPath, theFile.FileName, theFile.ContentType)
+                If Not theFile Is Nothing Then
+                    FileManager.Instance.WriteFileToResponse(theFile, ContentDisposition.Inline) ' Using ContentDisposition.Inline to have the file opening in the browser
+                Else
+                    'Display error message
+                    AddModuleMessage(Me, GENERIC_ERROR_MSG, ModuleMessageType.RedError)
+
+                    'Log error
+                    AgapeLogger.Warn(UserId, GENERIC_ERROR_MSG + " - File with ID '" + theDoc.FileId + "' doesn't exist.")
+                End If
 
             Catch ex As Exception 'Unexisting DocId throws an exception when calling GetDocument
 
@@ -107,27 +114,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         End Sub
 
 #End Region 'Page events
-
-
-        Protected Sub DownloadFile(ByVal strPath As String, ByVal strFileName As String, ByVal strContentType As String)
-
-            If (File.Exists(strPath + strFileName)) Then
-
-                Response.ContentType = strContentType
-                Response.AddHeader("content-disposition", "attachment; filename=" + strFileName)
-                Dim sourceFile As FileStream = New FileStream(strPath + strFileName, FileMode.Open)
-                Dim fileSize As Long
-                fileSize = sourceFile.Length
-                Dim getContent(CInt(fileSize)) As Byte
-                sourceFile.Read(getContent, 0, CInt(sourceFile.Length))
-                sourceFile.Close()
-
-                Response.BinaryWrite(getContent)
-
-            Else
-                'TODO: display and log error
-            End If
-        End Sub
 
     End Class
 
