@@ -205,22 +205,22 @@
 
 /*AddEditResource Section Start*/
 
-#divAddEditResource {
+#divAddEditDocument {
     width: 800px;
     margin: 10px 50px;
 }
 
-#divAddEditResource .docOption {
+#divAddEditDocument .docOption {
     /* Simulate <hr> after div */
     margin-bottom: 17px;
     border-bottom: solid #ddd 1px;
 }
 
-#divAddEditResource .rbLinkType {
+#divAddEditDocument .rbLinkType {
     margin-left: 200px;
 }
 
-#divAddEditResource .FieldHelp {
+#divAddEditDocument .FieldHelp {
     margin-left:200px;
 }
 
@@ -228,10 +228,22 @@
     float:left;
 }
 
-#divAddEditResource .RadComboBox input[type="text"] {
+#divAddEditDocument .RadComboBox input[type="text"] {
     border: none;
     line-height: 16px;
     height: 16px;
+}
+
+#divAddEditDocument .MandatoryFieldErrorMsg {
+    font-size:inherit;
+    padding-left: 5px;
+    color: red;
+}
+#divAddEditDocument .DocTypeErrorMsg {
+    font-size:inherit;
+    display:block;
+    padding:10px 0px 0px 200px;
+    color: red;
 }
 
 /*AddEditResource End*/
