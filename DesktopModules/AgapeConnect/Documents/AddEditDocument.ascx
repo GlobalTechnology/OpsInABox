@@ -28,10 +28,10 @@
     });
 </script>
 
-<div id="divAddEditResource" class="Documents">
+<div id="divAddEditDocument" class="Documents">
     <div id="divResName" class="FieldRow">
         <asp:Label ID="lblName" runat="server" resourcekey="lblName.Text" CssClass="FieldLabel" />
-        <asp:TextBox ID="tbName" runat="server"></asp:TextBox>
+        <asp:TextBox ID="tbName" runat="server" />
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" resourcekey="rfName" ControlToValidate="tbName" class="MandatoryFieldErrorMsg" ValidationGroup="vgAddEdit" Display="Dynamic"></asp:RequiredFieldValidator>
         <hr />
     </div>
@@ -49,9 +49,6 @@
         <div id="divUpload" class="docOption" style="display: none">
             <asp:Label ID="lblUpload" runat="server" resourcekey="lblUpload.Text" CssClass="FieldLabel" />
             <asp:FileUpload ID="FileUpload1" runat="server" />
-            <p class="FieldHelp">
-                <asp:Label ID="lblUploadHelp" runat="server" resourcekey="lblUploadHelp.Text" />
-            </p>
             <asp:CustomValidator
                 ID="cvUpload"
                 runat="server"
@@ -60,17 +57,17 @@
                 ErrorMessage="cvUpload"
                 ResourceKey="cvUpload"
                 Display="Dynamic"
-                class="MandatoryFieldErrorMsg"
+                class="DocTypeErrorMsg"
                 ValidateEmptyText="true"
                 ValidationGroup="vgAddEdit">
             </asp:CustomValidator>
+            <p class="FieldHelp">
+                <asp:Label ID="lblUploadHelp" runat="server" resourcekey="lblUploadHelp.Text" />
+            </p>
         </div>
         <div id="divGoogle" class="docOption" style="display: none">
             <asp:Label ID="lblGoogle" runat="server" resourcekey="lblGoogle.Text" CssClass="FieldLabel" />
             <asp:TextBox ID="tbGoogle" runat="server" />
-            <p class="FieldHelp">
-                <asp:Label ID="lblGoogleHelp" runat="server" resourcekey="lblGoogleHelp.Text" />
-            </p>
             <asp:CustomValidator
                 ID="cvGoogle"
                 runat="server"
@@ -79,17 +76,17 @@
                 ErrorMessage="cvGoogle"
                 ResourceKey="cvGoogle"
                 Display="Dynamic"
-                class="MandatoryFieldErrorMsg"
+                class="DocTypeErrorMsg"
                 ValidateEmptyText="true"
                 ValidationGroup="vgAddEdit">
             </asp:CustomValidator>
+            <p class="FieldHelp">
+                <asp:Label ID="lblGoogleHelp" runat="server" resourcekey="lblGoogleHelp.Text" />
+            </p>
         </div>
         <div id="divURL" class="docOption" style="display: none">
             <asp:Label ID="lblURL" runat="server" resourcekey="lblURL.Text" CssClass="FieldLabel" />
             <asp:TextBox ID="tbURL" runat="server" />
-            <p class="FieldHelp">
-                <asp:Label ID="lblURLHelp" runat="server" resourcekey="lblURLHelp.Text" />
-            </p>
             <asp:CustomValidator
                 ID="cvUrl"
                 runat="server"
@@ -98,10 +95,13 @@
                 ErrorMessage="cvUrl"
                 ResourceKey="cvUrl"
                 Display="Dynamic"
-                class="MandatoryFieldErrorMsg"
+                class="DocTypeErrorMsg"
                 ValidateEmptyText="true"
                 ValidationGroup="vgAddEdit">
             </asp:CustomValidator>
+            <p class="FieldHelp">
+                <asp:Label ID="lblURLHelp" runat="server" resourcekey="lblURLHelp.Text" />
+            </p>
         </div>
         <div id="divPage" class="docOption" style="display: none">
             <asp:Label ID="lblPage" runat="server" resourcekey="lblPage.Text" CssClass="FieldLabel" />
@@ -113,9 +113,6 @@
         <div id="divYouTube" class="docOption" style="display: none">
             <asp:Label ID="lblYouTube" runat="server" resourcekey="lblYouTube.Text" CssClass="FieldLabel" />
             <asp:TextBox ID="tbYouTube" runat="server" />
-            <p class="FieldHelp">
-                <asp:Label ID="lblYouTubeHelp" runat="server" resourcekey="lblYouTubeHelp.Text" />
-            </p>
             <asp:CustomValidator
                 ID="cvYouTube"
                 runat="server"
@@ -124,10 +121,13 @@
                 ErrorMessage="cvYouTube"
                 ResourceKey="cvYouTube"
                 Display="Dynamic"
-                class="MandatoryFieldErrorMsg"
+                class="DocTypeErrorMsg"
                 ValidateEmptyText="true"
                 ValidationGroup="vgAddEdit">
             </asp:CustomValidator>
+            <p class="FieldHelp">
+                <asp:Label ID="lblYouTubeHelp" runat="server" resourcekey="lblYouTubeHelp.Text" />
+            </p>
         </div>
     </div>
     <div id="divAddEditButtons" class="SubmitPanel">
