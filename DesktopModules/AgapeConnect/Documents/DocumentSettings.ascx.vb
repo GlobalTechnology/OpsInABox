@@ -60,6 +60,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             If Page.IsValid Then
                 upEdit.Visible = True
                 tbEditSubFolder.Text = DocumentsController.GetFolder(ddlRoot.SelectedValue).Name
+                tbEditSubFolder.Focus()
             End If
         End Sub
 
@@ -85,6 +86,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Protected Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
             upEdit.Visible = False
             upAdd.Visible = True
+            tbAddSubFolder.Focus()
         End Sub
 
         Protected Sub btnEditSubFolder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEditSubFolder.Click
