@@ -375,16 +375,23 @@ Public Class DocumentsController
 
     ' Add file in DNN file system
     Public Shared Function AddFile(ByVal fileName As String, ByVal fileContent As IO.Stream) As Integer 'Returns the added fileId
-        Return FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), fileName, fileContent).FileId
+        Dim addedFile = FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), fileName, fileContent)
+        'file is not viewable by URL directory access
+        FileManager.Instance.SetAttributes(addedFile, IO.FileAttributes.Hidden)
+        Return addedFile.FileId
     End Function
 
     ' Update file for a resource (delete old file and create new file in DNN file system)
     Public Shared Function UpdateFile(ByVal fileId As Integer, ByVal fileName As String, ByVal fileContent As IO.Stream) As Integer 'Returns the new fileId
         'Try first to add the file (extension could be rejected)
-        Dim newFileId = FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), fileName, fileContent).FileId
+        Dim newFile = FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), fileName, fileContent)
+
+        'file is not viewable by URL directory access
+        FileManager.Instance.SetAttributes(newFile, IO.FileAttributes.Hidden)
+
         'If file added, delete old one
         FileManager.Instance.DeleteFile(FileManager.Instance.GetFile(fileId))
-        Return newFileId
+        Return newFile.FileId
     End Function
 
 #End Region
