@@ -11,9 +11,10 @@ Public Module DocumentsControllerConstants
     Public Const PortalSettingKey As String = "PortalSettings"
 
     ' Module control keys used in DNN extension definition
-    Public Const ViewDocumentControlKey As String = "DocumentViewer" 'TODO: To be renamed to "ViewDocument"
+    Public Const ViewDocumentControlKey As String = "ViewDocument"
     Public Const AddEditDocumentControlKey As String = "AddEditDocument"
     Public Const DocumentSettingsControlKey As String = "DocumentSettings"
+    Public Const DownloadDocumentControlKey As String = "DownloadDocument"
 
     ' Request param keys
     Public Const DocIdParamKey As String = "DocId"
@@ -163,9 +164,10 @@ Public Class DocumentsController
         Dim objModules As New ModuleController
         Dim tabModuleSettings As Hashtable = objModules.GetTabModule(tabModuleId).TabModuleSettings
 
-        Dim moduleFolderId As Integer = tabModuleSettings(ModuleFolderSettingKey)
+        Dim moduleFolderId As Integer
 
-        If String.IsNullOrEmpty(moduleFolderId) Then
+        ' Get module folder ID from module settings and initialize it to root folder if not already in settings (also create root folder in DB if it doesn't exist)
+        If Not Integer.TryParse(tabModuleSettings(ModuleFolderSettingKey), moduleFolderId) Then ' TryParse will return False if the setting doesn't exist and convert the String to Integer in moduleFolderId otherwise
 
             Dim rootNode = From c In d.AP_Documents_Folders Where c.PortalId = GetPortalId() And c.ParentFolder = FolderConstants.NoParentFolderId
             'No rootNode found
@@ -183,6 +185,11 @@ Public Class DocumentsController
 
                 moduleFolderId = insert.FolderId
             End If
+
+            moduleFolderId = rootNode.First.FolderId
+
+            'Set default folder for module in module settings
+            SetModuleFolderId(tabModuleId, moduleFolderId)
 
         End If
         Return moduleFolderId

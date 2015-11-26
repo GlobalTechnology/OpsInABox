@@ -1,4 +1,4 @@
-﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="DocumentViewer.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Documents.DocumentViewer" %>
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="ViewDocument.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Documents.ViewDocument" %>
 
 <div id="ViewDocument">
 

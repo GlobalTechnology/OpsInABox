@@ -1,11 +1,13 @@
 ﻿Imports Documents
 Imports DotNetNuke.UI.Skins.Skin
 Imports DotNetNuke.UI.Skins.Controls.ModuleMessage
+Imports System.IO
+Imports DotNetNuke.Services.FileSystem
 
 
 Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
-    Partial Class DocumentViewer
+    Partial Class DownloadDocument
         Inherits Entities.Modules.PortalModuleBase
 
 #Region "Page properties"
@@ -72,8 +74,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
                 End If
 
-                ' Only YouTube videos are handled in this viewer => Display error message otherwise
-                If Not theDoc.LinkType = DocumentConstants.LinkTypeYouTube Then
+                ' Only files are handled in this viewer => Display error message otherwise
+                If Not theDoc.LinkType = DocumentConstants.LinkTypeFile Then
 
                     'Display error message
                     AddModuleMessage(Me, GENERIC_ERROR_MSG, ModuleMessageType.RedError)
@@ -85,14 +87,10 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
                 End If
 
-                'Set page title with ressource name
-                CType(Page, DotNetNuke.Framework.CDefault).Title = theDoc.DisplayName
-
-                'Set YouTubeID property to be used to generate YouTube video URL
-                YouTubeID = theDoc.LinkValue
-
-                ' Show the video panel
-                pnlVideo.Visible = True
+                'Get file info
+                Dim theFile = FileManager.Instance.GetFile(theDoc.FileId)
+                'TODO: Check that file exists
+                DownloadFile(theFile.PhysicalPath, theFile.FileName, theFile.ContentType)
 
             Catch ex As Exception 'Unexisting DocId throws an exception when calling GetDocument
 
@@ -109,6 +107,27 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         End Sub
 
 #End Region 'Page events
+
+
+        Protected Sub DownloadFile(ByVal strPath As String, ByVal strFileName As String, ByVal strContentType As String)
+
+            If (File.Exists(strPath + strFileName)) Then
+
+                Response.ContentType = strContentType
+                Response.AddHeader("content-disposition", "attachment; filename=" + strFileName)
+                Dim sourceFile As FileStream = New FileStream(strPath + strFileName, FileMode.Open)
+                Dim fileSize As Long
+                fileSize = sourceFile.Length
+                Dim getContent(CInt(fileSize)) As Byte
+                sourceFile.Read(getContent, 0, CInt(sourceFile.Length))
+                sourceFile.Close()
+
+                Response.BinaryWrite(getContent)
+
+            Else
+                'TODO: display and log error
+            End If
+        End Sub
 
     End Class
 
