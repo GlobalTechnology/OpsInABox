@@ -117,52 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ColumnWidth.Help" xml:space="preserve">
-    <value>Enter the width of column. The module will try to squeeze in as many columns (of this width) that will fit in the space provided.</value>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
   </data>
-  <data name="ColumnWidth.Text" xml:space="preserve">
-    <value>Column Width</value>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Save</value>
   </data>
-  <data name="Root.Help" xml:space="preserve">
-    <value>You may have multiple instances of the documents module on your site. Each one can be configured to start at a different folder. Select the folder you would like as the "root" for this module.</value>
+  <data name="btnAdd.Text" xml:space="preserve">
+    <value>add a subfolder</value>
   </data>
-  <data name="Root.Text" xml:space="preserve">
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>delete folder</value>
+  </data>
+  <data name="btnEdit.Text" xml:space="preserve">
+    <value>rename folder</value>
+  </data>
+  <data name="btnAddSubFolder.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="folderExists.Text" xml:space="preserve">
+    <value>The subfolder already exists</value>
+  </data>
+  <data name="folderNotDeletable.Text" xml:space="preserve">
+    <value>It is not possible to delete this folder because it contains ressources (including ressources in the trash).</value>
+  </data>
+  <data name="lblAddSubFolder.Text" xml:space="preserve">
+    <value>Add a subfolder:</value>
+  </data>
+  <data name="lblRoot.Text" xml:space="preserve">
     <value>Root Folder:</value>
   </data>
-  <data name="SearchType.Help" xml:space="preserve">
-    <value>Instead of showing the contents of a folder, you can show all files and folders that have been marked with a specific tag or keyword.</value>
+  <data name="validFolderName.Text" xml:space="preserve">
+    <value>A folder name cannot have the caracters / nor \</value>
   </data>
-  <data name="SearchType.Text" xml:space="preserve">
-    <value>Search Type:</value>
+  <data name="btnEditSubFolder.Text" xml:space="preserve">
+    <value>Rename</value>
   </data>
-  <data name="SearchValue.Help" xml:space="preserve">
-    <value>Enter the tag/keyword you would like to display in the this module.</value>
+  <data name="folderNotRenamable.Text" xml:space="preserve">
+    <value>It is not possible to rename this folder.</value>
   </data>
-  <data name="SearchValue.Text" xml:space="preserve">
-    <value>Search Tag/Keyword:</value>
-  </data>
-  <data name="Style.Help" xml:space="preserve">
-    <value>Select the style for this instance of the documents module.</value>
-  </data>
-  <data name="Style.Text" xml:space="preserve">
-    <value>Style:</value>
-  </data>
-  <data name="Tags.Help" xml:space="preserve">
-    <value>You can categorize your documents using tags. Enter the tags that users can select from when uploading new documents. </value>
-  </data>
-  <data name="Tags.Text" xml:space="preserve">
-    <value>Tags:</value>
-  </data>
-  <data name="TextColor.Help" xml:space="preserve">
-    <value>Select the color for this Graphical Tree View</value>
-  </data>
-  <data name="TextColor.Text" xml:space="preserve">
-    <value>Tree Color:</value>
-  </data>
-  <data name="TreeStyle.Help" xml:space="preserve">
-    <value>Select the type of tree you want to display.</value>
-  </data>
-  <data name="TreeStyle.Text" xml:space="preserve">
-    <value>Style:</value>
+  <data name="lblEditSubFolder.Text" xml:space="preserve">
+    <value>Rename this folder:</value>
   </data>
 </root>

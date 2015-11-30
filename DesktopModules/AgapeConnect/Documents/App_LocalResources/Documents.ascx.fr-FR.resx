@@ -117,7 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblComments.Text">
-    <value>Комментарии</value>
+  <data name="AddDocumentAction.Text" xml:space="preserve">
+    <value>Ajouter une ressource</value>
+  </data>
+  <data name="btnDeleteDoc.Text" xml:space="preserve">
+    <value>Supprimer cette ressource</value>
+  </data>
+  <data name="btnEditDoc.Text" xml:space="preserve">
+    <value>Editer cette ressource</value>
+  </data>
+  <data name="deleteResourceConfirmationNo.Text" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="deleteResourceConfirmationQuestion.Text" xml:space="preserve">
+    <value>Etes-vous sûr de vouloir supprimer "[RESOURCE]" ?</value>
+  </data>
+  <data name="deleteResourceConfirmationTitle.Text" xml:space="preserve">
+    <value>Supprimer la ressource</value>
+  </data>
+  <data name="deleteResourceConfirmationYes.Text" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="DocumentSettingsAction.Text" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="lblNoResource.Text" xml:space="preserve">
+    <value>Aucune ressource.</value>
   </data>
 </root>

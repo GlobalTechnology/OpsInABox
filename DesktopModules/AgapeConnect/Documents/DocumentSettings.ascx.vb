@@ -1,187 +1,177 @@
 Imports DotNetNuke
 Imports System.Web.UI
-Imports System.Linq
-
 Imports Documents
 
-
-
-Namespace DotNetNuke.Modules.Documents
+Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
     Partial Class DocumentSettings
         Inherits Entities.Modules.ModuleSettingsBase
-        Dim d As New DocumentsDataContext
-        Protected Sub GetPathName(ByVal Folder As AP_Documents_Folder)
-            pathName = Folder.Name & "/" & pathName
-            If Folder.ParentFolder > 0 Then
-                Dim parent = From c In d.AP_Documents_Folders Where c.FolderId = Folder.ParentFolder And c.PortalId = PortalId
-                If parent.Count > 0 Then
 
-
-                    GetPathName(parent.First)
-                End If
-            End If
-        End Sub
-
-        Dim pathName As String = ""
-#Region "Base Method Implementations"
-
-        Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
-            jQuery.RegisterJQuery(Page)
-        End Sub
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
             Try
 
-                hfPortalId.Value = PortalId
-                If (Page.IsPostBack = False) Then
+                CType(Page, DotNetNuke.Framework.CDefault).Title = "Configuration"
 
+                If Not IsPostBack Then
 
+                    'Translate the action buttons tooltips
+                    btnEdit.ToolTip = LocalizeString("btnEdit")
+                    btnDelete.ToolTip = LocalizeString("btnDelete")
+                    btnAdd.ToolTip = LocalizeString("btnAdd")
 
-                    Dim folders = (From c In d.AP_Documents_Folders Where c.PortalId = PortalId Order By c.FolderId Descending)
+                    BuildPathList()
 
-                    For Each folder In folders
-                        pathName = ""
-                        GetPathName(folder)
-                        ddlRoot.Items.Add(New ListItem(pathName, folder.FolderId))
-
-
-                    Next
-                    ddlRoot.Items.Add(New ListItem("Search Results...", -3))
-
-
-                    Dim tags = From c In d.AP_Documents_Tags Where c.PortalId = PortalId Order By c.TagName Select TagName = c.TagName.ToUpper, c.TagId
-                    lbTags.DataSource = tags
-                    lbTags.DataTextField = "TagName"
-                    lbTags.DataValueField = "TagId"
-                    lbTags.DataBind()
-
-
-                    If CType(TabModuleSettings("RootFolder"), String) <> "" Then
-                        If ddlRoot.Items.FindByValue(CType(TabModuleSettings("RootFolder"), Integer)) Is Nothing Then
-                            ddlRoot.SelectedIndex = 0
-                        Else
-                            ddlRoot.SelectedValue = CType(TabModuleSettings("RootFolder"), Integer)
-                        End If
-                        If CType(TabModuleSettings("RootFolder"), String) = "-3" Then
-                            If CType(TabModuleSettings("SearchType"), String) <> "" Then
-                                ddlSearchType.SelectedValue = CType(TabModuleSettings("SearchType"), String)
-                            End If
-                            If CType(TabModuleSettings("SearchValue"), String) <> "" Then
-                                tbSearchValue.Text = CType(TabModuleSettings("SearchValue"), String)
-                            End If
-
-                        End If
-                    End If
-                    If CType(TabModuleSettings("DisplayStyle"), String) <> "" Then
-                        Select Case CType(TabModuleSettings("DisplayStyle"), String)
-                            Case "ExplorerNoTree"
-                                ddlStyle.SelectedValue = "Explorer"
-                                cbShowTree.Checked = False
-                            Case "Explorer"
-                                ddlStyle.SelectedValue = "Explorer"
-                                cbShowTree.Checked = False
-                            Case "Table"
-                                ddlStyle.SelectedValue = "Table"
-                                tbWidth.Text = CType(TabModuleSettings("ColumnWidth"), String)
-                            Case "Tree"
-                                ddlStyle.SelectedValue = "GTree"
-                                ddlTreeStyle.SelectedValue = "Tree"
-                            Case "GTree"
-                                ddlStyle.SelectedValue = "GTree"
-                                ddlTreeStyle.SelectedValue = "GTree"
-                                If CType(TabModuleSettings("GTreeColor"), String) <> "" Then
-                                    ddlColors.SelectedValue = CType(TabModuleSettings("GTreeColor"), String)
-                                End If
-                        End Select
-
-
-                    End If
-
-
-
-                End If
-
-
+                End If                       'IsPostBack
 
             Catch exc As Exception           'Module failed to load
                 ProcessModuleLoadException(Me, exc)
             End Try
+        End Sub
 
+        Protected Sub BuildPathList()
+            Dim pathName As String = ""
 
+            Dim folders As List(Of AP_Documents_Folder) = DocumentsController.GetFolders()
+            Dim savedRootFolder As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
+
+            For Each folder In folders
+                'Name is replaced by path
+                folder.Name = DocumentsController.GetFullPath(folder)
+
+                'If the saved "RootFolder" in TabModuleSettings is in the list of folders then
+                'it becomes the selected item in ddlRoot. It potentially could have been
+                'deleted by a different installation of the module
+                If (savedRootFolder = folder.FolderId) Then
+                    ddlRoot.SelectedValue = savedRootFolder
+                End If
+            Next
+
+            ddlRoot.DataSource = folders.OrderBy(Function(x) x.Name).ToList()
+            ddlRoot.DataTextField = "Name"
+            ddlRoot.DataValueField = "FolderId"
+            ddlRoot.DataBind()
 
         End Sub
 
+#Region "Events"
 
-#End Region
-
-
-        Protected Sub SaveBtn_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles SaveBtn.Click
-            Dim objModules As New Entities.Modules.ModuleController
-          
-            objModules.UpdateTabModuleSetting(TabModuleId, "RootFolder", ddlRoot.SelectedValue)
-
-            If ddlRoot.SelectedValue = -3 Then
-                objModules.UpdateTabModuleSetting(TabModuleId, "SearchType", ddlSearchType.SelectedValue)
-                objModules.UpdateTabModuleSetting(TabModuleId, "SearchValue", tbSearchValue.Text)
+        Protected Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+            upAdd.Visible = False
+            If Page.IsValid Then
+                upEdit.Visible = True
+                tbEditSubFolder.Text = DocumentsController.GetFolder(ddlRoot.SelectedValue).Name
+                tbEditSubFolder.Focus()
             End If
+        End Sub
 
-            Dim displaystyle = ddlStyle.SelectedValue
-            If displaystyle = "Explorer" And cbShowTree.Checked = False Then
-                displaystyle = "ExplorerNoTree"
-            ElseIf displaystyle = "GTree" Then
-                displaystyle = ddlTreeStyle.SelectedValue
-                If displaystyle = "GTree" Then
-                    objModules.UpdateTabModuleSetting(TabModuleId, "GTreeColor", ddlColors.SelectedValue)
+        Protected Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+            upEdit.Visible = False
+            upAdd.Visible = False
+
+            If Page.IsValid Then
+                DocumentsController.DeleteFolder(ddlRoot.SelectedItem.Value)
+
+                'If the selected root folder is deleted then the new selected root folder will be "acDocuments" of the module
+                If (ddlRoot.SelectedItem.Value = DocumentsController.GetModuleFolderId(TabModuleId)) Then
+                    ddlRoot.SelectedIndex = 0
+                    DocumentsController.SetModuleFolderId(TabModuleId, ddlRoot.SelectedValue)
                 End If
 
-            ElseIf displaystyle = "Table" Then
-                objModules.UpdateTabModuleSetting(TabModuleId, "ColumnWidth", tbWidth.Text)
+                'Rebuild the list of paths after directory was deleted
+                BuildPathList()
             End If
 
-            objModules.UpdateTabModuleSetting(TabModuleId, "DisplayStyle", displaystyle)
+        End Sub
 
-       
-            ' refresh cache
-            SynchronizeModule()
+        Protected Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+            upEdit.Visible = False
+            upAdd.Visible = True
+            tbAddSubFolder.Focus()
+        End Sub
+
+        Protected Sub btnEditSubFolder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEditSubFolder.Click
+
+            If Page.IsValid Then
+                DocumentsController.UpdateFolder(tbEditSubFolder.Text, ddlRoot.SelectedValue)
+
+                'Rebuild the list of paths after a new directory was added
+                BuildPathList()
+            End If
+            tbEditSubFolder.Text = ""
+            upEdit.Visible = False
+        End Sub
+
+        Protected Sub btnAddSubFolder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAddSubFolder.Click
+
+            If Page.IsValid Then
+                DocumentsController.InsertFolder(tbAddSubFolder.Text, ddlRoot.SelectedValue)
+
+                'Rebuild the list of paths after a new directory was added
+                BuildPathList()
+            End If
+            tbAddSubFolder.Text = ""
+            upAdd.Visible = False
+        End Sub
+
+        Protected Sub ddlRoot_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ddlRoot.SelectedIndexChanged
+            If (upEdit.Visible And DocumentsController.HasParentFolder(ddlRoot.SelectedItem.Value)) Then
+                tbEditSubFolder.Text = DocumentsController.GetFolder(ddlRoot.SelectedValue).Name
+            Else
+                upEdit.Visible = False
+            End If
+        End Sub
+
+        Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSave.Click
+
+            'update module folder in settings
+            DocumentsController.SetModuleFolderId(TabModuleId, ddlRoot.SelectedValue)
+
+            'go back to documents main window
+            Response.Redirect(NavigateURL())
+
+        End Sub
+
+        Protected Sub btnCancel_Click(sender As Object, e As System.EventArgs) Handles btnCancel.Click
             Response.Redirect(NavigateURL())
         End Sub
 
+#End Region 'Events
 
-        Protected Sub CancelBtn_Click(sender As Object, e As System.EventArgs) Handles CancelBtn.Click
-            Response.Redirect(NavigateURL())
-        End Sub
+#Region "Validators"
 
-        Protected Sub btnAddTag_Click(sender As Object, e As System.EventArgs) Handles btnAddTag.Click
-            If lbTags.Items.FindByText(tbNewTag.Text.ToUpper) Is Nothing Then
-                Dim insert As New AP_Documents_Tag
-                insert.PortalId = 0
-                insert.TagName = tbNewTag.Text.ToUpper
-
-                d.AP_Documents_Tags.InsertOnSubmit(insert)
-                d.SubmitChanges()
-
-                lbTags.DataSource = From c In d.AP_Documents_Tags Where c.PortalId = PortalId Order By c.TagName Select TagName = c.TagName.ToUpper, c.TagId
-                lbTags.DataBind()
-                tbNewTag.Text = ""
-            End If
-
-
-
-
-        End Sub
-
-        Protected Sub btnRemove_Click(sender As Object, e As System.EventArgs) Handles btnRemove.Click
-            If lbTags.SelectedIndex > 0 Then
-
-                Dim theTag = From c In d.AP_Documents_Tags Where c.TagId = lbTags.SelectedValue
-
-                d.AP_Documents_Tags.DeleteAllOnSubmit(theTag)
-                d.SubmitChanges()
-                lbTags.DataSource = From c In d.AP_Documents_Tags Where c.PortalId = PortalId Order By c.TagName Select TagName = c.TagName.ToUpper, c.TagId
-                lbTags.DataBind()
-                tbNewTag.Text = ""
+        Protected Sub IsFolderRenamable(sender As Object, e As ServerValidateEventArgs)
+            If (DocumentsController.HasParentFolder(ddlRoot.SelectedItem.Value)) Then
+                e.IsValid = True
+            Else
+                e.IsValid = False
             End If
         End Sub
+
+        Protected Sub EditFolder(sender As Object, e As ServerValidateEventArgs)
+            'in an Edit the parent folder is one step to the left of what is chosen in the dropdownlist
+            Dim parentFolder As Integer = DocumentsController.GetFolder(ddlRoot.SelectedValue).ParentFolder
+            e.IsValid = Not DocumentsController.IsFolder(tbEditSubFolder.Text, parentFolder)
+
+        End Sub
+
+        Protected Sub AddFolder(sender As Object, e As ServerValidateEventArgs)
+            'IsValid should be true when folder does not exist so boolean is reversed here
+            e.IsValid = Not DocumentsController.IsFolder(tbAddSubFolder.Text, ddlRoot.SelectedValue)
+
+        End Sub
+
+        Protected Sub IsFolderDeletable(sender As Object, e As ServerValidateEventArgs)
+
+            If (DocumentsController.IsFolderEmpty(ddlRoot.SelectedItem.Value) And _
+                DocumentsController.HasParentFolder(ddlRoot.SelectedItem.Value)) Then
+                e.IsValid = True
+            Else
+                e.IsValid = False
+            End If
+        End Sub
+
+#End Region 'Validators
+
     End Class
 
 End Namespace

@@ -1,3 +1,7 @@
-/*===================== SKIN STYLES ===================== */
-@import url("./skin.css");
+html, body, form  {
+    height: auto;
+    min-width: 100%;
+}
+
+
 

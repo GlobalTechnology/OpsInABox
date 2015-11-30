@@ -117,127 +117,94 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel.Text">
-    <value>Anuloj</value>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Annuler</value>
   </data>
-  <data name="lblDescription.Help">
-    <value>Shkruani një përshkrim të shkurtër (jo e detyrueshme)</value>
+  <data name="btnOk.Text" xml:space="preserve">
+    <value>Valider</value>
   </data>
-  <data name="lblDescription.Text">
-    <value>Përshkrimi</value>
+  <data name="lblDescription.Text" xml:space="preserve">
+    <value>Description :</value>
   </data>
-  <data name="lblDisplaying.Text">
-    <value>Duke shfaqur përmbajtjen e</value>
+  <data name="lblGoogle.Text" xml:space="preserve">
+    <value>URL :</value>
   </data>
-  <data name="lblDisplayName.Help">
-    <value>Zgjidhni një emër për këtë dokument (max 100 karaktere). Nuk duhet të jetë i njëjtë me emrin e skedarit.</value>
+  <data name="lblGoogleHelp.Text" xml:space="preserve">
+    <value>Merci de renseigner ici le lien de partage du fichier Google Drive.</value>
   </data>
-  <data name="lblDisplayingSearch.Text">
-    <value>Rezultatet e kërkimit për Display</value>
+  <data name="lblName.Text" xml:space="preserve">
+    <value>Nom de la ressource :</value>
   </data>
-  <data name="lblDisplayName.Text">
-    <value>Display Name</value>
+  <data name="lblPage.Text" xml:space="preserve">
+    <value>Page :</value>
   </data>
-  <data name="lblExpand.Text">
-    <value>(Kliko për të zgjeruar / colapse)</value>
+  <data name="lblPageHelp.Text" xml:space="preserve">
+    <value>Merci de choisir une page de cette list.</value>
   </data>
-  <data name="lblFile.Text">
-    <value>Skeda</value>
+  <data name="lblType.Text" xml:space="preserve">
+    <value>Type de ressource :</value>
   </data>
-  <data name="lblFileAuthor.Help">
-    <value>Shkruani emrin e autor / pronari (optional)</value>
+  <data name="lblUpload.Text" xml:space="preserve">
+    <value>Fichier à charger :</value>
   </data>
-  <data name="lblFileAuthor.Text">
-    <value>Autori</value>
+  <data name="lblUploadHelp.Text" xml:space="preserve">
+    <value>Merci de choisir un fichier de votre appareil.</value>
   </data>
-  <data name="lblFileDescription.Help">
-    <value>Shkruani një përshkrim të shkurtër të këtij file (optional)</value>
+  <data name="lblURL.Text" xml:space="preserve">
+    <value>URL :</value>
   </data>
-  <data name="lblFileDescription.Text">
-    <value>Përshkrimi</value>
+  <data name="lblURLHelp.Text" xml:space="preserve">
+    <value>Merci de renseigner ici l’URL externe qui commence avec "http://".</value>
   </data>
-  <data name="lblFolderName.Help">
-    <value>Zgjidhni një emër për dosjen tuaj të re (max 100 karaktere)</value>
+  <data name="lblYouTube.Text" xml:space="preserve">
+    <value>Identifiant de la vidéo :</value>
   </data>
-  <data name="lblFolderName.Text">
-    <value>Folder Name</value>
+  <data name="lblYouTubeHelp.Text" xml:space="preserve">
+    <value>L'identifiant se trouve dans l'adresse web de la vidéo. Par exemple, dans "https://www.youtube.com/watch?v=XXXXXXX", l'identifiant est "XXXXXXX".</value>
   </data>
-  <data name="lblGoogle.Help">
-    <value>Kjo është identike me të Jashtëm URL, përveç lidhja do të ketë një Google Icon. Kur përdoruesit të klikoni në këtë link, googledoc do të hapet në një skedë të re.</value>
+  <data name="rbGoogleDoc.Text" xml:space="preserve">
+    <value>Lien vers un fichier Google Drive</value>
   </data>
-  <data name="lblGoogle.Text">
-    <value>Google Doc URL</value>
+  <data name="rbKeepResource.Text" xml:space="preserve">
+    <value>Garder le fichier actuel</value>
   </data>
-  <data name="lblIcon.Text">
-    <value>Icon</value>
+  <data name="rbPage.Text" xml:space="preserve">
+    <value>Lien vers une page de ce site</value>
   </data>
-  <data name="lblKeywords.Help">
-    <value>Shkruani fjalë kyçe që lidhen me këtë skedë. Fjalë kyçe të shumëfishta me një presje. Keywords ndihmuar përdoruesit tuaj të kërkoni për dokumente.</value>
+  <data name="rbUpload.Text" xml:space="preserve">
+    <value>Charger un nouveau fichier</value>
   </data>
-  <data name="lblKeywords.Text">
-    <value>Keywords</value>
+  <data name="rbUrl.Text" xml:space="preserve">
+    <value>Lien vers une URL externe</value>
   </data>
-  <data name="lblLinkType.Help">
-    <value>Zgjidhni llojin link.</value>
+  <data name="rbYouTube.Text" xml:space="preserve">
+    <value>Insérer une vidéo YouTube</value>
   </data>
-  <data name="lblLinkType.Text">
-    <value>Link Type</value>
+  <data name="TitleAddResource.Text" xml:space="preserve">
+    <value>Ajouter une ressource</value>
   </data>
-  <data name="lblPage.Help">
-    <value>Zgjidhni faqe ju do të donte për të link. Kur përdoruesit të klikoni në këtë link, ajo do të hapet në të njëjtën gruas së ve.</value>
+  <data name="TitleEditResource.Text" xml:space="preserve">
+    <value>Editer la ressource</value>
   </data>
-  <data name="lblPage.Text">
-    <value>Faqe</value>
+  <data name="rfName.Text" xml:space="preserve">
+    <value>Il vous faut un nom.</value>
   </data>
-  <data name="lblPermissions.Text">
-    <value>Lejet</value>
+  <data name="cvGoogle.Text" xml:space="preserve">
+    <value>Il vous faut une addresse.</value>
   </data>
-  <data name="lblSelectFile.Help">
-    <value>Zgjidh një dokument për ta ngarkuar, si një version të ri, pastaj kliko Save Version.</value>
+  <data name="cvUpload.Text" xml:space="preserve">
+    <value>Il vous faut choisir un fichier.</value>
   </data>
-  <data name="lblSelectFile.Text">
-    <value>Zgjidh dokumentit</value>
+  <data name="cvUrl.Text" xml:space="preserve">
+    <value>Il vous faut une addresse valide.</value>
   </data>
-  <data name="lblSelectFiles.Text">
-    <value>Zgjidhni dosjet që doni të ngarkoni</value>
+  <data name="cvYouTube.Text" xml:space="preserve">
+    <value>Il vous faut un identifiant de video YouTube.</value>
   </data>
-  <data name="lblSelectFilesHelp.Text">
-    <value>Ju mund të zgjidhni sa më shumë fotografi që ju dëshironi. Kur ju keni zgjedhur fotografi tuaj, klikoni upload. Nëse ju do të donte për të ndryshuar të dhënat fotografi (p.sh. emër ose një përshkrim) ose vendndodhjen, right click mbi file (pasi që e keni ngarkuar atë).</value>
+  <data name="ADD_FILE_INVALID_EXTENSION_ERROR_MSG.Text" xml:space="preserve">
+    <value>L'extension "[extension]" n'est pas autorisée. La ressource n'a pas été ajoutée.</value>
   </data>
-  <data name="lblSelectIcon.Help">
-    <value>Zgjidh një file imazh (png, gif ose jpg). Përderisa çdo skedar imazh mund të përdoret, ne ju këshillojmë të përdorni një imazh Sqaure të 128px x 128px. Fotografi png priren të punojnë më mirë, pasi ata mund të sigurojë cilësi të lartë me prejardhje transparente. Shmangni fotografi me rezolucion shumë të lartë, pasi që këto do të ngadalësojë herë tuaj ngarkimit.</value>
-  </data>
-  <data name="lblSelectIcon.Text">
-    <value>Zgjidh Image dokumentit</value>
-  </data>
-  <data name="lblTags.Help">
-    <value>Zgjidhni tags që përshkruajnë më mirë llojin e burimeve. Dokumentet mund të jetë e shënuar dhe e kontrolluar nga Tag.</value>
-  </data>
-  <data name="lblTags.Text">
-    <value>Tags</value>
-  </data>
-  <data name="lblURL.Help">
-    <value>Futni url website (duke përfshirë http://). Kur përdoruesit të klikoni në këtë link, në faqen e internetit do të hapet në një skedë të re.</value>
-  </data>
-  <data name="lblURL.Text">
-    <value>Website URL</value>
-  </data>
-  <data name="lblVersion.Help">
-    <value>Futni një numër versioni për këtë dokumenteve (Opsionale)</value>
-  </data>
-  <data name="lblVersion.Text">
-    <value>Versioni</value>
-  </data>
-  <data name="lblVersions.Text">
-    <value>Versionet</value>
-  </data>
-  <data name="lblYouTube.Help">
-    <value>Futni url e YouTube video tuaj, ose vetëm të ju tub video-id. Kur përdoruesit të klikoni në këtë link, ata do të shohin këtë video në këtë faqe.</value>
-  </data>
-  <data name="lblYouTube.Text">
-    <value>YouTube URL</value>
-  </data>
-  <data name="Save.Text">
-    <value>Ruaj</value>
+  <data name="UPDATE_FILE_INVALID_EXTENSION_ERROR_MSG.Text" xml:space="preserve">
+    <value>L'extension "[extension]" n'est pas autorisée. La ressource n'a pas été modifiée.</value>
   </data>
 </root>

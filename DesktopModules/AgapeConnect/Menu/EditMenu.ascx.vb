@@ -11,6 +11,7 @@ Imports System.Collections.Specialized
 Imports System.Xml.Linq
 Imports System.Linq
 Imports StaffBroker
+Imports Documents
 
 
 Namespace DotNetNuke.Modules.Menu
@@ -247,7 +248,7 @@ Namespace DotNetNuke.Modules.Menu
                 Return rtn
             End If
 
-            Dim d As New Documents.DocumentsDataContext
+            Dim d As New DocumentsDataContext
             Dim files = (From c In d.AP_Documents_Docs Where c.AP_Documents_Folder.PortalId = PortalId Order By c.DisplayName Select c.DisplayName, c.DocId)
             For Each row In files
                 rtn.Add(row.DocId, row.DisplayName)
@@ -269,7 +270,7 @@ Namespace DotNetNuke.Modules.Menu
                 End If
                 Return rtn
             End If
-            Dim d As New Documents.DocumentsDataContext
+            Dim d As New DocumentsDataContext
             Dim folders = (From c In d.AP_Documents_Folders Where c.PortalId = PortalId Order By c.Name Select c.Name, c.FolderId)
             For Each row In folders
                 rtn.Add(row.FolderId, row.Name)

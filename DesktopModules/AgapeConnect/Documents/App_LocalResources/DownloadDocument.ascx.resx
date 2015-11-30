@@ -117,52 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ColumnWidth.Text">
-    <value>Ширина столбца</value>
+  <data name="GENERIC_ERROR_MSG.Text" xml:space="preserve">
+    <value>An error occured. Unfortunately we cannot display the document.</value>
   </data>
-  <data name="ColumnWidth.Help">
-    <value>Введите ширину столбца. Модуль расположит такое количество столбцов заданной ширины, которое поместится на странице.</value>
-  </data>
-  <data name="Root.Text">
-    <value>Корневая папка</value>
-  </data>
-  <data name="SearchType.Help">
-    <value>Вместо того чтобы показывать содержимое папки, вы можете показать все файлы и папки, которые были помечены с определенным тегом или ключевым словом.</value>
-  </data>
-  <data name="SearchType.Text">
-    <value>Тип поиска</value>
-  </data>
-  <data name="SearchValue.Help">
-    <value>Введите тег/ключевое слово, которое бы описывало этот модуль.</value>
-  </data>
-  <data name="SearchValue.Text">
-    <value>Поиск тега/ключевого слова</value>
-  </data>
-  <data name="Style.Help">
-    <value>Выберите стиль для этого экземпляра модуля документов.</value>
-  </data>
-  <data name="Style.Text">
-    <value>Стиль</value>
-  </data>
-  <data name="Tags.Help">
-    <value>Вы можете разделить ваши документы с помощью тегов. Введите теги, которые пользователи могут выбрать при загрузке новых документов.</value>
-  </data>
-  <data name="Tags.Text">
-    <value>Теги</value>
-  </data>
-  <data name="TextColor.Help">
-    <value>Выберите цвет для этой графической структуры </value>
-  </data>
-  <data name="TextColor.Text">
-    <value>Цвет структуры</value>
-  </data>
-  <data name="TreeStyle.Help">
-    <value>Выберите тип структуры, которую вы хотите отобразить.</value>
-  </data>
-  <data name="TreeStyle.Text">
-    <value>Стиль</value>
-  </data>
-  <data name="Root.Help">
-    <value>У вас может быть несколько экземпляров модуля документов на вашем сайте. Каждая из них может быть настроена на запуск в отдельной папке. Выберите папку, в которой будет размещаться этот модуль. </value>
+  <data name="NOT_AUTHORIZED_ERROR_MSG.Text" xml:space="preserve">
+    <value>You are not authorized to see the requested document.</value>
   </data>
 </root>

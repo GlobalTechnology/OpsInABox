@@ -10,6 +10,7 @@ Imports System.Net.Mail
 Imports System.Collections.Specialized
 Imports System.Xml.Linq
 Imports System.Linq
+Imports Documents
 
 Namespace DotNetNuke.Modules.Menu
 
@@ -40,7 +41,7 @@ Namespace DotNetNuke.Modules.Menu
                 Case "Tags"
 
                     mode = "tags"
-                    Dim d As New Documents.DocumentsDataContext
+                    Dim d As New DocumentsDataContext
                     Dim q = From c In d.AP_Documents_Tags Where c.PortalId = PortalId
 
                     MenuItemGrid.DataSource = q

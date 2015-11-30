@@ -117,7 +117,94 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblComments.Text">
-    <value>הערות</value>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnOk.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="lblDescription.Text" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="lblGoogle.Text" xml:space="preserve">
+    <value>Google Document:</value>
+  </data>
+  <data name="lblGoogleHelp.Text" xml:space="preserve">
+    <value>Please enter the sharing link of the Google document.</value>
+  </data>
+  <data name="lblName.Text" xml:space="preserve">
+    <value>Document Name:</value>
+  </data>
+  <data name="lblPage.Text" xml:space="preserve">
+    <value>Site page:</value>
+  </data>
+  <data name="lblPageHelp.Text" xml:space="preserve">
+    <value>Please choose a page from this list.</value>
+  </data>
+  <data name="lblType.Text" xml:space="preserve">
+    <value>Resource Type:</value>
+  </data>
+  <data name="lblUpload.Text" xml:space="preserve">
+    <value>File to upload:</value>
+  </data>
+  <data name="lblUploadHelp.Text" xml:space="preserve">
+    <value>Please choose a file from your device.</value>
+  </data>
+  <data name="lblURL.Text" xml:space="preserve">
+    <value>URL:</value>
+  </data>
+  <data name="lblURLHelp.Text" xml:space="preserve">
+    <value>Please enter an external web address beginning with "http://".</value>
+  </data>
+  <data name="lblYouTube.Text" xml:space="preserve">
+    <value>Youtube ID:</value>
+  </data>
+  <data name="lblYouTubeHelp.Text" xml:space="preserve">
+    <value>The ID can be found in the URL of the page. For example, in https://www.youtube.com/watch?v=XXXXXXX the 'XXXXXXX' is the ID.</value>
+  </data>
+  <data name="rbGoogleDoc.Text" xml:space="preserve">
+    <value>Google Doc</value>
+  </data>
+  <data name="rbKeepResource.Text" xml:space="preserve">
+    <value>Keep the current file</value>
+  </data>
+  <data name="rbPage.Text" xml:space="preserve">
+    <value>A Page on this site</value>
+  </data>
+  <data name="rbUpload.Text" xml:space="preserve">
+    <value>Upload a file</value>
+  </data>
+  <data name="rbUrl.Text" xml:space="preserve">
+    <value>External URL</value>
+  </data>
+  <data name="rbYouTube.Text" xml:space="preserve">
+    <value>YouTube Video</value>
+  </data>
+  <data name="TitleAddResource.Text" xml:space="preserve">
+    <value>Add Resource</value>
+  </data>
+  <data name="TitleEditResource.Text" xml:space="preserve">
+    <value>Edit Resource</value>
+  </data>
+  <data name="rfName.Text" xml:space="preserve">
+    <value>You need a name.</value>
+  </data>
+  <data name="cvGoogle.Text" xml:space="preserve">
+    <value>You need to enter an address.</value>
+  </data>
+  <data name="cvUpload.Text" xml:space="preserve">
+    <value>You need to choose a file.</value>
+  </data>
+  <data name="cvUrl.Text" xml:space="preserve">
+    <value>Please enter a valid address.</value>
+  </data>
+  <data name="cvYouTube.Text" xml:space="preserve">
+    <value>You need to enter a YouTube ID.</value>
+  </data>
+  <data name="ADD_FILE_INVALID_EXTENSION_ERROR_MSG.Text" xml:space="preserve">
+    <value>The extension "[extension]" is not authorized. The ressource has not been added.</value>
+  </data>
+  <data name="UPDATE_FILE_INVALID_EXTENSION_ERROR_MSG.Text" xml:space="preserve">
+    <value>The extension "[extension]" is not authorized. The ressource has not been updated.</value>
   </data>
 </root>

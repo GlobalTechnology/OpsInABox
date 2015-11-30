@@ -117,7 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblComments.Text">
-    <value>Коментарі</value>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Sauvegarder</value>
+  </data>
+  <data name="btnAdd.Text" xml:space="preserve">
+    <value>Ajouter un sous-répertoire</value>
+  </data>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>Supprimer ce répertoire</value>
+  </data>
+  <data name="btnEdit.Text" xml:space="preserve">
+    <value>Renommer ce répertoire</value>
+  </data>
+  <data name="lblRoot.Text" xml:space="preserve">
+    <value>Répertoire racine :</value>
+  </data>
+  <data name="btnAddSubFolder.Text" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="lblAddSubFolder.Text" xml:space="preserve">
+    <value>Ajouter un sous-répertoire :</value>
+  </data>
+  <data name="folderExists.Text" xml:space="preserve">
+    <value>Le sous-répertoire existe déjà</value>
+  </data>
+  <data name="validFolderName.Text" xml:space="preserve">
+    <value>Le nom d'un répertoire ne peut pas avoir les characters / ni \</value>
+  </data>
+  <data name="folderNotDeletable.Text" xml:space="preserve">
+    <value>Il n’est pas possible de supprimer ce répertoire car il contient des ressources (potentiellement dans la corbeille).</value>
+  </data>
+  <data name="btnEditSubFolder.Text" xml:space="preserve">
+    <value>Renommer</value>
+  </data>
+  <data name="folderNotRenamable.Text" xml:space="preserve">
+    <value>Il n’est pas possible de renommer ce répertoire.</value>
+  </data>
+  <data name="lblEditSubFolder.Text" xml:space="preserve">
+    <value>Renommer ce répertoire :</value>
   </data>
 </root>

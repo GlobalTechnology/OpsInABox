@@ -2,10 +2,10 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Documents">
   <DataContextMoniker Name="/DocumentsDataContext" />
   <nestedChildShapes>
-    <classShape Id="854bb5fb-49b9-4290-941f-55ac84be7c86" absoluteBounds="3.625, 2.875, 2, 3.1170068359374996">
+    <classShape Id="854bb5fb-49b9-4290-941f-55ac84be7c86" absoluteBounds="3.625, 2.875, 2, 3.3093082682291666">
       <DataClassMoniker Name="/DocumentsDataContext/AP_Documents_Doc" />
       <nestedChildShapes>
-        <elementListCompartment Id="7d795ef9-f50e-444d-bb06-6006b19b78c4" absoluteBounds="3.64, 3.335, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7d795ef9-f50e-444d-bb06-6006b19b78c4" absoluteBounds="3.64, 3.335, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="327ca671-11cb-489f-960b-b1dcbb87f4e6" absoluteBounds="0.5, 3.75, 2, 2.1554996744791666">
@@ -33,7 +33,7 @@
         <classShapeMoniker Id="854bb5fb-49b9-4290-941f-55ac84be7c86" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.625 : 5.56655110677083); (7.03125 : 5.56655110677083); (7.03125 : 2.0112939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.625 : 5.66270182291667); (7.03125 : 5.66270182291667); (7.03125 : 2.0112939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DocumentsDataContext/AP_Documents_Doc/AP_Documents_Doc_AP_Documents_TagMeta" />
       <nodes>
         <classShapeMoniker Id="854bb5fb-49b9-4290-941f-55ac84be7c86" />

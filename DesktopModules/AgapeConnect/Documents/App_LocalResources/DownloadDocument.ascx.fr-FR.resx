@@ -117,37 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel.Text">
-    <value>Откажи</value>
+  <data name="GENERIC_ERROR_MSG.Text" xml:space="preserve">
+    <value>Une erreur s'est produite. Nous ne pouvons malheureusement pas afficher la ressource demandée.</value>
   </data>
-  <data name="lblDescription.Help">
-    <value>Въведете кратко описание (по желание)</value>
-  </data>
-  <data name="lblDescription.Text">
-    <value>Описание</value>
-  </data>
-  <data name="lblDisplayingSearch.Text">
-    <value>Покажи намерените резултати за </value>
-  </data>
-  <data name="lblDisplayName.Help">
-    <value>Изберете име за този докумнет (макс. 100 символа). Не е необходимо да бъде съшото, както името на файла.</value>
-  </data>
-  <data name="lblExpand.Text">
-    <value>(Натиснете за да отворите/приберете)</value>
-  </data>
-  <data name="lblFile.Text">
-    <value>Файл: </value>
-  </data>
-  <data name="lblFileAuthor.Text">
-    <value>Автор: </value>
-  </data>
-  <data name="lblFileDescription.Text">
-    <value>Описание</value>
-  </data>
-  <data name="Save.Text">
-    <value>Запази</value>
-  </data>
-  <data name="lblDisplaying.Text">
-    <value>Показва се съдържанието на</value>
+  <data name="NOT_AUTHORIZED_ERROR_MSG.Text" xml:space="preserve">
+    <value>Vous n'êtes pas autorisé à voir la ressource demandée.</value>
   </data>
 </root>

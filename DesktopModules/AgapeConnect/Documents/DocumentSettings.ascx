@@ -1,241 +1,149 @@
-<%@ Control Language="vb" AutoEventWireup="false" CodeFile="DocumentSettings.ascx.vb"
-    Inherits="DotNetNuke.Modules.Documents.DocumentSettings" %>
-<%@ Register Assembly="DotNetNuke" Namespace="DotNetNuke.UI.WebControls" TagPrefix="uc1" %>
-<%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
+<%@ Control Language="vb" AutoEventWireup="false" CodeFile="DocumentSettings.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Documents.DocumentSettings" %>
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+<%@ Register Assembly="DotNetNuke" Namespace="DotNetNuke.UI.WebControls" TagPrefix="cc1" %>
 
-<script src="/js/jquery.numeric.js" type="text/javascript"></script>
-<script type="text/javascript">
+<%-- Validator Section --%>
 
-    function setUpMyTabs() {
+<asp:RegularExpressionValidator
+    ID="validFolderNameEdit"
+    runat="server"
+    ControlToValidate="tbEditSubFolder"
+    ValidationExpression = "^[^\\\/]+$"
+    ErrorMessage="validFolderName"
+    ResourceKey="validFolderName"
+    Display="Dynamic"
+    class="MandatoryFieldErrorMsg"
+    ValidationGroup="vgEdit">
+</asp:RegularExpressionValidator>
 
-        $('.numeric').numeric();
+<asp:RegularExpressionValidator
+    ID="validFolderNameAdd"
+    runat="server"
+    ControlToValidate="tbAddSubFolder"
+    ValidationExpression = "^[^\\\/]+$"
+    ErrorMessage="validFolderName"
+    ResourceKey="validFolderName"
+    Display="Dynamic"
+    class="MandatoryFieldErrorMsg"
+    ValidationGroup="vgAdd">
+</asp:RegularExpressionValidator>
 
-        $('#<%= ddlRoot.ClientID  %>').change(function () {
+<asp:CustomValidator 
+    ID="cvFolderEdit" 
+    runat="server"
+    ControlToValidate="tbEditSubFolder"
+    OnServerValidate="EditFolder"
+    ErrorMessage="folderExists"
+    ResourceKey="folderExists"
+    Display="Dynamic"
+    class="MandatoryFieldErrorMsg"
+    ValidationGroup="vgEdit">
+</asp:CustomValidator>
 
-            if ($(this).val() == -3) {
+<asp:CustomValidator 
+    ID="cvFolderAdd" 
+    runat="server"
+    ControlToValidate="tbAddSubFolder"
+    OnServerValidate="AddFolder"
+    ErrorMessage="folderExists"
+    ResourceKey="folderExists"
+    Display="Dynamic"
+    class="MandatoryFieldErrorMsg"
+    ValidationGroup="vgAdd">
+</asp:CustomValidator>
 
-                $('#<%= pnlSearch.ClientID  %>').show();
-            }
-            else {
-                $('#<%= pnlSearch.ClientID  %>').hide();
-            }
-        });
-        $('#<%= ddlRoot.ClientID  %>').change();
+<asp:CustomValidator 
+    ID="cvIsFolderRenamable" 
+    runat="server" 
+    ControlToValidate="ddlRoot"
+    OnServerValidate="IsFolderRenamable"
+    ErrorMessage="folderNotRenamable"
+    ResourceKey="folderNotRenamable"
+    Display="Dynamic"
+    class="MandatoryFieldErrorMsg"
+    ValidationGroup="vgRename">
+</asp:CustomValidator>
 
-        $('#<%= ddlStyle.ClientID  %>').change(function () {
+<asp:CustomValidator 
+    ID="cvIsFolderDeletable" 
+    runat="server"
+    ControlToValidate="ddlRoot"
+    OnServerValidate="IsFolderDeletable"
+    ErrorMessage="folderNotDeletable"
+    ResourceKey="folderNotDeletable"
+    Display="Dynamic"
+    class="MandatoryFieldErrorMsg"
+    ValidationGroup="vgDelete">
+</asp:CustomValidator>
 
-            if ($('#<%= ddlStyle.ClientID  %> input:checked').val() == 'Explorer') {
+<%-- Validator Section End --%>
 
-                $('#<%= pnlExplorer.ClientID  %>').show();
-                $('#<%= pnlTable.ClientID  %>').hide();
-                $('#<%= pnlTree.ClientID  %>').hide();
-            }
-            else if ($('#<%= ddlStyle.ClientID  %> input:checked').val() == 'Table') {
-                $('#<%= pnlExplorer.ClientID  %>').hide();
-                $('#<%= pnlTable.ClientID  %>').show();
-                $('#<%= pnlTree.ClientID  %>').hide();
-            }
-            else if ($('#<%= ddlStyle.ClientID  %> input:checked').val() == 'GTree') {
-                $('#<%= pnlExplorer.ClientID  %>').hide();
-                $('#<%= pnlTable.ClientID  %>').hide();
-                $('#<%= pnlTree.ClientID  %>').show();
-            }
-            else {
-                $('#<%= pnlExplorer.ClientID  %>').show();
-                $('#<%= pnlTable.ClientID  %>').hide();
-                $('#<%= pnlTree.ClientID  %>').hide();
-            }
-        });
-        $('#<%= ddlStyle.ClientID  %>').change();
+<div id="DocumentSettings" class="Documents">
 
+        <asp:UpdatePanel ID="upFolderList" runat="server">
+            <ContentTemplate>
+                <div id="divFolder" class="FieldRow">
+                    <asp:Label ID="lblFolder" runat="server" ResourceKey="lblRoot" CssClass="FieldLabel"></asp:Label>
+                    <asp:DropDownList ID="ddlRoot" runat="server" AutoPostBack="true"></asp:DropDownList>
+                    <asp:LinkButton ID="btnEdit" CssClass="btnEdit" runat="server" ValidationGroup="vgRename"></asp:LinkButton>
+                    <asp:LinkButton ID="btnDelete" CssClass="btnDelete" runat="server" ValidationGroup="vgDelete"></asp:LinkButton>
+                    <asp:LinkButton ID="btnAdd" CssClass="btnAdd" runat="server"></asp:LinkButton>     
+                </div>
 
-        $('#<%= ddlTreeStyle.ClientID  %>').change(function () {
-           
-            if ($(this).val() == "GTree") {
+                <div id="divButtonEdit">
+                    <asp:UpdatePanel ID="upEdit" runat="server" Visible="false">
+                        <ContentTemplate>
+                            <div class="FieldSubRow">
+                                <asp:Label ID="lblEditSubFolder" runat="server" ResourceKey="lblEditSubFolder" CssClass="FieldSubLabel"></asp:Label>
+                                <asp:textbox ID="tbEditSubFolder" runat="server"></asp:textbox>
+                                <asp:Button ID="btnEditSubFolder" runat="server" ResourceKey="btnEditSubFolder" CssClass="button" ValidationGroup="vgEdit"></asp:Button>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
 
-                $('#<%= pnlTreeColor.ClientID  %>').show();
-            }
-            else {
-                $('#<%= pnlTreeColor.ClientID  %>').hide();
-            }
-        });
-        $('#<%= ddlTreeStyle.ClientID  %>').change();
+                <div id="divButtonAdd">
+                    <asp:UpdatePanel ID="upAdd" runat="server" Visible="false">
+                        <ContentTemplate>
+                            <div class="FieldSubRow">
+                                <asp:Label ID="lblAddSubFolder" runat="server" ResourceKey="lblAddSubFolder" CssClass="FieldSubLabel"></asp:Label>
+                                <asp:textbox ID="tbAddSubFolder" runat="server"></asp:textbox>
+                                <asp:Button ID="btnAddSubFolder" runat="server" ResourceKey="btnAddSubFolder" CssClass="button" ValidationGroup="vgAdd"></asp:Button>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
 
+                <div class="FieldSubRow">
+                    <asp:ValidationSummary ID="vsRename" runat="server" DisplayMode="List"
+                        CssClass="MandatoryFieldErrorMsg" ValidationGroup="vgRename">
+                    </asp:ValidationSummary>
+                    <asp:ValidationSummary ID="vsDelete" runat="server" DisplayMode="List"
+                        CssClass="MandatoryFieldErrorMsg" ValidationGroup="vgDelete">
+                    </asp:ValidationSummary>
+                    <asp:ValidationSummary ID="vsEdit" runat="server" DisplayMode="List"
+                        CssClass="MandatoryFieldErrorMsg" ValidationGroup="vgEdit">
+                    </asp:ValidationSummary>
+                     <asp:ValidationSummary ID="vsAdd" runat="server" DisplayMode="List"
+                        CssClass="MandatoryFieldErrorMsg" ValidationGroup="vgAdd">
+                    </asp:ValidationSummary>
+                </div>
+                
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnEdit" EventName = "Click"/>
+                <asp:AsyncPostBackTrigger ControlID="btnDelete" EventName = "Click"/>
+                <asp:AsyncPostBackTrigger ControlID="btnAdd" EventName = "Click"/>
+                <asp:AsyncPostBackTrigger ControlID="btnEditSubFolder" EventName = "Click"/>
+                <asp:AsyncPostBackTrigger ControlID="btnAddSubFolder" EventName = "Click"/>
+                <asp:AsyncPostBackTrigger ControlID="ddlRoot" EventName = "SelectedIndexChanged"/>
+            </Triggers>
+        </asp:UpdatePanel>
+        <hr />   
+     
+    <div class="SubmitPanel">
+        <asp:Button ID="btnSave" runat="server" ResourceKey="btnSave" CssClass="button"></asp:Button>
+        <asp:Button ID="btnCancel" runat="server" ResourceKey="btnCancel" CssClass="button"></asp:Button>
+    </div>
 
-
-
-        $('.aButton').button();
-
-    }
-
-    $(document).ready(function () {
-        setUpMyTabs();
-
-
-        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyTabs(); });
-    });
-   
-
-
-    
-
-
-
-   
-
-</script>
-<style type="text/css">
-    .SettingsTable
-    {
-        border-top: 1px solid #e5eff8;
-        border-right: 1px solid #e5eff8;
-        margin: 1em auto;
-        border-collapse: collapse;
-    }
-    .SettingsTable td
-    {
-        color: #678197;
-        border-bottom: 1px solid #e5eff8;
-        border-left: 1px solid #e5eff8;
-        padding: .3em 1em;
-    }
-    .SettingsTable td td
-    {
-        border-style: none;
-    }
-</style>
-<asp:HiddenField ID="hfPortalId" runat="server" />
-<table cellpadding="4px" border="1" class="SettingsTable">
-    <tr valign="top">
-        <td>
-            <dnn:Label ID="Label1" runat="server" ResourceKey="Root" />
-        </td>
-        <td>
-            <asp:DropDownList ID="ddlRoot" class="test" runat="server">
-            </asp:DropDownList>
-            <br />
-            <asp:Panel ID="pnlSearch" runat="server">
-                <fieldset>
-                    <legend class="AgapeH5">Search Options:</legend>
-                    <table>
-                        <tr>
-                            <td>
-                                <dnn:Label ID="Label3" runat="server" ResourceKey="SearchType" />
-                            </td>
-                            <td>
-                                <asp:DropDownList ID="ddlSearchType" runat="server">
-                                    <asp:ListItem Text="Tags" />
-                                    <asp:ListItem Text="Keywords" />
-                                </asp:DropDownList>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <dnn:Label ID="Label4" runat="server" ResourceKey="SearchValue" />
-                            </td>
-                            <td>
-                                
-                                <asp:TextBox ID="tbSearchValue" runat="server"></asp:TextBox>
-
-                            </td>
-                        </tr>
-                    </table>
-                </fieldset>
-            </asp:Panel>
-        </td>
-    </tr>
-    <tr valign="top">
-        <td>
-            <dnn:Label ID="Label2" runat="server" ResourceKey="Style" />
-        </td>
-        <td>
-            <asp:RadioButtonList ID="ddlStyle" class="displayStyle" runat="server">
-                <asp:ListItem Text="Explorer" Value="Explorer" />
-                <asp:ListItem Text="Table View " Value="Table" />
-                <asp:ListItem Text="Tree" Value="GTree" />
-            </asp:RadioButtonList>
-           
-            <asp:Panel ID="pnlExplorer" runat="server">
-                <fieldset>
-                    <legend class="AgapeH5">Explorer Options:</legend>
-                    <table>
-                        <tr>
-                            <td>
-                                Show Tree:
-                            </td>
-                            <td>
-                                <asp:CheckBox ID="cbShowTree" runat="server" />
-                            </td>
-                        </tr>
-                    </table>
-                </fieldset>
-            </asp:Panel>
-            <asp:Panel ID="pnlTable" runat="server">
-                <fieldset>
-                    <legend class="AgapeH5">Table Options:</legend>
-                    <table>
-                        <tr>
-                            <td>
-                                <dnn:Label ID="Label6" runat="server" ResourceKey="ColumnWidth" />
-                            </td>
-                            <td>
-                                <asp:TextBox ID="tbWidth" runat="server" class="numeric"></asp:TextBox>
-                            </td>
-                        </tr>
-                    </table>
-                </fieldset>
-            </asp:Panel>
-            <asp:Panel ID="pnlTree" runat="server">
-                <fieldset>
-                    <legend class="AgapeH5">Tree Options:</legend>
-                    <table>
-                        <tr>
-                            <td>
-                                <dnn:Label ID="Label8" runat="server" ResourceKey="TreeStyle" />
-                            </td>
-                            <td>
-                                <asp:DropDownList ID="ddlTreeStyle" runat="server">
-                                    <asp:ListItem Text="Colored" Value="GTree" />
-                                    <asp:ListItem Text="Explorer" Value="Tree" />
-                                </asp:DropDownList>
-                            </td>
-                        </tr>
-                    </table>
-                    <asp:Panel ID="pnlTreeColor" runat="server">
-                        <table>
-                            <tr>
-                                <td>
-                                    <dnn:Label ID="Label7" runat="server" ResourceKey="TextColor" />
-                                </td>
-                                <td>
-                                    <asp:DropDownList ID="ddlColors" runat="server">
-                                        <asp:ListItem Text="Turqoise" Value="#28686E" />
-                                        <asp:ListItem Text="Olive" Value="#86bb41" />
-                                        <asp:ListItem Text="Red" Value="#8c3b3b" />
-                                        <asp:ListItem Text="Brown" Value="#876c49" />
-                                        <asp:ListItem Text="Mustard" Value="#f1a519" />
-                                        <asp:ListItem Text="Green" Value="#1f594f" />
-                                    </asp:DropDownList>
-                                </td>
-                            </tr>
-                        </table>
-                    </asp:Panel>
-      
-</fieldset> </asp:Panel> </td> </tr>
-<tr valign="top">
-    <td>
-        <dnn:Label ID="Label5" runat="server" ResourceKey="Tags" />
-    </td>
-    <td>
-        <asp:ListBox ID="lbTags" runat="server"></asp:ListBox>
-        <asp:LinkButton ID="btnRemove" runat="server">Remove</asp:LinkButton><br />
-        <asp:TextBox ID="tbNewTag" runat="server"></asp:TextBox>
-        <asp:LinkButton ID="btnAddTag" runat="server">add</asp:LinkButton>
-    </td>
-</tr>
-</table>
-<div style="width: 100%; text-align: center">
-    <asp:LinkButton ID="SaveBtn" runat="server" class="aButton btn" ResourceKey="btnSave">Save</asp:LinkButton>
-    &nbsp;
-    <asp:LinkButton ID="CancelBtn" runat="server" class="aButton btn" ResourceKey="btnCancel">Cancel</asp:LinkButton>
 </div>
