@@ -97,7 +97,7 @@ Public Class DocumentsController
     End Sub
 
     'Determines if newFolder already exists, respecting the path that newFolder is in
-    Public Shared Function IsFolder(ByVal newFolder As String, ByVal parentFolderId As Integer) As Boolean
+    Public Shared Function IsFolder(ByVal newFolder As String, ByVal parentFolderId As Integer, ByVal caseInsensitive As Boolean) As Boolean
 
         Dim d As New DocumentsDataContext()
 
@@ -108,8 +108,7 @@ Public Class DocumentsController
                                                            And c.Name = newFolder).ToList
 
         For Each folder In foldersWithSameParentAndSameName
-            'False means do not ignore case
-            If (String.Compare(newFolder, folder.Name, False) = 0) Then
+            If (String.Compare(newFolder, folder.Name, caseInsensitive) = 0) Then
                 'newFolder exists already
                 Return True
             End If

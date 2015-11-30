@@ -150,13 +150,13 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Protected Sub EditFolder(sender As Object, e As ServerValidateEventArgs)
             'in an Edit the parent folder is one step to the left of what is chosen in the dropdownlist
             Dim parentFolder As Integer = DocumentsController.GetFolder(ddlRoot.SelectedValue).ParentFolder
-            e.IsValid = Not DocumentsController.IsFolder(tbEditSubFolder.Text, parentFolder)
+            e.IsValid = Not DocumentsController.IsFolder(tbEditSubFolder.Text, parentFolder, False)
 
         End Sub
 
         Protected Sub AddFolder(sender As Object, e As ServerValidateEventArgs)
             'IsValid should be true when folder does not exist so boolean is reversed here
-            e.IsValid = Not DocumentsController.IsFolder(tbAddSubFolder.Text, ddlRoot.SelectedValue)
+            e.IsValid = Not DocumentsController.IsFolder(tbAddSubFolder.Text, ddlRoot.SelectedValue, True)
 
         End Sub
 
