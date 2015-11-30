@@ -107,13 +107,17 @@ Public Class DocumentsController
                                                            And c.PortalId = GetPortalId() _
                                                            And c.Name = newFolder).ToList
 
-        If foldersWithSameParentAndSameName.Count > 0 Then
-            'newFolder exists already
-            Return True
-        Else
-            'newFolder does not exist
-            Return False
-        End If
+        For Each folder In foldersWithSameParentAndSameName
+            'False means do not ignore case
+            If (String.Compare(newFolder, folder.Name, False) = 0) Then
+                'newFolder exists already
+                Return True
+            End If
+        Next
+
+        'newFolder does not exist
+        Return False
+
     End Function
 
     'Determines if the folder corresponding to folderID is empty
