@@ -154,7 +154,7 @@
     <value>URL :</value>
   </data>
   <data name="lblURLHelp.Text" xml:space="preserve">
-    <value>Merci de renseigner ici l’URL externe qui commence avec "http://".</value>
+    <value>Merci de renseigner ici l’URL externe qui doit commencer par "http://" ou "https://".</value>
   </data>
   <data name="lblYouTube.Text" xml:space="preserve">
     <value>Identifiant de la vidéo :</value>

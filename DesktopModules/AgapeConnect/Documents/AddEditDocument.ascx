@@ -21,6 +21,16 @@
             showAppropriateOptionPanel();
         });
     }
+
+    function DisableButton() {
+        window.setTimeout("disableButton('" +
+           window.event.srcElement.id + "')", 0);
+    }
+
+    function disableButton(buttonID) {
+        document.getElementById(buttonID).disabled = true;
+    }
+
     $(document).ready(function () {
         setUpMyPage();
         showAppropriateOptionPanel()
@@ -57,7 +67,7 @@
                 ErrorMessage="cvUpload"
                 ResourceKey="cvUpload"
                 Display="Dynamic"
-                class="DocTypeErrorMsg"
+                class="MandatoryFieldErrorMsg"
                 ValidateEmptyText="true"
                 ValidationGroup="vgAddEdit">
             </asp:CustomValidator>
@@ -76,7 +86,7 @@
                 ErrorMessage="cvGoogle"
                 ResourceKey="cvGoogle"
                 Display="Dynamic"
-                class="DocTypeErrorMsg"
+                class="MandatoryFieldErrorMsg"
                 ValidateEmptyText="true"
                 ValidationGroup="vgAddEdit">
             </asp:CustomValidator>
@@ -95,7 +105,7 @@
                 ErrorMessage="cvUrl"
                 ResourceKey="cvUrl"
                 Display="Dynamic"
-                class="DocTypeErrorMsg"
+                class="MandatoryFieldErrorMsg"
                 ValidateEmptyText="true"
                 ValidationGroup="vgAddEdit">
             </asp:CustomValidator>
@@ -121,7 +131,7 @@
                 ErrorMessage="cvYouTube"
                 ResourceKey="cvYouTube"
                 Display="Dynamic"
-                class="DocTypeErrorMsg"
+                class="MandatoryFieldErrorMsg"
                 ValidateEmptyText="true"
                 ValidationGroup="vgAddEdit">
             </asp:CustomValidator>
@@ -131,7 +141,7 @@
         </div>
     </div>
     <div id="divAddEditButtons" class="SubmitPanel">
-        <asp:Button ID="btnOk" runat="server" resourcekey="btnOk.Text" CssClass="button" ValidationGroup="vgAddEdit" />
+        <asp:Button ID="btnOk" runat="server" resourcekey="btnOk.Text" CssClass="button" OnClientClick="DisableButton()" ValidationGroup="vgAddEdit" />
         <asp:Button ID="btnCancel" runat="server" resourcekey="btnCancel.Text" CssClass="button" />
     </div>
 </div>
