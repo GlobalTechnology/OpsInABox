@@ -148,7 +148,7 @@
     <value>Root Folder:</value>
   </data>
   <data name="validFolderName.Text" xml:space="preserve">
-    <value>A folder name cannot have the caracters / nor \</value>
+    <value>A folder name cannot have the characters "/" nor "\".</value>
   </data>
   <data name="btnEditSubFolder.Text" xml:space="preserve">
     <value>Rename</value>
