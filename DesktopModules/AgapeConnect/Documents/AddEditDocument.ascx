@@ -23,7 +23,6 @@
     }
 
     function DisableButton() {
-        document.forms[0].submit();
         window.setTimeout("disableButton('" +
            window.event.srcElement.id + "')", 0);
     }
