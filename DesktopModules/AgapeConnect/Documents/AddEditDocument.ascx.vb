@@ -169,10 +169,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
         Protected Sub AddResource()
             If rbLinkType.SelectedValue = DocumentConstants.LinkTypeFile Then 'Radio button selected was upload
-                'Add file to dnn file system
-                Dim theFileId = DocumentsController.AddFile(FileUpload1.FileName, FileUpload1.FileContent)
-                'Now instert the document into the database
-                DocumentsController.InsertResource(theFileId, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text) 'need to add permissions eventually
+                DocumentsController.InsertResourceWithFile(tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text, FileUpload1.FileName, FileUpload1.FileContent) 'need to add permissions eventually
             ElseIf rbLinkType.SelectedValue = DocumentConstants.LinkTypeGoogleDoc Then 'Radio button selected was Google Doc
                 DocumentsController.InsertResource(DocumentConstants.FileIdForLinks, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeGoogleDoc, tbGoogle.Text, "False", TabModuleId, tbDescription.Text)
             ElseIf rbLinkType.SelectedValue = DocumentConstants.LinkTypeUrl Then 'Radio button selected was external URL
@@ -189,17 +186,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 ' Update all values but the FileId
                 DocumentsController.UpdateResource(DocId, DocumentsController.GetDocument(DocId).FileId, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text)
             ElseIf rbLinkType.SelectedValue = DocumentConstants.LinkTypeFile Then 'Radio button selected was upload
-                    Dim theFileId As Integer
-
-                    'Update file in dnn file system if type was already file, simply add file otherwise
-                    If DocumentsController.GetDocument(DocId).LinkType = DocumentConstants.LinkTypeFile Then
-                        theFileId = DocumentsController.UpdateFile(DocumentsController.GetDocument(DocId).FileId, FileUpload1.FileName, FileUpload1.FileContent)
-                    Else
-                        theFileId = DocumentsController.AddFile(FileUpload1.FileName, FileUpload1.FileContent)
-                    End If
-
-                    'Now update the document into the database
-                    DocumentsController.UpdateResource(DocId, theFileId, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text)
+                DocumentsController.UpdateResourceWithFile(DocId, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeFile, "", "False", TabModuleId, tbDescription.Text, FileUpload1.FileName, FileUpload1.FileContent)
             ElseIf rbLinkType.SelectedValue = DocumentConstants.LinkTypeGoogleDoc Then 'Radio button selected was Google Doc
                 DocumentsController.UpdateResource(DocId, DocumentConstants.FileIdForLinks, tbName.Text, UserInfo.DisplayName, DocumentConstants.LinkTypeGoogleDoc, tbGoogle.Text, "False", TabModuleId, tbDescription.Text)
             ElseIf rbLinkType.SelectedValue = DocumentConstants.LinkTypeUrl Then 'Radio button selected was external URL

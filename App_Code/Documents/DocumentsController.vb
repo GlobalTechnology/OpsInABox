@@ -327,6 +327,21 @@ Public Class DocumentsController
 
 #Region "Add/Edit"
 
+    ' Insert resource with uploaded file
+    Public Shared Sub InsertResourceWithFile(DisplayName As String, _
+                                     Author As String, LinkType As String, LinkURL As String, _
+                                     Trashed As Boolean, ByVal tabModuleId As Integer, _
+                                     ByVal Description As String, ByVal fileName As String, ByVal fileContent As IO.Stream)
+
+        'Add the file to dnn file system
+        Dim theFileId = DocumentsController.AddFile(fileName, fileContent)
+
+        'Insert the document into the database
+        DocumentsController.InsertResource(theFileId, DisplayName, Author, LinkType, LinkURL, Trashed, tabModuleId, Description)
+
+    End Sub
+
+    ' Insert resource without uploaded file
     Public Shared Sub InsertResource(ByVal FileId As Integer, DisplayName As String, _
                                      Author As String, LinkType As String, LinkURL As String, _
                                      Trashed As Boolean, ByVal tabModuleId As Integer, _
@@ -349,6 +364,27 @@ Public Class DocumentsController
         d.SubmitChanges()
     End Sub
 
+    ' Update resource with uploaded file
+    Public Shared Sub UpdateResourceWithFile(ByVal DocId As Integer, DisplayName As String, _
+                                 Author As String, LinkType As String, LinkURL As String, _
+                                 Trashed As Boolean, ByVal tabModuleId As Integer, _
+                                 ByVal Description As String, ByVal fileName As String, ByVal fileContent As IO.Stream)
+
+        Dim theFileId As Integer
+
+        'Update file in dnn file system if type was already file, simply add file otherwise
+        If DocumentsController.GetDocument(DocId).LinkType = DocumentConstants.LinkTypeFile Then
+            theFileId = DocumentsController.UpdateFile(DocumentsController.GetDocument(DocId).FileId, fileName, fileContent)
+        Else
+            theFileId = DocumentsController.AddFile(fileName, fileContent)
+        End If
+
+        'Now update the document into the database
+        DocumentsController.UpdateResource(DocId, theFileId, DisplayName, Author, LinkType, LinkURL, Trashed, tabModuleId, Description)
+
+    End Sub
+
+    ' Update resource without uploaded file
     Public Shared Sub UpdateResource(ByVal DocId As Integer, ByVal FileId As Integer, DisplayName As String, _
                                  Author As String, LinkType As String, LinkURL As String, _
                                  Trashed As Boolean, ByVal tabModuleId As Integer, _
@@ -358,7 +394,7 @@ Public Class DocumentsController
         'Get resource to update
         Dim theDoc = (From c In d.AP_Documents_Docs Where c.DocId = DocId).First
 
-        'If an file was uploaded then the ressource type was changed to something other than a file
+        'If a file was uploaded then the ressource type was changed to something other than a file
         'need to delete the file on the server.
         If (theDoc.LinkType = DocumentConstants.LinkTypeFile And LinkType <> DocumentConstants.LinkTypeFile) Then
             FileManager.Instance.DeleteFile(FileManager.Instance.GetFile(theDoc.FileId))
@@ -383,7 +419,7 @@ Public Class DocumentsController
     End Sub
 
     ' Add file in DNN file system
-    Public Shared Function AddFile(ByVal fileName As String, ByVal fileContent As IO.Stream) As Integer 'Returns the added fileId
+    Private Shared Function AddFile(ByVal fileName As String, ByVal fileContent As IO.Stream) As Integer 'Returns the added fileId
         Dim addedFile = FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), fileName, fileContent)
         'file is not viewable by URL directory access
         FileManager.Instance.SetAttributes(addedFile, IO.FileAttributes.Hidden)
@@ -391,7 +427,7 @@ Public Class DocumentsController
     End Function
 
     ' Update file for a resource (delete old file and create new file in DNN file system)
-    Public Shared Function UpdateFile(ByVal fileId As Integer, ByVal fileName As String, ByVal fileContent As IO.Stream) As Integer 'Returns the new fileId
+    Private Shared Function UpdateFile(ByVal fileId As Integer, ByVal fileName As String, ByVal fileContent As IO.Stream) As Integer 'Returns the new fileId
         'Try first to add the file (extension could be rejected)
         Dim newFile = FileManager.Instance.AddFile(DocumentsController.GetPhysicalFolderForFiles(), fileName, fileContent)
 
