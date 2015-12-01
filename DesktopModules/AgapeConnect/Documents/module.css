@@ -235,15 +235,11 @@
 }
 
 #divAddEditDocument .MandatoryFieldErrorMsg {
-    font-size:inherit;
     padding-left: 5px;
-    color: red;
 }
-#divAddEditDocument .DocTypeErrorMsg {
-    font-size:inherit;
+#divResDef .MandatoryFieldErrorMsg {
     display:block;
     padding:10px 0px 0px 200px;
-    color: red;
 }
 
 /*AddEditResource End*/

@@ -68,7 +68,7 @@
                 ErrorMessage="cvUpload"
                 ResourceKey="cvUpload"
                 Display="Dynamic"
-                class="DocTypeErrorMsg"
+                class="MandatoryFieldErrorMsg"
                 ValidateEmptyText="true"
                 ValidationGroup="vgAddEdit">
             </asp:CustomValidator>
@@ -87,7 +87,7 @@
                 ErrorMessage="cvGoogle"
                 ResourceKey="cvGoogle"
                 Display="Dynamic"
-                class="DocTypeErrorMsg"
+                class="MandatoryFieldErrorMsg"
                 ValidateEmptyText="true"
                 ValidationGroup="vgAddEdit">
             </asp:CustomValidator>
@@ -106,7 +106,7 @@
                 ErrorMessage="cvUrl"
                 ResourceKey="cvUrl"
                 Display="Dynamic"
-                class="DocTypeErrorMsg"
+                class="MandatoryFieldErrorMsg"
                 ValidateEmptyText="true"
                 ValidationGroup="vgAddEdit">
             </asp:CustomValidator>
@@ -132,7 +132,7 @@
                 ErrorMessage="cvYouTube"
                 ResourceKey="cvYouTube"
                 Display="Dynamic"
-                class="DocTypeErrorMsg"
+                class="MandatoryFieldErrorMsg"
                 ValidateEmptyText="true"
                 ValidationGroup="vgAddEdit">
             </asp:CustomValidator>
