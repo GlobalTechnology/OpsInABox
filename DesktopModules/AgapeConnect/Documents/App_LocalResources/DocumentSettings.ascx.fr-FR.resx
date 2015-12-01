@@ -145,7 +145,7 @@
     <value>Le sous-répertoire existe déjà</value>
   </data>
   <data name="validFolderName.Text" xml:space="preserve">
-    <value>Le nom d'un répertoire ne peut pas avoir les characters / ni \</value>
+    <value>Le nom d'un répertoire ne peut pas contenir les caractères "/" ni "\".</value>
   </data>
   <data name="folderNotDeletable.Text" xml:space="preserve">
     <value>Il n’est pas possible de supprimer ce répertoire car il contient des ressources (potentiellement dans la corbeille).</value>
