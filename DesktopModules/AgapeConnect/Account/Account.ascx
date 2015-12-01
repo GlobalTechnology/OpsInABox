@@ -94,7 +94,7 @@
                 <%= getGoogleData() %>
 
          // create and draw the visualization.
-         var chart = new google.visualization.LineChart(document.getElementById("IncExpGraph"));
+                var chart = new google.visualization.LineChart(document.getElementById("<%= IncExpGraph.ClientID %>"));
          //  chart.draw(data,  {chartArea:{left:70,top:10,width:805,height:360}, legend: { position: 'in' }, pointSize: 5, vAxis:{gridLines: {color: '#333',format:'#,###'}}, hAxis:{font: 'Arial Bold'} ,   colors:['#3366cc','#3366cc','#dc3912','#dc3912','#ff9900','#ff9900'] });
          chart.draw(data, { chartArea: { left: 70, top: 10, width: 860, height: 360 }, legend: { position: 'in' }, pointSize: 5, vAxis: { gridLines: { color: '#333', format: '#,###' } }, hAxis: { font: 'Arial Bold' }, series: [{ color: '#3366cc' }, { color: '#b2c2e0', visibleInLegend: false, lineWidth: 2, pointSize: 0 }, { color: '#dc3912' }, { color: '#ff9900' }] });
 
