@@ -117,82 +117,85 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnAdd.Text">
+  <data name="btnAdd.Text" xml:space="preserve">
     <value>Ajouter</value>
   </data>
-  <data name="btnAddCountry.Text">
+  <data name="btnAddCountry.Text" xml:space="preserve">
     <value>Ajouter pays</value>
   </data>
-  <data name="btnLogin.Text">
+  <data name="btnLogin.Text" xml:space="preserve">
     <value>Se connecter</value>
   </data>
-  <data name="lblAddCountry.Text">
+  <data name="lblAddCountry.Text" xml:space="preserve">
     <value>Ajouter pays</value>
   </data>
-  <data name="btnAddCountryTooltip.Text">
+  <data name="btnAddCountryTooltip.Text" xml:space="preserve">
     <value>Avez-vous des dons provenant de pays non listés ici (comme les États-Unis) ? Ajouter les autres pays ici.</value>
   </data>
-  <data name="lblAddCountryFooter.Text">
+  <data name="lblAddCountryFooter.Text" xml:space="preserve">
     <value>Si vous avez des comptes dans les pays qui utilisent TntDataserver, ceux-ci apparaîtront automatiquement dans votre liste de pays. D'autres pays peuvent être ajoutés ici. &lt;br /&gt; &lt;i&gt; Pour les Etats-Unis : Entrez votre mot de passe &lt;/ i&gt;</value>
   </data>
-  <data name="lblAmount.Text">
+  <data name="lblAmount.Text" xml:space="preserve">
     <value>Montant</value>
   </data>
-  <data name="lblAverageIncome.Text">
+  <data name="lblAverageIncome.Text" xml:space="preserve">
     <value>Revenus moyens</value>
   </data>
-  <data name="lblAvgIncome.Text">
+  <data name="lblAvgIncome.Text" xml:space="preserve">
     <value>Revenus moyens :</value>
   </data>
-  <data name="lblBalance.Text">
+  <data name="lblBalance.Text" xml:space="preserve">
     <value>Solde</value>
   </data>
-  <data name="lblCountry.Text">
+  <data name="lblCountry.Text" xml:space="preserve">
     <value>Pays :</value>
   </data>
-  <data name="lblDesc.Text">
+  <data name="lblDesc.Text" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="lblDonationOnly.Text">
+  <data name="lblDonationOnly.Text" xml:space="preserve">
     <value>* Ce pays fournit ne que les informations concernant vos dons.</value>
   </data>
-  <data name="lblEndBal.Text">
+  <data name="lblEndBal.Text" xml:space="preserve">
     <value>Solde final :</value>
   </data>
-  <data name="lblExpenses.Text">
+  <data name="lblExpenses.Text" xml:space="preserve">
     <value>Dépenses</value>
   </data>
-  <data name="lblHideDonations.Text">
+  <data name="lblHideDonations.Text" xml:space="preserve">
     <value>(Cliquez ici pour masquer les dons...)</value>
   </data>
-  <data name="lblIncome.Text">
+  <data name="lblIncome.Text" xml:space="preserve">
     <value>Revenus</value>
   </data>
-  <data name="lblPassword.Text">
+  <data name="lblPassword.Text" xml:space="preserve">
     <value>Mot de passe :</value>
   </data>
-  <data name="lblProfile.Text">
+  <data name="lblProfile.Text" xml:space="preserve">
     <value>Profil :</value>
   </data>
-  <data name="lblRC.Text">
+  <data name="lblRC.Text" xml:space="preserve">
     <value>Compte :</value>
   </data>
-  <data name="lblShowDonations.Text">
+  <data name="lblShowDonations.Text" xml:space="preserve">
     <value>(Cliquez ici pour afficher les dons...)</value>
   </data>
-  <data name="lblStartBal.Text">
+  <data name="lblStartBal.Text" xml:space="preserve">
     <value>Solde de départ :</value>
   </data>
-  <data name="lblTransactionDetail.Text">
+  <data name="lblTransactionDetail.Text" xml:space="preserve">
     <value>Détail de la transaction</value>
   </data>
-  <data name="lblUsername.Text">
+  <data name="lblUsername.Text" xml:space="preserve">
     <value>Utilisateur :</value>
   </data>
-  <data name="lblDate.Text">
+  <data name="lblDate.Text" xml:space="preserve">
     <value>Date</value>
   </data>
-  <data name="lblNew.Text">
+  <data name="lblNew.Text" xml:space="preserve">
     <value>Nouveau</value>
+  </data>
+  <data name="lblMessage.Text" xml:space="preserve">
+    <value>Nous ne pouvons trouver de compte tntDataserver pour vous dans aucun pays. Veuillez communiquer avec les pays dans lesquels vous recevez des dons en leur demandant d'ajouter votre compte TheKey à leur système tntDataserver.</value>
   </data>
 </root>

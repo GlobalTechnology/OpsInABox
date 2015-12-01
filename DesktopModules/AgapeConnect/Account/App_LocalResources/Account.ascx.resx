@@ -171,6 +171,9 @@
   <data name="lblIncome.Text" xml:space="preserve">
     <value>Income</value>
   </data>
+  <data name="lblMessage.Text" xml:space="preserve">
+    <value>We cannot find an tntDataserver account for you in any country. Please contact the countries in which you receive donations, as ask them to add your TheKey account to their dataserver.</value>
+  </data>
   <data name="lblNew.Text" xml:space="preserve">
     <value>New</value>
   </data>
