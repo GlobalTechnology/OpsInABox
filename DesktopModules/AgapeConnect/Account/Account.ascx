@@ -190,12 +190,12 @@
     </div>
     <div id="rightgraph" style="float:right">
         <asp:Label ID="lblMessage" runat="server" Text="" ForColor="#777" Visible="false" Font-Italic="true"></asp:Label>
-        <div id="IncExpGraph" style="width:930px; height: 400px;"></div>
+        <div id="IncExpGraph" runat="server" style="width:930px; height: 400px;"></div>
     </div>
     <div style="clear:both"></div>
 </div>
 
-<div id="accordion" class="accordion">
+<div id="accordion" runat="server" class="accordion">
     <div class="accordion-group">
     <h3 class="accordion-heading">
       
@@ -269,7 +269,7 @@
     </a></h3></div>
     
 </div>
-<div style="color: Gray; font-size: smaller;">
+<div id="divBalance" runat="server" style="color: Gray; font-size: smaller;">
        <asp:Label ID="Label4" runat="server" Text="Starting Balance" ResourceKey="lblStartBal" />
     <asp:Label ID="StartingBalance" runat="server" />
     &nbsp; &nbsp;

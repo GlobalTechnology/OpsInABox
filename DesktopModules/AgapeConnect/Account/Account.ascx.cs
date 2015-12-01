@@ -125,13 +125,16 @@ namespace DotNetNuke.Modules.Account
                 }
                 else
                 {
-                    lblMessage.Text = "We cannot find an tntDataserver account for you in any country. Please contact the countries in which you receive donations, as ask them to add your TheKey account to their dataserver.";
+                    lblMessage.Text = Translate("lblMessage");
                     string Message = "No DataServer accounts for: " + UserInfo.DisplayName + "(" + UserId.ToString() + ") " + ssoGUID + "CountryCount:" + MyCountries.Items.Count.ToString() + ";" + (resp.Count()).ToString();
                     DotNetNuke.Services.Log.EventLog.EventLogController objEventLog = new DotNetNuke.Services.Log.EventLog.EventLogController();
 
                     objEventLog.AddLog("Accounts", Message, PortalSettings, UserId, Services.Log.EventLog.EventLogController.EventLogType.ADMIN_ALERT);
 
                     lblMessage.Visible = true;
+                    accordion.Visible = false;
+                    divBalance.Visible = false;
+                    IncExpGraph.Visible = false;
                 }
 
 
