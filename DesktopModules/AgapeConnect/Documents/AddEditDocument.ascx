@@ -21,6 +21,17 @@
             showAppropriateOptionPanel();
         });
     }
+
+    function DisableButton() {
+        document.forms[0].submit();
+        window.setTimeout("disableButton('" +
+           window.event.srcElement.id + "')", 0);
+    }
+
+    function disableButton(buttonID) {
+        document.getElementById(buttonID).disabled = true;
+    }
+
     $(document).ready(function () {
         setUpMyPage();
         showAppropriateOptionPanel()
@@ -131,7 +142,7 @@
         </div>
     </div>
     <div id="divAddEditButtons" class="SubmitPanel">
-        <asp:Button ID="btnOk" runat="server" resourcekey="btnOk.Text" CssClass="button" ValidationGroup="vgAddEdit" />
+        <asp:Button ID="btnOk" runat="server" resourcekey="btnOk.Text" CssClass="button" OnClientClick="DisableButton()" ValidationGroup="vgAddEdit" />
         <asp:Button ID="btnCancel" runat="server" resourcekey="btnCancel.Text" CssClass="button" />
     </div>
 </div>
