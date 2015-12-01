@@ -154,7 +154,7 @@
     <value>URL:</value>
   </data>
   <data name="lblURLHelp.Text" xml:space="preserve">
-    <value>Please enter an external web address beginning with "http://".</value>
+    <value>Please enter an external web address beginning with "http://" or "https://".</value>
   </data>
   <data name="lblYouTube.Text" xml:space="preserve">
     <value>Youtube ID:</value>
