@@ -358,6 +358,12 @@ Public Class DocumentsController
         'Get resource to update
         Dim theDoc = (From c In d.AP_Documents_Docs Where c.DocId = DocId).First
 
+        'If an file was uploaded then the ressource type was changed to something other than a file
+        'need to delete the file on the server.
+        If (theDoc.LinkType = DocumentConstants.LinkTypeFile And LinkType <> DocumentConstants.LinkTypeFile) Then
+            FileManager.Instance.DeleteFile(FileManager.Instance.GetFile(theDoc.FileId))
+        End If
+
         'Update resource values
         theDoc.FolderId = GetModuleFolderId(tabModuleId)
         theDoc.FileId = FileId
