@@ -96,9 +96,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
                 'Rebuild the list of paths after a new directory was added
                 BuildPathList()
+                tbEditSubFolder.Text = ""
+                upEdit.Visible = False
             End If
-            tbEditSubFolder.Text = ""
-            upEdit.Visible = False
         End Sub
 
         Protected Sub btnAddSubFolder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAddSubFolder.Click
@@ -108,9 +108,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
                 'Rebuild the list of paths after a new directory was added
                 BuildPathList()
+                tbAddSubFolder.Text = ""
+                upAdd.Visible = False
             End If
-            tbAddSubFolder.Text = ""
-            upAdd.Visible = False
         End Sub
 
         Protected Sub ddlRoot_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ddlRoot.SelectedIndexChanged

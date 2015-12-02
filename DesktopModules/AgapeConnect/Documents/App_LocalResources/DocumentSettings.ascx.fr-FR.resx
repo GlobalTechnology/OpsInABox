@@ -159,4 +159,7 @@
   <data name="lblEditSubFolder.Text" xml:space="preserve">
     <value>Renommer ce répertoire :</value>
   </data>
+  <data name="requiredField.Text" xml:space="preserve">
+    <value>Merci de renseigner le nom du répertoire.</value>
+  </data>
 </root>
