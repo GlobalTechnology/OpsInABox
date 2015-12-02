@@ -4,6 +4,28 @@
 
 <%-- Validator Section --%>
 
+<asp:RequiredFieldValidator 
+    ID="RequiredFieldValidator1" 
+    runat="server" 
+    ControlToValidate="tbEditSubFolder"
+    ErrorMessage="RequiredFieldValidator"
+    ResourceKey="requiredField"
+    Display="Dynamic"
+    class="MandatoryFieldErrorMsg"
+    ValidationGroup="vgEdit">
+</asp:RequiredFieldValidator>
+
+<asp:RequiredFieldValidator 
+    ID="RequiredFieldValidator2" 
+    runat="server" 
+    ControlToValidate="tbAddSubFolder"
+    ErrorMessage="RequiredFieldValidator"
+    ResourceKey="requiredField"
+    Display="Dynamic"
+    class="MandatoryFieldErrorMsg"
+    ValidationGroup="vgAdd">
+</asp:RequiredFieldValidator>
+
 <asp:RegularExpressionValidator
     ID="validFolderNameEdit"
     runat="server"

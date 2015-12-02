@@ -159,4 +159,7 @@
   <data name="lblEditSubFolder.Text" xml:space="preserve">
     <value>Rename this folder:</value>
   </data>
+  <data name="requiredField.Text" xml:space="preserve">
+    <value>Please enter a folder name.</value>
+  </data>
 </root>
