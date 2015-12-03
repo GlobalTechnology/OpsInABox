@@ -45,7 +45,9 @@
     <div id="divResName" class="FieldRow">
         <asp:Label ID="lblName" runat="server" resourcekey="lblName.Text" CssClass="FieldLabel" />
         <asp:TextBox ID="tbName" runat="server" />
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" resourcekey="rfName" ControlToValidate="tbName" class="MandatoryFieldErrorMsg" ValidationGroup="vgAddEdit" Display="Dynamic"></asp:RequiredFieldValidator>
+        <span class="MandatoryFieldErrorMsg"> <!-- This span is needed to force display:block instead of display:inline on error message -->
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" resourcekey="rfName" ControlToValidate="tbName" ValidationGroup="vgAddEdit" Display="Dynamic"></asp:RequiredFieldValidator>
+        </span>
         <hr />
     </div>
     <div id="divResDesc" class="FieldRow">
