@@ -11,7 +11,7 @@
     <div class="FieldRow">
     <asp:Panel ID="EmailPanel" runat="server">
             <asp:Label ID="LblEmailAddress" runat="server" ResourceKey="LblEmailAddress" CssClass="FieldLabel"></asp:Label>
-            <asp:Label ID="EmailAddressStar" runat="server" ResourceKey="Star" CssClass="MandatoryFieldEmailAck Star"></asp:Label><asp:TextBox ID="EmailWithAck" runat="server"></asp:TextBox>    
+            <asp:Label ID="EmailAddressStar" runat="server" CssClass="MandatoryFieldEmailAck Star"></asp:Label><asp:TextBox ID="EmailWithAck" runat="server"></asp:TextBox>    
     </asp:Panel>
     </div>
      <div>

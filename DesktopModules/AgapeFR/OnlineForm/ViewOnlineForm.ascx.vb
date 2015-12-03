@@ -42,7 +42,10 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
                 SubmitButton.Visible = True
 
                 If (EmailPanel.Visible) Then
-                    If (q.ReqEmail) Then 'Add RequiredFielValidator if email set as mandatory
+                    If (q.ReqEmail) Then 'Add RequiredFielValidator and star if email set as mandatory
+
+                        EmailAddressStar.Text = LocalizeString("Star")
+
                         Dim req As New RequiredFieldValidator()
                         req.ID = "reqEmailAck"
                         req.ControlToValidate = "EmailWithAck"
@@ -52,6 +55,11 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
                         EmailPanel.Controls.Add(New LiteralControl("<div class=""MandatoryFieldErrorMsg"">"))
                         EmailPanel.Controls.Add(req)
                         EmailPanel.Controls.Add(New LiteralControl("</div>"))
+
+                    Else 'Add space instead of star to keep things displayed correctly
+
+                        EmailAddressStar.Text = "&nbsp;"
+
                     End If
 
                     'Validate email format
@@ -70,7 +78,7 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
                 For Each question In questions
                     QuPlaceHolder.Controls.Add(New LiteralControl("<div class=""FieldRow""><span class=""FieldLabel"">" & question.QuestionText & "</span>"))
                     If (question.Required) Then
-                        QuPlaceHolder.Controls.Add(New LiteralControl("<span class=""MandatoryField Star"">*</span>"))
+                        QuPlaceHolder.Controls.Add(New LiteralControl("<span class=""MandatoryField Star"">" + LocalizeString("Star") + "</span>"))
                     Else
                         QuPlaceHolder.Controls.Add(New LiteralControl("<span class=""MandatoryField"">&nbsp;</span>"))
                     End If
