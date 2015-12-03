@@ -236,7 +236,8 @@
 
 #divAddEditDocument .MandatoryFieldErrorMsg {
     display:block;
-    padding:10px 0px 0px 200px;
+    margin: 10px 0px 0px 200px;
+    padding: 0;
 }
 
 /*AddEditResource End*/
