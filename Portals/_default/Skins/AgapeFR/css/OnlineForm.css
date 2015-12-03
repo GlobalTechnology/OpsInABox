@@ -40,7 +40,15 @@
     vertical-align: top;
     text-align: left;
     width: 20px;
-    padding-left: 3px;
+    padding-left: 4px;
+}
+
+.OnlineForm .MandatoryFieldEmailAck {
+    display: inline-block;
+	zoom: 1; *display: inline; /* IE fix for inline-block display */
+    vertical-align: top;
+    text-align: left;
+    width: 20px;
 }
 
 .OnlineForm .Star {

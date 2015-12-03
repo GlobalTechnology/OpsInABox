@@ -8,16 +8,15 @@
     <div class="Menu_Prefix">
        <asp:Label ID="PrefixLabel" runat="server" Text=""></asp:Label>
     </div>
-    <div>
+    <div class="FieldRow">
+    <asp:Panel ID="EmailPanel" runat="server">
+            <asp:Label ID="LblEmailAddress" runat="server" ResourceKey="LblEmailAddress" CssClass="FieldLabel"></asp:Label>
+            <asp:Label ID="EmailAddressStar" runat="server" ResourceKey="Star" CssClass="MandatoryFieldEmailAck Star"></asp:Label><asp:TextBox ID="EmailWithAck" runat="server"></asp:TextBox>    
+    </asp:Panel>
+    </div>
+     <div>
        <asp:PlaceHolder ID="QuPlaceHolder" runat="server"></asp:PlaceHolder>
     </div>
-    <asp:Panel ID="EmailPanel" runat="server">
-        <div class="FieldRow">
-            <asp:Label ID="LblEmailAddress" runat="server" ResourceKey="LblEmailAddress" CssClass="FieldLabel"></asp:Label>
-            <asp:Label ID="EmailAddressStar" runat="server" ResourceKey="MandatoryField Star" CssClass="Star"></asp:Label><asp:TextBox ID="Email" runat="server"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="ReqEmail" runat="server" resourcekey="ReqEmail.ErrorMessage" ControlToValidate="Email" Enabled="false"></asp:RequiredFieldValidator>
-        </div>
-    </asp:Panel>
     <div class="SubmitPanel">      
         <asp:Label ID="Star" runat="server" ResourceKey="Star" CssClass="Star"></asp:Label>&nbsp;<asp:Label ID="LblMandatoryFields" runat="server" resourcekey="LblMandatoryFields" />
         <br />
