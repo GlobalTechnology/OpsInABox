@@ -22,13 +22,16 @@
         });
     }
 
-    function DisableButton() {
-        window.setTimeout("disableButton('" +
-           window.event.srcElement.id + "')", 0);
+    function FreezeButton() {
+        window.setTimeout("disableButton('" + window.event.srcElement.id + "')", 0);
+        window.setTimeout("enableButton('" + window.event.srcElement.id + "')", 1000);
     }
 
     function disableButton(buttonID) {
         document.getElementById(buttonID).disabled = true;
+    }
+    function enableButton(buttonID) {
+        document.getElementById(buttonID).disabled = false;
     }
 
     $(document).ready(function () {
@@ -141,7 +144,7 @@
         </div>
     </div>
     <div id="divAddEditButtons" class="SubmitPanel">
-        <asp:Button ID="btnOk" runat="server" resourcekey="btnOk.Text" CssClass="button" OnClientClick="DisableButton()" ValidationGroup="vgAddEdit" />
+        <asp:Button ID="btnOk" runat="server" resourcekey="btnOk.Text" CssClass="button" OnClientClick="FreezeButton()" ValidationGroup="vgAddEdit" />
         <asp:Button ID="btnCancel" runat="server" resourcekey="btnCancel.Text" CssClass="button" />
     </div>
 </div>
