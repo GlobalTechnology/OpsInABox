@@ -109,7 +109,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             Get
                 Dim Actions As New Entities.Modules.Actions.ModuleActionCollection
                 Actions.Add(GetNextActionID, LocalizeString("DocumentSettingsAction"), DocumentsControllerConstants.DocumentSettingsControlKey, "", "action_settings.gif", EditUrl(DocumentsControllerConstants.DocumentSettingsControlKey), False, SecurityAccessLevel.Admin, True, False)
-                Actions.Add(GetNextActionID, LocalizeString("AddDocumentAction"), DocumentsControllerConstants.AddEditDocumentControlKey, "", "action_settings.gif", EditUrl(DocumentsControllerConstants.AddEditDocumentControlKey), False, SecurityAccessLevel.Edit, True, False)
+                Actions.Add(GetNextActionID, LocalizeString("AddDocumentAction"), DocumentsControllerConstants.AddEditDocumentControlKey, "", "add.gif", EditUrl(DocumentsControllerConstants.AddEditDocumentControlKey), False, SecurityAccessLevel.Edit, True, False)
                 Return Actions
             End Get
         End Property
