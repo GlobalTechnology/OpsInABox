@@ -22,14 +22,6 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
         Inherits PortalModuleBase
         Implements IActionable
 
-
-
-        'Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
-        ' Add admin actions
-        'Dim addEditAction = MyBase.Actions.Add(GetNextActionID, LocalizeString("AdminSectionTitle"), "OnlineForm", "", "", "", "", True, SecurityAccessLevel.Edit, True, False)
-        ' addEditAction.Actions.Add(GetNextActionID, LocalizeString("AdminEditAction"), "OnlineFormEdit", "", "action_settings.gif", EditUrl("Edit"), False, SecurityAccessLevel.Edit, True, False)
-        ' addEditAction.Actions.Add(GetNextActionID, LocalizeString("AdminResultsAction"), "OnlineFormResults", "", "action_source.gif", EditUrl("Results"), False, SecurityAccessLevel.Edit, True, False)
-        ' End Sub
         Public ReadOnly Property ModuleActions() As Entities.Modules.Actions.ModuleActionCollection Implements Entities.Modules.IActionable.ModuleActions
             Get
                 Dim Actions As New Entities.Modules.Actions.ModuleActionCollection
@@ -50,17 +42,20 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
                 SubmitButton.Visible = True
 
                 If (EmailPanel.Visible) Then
-                    Dim req As New RequiredFieldValidator()
-                    req.ID = "reqEmailAck"
-                    req.ControlToValidate = "EmailWithAck"
-                    req.Text = LocalizeString("ReqEmail")
-                    req.ErrorMessage = LocalizeString("ReqEmail")
-                    req.Display = ValidatorDisplay.Dynamic
-                    EmailPanel.Controls.Add(New LiteralControl("<div class=""MandatoryFieldErrorMsg"">"))
-                    EmailPanel.Controls.Add(req)
-                    EmailPanel.Controls.Add(New LiteralControl("</div>"))
+                    If (q.ReqEmail) Then 'Add RequiredFielValidator if email set as mandatory
+                        Dim req As New RequiredFieldValidator()
+                        req.ID = "reqEmailAck"
+                        req.ControlToValidate = "EmailWithAck"
+                        req.Text = LocalizeString("ReqEmail")
+                        req.ErrorMessage = LocalizeString("ReqEmail")
+                        req.Display = ValidatorDisplay.Dynamic
+                        EmailPanel.Controls.Add(New LiteralControl("<div class=""MandatoryFieldErrorMsg"">"))
+                        EmailPanel.Controls.Add(req)
+                        EmailPanel.Controls.Add(New LiteralControl("</div>"))
+                    End If
 
-                    Dim regexEmail = IsValidEmail("EmailWithAck")
+                    'Validate email format
+                    Dim regexEmail = GetEmailValidator("EmailWithAck")
                     EmailPanel.Controls.Add(New LiteralControl("<div class=""MandatoryFieldErrorMsg"">"))
                     EmailPanel.Controls.Add(regexEmail)
                     EmailPanel.Controls.Add(New LiteralControl("</div>"))
@@ -133,14 +128,7 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
                             c.ID = "Q" & question.FormQuestionId
                             QuPlaceHolder.Controls.Add(c)
 
-                            Dim regexEmail = IsValidEmail(c.ID)
-                            'Dim regexEmail As New RegularExpressionValidator()
-                            'regexEmail.ID = "regexEmail" & question.FormQuestionId
-                            'regexEmail.ControlToValidate = "Q" & question.FormQuestionId
-                            'regexEmail.ValidationExpression = "\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
-                            'regexEmail.ErrorMessage = LocalizeString("InvalidEmail")
-                            'regexEmail.Text = LocalizeString("InvalidEmail")
-                            'regexEmail.Display = ValidatorDisplay.Dynamic
+                            Dim regexEmail = GetEmailValidator(c.ID)
                             QuPlaceHolder.Controls.Add(regexEmail)
                             QuPlaceHolder.Controls.Add(New LiteralControl("<div class=""MandatoryFieldErrorMsg"">"))
                             QuPlaceHolder.Controls.Add(regexEmail)
@@ -303,7 +291,7 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
 
         End Sub
 
-        Protected Function IsValidEmail(ByVal controlID As String) As RegularExpressionValidator
+        Protected Function GetEmailValidator(ByVal controlID As String) As RegularExpressionValidator
             Dim regexEmail As New RegularExpressionValidator()
             regexEmail.ID = "regexEmail" & controlID
             regexEmail.ControlToValidate = controlID
