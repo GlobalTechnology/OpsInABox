@@ -186,4 +186,7 @@
   <data name="FirstNameQuestion.Text" xml:space="preserve">
     <value>First Name</value>
   </data>
+  <data name="ReqEmail.Text" xml:space="preserve">
+    <value>Please type a valid email address.</value>
+  </data>
 </root>

@@ -22,14 +22,6 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
         Inherits PortalModuleBase
         Implements IActionable
 
-
-
-        'Protected Sub Page_Init(sender As Object, e As EventArgs) Handles Me.Init
-        ' Add admin actions
-        'Dim addEditAction = MyBase.Actions.Add(GetNextActionID, LocalizeString("AdminSectionTitle"), "OnlineForm", "", "", "", "", True, SecurityAccessLevel.Edit, True, False)
-        ' addEditAction.Actions.Add(GetNextActionID, LocalizeString("AdminEditAction"), "OnlineFormEdit", "", "action_settings.gif", EditUrl("Edit"), False, SecurityAccessLevel.Edit, True, False)
-        ' addEditAction.Actions.Add(GetNextActionID, LocalizeString("AdminResultsAction"), "OnlineFormResults", "", "action_source.gif", EditUrl("Results"), False, SecurityAccessLevel.Edit, True, False)
-        ' End Sub
         Public ReadOnly Property ModuleActions() As Entities.Modules.Actions.ModuleActionCollection Implements Entities.Modules.IActionable.ModuleActions
             Get
                 Dim Actions As New Entities.Modules.Actions.ModuleActionCollection
@@ -47,11 +39,30 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
                 PrefixLabel.Text = q.Intro
                 SuffixLabel.Text = q.FootNote
                 EmailPanel.Visible = q.Ack
-                ReqEmail.Enabled = q.ReqEmail
                 SubmitButton.Visible = True
 
+                If (EmailPanel.Visible) Then
+                    If (q.ReqEmail) Then 'Add RequiredFielValidator if email set as mandatory
+                        Dim req As New RequiredFieldValidator()
+                        req.ID = "reqEmailAck"
+                        req.ControlToValidate = "EmailWithAck"
+                        req.Text = LocalizeString("ReqEmail")
+                        req.ErrorMessage = LocalizeString("ReqEmail")
+                        req.Display = ValidatorDisplay.Dynamic
+                        EmailPanel.Controls.Add(New LiteralControl("<div class=""MandatoryFieldErrorMsg"">"))
+                        EmailPanel.Controls.Add(req)
+                        EmailPanel.Controls.Add(New LiteralControl("</div>"))
+                    End If
+
+                    'Validate email format
+                    Dim regexEmail = GetEmailValidator("EmailWithAck")
+                    EmailPanel.Controls.Add(New LiteralControl("<div class=""MandatoryFieldErrorMsg"">"))
+                    EmailPanel.Controls.Add(regexEmail)
+                    EmailPanel.Controls.Add(New LiteralControl("</div>"))
+                End If
+
                 If UserInfo.Email <> "" And Not Page.IsPostBack Then
-                    Email.Text = UserInfo.Email
+                    EmailWithAck.Text = UserInfo.Email
                 End If
 
                 Dim questions = From c In d.Agape_Public_OnlineForm_Questions Where c.FormId = q.FormId
@@ -117,13 +128,7 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
                             c.ID = "Q" & question.FormQuestionId
                             QuPlaceHolder.Controls.Add(c)
 
-                            Dim regexEmail As New RegularExpressionValidator()
-                            regexEmail.ID = "regexEmail" & question.FormQuestionId
-                            regexEmail.ControlToValidate = "Q" & question.FormQuestionId
-                            regexEmail.ValidationExpression = "\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
-                            regexEmail.ErrorMessage = LocalizeString("InvalidEmail")
-                            regexEmail.Text = LocalizeString("InvalidEmail")
-                            regexEmail.Display = ValidatorDisplay.Dynamic
+                            Dim regexEmail = GetEmailValidator(c.ID)
                             QuPlaceHolder.Controls.Add(regexEmail)
                             QuPlaceHolder.Controls.Add(New LiteralControl("<div class=""MandatoryFieldErrorMsg"">"))
                             QuPlaceHolder.Controls.Add(regexEmail)
@@ -203,8 +208,8 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
                     If Not String.IsNullOrEmpty(Me.UserInfo.DisplayName) Then
                         message = message & LocalizeString("SentMsgFrom") & " " & Me.UserInfo.DisplayName & "<br />"
                     End If
-                    If Not String.IsNullOrEmpty(Email.Text) Then
-                        message = message & LocalizeString("SentMsgEmailAddress") & " " & Email.Text & "<br />"
+                    If Not String.IsNullOrEmpty(EmailWithAck.Text) Then
+                        message = message & LocalizeString("SentMsgEmailAddress") & " " & EmailWithAck.Text & "<br />"
                     End If
                     message = message & LocalizeString("SentMsgIPAddress") & " " & Request.ServerVariables("remote_addr") & "<br />"
                     message = message & LocalizeString("SentMsgDateSubmitted") & " " & Date.Now.ToString & "<br />"
@@ -246,7 +251,7 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
 
             Try
 
-                If q.Ack And Not String.IsNullOrEmpty(Email.Text) Then
+                If q.Ack And Not String.IsNullOrEmpty(EmailWithAck.Text) Then
                     message = q.AckText
 
                     message = message & "<table cellpadding=""10"">"
@@ -261,16 +266,16 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
 
                     message = message & "</table>"
 
-                    Dim acknResult = DotNetNuke.Services.Mail.Mail.SendMail("Agapé France <noreply@agapefrance.org>", Email.Text, "", LocalizeString("AcknowledgementMsgSubject"), message, "", "HTML", "", "", "", "")
+                    Dim acknResult = DotNetNuke.Services.Mail.Mail.SendMail("Agapé France <noreply@agapefrance.org>", EmailWithAck.Text, "", LocalizeString("AcknowledgementMsgSubject"), message, "", "HTML", "", "", "", "")
                     If Not String.IsNullOrEmpty(acknResult) Then
                         'Trace error message
-                        AgapeLogger.Error(UserId, "Error while sending Online Form acknowledgement\nForm title:" & ModuleConfiguration.ModuleTitle & "\nRecipient address: " & Email.Text & "\nMessage: " & message & "\Error: " & acknResult)
+                        AgapeLogger.Error(UserId, "Error while sending Online Form acknowledgement\nForm title:" & ModuleConfiguration.ModuleTitle & "\nRecipient address: " & EmailWithAck.Text & "\nMessage: " & message & "\Error: " & acknResult)
                     End If
 
                 End If
 
             Catch ex As Exception
-                AgapeLogger.Error(UserId, "Error while sending Online Form acknowledgement\nForm title:" & ModuleConfiguration.ModuleTitle & "\nRecipient address: " & Email.Text & "\nMessage: " & message & "\Error: " & ex.StackTrace)
+                AgapeLogger.Error(UserId, "Error while sending Online Form acknowledgement\nForm title:" & ModuleConfiguration.ModuleTitle & "\nRecipient address: " & EmailWithAck.Text & "\nMessage: " & message & "\Error: " & ex.StackTrace)
             End Try
 
             'Empty the page fields if email sent successfully
@@ -280,11 +285,22 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
                         ctrl.Text = ""
                     End If
                 Next
-                Email.Text = ""
-                AgapeLogger.Info(UserId, "Contact us form sucessfully sent: " & ModuleConfiguration.ModuleTitle & "  Recipient address: " & Email.Text & "  Message: " & message)
+                EmailWithAck.Text = ""
+                AgapeLogger.Info(UserId, "Contact us form sucessfully sent: " & ModuleConfiguration.ModuleTitle & "  Recipient address: " & EmailWithAck.Text & "  Message: " & message)
             End If
 
         End Sub
+
+        Protected Function GetEmailValidator(ByVal controlID As String) As RegularExpressionValidator
+            Dim regexEmail As New RegularExpressionValidator()
+            regexEmail.ID = "regexEmail" & controlID
+            regexEmail.ControlToValidate = controlID
+            regexEmail.ValidationExpression = "\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+            regexEmail.ErrorMessage = LocalizeString("InvalidEmail")
+            regexEmail.Text = LocalizeString("InvalidEmail")
+            regexEmail.Display = ValidatorDisplay.Dynamic
+            Return regexEmail
+        End Function
 
     End Class
 End Namespace

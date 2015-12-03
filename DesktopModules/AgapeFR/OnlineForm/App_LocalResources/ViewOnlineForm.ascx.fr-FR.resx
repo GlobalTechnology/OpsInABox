@@ -201,4 +201,7 @@
   <data name="InvalidEmail.ErrorMessage" xml:space="preserve">
     <value>Veuillez renseigner une adresse email valide.</value>
   </data>
+  <data name="ReqEmail.Text" xml:space="preserve">
+    <value>Veuillez renseigner votre adresse email.</value>
+  </data>
 </root>
