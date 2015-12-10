@@ -292,6 +292,9 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
                     If TypeOf ctrl Is TextBox Then
                         ctrl.Text = ""
                     End If
+                    If TypeOf ctrl Is CheckBox Then
+                        ctrl.Checked = False
+                    End If
                 Next
                 EmailWithAck.Text = ""
                 AgapeLogger.Info(UserId, "Contact us form sucessfully sent: " & ModuleConfiguration.ModuleTitle & "  Recipient address: " & EmailWithAck.Text & "  Message: " & message)
