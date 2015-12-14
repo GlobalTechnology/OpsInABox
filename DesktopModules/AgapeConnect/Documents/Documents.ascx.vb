@@ -104,6 +104,10 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             LoadDocuments()
         End Sub
 
+        Protected Sub lbSearchNew_OnClick(sender As Object, e As System.EventArgs)
+
+        End Sub
+
 #Region "Optional Interfaces"
         Public ReadOnly Property ModuleActions() As Entities.Modules.Actions.ModuleActionCollection Implements Entities.Modules.IActionable.ModuleActions
             Get

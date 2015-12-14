@@ -33,6 +33,13 @@
 </script>
 
 <div id="DocumentsMain" class="documents">
+    <div id="SearchContainer">
+        <span id="ClassicSearch" runat="server" visible="true">
+            <asp:TextBox ID="tbSearch" runat="server" EnableViewState="False" CssClass="NormalTextBox" MaxLength="255"></asp:TextBox>
+<%--            <a class="dnnSearchBoxClearText"></a>--%>
+            <asp:LinkButton ID="lbSearchNew" runat="server" CssClass="SearchNew" OnClick="lbSearchNew_OnClick"></asp:LinkButton>
+        </span>
+    </div>
     <asp:UpdatePanel ID="upFolderView" runat="server">
             <ContentTemplate>
                 <asp:ListView ID="dlFolderView" runat="server">
