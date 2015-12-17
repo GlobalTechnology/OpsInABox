@@ -3,6 +3,21 @@
 
 <dnn:DnnCssInclude ID="OnlineFormCSS" runat="server" FilePath="css/OnlineForm.css" PathNameAlias="SkinPath" />
 
+<script type="text/javascript">
+
+    function FreezeButton() {
+        window.setTimeout("disableButton('" + window.event.srcElement.id + "')", 0);
+        window.setTimeout("enableButton('" + window.event.srcElement.id + "')", 1000);
+    }
+
+    function disableButton(buttonID) {
+        document.getElementById(buttonID).disabled = true;
+    }
+    function enableButton(buttonID) {
+        document.getElementById(buttonID).disabled = false;
+    }
+</script>
+
 
 <div class="OnlineForm">
     <div class="Menu_Prefix">
@@ -20,7 +35,7 @@
     <div class="SubmitPanel">      
         <asp:Label ID="Star" runat="server" ResourceKey="Star" CssClass="Star"></asp:Label>&nbsp;<asp:Label ID="LblMandatoryFields" runat="server" resourcekey="LblMandatoryFields" />
         <br />
-        <asp:Button ID="SubmitButton" runat="server" resourcekey="SubmitButton" CssClass="button" />
+        <asp:Button ID="SubmitButton" runat="server" resourcekey="SubmitButton" CssClass="button" OnClientClick="FreezeButton()"/>
     </div>
     <div class="Menu_Suffix">
         <asp:Label ID="SuffixLabel" runat="server" Text=""></asp:Label>
