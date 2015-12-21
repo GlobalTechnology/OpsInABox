@@ -35,9 +35,11 @@
 <div id="DocumentsMain" class="documents">
     <div id="SearchContainer">
         <span id="ClassicSearch" runat="server" visible="true">
-            <asp:TextBox ID="tbSearch" runat="server" EnableViewState="False" CssClass="NormalTextBox" MaxLength="255"></asp:TextBox>
+            <asp:Panel ID="PanelSearch" runat="server" DefaultButton="lbSearchNew">
+                <asp:TextBox ID="tbSearch" runat="server" EnableViewState="False" CssClass="NormalTextBox" MaxLength="255"></asp:TextBox>
 <%--            <a class="dnnSearchBoxClearText"></a>--%>
-            <asp:LinkButton ID="lbSearchNew" runat="server" CssClass="SearchNew" OnClick="lbSearchNew_OnClick"></asp:LinkButton>
+                <asp:LinkButton ID="lbSearchNew" runat="server" CssClass="SearchNew" OnClick="SearchNew_OnClick"></asp:LinkButton>
+            </asp:Panel>
         </span>
     </div>
     <asp:UpdatePanel ID="upFolderView" runat="server">
