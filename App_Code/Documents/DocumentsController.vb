@@ -443,6 +443,20 @@ Public Class DocumentsController
 
 #Region "Search implementation"
 
+    Public Shared Function CleanString(ByVal inputString As String) As String
+        'Remove newlines, carriage returns, extra spaces and tabs
+        Dim noExtraWhiteSpace As String = Regex.Replace(inputString, "\s+", " ")
+
+        'Remove all nonalphanumberic character except dash and space
+        Dim tempArr() As Char = noExtraWhiteSpace.Where(Function(c)
+                                                            Return (Char.IsLetterOrDigit(c) Or c = "-" Or c = " ")
+                                                        End Function).ToArray
+
+        Return New String(tempArr)
+    End Function
+
+
+
     'Needed so that resources can be searchable
     'Public Overrides Function GetModifiedSearchDocuments(moduleInfo As ModuleInfo, beginDateUtc As Date) As IList(Of Entities.SearchDocument)
 

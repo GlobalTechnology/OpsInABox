@@ -104,7 +104,10 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             LoadDocuments()
         End Sub
 
-        Protected Sub lbSearchNew_OnClick(sender As Object, e As System.EventArgs)
+        Protected Sub SearchNew_OnClick(sender As Object, e As System.EventArgs)
+            tbSearch.Text = DocumentsController.CleanString(tbSearch.Text)
+
+
 
         End Sub
 
