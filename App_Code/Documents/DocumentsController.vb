@@ -455,17 +455,18 @@ Public Class DocumentsController
         Return New String(tempArr)
     End Function
 
-    Public Shared Function SizeString(ByVal inputString As String, ByVal minSize As Integer) As String
-        Dim parts As String() = inputString.Split(New Char() {" "})
-        Dim tempString As String = ""
+    'Cuts the string into a list of words that are at least a minimum size
+    Public Shared Function CutString(ByVal inputString As String, ByVal minSize As Integer) As String()
+        Dim words As String() = inputString.Split(New Char() {" "})
+        Dim wordList As List(Of String) = New List(Of String)
 
-        For Each part In parts
-            If (part.Length >= minSize) Then
-                tempString = tempString & " " & part
+        For Each word In words
+            If (word.Length >= minSize) Then
+                wordList.Add(word)
             End If
         Next
 
-        Return tempString
+        Return wordList.ToArray
     End Function
 
 

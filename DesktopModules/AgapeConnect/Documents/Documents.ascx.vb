@@ -107,10 +107,45 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Protected Sub SearchNew_OnClick(sender As Object, e As System.EventArgs)
             Dim cleanString As String = DocumentsController.CleanString(tbSearch.Text)
 
-            ' remove all words < 3 characters
-            cleanString = DocumentsController.SizeString(cleanString, 3)
+            Dim wordsToMatch() As String = DocumentsController.CutString(cleanString, 3)
 
-            tbSearch.Text = cleanString
+
+            Dim folderId As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
+            Dim docs = DocumentsController.GetDocuments(folderId, False, False) 'Get no trashed docs
+
+            Dim titlesAndDescriptions As New Dictionary(Of Integer, String())
+
+            For Each doc In docs
+
+                Dim titleArray As String() = doc.DisplayName.Split(New Char() {" ", ",", ".", ";", ":"},
+                                                        StringSplitOptions.RemoveEmptyEntries)
+
+                Dim descriptionArray As String() = doc.Description.Split(New Char() {" ", ",", ".", ";", ":"},
+                                                       StringSplitOptions.RemoveEmptyEntries)
+
+                titlesAndDescriptions.Add(doc.DocId, titleArray.Union(descriptionArray).ToArray)
+                AgapeLogger.Info(UserId, "titlesAndDescriptions " & titlesAndDescriptions.Last.Value.ToString)
+            Next
+
+            AgapeLogger.Info(UserId, "Count titlesAndDescriptions " & titlesAndDescriptions.Count)
+
+            Dim query = From titleAndDescription In titlesAndDescriptions
+                        Where titleAndDescription.Value.Distinct().Intersect(wordsToMatch.Distinct).Count =
+                        wordsToMatch.Distinct.Count
+                        Select titleAndDescription.Key
+
+            Dim searchStringDocuments As List(Of AP_Documents_Doc) = New List(Of AP_Documents_Doc)
+
+            For Each key In query
+                searchStringDocuments.Add(DocumentsController.GetDocument(key))
+            Next
+
+            AgapeLogger.Info(UserId, "Count searchStringDocuments " & searchStringDocuments.Count)
+
+            dlFolderView.DataSource = searchStringDocuments
+            dlFolderView.DataBind()
+
+            tbSearch.Text = String.Join(" ", wordsToMatch)
         End Sub
 
 #Region "Optional Interfaces"
