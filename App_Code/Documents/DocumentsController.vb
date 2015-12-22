@@ -447,15 +447,15 @@ Public Class DocumentsController
         'Remove newlines, carriage returns, extra spaces and tabs
         Dim noExtraWhiteSpace As String = Regex.Replace(inputString, "\s+", " ")
 
-        'Remove all nonalphanumberic character except dash and space
+        'Remove all nonalphanumberic character except dash, apostrophe and space
         Dim tempArr() As Char = noExtraWhiteSpace.Where(Function(c)
-                                                            Return (Char.IsLetterOrDigit(c) Or c = "-" Or c = " ")
+                                                            Return (Char.IsLetterOrDigit(c) Or c = "-" Or c = " " Or c = "'")
                                                         End Function).ToArray
 
         Return New String(tempArr)
     End Function
 
-    'Cuts the string into a list of words that are at least a minimum size
+    'Cuts the string into a list of distinct words that are of a minimum size
     Public Shared Function CutString(ByVal inputString As String, ByVal minSize As Integer) As String()
         Dim words As String() = inputString.Split(New Char() {" "})
         Dim wordList As List(Of String) = New List(Of String)
@@ -466,9 +466,37 @@ Public Class DocumentsController
             End If
         Next
 
-        Return wordList.ToArray
+        Return wordList.Distinct(StringComparer.InvariantCultureIgnoreCase).ToArray
     End Function
 
+    Public Shared Function GetSearchDocuments(ByVal wordsToMatch As String(), ByVal minSize As Integer, ByVal TabModuleId As Integer) As IQueryable(Of AP_Documents_Doc)
+
+        Dim folderId As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
+        Dim docs = DocumentsController.GetDocuments(folderId, False, False)
+
+        Dim titlesAndDescriptions As New Dictionary(Of Integer, String())
+
+        For Each doc In docs
+            Dim titleArray As String() = DocumentsController.CutString(DocumentsController.CleanString(doc.DisplayName), minSize)
+
+            Dim descriptionArray As String() = DocumentsController.CutString(DocumentsController.CleanString(doc.Description), minSize)
+
+            titlesAndDescriptions.Add(doc.DocId, titleArray.Union(descriptionArray).ToArray)
+        Next
+
+        Dim query = From titleAndDescription In titlesAndDescriptions
+                    Where titleAndDescription.Value.Distinct().Intersect(wordsToMatch, StringComparer.InvariantCultureIgnoreCase).Count =
+                    wordsToMatch.Count
+                    Select titleAndDescription.Key
+
+        Dim searchDocuments As List(Of AP_Documents_Doc) = New List(Of AP_Documents_Doc)
+
+        For Each key In query
+            searchDocuments.Add(DocumentsController.GetDocument(key))
+        Next
+
+        Return searchDocuments.AsQueryable
+    End Function
 
     'Needed so that resources can be searchable
     'Public Overrides Function GetModifiedSearchDocuments(moduleInfo As ModuleInfo, beginDateUtc As Date) As IList(Of Entities.SearchDocument)
