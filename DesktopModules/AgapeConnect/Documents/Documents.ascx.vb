@@ -105,10 +105,12 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         End Sub
 
         Protected Sub SearchNew_OnClick(sender As Object, e As System.EventArgs)
-            tbSearch.Text = DocumentsController.CleanString(tbSearch.Text)
+            Dim cleanString As String = DocumentsController.CleanString(tbSearch.Text)
 
+            ' remove all words < 3 characters
+            cleanString = DocumentsController.SizeString(cleanString, 3)
 
-
+            tbSearch.Text = cleanString
         End Sub
 
 #Region "Optional Interfaces"
