@@ -443,11 +443,12 @@ Public Class DocumentsController
 
 #Region "Search implementation"
 
+    'Cleans a string by analysing each character
     Public Shared Function CleanString(ByVal inputString As String) As String
         'Remove newlines, carriage returns, extra spaces and tabs
         Dim noExtraWhiteSpace As String = Regex.Replace(inputString, "\s+", " ")
 
-        'Remove all nonalphanumberic character except dash, apostrophe and space
+        'Remove all nonalphanumberic characters except dash, apostrophe and space
         Dim tempArr() As Char = noExtraWhiteSpace.Where(Function(c)
                                                             Return (Char.IsLetterOrDigit(c) Or c = "-" Or c = " " Or c = "'")
                                                         End Function).ToArray
