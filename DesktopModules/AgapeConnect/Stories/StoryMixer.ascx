@@ -54,7 +54,7 @@
             change: function (event, ui) {$("#<%= hfRecent.ClientId %>").val(ui.value);}
         });
         $("#numberOfStories").slider({
-            value: <%= hfNumberOfStories.value %>,
+            value: $("#<%= hfNumberOfStories.ClientId %>").val(),
             orientation: "horizontal",
             range: "min",
             animate: true,
