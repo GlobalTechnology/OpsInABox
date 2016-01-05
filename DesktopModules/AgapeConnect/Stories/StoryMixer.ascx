@@ -66,7 +66,7 @@
                  $("#<%= hfNumberOfStories.ClientId %>").val( ui.value);
             }
         });
-        //$("#numberOfStories").slider('refresh');
+
         $("#<%= lblNumberOfStories.ClientId %>").html($("#numberOfStories").slider("value"));
       
          $("#<%= tbLocation.ClientId %>").locationPicker();
