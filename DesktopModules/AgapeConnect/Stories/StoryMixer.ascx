@@ -33,21 +33,21 @@
         $('.aButton').button();
         $('.scroll-pane').jScrollPane();
         $("#popular").slider({
-             value: <%= hfPopular.value %>,
+             value: $("#<%= hfPopular.ClientId %>").val(),
             orientation: "vertical",
             range: "min",
             animate: true,
             change: function (event, ui) {$("#<%= hfPopular.ClientId %>").val(ui.value);}
         });
          $("#regional").slider({
-             value: <%= hfRegional.value %>,
+             value: $("#<%= hfRegional.ClientId %>").val(),
             orientation: "vertical",
             range: "min",
             animate: true,
             change: function (event, ui) {$("#<%= hfRegional.ClientId %>").val(ui.value);}
         });
          $("#recent").slider({
-             value: <%= hfRecent.value %>,
+             value: $("#<%= hfRecent.ClientId %>").val(),
             orientation: "vertical",
             range: "min",
             animate: true,
