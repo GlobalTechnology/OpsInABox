@@ -20,24 +20,16 @@
             $('.aGoogleButton').button({ icons: { primary: "ui-icon-pencil" } }).css('background-image', "url('/DesktopModules/AgapeConnect/Translate/images/googleLogo.png')")
                .css('background-repeat', 'no-repeat').css('width', '40px').css('height', '40px');
 
-
             window.setInterval(saveDraft, 10000);
 
         }
-
-
 
         $(document).ready(function () {
             setUpMyTabs();
             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
                 setUpMyTabs();
-
             });
-
-
         });
-
-
 
         function saveDraft() {
 
@@ -56,7 +48,6 @@
                         $('[tagkey$="' + s + '"]').each(function () {
                             $(this).val(t)
                             data += $(this).attr("TagKey") + "::" + t + ";;";
-
                         });
                     }
                 }
@@ -75,7 +66,6 @@
                             $('#<%= lblSaveStatus.ClientId() %>').html("Saved");
                             $('#<%= lblSaveStatus.ClientId() %>').css('color', 'Green');
                         }
-
 
                     },
                     error: function (response) {
@@ -98,9 +88,6 @@
         $('#<%= lblSaveStatus.ClientId() %>').css('color', 'Gray');
     }
 
-
-
-
     function bingTranslate(text, foreignName) {
         var from = "en"
         var to = $('#<%= ddlLanguages.ClientId() %>').val().substring(0, 2);
@@ -108,7 +95,6 @@
         $(".waitingForBing").each(function (index) {
             $(this).removeClass("waitingForBing");
         });
-
 
         $('.foreign').each(function (index) {
 
@@ -123,9 +109,6 @@
         var s = document.createElement("script");
         s.src = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyBCSoev7-yyoFLIBOcsnbJqcNifaLwOnPc&source=' + from + '&target=' + to + '&callback=mycallback&q=' + encodeURIComponent(text);
 
-
-
-
         //        s.src = "http://api.microsofttranslator.com/V2/Ajax.svc/Translate" +
         //                "?appId=Bearer " + encodeURIComponent($('#<%= hfBingToken.ClientID  %>').attr('value')) +
         //                "&from=" + encodeURIComponent(from) +
@@ -135,9 +118,6 @@
         document.body.appendChild(s);
 
     }
-
-   
-
 
     function mycallback(response) {
         $(".waitingForBing").each(function (index) {
