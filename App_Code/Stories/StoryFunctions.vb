@@ -191,6 +191,30 @@ Public Class StoryFunctions
         Return (From c In d.AP_Stories_Modules Where c.TabModuleId = TabModuleId).First
     End Function
 
+    Public Shared Function GetTabModuleId(ByVal ChannelTitle As String) As Integer
+        Dim d As New Stories.StoriesDataContext
+        Try
+            Dim smid = (From c In d.AP_Stories_Module_Channels Where c.ChannelTitle = ChannelTitle).First.StoryModuleId
+            Return (From c In d.AP_Stories_Modules Where c.StoryModuleId = smid).First.TabModuleId
+
+        Catch
+            Return -1
+        End Try
+    End Function
+
+    Public Shared Function getChannelTitle(ByVal TabModuleId As Integer) As String
+        Dim d As New Stories.StoriesDataContext
+        Try
+            Dim smid = (From c In d.AP_Stories_Modules Where c.TabModuleId = TabModuleId).First.StoryModuleId
+
+            Return (From c In d.AP_Stories_Module_Channels Where c.StoryModuleId = smid).First.ChannelTitle
+
+        Catch ex As Exception
+            Return ""
+        End Try
+
+    End Function
+
     Public Shared Function AddLocalChannel(ByVal tabModuleId As Integer, ByVal PortalAlias As String, ByVal Name As String, ByVal Longitude As Double, ByVal Latitude As Double, ByVal logo As String) As Integer
         Dim theModule = GetStoryModule(tabModuleId)
 
