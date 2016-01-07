@@ -20,6 +20,10 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
         If Not String.IsNullOrEmpty(Request.QueryString("channel")) Then
             Stories = From c In d.AP_Stories Where c.PortalID = PS.PortalId And c.IsVisible = True And c.TabModuleId = CInt(Request.QueryString("channel"))
                       Order By c.StoryDate Descending
+
+        ElseIf Not String.IsNullOrEmpty(Request.QueryString("name")) Then
+            Stories = From c In d.AP_Stories Where c.PortalID = PS.PortalId And c.IsVisible = True And c.TabModuleId = StoryFunctions.GetTabModuleId(Request.QueryString("name"))
+                      Order By c.StoryDate Descending
         Else
             Stories = From c In d.AP_Stories Where c.PortalID = PS.PortalId And c.IsVisible = True
                       Order By c.StoryDate Descending
@@ -29,9 +33,13 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
 
         Response.ContentType = "application/rss+xml"
         Dim myFeed As New SyndicationFeed()
+        Dim channeltitle = ""
+        If Stories.Count > 0 Then
+            channeltitle = StoryFunctions.getChannelTitle(Stories.First.TabModuleId)
+        End If
 
-        myFeed.Title = TextSyndicationContent.CreatePlaintextContent(TabController.CurrentPage.TabName)
-        myFeed.Description = TextSyndicationContent.CreatePlaintextContent(PS.PortalName & "/" & TabController.CurrentPage.TabName)
+        myFeed.Title = TextSyndicationContent.CreatePlaintextContent(channeltitle)
+        myFeed.Description = TextSyndicationContent.CreatePlaintextContent(PS.PortalName & "/" & channeltitle)
         myFeed.Links.Add(SyndicationLink.CreateAlternateLink(New Uri(NavigateURL().Replace("http://", "https://"))))
         myFeed.Links.Add(SyndicationLink.CreateSelfLink(New Uri(NavigateURL(x.TabID).Replace("http://", "https://"))))
         myFeed.Copyright = SyndicationContent.CreatePlaintextContent("Copyright " & PS.PortalName)
@@ -106,10 +114,6 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
 
             insert.Id = row.StoryId
 
-
-
-
-
         Next
 
         myFeed.Items = myList
@@ -118,16 +122,8 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
 
         Dim rssFormatter As New System.ServiceModel.Syndication.Rss20FeedFormatter(myFeed)
 
-
         rssFormatter.WriteTo(feedWriter)
         feedWriter.Close()
-
-
-
-
-
-
-
 
     End Sub
 End Class
