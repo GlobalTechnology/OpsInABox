@@ -45,7 +45,7 @@ Namespace DotNetNuke.Modules.AgapeConnect
                         Dim splitItem = item.Trim(";").Split(New String() {"::"}, StringSplitOptions.None)
                         Dim FileName = splitItem(0).Trim(":")
                         Dim KeyName = splitItem(1).Trim(":")
-                        Dim Value = splitItem(2).Trim(":")
+                        Dim Value = splitItem(2)
 
                         SaveTranslation(FileName, KeyName, Value)
                        
