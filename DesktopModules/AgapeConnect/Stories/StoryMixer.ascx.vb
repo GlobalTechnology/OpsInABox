@@ -69,10 +69,8 @@ Namespace DotNetNuke.Modules.Stories
             hfLoadVolumes.Value = volumes
 
             If CType(TabModuleSettings("NumberOfStories"), String) <> "" Then
-                lblNumberOfStories.Text = CType(TabModuleSettings("NumberOfStories"), Integer)
-                hfNumberOfStories.Value = lblNumberOfStories.Text
+                hfNumberOfStories.Value = CType(TabModuleSettings("NumberOfStories"), Integer)
             Else
-                lblNumberOfStories.Text = 20
                 hfNumberOfStories.Value = 20
                 objModules.UpdateTabModuleSetting(TabModuleId, "NumberOfStories", 20)
                 newSettings = True
