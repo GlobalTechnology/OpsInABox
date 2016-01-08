@@ -21,6 +21,10 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         End Sub
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+            tbSearch.ToolTip = LocalizeString("tbWatermark")
+            tbSearch.Attributes.Add("onchange", "initWatermark()")
+
             If Not IsPostBack Then
                 Dim folderId As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
                 'dlFolderView.DataSource = DocumentsController.GetDocuments(folderId, False, False) 'Get no trashed docs
@@ -31,7 +35,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Protected Sub LoadDocuments(ByRef documentsToLoad As IQueryable(Of AP_Documents_Doc))
             'Dim folderId As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
             'dlFolderView.DataSource = DocumentsController.GetDocuments(folderId, False, False) 'Get no trashed docs
-            AgapeLogger.Info(UserId, "documentsToLoad.Count " & documentsToLoad.Count)
+
             dlFolderView.DataSource = documentsToLoad
             dlFolderView.DataBind()
         End Sub
@@ -112,18 +116,14 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Protected Sub SearchNew_OnClick(sender As Object, e As System.EventArgs)
             Dim minSize As Integer = 3
 
-            Dim wordsToMatch() As String = DocumentsController.CutString(DocumentsController.CleanString(tbSearch.Text), minSize)
-
-            AgapeLogger.Info(UserId, "wordsToMatch.Count " & wordsToMatch.Count)
+            Dim wordsToMatch As List(Of String) =
+                DocumentsController.CutString(DocumentsController.CleanString(tbSearch.Text), minSize)
 
             Dim searchDocuments As IQueryable(Of AP_Documents_Doc) =
                 DocumentsController.GetSearchDocuments(wordsToMatch, minSize, TabModuleId)
 
-            AgapeLogger.Info(UserId, "searchStringDocuments.Count " & searchDocuments.Count)
-
             tbSearch.Text = String.Join(" ", wordsToMatch)
             LoadDocuments(searchDocuments)
-
         End Sub
 
 #Region "Optional Interfaces"

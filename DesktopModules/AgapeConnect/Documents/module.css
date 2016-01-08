@@ -205,17 +205,17 @@
 
 /*DocumentsMain Search*/
 
-#DocumentsMain #SearchContainer .SearchNew {
+#DocumentsMain #SearchRessource .SearchNew {
     vertical-align: middle;
 }
 
-#DocumentsMain #SearchContainer {
+#DocumentsMain #SearchRessource {
     margin-bottom: 10px;
     text-align: center;
 }
 
 
-#DocumentsMain #SearchContainer input {
+#DocumentsMain #SearchRessource input {
 	-webkit-border-radius: .5em 0 0 .5em;
     -moz-border-radius: .5em 0 0 .5em;
     border-radius: .5em 0 0 .5em;

@@ -457,7 +457,7 @@ Public Class DocumentsController
     End Function
 
     'Cuts the string into a list of distinct words that are of a minimum size
-    Public Shared Function CutString(ByVal inputString As String, ByVal minSize As Integer) As String()
+    Public Shared Function CutString(ByVal inputString As String, ByVal minSize As Integer) As List(Of String)
         Dim words As String() = inputString.Split(New Char() {" "})
         Dim wordList As List(Of String) = New List(Of String)
 
@@ -467,33 +467,33 @@ Public Class DocumentsController
             End If
         Next
 
-        Return wordList.Distinct(StringComparer.InvariantCultureIgnoreCase).ToArray
+        Return wordList.Distinct(StringComparer.InvariantCultureIgnoreCase).ToList
     End Function
 
-    Public Shared Function GetSearchDocuments(ByVal wordsToMatch As String(), ByVal minSize As Integer, ByVal TabModuleId As Integer) As IQueryable(Of AP_Documents_Doc)
+    'Finds documents containing ALL the wordsToMatch within the documents title and description fields
+    Public Shared Function GetSearchDocuments(ByVal wordsToMatch As List(Of String), ByVal minSize As Integer, ByVal TabModuleId As Integer) As IQueryable(Of AP_Documents_Doc)
 
         Dim folderId As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
         Dim docs = DocumentsController.GetDocuments(folderId, False, False)
 
-        Dim titlesAndDescriptions As New Dictionary(Of Integer, String())
-
-        For Each doc In docs
-            Dim titleArray As String() = DocumentsController.CutString(DocumentsController.CleanString(doc.DisplayName), minSize)
-
-            Dim descriptionArray As String() = DocumentsController.CutString(DocumentsController.CleanString(doc.Description), minSize)
-
-            titlesAndDescriptions.Add(doc.DocId, titleArray.Union(descriptionArray).ToArray)
-        Next
-
-        Dim query = From titleAndDescription In titlesAndDescriptions
-                    Where titleAndDescription.Value.Distinct().Intersect(wordsToMatch, StringComparer.InvariantCultureIgnoreCase).Count =
-                    wordsToMatch.Count
-                    Select titleAndDescription.Key
-
+        ' Dim titlesAndDescriptions As New Dictionary(Of Integer, String)
         Dim searchDocuments As List(Of AP_Documents_Doc) = New List(Of AP_Documents_Doc)
 
-        For Each key In query
-            searchDocuments.Add(DocumentsController.GetDocument(key))
+        Dim titlesAndDescriptions As Dictionary(Of Long, String) =
+            docs.ToDictionary(Function(doc) doc.DocId, _
+                              Function(doc) DocumentsController.CleanString(doc.DisplayName) & " " _
+                                  & DocumentsController.CleanString(doc.Description))
+
+        For Each titleAndDescription In titlesAndDescriptions
+
+            Dim matches As IEnumerable(Of String) = From word In wordsToMatch
+                        Where GetAccentless(titleAndDescription.Value) _
+                            .IndexOf(GetAccentless(word), 0, StringComparison.InvariantCultureIgnoreCase) > -1
+                        Select word
+
+            If matches.Count = wordsToMatch.Count Then
+                searchDocuments.Add(DocumentsController.GetDocument(titleAndDescription.Key))
+            End If
         Next
 
         Return searchDocuments.AsQueryable
@@ -571,6 +571,13 @@ Public Class DocumentsController
         'Return user.IsSuperUser Or user.IsInRole("Administrators") Or user.IsInRole("Staff")
         Return True 'Access to ViewDocument and DownloadDocument is already restricted depending on the module access permissions.
 
+    End Function
+
+    'Removes accents from the string value
+    Private Shared Function GetAccentless(value As String) As String
+        Return New String(value.Normalize(NormalizationForm.FormD) _
+                               .Where(Function(c) CharUnicodeInfo.GetUnicodeCategory(c) <> _
+                                                  UnicodeCategory.NonSpacingMark).ToArray())
     End Function
 
 #End Region 'Helper functions
