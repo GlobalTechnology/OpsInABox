@@ -144,4 +144,7 @@
   <data name="lblNoResource.Text" xml:space="preserve">
     <value>No resource.</value>
   </data>
+  <data name="tbWatermark.Text" xml:space="preserve">
+    <value>Search for resources</value>
+  </data>
 </root>
