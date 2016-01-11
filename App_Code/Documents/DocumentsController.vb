@@ -448,6 +448,9 @@ Public Class DocumentsController
         'Remove newlines, carriage returns, extra spaces and tabs
         Dim noExtraWhiteSpace As String = Regex.Replace(inputString, "\s+", " ")
 
+        'Remove periods and replace with spaces
+        noExtraWhiteSpace = Regex.Replace(noExtraWhiteSpace, "[.]", " ")
+
         'Remove all nonalphanumberic characters except dash, apostrophe and space
         Dim tempArr() As Char = noExtraWhiteSpace.Where(Function(c)
                                                             Return (Char.IsLetterOrDigit(c) Or c = "-" Or c = " " Or c = "'")
