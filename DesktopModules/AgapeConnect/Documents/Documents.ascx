@@ -4,16 +4,27 @@
 <%@ Register Assembly="DotNetNuke" Namespace="DotNetNuke.UI.WebControls" TagPrefix="cc1" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
-<dnn:DnnJsInclude runat="server" FilePath="~/js/WaterMark.min.js" />
+<dnn:DnnJsInclude runat="server" FilePath="~/js/watermark.js" />
 <script>
     // watermark in the ressources search textbox
     function initWatermark() {
         $(function () {
+            var watermark = '<%=LocalizeString("tbWatermark")%>'
             var tbSearch = $('#<%=tbSearch.ClientID%>');
-            if(tbSearch.val().length == 0) {
-                tbSearch.WaterMark();
-            }
-        });
+            // first time
+            if (tbSearch.val().length == 0)
+                tbSearch.val(watermark).addClass('watermark');
+            // when not in focus and no text in textbox
+            tbSearch.blur(function () {
+                if (tbSearch.val().length == 0)
+                    tbSearch.val(watermark).addClass('watermark');
+            });
+            // when in focus and text in textbox is watermark 
+            tbSearch.focus(function () {
+                if (tbSearch.val() == watermark)
+                    tbSearch.val('').removeClass('watermark');
+            });
+        })
     }
 
     function setUpMyModule() {

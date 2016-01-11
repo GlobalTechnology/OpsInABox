@@ -22,9 +22,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-            tbSearch.ToolTip = LocalizeString("tbWatermark")
-            tbSearch.Attributes.Add("onchange", "initWatermark()")
-
             If Not IsPostBack Then
                 Dim folderId As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
                 'dlFolderView.DataSource = DocumentsController.GetDocuments(folderId, False, False) 'Get no trashed docs
