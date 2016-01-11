@@ -11,6 +11,7 @@
         $(function () {
             var watermark = '<%=LocalizeString("tbWatermark")%>'
             var tbSearch = $('#<%=tbSearch.ClientID%>');
+            var btnLoupe = $('#<%=lbSearchNew.ClientID%>');
             // first time
             if (tbSearch.val().length == 0)
                 tbSearch.val(watermark).addClass('watermark');
@@ -21,6 +22,11 @@
             });
             // when in focus and text in textbox is watermark 
             tbSearch.focus(function () {
+                if (tbSearch.val() == watermark)
+                    tbSearch.val('').removeClass('watermark');
+            });
+            // prevents from using the watermark as search text when loupe is pressed
+            btnLoupe.click(function () {
                 if (tbSearch.val() == watermark)
                     tbSearch.val('').removeClass('watermark');
             });
