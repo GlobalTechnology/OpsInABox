@@ -86,7 +86,7 @@ REM SETUP THE MODULE INSTALLERS
 
 
 REM FINALLY Modify the Web. Config with the CodeSubDirectories
-powershell -file InstallScripts\replace.ps1 -webConfig %var%web.config
+REM powershell -file InstallScripts\replace.ps1 -webConfig %var%web.config
 
 
 echo complete. Press any key to exit.
