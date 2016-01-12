@@ -3,81 +3,61 @@
 <link href="/js/jquery.Jcrop.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 
-        function setUpMyTabs<%= NewImage.ClientId() %>() {
-            $('#<%= NewImage.ClientId() %>').dialog({
+    function setUpMyTabs<%= NewImage.ClientId() %>() {
+        $('#<%= NewImage.ClientId() %>').dialog({
                 autoOpen: false,
                 modal: true,
                 title: "<%=LocalizeString("lblUploadNewImage") %>"
             });
-
             $('#<%= NewImage.ClientId() %>').parent().appendTo($("form:first"));
-
             $('#<%= theImage.ClientId() %>').Jcrop({
-            onChange:  updateHFs<%= theImage.ClientId() %>,
-        onSelect:  updateHFs<%= theImage.ClientId() %>,
-        aspectRatio: <%= Aspect %>
-        }, function(){
-        // Use the API to get the real image size
-        var bounds = this.getBounds();
-        boundx = bounds[0];
-        boundy = bounds[1];
-        // Store the API in the jcrop_api variable
-        jcrop_api = this;
-      
-      });
-
-       $('.aButton').button();
-         
-         $('#<%= FileUpload1.ClientId() %>').change(function() {
-
-    var val = $(this).val();
-
-    switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
-        case 'gif': case 'jpg': case 'png': case 'jpeg':
-             $('#<%= btnUpload.ClientId() %>').button("enable"); 
+                onChange:  updateHFs<%= theImage.ClientId() %>,
+                onSelect:  updateHFs<%= theImage.ClientId() %>,
+                aspectRatio: <%= Aspect %>
+                }, function(){
+                    // Use the API to get the real image size
+                    var bounds = this.getBounds();
+                    boundx = bounds[0];
+                    boundy = bounds[1];
+                    // Store the API in the jcrop_api variable
+                    jcrop_api = this;
+                });
+            $('.aButton').button();
+            $('#<%= FileUpload1.ClientId() %>').change(function() {
+           var val = $(this).val();
+           switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+               case 'gif': case 'jpg': case 'png': case 'jpeg':
+                   $('#<%= btnUpload.ClientId() %>').button("enable"); 
             break;
         default:
             $(this).val('');
             $('#<%= btnUpload.ClientId() %>').button("disable"); 
             break;
     }
-});
-        }
-
-        $(document).ready(function () {
-            setUpMyTabs<%= NewImage.ClientId() %>();
+         });
+}
+$(document).ready(function () {
+    setUpMyTabs<%= NewImage.ClientId() %>();
             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
                 setUpMyTabs<%= NewImage.ClientId() %>();
-               
             });
         });
-
-
-    function showPopup<%= NewImage.ClientId %>() { $(<%= NewImage.ClientId %>).dialog("open"); return false; }
+        function showPopup<%= NewImage.ClientId %>() { $(<%= NewImage.ClientId %>).dialog("open"); return false; }
     function closePopup<%= NewImage.ClientId %>() { $(<%= NewImage.ClientId %>).dialog("close"); }
-     
-   
-     
-     function updateHFs<%= theImage.ClientId() %>(c)
-      {
-
+    function updateHFs<%= theImage.ClientId() %>(c)
+    {
         if (parseInt(c.w) > 0)
         {
-          // var rx = 100 / c.w;
-          //var ry = 100 / c.h;
-
-          $('#<%= hfX.ClientID  %>').val(c.x);
-          $('#<%= hfY.ClientID  %>').val(c.y);
-          $('#<%= hfW.ClientID  %>').val(c.w);
-          $('#<%= hfH.ClientID  %>').val(c.h);
-        
-
-        
+            // var rx = 100 / c.w;
+            //var ry = 100 / c.h;
+            $('#<%= hfX.ClientID  %>').val(c.x);
+            $('#<%= hfY.ClientID  %>').val(c.y);
+            $('#<%= hfW.ClientID  %>').val(c.w);
+            $('#<%= hfH.ClientID  %>').val(c.h);
         }
         return 
-      };
-
-  </script>
+    };
+</script>
 <asp:HiddenField ID="hfFileId" runat="server" />
 <asp:HiddenField ID="hfX" runat="server" />
 <asp:HiddenField ID="hfY" runat="server" />
