@@ -2,7 +2,7 @@
 <script src="/js/jquery.Jcrop.js" type="text/javascript"></script>
 <link href="/js/jquery.Jcrop.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-    (function ($, Sys) {
+
         function setUpMyTabs<%= NewImage.ClientId() %>() {
             $('#<%= NewImage.ClientId() %>').dialog({
                 autoOpen: false,
@@ -51,7 +51,7 @@
                
             });
         });
-    } (jQuery, window.Sys));
+
 
     function showPopup<%= NewImage.ClientId %>() { $(<%= NewImage.ClientId %>).dialog("open"); return false; }
     function closePopup<%= NewImage.ClientId %>() { $(<%= NewImage.ClientId %>).dialog("close"); }

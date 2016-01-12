@@ -25,9 +25,9 @@
             width: 650,
             modal: true,
             title: "Add New Channel",
-            close: function () {
-                allFields.val("").removeClass("ui-state-error");
-            }
+            //close: function () {
+            //    allFields.val("").removeClass("ui-state-error");
+            //}
         });
         $("#AddChannel").parent().appendTo($("form:first"));
         $('.aButton').button();
