@@ -221,7 +221,6 @@
     border-radius: .5em 0 0 .5em;
 	border-style: none;
 	margin: 0px;
-	color: #b3b3b3;
 	font-family: 'OpenSansItalic';
     height: 26.5px;
 	padding-left: 8px;
@@ -245,6 +244,14 @@
 
 #DocumentsMain .SearchNew:hover {
 	background-color: #ABACAE;
+}
+
+#DocumentsMain #SearchRessource input.watermark, textarea.watermark { 
+    color: #b3b3b3;
+}
+
+#DocumentsMain #SearchRessource input, textarea { 
+    color: #5f5f5f;
 }
 
 /*DocumentsMain Search End*/

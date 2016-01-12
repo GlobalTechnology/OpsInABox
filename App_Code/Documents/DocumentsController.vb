@@ -445,18 +445,22 @@ Public Class DocumentsController
 
     'Cleans a string by analysing each character
     Public Shared Function CleanString(ByVal inputString As String) As String
-        'Remove newlines, carriage returns, extra spaces and tabs
-        Dim noExtraWhiteSpace As String = Regex.Replace(inputString, "\s+", " ")
 
-        'Remove periods and replace with spaces
-        noExtraWhiteSpace = Regex.Replace(noExtraWhiteSpace, "[.]", " ")
+        If (inputString <> "") Then
+            'Remove newlines, carriage returns, extra spaces and tabs
+            Dim noExtraWhiteSpace As String = Regex.Replace(inputString, "\s+", " ")
 
-        'Remove all nonalphanumberic characters except dash, apostrophe and space
-        Dim tempArr() As Char = noExtraWhiteSpace.Where(Function(c)
-                                                            Return (Char.IsLetterOrDigit(c) Or c = "-" Or c = " " Or c = "'")
-                                                        End Function).ToArray
+            'Remove periods and replace with spaces
+            noExtraWhiteSpace = Replace(noExtraWhiteSpace, ".", " ")
 
-        Return New String(tempArr)
+            'Remove all nonalphanumberic characters except dash, apostrophe and space
+            Dim tempArr() As Char = noExtraWhiteSpace.Where(Function(c)
+                                                                Return (Char.IsLetterOrDigit(c) Or c = "-" Or c = " " Or c = "'")
+                                                            End Function).ToArray
+            inputString = New String(tempArr)
+        End If
+
+        Return inputString
     End Function
 
     'Cuts the string into a list of distinct words that are of a minimum size

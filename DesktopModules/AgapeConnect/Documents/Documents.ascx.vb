@@ -11,8 +11,11 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 #Region "Constants"
         'Command names for actions event handlers
         Private Const DELETE_DOC_COMMAND_NAME As String = "DeleteDoc"
+        Private Const MIN_SIZE_SEARCH_STRING As Integer = 3
 
 #End Region 'Constants
+
+#Region "Page events"
 
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             ' Register DNN Jquery plugins
@@ -24,15 +27,50 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
             If Not IsPostBack Then
                 Dim folderId As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
-                'dlFolderView.DataSource = DocumentsController.GetDocuments(folderId, False, False) 'Get no trashed docs
+                'Get no trashed docs
                 LoadDocuments(DocumentsController.GetDocuments(folderId, False, False))
             End If
         End Sub
 
-        Protected Sub LoadDocuments(ByRef documentsToLoad As IQueryable(Of AP_Documents_Doc))
-            'Dim folderId As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
-            'dlFolderView.DataSource = DocumentsController.GetDocuments(folderId, False, False) 'Get no trashed docs
+        Protected Sub dlFolderView_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles dlFolderView.ItemDataBound
+            'For each resource
 
+            Dim btneditdoc As HyperLink = CType(e.Item.FindControl("btnEditDoc"), HyperLink)
+            Dim btndeletedoc As LinkButton = CType(e.Item.FindControl("btnDeleteDoc"), LinkButton)
+            Dim hyperlink1 As HyperLink = CType(e.Item.FindControl("HyperLink1"), HyperLink)
+            Dim docbuttons As HtmlGenericControl = CType(e.Item.FindControl("docButtons"), HtmlGenericControl)
+
+            'Translate the action buttons tooltips
+            btneditdoc.ToolTip = LocalizeString("btnEditDoc")
+            btndeletedoc.ToolTip = LocalizeString("btnDeleteDoc")
+
+            'Configure "Delete resource" command
+            btndeletedoc.CommandName = DELETE_DOC_COMMAND_NAME
+
+            'Show edition buttons in Edit mode
+            docbuttons.Visible = IsEditable
+        End Sub
+
+        Protected Sub dlFolderView_ItemCommand(sender As Object, e As ListViewCommandEventArgs) Handles dlFolderView.ItemCommand
+            'Handle "Delete resource" action
+            If e.CommandName = DELETE_DOC_COMMAND_NAME Then
+                DocumentsController.DeleteDocument(CType(e.CommandArgument, Integer)) 'e.CommandArgument contains the DocId
+            End If
+            AgapeLogger.Info(UserId, "tbSearch.Text = " & tbSearch.Text & "  " & "tbSearch.CssClass = " & tbSearch.CssClass)
+
+            'Reload the documents to update the list view, respecting a possible search text
+            SearchDocuments()
+        End Sub
+
+        Protected Sub SearchNew_OnClick(sender As Object, e As System.EventArgs)
+            SearchDocuments()
+        End Sub
+
+#End Region 'Page events
+
+#Region "Helper functions"
+
+        Protected Sub LoadDocuments(ByRef documentsToLoad As IQueryable(Of AP_Documents_Doc))
             dlFolderView.DataSource = documentsToLoad
             dlFolderView.DataBind()
         End Sub
@@ -80,48 +118,19 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             Return _SELF
         End Function
 
-        Protected Sub dlFolderView_ItemDataBound(sender As Object, e As ListViewItemEventArgs) Handles dlFolderView.ItemDataBound
-            'For each resource
-
-            Dim btneditdoc As HyperLink = CType(e.Item.FindControl("btnEditDoc"), HyperLink)
-            Dim btndeletedoc As LinkButton = CType(e.Item.FindControl("btnDeleteDoc"), LinkButton)
-            Dim hyperlink1 As HyperLink = CType(e.Item.FindControl("HyperLink1"), HyperLink)
-            Dim docbuttons As HtmlGenericControl = CType(e.Item.FindControl("docButtons"), HtmlGenericControl)
-
-            'Translate the action buttons tooltips
-            btneditdoc.ToolTip = LocalizeString("btnEditDoc")
-            btndeletedoc.ToolTip = LocalizeString("btnDeleteDoc")
-
-            'Configure "Delete resource" command
-            btndeletedoc.CommandName = DELETE_DOC_COMMAND_NAME
-
-            'Show edition buttons in Edit mode
-            docbuttons.Visible = IsEditable
-        End Sub
-
-        Protected Sub dlFolderView_ItemCommand(sender As Object, e As ListViewCommandEventArgs) Handles dlFolderView.ItemCommand
-            'Handle "Delete resource" action
-            If e.CommandName = DELETE_DOC_COMMAND_NAME Then
-                DocumentsController.DeleteDocument(CType(e.CommandArgument, Integer)) 'e.CommandArgument contains the DocId
-            End If
-
-            'Reload the documents to update the list view
-            Dim folderId As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
-            LoadDocuments(DocumentsController.GetDocuments(folderId, False, False))
-        End Sub
-
-        Protected Sub SearchNew_OnClick(sender As Object, e As System.EventArgs)
-            Dim minSize As Integer = 3
+        Protected Sub SearchDocuments()
 
             Dim wordsToMatch As List(Of String) =
-                DocumentsController.CutString(DocumentsController.CleanString(tbSearch.Text), minSize)
+                DocumentsController.CutString(DocumentsController.CleanString(tbSearch.Text), MIN_SIZE_SEARCH_STRING)
 
             Dim searchDocuments As IQueryable(Of AP_Documents_Doc) =
-                DocumentsController.GetSearchDocuments(wordsToMatch, minSize, TabModuleId)
+                DocumentsController.GetSearchDocuments(wordsToMatch, MIN_SIZE_SEARCH_STRING, TabModuleId)
 
             tbSearch.Text = String.Join(" ", wordsToMatch)
             LoadDocuments(searchDocuments)
         End Sub
+
+#End Region 'Helper functions
 
 #Region "Optional Interfaces"
         Public ReadOnly Property ModuleActions() As Entities.Modules.Actions.ModuleActionCollection Implements Entities.Modules.IActionable.ModuleActions
