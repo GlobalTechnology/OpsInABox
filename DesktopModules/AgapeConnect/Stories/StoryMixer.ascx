@@ -24,10 +24,7 @@
             height: 600,
             width: 650,
             modal: true,
-            title: "Add New Channel",
-            //close: function () {
-            //    allFields.val("").removeClass("ui-state-error");
-            //}
+            title: "Add New Channel"
         });
         $("#AddChannel").parent().appendTo($("form:first"));
         $('.aButton').button();
@@ -74,17 +71,16 @@
            $('.picker-search-button').css('font-size','x-small');
     }
 
-	function pageLoad() {
-		setUpMyTabs();
-		setDials();
-	}
+	//function pageLoad() {
+	//	setUpMyTabs();
+	//	setDials();
+	//}
 	
-    /*$(document).ready(function () {
+    $(document).ready(function () {
         setUpMyTabs();
-        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyTabs(); });
         setDials();
-
-    });*/
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyTabs(); setDials(); });
+    });
 
     function setDials()
     {
