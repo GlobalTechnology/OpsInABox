@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="acImage.ascx.vb" Inherits="DesktopModules_AgapePortal_StaffBroker_acImage" %>
-<script src="/js/jquery.Jcrop.js" type="text/javascript"></script>
-<link href="/js/jquery.Jcrop.css" rel="stylesheet" type="text/css" />
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+<dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.Jcrop.js" />
+<dnn:DnnCssInclude runat="server" FilePath="~/js/jquery.Jcrop.css" />
 <script type="text/javascript">
 
     function setUpMyTabs<%= NewImage.ClientId() %>() {
@@ -13,8 +14,8 @@
             $('#<%= theImage.ClientId() %>').Jcrop({
                 onChange:  updateHFs<%= theImage.ClientId() %>,
                 onSelect:  updateHFs<%= theImage.ClientId() %>,
-                aspectRatio: <%= Aspect %>
-                }, function(){
+                aspectRatio: <%= Aspect %>}, 
+                function(){
                     // Use the API to get the real image size
                     var bounds = this.getBounds();
                     boundx = bounds[0];

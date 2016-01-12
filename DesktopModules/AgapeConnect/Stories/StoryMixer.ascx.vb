@@ -462,7 +462,7 @@ Namespace DotNetNuke.Modules.Stories
                     Dim t As Type = Page.GetType()
                     Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
                     sb.Append("<script language='javascript'>")
-                    sb.Append("$(document).ready(function() { $(""#AddChannel"").dialog(""open"");});")
+                    sb.Append("$(document).ready(function() { showPopup();});")
                     sb.Append("</script>")
                     ScriptManager.RegisterStartupScript(Page, t, "thePopup2", sb.ToString, False)
 
