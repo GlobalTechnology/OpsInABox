@@ -241,13 +241,8 @@
     
     #trapezoid
     {
-        border-top: 40px solid   #999;
-        border-left: 270px inset transparent;
-        border-right: 270px inset transparent;
-      
         width: 500px;
-        margin: 0 auto ;
-        
+        margin: 0 auto;
     }
     #eq span {
 		height:120px; float:left; margin:15px;
