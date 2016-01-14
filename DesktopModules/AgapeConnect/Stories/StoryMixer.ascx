@@ -395,7 +395,8 @@
                 <asp:LinkButton ID="lbVerifyURL" CssClass="abutton" Style="margin: 5px 0px 5px 250px;" runat="server">Verify</asp:LinkButton>
                 <br />
                 <asp:Label ID="lblFeedError" runat="server" ForeColor="Red"></asp:Label>
-    <table class="SettingsTable" style="width: 600px;">
+    <div id="afterverify" runat="server">
+        <table class="SettingsTable" style="width: 600px;">
         <%--<asp:Panel ID="pnlloaded" runat="server" Visible="false">--%>
             <tr>
                 <td>
@@ -441,6 +442,7 @@
             </tr>
         <%--</asp:Panel>--%>
     </table>
+    </div>
     <div style="width: 100%; text-align: center; margin-top: 1em;">
      <asp:Button ID="btnAddChannel" runat="server" class="aButton btn" Enabled="false" Text="Add Channel"></asp:Button>
      <asp:Button ID="btnEditChannel" runat="server" class="aButton btn" visible="false" Text="Save"></asp:Button>
