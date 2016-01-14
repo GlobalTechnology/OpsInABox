@@ -294,7 +294,7 @@ Namespace DotNetNuke.Modules.Stories
                 End If
                 'icImage.Aspect = lblAspect.Text
                 icImage.LazyLoad(True)
-                pnlloaded.Visible = True
+                'pnlloaded.Visible = True
                 btnAddChannel.Enabled = True
 
                 lblFeedError.Text = ""
@@ -392,7 +392,7 @@ Namespace DotNetNuke.Modules.Stories
             tbLocation.Text = ""
             icImage.FileId = 0
             tbTitle.Text = ""
-            pnlloaded.Visible = False
+            'pnlloaded.Visible = False
             btnAddChannel.Enabled = False
 
             Dim volumes = ""
@@ -447,7 +447,7 @@ Namespace DotNetNuke.Modules.Stories
 
                     End Try
 
-                    pnlloaded.Visible = True
+                    'pnlloaded.Visible = True
                     btnAddChannel.Enabled = True
 
                     lblFeedError.Text = ""
@@ -513,7 +513,7 @@ Namespace DotNetNuke.Modules.Stories
             tbLocation.Text = ""
             icImage.FileId = 0
             tbTitle.Text = ""
-            pnlloaded.Visible = False
+            'pnlloaded.Visible = False
             btnAddChannel.Enabled = False
             btnAddChannel.Visible = True
             btnEditChannel.Visible = False
@@ -594,7 +594,7 @@ Namespace DotNetNuke.Modules.Stories
             tbLocation.Text = ""
             icImage.FileId = 0
             tbTitle.Text = ""
-            pnlloaded.Visible = False
+            'pnlloaded.Visible = False
             btnAddChannel.Enabled = False
             btnAddChannel.Visible = True
             btnEditChannel.Visible = False

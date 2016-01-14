@@ -239,13 +239,7 @@
     {
         border-style: none;
     }
-    
-    
-    #trapezoid
-    {
-        width: 500px;
-        margin: 0 auto;
-    }
+
     #eq span {
 		height:120px; float:left; margin:15px;
 	}
@@ -332,8 +326,6 @@
     </div>
     
 </asp:Panel>
-
-<div id="trapezoid" />
   
 <table cellpadding="4px" border="1" class="SettingsTable">
     <tr>
@@ -398,15 +390,10 @@
 <div id="AddChannel">
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 <ContentTemplate>
-
-
-
     <table class="SettingsTable" style="width: 600px;">
         <tr>
             <td>
-                
-                 <dnn:label ID="labelcontrol1" runat="server" Text="RSS Feed:" HelpText="Enter the URL of the RSS Feed." />
-               
+                <dnn:Label ID="labelcontrol1" runat="server" Text="RSS Feed:" HelpText="Enter the URL of the RSS Feed." />
             </td>
             <td>
                 <asp:TextBox ID="tbRssFeed" runat="server" Width="380px"></asp:TextBox>
@@ -415,58 +402,51 @@
                 <asp:Label ID="lblFeedError" runat="server" ForeColor="Red"></asp:Label>
             </td>
         </tr>
-        <asp:Panel ID="pnlloaded" runat="server" Visible="false" >
-        <tr>
-            <td>
-                <dnn:label ID="label6" runat="server" Text="Title:" HelpText="Enter the name you wish to refer to this feed by" />
-            </td>   
-            <td>
-                <asp:TextBox ID="tbTitle" runat="server" Width="250px"></asp:TextBox>
-               
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <dnn:label ID="label7" runat="server" Text="Language:" HelpText="The language of the feed." />
-            </td>   
-            
-            <td>
-                
-                <asp:DropDownList ID="ddlLanguages" runat="server">
-                </asp:DropDownList>
-            </td>
-        </tr>
-       
-             <tr>
-            <td>
-                <dnn:label ID="label9" runat="server" Text="AutoDetect Story Language:" HelpText="Select this option if your feed published in multiple langauges, and has not been generated using AgapeConnect. The system will automatically detect the language of each story." />
-            </td>   
-            
-            <td>
-                <asp:CheckBox ID="cbAutoDetectLanguage" runat="server" />
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <dnn:label ID="Label8" runat="server" Text="Image:" HelpText="The feed image is used when there is no Story Image, or the supplied story image is too low quality" />
-            </td>   
-            <td>
-               <uc2:acImage ID="icImage" runat="server" Width="200" />
-            </td>
-        </tr>
-         <tr>
-            <td>
-                <dnn:label ID="lbLocation" runat="server" Text="Location:" HelpText="The Location of this feed. Enter any part of your address and click search (to convert it to a longitude/latitude location)" />
-            </td>   
-            <td>
-                <asp:TextBox ID="tbLocation" runat="server" Width="200px"></asp:TextBox>
-               <div style="font-size: xx-small; color: #AAA; font-style: italic;">(City, country,region or  postocode etc)</div>
-            </td>
-        </tr>
-        </asp:Panel>
+        <%--<asp:Panel ID="pnlloaded" runat="server" Visible="false">--%>
+            <tr>
+                <td>
+                    <dnn:Label ID="label6" runat="server" Text="Title:" HelpText="Enter the name you wish to refer to this feed by" />
+                </td>
+                <td>
+                    <asp:TextBox ID="tbTitle" runat="server" Width="250px"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <dnn:Label ID="label7" runat="server" Text="Language:" HelpText="The language of the feed." />
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddlLanguages" runat="server">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <dnn:Label ID="label9" runat="server" Text="AutoDetect Story Language:" HelpText="Select this option if your feed published in multiple langauges, and has not been generated using AgapeConnect. The system will automatically detect the language of each story." />
+                </td>
+                <td>
+                    <asp:CheckBox ID="cbAutoDetectLanguage" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <dnn:Label ID="Label8" runat="server" Text="Image:" HelpText="The feed image is used when there is no Story Image, or the supplied story image is too low quality" />
+                </td>
+                <td>
+                    <uc2:acImage ID="icImage" runat="server" Width="200" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <dnn:Label ID="lbLocation" runat="server" Text="Location:" HelpText="The Location of this feed. Enter any part of your address and click search (to convert it to a longitude/latitude location)" />
+                </td>
+                <td>
+                    <asp:TextBox ID="tbLocation" runat="server" Width="200px"></asp:TextBox>
+                    <div style="font-size: xx-small; color: #AAA; font-style: italic;">(City, country,region or  postocode etc)</div>
+                </td>
+            </tr>
+        <%--</asp:Panel>--%>
     </table>
-
     <div style="width: 100%; text-align: center; margin-top: 1em;">
      <asp:Button ID="btnAddChannel" runat="server" class="aButton btn" Enabled="false" Text="Add Channel"></asp:Button>
      <asp:Button ID="btnEditChannel" runat="server" class="aButton btn" visible="false" Text="Save"></asp:Button>
