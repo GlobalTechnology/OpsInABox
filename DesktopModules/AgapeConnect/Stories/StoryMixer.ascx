@@ -390,18 +390,12 @@
 <div id="AddChannel">
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 <ContentTemplate>
-    <table class="SettingsTable" style="width: 600px;">
-        <tr>
-            <td>
                 <dnn:Label ID="labelcontrol1" runat="server" Text="RSS Feed:" HelpText="Enter the URL of the RSS Feed." />
-            </td>
-            <td>
                 <asp:TextBox ID="tbRssFeed" runat="server" Width="380px"></asp:TextBox>
-                <asp:LinkButton ID="lbVerifyURL" runat="server">Verify</asp:LinkButton>
+                <asp:LinkButton ID="lbVerifyURL" CssClass="abutton" Style="margin: 5px 0px 5px 250px;" runat="server">Verify</asp:LinkButton>
                 <br />
                 <asp:Label ID="lblFeedError" runat="server" ForeColor="Red"></asp:Label>
-            </td>
-        </tr>
+    <table class="SettingsTable" style="width: 600px;">
         <%--<asp:Panel ID="pnlloaded" runat="server" Visible="false">--%>
             <tr>
                 <td>
