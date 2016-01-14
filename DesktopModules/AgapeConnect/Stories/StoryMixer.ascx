@@ -20,6 +20,8 @@
     function setUpMyTabs() {
         $('.numeric').numeric();
         $("#AddChannel").dialog({
+            dialogClass: "no-close",
+            closeOnEscape: false,
             autoOpen: false,
             height: 600,
             width: 650,
@@ -253,7 +255,9 @@
     {
         z-index: 999;   
     }
-   
+   .no-close div.ui-dialog-titlebar > .ui-dialog-titlebar-close {
+  display: none;
+}
     
 </style>
 
