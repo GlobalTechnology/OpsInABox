@@ -15,6 +15,22 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
 
 #End Region 'Constants
 
+#Region "Page properties"
+
+        'SearchWords retrieved in request from AddEditDocument
+        Private _SearchWords As String = ""
+        Protected Property SearchWords() As String
+            Get
+                Return _SearchWords
+            End Get
+
+            Set(ByVal value As String)
+                _SearchWords = value
+            End Set
+        End Property
+
+#End Region 'Page properties
+
 #Region "Page events"
 
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
@@ -26,9 +42,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
             If Not IsPostBack Then
-                Dim folderId As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
-                'Get no trashed docs
-                LoadDocuments(DocumentsController.GetDocuments(folderId, False, False))
+                LoadDocuments()
             End If
         End Sub
 
@@ -56,23 +70,40 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             If e.CommandName = DELETE_DOC_COMMAND_NAME Then
                 DocumentsController.DeleteDocument(CType(e.CommandArgument, Integer)) 'e.CommandArgument contains the DocId
             End If
-            AgapeLogger.Info(UserId, "tbSearch.Text = " & tbSearch.Text & "  " & "tbSearch.CssClass = " & tbSearch.CssClass)
-
             'Reload the documents to update the list view, respecting a possible search text
-            SearchDocuments()
+            LoadDocuments()
         End Sub
 
         Protected Sub SearchNew_OnClick(sender As Object, e As System.EventArgs)
-            SearchDocuments()
+
+            Dim wordsToMatch As List(Of String) =
+                DocumentsController.CutString(DocumentsController.CleanString(tbSearch.Text), MIN_SIZE_SEARCH_STRING)
+
+            SearchWords = String.Join(" ", wordsToMatch)
+
+            Response.Redirect(NavigateURL("", "", DocumentsControllerConstants.SearchWordsParamKey, SearchWords))
         End Sub
 
 #End Region 'Page events
 
 #Region "Helper functions"
 
-        Protected Sub LoadDocuments(ByRef documentsToLoad As IQueryable(Of AP_Documents_Doc))
+        Protected Sub LoadFolderView(ByRef documentsToLoad As IQueryable(Of AP_Documents_Doc))
             dlFolderView.DataSource = documentsToLoad
             dlFolderView.DataBind()
+        End Sub
+
+        Protected Sub LoadDocuments()
+            Dim folderId As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
+
+            If Not String.IsNullOrEmpty(Request.QueryString(DocumentsControllerConstants.SearchWordsParamKey)) Then
+                ' Get search words from request if provided
+                SearchWords = HttpUtility.UrlDecode(Request.QueryString(DocumentsControllerConstants.SearchWordsParamKey))
+                SearchDocuments(SearchWords)
+            Else
+                ' Get all no trashed docs
+                LoadFolderView(DocumentsController.GetDocuments(folderId, False, False))
+            End If
         End Sub
 
         Public Function GetIcon(ByVal FileId As Integer?, ByVal Folderid As Integer) As String
@@ -118,16 +149,14 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             Return _SELF
         End Function
 
-        Protected Sub SearchDocuments()
-
-            Dim wordsToMatch As List(Of String) =
-                DocumentsController.CutString(DocumentsController.CleanString(tbSearch.Text), MIN_SIZE_SEARCH_STRING)
+        Protected Sub SearchDocuments(ByVal words As String)
 
             Dim searchDocuments As IQueryable(Of AP_Documents_Doc) =
-                DocumentsController.GetSearchDocuments(wordsToMatch, MIN_SIZE_SEARCH_STRING, TabModuleId)
+                DocumentsController.GetSearchDocuments(words.Split(" ").ToList, MIN_SIZE_SEARCH_STRING, TabModuleId)
 
-            tbSearch.Text = String.Join(" ", wordsToMatch)
-            LoadDocuments(searchDocuments)
+            LoadFolderView(searchDocuments)
+            ' Refill the textbox with search words
+            tbSearch.Text = SearchWords
         End Sub
 
 #End Region 'Helper functions

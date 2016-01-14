@@ -18,6 +18,7 @@ Public Module DocumentsControllerConstants
 
     ' Request param keys
     Public Const DocIdParamKey As String = "DocId"
+    Public Const SearchWordsParamKey As String = "SearchWords"
 End Module
 
 ' Folder constants

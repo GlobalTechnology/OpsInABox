@@ -81,7 +81,7 @@
                         </asp:HyperLink>
                         <div id="docButtons" class="docButtons" runat="server">
                             <asp:HyperLink ID="btnEditDoc" CssClass="btnEdit" runat="server" 
-                                NavigateUrl='<%# EditUrl("", "", DocumentsControllerConstants.AddEditDocumentControlKey, DocumentsControllerConstants.DocIdParamKey, Eval("DocId"))%>'></asp:HyperLink>
+                                NavigateUrl='<%# EditUrl("", "", DocumentsControllerConstants.AddEditDocumentControlKey, DocumentsControllerConstants.DocIdParamKey, Eval("DocId"), DocumentsControllerConstants.SearchWordsParamKey, SearchWords)%>'></asp:HyperLink>
                             <asp:LinkButton ID="btnDeleteDoc" CssClass="btnDelete" runat="server" CommandArgument='<%# Eval("DocId")%>'></asp:LinkButton>
                         </div>
                     </div>

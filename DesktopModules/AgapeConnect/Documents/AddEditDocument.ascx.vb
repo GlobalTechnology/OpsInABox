@@ -26,6 +26,17 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
             End Get
         End Property
 
+        'SearchWords retrieved in request
+        Protected ReadOnly Property SearchWords() As String
+            Get
+                If String.IsNullOrEmpty(Request.QueryString(DocumentsControllerConstants.SearchWordsParamKey)) Then
+                    Return ""
+                Else
+                    Return HttpUtility.UrlDecode(Request.QueryString(DocumentsControllerConstants.SearchWordsParamKey))
+                End If
+            End Get
+        End Property
+
 #End Region 'Page properties
 
 #Region "Page events"
@@ -103,8 +114,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
                 If IsEditMode Then
                     Try
                         UpdateResource()
-                        Response.Redirect(NavigateURL()) 'Close modal popup and refresh Resource list
-
+                        GotoDocuments()
                     Catch ex As InvalidFileExtensionException
                         'Log error
                         AgapeLogger.Error(UserId, ex.ToString)
@@ -129,7 +139,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         End Sub
 
         Protected Sub btnCancel_Click(sender As Object, e As System.EventArgs) Handles btnCancel.Click
-            Response.Redirect(NavigateURL()) 'Close modal popup and go back to Resource list
+            GotoDocuments()
         End Sub
 
 #End Region 'Page events
@@ -255,5 +265,18 @@ Namespace DotNetNuke.Modules.AgapeConnect.Documents
         End Sub
 
 #End Region 'Validation
+
+#Region "Helper Functions"
+        Protected Sub GotoDocuments()
+            If Not String.IsNullOrEmpty(SearchWords) Then
+                ' Get search words from request if provided
+                Response.Redirect(NavigateURL("", "", DocumentsControllerConstants.SearchWordsParamKey, SearchWords))
+            Else
+                ' Close modal popup and refresh Resource list
+                Response.Redirect(NavigateURL())
+            End If
+        End Sub
+#End Region 'Helper Functions
+
     End Class
 End Namespace
