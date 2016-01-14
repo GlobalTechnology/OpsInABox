@@ -236,7 +236,7 @@
 	background-color: #3A8BC2;
     height: 27px;
 	width: 31px;
-	background:#3A8BC2 url('../Documents/images/loupe.png') no-repeat center center;
+	background:#3A8BC2 url('images/loupe.png') no-repeat center center;
     display:inline-block;
     padding: 0px 0px 0px 0px;
     margin: -1.5px 0px 0px -5px;
