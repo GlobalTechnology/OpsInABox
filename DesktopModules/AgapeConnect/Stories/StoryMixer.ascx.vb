@@ -27,6 +27,12 @@ Namespace DotNetNuke.Modules.Stories
             End Try
         End Sub
         Protected Sub LoadMixer()
+            If CType(TabModuleSettings("Aspect"), String) <> "" Then
+                icImage.Aspect = CDbl(TabModuleSettings("Aspect")).ToString(New CultureInfo(""))
+
+            Else
+                icImage.Aspect = "1.0"
+            End If
             ddlLanguages.DataSource = From c In CultureInfo.GetCultures(CultureTypes.AllCultures) Order By c.EnglishName Select Name = c.Name.ToLower, EnglishName = c.EnglishName
             ddlLanguages.DataValueField = "Name"
             ddlLanguages.DataTextField = "EnglishName"
@@ -277,13 +283,6 @@ Namespace DotNetNuke.Modules.Stories
                 Catch ex As Exception
 
                 End Try
-                If CType(TabModuleSettings("Aspect"), String) <> "" Then
-                    icImage.Aspect = CDbl(TabModuleSettings("Aspect")).ToString(New CultureInfo(""))
-
-                Else
-                    icImage.Aspect = "1.0"
-                End If
-                'icImage.Aspect = lblAspect.Text
                 If Not feed.ImageUrl Is Nothing Then
                     icImage.FileId = StoryFunctions.SetLogo(feed.ImageUrl.AbsoluteUri, PortalId)
 
@@ -292,7 +291,7 @@ Namespace DotNetNuke.Modules.Stories
                     icImage.FileId = StoryFunctions.SetLogo("https://" & PortalSettings.DefaultPortalAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(logo.FileId)), PortalId)
 
                 End If
-                'icImage.Aspect = lblAspect.Text
+
                 icImage.LazyLoad(True)
                 'pnlloaded.Visible = True
                 btnAddChannel.Enabled = True
@@ -436,12 +435,6 @@ Namespace DotNetNuke.Modules.Stories
                     cbAutoDetectLanguage.Checked = q.First.AutoDetectLanguage
                     Try
                         icImage.FileId = FileManager.Instance.GetFile(PortalId, "_imageCropper/" & q.First.ImageId.Substring(q.First.ImageId.LastIndexOf("/") + 1)).FileId
-                        If CType(TabModuleSettings("Aspect"), String) <> "" Then
-                            icImage.Aspect = CDbl(TabModuleSettings("Aspect")).ToString(New CultureInfo(""))
-
-                        Else
-                            icImage.Aspect = "1.0"
-                        End If
                         icImage.LazyLoad(True)
                     Catch ex As Exception
 
@@ -521,13 +514,6 @@ Namespace DotNetNuke.Modules.Stories
 
         Protected Sub icImage_Uploaded() Handles icImage.Uploaded
             'Need to re popup the form.
-
-            If CType(TabModuleSettings("Aspect"), String) <> "" Then
-                icImage.Aspect = TabModuleSettings("Aspect")
-
-            Else
-                icImage.Aspect = "1.0"
-            End If
             icImage.LazyLoad(True)
             Dim t As Type = icImage.GetType()
             Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
