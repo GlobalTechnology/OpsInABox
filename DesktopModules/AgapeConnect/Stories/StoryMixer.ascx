@@ -170,7 +170,8 @@
     }
 
 
-    function showPopup() { $("#AddChannel").dialog("open"); return false; }
+    function showPopup() {
+        $("#AddChannel").dialog("open"); return false; }
     function closePopup() { $("#AddChannel").dialog("close"); }
 
     function boost(sender, CacheId)
@@ -255,15 +256,13 @@
     
 </style>
 
-
-
 <asp:HiddenField ID="hfStoryModuleId" runat="server" Value="-1" />
-<asp:HiddenField id='hfVolumes' runat="server"    />
-<asp:HiddenField id='hfLoadVolumes' runat="server"    />
-
-<asp:HiddenField id='hfNumberOfStories' runat="server"    />
-<asp:HiddenField id='hfBlocks' runat="server" Value=";" />
-<asp:HiddenField id='hfBoosts' runat="server" Value=";" />
+<asp:HiddenField ID='hfVolumes' runat="server" />
+<asp:HiddenField ID='hfLoadVolumes' runat="server" />
+<asp:HiddenField ID="hfRssVerify" runat="server" />
+<asp:HiddenField ID='hfNumberOfStories' runat="server" />
+<asp:HiddenField ID='hfBlocks' runat="server" Value=";" />
+<asp:HiddenField ID='hfBoosts' runat="server" Value=";" />
 <div>
 <asp:Panel ID="pnlChannelMixer" runat="server" BackColor="Black">
 <div style="overflow-y: hidden; overflow-x: auto;  width: 1050px; " >
@@ -395,7 +394,7 @@
                 <asp:LinkButton ID="lbVerifyURL" CssClass="abutton" Style="margin: 5px 0px 5px 250px;" runat="server">Verify</asp:LinkButton>
                 <br />
                 <asp:Label ID="lblFeedError" runat="server" ForeColor="Red"></asp:Label>
-    <div id="afterverify" runat="server">
+    <div style="display:<%= showtable %>;">
         <table class="SettingsTable" style="width: 600px;">
         <%--<asp:Panel ID="pnlloaded" runat="server" Visible="false">--%>
             <tr>
