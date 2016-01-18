@@ -6,7 +6,6 @@
 <%@ Register src="../StaffAdmin/Controls/acImage.ascx" tagname="acImage" tagprefix="uc2" %>
 <dnn:DnnJsInclude runat="server" FilePath="~/js/knobKnob/transform.js" />
 <dnn:DnnJsInclude runat="server" FilePath="~/js/knobKnob/knobKnob.jquery.js" />
-<dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.numeric.js" />
 <dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.jscrollpane.min.js" />
 <dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.mousewheel.js" />
 <dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.mwheelIntent.js" />
@@ -20,7 +19,6 @@
 <script type="text/javascript">
 
     function setUpMyTabs() {
-        $('.numeric').numeric();
         $("#AddChannel").dialog({
             dialogClass: "no-close",
             closeOnEscape: false,
@@ -381,8 +379,7 @@
                     <dnn:Label ID="label7" runat="server" Text="Language:" HelpText="The language of the feed." />
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddlLanguages" runat="server">
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlLanguages" runat="server" />
                 </td>
             </tr>
             <tr>
