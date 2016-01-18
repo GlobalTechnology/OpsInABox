@@ -370,7 +370,7 @@ Namespace DotNetNuke.Modules.Stories
                 Dim t As Type = icImage.GetType()
                 Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
                 sb.Append("<script language='javascript'>")
-                sb.Append("$(document).ready(function() { $(""#AddChannel"").dialog(""open"");});")
+                sb.Append("$(document).ready(function() { showPopup();});")
                 sb.Append("</script>")
                 ScriptManager.RegisterStartupScript(icImage, t, "thePopup", sb.ToString, False)
                 Return
@@ -518,7 +518,7 @@ Namespace DotNetNuke.Modules.Stories
             Dim t As Type = icImage.GetType()
             Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
             sb.Append("<script language='javascript'>")
-            sb.Append("$(document).ready(function() { $(""#AddChannel"").dialog(""open"");});")
+            sb.Append("$(document).ready(function() { showPopup();});")
             sb.Append("</script>")
             ScriptManager.RegisterStartupScript(icImage, t, "thePopup", sb.ToString, False)
 
@@ -558,7 +558,8 @@ Namespace DotNetNuke.Modules.Stories
                     Dim t As Type = icImage.GetType()
                     Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
                     sb.Append("<script language='javascript'>")
-                    sb.Append("$(document).ready(function() { $(""#AddChannel"").dialog(""open"");});")
+                    sb.Append("$(document).ready(function() { showPopup();});")
+
                     sb.Append("</script>")
                     ScriptManager.RegisterStartupScript(icImage, t, "thePopup", sb.ToString, False)
                     Return
