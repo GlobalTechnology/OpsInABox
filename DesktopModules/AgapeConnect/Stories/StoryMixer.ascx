@@ -24,7 +24,7 @@
             closeOnEscape: false,
             autoOpen: false,
             height: 600,
-            width: 650,
+            width: 750,
             modal: true,
             title: "Add New Channel"
         });
