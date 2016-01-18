@@ -15,7 +15,6 @@ Namespace DotNetNuke.Modules.Stories
         Inherits Entities.Modules.ModuleSettingsBase
 
         Dim d As New StoriesDataContext
-        Protected showtable As String = "none"
 #Region "Base Method Implementations"
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -295,7 +294,6 @@ Namespace DotNetNuke.Modules.Stories
 
                 icImage.LazyLoad(True)
                 'pnlloaded.Visible = True
-                showtable = "block"
                 btnAddChannel.Enabled = True
 
                 lblFeedError.Text = ""
@@ -394,7 +392,6 @@ Namespace DotNetNuke.Modules.Stories
             icImage.FileId = 0
             tbTitle.Text = ""
             'pnlloaded.Visible = False
-            showtable = "none"
             btnAddChannel.Enabled = False
 
             Dim volumes = ""
@@ -444,7 +441,6 @@ Namespace DotNetNuke.Modules.Stories
                     End Try
 
                     'pnlloaded.Visible = True
-                    showtable = "block"
                     btnAddChannel.Enabled = True
 
                     lblFeedError.Text = ""
@@ -511,7 +507,6 @@ Namespace DotNetNuke.Modules.Stories
             icImage.FileId = 0
             tbTitle.Text = ""
             'pnlloaded.Visible = False
-            showtable = "none"
             btnAddChannel.Enabled = False
             btnAddChannel.Visible = True
             btnEditChannel.Visible = False
@@ -586,7 +581,6 @@ Namespace DotNetNuke.Modules.Stories
             icImage.FileId = 0
             tbTitle.Text = ""
             'pnlloaded.Visible = False
-            showtable = "block"
             btnAddChannel.Enabled = False
             btnAddChannel.Visible = True
             btnEditChannel.Visible = False

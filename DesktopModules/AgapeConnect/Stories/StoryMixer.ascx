@@ -32,26 +32,26 @@
         $('.aButton').button();
         $('.scroll-pane').jScrollPane();
         $("#popular").slider({
-             value: $("#<%= hfPopular.ClientId %>").val(),
+            value: $("#<%= hfPopular.ClientId %>").val(),
             orientation: "vertical",
             range: "min",
             animate: true,
-            change: function (event, ui) {$("#<%= hfPopular.ClientId %>").val(ui.value);}
+            change: function (event, ui) { $("#<%= hfPopular.ClientId %>").val(ui.value); }
         });
-         $("#regional").slider({
-             value: $("#<%= hfRegional.ClientId %>").val(),
-            orientation: "vertical",
-            range: "min",
-            animate: true,
-            change: function (event, ui) {$("#<%= hfRegional.ClientId %>").val(ui.value);}
-        });
-         $("#recent").slider({
-             value: $("#<%= hfRecent.ClientId %>").val(),
-            orientation: "vertical",
-            range: "min",
-            animate: true,
-            change: function (event, ui) {$("#<%= hfRecent.ClientId %>").val(ui.value);}
-        });
+        $("#regional").slider({
+            value: $("#<%= hfRegional.ClientId %>").val(),
+             orientation: "vertical",
+             range: "min",
+             animate: true,
+             change: function (event, ui) { $("#<%= hfRegional.ClientId %>").val(ui.value); }
+         });
+        $("#recent").slider({
+            value: $("#<%= hfRecent.ClientId %>").val(),
+             orientation: "vertical",
+             range: "min",
+             animate: true,
+             change: function (event, ui) { $("#<%= hfRecent.ClientId %>").val(ui.value); }
+         });
         $("#numberOfStories").slider({
             value: $("#<%= hfNumberOfStories.ClientId %>").val(),
             orientation: "horizontal",
@@ -61,22 +61,16 @@
             max: 50,
             step: 1,
             slide: function (event, ui) {
-                $("#<%= lblNumberOfStories.ClientId %>").html( ui.value);
-                 $("#<%= hfNumberOfStories.ClientId %>").val( ui.value);
+                $("#<%= lblNumberOfStories.ClientId %>").html(ui.value);
+                $("#<%= hfNumberOfStories.ClientId %>").val(ui.value);
             }
         });
-
         $("#<%= lblNumberOfStories.ClientId %>").html($("#numberOfStories").slider("value"));
-      
-         $("#<%= tbLocation.ClientId %>").locationPicker();
-          $('.picker-search-button').button();
-           $('.picker-search-button').css('font-size','x-small');
-    }
 
-	//function pageLoad() {
-	//	setUpMyTabs();
-	//	setDials();
-	//}
+        $("#<%= tbLocation.ClientId %>").locationPicker();
+        $('.picker-search-button').button();
+        $('.picker-search-button').css('font-size', 'x-small');
+    }
 	
     $(document).ready(function () {
         setUpMyTabs();
@@ -84,16 +78,15 @@
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyTabs(); setDials(); });
     });
 
-    function setDials()
-    {
-    var colors = [
-		'26e000', '2fe300', '37e700', '45ea00', '51ef00',
-		'61f800', '6bfb00', '77ff02', '80ff05', '8cff09',
-		'93ff0b', '9eff09', 'a9ff07', 'c2ff03', 'd7ff07',
-		'f2ff0a', 'fff30a', 'ffdc09', 'ffce0a', 'ffc30a',
-		'ffb509', 'ffa808', 'ff9908', 'ff8607', 'ff7005',
-		'ff5f04', 'ff4f03', 'f83a00', 'ee2b00', 'e52000'
-	];
+    function setDials() {
+        var colors = [
+            '26e000', '2fe300', '37e700', '45ea00', '51ef00',
+            '61f800', '6bfb00', '77ff02', '80ff05', '8cff09',
+            '93ff0b', '9eff09', 'a9ff07', 'c2ff03', 'd7ff07',
+            'f2ff0a', 'fff30a', 'ffdc09', 'ffce0a', 'ffc30a',
+            'ffb509', 'ffa808', 'ff9908', 'ff8607', 'ff7005',
+            'ff5f04', 'ff4f03', 'f83a00', 'ee2b00', 'e52000'
+        ];
 
         var rad2deg = 180 / Math.PI;
         var bars = new Array();
@@ -102,20 +95,13 @@
         var lastNum = new Array();
         var colorBars = new Array();
 
-    $('.aKnobIndicator').each(function () {
-        
+        $('.aKnobIndicator').each(function () {
             var id = parseInt(this.id.replace('ind', ''));
-
             bars[id] = $(this);
-
             deg[id] = 0;
-
             for (var i = 0; i < colors.length; i++) {
-
                 deg[id] = i * 12;
-
                 // Create the colorbars
-
                 $('<div class="colorBar">').css({
                     backgroundColor: '#' + colors[i],
                     transform: 'rotate(' + deg[id] + 'deg)',
@@ -123,55 +109,38 @@
                     left: Math.cos((180 - deg[id]) / rad2deg) * 42 + 65
                 }).appendTo(bars[id]);
             }
-
             colorBars[id] = bars[id].find('.colorBar');
             numBars[id] = 0, lastNum[id] = -1;
-
-
-
-
         });
-
-
         //        var deg = 0;
         //        var bars = $('.aKnobIndicator');
-
-
         $('.aKnob').knobKnob({
             snap: 10,
             volumesid: '<%= hfLoadVolumes.ClientId %>',
             turn: function (ratio, id) {
-
                 // alert(id);
                 numBars[id] = Math.round(colorBars[id].length * ratio);
-
                 // Update the dom only when the number of active bars
                 // changes, instead of on every move
-
                 if (numBars[id] == lastNum[id]) {
                     return false;
                 }
                 lastNum[id] = numBars[id];
-
                 colorBars[id].removeClass('active').slice(0, numBars[id]).addClass('active');
-
                 // $(this).prev("input[type = 'hidden']").val(ratio);
                 var s = '';
                 for (var i = 0; i < numBars.length; i++) {
-                    if(!(typeof(numBars[i]) === 'undefined'))
-                        s = s + i + '=' +  numBars[i] + ';';}
-                
+                    if (!(typeof (numBars[i]) === 'undefined'))
+                        s = s + i + '=' + numBars[i] + ';';
+                }
                 $("#<%= hfVolumes.ClientId %>").val(s);
-
-
             }
         });
-
     }
 
-
     function showPopup() {
-        $("#AddChannel").dialog("open"); return false; }
+        $("#AddChannel").dialog("open"); return false;
+    }
     function closePopup() { $("#AddChannel").dialog("close"); }
 
     function boost(sender, CacheId)
@@ -394,7 +363,7 @@
                 <asp:LinkButton ID="lbVerifyURL" CssClass="abutton" Style="margin: 5px 0px 5px 250px;" runat="server">Verify</asp:LinkButton>
                 <br />
                 <asp:Label ID="lblFeedError" runat="server" ForeColor="Red"></asp:Label>
-    <div style="display:<%= showtable %>;">
+    <div id="channeltable">
         <table class="SettingsTable" style="width: 600px;">
         <%--<asp:Panel ID="pnlloaded" runat="server" Visible="false">--%>
             <tr>
