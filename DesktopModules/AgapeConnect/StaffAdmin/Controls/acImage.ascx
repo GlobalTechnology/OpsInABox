@@ -5,7 +5,7 @@
 <script type="text/javascript">
 
     function setUpMyTabs<%= NewImage.ClientId() %>() {
-        $('#<%= NewImage.ClientId() %>').dialog({
+        $('#<%= NewImage.ClientID() %>').dialog({
                 autoOpen: false,
                 modal: true,
                 title: "<%=LocalizeString("lblUploadNewImage") %>"
@@ -24,27 +24,33 @@
                     jcrop_api = this;
                 });
             $('.aButton').button();
-            $('#<%= FileUpload1.ClientId() %>').change(function() {
+            $('#<%= FileUpload1.ClientID() %>').change(function() {
            var val = $(this).val();
            switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
                case 'gif': case 'jpg': case 'png': case 'jpeg':
-                   $('#<%= btnUpload.ClientId() %>').button("enable"); 
+                   $('#<%= btnUpload.ClientID() %>').button("enable"); 
             break;
         default:
             $(this).val('');
-            $('#<%= btnUpload.ClientId() %>').button("disable"); 
+            $('#<%= btnUpload.ClientID() %>').button("disable"); 
             break;
     }
          });
 }
-$(document).ready(function () {
-    setUpMyTabs<%= NewImage.ClientId() %>();
-            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
-                setUpMyTabs<%= NewImage.ClientId() %>();
+    <%--$(document).ready(function () {
+        setUpMyTabs<%= NewImage.ClientID() %>();
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
+            setUpMyTabs<%= NewImage.ClientId() %>();
             });
-        });
-        function showPopup<%= NewImage.ClientId %>() { $(<%= NewImage.ClientId %>).dialog("open"); return false; }
-    function closePopup<%= NewImage.ClientId %>() { $(<%= NewImage.ClientId %>).dialog("close"); }
+    });--%>
+
+    function pageLoad ()
+    {
+        setUpMyTabs<%= NewImage.ClientID() %>();
+    }
+    
+    function showPopup<%= NewImage.ClientId %>() { $('#<%= NewImage.ClientID() %>').dialog("open"); return false; }
+    function closePopup<%= NewImage.ClientId %>() { $('#<%= NewImage.ClientID() %>').dialog("close"); }
     function updateHFs<%= theImage.ClientId() %>(c)
     {
         if (parseInt(c.w) > 0)
@@ -79,7 +85,7 @@ $(document).ready(function () {
 </div>
 
 
-<div id="NewImage" runat="server" style="text-align: center; ">
+<div id="NewImage" runat="server" style="text-align: center; display:none; ">
  <asp:FileUpload ID="FileUpload1" runat="server" width="240px"/>
  <br /><br />
     <asp:Label ID="Label1" runat="server" ForeColor="Red" Font-Italic="true"></asp:Label>
