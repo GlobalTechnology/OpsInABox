@@ -364,7 +364,7 @@ Namespace DotNetNuke.Modules.Stories
                 End Try
             End If
 
-            insert.ImageId = "https://" & PortalSettings.PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(icImage.FileId))
+            insert.ImageId = icImage.FileId
 
             If lblFeedError.Text <> "" Then
                 Dim t As Type = icImage.GetType()
@@ -434,7 +434,8 @@ Namespace DotNetNuke.Modules.Stories
                     ddlLanguages.SelectedValue = q.First.Language.ToLower
                     cbAutoDetectLanguage.Checked = q.First.AutoDetectLanguage
                     Try
-                        icImage.FileId = FileManager.Instance.GetFile(PortalId, "_imageCropper/" & q.First.ImageId.Substring(q.First.ImageId.LastIndexOf("/") + 1)).FileId
+                        icImage.FileId = q.First.ImageId
+
                         icImage.LazyLoad(True)
                     Catch ex As Exception
 
@@ -552,7 +553,7 @@ Namespace DotNetNuke.Modules.Stories
                     End Try
                 End If
 
-                theChannel.First.ImageId = "https://" & PortalSettings.PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(icImage.FileId))
+                theChannel.First.ImageId = icImage.FileId
 
                 If lblFeedError.Text <> "" Then
                     Dim t As Type = icImage.GetType()
