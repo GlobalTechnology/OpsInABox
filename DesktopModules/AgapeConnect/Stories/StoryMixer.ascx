@@ -66,15 +66,18 @@
         });
         $("#<%= lblNumberOfStories.ClientId %>").html($("#numberOfStories").slider("value"));
 
+        
+    }
+    function initlocationpicker() {
         $("#<%= tbLocation.ClientId %>").locationPicker();
         $('.picker-search-button').button();
         $('.picker-search-button').css('font-size', 'x-small');
     }
-	
     $(document).ready(function () {
         setUpMyTabs();
         setDials();
-        //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyTabs(); /*setDials();*/ });
+        initlocationpicker()
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { initlocationpicker(); });
     });
 
     function pageLoad() {
