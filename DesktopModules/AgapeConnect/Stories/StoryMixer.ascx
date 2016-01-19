@@ -9,7 +9,6 @@
 <dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.jscrollpane.min.js" />
 <dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.mousewheel.js" />
 <dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.mwheelIntent.js" />
-<dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.mwheelIntent.js" />
 <dnn:DnnCssInclude runat="server" FilePath="~/js/jquery.jscrollpane.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/js/knobKnob/knobKnob.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/js/knobKnob/styles.css" />
@@ -75,8 +74,13 @@
     $(document).ready(function () {
         setUpMyTabs();
         setDials();
-        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyTabs(); setDials(); });
+        //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyTabs(); /*setDials();*/ });
     });
+
+    function pageLoad() {
+        setUpMyTabs();
+        setDials();
+    }
 
     function setDials() {
         var colors = [
@@ -228,7 +232,6 @@
 <asp:HiddenField ID="hfStoryModuleId" runat="server" Value="-1" />
 <asp:HiddenField ID='hfVolumes' runat="server" />
 <asp:HiddenField ID='hfLoadVolumes' runat="server" />
-<asp:HiddenField ID="hfRssVerify" runat="server" />
 <asp:HiddenField ID='hfNumberOfStories' runat="server" />
 <asp:HiddenField ID='hfBlocks' runat="server" Value=";" />
 <asp:HiddenField ID='hfBoosts' runat="server" Value=";" />
