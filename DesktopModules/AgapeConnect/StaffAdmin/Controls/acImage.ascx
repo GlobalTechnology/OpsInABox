@@ -37,12 +37,12 @@
     }
          });
 }
-    <%--$(document).ready(function () {
+    $(document).ready(function () {
         setUpMyTabs<%= NewImage.ClientID() %>();
-        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
+        <%--Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
             setUpMyTabs<%= NewImage.ClientId() %>();
-            });
-    });--%>
+            });--%>
+    });
 
     function pageLoad ()
     {
