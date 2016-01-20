@@ -18,6 +18,7 @@ Public Module DocumentsControllerConstants
 
     ' Request param keys
     Public Const DocIdParamKey As String = "DocId"
+    Public Const SearchWordsParamKey As String = "SearchWords"
 End Module
 
 ' Folder constants
@@ -443,6 +444,69 @@ Public Class DocumentsController
 
 #Region "Search implementation"
 
+    'Cleans a string by analysing each character
+    Public Shared Function CleanString(ByVal inputString As String) As String
+
+        If (inputString <> "") Then
+            'Remove newlines, carriage returns, extra spaces and tabs
+            Dim noExtraWhiteSpace As String = Regex.Replace(inputString, "\s+", " ")
+
+            'Remove periods and replace with spaces
+            noExtraWhiteSpace = Replace(noExtraWhiteSpace, ".", " ")
+
+            'Remove all nonalphanumberic characters except dash, apostrophe and space
+            Dim tempArr() As Char = noExtraWhiteSpace.Where(Function(c)
+                                                                Return (Char.IsLetterOrDigit(c) Or c = "-" Or c = " " Or c = "'")
+                                                            End Function).ToArray
+            inputString = New String(tempArr)
+        End If
+
+        Return inputString
+    End Function
+
+    'Cuts the string into a list of distinct words that are of a minimum size
+    Public Shared Function CutString(ByVal inputString As String, ByVal minSize As Integer) As List(Of String)
+        Dim words As String() = inputString.Split(New Char() {" "})
+        Dim wordList As List(Of String) = New List(Of String)
+
+        For Each word In words
+            If (word.Length >= minSize) Then
+                wordList.Add(word)
+            End If
+        Next
+
+        Return wordList.Distinct(StringComparer.InvariantCultureIgnoreCase).ToList
+    End Function
+
+    'Finds documents containing ALL the wordsToMatch within the documents title and description fields
+    Public Shared Function GetSearchDocuments(ByVal wordsToMatch As List(Of String), ByVal minSize As Integer, ByVal TabModuleId As Integer) As IQueryable(Of AP_Documents_Doc)
+
+        Dim folderId As Integer = DocumentsController.GetModuleFolderId(TabModuleId)
+        Dim docs = DocumentsController.GetDocuments(folderId, False, False)
+
+        ' Dim titlesAndDescriptions As New Dictionary(Of Integer, String)
+        Dim searchDocuments As List(Of AP_Documents_Doc) = New List(Of AP_Documents_Doc)
+
+        Dim titlesAndDescriptions As Dictionary(Of Long, String) =
+            docs.ToDictionary(Function(doc) doc.DocId, _
+                              Function(doc) DocumentsController.CleanString(doc.DisplayName) & " " _
+                                  & DocumentsController.CleanString(doc.Description))
+
+        For Each titleAndDescription In titlesAndDescriptions
+
+            Dim matches As IEnumerable(Of String) = From word In wordsToMatch
+                        Where GetAccentless(titleAndDescription.Value) _
+                            .IndexOf(GetAccentless(word), 0, StringComparison.InvariantCultureIgnoreCase) > -1
+                        Select word
+
+            If matches.Count = wordsToMatch.Count Then
+                searchDocuments.Add(DocumentsController.GetDocument(titleAndDescription.Key))
+            End If
+        Next
+
+        Return searchDocuments.AsQueryable
+    End Function
+
     'Needed so that resources can be searchable
     'Public Overrides Function GetModifiedSearchDocuments(moduleInfo As ModuleInfo, beginDateUtc As Date) As IList(Of Entities.SearchDocument)
 
@@ -515,6 +579,13 @@ Public Class DocumentsController
         'Return user.IsSuperUser Or user.IsInRole("Administrators") Or user.IsInRole("Staff")
         Return True 'Access to ViewDocument and DownloadDocument is already restricted depending on the module access permissions.
 
+    End Function
+
+    'Removes accents from the string value
+    Private Shared Function GetAccentless(value As String) As String
+        Return New String(value.Normalize(NormalizationForm.FormD) _
+                               .Where(Function(c) CharUnicodeInfo.GetUnicodeCategory(c) <> _
+                                                  UnicodeCategory.NonSpacingMark).ToArray())
     End Function
 
 #End Region 'Helper functions

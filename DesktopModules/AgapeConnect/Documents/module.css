@@ -203,6 +203,59 @@
 
 /*DocumentsMain Section End*/
 
+/*DocumentsMain Search*/
+
+#DocumentsMain #SearchRessource .SearchNew {
+    vertical-align: middle;
+}
+
+#DocumentsMain #SearchRessource {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+
+#DocumentsMain #SearchRessource input {
+	-webkit-border-radius: .5em 0 0 .5em;
+    -moz-border-radius: .5em 0 0 .5em;
+    border-radius: .5em 0 0 .5em;
+	border-style: none;
+	margin: 0px;
+	font-family: 'OpenSansItalic';
+    height: 26.5px;
+	padding-left: 8px;
+	width: 300px;
+    background-color: #f1f1f1;
+}
+
+#DocumentsMain .SearchNew {
+	-webkit-border-radius: 0 .5em .5em 0;
+    -moz-border-radius: 0 .5em .5em 0;
+    border-radius: 0 .5em .5em 0;
+	border-style: none;
+	background-color: #3A8BC2;
+    height: 27px;
+	width: 31px;
+	background:#3A8BC2 url('images/loupe.png') no-repeat center center;
+    display:inline-block;
+    padding: 0px 0px 0px 0px;
+    margin: -1.5px 0px 0px -5px;
+}
+
+#DocumentsMain .SearchNew:hover {
+	background-color: #ABACAE;
+}
+
+#DocumentsMain #SearchRessource input.watermark, textarea.watermark { 
+    color: #b3b3b3;
+}
+
+#DocumentsMain #SearchRessource input, textarea { 
+    color: #5f5f5f;
+}
+
+/*DocumentsMain Search End*/
+
 /*AddEditResource Section Start*/
 
 #divAddEditDocument {
