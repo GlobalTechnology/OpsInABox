@@ -27,6 +27,12 @@ Namespace DotNetNuke.Modules.Stories
             End Try
         End Sub
         Protected Sub LoadMixer()
+            If CType(TabModuleSettings("Aspect"), String) <> "" Then
+                icImage.Aspect = CDbl(TabModuleSettings("Aspect")).ToString(New CultureInfo(""))
+
+            Else
+                icImage.Aspect = "1.0"
+            End If
             ddlLanguages.DataSource = From c In CultureInfo.GetCultures(CultureTypes.AllCultures) Order By c.EnglishName Select Name = c.Name.ToLower, EnglishName = c.EnglishName
             ddlLanguages.DataValueField = "Name"
             ddlLanguages.DataTextField = "EnglishName"
@@ -277,13 +283,6 @@ Namespace DotNetNuke.Modules.Stories
                 Catch ex As Exception
 
                 End Try
-                If CType(TabModuleSettings("Aspect"), String) <> "" Then
-                    icImage.Aspect = CDbl(TabModuleSettings("Aspect")).ToString(New CultureInfo(""))
-
-                Else
-                    icImage.Aspect = "1.0"
-                End If
-                'icImage.Aspect = lblAspect.Text
                 If Not feed.ImageUrl Is Nothing Then
                     icImage.FileId = StoryFunctions.SetLogo(feed.ImageUrl.AbsoluteUri, PortalId)
 
@@ -292,9 +291,9 @@ Namespace DotNetNuke.Modules.Stories
                     icImage.FileId = StoryFunctions.SetLogo("https://" & PortalSettings.DefaultPortalAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(logo.FileId)), PortalId)
 
                 End If
-                'icImage.Aspect = lblAspect.Text
+
                 icImage.LazyLoad(True)
-                pnlloaded.Visible = True
+                'pnlloaded.Visible = True
                 btnAddChannel.Enabled = True
 
                 lblFeedError.Text = ""
@@ -365,13 +364,13 @@ Namespace DotNetNuke.Modules.Stories
                 End Try
             End If
 
-            insert.ImageId = "https://" & PortalSettings.PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(icImage.FileId))
+            insert.ImageId = icImage.FileId
 
             If lblFeedError.Text <> "" Then
                 Dim t As Type = icImage.GetType()
                 Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
                 sb.Append("<script language='javascript'>")
-                sb.Append("$(document).ready(function() { $(""#AddChannel"").dialog(""open"");});")
+                sb.Append("$(document).ready(function() { showPopup();});")
                 sb.Append("</script>")
                 ScriptManager.RegisterStartupScript(icImage, t, "thePopup", sb.ToString, False)
                 Return
@@ -392,7 +391,7 @@ Namespace DotNetNuke.Modules.Stories
             tbLocation.Text = ""
             icImage.FileId = 0
             tbTitle.Text = ""
-            pnlloaded.Visible = False
+            'pnlloaded.Visible = False
             btnAddChannel.Enabled = False
 
             Dim volumes = ""
@@ -435,19 +434,14 @@ Namespace DotNetNuke.Modules.Stories
                     ddlLanguages.SelectedValue = q.First.Language.ToLower
                     cbAutoDetectLanguage.Checked = q.First.AutoDetectLanguage
                     Try
-                        icImage.FileId = FileManager.Instance.GetFile(PortalId, "_imageCropper/" & q.First.ImageId.Substring(q.First.ImageId.LastIndexOf("/") + 1)).FileId
-                        If CType(TabModuleSettings("Aspect"), String) <> "" Then
-                            icImage.Aspect = CDbl(TabModuleSettings("Aspect")).ToString(New CultureInfo(""))
+                        icImage.FileId = q.First.ImageId
 
-                        Else
-                            icImage.Aspect = "1.0"
-                        End If
                         icImage.LazyLoad(True)
                     Catch ex As Exception
 
                     End Try
 
-                    pnlloaded.Visible = True
+                    'pnlloaded.Visible = True
                     btnAddChannel.Enabled = True
 
                     lblFeedError.Text = ""
@@ -462,7 +456,7 @@ Namespace DotNetNuke.Modules.Stories
                     Dim t As Type = Page.GetType()
                     Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
                     sb.Append("<script language='javascript'>")
-                    sb.Append("$(document).ready(function() { $(""#AddChannel"").dialog(""open"");});")
+                    sb.Append("$(document).ready(function() { showPopup();});")
                     sb.Append("</script>")
                     ScriptManager.RegisterStartupScript(Page, t, "thePopup2", sb.ToString, False)
 
@@ -513,7 +507,7 @@ Namespace DotNetNuke.Modules.Stories
             tbLocation.Text = ""
             icImage.FileId = 0
             tbTitle.Text = ""
-            pnlloaded.Visible = False
+            'pnlloaded.Visible = False
             btnAddChannel.Enabled = False
             btnAddChannel.Visible = True
             btnEditChannel.Visible = False
@@ -521,18 +515,11 @@ Namespace DotNetNuke.Modules.Stories
 
         Protected Sub icImage_Uploaded() Handles icImage.Uploaded
             'Need to re popup the form.
-
-            If CType(TabModuleSettings("Aspect"), String) <> "" Then
-                icImage.Aspect = TabModuleSettings("Aspect")
-
-            Else
-                icImage.Aspect = "1.0"
-            End If
             icImage.LazyLoad(True)
             Dim t As Type = icImage.GetType()
             Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
             sb.Append("<script language='javascript'>")
-            sb.Append("$(document).ready(function() { $(""#AddChannel"").dialog(""open"");});")
+            sb.Append("$(document).ready(function() { showPopup();});")
             sb.Append("</script>")
             ScriptManager.RegisterStartupScript(icImage, t, "thePopup", sb.ToString, False)
 
@@ -566,13 +553,14 @@ Namespace DotNetNuke.Modules.Stories
                     End Try
                 End If
 
-                theChannel.First.ImageId = "https://" & PortalSettings.PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(icImage.FileId))
+                theChannel.First.ImageId = icImage.FileId
 
                 If lblFeedError.Text <> "" Then
                     Dim t As Type = icImage.GetType()
                     Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
                     sb.Append("<script language='javascript'>")
-                    sb.Append("$(document).ready(function() { $(""#AddChannel"").dialog(""open"");});")
+                    sb.Append("$(document).ready(function() { showPopup();});")
+
                     sb.Append("</script>")
                     ScriptManager.RegisterStartupScript(icImage, t, "thePopup", sb.ToString, False)
                     Return
@@ -594,7 +582,7 @@ Namespace DotNetNuke.Modules.Stories
             tbLocation.Text = ""
             icImage.FileId = 0
             tbTitle.Text = ""
-            pnlloaded.Visible = False
+            'pnlloaded.Visible = False
             btnAddChannel.Enabled = False
             btnAddChannel.Visible = True
             btnEditChannel.Visible = False

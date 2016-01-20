@@ -1,58 +1,56 @@
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Control Language="vb" AutoEventWireup="false" CodeFile="StoryMixer.ascx.vb"
     Inherits="DotNetNuke.Modules.Stories.StoryMixer" %>
 <%@ Register Assembly="DotNetNuke" Namespace="DotNetNuke.UI.WebControls" TagPrefix="uc1" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <%@ Register src="../StaffAdmin/Controls/acImage.ascx" tagname="acImage" tagprefix="uc2" %>
-<script src="/js/knobKnob/transform.js" type="text/javascript"></script>
-<script src="/js/knobKnob/knobKnob.jquery.js" type="text/javascript"></script>
-<script src="/js/jquery.numeric.js" type="text/javascript"></script>
-<script src="/js/jquery.jscrollpane.min.js" type="text/javascript"></script>
-<link href="/js/jquery.jscrollpane.css" rel="stylesheet" type="text/css" />
-<script src="/js/jquery.mousewheel.js" type="text/javascript"></script>
-<script src="/js/mwheelIntent.js" type="text/javascript"></script>
-<link href="/js/knobKnob/knobKnob.css" rel="stylesheet" type="text/css" />
-<link href="/js/knobKnob/styles.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false'></script>
-<script src="/js/jquery.locationpicker.js" type="text/javascript"></script>
+<dnn:DnnJsInclude runat="server" FilePath="~/js/knobKnob/transform.js" />
+<dnn:DnnJsInclude runat="server" FilePath="~/js/knobKnob/knobKnob.jquery.js" />
+<dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.jscrollpane.min.js" />
+<dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.mousewheel.js" />
+<dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.mwheelIntent.js" />
+<dnn:DnnCssInclude runat="server" FilePath="~/js/jquery.jscrollpane.css" />
+<dnn:DnnCssInclude runat="server" FilePath="~/js/knobKnob/knobKnob.css" />
+<dnn:DnnCssInclude runat="server" FilePath="~/js/knobKnob/styles.css" />
+<script type="text/javascript" src='https://maps.google.com/maps/api/js'></script>
+<dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.locationpicker.js" />
 
 <script type="text/javascript">
 
     function setUpMyTabs() {
-        $('.numeric').numeric();
         $("#AddChannel").dialog({
+            dialogClass: "no-close",
+            closeOnEscape: false,
             autoOpen: false,
             height: 600,
-            width: 650,
+            width: 750,
             modal: true,
-            title: "Add New Channel",
-            close: function () {
-                allFields.val("").removeClass("ui-state-error");
-            }
+            title: "Add New Channel"
         });
         $("#AddChannel").parent().appendTo($("form:first"));
         $('.aButton').button();
         $('.scroll-pane').jScrollPane();
         $("#popular").slider({
-             value: $("#<%= hfPopular.ClientId %>").val(),
+            value: $("#<%= hfPopular.ClientId %>").val(),
             orientation: "vertical",
             range: "min",
             animate: true,
-            change: function (event, ui) {$("#<%= hfPopular.ClientId %>").val(ui.value);}
+            change: function (event, ui) { $("#<%= hfPopular.ClientId %>").val(ui.value); }
         });
-         $("#regional").slider({
-             value: $("#<%= hfRegional.ClientId %>").val(),
-            orientation: "vertical",
-            range: "min",
-            animate: true,
-            change: function (event, ui) {$("#<%= hfRegional.ClientId %>").val(ui.value);}
-        });
-         $("#recent").slider({
-             value: $("#<%= hfRecent.ClientId %>").val(),
-            orientation: "vertical",
-            range: "min",
-            animate: true,
-            change: function (event, ui) {$("#<%= hfRecent.ClientId %>").val(ui.value);}
-        });
+        $("#regional").slider({
+            value: $("#<%= hfRegional.ClientId %>").val(),
+             orientation: "vertical",
+             range: "min",
+             animate: true,
+             change: function (event, ui) { $("#<%= hfRegional.ClientId %>").val(ui.value); }
+         });
+        $("#recent").slider({
+            value: $("#<%= hfRecent.ClientId %>").val(),
+             orientation: "vertical",
+             range: "min",
+             animate: true,
+             change: function (event, ui) { $("#<%= hfRecent.ClientId %>").val(ui.value); }
+         });
         $("#numberOfStories").slider({
             value: $("#<%= hfNumberOfStories.ClientId %>").val(),
             orientation: "horizontal",
@@ -62,40 +60,40 @@
             max: 50,
             step: 1,
             slide: function (event, ui) {
-                $("#<%= lblNumberOfStories.ClientId %>").html( ui.value);
-                 $("#<%= hfNumberOfStories.ClientId %>").val( ui.value);
+                $("#<%= lblNumberOfStories.ClientId %>").html(ui.value);
+                $("#<%= hfNumberOfStories.ClientId %>").val(ui.value);
             }
         });
-
         $("#<%= lblNumberOfStories.ClientId %>").html($("#numberOfStories").slider("value"));
-      
-         $("#<%= tbLocation.ClientId %>").locationPicker();
-          $('.picker-search-button').button();
-           $('.picker-search-button').css('font-size','x-small');
+
+        
+    }
+    function initlocationpicker() {
+        $("#<%= tbLocation.ClientId %>").locationPicker();
+        $('.picker-search-button').button();
+        $('.picker-search-button').css('font-size', 'x-small');
+    }
+    $(document).ready(function () {
+        setUpMyTabs();
+        setDials();
+        initlocationpicker()
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { initlocationpicker(); });
+    });
+
+    function pageLoad() {
+        setUpMyTabs();
+        setDials();
     }
 
-	function pageLoad() {
-		setUpMyTabs();
-		setDials();
-	}
-	
-    /*$(document).ready(function () {
-        setUpMyTabs();
-        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () { setUpMyTabs(); });
-        setDials();
-
-    });*/
-
-    function setDials()
-    {
-    var colors = [
-		'26e000', '2fe300', '37e700', '45ea00', '51ef00',
-		'61f800', '6bfb00', '77ff02', '80ff05', '8cff09',
-		'93ff0b', '9eff09', 'a9ff07', 'c2ff03', 'd7ff07',
-		'f2ff0a', 'fff30a', 'ffdc09', 'ffce0a', 'ffc30a',
-		'ffb509', 'ffa808', 'ff9908', 'ff8607', 'ff7005',
-		'ff5f04', 'ff4f03', 'f83a00', 'ee2b00', 'e52000'
-	];
+    function setDials() {
+        var colors = [
+            '26e000', '2fe300', '37e700', '45ea00', '51ef00',
+            '61f800', '6bfb00', '77ff02', '80ff05', '8cff09',
+            '93ff0b', '9eff09', 'a9ff07', 'c2ff03', 'd7ff07',
+            'f2ff0a', 'fff30a', 'ffdc09', 'ffce0a', 'ffc30a',
+            'ffb509', 'ffa808', 'ff9908', 'ff8607', 'ff7005',
+            'ff5f04', 'ff4f03', 'f83a00', 'ee2b00', 'e52000'
+        ];
 
         var rad2deg = 180 / Math.PI;
         var bars = new Array();
@@ -104,20 +102,13 @@
         var lastNum = new Array();
         var colorBars = new Array();
 
-    $('.aKnobIndicator').each(function () {
-        
+        $('.aKnobIndicator').each(function () {
             var id = parseInt(this.id.replace('ind', ''));
-
             bars[id] = $(this);
-
             deg[id] = 0;
-
             for (var i = 0; i < colors.length; i++) {
-
                 deg[id] = i * 12;
-
                 // Create the colorbars
-
                 $('<div class="colorBar">').css({
                     backgroundColor: '#' + colors[i],
                     transform: 'rotate(' + deg[id] + 'deg)',
@@ -125,54 +116,38 @@
                     left: Math.cos((180 - deg[id]) / rad2deg) * 42 + 65
                 }).appendTo(bars[id]);
             }
-
             colorBars[id] = bars[id].find('.colorBar');
             numBars[id] = 0, lastNum[id] = -1;
-
-
-
-
         });
-
-
         //        var deg = 0;
         //        var bars = $('.aKnobIndicator');
-
-
         $('.aKnob').knobKnob({
             snap: 10,
             volumesid: '<%= hfLoadVolumes.ClientId %>',
             turn: function (ratio, id) {
-
                 // alert(id);
                 numBars[id] = Math.round(colorBars[id].length * ratio);
-
                 // Update the dom only when the number of active bars
                 // changes, instead of on every move
-
                 if (numBars[id] == lastNum[id]) {
                     return false;
                 }
                 lastNum[id] = numBars[id];
-
                 colorBars[id].removeClass('active').slice(0, numBars[id]).addClass('active');
-
                 // $(this).prev("input[type = 'hidden']").val(ratio);
                 var s = '';
                 for (var i = 0; i < numBars.length; i++) {
-                    if(!(typeof(numBars[i]) === 'undefined'))
-                        s = s + i + '=' +  numBars[i] + ';';}
-                
+                    if (!(typeof (numBars[i]) === 'undefined'))
+                        s = s + i + '=' + numBars[i] + ';';
+                }
                 $("#<%= hfVolumes.ClientId %>").val(s);
-
-
             }
         });
-
     }
 
-
-    function showPopup() { $("#AddChannel").dialog("open"); return false; }
+    function showPopup() {
+        $("#AddChannel").dialog("open"); return false;
+    }
     function closePopup() { $("#AddChannel").dialog("close"); }
 
     function boost(sender, CacheId)
@@ -241,18 +216,7 @@
     {
         border-style: none;
     }
-    
-    
-    #trapezoid
-    {
-        border-top: 40px solid   #999;
-        border-left: 270px inset transparent;
-        border-right: 270px inset transparent;
-      
-        width: 500px;
-        margin: 0 auto ;
-        
-    }
+
     #eq span {
 		height:120px; float:left; margin:15px;
 	}
@@ -262,19 +226,18 @@
     {
         z-index: 999;   
     }
-   
+   .no-close div.ui-dialog-titlebar > .ui-dialog-titlebar-close {
+  display: none;
+}
     
 </style>
 
-
-
 <asp:HiddenField ID="hfStoryModuleId" runat="server" Value="-1" />
-<asp:HiddenField id='hfVolumes' runat="server"    />
-<asp:HiddenField id='hfLoadVolumes' runat="server"    />
-
-<asp:HiddenField id='hfNumberOfStories' runat="server"    />
-<asp:HiddenField id='hfBlocks' runat="server" Value=";" />
-<asp:HiddenField id='hfBoosts' runat="server" Value=";" />
+<asp:HiddenField ID='hfVolumes' runat="server" />
+<asp:HiddenField ID='hfLoadVolumes' runat="server" />
+<asp:HiddenField ID='hfNumberOfStories' runat="server" />
+<asp:HiddenField ID='hfBlocks' runat="server" Value=";" />
+<asp:HiddenField ID='hfBoosts' runat="server" Value=";" />
 <div>
 <asp:Panel ID="pnlChannelMixer" runat="server" BackColor="Black">
 <div style="overflow-y: hidden; overflow-x: auto;  width: 1050px; " >
@@ -337,8 +300,6 @@
     </div>
     
 </asp:Panel>
-
-<div id="trapezoid" />
   
 <table cellpadding="4px" border="1" class="SettingsTable">
     <tr>
@@ -403,75 +364,58 @@
 <div id="AddChannel">
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 <ContentTemplate>
-
-
-
-    <table class="SettingsTable" style="width: 600px;">
-        <tr>
-            <td>
-                
-                 <dnn:label ID="labelcontrol1" runat="server" Text="RSS Feed:" HelpText="Enter the URL of the RSS Feed." />
-               
-            </td>
-            <td>
+                <dnn:Label ID="labelcontrol1" runat="server" Text="RSS Feed:" HelpText="Enter the URL of the RSS Feed." />
                 <asp:TextBox ID="tbRssFeed" runat="server" Width="380px"></asp:TextBox>
-                <asp:LinkButton ID="lbVerifyURL" runat="server">Verify</asp:LinkButton>
+                <asp:LinkButton ID="lbVerifyURL" CssClass="abutton" Style="margin: 5px 0px 5px 250px;" runat="server">Verify</asp:LinkButton>
                 <br />
                 <asp:Label ID="lblFeedError" runat="server" ForeColor="Red"></asp:Label>
-            </td>
-        </tr>
-        <asp:Panel ID="pnlloaded" runat="server" Visible="false" >
-        <tr>
-            <td>
-                <dnn:label ID="label6" runat="server" Text="Title:" HelpText="Enter the name you wish to refer to this feed by" />
-            </td>   
-            <td>
-                <asp:TextBox ID="tbTitle" runat="server" Width="250px"></asp:TextBox>
-               
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <dnn:label ID="label7" runat="server" Text="Language:" HelpText="The language of the feed." />
-            </td>   
-            
-            <td>
-                
-                <asp:DropDownList ID="ddlLanguages" runat="server">
-                </asp:DropDownList>
-            </td>
-        </tr>
-       
-             <tr>
-            <td>
-                <dnn:label ID="label9" runat="server" Text="AutoDetect Story Language:" HelpText="Select this option if your feed published in multiple langauges, and has not been generated using AgapeConnect. The system will automatically detect the language of each story." />
-            </td>   
-            
-            <td>
-                <asp:CheckBox ID="cbAutoDetectLanguage" runat="server" />
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <dnn:label ID="Label8" runat="server" Text="Image:" HelpText="The feed image is used when there is no Story Image, or the supplied story image is too low quality" />
-            </td>   
-            <td>
-               <uc2:acImage ID="icImage" runat="server" Width="200" />
-            </td>
-        </tr>
-         <tr>
-            <td>
-                <dnn:label ID="lbLocation" runat="server" Text="Location:" HelpText="The Location of this feed. Enter any part of your address and click search (to convert it to a longitude/latitude location)" />
-            </td>   
-            <td>
-                <asp:TextBox ID="tbLocation" runat="server" Width="200px"></asp:TextBox>
-               <div style="font-size: xx-small; color: #AAA; font-style: italic;">(City, country,region or  postocode etc)</div>
-            </td>
-        </tr>
-        </asp:Panel>
+    <div id="channeltable">
+        <table class="SettingsTable" style="width: 600px;">
+        <%--<asp:Panel ID="pnlloaded" runat="server" Visible="false">--%>
+            <tr>
+                <td>
+                    <dnn:Label ID="label6" runat="server" Text="Title:" HelpText="Enter the name you wish to refer to this feed by" />
+                </td>
+                <td>
+                    <asp:TextBox ID="tbTitle" runat="server" Width="250px"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <dnn:Label ID="label7" runat="server" Text="Language:" HelpText="The language of the feed." />
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddlLanguages" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <dnn:Label ID="label9" runat="server" Text="AutoDetect Story Language:" HelpText="Select this option if your feed published in multiple langauges, and has not been generated using AgapeConnect. The system will automatically detect the language of each story." />
+                </td>
+                <td>
+                    <asp:CheckBox ID="cbAutoDetectLanguage" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <dnn:Label ID="Label8" runat="server" Text="Image:" HelpText="The feed image is used when there is no Story Image, or the supplied story image is too low quality" />
+                </td>
+                <td>
+                    <uc2:acImage ID="icImage" runat="server" Width="200" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <dnn:Label ID="lbLocation" runat="server" Text="Location:" HelpText="The Location of this feed. Enter any part of your address and click search (to convert it to a longitude/latitude location)" />
+                </td>
+                <td>
+                    <asp:TextBox ID="tbLocation" runat="server" Width="200px"></asp:TextBox>
+                    <div style="font-size: xx-small; color: #AAA; font-style: italic;">(City, country,region or  postocode etc)</div>
+                </td>
+            </tr>
+        <%--</asp:Panel>--%>
     </table>
-
+    </div>
     <div style="width: 100%; text-align: center; margin-top: 1em;">
      <asp:Button ID="btnAddChannel" runat="server" class="aButton btn" Enabled="false" Text="Add Channel"></asp:Button>
      <asp:Button ID="btnEditChannel" runat="server" class="aButton btn" visible="false" Text="Save"></asp:Button>

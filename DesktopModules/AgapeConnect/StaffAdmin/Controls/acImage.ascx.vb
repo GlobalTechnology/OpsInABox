@@ -290,12 +290,13 @@ Partial Class DesktopModules_AgapePortal_StaffBroker_acImage
             'theImage.Height = 200.0 / Aspect
         End If
 
-        Dim t As Type = Page.GetType()
-        Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
-        sb.Append("<script language='javascript'>")
-        sb.Append(" $('#" & theImage.ClientID() & "').Jcrop({ aspectRatio: " & Aspect & " });")
-        sb.Append("</script>")
-        ScriptManager.RegisterStartupScript(Page, t, "thePopup", sb.ToString, False)
+        ' Trent removed the following code on 2016-01-18 to avoid duplicated javascript (that broke the page) 
+        'Dim t As Type = Page.GetType()
+        'Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
+        'sb.Append("<script language='javascript'>")
+        'sb.Append(" $('#" & theImage.ClientID() & "').Jcrop({ aspectRatio: " & Aspect & " });")
+        'sb.Append("</script>")
+        'ScriptManager.RegisterStartupScript(Page, t, "thePopup", sb.ToString, False)
 
 
     End Sub
