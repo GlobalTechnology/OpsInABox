@@ -1,6 +1,8 @@
-﻿Imports System.ServiceModel.Syndication
+﻿Imports Microsoft.VisualBasic
+Imports System.ServiceModel.Syndication
 Imports System.Xml
 Imports System.Net
+Imports DotNetNuke
 Imports DotNetNuke.Services.FileSystem
 Imports Stories
 
@@ -103,8 +105,7 @@ Public Class StoryFunctions
     End Function
 
     Public Shared Function GetTags(ByVal TabModuleId As Integer) As IQueryable(Of AP_Stories_Tag)
-        Dim d As New Stories.StoriesDataContext
-
+        Dim d As New StoriesDataContext
         Return From c In d.AP_Stories_Tags Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId
     End Function
 
@@ -193,8 +194,8 @@ Public Class StoryFunctions
         End If
     End Sub
 
-    Public Shared Function GetStoryModule(ByVal TabModuleId As Integer) As Stories.AP_Stories_Module
-        Dim d As New Stories.StoriesDataContext
+    Public Shared Function GetStoryModule(ByVal TabModuleId As Integer) As AP_Stories_Module
+        Dim d As New StoriesDataContext
 
         If d.AP_Stories_Modules.Where(Function(x) x.TabModuleId = TabModuleId).Count = 0 Then
             Dim insert As New Stories.AP_Stories_Module
