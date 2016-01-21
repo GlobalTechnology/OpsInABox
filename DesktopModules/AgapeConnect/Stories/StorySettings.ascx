@@ -270,9 +270,7 @@
         </td>
         <td style="text-align: left; " >
         
-     
-
-            <asp:GridView ID="GridView1" runat="server" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" DataSourceID="dsTags" AutoGenerateColumns="False" DataKeyNames="StoryTagId">
+            <asp:GridView ID="GridView1" runat="server" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="StoryTagId">
                 <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#CCCC99" />
                 <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
@@ -295,14 +293,6 @@
             </asp:GridView>
 
 <asp:HiddenField runat="server" ID="hfPortalId"></asp:HiddenField>
-
-              <asp:LinqDataSource ID="dsTags" runat="server" EntityTypeName="" ContextTypeName="Stories.StoriesDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" OrderBy="TagName" TableName="AP_Stories_Tags" Where="PortalId == @PortalId">
-                  <WhereParameters>
-                      <asp:ControlParameter ControlID="hfPortalId" Name="PortalId" PropertyName="Value" Type="Int32" />
-                  </WhereParameters>
-            </asp:LinqDataSource>
-
-
 
               <asp:TextBox ID="tbAddTag" runat="server"></asp:TextBox><asp:Button ID="btnAddTag" runat="server" Text="Add" CssClass="aButton btn" Font-Size="X-Small" /> 
             <br />*Warning: Deleting a tag will remove this tag from all stories. This cannot be undone!

@@ -17,12 +17,12 @@ Namespace DotNetNuke.Modules.Stories
         Dim d As New StoriesDataContext
 #Region "Base Method Implementations"
 
-        
+
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
             hfPortalId.Value = PortalId
             If Not Page.IsPostBack Then
 
-               
+
                 ddlDisplayTypes.DataSource = (From c In d.AP_Stories_Controls Select c.Name, Value = c.Type & ":" & c.StoryControlId)
                 Dim mc As New DotNetNuke.Entities.Modules.ModuleController
 
@@ -166,8 +166,8 @@ Namespace DotNetNuke.Modules.Stories
                     tbAdvanceSettings.Text = TabModuleSettings("AdvancedSettings")
 
                 End If
-               
-              
+
+
                 If CType(TabModuleSettings("ShowFields"), String) <> "" Then
                     Dim s = CStr(TabModuleSettings("ShowFields")).Split(",")
                     For Each row As ListItem In cblShow.Items
@@ -186,6 +186,7 @@ Namespace DotNetNuke.Modules.Stories
                     tbBoostLength.Text = bl
                 End If
 
+                BuildTagList()
 
                 If newSettings Then
                     SynchronizeModule()
@@ -196,10 +197,14 @@ Namespace DotNetNuke.Modules.Stories
 
         End Sub
 
-       
+        Protected Sub BuildTagList()
+            GridView1.DataSource = StoryFunctions.GetTags(TabModuleId)
+            GridView1.DataBind()
+        End Sub
 
-#End Region
-       
+#End Region 'Base Method Implementations
+
+#Region "Page Events"
 
         Protected Sub SaveBtn_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles SaveBtn.Click
             'Save Module Settings
@@ -220,7 +225,7 @@ Namespace DotNetNuke.Modules.Stories
                     Return
                 End Try
             End If
-            
+
             Dim s As String = ddlDisplayTypes.SelectedValue
 
             If Not String.IsNullOrEmpty(s) Then
@@ -228,7 +233,7 @@ Namespace DotNetNuke.Modules.Stories
                 objModules.UpdateTabModuleSetting(TabModuleId, "StoryControlId", StoryControlId)
 
             End If
-           
+
             'Speed
             objModules.UpdateTabModuleSetting(TabModuleId, "Speed", CInt(hfSpeed.Value))
 
@@ -269,21 +274,21 @@ Namespace DotNetNuke.Modules.Stories
 
 
             '====== Need to update some of the channel table properties (for this module)
-            
+
             Dim LocalChannel = From c In d.AP_Stories_Module_Channels Where c.Type = 2 And c.AP_Stories_Module.TabModuleId = TabModuleId
 
-            If localChannel.Count > 0 Then
-                localChannel.First.Latitude = Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo(""))
-                localChannel.First.Longitude = Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo(""))
-                localChannel.First.ChannelTitle = tbRssName.Text
+            If LocalChannel.Count > 0 Then
+                LocalChannel.First.Latitude = Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo(""))
+                LocalChannel.First.Longitude = Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo(""))
+                LocalChannel.First.ChannelTitle = tbRssName.Text
                 d.SubmitChanges()
             End If
 
-           
-           
 
 
-           
+
+
+
             SynchronizeModule()
             Response.Redirect(NavigateURL())
 
@@ -294,20 +299,11 @@ Namespace DotNetNuke.Modules.Stories
 
         End Sub
 
-      
-
         Protected Sub btnAddTag_Click(sender As Object, e As System.EventArgs) Handles btnAddTag.Click
-            Dim insert As New AP_Stories_Tag
-            insert.PortalId = PortalId
-            insert.TagName = tbAddTag.Text
-            insert.Master = False
-            insert.Keywords = ""
-            insert.StoryModuleId = StoryFunctions.GetStoryModule(TabModuleId).StoryModuleId 'TODO: A tester
-            d.AP_Stories_Tags.InsertOnSubmit(insert)
-            d.SubmitChanges()
-
-            GridView1.DataBind()
-
+            StoryFunctions.SetTags(tbAddTag.Text, TabModuleId)
+            BuildTagList()
+            tbAddTag.Text = ""
+            tbAddTag.Focus()
         End Sub
 
 
@@ -318,6 +314,7 @@ Namespace DotNetNuke.Modules.Stories
             d.SubmitChanges()
 
         End Sub
+#End Region 'Page Events
     End Class
 
 End Namespace

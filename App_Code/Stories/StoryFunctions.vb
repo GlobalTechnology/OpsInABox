@@ -4,6 +4,8 @@ Imports System.Xml
 Imports System.Net
 Imports DotNetNuke
 Imports DotNetNuke.Services.FileSystem
+Imports Stories
+
 Namespace Stories
     Class StoryController
         Implements Entities.Modules.ISearchable
@@ -23,7 +25,7 @@ Namespace Stories
             'From c In d.AP_Stories_Module_Channel_Caches Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = ModInfo.TabModuleID()
 
             For Each row In Stories
-               
+
                 ' Dim t = mc.GetTabModule(row.TabModuleId)
                 'If (t.ModuleID = ModInfo.ModuleID) Then
                 Dim Keywords = row.Keywords
@@ -50,11 +52,11 @@ Namespace Stories
 
                 Dim SearchItem As Services.Search.SearchItemInfo
                 SearchItem = New Services.Search.SearchItemInfo _
-                 (row.Headline, _
-                 summary, _
-                row.UserId, _
-               row.StoryDate, ModInfo.ModuleID, _
-                 "S" & row.StoryId, _
+                 (row.Headline,
+                 summary,
+                row.UserId,
+               row.StoryDate, ModInfo.ModuleID,
+                 "S" & row.StoryId,
               SearchText, Guid:="StoryId=" & row.StoryId, Image:=row.PhotoId, TabID:=row.TabId)
                 SearchItemCollection.Add(SearchItem)
                 ' End If
@@ -84,6 +86,42 @@ Public Class StoryModuleType
 End Class
 
 Public Class StoryFunctions
+
+#Region "Tags"
+    Public Shared Function StripTags(ByVal HTML As String) As String
+        ' Removes tags from passed HTML
+
+        Dim pattern As String = "<(.|\n)*?>"
+        Dim pattern2 As String = "\[.*?]]\]"
+        Dim pattern3 As String = "\[.*?]\]"
+        Dim pattern4 As String = "<script[\d\D]*?>[\d\D]*?</script>"
+        Dim pattern5 As String = "<style[\d\D]*?>[\d\D]*?</style>"
+        Dim s = HTML
+        s = Regex.Replace(s, pattern4, String.Empty)
+        s = Regex.Replace(s, pattern5, String.Empty)
+        s = Regex.Replace(s, pattern, String.Empty)
+
+        Return Regex.Replace(Regex.Replace(s, pattern2, String.Empty), pattern3, String.Empty).Trim()
+    End Function
+
+    Public Shared Function GetTags(ByVal TabModuleId As Integer) As IQueryable(Of AP_Stories_Tag)
+        Dim d As New StoriesDataContext
+        Return From c In d.AP_Stories_Tags Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId
+    End Function
+
+    Public Shared Sub SetTags(ByVal name As String, ByVal TabModuleId As Integer)
+        Dim d As New Stories.StoriesDataContext
+        Dim insert As New AP_Stories_Tag
+
+        insert.TagName = name
+        insert.Master = False
+        insert.Keywords = ""
+        insert.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId 'TODO: A tester
+        d.AP_Stories_Tags.InsertOnSubmit(insert)
+        d.SubmitChanges()
+    End Sub
+
+#End Region
 
     Public Shared Function GetAdvancedSettings(ByVal TabModuleId As Integer) As Dictionary(Of String, String)
 
@@ -147,25 +185,6 @@ Public Class StoryFunctions
         End If
     End Function
 
-    Public Shared Function StripTags(ByVal HTML As String) As String
-        ' Removes tags from passed HTML
-
-        Dim pattern As String = "<(.|\n)*?>"
-        Dim pattern2 As String = "\[.*?]]\]"
-        Dim pattern3 As String = "\[.*?]\]"
-        Dim pattern4 As String = "<script[\d\D]*?>[\d\D]*?</script>"
-        Dim pattern5 As String = "<style[\d\D]*?>[\d\D]*?</style>"
-        Dim s = HTML
-        s = Regex.Replace(s, pattern4, String.Empty)
-        s = Regex.Replace(s, pattern5, String.Empty)
-        s = Regex.Replace(s, pattern, String.Empty)
-
-        Return Regex.Replace(Regex.Replace(s, pattern2, String.Empty), pattern3, String.Empty).Trim()
-
-
-    End Function
-
-
     Private Shared Sub set_if(ByRef setting As Object, ByVal value As Object)
         If value Is Nothing Then
             Return
@@ -175,8 +194,8 @@ Public Class StoryFunctions
         End If
     End Sub
 
-    Public Shared Function GetStoryModule(ByVal TabModuleId As Integer) As Stories.AP_Stories_Module
-        Dim d As New Stories.StoriesDataContext
+    Public Shared Function GetStoryModule(ByVal TabModuleId As Integer) As AP_Stories_Module
+        Dim d As New StoriesDataContext
 
         If d.AP_Stories_Modules.Where(Function(x) x.TabModuleId = TabModuleId).Count = 0 Then
             Dim insert As New Stories.AP_Stories_Module
@@ -270,12 +289,10 @@ Public Class StoryFunctions
         End If
     End Sub
 
-
-
     Public Shared Sub RefreshFeed(ByVal tabModuleId As Integer, ByVal ChannelId As Integer, Optional ByVal ClearCache As Boolean = False)
 
         'StaffBrokerFunctions.EventLog("Refreshing Channel: " & ChannelId, "", 1)
-       
+
         Dim d As New Stories.StoriesDataContext
 
         If d.AP_Stories_Modules.Where(Function(x) x.TabModuleId = tabModuleId).Count = 0 Then
@@ -323,7 +340,7 @@ Public Class StoryFunctions
 
             For Each row In feed.Items
                 Try
-                   
+
                     Dim existingStory = From c In theChannel.AP_Stories_Module_Channel_Caches Where c.Link = row.Links.First.Uri.AbsoluteUri
                     If existingStory.Count = 0 Then
                         Dim insert As New Stories.AP_Stories_Module_Channel_Cache
@@ -473,7 +490,6 @@ Public Class StoryFunctions
         d.SubmitChanges()
     End Sub
 
-
     Public Shared Sub RefreshEverythingListeningToFeedAtTab(ByVal TabModuleId As Integer)
         Dim d As New Stories.StoriesDataContext
 
@@ -485,7 +501,6 @@ Public Class StoryFunctions
         Next
         StoryFunctions.RefreshLocalChannel(TabModuleId)
     End Sub
-
 
     Public Shared Function GetBoost(ByVal boostDate As Date?) As Double
         If boostDate Is Nothing Then
@@ -539,8 +554,6 @@ Public Class StoryFunctions
         End Try
     End Function
 
-
-
     Private Shared Sub SetImage(ByRef theField As Stories.AP_Stories_Module_Channel_Cache, ByVal theRow As SyndicationItem, ByVal ChannelImage As String)
         If theRow.ElementExtensions.Where(Function(x) x.OuterName = "thumbnail").Count > 0 Then
             'First look for a thumbnail in the rss feed element
@@ -581,7 +594,6 @@ Public Class StoryFunctions
 
     End Sub
 
-
     Public Shared Function distance(ByVal lat1 As Double, ByVal lon1 As Double, ByVal lat2 As Double, ByVal lon2 As Double) As Double
 
         Dim theta As Double = lon1 - lon2
@@ -609,8 +621,6 @@ Public Class StoryFunctions
     Private Shared Function rad2deg(ByVal rad As Double) As Double
         Return rad / Math.PI * 180.0
     End Function
-
-
 
 End Class
 
