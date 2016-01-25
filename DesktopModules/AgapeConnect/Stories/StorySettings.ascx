@@ -270,7 +270,8 @@
         </td>
         <td style="text-align: left; " >
         
-            <asp:GridView ID="GridView1" runat="server" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="StoryTagId">
+            <asp:GridView ID="gvTags" runat="server" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px"
+                CellPadding="4" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="StoryTagId">
                 <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#CCCC99" />
                 <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
@@ -282,20 +283,17 @@
                 <SortedDescendingCellStyle BackColor="#EAEAD3" />
                 <SortedDescendingHeaderStyle BackColor="#575357" />
                 <Columns>
-
                     <asp:BoundField DataField="TagName" HeaderText="TagName" SortExpression="TagName" />
                     <asp:BoundField DataField="Keywords" HeaderText="Keywords" SortExpression="Keywords" />
                     <asp:CheckBoxField DataField="Master" HeaderText="Master" SortExpression="Master" />
                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-
                 </Columns>
-                
             </asp:GridView>
 
 <asp:HiddenField runat="server" ID="hfPortalId"></asp:HiddenField>
 
-              <asp:TextBox ID="tbAddTag" runat="server"></asp:TextBox><asp:Button ID="btnAddTag" runat="server" Text="Add" CssClass="aButton btn" Font-Size="X-Small" /> 
-            <br />*Warning: Deleting a tag will remove this tag from all stories. This cannot be undone!
+            <asp:TextBox ID="tbAddTag" runat="server"></asp:TextBox><asp:Button ID="btnAddTag" runat="server" ResourceKey="btnAddTag" CssClass="aButton btn" Font-Size="X-Small" /> 
+            <asp:Label ID="lblTagsDelete" runat="server" ResourceKey="lblTagsDelete"></asp:Label>
         </td>
     </tr>
     <tr valign="middle" >
