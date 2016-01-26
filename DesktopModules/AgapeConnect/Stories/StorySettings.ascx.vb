@@ -19,7 +19,7 @@ Namespace DotNetNuke.Modules.Stories
 
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
-            hfPortalId.Value = PortalId
+
             If Not Page.IsPostBack Then
 
 
@@ -189,20 +189,23 @@ Namespace DotNetNuke.Modules.Stories
                 BuildTagList()
 
                 If newSettings Then
-                    SynchronizeModule()
+                    DotNetNuke.Entities.Modules.ModuleController.SynchronizeModule(ModuleId)
                 End If
-            End If
+            End If 'Not Page.IsPostBack
 
 
 
         End Sub
+#End Region 'Base Method Implementations
+
+#Region "Helper Functions"
 
         Protected Sub BuildTagList()
-            GridView1.DataSource = StoryFunctions.GetTags(TabModuleId)
-            GridView1.DataBind()
+            gvTags.DataSource = StoryFunctions.GetTags(TabModuleId)
+            gvTags.DataBind()
         End Sub
 
-#End Region 'Base Method Implementations
+#End Region 'Helper Functions
 
 #Region "Page Events"
 
@@ -300,21 +303,53 @@ Namespace DotNetNuke.Modules.Stories
         End Sub
 
         Protected Sub btnAddTag_Click(sender As Object, e As System.EventArgs) Handles btnAddTag.Click
-            StoryFunctions.SetTags(tbAddTag.Text, TabModuleId)
+            StoryFunctions.SetTag(tbAddTag.Text, TabModuleId)
             BuildTagList()
             tbAddTag.Text = ""
             tbAddTag.Focus()
         End Sub
 
+        Protected Sub gvTags_RowDeleting(sender As Object, e As GridViewDeleteEventArgs) Handles gvTags.RowDeleting
+            StoryFunctions.DeleteMetaTags(e.Keys(0), TabModuleId)
+            StoryFunctions.DeleteTag(e.Keys(0), TabModuleId)
+            BuildTagList()
+        End Sub
 
-        Protected Sub GridView1_RowDeleting(sender As Object, e As GridViewDeleteEventArgs) Handles GridView1.RowDeleting
-            Dim q = From c In d.AP_Stories_Tag_Metas Where c.TagId = CInt(e.Keys(0))
+        Protected Sub gvTags_RowEditing(sender As Object, e As GridViewEditEventArgs) Handles gvTags.RowEditing
+            'save the row that is being edited
+            gvTags.EditIndex = e.NewEditIndex
+            BuildTagList()
+        End Sub
 
-            d.AP_Stories_Tag_Metas.DeleteAllOnSubmit(q)
-            d.SubmitChanges()
+        Protected Sub gvTags_RowCancelingEdit(sender As Object, e As GridViewCancelEditEventArgs) Handles gvTags.RowCancelingEdit
+            'Reset the edit index
+            gvTags.EditIndex = -1
+            BuildTagList()
+        End Sub
 
+        Protected Sub gvTags_RowUpdating(sender As Object, e As GridViewUpdateEventArgs) Handles gvTags.RowUpdating
+            Dim tagIdToUpdate = gvTags.DataKeys(gvTags.EditIndex).Value
+            Dim name As String = ""
+            Dim keywords As String = ""
+
+            If (e.NewValues.Values(0) IsNot Nothing) Then
+                name = e.NewValues(0).ToString
+            End If
+
+            If (e.NewValues.Values(1) IsNot Nothing) Then
+                keywords = e.NewValues(1).ToString
+            End If
+
+            Dim master As Boolean = e.NewValues(2)
+
+            StoryFunctions.UpdateTag(name, keywords, master, tagIdToUpdate, TabModuleId)
+
+            'Reset the edit index
+            gvTags.EditIndex = -1
+            BuildTagList()
         End Sub
 #End Region 'Page Events
+
     End Class
 
 End Namespace
