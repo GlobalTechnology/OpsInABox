@@ -106,22 +106,49 @@ Public Class StoryFunctions
 
     Public Shared Function GetTags(ByVal TabModuleId As Integer) As IQueryable(Of AP_Stories_Tag)
         Dim d As New StoriesDataContext
-        Return From c In d.AP_Stories_Tags Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId
+        Return From c In d.AP_Stories_Tags Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId Order By c.TagName
     End Function
 
-    Public Shared Sub SetTags(ByVal name As String, ByVal TabModuleId As Integer)
-        Dim d As New Stories.StoriesDataContext
+    Public Shared Sub SetTag(ByVal name As String, ByVal TabModuleId As Integer)
+        Dim d As New StoriesDataContext
         Dim insert As New AP_Stories_Tag
 
         insert.TagName = name
         insert.Master = False
         insert.Keywords = ""
-        insert.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId 'TODO: A tester
+        insert.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId
         d.AP_Stories_Tags.InsertOnSubmit(insert)
         d.SubmitChanges()
     End Sub
 
-#End Region
+    Public Shared Sub DeleteTag(tagId As Integer, ByVal TabModuleId As Integer)
+        Dim d As New StoriesDataContext
+        Dim tagToDelete = (From c In d.AP_Stories_Tags Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId And c.StoryTagId = CInt(tagId)).First
+        d.AP_Stories_Tags.DeleteOnSubmit(tagToDelete)
+        d.SubmitChanges()
+    End Sub
+
+    Public Shared Sub DeleteMetaTags(tagId As Integer, ByVal TabModuleId As Integer)
+        Dim d As New StoriesDataContext
+        Dim tag = (From c In d.AP_Stories_Tags Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId And c.StoryTagId = CInt(tagId)).First
+        If (tag IsNot Nothing) Then
+            Dim metaTagsToDelete = From c In d.AP_Stories_Tag_Metas Where c.TagId = CInt(tagId)
+            d.AP_Stories_Tag_Metas.DeleteAllOnSubmit(metaTagsToDelete)
+            d.SubmitChanges()
+        End If
+    End Sub
+
+    Public Shared Sub UpdateTag(ByVal name As String, ByVal keywords As String, ByVal master As String, ByVal tagId As Integer, ByVal TabModuleId As Integer)
+        Dim d As New StoriesDataContext
+        Dim tagToUpdate As AP_Stories_Tag = (From c In d.AP_Stories_Tags Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId And c.StoryTagId = tagId).First
+
+        tagToUpdate.TagName = name
+        tagToUpdate.Keywords = keywords
+        tagToUpdate.Master = master
+        d.SubmitChanges()
+    End Sub
+
+#End Region 'Tags
 
     Public Shared Function GetAdvancedSettings(ByVal TabModuleId As Integer) As Dictionary(Of String, String)
 

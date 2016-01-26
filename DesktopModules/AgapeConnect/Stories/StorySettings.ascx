@@ -289,9 +289,7 @@
                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                 </Columns>
             </asp:GridView>
-
-<asp:HiddenField runat="server" ID="hfPortalId"></asp:HiddenField>
-
+            
             <asp:TextBox ID="tbAddTag" runat="server"></asp:TextBox><asp:Button ID="btnAddTag" runat="server" ResourceKey="btnAddTag" CssClass="aButton btn" Font-Size="X-Small" /> 
             <asp:Label ID="lblTagsDelete" runat="server" ResourceKey="lblTagsDelete"></asp:Label>
         </td>
