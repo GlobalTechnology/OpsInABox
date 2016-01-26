@@ -18,7 +18,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
         Public divWidth As Integer = 150
         Public divHeight As Integer = 150
-        Public selectedTags As String() = {""}
         Public eventIcon As String = "~/DesktopModules/AgapeConnect/Stories/images/eventIcon.png"
         Public articleIcon As String = "~/DesktopModules/AgapeConnect/Stories/images/articleIcon.png"
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
@@ -54,11 +53,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                         Me.LocalResourceFile = Me.LocalResourceFile.Replace("resx", "Portal-" & PortalId & ".resx")
                     End If
                 End If
-            End If
-            If Not String.IsNullOrEmpty(Request.QueryString("tags")) Then
-                hfSelectedTags.Value = Request.QueryString("tags")
-            Else
-                hfSelectedTags.Value = ""
             End If
         End Sub
 
@@ -115,11 +109,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
 
                 Dim urlStub = NavigateURL()
-                If String.IsNullOrEmpty(Request.QueryString("tags")) Then
-                    urlStub &= "?p="
-                Else
-                    urlStub &= "?tabs=" & Request.QueryString("tags") & "&p="
-                End If
 
                 btnPrev.Enabled = Not (pg = 0)
 
@@ -134,18 +123,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                     btnNext.Style.Add("opacity", "0.5")
                 End If
             End If
-
-
-
-
-
-
-            Dim d As New StoriesDataContext
-            Dim tags = From c In d.AP_Stories_Tags Where c.PortalId = PortalId And c.Master
-
-            dlFilter.DataSource = tags
-            dlFilter.DataBind()
-
         End Sub
 
 

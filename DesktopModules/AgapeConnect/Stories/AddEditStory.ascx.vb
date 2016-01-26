@@ -51,16 +51,7 @@ Namespace DotNetNuke.Modules.Stories
                     ddlLanguage.DataTextField = "EnglishName"
                     ddlLanguage.DataBind()
 
-
-
-                Dim tags = From c In d.AP_Stories_Tags Where c.PortalId = PortalId
-
-                cblTags.DataSource = d.AP_Stories_Tags.Where(Function(c) c.PortalId = PortalId)
-                cblTags.DataTextField = "TagName"
-                cblTags.DataValueField = "StoryTagId"
-                cblTags.DataBind()
-
-                
+                BuildTagList()
 
                 If Me.UserInfo.IsSuperUser And IsEditable() Then
                         'SuperPowers.Visible = True
@@ -522,5 +513,16 @@ Namespace DotNetNuke.Modules.Stories
                 End If
             End If
         End Sub
+
+#Region "Helper Functions"
+
+        Protected Sub BuildTagList()
+            cblTags.DataSource = StoryFunctions.GetTags(TabModuleId)
+            cblTags.DataTextField = "TagName"
+            cblTags.DataValueField = "StoryTagId"
+            cblTags.DataBind()
+        End Sub
+
+#End Region 'Helper Functions
     End Class
 End Namespace

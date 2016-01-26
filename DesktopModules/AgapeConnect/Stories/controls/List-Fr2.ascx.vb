@@ -18,7 +18,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
         Public divWidth As Integer = 150
         Public divHeight As Integer = 150
-        Public selectedTags As String() = {""}
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             'Allowing dynamically loaded controls to be translated using the DNN translation system is complex...
             'However this code does the trick. Just copy this Sub (Page_Init) ,as is, to make it work
@@ -52,11 +51,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                         Me.LocalResourceFile = Me.LocalResourceFile.Replace("resx", "Portal-" & PortalId & ".resx")
                     End If
                 End If
-            End If
-            If Not String.IsNullOrEmpty(Request.QueryString("tags")) Then
-                hfSelectedTags.Value = Request.QueryString("tags")
-            Else
-                hfSelectedTags.Value = ""
             End If
         End Sub
 
@@ -110,14 +104,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 btnPrev.Visible = True
                 btnNext.Visible = True
 
-
-
                 Dim urlStub = NavigateURL()
-                If String.IsNullOrEmpty(Request.QueryString("tags")) Then
-                    urlStub &= "?p="
-                Else
-                    urlStub &= "?tabs=" & Request.QueryString("tags") & "&p="
-                End If
 
                 btnPrev.Enabled = Not (pg = 0)
 
@@ -132,18 +119,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                     btnNext.Style.Add("opacity", "0.5")
                 End If
             End If
-
-
-
-
-
-
-            Dim d As New StoriesDataContext
-            Dim tags = From c In d.AP_Stories_Tags Where c.PortalId = PortalId And c.Master
-
-            dlFilter.DataSource = tags
-            dlFilter.DataBind()
-
         End Sub
 
     End Class
