@@ -35,7 +35,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
             If Request.QueryString("StoryId") <> "" Then
                 If String.IsNullOrEmpty(Settings("ViewTab")) Or Settings("ViewTab") = 0 Then
-                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
+                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
                 Else
                     Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
                 End If
