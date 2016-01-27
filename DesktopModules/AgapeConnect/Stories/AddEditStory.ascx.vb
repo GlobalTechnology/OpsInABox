@@ -319,15 +319,14 @@ Namespace DotNetNuke.Modules.Stories
 
                 StoryFunctions.RefreshLocalChannel(CInt(TabModuleId))
 
-                ' Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
                 If CType(Settings("ViewTab"), String) <> "" Then
                     If Settings("ViewTab") <> TabId Then
                         Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
                     Else
-                        Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
+                        Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
                     End If
                 Else
-                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
+                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
                 End If
 
             Else
@@ -416,16 +415,15 @@ Namespace DotNetNuke.Modules.Stories
                 Next
 
                 StoryFunctions.RefreshLocalChannel(CInt(TabModuleId))
-                'Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & insert.StoryId)
 
                 If CType(Settings("ViewTab"), String) <> "" Then
                     If Settings("ViewTab") <> TabId Then
                         Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & "?StoryId=" & insert.StoryId & "&origTabId=" & TabId & "&origModId=" & ModuleId)
                     Else
-                        Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & insert.StoryId)
+                        Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & insert.StoryId & "&origTabId=" & TabId & "&origModId=" & ModuleId)
                     End If
                 Else
-                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & insert.StoryId)
+                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & insert.StoryId & "&origTabId=" & TabId & "&origModId=" & ModuleId)
                 End If
             End If
 
@@ -440,10 +438,10 @@ Namespace DotNetNuke.Modules.Stories
                     If Settings("ViewTab") <> TabId Then
                         Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
                     Else
-                        Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
+                        Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
                     End If
                 Else
-                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
+                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
                 End If
 
             End If
