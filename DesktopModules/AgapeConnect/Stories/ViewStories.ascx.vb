@@ -3,7 +3,6 @@ Imports System.Collections
 Imports System.Configuration
 Imports System.Data
 Imports System.Linq
-
 Imports DotNetNuke
 Imports DotNetNuke.Common
 Imports DotNetNuke.Security
@@ -11,25 +10,21 @@ Imports StaffBroker
 Imports StaffBrokerFunctions
 Imports Stories
 Imports DotNetNuke.Services.FileSystem
+Imports DotNetNuke.Entities.Modules
+
 Namespace DotNetNuke.Modules.AgapeConnect.Stories
     Partial Class ViewStories
         Inherits Entities.Modules.PortalModuleBase
         Implements Entities.Modules.IActionable
-        'Adding Stories Translation
+
+#Region "Class variables"
+
         Dim d As New StoriesDataContext
         Dim theControl As Object
 
-        Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
-            'Dim addTitle = New Entities.Modules.Actions.ModuleAction(GetNextActionID, "AgapeConnect", "AgapeConnect", "", "", "", "", True, SecurityAccessLevel.Edit, True, False)
-    
-            'addTitle.Actions.Add(GetNextActionID, "Story Settings", "StorySettings", "", "action_settings.gif", EditUrl("StorySettings"), False, SecurityAccessLevel.Edit, True, False)
-            'addTitle.Actions.Add(GetNextActionID, "Story Mixer", "StoryMixer", "", "action_settings.gif", EditUrl("Mixer"), False, SecurityAccessLevel.Edit, True, False)
-            'addTitle.Actions.Add(GetNextActionID, "Unpublished", "unpublished", "", "action_settings.gif", EditUrl("unpublished"), False, SecurityAccessLevel.Edit, True, False)
+#End Region 'Class variables
 
-            'addTitle.Actions.Add(GetNextActionID, "New Story", "NewStory", "", "add.gif", EditUrl("AddEditStory"), False, SecurityAccessLevel.Edit, True, False)
-            'MyBase.Actions.Insert(0, addTitle)
-        End Sub
-
+#Region "Base Method Implementations"
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -53,10 +48,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 Return
             End If
 
-
             If Not Page.IsPostBack Then
-
-
 
                 If String.IsNullOrEmpty(Settings("StoryControlId")) Then
                     If d.AP_Stories_Controls.Count > 0 Then
@@ -76,17 +68,11 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             End If
         End Sub
 
+#End Region 'Base Method Implementations
+
+#Region "Helper Functions"
 
         Private Sub LoadStoryControl(ByVal URL As String, Optional IsList As Boolean = False)
-            'If String.IsNullOrEmpty(Session("Long")) Or String.IsNullOrEmpty(Session("Lat")) Then
-            '    Dim ls As New LookupService(Server.MapPath("~/App_Data/GeoLiteCity.dat"), LookupService.GEOIP_STANDARD)
-
-            '    Dim l As Location = ls.getLocation(Request.ServerVariables("remote_addr"))
-            '    'Dim l As Location = ls.getLocation("80.193.180.102")   '(Solihill) Hard Coded as LocalHost cannot be resolved to a location. Replace with above line when going live!
-
-            '    Session("Long") = l.longitude
-            '    Session("Lat") = l.latitude
-            'End If
 
             Dim l As Location = Location.GetLocation(Request.ServerVariables("remote_addr"))
 
@@ -95,15 +81,12 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
 
             If Settings("NumberOfStories") = "" Then
-                Dim objModules As New Entities.Modules.ModuleController
+                Dim objModules As New ModuleController
                 objModules.UpdateTabModuleSetting(TabModuleId, "NumberOfStories", 10)
-                SynchronizeModule()
+                ModuleController.SynchronizeModule(ModuleId)
             End If
             Dim localFactor As Double = 1
 
-            ' Dim q = From c In d.AP_Stories_Module_Channel_Caches Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = TabModuleId Order By CDbl(c.Precal) * (1.0 + (CDbl(c.Clicks) * CDbl(Settings("WeightPopular")))) * (1.0 - Math.Max(1.0, (Math.Acos(Math.Sin(lt * Math.PI / 180.0) * Math.Sin(c.Latitude * Math.PI / 180.0) + Math.Cos(lt * Math.PI / 180.0) * Math.Cos(c.Latitude * Math.PI / 180.0) * Math.Cos(((lg - c.Longitude) * Math.PI / 180.0)))) * 0.006909 / (Math.PI * 180.0))) Descending
-
-            'Dim q = From c In d.AP_Stories_Module_Channel_Caches Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = TabModuleId Order By CDbl(c.Precal) * (1.0 + (CDbl(c.Clicks) * CDbl(Settings("WeightPopular")))) * CDbl(CDbl(1.0) - CDbl(Math.Max(CDbl(1.0), CDbl((Math.Acos(Math.Sin(lt * Math.PI / 180.0) * Math.Sin(CDbl(c.Latitude) * Math.PI / 180.0) + Math.Cos(lt * Math.PI / 180.0) * Math.Cos(CDbl(c.Latitude) * Math.PI / 180.0) * Math.Cos(((CDbl(lg) - CDbl(c.Longitude)) * Math.PI / 180.0))))) * 0.006909 / (Math.PI * 180.0)))) Descending
             Dim deg2Rad As Double = Math.PI / CDbl(180.0)
             Dim G As Double = 0.8
             Dim P As Double = 0.8
@@ -120,15 +103,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             If Settings("WeightPopular") <> "" Then
                 P = Double.Parse(Settings("WeightPopular"), New CultureInfo(""))
             End If
-            'Dim q = From c In d.AP_Stories_Module_Channel_Caches Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = TabModuleId Order By CDbl(c.Precal) * (CDbl(1.0 + (c.Clicks * P))) * (1.0 + (G * (1.0 - CDbl(CDbl(Math.Min(200, ((Math.Acos(CDbl(Math.Sin(deg2Rad * (lt))) * CDbl(Math.Sin(deg2Rad * CDbl(c.Latitude))) + CDbl(Math.Cos(deg2Rad * CDbl(lt))) * CDbl(Math.Cos(deg2Rad * CDbl(c.Latitude))) * CDbl(Math.Cos(deg2Rad * (lg - CDbl(c.Longitude)))))) / CDbl(Math.PI) * 180.0) * 1.1515 * 60.0)) / 200.0)))) / 2.0 Descending
-            'Dim q = From c In d.AP_Stories_Module_Channel_Caches Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = TabModuleId And Not c.Block
-            Dim culture = CultureInfo.CurrentCulture.Name.ToLower
-            'Dim culture2 = CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToLower
-            'q = q.Where(Function(c) (CultureInfo.CurrentCulture.Name.ToLower.Contains(c.Langauge.ToLower) Or c.Langauge.ToLower.Contains(CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToLower)))
 
-            'Dim q = d.AP_Stories_Module_Channel_Caches.Where(Function(c) CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToLower = c.Langauge.Substring(0, 2) And c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = TabModuleId And Not c.Block) _
-            '        .OrderByDescending(Function(c) CDbl(c.Precal) * (CDbl(1.0 + (c.Clicks * P))) * (1.0 + (G * (CDbl(1.0) - CDbl(CDbl(Math.Min(CDbl(200), ((Math.Acos(CDbl(Math.Sin(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Sin(deg2Rad * CDbl(c.Latitude))) + CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(c.Latitude))) * CDbl(Math.Cos(CDbl(deg2Rad) * (CDbl(lg) - CDbl(c.Longitude)))))) / CDbl(Math.PI) * CDbl(180.0)) * CDbl(1.1515) * CDbl(60.0))) / CDbl(200.0))))) / CDbl(2.0)) _
-            '        .Take(CInt(Settings("NumberOfStories"))).ToList().OrderByDescending(Function(c) CDbl(c.Precal) * (CDbl(1.0 + (c.Clicks * P))) * (1.0 + (G * (CDbl(1.0) - CDbl(CDbl(Math.Min(CDbl(200), ((Math.Acos(CDbl(Math.Sin(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Sin(deg2Rad * CDbl(c.Latitude))) + CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(c.Latitude))) * CDbl(Math.Cos(CDbl(deg2Rad) * (CDbl(lg) - CDbl(c.Longitude)))))) / CDbl(Math.PI) * CDbl(180.0)) * CDbl(1.1515) * CDbl(60.0))) / CDbl(200.0))))) / CDbl(2.0))
+            Dim culture = CultureInfo.CurrentCulture.Name.ToLower
+
             Dim r = From c In d.AP_Stories_Module_Channel_Caches Select c, ViewOrder = CDbl(c.Precal) * (CDbl(1.0 + (Math.Log(c.Clicks) * P / 200))) * (1.0 + (G * (CDbl(1.0) - CDbl(CDbl(Math.Min(CDbl(200), ((Math.Acos(CDbl(Math.Sin(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Sin(deg2Rad * CDbl(c.Latitude))) + CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(c.Latitude))) * CDbl(Math.Cos(CDbl(deg2Rad) * (CDbl(lg) - CDbl(c.Longitude)))))) / CDbl(Math.PI) * CDbl(180.0)) * CDbl(1.1515) * CDbl(60.0))) / CDbl(200.0)))) / CDbl(2.0))
 
             If (Request.QueryString("tags") <> "") Then
@@ -136,9 +113,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 Dim tagList = Request.QueryString("tags").Split(",")
 
                 r = From c In r Join b In d.AP_Stories On CInt(c.c.GUID) Equals b.StoryId Where b.AP_Stories_Tag_Metas.Where(Function(x) tagList.Contains(x.AP_Stories_Tag.TagName)).Count > 0 Select c
-
-
-
 
             End If
 
@@ -156,8 +130,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 AgapeLogger.WriteEventLog(UserId, str)
             End If
 
-
-
             phStoryControl.Controls.Clear()
             theControl = LoadControl(URL)
 
@@ -169,16 +141,15 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
         End Sub
 
+#End Region 'Helper Functions
+
 #Region "Optional Interfaces"
 
         Public ReadOnly Property ModuleActions() As Entities.Modules.Actions.ModuleActionCollection Implements Entities.Modules.IActionable.ModuleActions
             Get
-               
 
                 Dim Actions As New Entities.Modules.Actions.ModuleActionCollection
 
-
-                '    Dim addTitle = New Entities.Modules.Actions.ModuleAction(GetNextActionID, "AgapeConnect", "AgapeConnect", "", "", "", "", True, SecurityAccessLevel.Edit, True, False)
                 If UserInfo.IsInRole("Administrators") Or UserInfo.IsSuperUser Then
                     Actions.Add(GetNextActionID, "Story Settings", "StorySettings", "", "action_settings.gif", EditUrl("StorySettings"), False, SecurityAccessLevel.Edit, True, False)
 
@@ -187,19 +158,13 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 Actions.Add(GetNextActionID, "Unpublished", "unpublished", "", "action_settings.gif", EditUrl("unpublished"), False, SecurityAccessLevel.Edit, True, False)
 
                 Actions.Add(GetNextActionID, "New Story", "NewStory", "", "add.gif", EditUrl("AddEditStory"), False, SecurityAccessLevel.Edit, True, False)
-                '  Actions.Add(addTitle)
 
-                'Actions.Add(GetNextActionID, Localization.GetString("StorySettings", LocalResourceFile), _
-                '             Entities.Modules.Actions.ModuleActionType.AddContent, "", "", _
-                '             EditUrl("StorySettings"), False, _
-                '             SecurityAccessLevel.Edit, True, False)
                 Return Actions
             End Get
         End Property
 
 #End Region
+
     End Class
-
-
 
 End Namespace
