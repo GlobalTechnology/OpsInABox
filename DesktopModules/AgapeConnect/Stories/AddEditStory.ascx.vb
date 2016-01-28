@@ -44,9 +44,7 @@ Namespace DotNetNuke.Modules.Stories
                     Next
                 Next
 
-                    StaffBrokerFunctions.EventLog("TabCount", allTabs.Count, UserId)
-
-                    ddlLanguage.DataSource = From c In CultureInfo.GetCultures(CultureTypes.SpecificCultures) Order By c.EnglishName Select Name = c.Name.ToLower, EnglishName = c.EnglishName
+                ddlLanguage.DataSource = From c In CultureInfo.GetCultures(CultureTypes.SpecificCultures) Order By c.EnglishName Select Name = c.Name.ToLower, EnglishName = c.EnglishName
                     ddlLanguage.DataValueField = "Name"
                     ddlLanguage.DataTextField = "EnglishName"
                     ddlLanguage.DataBind()
