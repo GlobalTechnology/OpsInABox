@@ -28,6 +28,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+            ' Redirect to view requested story
             If Request.QueryString("StoryId") <> "" Then
                 If String.IsNullOrEmpty(Settings("ViewTab")) Or Settings("ViewTab") = 0 Then
                     Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
@@ -50,11 +51,12 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
             If Not Page.IsPostBack Then
 
-                If String.IsNullOrEmpty(Settings("StoryControlId")) Then
+                If String.IsNullOrEmpty(Settings("StoryControlId")) Then 'Load default Display Type if none defined in module settings
                     If d.AP_Stories_Controls.Count > 0 Then
                         LoadStoryControl(d.AP_Stories_Controls.First.Location)
                     End If
-                Else
+                Else 'Load Display Type defined in module settings
+
                     Dim dControl = From c In d.AP_Stories_Controls Where c.StoryControlId = CInt(Settings("StoryControlId"))
 
                     If dControl.Count > 0 Then
@@ -75,16 +77,16 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
         Private Sub LoadStoryControl(ByVal URL As String, Optional IsList As Boolean = False)
 
             Dim l As Location = Location.GetLocation(Request.ServerVariables("remote_addr"))
-
             Dim lg = l.longitude
             Dim lt = l.latitude
 
-
+            'Set 10 as default number of stories displayed
             If Settings("NumberOfStories") = "" Then
                 Dim objModules As New ModuleController
                 objModules.UpdateTabModuleSetting(TabModuleId, "NumberOfStories", 10)
                 ModuleController.SynchronizeModule(ModuleId)
             End If
+
             Dim localFactor As Double = 1
 
             Dim deg2Rad As Double = Math.PI / CDbl(180.0)
@@ -120,15 +122,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                             .OrderByDescending(Function(c) c.ViewOrder) _
                         .Take(N)
             Dim storyList = r.Select(Function(x) x.c).ToList()
-
-            If IsEditable And TabModuleId = 4469 Then
-                Dim str As String = ""
-
-                For Each row In r
-                    str &= row.ViewOrder & " : " & StoryFunctions.GetRecencyScore(row.c.StoryDate) & " : " & row.c.StoryDate & "    |     "
-                Next
-                AgapeLogger.WriteEventLog(UserId, str)
-            End If
 
             phStoryControl.Controls.Clear()
             theControl = LoadControl(URL)
