@@ -110,19 +110,25 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
                 Dim urlStub = NavigateURL()
 
+                If String.IsNullOrEmpty(Request.QueryString("tags")) Then
+                    urlStub &= "?p="
+                Else
+                    urlStub &= "?tags=" & Request.QueryString("tags") & "&p="
+                End If
+
                 btnPrev.Enabled = Not (pg = 0)
 
-                If (pg = 0) Then
-                    btnPrev.Style.Add("opacity", "0.5")
-                End If
+                    If (pg = 0) Then
+                        btnPrev.Style.Add("opacity", "0.5")
+                    End If
 
-                btnPrev.NavigateUrl = urlStub & (pg - 1)
-                btnNext.NavigateUrl = urlStub & (pg + 1)
-                btnNext.Enabled = (Math.Floor((Stories.Count - 1) / CInt(settings("NumberOfStories"))) > pg)
-                If Not btnNext.Enabled Then
-                    btnNext.Style.Add("opacity", "0.5")
+                    btnPrev.NavigateUrl = urlStub & (pg - 1)
+                    btnNext.NavigateUrl = urlStub & (pg + 1)
+                    btnNext.Enabled = (Math.Floor((Stories.Count - 1) / CInt(settings("NumberOfStories"))) > pg)
+                    If Not btnNext.Enabled Then
+                        btnNext.Style.Add("opacity", "0.5")
+                    End If
                 End If
-            End If
         End Sub
 
 
