@@ -61,6 +61,7 @@
 
     .StoriesList {
         width: 100%;
+    background-color: yellow;
     }
 
 
