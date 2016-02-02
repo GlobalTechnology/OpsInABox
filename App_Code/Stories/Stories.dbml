@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AgapeConnect" Class="StoriesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=oib-ressources-publiques;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=oib-ress-pub;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AP_Stories_Module" Member="AP_Stories_Modules">
     <Type Name="AP_Stories_Module">
       <Column Name="StoryModuleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -107,11 +107,10 @@
     <Type Name="AP_Stories_Tag">
       <Column Name="StoryTagId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TagName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="PortalId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Keywords" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Master" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Member="StoryModuleId" Type="System.Int32" CanBeNull="true" />
-      <Column Member="PhotoId" Type="System.Int32" CanBeNull="true" />
+      <Column Name="StoryModuleId" Type="System.Int32" CanBeNull="false" />
+      <Column Name="PhotoId" Type="System.Int32" CanBeNull="true" />
       <Association Name="AP_Stories_Tag_AP_Stories_Tag_Meta" Member="AP_Stories_Tag_Metas" ThisKey="StoryTagId" OtherKey="TagId" Type="AP_Stories_Tag_Meta" />
     </Type>
   </Table>

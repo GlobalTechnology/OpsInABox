@@ -2196,13 +2196,11 @@ Namespace Stories
 		
 		Private _TagName As String
 		
-		Private _PortalId As Integer
-		
 		Private _Keywords As String
 		
 		Private _Master As Boolean
 		
-		Private _StoryModuleId As System.Nullable(Of Integer)
+		Private _StoryModuleId As Integer
 		
 		Private _PhotoId As System.Nullable(Of Integer)
 		
@@ -2223,10 +2221,6 @@ Namespace Stories
     End Sub
     Partial Private Sub OnTagNameChanged()
     End Sub
-    Partial Private Sub OnPortalIdChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnPortalIdChanged()
-    End Sub
     Partial Private Sub OnKeywordsChanging(value As String)
     End Sub
     Partial Private Sub OnKeywordsChanged()
@@ -2235,7 +2229,7 @@ Namespace Stories
     End Sub
     Partial Private Sub OnMasterChanged()
     End Sub
-    Partial Private Sub OnStoryModuleIdChanging(value As System.Nullable(Of Integer))
+    Partial Private Sub OnStoryModuleIdChanging(value As Integer)
     End Sub
     Partial Private Sub OnStoryModuleIdChanged()
     End Sub
@@ -2284,23 +2278,6 @@ Namespace Stories
 			End Set
 		End Property
 		
-		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PortalId", DbType:="Int NOT NULL")>  _
-		Public Property PortalId() As Integer
-			Get
-				Return Me._PortalId
-			End Get
-			Set
-				If ((Me._PortalId = value)  _
-							= false) Then
-					Me.OnPortalIdChanging(value)
-					Me.SendPropertyChanging
-					Me._PortalId = value
-					Me.SendPropertyChanged("PortalId")
-					Me.OnPortalIdChanged
-				End If
-			End Set
-		End Property
-		
 		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Keywords", DbType:="NVarChar(MAX)")>  _
 		Public Property Keywords() As String
 			Get
@@ -2335,12 +2312,13 @@ Namespace Stories
 		End Property
 		
 		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StoryModuleId")>  _
-		Public Property StoryModuleId() As System.Nullable(Of Integer)
+		Public Property StoryModuleId() As Integer
 			Get
 				Return Me._StoryModuleId
 			End Get
 			Set
-				If (Me._StoryModuleId.Equals(value) = false) Then
+				If ((Me._StoryModuleId = value)  _
+							= false) Then
 					Me.OnStoryModuleIdChanging(value)
 					Me.SendPropertyChanging
 					Me._StoryModuleId = value
