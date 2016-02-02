@@ -103,7 +103,7 @@ Namespace DotNetNuke.Modules.Stories
 
                 If CType(TabModuleSettings("TagListControlId"), String) <> "" Then
                     If d.AP_Stories_Controls.Where(Function(x) x.StoryControlId = CInt(TabModuleSettings("TagListControlId"))).Count > 0 Then
-                        For Each row As ListItem In ddlDisplayTypes.Items
+                        For Each row As ListItem In ddlTagsDisplayTypes.Items
                             If row.Value.EndsWith(":" & TabModuleSettings("TagListControlId")) Then
                                 ddlTagsDisplayTypes.SelectedValue = row.Value
                                 Exit For
@@ -248,10 +248,12 @@ Namespace DotNetNuke.Modules.Stories
                 objModules.UpdateTabModuleSetting(TabModuleId, "StoryControlId", StoryControlId)
             End If
 
-            Dim s2 As String = ddlDisplayTypes.SelectedValue
+            Dim s2 As String = ddlTagsDisplayTypes.SelectedValue
             If Not String.IsNullOrEmpty(s2) Then
                 Dim TagListControlId As Integer = s2.Substring(s2.IndexOf(":") + 1)
                 objModules.UpdateTabModuleSetting(TabModuleId, "TagListControlId", TagListControlId)
+            Else
+                objModules.UpdateTabModuleSetting(TabModuleId, "TagListControlId", "")
             End If
 
             'Speed
