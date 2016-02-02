@@ -246,10 +246,7 @@ Namespace DotNetNuke.Modules.FullStory
                 'Generate Related Stories Sections
                 ReplaceField(sv, "[RELATEDSTORIES]", GetRelatedStories(r.AP_Stories_Tag_Metas.Select(Function(c) c.AP_Stories_Tag.StoryTagId).ToList, r.Author))
 
-
                 ReplaceField(sv, "[RELATEDARTICLES]", GetRelatedArticles(r.AP_Stories_Tag_Metas.Select(Function(c) c.AP_Stories_Tag.StoryTagId).ToList, r.TabModuleId))
-
-
 
                 If Not r.TranslationGroup Is Nothing Then
 
@@ -440,7 +437,16 @@ Namespace DotNetNuke.Modules.FullStory
             Dim d As New StoriesDataContext
             Dim rtn As String = ""
 
-            Dim q = From story In d.AP_Stories Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId Where story.PortalID = PortalId And story.TabModuleId = TabModuleID And story.IsVisible And story.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count = 0 And (story.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) And Not story.StoryId = Request.QueryString("StoryId") And Not channel.Block = True And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId Order By story.StoryDate Descending
+            Dim q = From story In d.AP_Stories Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId
+                    Where story.PortalID = PortalId _
+                    And story.TabModuleId = TabModuleID _
+                    And story.IsVisible _
+                    And story.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count = 0 _
+                    And (story.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) _
+                    And Not story.StoryId = Request.QueryString("StoryId") _
+                    And Not channel.Block = True _
+                    And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId
+                    Order By story.StoryDate Descending
 
             If q.Count > 0 Then
 
@@ -468,7 +474,15 @@ Namespace DotNetNuke.Modules.FullStory
             Dim rtn As String = ""
 
             'gets all stories with date of today or future and tagged Evénement that are not blocked in the cache and are in the same channel. 
-            Dim q = From story In d.AP_Stories Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId Where story.PortalID = PortalId And story.TabModuleId = TabModuleID And story.IsVisible And (story.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0) And story.StoryDate >= Today And Not story.StoryId = StoryId And Not channel.Block = True And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId Order By story.StoryDate Ascending
+            Dim q = From story In d.AP_Stories Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId
+                    Where story.PortalID = PortalId _
+                    And story.TabModuleId = TabModuleID _
+                    And story.IsVisible _
+                    And (story.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0) _
+                    And story.StoryDate >= Today _
+                    And Not story.StoryId = StoryId _
+                    And Not channel.Block = True _
+                    And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId Order By story.StoryDate Ascending
 
             'prints results under Agenda heading on left hand side of each story
             If q.Count > 0 Then
@@ -497,7 +511,16 @@ Namespace DotNetNuke.Modules.FullStory
             Dim rtn As String = ""
 
             'gets all stories tagged Evénement and having the same tag as current and with date of today or future
-            Dim q = From story In d.AP_Stories Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId Where story.PortalID = PortalId And story.TabModuleId = TabModuleID And story.IsVisible And story.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0 And (story.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) And story.StoryDate >= Today And Not story.StoryId = Request.QueryString("StoryId") And Not channel.Block = True And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId Order By story.StoryDate Ascending
+            Dim q = From story In d.AP_Stories Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId
+                    Where story.PortalID = PortalId _
+                    And story.TabModuleId = TabModuleID _
+                    And story.IsVisible _
+                    And story.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0 _
+                    And (story.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) _
+                    And story.StoryDate >= Today _
+                    And Not story.StoryId = Request.QueryString("StoryId") _
+                    And Not channel.Block = True _
+                    And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId Order By story.StoryDate Ascending
 
             If q.Count > 0 Then
 
