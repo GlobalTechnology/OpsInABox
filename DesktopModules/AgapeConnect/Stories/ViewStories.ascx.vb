@@ -51,23 +51,38 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
             If Not Page.IsPostBack Then
 
-                If String.IsNullOrEmpty(Settings("StoryControlId")) Then 'Load default Display Type if none defined in module settings
-                    If d.AP_Stories_Controls.Count > 0 Then
-                        LoadStoryControl(d.AP_Stories_Controls.First.Location)
-                    End If
-                Else 'Load Display Type defined in module settings
+                If Not String.IsNullOrEmpty(Settings("TagListControlId")) And (Request.QueryString("tags") = "") Then ' Show tag list for current Story module
 
-                    Dim dControl = From c In d.AP_Stories_Controls Where c.StoryControlId = CInt(Settings("StoryControlId"))
+                    Dim dControl = From c In d.AP_Stories_Controls Where c.StoryControlId = CInt(Settings("TagListControlId"))
 
                     If dControl.Count > 0 Then
 
-                        LoadStoryControl(dControl.First.Location, dControl.First.Type = 2)
+                        LoadStoryControl(dControl.First.Location, dControl.First.Type = StoryModuleType.TagList)
+
+                    End If
+
+                Else ' Show list of stories
+
+                    If String.IsNullOrEmpty(Settings("StoryControlId")) Then 'Load default Display Type if none defined in module settings
+                        If d.AP_Stories_Controls.Count > 0 Then
+                            LoadStoryControl(d.AP_Stories_Controls.First.Location)
+                        End If
+                    Else 'Load Display Type defined in module settings
+
+                        Dim dControl = From c In d.AP_Stories_Controls Where c.StoryControlId = CInt(Settings("StoryControlId"))
+
+                        If dControl.Count > 0 Then
+
+                            LoadStoryControl(dControl.First.Location, dControl.First.Type = 2)
+
+                        End If
 
                     End If
 
                 End If
 
             End If
+
         End Sub
 
 #End Region 'Base Method Implementations
