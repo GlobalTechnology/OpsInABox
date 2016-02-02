@@ -74,10 +74,12 @@ End Namespace
 Public Class StoryModuleType
     Public Const Rotator As Integer = 1
     Public Const List As Integer = 2
+    Public Const TagList As Integer = 3
     Public Shared Function Name(ByVal value As Integer) As String
         Select Case value
             Case 1 : Return "Rotator"
             Case 2 : Return "List"
+            Case 3 : Return "TagList"
             Case Else : Return "Unknown"
 
         End Select

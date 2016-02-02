@@ -222,4 +222,13 @@
   <data name="lblTagsDelete.Text" xml:space="preserve">
     <value>&lt;br&gt;Please note: if you delete a tag, this tag is removed from all stories. This cannot be undone. BE CAREFUL!</value>
   </data>
+  <data name="lblTagsDisplayType.Help" xml:space="preserve">
+    <value>Select whether you would like the tags to be displayed as a category list and how.</value>
+  </data>
+  <data name="lblTagsDisplayType.Text" xml:space="preserve">
+    <value>Tag List Display Type</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
 </root>

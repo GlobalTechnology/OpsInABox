@@ -150,6 +150,18 @@
 <asp:HiddenField id='hfSpeed' runat="server"  Value="3"  />
 
 <table cellpadding="4px" border="1" class="SettingsTable" style="margin: 0 auto;">
+    
+    <tr>
+        <td>
+        <dnn:Label ID="lblTagsDisplayType" runat="server" ResourceKey="lblTagsDisplayType" />
+        </td>
+        <td style="text-align: center ;">
+            <asp:DropDownList ID="ddlTagsDisplayTypes" runat="server" AppendDataBoundItems="true">
+                <asp:ListItem Text="Don't show tag list" Value="" />
+            </asp:DropDownList>
+        </td>
+    </tr>
+
     <tr>
         <td>
         <dnn:Label ID="Label5" runat="server" ResourceKey="lblDisplayType" />

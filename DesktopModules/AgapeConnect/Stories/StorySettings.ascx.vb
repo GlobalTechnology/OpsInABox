@@ -22,8 +22,10 @@ Namespace DotNetNuke.Modules.Stories
 
             If Not Page.IsPostBack Then
 
+                ddlDisplayTypes.DataSource = (From c In d.AP_Stories_Controls Where c.Type <> StoryModuleType.TagList Select c.Name, Value = c.Type & ":" & c.StoryControlId)
 
-                ddlDisplayTypes.DataSource = (From c In d.AP_Stories_Controls Select c.Name, Value = c.Type & ":" & c.StoryControlId)
+                ddlTagsDisplayTypes.DataSource = (From c In d.AP_Stories_Controls Where c.Type = StoryModuleType.TagList Select c.Name, Value = c.Type & ":" & c.StoryControlId)
+
                 Dim mc As New DotNetNuke.Entities.Modules.ModuleController
 
                 Dim dtp = DotNetNuke.Entities.Modules.DesktopModuleController.GetDesktopModuleByFriendlyName("ac_ViewStory")
@@ -51,6 +53,10 @@ Namespace DotNetNuke.Modules.Stories
                 ddlDisplayTypes.DataTextField = "Name"
                 ddlDisplayTypes.DataValueField = "Value"
                 ddlDisplayTypes.DataBind()
+
+                ddlTagsDisplayTypes.DataTextField = "Name"
+                ddlTagsDisplayTypes.DataValueField = "Value"
+                ddlTagsDisplayTypes.DataBind()
 
 
                 Dim newSettings As Boolean = False
@@ -91,12 +97,19 @@ Namespace DotNetNuke.Modules.Stories
                                 ddlDisplayTypes.SelectedValue = row.Value
                                 Exit For
                             End If
-
                         Next
-
                     End If
+                End If
 
-
+                If CType(TabModuleSettings("TagListControlId"), String) <> "" Then
+                    If d.AP_Stories_Controls.Where(Function(x) x.StoryControlId = CInt(TabModuleSettings("TagListControlId"))).Count > 0 Then
+                        For Each row As ListItem In ddlDisplayTypes.Items
+                            If row.Value.EndsWith(":" & TabModuleSettings("TagListControlId")) Then
+                                ddlTagsDisplayTypes.SelectedValue = row.Value
+                                Exit For
+                            End If
+                        Next
+                    End If
                 End If
 
                 If CType(TabModuleSettings("AspectMode"), String) <> "" Then
@@ -230,11 +243,15 @@ Namespace DotNetNuke.Modules.Stories
             End If
 
             Dim s As String = ddlDisplayTypes.SelectedValue
-
             If Not String.IsNullOrEmpty(s) Then
                 Dim StoryControlId As Integer = s.Substring(s.IndexOf(":") + 1)
                 objModules.UpdateTabModuleSetting(TabModuleId, "StoryControlId", StoryControlId)
+            End If
 
+            Dim s2 As String = ddlDisplayTypes.SelectedValue
+            If Not String.IsNullOrEmpty(s2) Then
+                Dim TagListControlId As Integer = s2.Substring(s2.IndexOf(":") + 1)
+                objModules.UpdateTabModuleSetting(TabModuleId, "TagListControlId", TagListControlId)
             End If
 
             'Speed
