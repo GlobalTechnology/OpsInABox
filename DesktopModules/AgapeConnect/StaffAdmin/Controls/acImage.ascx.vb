@@ -13,11 +13,11 @@ Imports DotNetNuke.Services.FileSystem
 Partial Class DesktopModules_AgapePortal_StaffBroker_acImage
     'Inherits System.Web.UI.UserControl
     Inherits Entities.Modules.PortalModuleBase
-    Private _FileId As Integer
 
 
+#Region "Public Properties"
 
-    <Bindable(True, BindingDirection.TwoWay)> <Browsable(True)> <Category("Common")> <Description("The DotNetNuke FileID")> <DefaultValue(0)> <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)> _
+    <Bindable(True, BindingDirection.TwoWay)> <Browsable(True)> <Category("Common")> <Description("The DotNetNuke FileID")> <DefaultValue(0)> <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)>
     Public Property FileId() As Integer
         Get
             Return hfFileId.Value
@@ -59,24 +59,29 @@ Partial Class DesktopModules_AgapePortal_StaffBroker_acImage
             hfAspect.Value = value.Replace(",", ".")
         End Set
     End Property
-    'Public ReadOnly Property CheckAspect() As Boolean
-    '    Get
-    '        Return Math.Abs((theImage.Width.Value / theImage.Height.Value) - _Aspect) < 0.04
-    '    End Get
 
-    'End Property
-    Public Function CheckAspect() As Boolean
-        _theFile = FileManager.Instance.GetFile(hfFileId.Value)
-        Dim rtn As Boolean = Math.Abs((CDbl(_theFile.Width) / CDbl(_theFile.Height)) - Double.Parse(Aspect, New CultureInfo(""))) < 0.04
-        If rtn = False And hfW.Value <> "" Then
-            btnUpdate_Click(Me, Nothing)
-            rtn = Math.Abs((theImage.Width.Value / theImage.Height.Value) - Double.Parse(Aspect, New CultureInfo(""))) < 0.04
-        End If
-        Return rtn
-    End Function
+    Protected Property isPreRendered() As Boolean
+        Get
+            If ViewState("isPreRendered") Is Nothing Then
+                Return False
+            Else
+                Return ViewState("isPreRendered")
+            End If
+        End Get
+
+        Set(ByVal value As Boolean)
+            ViewState("isPreRendered") = value
+        End Set
+    End Property
+
+#End Region 'Public Properties
 
     Private _theFile As IFileInfo
+    Private _FileId As Integer
     Private imgExt() As String = {"jpg", "jpeg", "gif", "png", "bmp"}
+
+#Region "Life-Cycle Events"
+
     Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
         ' jQuery.RequestDnnPluginsRegistration()
         Dim FileName As String = System.IO.Path.GetFileNameWithoutExtension(Me.AppRelativeVirtualPath)
@@ -108,35 +113,19 @@ Partial Class DesktopModules_AgapePortal_StaffBroker_acImage
             End If
         End If
     End Sub
-    ' Inherits System.Web.UI.UserControl
 
+    Protected Sub Page_PreRender(sender As Object, e As System.EventArgs) Handles Me.Load
+        If Not Page.IsPostBack Or Not isPreRendered Then
+            DoPreRender()
+        End If
+    End Sub
 
-    Private Function CreateUniqueName(ByVal theFolder As IFolderInfo, ByVal ext As String) As String
-        Dim allChars As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789"
+#End Region 'Life-Cycle Events
 
-        Dim GotUniqueCode As Boolean = False
-        Dim uniqueCode As String = ""
+#Region "Page Events"
 
-        Dim str As New System.Text.StringBuilder
-        Dim xx As Integer
-
-        While uniqueCode = "" Or FileManager.Instance.FileExists(theFolder, IIf(uniqueCode = "", "X", uniqueCode))
-            For i As Byte = 1 To 10 'length of req key
-                Randomize()
-                xx = Rnd() * (Len(allChars) - 1) 'number of rawchars
-                str.Append(allChars.Trim.Chars(xx))
-            Next
-            uniqueCode = str.ToString & "." & ext
-        End While
-
-
-
-
-        Return uniqueCode
-
-    End Function
-
-
+    Public Event Uploaded()
+    Public Event Updated()
 
     Protected Sub btnUpload_Click(sender As Object, e As System.EventArgs) Handles btnUpload.Click
         RaiseEvent Uploaded()
@@ -179,128 +168,6 @@ Partial Class DesktopModules_AgapePortal_StaffBroker_acImage
         End If
 
     End Sub
-
-    Protected Sub Page_PreRender(sender As Object, e As System.EventArgs) Handles Me.Load
-       
-
-        If Not Page.IsPostBack Then
-            'Dim sm = DotNetNuke.Framework.AJAX.GetScriptManager(Me.Page)
-
-            'If Not sm Is Nothing Then
-
-            '    sm.RegisterPostBackControl(btnUpload)
-            '    sm.RegisterAsyncPostBackControl(btnUpdate)
-            '    Page.Form.Attributes.Add("enctype", "multipart/form-data")
-
-            'End If
-           
-            PreRender()
-
-        End If
-    End Sub
-
-    Public Event Updated()
-    Public Event Uploaded()
-    Private Sub PreRender()
-        If _FileId = Nothing Then
-            _FileId = 0
-
-        End If
-        If _Width = Nothing Then
-            _Width = 200
-        ElseIf _Width < 200 Then
-            Width = 200
-        End If
-        If Aspect = Nothing Then
-            Aspect = 0
-        End If
-        If SaveWidth = Nothing Then
-            SaveWidth = 700
-        End If
-
-
-        hfFileId.Value = _FileId
-        Dim _theFile = FileManager.Instance.GetFile(_FileId)
-        If _theFile Is Nothing Then
-            theImage.ImageUrl = "/images/no_avatar.gif"
-            _FileId = 0
-            hfFileId.Value = 0
-        ElseIf imgExt.Contains(_theFile.Extension.ToLower) Then
-            theImage.ImageUrl = FileManager.Instance.GetUrl(_theFile)
-
-
-
-        Else
-            theImage.ImageUrl = "/images/no_avatar.gif"
-            _FileId = 0
-            hfFileId.Value = 0
-        End If
-
-        theImage.Width = _Width
-        If Double.Parse(Aspect, New CultureInfo("")) <> 0 Then
-            theImage.Height = _Width / Double.Parse(Aspect, New CultureInfo(""))
-        End If
-    End Sub
-
-    Public Function Translate(ByVal ResourceString As String) As String
-        Return DotNetNuke.Services.Localization.Localization.GetString(ResourceString & ".Text", LocalResourceFile)
-    End Function
-
-    Public Sub LazyLoad(Optional ByVal Async As Boolean = False, Optional Bound As Boolean = False)
-        If Async Then
-
-
-            Dim sm = DotNetNuke.Framework.AJAX.GetScriptManager(Me.Page)
-
-            If Not sm Is Nothing Then
-
-                sm.RegisterPostBackControl(btnUpload)
-                sm.RegisterAsyncPostBackControl(btnUpdate)
-                Page.Form.Attributes.Add("enctype", "multipart/form-data")
-
-            End If
-        End If
-        If Bound Then
-            PreRender()
-        End If
-        'Find the Folder
-        Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
-        Dim theFolder As IFolderInfo
-        If FolderManager.Instance.FolderExists(PS.PortalId, "_imageCropper") Then
-            theFolder = FolderManager.Instance.GetFolder(PS.PortalId, "_imageCropper")
-        Else
-            theFolder = FolderManager.Instance.AddFolder(PS.PortalId, "_imageCropper")
-        End If
-
-        _theFile = FileManager.Instance.GetFile(_FileId)
-
-
-        If Not _theFile Is Nothing Then
-
-
-            hfFileId.Value = _theFile.FileId
-            theImage.ImageUrl = FileManager.Instance.GetUrl(_theFile)
-            theImage.Width = _Width
-            theImage.Height = theImage.Width.Value / CDbl((CDbl(_theFile.Width) / CDbl(_theFile.Height)))
-
-
-
-        Else
-            'theImage.Width = 200
-            'theImage.Height = 200.0 / Aspect
-        End If
-
-        ' Trent removed the following code on 2016-01-18 to avoid duplicated javascript (that broke the page) 
-        'Dim t As Type = Page.GetType()
-        'Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
-        'sb.Append("<script language='javascript'>")
-        'sb.Append(" $('#" & theImage.ClientID() & "').Jcrop({ aspectRatio: " & Aspect & " });")
-        'sb.Append("</script>")
-        'ScriptManager.RegisterStartupScript(Page, t, "thePopup", sb.ToString, False)
-
-
-    End Sub
-
 
     Protected Sub btnUpdate_Click(sender As Object, e As System.EventArgs) Handles btnUpdate.Click
 
@@ -379,5 +246,145 @@ Partial Class DesktopModules_AgapePortal_StaffBroker_acImage
             RaiseEvent Updated()
         End If
     End Sub
+
+#End Region 'Page Events
+
+#Region "Helper Functions"
+
+    Private Function CreateUniqueName(ByVal theFolder As IFolderInfo, ByVal ext As String) As String
+        Dim allChars As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789"
+
+        Dim GotUniqueCode As Boolean = False
+        Dim uniqueCode As String = ""
+
+        Dim str As New System.Text.StringBuilder
+        Dim xx As Integer
+
+        While uniqueCode = "" Or FileManager.Instance.FileExists(theFolder, IIf(uniqueCode = "", "X", uniqueCode))
+            For i As Byte = 1 To 10 'length of req key
+                Randomize()
+                xx = Rnd() * (Len(allChars) - 1) 'number of rawchars
+                str.Append(allChars.Trim.Chars(xx))
+            Next
+            uniqueCode = str.ToString & "." & ext
+        End While
+
+        Return uniqueCode
+
+    End Function
+
+    Public Function CheckAspect() As Boolean
+        _theFile = FileManager.Instance.GetFile(hfFileId.Value)
+        Dim rtn As Boolean = Math.Abs((CDbl(_theFile.Width) / CDbl(_theFile.Height)) - Double.Parse(Aspect, New CultureInfo(""))) < 0.04
+        If rtn = False And hfW.Value <> "" Then
+            btnUpdate_Click(Me, Nothing)
+            rtn = Math.Abs((theImage.Width.Value / theImage.Height.Value) - Double.Parse(Aspect, New CultureInfo(""))) < 0.04
+        End If
+        Return rtn
+    End Function
+
+    Private Sub DoPreRender()
+        If _FileId = Nothing Then
+            _FileId = 0
+
+        End If
+        If _Width = Nothing Then
+            _Width = 200
+        ElseIf _Width < 200 Then
+            Width = 200
+        End If
+        If Aspect = Nothing Then
+            Aspect = 0
+        End If
+        If SaveWidth = Nothing Then
+            SaveWidth = 700
+        End If
+
+
+        hfFileId.Value = _FileId
+        Dim _theFile = FileManager.Instance.GetFile(_FileId)
+        If _theFile Is Nothing Then
+            theImage.ImageUrl = "/images/no_avatar.gif"
+            _FileId = 0
+            hfFileId.Value = 0
+        ElseIf imgExt.Contains(_theFile.Extension.ToLower) Then
+            theImage.ImageUrl = FileManager.Instance.GetUrl(_theFile)
+
+
+
+        Else
+            theImage.ImageUrl = "/images/no_avatar.gif"
+            _FileId = 0
+            hfFileId.Value = 0
+        End If
+
+        theImage.Width = _Width
+        If Double.Parse(Aspect, New CultureInfo("")) <> 0 Then
+            theImage.Height = _Width / Double.Parse(Aspect, New CultureInfo(""))
+        End If
+        isPreRendered = True
+    End Sub
+
+    Public Function Translate(ByVal ResourceString As String) As String
+        Return DotNetNuke.Services.Localization.Localization.GetString(ResourceString & ".Text", LocalResourceFile)
+    End Function
+
+    Public Sub LazyLoad(Optional ByVal Async As Boolean = False, Optional Bound As Boolean = False)
+        If Async Then
+
+
+            Dim sm = DotNetNuke.Framework.AJAX.GetScriptManager(Me.Page)
+
+            If Not sm Is Nothing Then
+
+                sm.RegisterPostBackControl(btnUpload)
+                sm.RegisterAsyncPostBackControl(btnUpdate)
+                Page.Form.Attributes.Add("enctype", "multipart/form-data")
+
+            End If
+        End If
+        If Bound Then
+            DoPreRender()
+        End If
+        'Find the Folder
+        Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
+        Dim theFolder As IFolderInfo
+        If FolderManager.Instance.FolderExists(PS.PortalId, "_imageCropper") Then
+            theFolder = FolderManager.Instance.GetFolder(PS.PortalId, "_imageCropper")
+        Else
+            theFolder = FolderManager.Instance.AddFolder(PS.PortalId, "_imageCropper")
+        End If
+
+        _theFile = FileManager.Instance.GetFile(_FileId)
+
+
+        If Not _theFile Is Nothing Then
+
+
+            hfFileId.Value = _theFile.FileId
+            theImage.ImageUrl = FileManager.Instance.GetUrl(_theFile)
+            theImage.Width = _Width
+            theImage.Height = theImage.Width.Value / CDbl((CDbl(_theFile.Width) / CDbl(_theFile.Height)))
+
+
+
+        Else
+            'theImage.Width = 200
+            'theImage.Height = 200.0 / Aspect
+        End If
+
+        ' Trent removed the following code on 2016-01-18 to avoid duplicated javascript (that broke the page) 
+        'Dim t As Type = Page.GetType()
+        'Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
+        'sb.Append("<script language='javascript'>")
+        'sb.Append(" $('#" & theImage.ClientID() & "').Jcrop({ aspectRatio: " & Aspect & " });")
+        'sb.Append("</script>")
+        'ScriptManager.RegisterStartupScript(Page, t, "thePopup", sb.ToString, False)
+
+
+    End Sub
+
+#End Region 'Helper Functions
+
 
 End Class
