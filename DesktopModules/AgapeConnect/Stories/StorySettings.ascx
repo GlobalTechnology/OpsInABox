@@ -3,6 +3,7 @@
     
 <%@ Register Assembly="DotNetNuke" Namespace="DotNetNuke.UI.WebControls" TagPrefix="uc1" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
+<%@ Register Src="../StaffAdmin/Controls/acImage.ascx" TagName="acImage" TagPrefix="uc1" %>
 
 
 <script src="/js/jquery.numeric.js" type="text/javascript"></script>
@@ -274,6 +275,7 @@
 
              </asp:Panel>
              <i>(drag the bottom-right corner to change)</i>
+            
         </td>
     </tr>
      <tr valign="middle">
@@ -295,9 +297,13 @@
                 <SortedDescendingCellStyle BackColor="#EAEAD3" />
                 <SortedDescendingHeaderStyle BackColor="#575357" />
                 <Columns>
+                    <asp:TemplateField HeaderText="Image">
+                        <EditItemTemplate><uc1:acImage ID="ImagePicker" runat="server" Aspect="1.3" SaveWidth="700" /></EditItemTemplate>
+                        <itemtemplate><asp:Label ID="Label19" runat="server" Text="Label"></asp:Label></itemtemplate>
+                    </asp:TemplateField>
                     <asp:BoundField DataField="TagName" HeaderText="TagName" SortExpression="TagName" />
                     <asp:BoundField DataField="Keywords" HeaderText="Keywords" SortExpression="Keywords" />
-                    <asp:CheckBoxField DataField="Master" HeaderText="Master" SortExpression="Master" />
+                    <asp:CheckBoxField DataField="Master" HeaderText="Master" SortExpression="Master"/>
                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                 </Columns>
             </asp:GridView>
