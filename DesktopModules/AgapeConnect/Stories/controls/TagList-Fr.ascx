@@ -7,12 +7,11 @@
     }
     #<%= dlTags.ClientID%> td{
 
-    width: 50%;
+<%--    width: 50%;--%>
     }
 
     .StoriesList {
         width: 100%;
-    background-color: yellow;
     }
 
 
@@ -44,7 +43,7 @@
 
     .dnnGridItem, .dnnGridAltItem {
         border: 2px inset transparent;
-        max-width: 50%;
+        <%--max-width: 50%;--%>
     }
 
     ul, ol {
@@ -69,8 +68,8 @@
 
 </style>
 
-<asp:DataList runat="server" ID="dlTags" AllowPaging="false" RepeatColumns="3" RepeatDirection="Horizontal" BorderStyle="None" CellSpacing="4" CellPadding="4" ShowHeader="False" GridLines="None" PagerStyle-Visible="false" ItemStyle-Width="50%" CssClass="StoriesList">
-    <ItemStyle CssClass="dnnGridItem" HorizontalAlign="Left" VerticalAlign="Top" Width="50%"  />
+<asp:DataList runat="server" ID="dlTags" AllowPaging="false" RepeatColumns="3" RepeatDirection="Horizontal" BorderStyle="None" CellSpacing="4" CellPadding="4" ShowHeader="False" GridLines="None" PagerStyle-Visible="false" CssClass="StoriesList">
+    <ItemStyle CssClass="dnnGridItem" HorizontalAlign="Left" VerticalAlign="Top"  />
     <AlternatingItemStyle CssClass="dnnGridItem" />
     <FooterStyle CssClass="dnnGridFooter" />
     <ItemTemplate>
