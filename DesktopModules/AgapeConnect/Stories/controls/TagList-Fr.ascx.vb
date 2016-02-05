@@ -3,26 +3,23 @@ Imports System.Collections
 Imports System.Configuration
 Imports System.Data
 Imports System.Linq
-
-'Imports DotNetNuke
-'Imports DotNetNuke.Security
-'Imports StaffBroker
 Imports StaffBrokerFunctions
 Imports Stories
-'Imports DotNetNuke.Services.FileSystem
+
 Namespace DotNetNuke.Modules.AgapeConnect.Stories
+
     Partial Class TagList_Fr
         Inherits Entities.Modules.PortalModuleBase
-        'Adding Stories Translation
+
         Dim d As New StoriesDataContext
 
         Public divWidth As Integer = 150
         Public divHeight As Integer = 150
+
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             'Allowing dynamically loaded controls to be translated using the DNN translation system is complex...
             'However this code does the trick. Just copy this Sub (Page_Init) ,as is, to make it work
             'An App_LocalResources Folder must be located in the same location as this file - and Contain your resx files (using the usual dnn resx file naming convention)
-
 
             Dim FileName As String = System.IO.Path.GetFileNameWithoutExtension(Me.AppRelativeVirtualPath)
             If Not (Me.ID Is Nothing) Then
@@ -54,15 +51,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             End If
         End Sub
 
-        Public Sub Initialize(ByVal Stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
-
-            'Dim d As New StoriesDataContext
-
-
+        Public Sub Initialize(ByVal StoriesCache As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
 
             Dim out As String = ""
-
-
 
             Dim photoWidth As Integer = 150
             If Not String.IsNullOrEmpty(settings("PhotoWidth")) Then
@@ -86,39 +77,17 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             divWidth = photoWidth
             divHeight = photoHeight
 
-            Dim Skip As Integer = 0
-            Dim pg As Integer = 0
-            If Not String.IsNullOrEmpty(Request.QueryString("p")) Then
-                pg = Request.QueryString("p")
-                Skip = pg * CInt(settings("NumberOfStories"))
-            End If
+            Try
+                Dim tags = StoryFunctions.GetTags(5548)
+                'Dim tagsmeta As List(Of AP_Stories_Tag_Meta) = From c In StoriesCache Join b In d.AP_Stories On CInt(c.GUID) Equals b.StoryId Select b.AP_Stories_Tag_Metas
+                'Dim tagnames = From tagmeta In tagsmeta Join tag In d.AP_Stories_Tags On tagmeta.StoryTagMetaId Equals tag.StoryTagId Select tag.TagName Distinct
 
+                dlTags.DataSource = tags
+                dlTags.DataBind()
+            Catch e As Exception
+                AgapeLogger.Error(UserId, e.Message & e.StackTrace)
+            End Try
 
-            dlStories.DataSource = Stories.Skip(Skip).Take(CInt(settings("NumberOfStories")))
-            dlStories.DataBind()
-
-
-
-
-            If Stories.Count > CInt(settings("NumberOfStories")) Then
-                btnPrev.Visible = True
-                btnNext.Visible = True
-
-                Dim urlStub = NavigateURL()
-
-                btnPrev.Enabled = Not (pg = 0)
-
-                If (pg = 0) Then
-                    btnPrev.Style.Add("opacity", "0.5")
-                End If
-
-                btnPrev.NavigateUrl = urlStub & (pg - 1)
-                btnNext.NavigateUrl = urlStub & (pg + 1)
-                btnNext.Enabled = (Math.Floor((Stories.Count - 1) / CInt(settings("NumberOfStories"))) > pg)
-                If Not btnNext.Enabled Then
-                    btnNext.Style.Add("opacity", "0.5")
-                End If
-            End If
         End Sub
 
     End Class
