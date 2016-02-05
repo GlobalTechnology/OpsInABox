@@ -78,9 +78,12 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             divHeight = photoHeight
 
             Try
-                Dim tags = StoryFunctions.GetTags(5548)
-                'Dim tagsmeta As List(Of AP_Stories_Tag_Meta) = From c In StoriesCache Join b In d.AP_Stories On CInt(c.GUID) Equals b.StoryId Select b.AP_Stories_Tag_Metas
-                'Dim tagnames = From tagmeta In tagsmeta Join tag In d.AP_Stories_Tags On tagmeta.StoryTagMetaId Equals tag.StoryTagId Select tag.TagName Distinct
+                'Dim tags = StoryFunctions.GetTags(5548)
+                Dim tags = From cache In StoriesCache _
+                               Join st In d.AP_Stories On CInt(cache.GUID) Equals st.StoryId _
+                               Join meta In d.AP_Stories_Tag_Metas On meta.StoryId Equals st.StoryId _
+                               Join tag In d.AP_Stories_Tags On meta.StoryTagMetaId Equals tag.StoryTagId _
+                               Select tag Distinct
 
                 dlTags.DataSource = tags
                 dlTags.DataBind()
