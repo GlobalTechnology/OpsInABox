@@ -125,6 +125,9 @@ Partial Class DesktopModules_AgapePortal_StaffBroker_acImage
 #Region "Page Events"
 
     Public Event Uploaded()
+
+    Public Event UpdatedWithImage(image As DesktopModules_AgapePortal_StaffBroker_acImage)
+
     Public Event Updated()
 
     Protected Sub btnUpload_Click(sender As Object, e As System.EventArgs) Handles btnUpload.Click
@@ -243,6 +246,7 @@ Partial Class DesktopModules_AgapePortal_StaffBroker_acImage
             If Double.Parse(Aspect, New CultureInfo("")) <> 0 Then
                 theImage.Height = theImage.Width.Value / Double.Parse(Aspect, New CultureInfo(""))
             End If
+            RaiseEvent UpdatedWithImage(Me)
             RaiseEvent Updated()
         End If
     End Sub

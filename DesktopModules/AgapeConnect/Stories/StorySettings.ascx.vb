@@ -367,6 +367,42 @@ Namespace DotNetNuke.Modules.Stories
             gvTags.EditIndex = -1
             BuildTagList()
         End Sub
+
+        Protected Sub gvTags_RowCreated(sender As Object, e As GridViewRowEventArgs) Handles gvTags.RowCreated
+            ' bind only rows that contain data (not header or footer rows...)
+            If e.Row.RowType = DataControlRowType.DataRow Then
+                'get the row's dataSource
+                'Dim row = DirectCast(e.Row.DataItem, DataRowView).Row
+
+                If e.Row.RowState = DataControlRowState.Normal Then
+                    ' TODO  get reference to small thumbnail or name of image
+
+                ElseIf e.Row.RowState = DataControlRowState.Edit Then
+
+                    'get reference to the image
+                    Dim image As DesktopModules_AgapePortal_StaffBroker_acImage =
+                        DirectCast(e.Row.FindControl("ImagePicker"), DesktopModules_AgapePortal_StaffBroker_acImage)
+
+                    'add event handler for updated event raised in acImage
+                    AddHandler image.UpdatedWithImage, AddressOf ImagePicker_ImageUpdated
+
+                    'get image if one has already been uploaded 
+                    Dim tagPhotoId As Nullable(Of Integer) =
+                        StoryFunctions.GetTag(gvTags.DataKeys(gvTags.EditIndex).Value, TabModuleId).PhotoId
+                    If (tagPhotoId IsNot Nothing) Then
+                        image.FileId = tagPhotoId
+                    End If
+
+                End If
+            End If
+        End Sub
+
+        Protected Sub ImagePicker_ImageUpdated(image As DesktopModules_AgapePortal_StaffBroker_acImage)
+            If image.CheckAspect() Then
+                StoryFunctions.SetTagPhotoId(image.FileId, gvTags.DataKeys(gvTags.EditIndex).Value)
+            End If
+        End Sub
+
 #End Region 'Page Events
 
     End Class

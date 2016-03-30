@@ -298,7 +298,7 @@
                 <SortedDescendingHeaderStyle BackColor="#575357" />
                 <Columns>
                     <asp:TemplateField HeaderText="Image">
-                        <EditItemTemplate><uc1:acImage ID="ImagePicker" runat="server" Aspect="1.3" SaveWidth="700" /></EditItemTemplate>
+                        <EditItemTemplate><uc1:acImage ID="ImagePicker" runat="server" Aspect="1.3" SaveWidth="700" Updated="ImagePicker_ImageUpdated"/></EditItemTemplate>
                         <itemtemplate><asp:Label ID="Label19" runat="server" Text="Label"></asp:Label></itemtemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="TagName" HeaderText="TagName" SortExpression="TagName" />
