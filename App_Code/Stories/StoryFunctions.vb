@@ -113,7 +113,7 @@ Public Class StoryFunctions
 
     Public Shared Function GetTag(ByVal tagId As Integer, ByVal TabModuleId As Integer) As AP_Stories_Tag
         Dim d As New StoriesDataContext
-        Return From c In d.AP_Stories_Tags Where c.StoryTagId = tagId
+        Return (From c In d.AP_Stories_Tags Where c.StoryTagId = tagId).First
     End Function
 
     Public Shared Sub SetTag(ByVal name As String, ByVal TabModuleId As Integer)
@@ -155,8 +155,10 @@ Public Class StoryFunctions
         d.SubmitChanges()
     End Sub
 
-    Public Shared Sub SetTagPhotoId(ByVal imageId As Integer, ByVal tag As AP_Stories_Tag)
+    Public Shared Sub SetTagPhotoId(ByVal imageId As Integer, ByVal tagId As Integer)
         Dim d As New StoriesDataContext
+        Dim tag As AP_Stories_Tag = (From c In d.AP_Stories_Tags Where c.StoryTagId = tagId).First
+
         tag.PhotoId = imageId
         d.SubmitChanges()
     End Sub
