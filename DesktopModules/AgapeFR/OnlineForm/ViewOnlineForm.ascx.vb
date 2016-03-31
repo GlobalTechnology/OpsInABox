@@ -239,8 +239,14 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
 
                     sendResult = DotNetNuke.Services.Mail.Mail.SendMail("Site Web Agapé France <noreply@agapefrance.org>", q.EmailTo, "", LocalizeString("SentMsgSubjectPart1") & " - " & ModuleConfiguration.ModuleTitle, message, "", "HTML", "", "", "", "")
                     If String.IsNullOrEmpty(sendResult) Then
-                        'Display Success message
-                        UI.Skins.Skin.AddModuleMessage(Me, LocalizeString("LblMsgSent"), ModuleMessageType.GreenSuccess)
+                        If q.AckMessage = "" Then
+                            'Display Success message
+                            UI.Skins.Skin.AddModuleMessage(Me, LocalizeString("LblMsgSent"), ModuleMessageType.GreenSuccess)
+                        Else
+                            'Displpay Acknowledgement Message from form
+                            UI.Skins.Skin.AddModuleMessage(Me, q.AckMessage, ModuleMessageType.GreenSuccess)
+                        End If
+
                     Else
                         'Display error message
                         UI.Skins.Skin.AddModuleMessage(Me, LocalizeString("ErrorMsgNotSent"), ModuleMessageType.RedError)
