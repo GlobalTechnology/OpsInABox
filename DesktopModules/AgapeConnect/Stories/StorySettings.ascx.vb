@@ -371,14 +371,11 @@ Namespace DotNetNuke.Modules.Stories
         Protected Sub gvTags_RowCreated(sender As Object, e As GridViewRowEventArgs) Handles gvTags.RowCreated
             ' bind only rows that contain data (not header or footer rows...)
             If e.Row.RowType = DataControlRowType.DataRow Then
-                'get the row's dataSource
-                'Dim row = DirectCast(e.Row.DataItem, DataRowView).Row
 
                 If e.Row.RowState = DataControlRowState.Normal Then
                     ' TODO  get reference to small thumbnail or name of image
 
-                ElseIf e.Row.RowState = DataControlRowState.Edit Then
-
+                ElseIf ((e.Row.RowState And DataControlRowState.Edit) > 0) Then
                     'get reference to the image
                     Dim image As DesktopModules_AgapePortal_StaffBroker_acImage =
                         DirectCast(e.Row.FindControl("ImagePicker"), DesktopModules_AgapePortal_StaffBroker_acImage)
