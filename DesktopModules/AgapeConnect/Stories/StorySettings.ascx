@@ -144,6 +144,23 @@
     {
         z-index: 999;   
     }
+      .SubmitPanel
+    {
+    margin-top: 10px;
+    padding-left: 200px;
+    width: 100%; 
+    text-align: center; 
+    }
+      .AddTagPanel
+    {
+    display: inline-block;
+    margin-top: 15px;
+    }
+       .DeleteTagWarning
+    {
+    display: inline-block;
+    margin-top: 10px;
+    }
     </style>
 
 <div style="width:100%; text-align: center;">
@@ -225,7 +242,7 @@
         </td>
         <td align="center">
           <asp:TextBox ID="tbLocation" runat="server" Width="200px"></asp:TextBox>
-               <div style="font-size: xx-small; color: #AAA; font-style: italic;">(City, country,region or  postocode etc)</div>
+               <div style="font-size: xx-small; color: #AAA; font-style: italic;">(City, country, region or  postocode etc)</div>
             <asp:Label ID="lblFeedError" runat="server" ForeColor="Red"></asp:Label>
              </td>
     </tr>
@@ -299,7 +316,8 @@
                 <Columns>
                     <asp:TemplateField HeaderText="Image">
                         <EditItemTemplate><uc1:acImage ID="ImagePicker" runat="server" Aspect="1.3" SaveWidth="700" Updated="ImagePicker_ImageUpdated"/></EditItemTemplate>
-                        <itemtemplate><asp:Label ID="Label19" runat="server" Text="Label"></asp:Label></itemtemplate>
+                        <ItemTemplate><asp:Label ID="ImageSelected" runat="server" Text='<%#Eval("PhotoId") %>'></asp:Label></ItemTemplate>
+                
                     </asp:TemplateField>
                     <asp:BoundField DataField="TagName" HeaderText="TagName" SortExpression="TagName" />
                     <asp:BoundField DataField="Keywords" HeaderText="Keywords" SortExpression="Keywords" />
@@ -307,9 +325,13 @@
                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                 </Columns>
             </asp:GridView>
-            
-            <asp:TextBox ID="tbAddTag" runat="server"></asp:TextBox><asp:Button ID="btnAddTag" runat="server" ResourceKey="btnAddTag" CssClass="aButton btn" Font-Size="X-Small" /> 
-            <asp:Label ID="lblTagsDelete" runat="server" ResourceKey="lblTagsDelete"></asp:Label>
+            <div class="AddTagPanel">
+                <asp:TextBox ID="tbAddTag" runat="server"></asp:TextBox>
+                <asp:Button ID="btnAddTag" runat="server" ResourceKey="btnAddTag" CssClass="button" /> 
+            </div>
+            <div class="DeleteTagWarning">
+                <asp:Label ID="lblTagsDelete" runat="server" ResourceKey="lblTagsDelete"></asp:Label>
+            </div>
         </td>
     </tr>
     <tr valign="middle" >
@@ -362,12 +384,8 @@
     
 
 </table>
-
- <br /><br />
-<div style="width: 100%; text-align: center">
-    <asp:LinkButton ID="SaveBtn" runat="server" class="aButton btn" ResourceKey="btnSave">Save</asp:LinkButton>
-    &nbsp;
-    <asp:LinkButton ID="CancelBtn" runat="server" class="aButton btn" ResourceKey="btnCancel">Cancel</asp:LinkButton>
- 
+<div class="SubmitPanel">
+    <asp:LinkButton ID="SaveBtn" runat="server" Cssclass="button" ResourceKey="btnSave">Save</asp:LinkButton>
+    <asp:LinkButton ID="CancelBtn" runat="server" Cssclass="button" ResourceKey="btnCancel">Cancel</asp:LinkButton>
 </div>
-    </div>
+</div>
