@@ -169,21 +169,21 @@ Public Class StoryFunctions
         d.SubmitChanges()
     End Sub
 
-    Public Shared Function GetTagPhotoId(ByVal imageId As Nullable(Of Integer)) As String
+    Public Shared Function GetTagPhotoURL(ByVal imageId As Nullable(Of Integer)) As String
 
-        Dim theImage As New System.Web.UI.WebControls.Image
+        Dim imageUrl As String
         If (imageId IsNot Nothing) Then
             Dim imageFile = FileManager.Instance.GetFile(imageId)
             If (imageFile IsNot Nothing) And (StoryFunctionsProperties.imageExtensions.Contains(imageFile.Extension.ToLower)) Then
-                theImage.ImageUrl = FileManager.Instance.GetUrl(imageFile)
+                imageUrl = FileManager.Instance.GetUrl(imageFile)
             Else
-                theImage.ImageUrl = StoryFunctionsProperties.noImage
+                imageUrl = StoryFunctionsProperties.noImage
             End If
         Else
-            theImage.ImageUrl = StoryFunctionsProperties.noImage
+            imageUrl = StoryFunctionsProperties.noImage
         End If
 
-        Return theImage.ImageUrl
+        Return imageUrl
     End Function
 
 #End Region 'Tags
