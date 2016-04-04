@@ -369,11 +369,19 @@ Namespace DotNetNuke.Modules.Stories
         End Sub
 
         Protected Sub gvTags_RowCreated(sender As Object, e As GridViewRowEventArgs) Handles gvTags.RowCreated
+
             ' bind only rows that contain data (not header or footer rows...)
             If e.Row.RowType = DataControlRowType.DataRow Then
 
-                If e.Row.RowState = DataControlRowState.Normal Then
-                    ' TODO  get reference to small thumbnail or name of image
+                Dim tagPhotoId As Nullable(Of Integer) = StoryFunctions.GetTag(gvTags.DataKeys(e.Row.RowIndex).Value, TabModuleId).PhotoId
+
+                If (e.Row.RowState = DataControlRowState.Normal Or e.Row.RowState = DataControlRowState.Alternate) Then
+                    'get thumbnail of image
+                    Dim imageFile As String = StoryFunctions.GetTagPhotoId(tagPhotoId)
+
+                    Dim thumbnail As WebControls.Image = CType(e.Row.FindControl("TagThumbnail"), WebControls.Image)
+
+                    thumbnail.ImageUrl = "https://" & PortalAlias.HTTPAlias & imageFile.Substring(0, imageFile.IndexOf("?"))
 
                 ElseIf ((e.Row.RowState And DataControlRowState.Edit) > 0) Then
                     'get reference to the image
@@ -384,8 +392,6 @@ Namespace DotNetNuke.Modules.Stories
                     AddHandler image.UpdatedWithImage, AddressOf ImagePicker_ImageUpdated
 
                     'get image if one has already been uploaded 
-                    Dim tagPhotoId As Nullable(Of Integer) =
-                        StoryFunctions.GetTag(gvTags.DataKeys(gvTags.EditIndex).Value, TabModuleId).PhotoId
                     If (tagPhotoId IsNot Nothing) Then
                         image.FileId = tagPhotoId
                     End If

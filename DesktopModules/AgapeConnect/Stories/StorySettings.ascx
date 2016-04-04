@@ -316,8 +316,7 @@
                 <Columns>
                     <asp:TemplateField HeaderText="Image">
                         <EditItemTemplate><uc1:acImage ID="ImagePicker" runat="server" Aspect="1.3" SaveWidth="700" Updated="ImagePicker_ImageUpdated"/></EditItemTemplate>
-                        <ItemTemplate><asp:Label ID="ImageSelected" runat="server" Text='<%#Eval("PhotoId") %>'></asp:Label></ItemTemplate>
-                
+                        <ItemTemplate><asp:Image ID="TagThumbnail" runat="server" Width="50px"/></ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="TagName" HeaderText="TagName" SortExpression="TagName" />
                     <asp:BoundField DataField="Keywords" HeaderText="Keywords" SortExpression="Keywords" />
