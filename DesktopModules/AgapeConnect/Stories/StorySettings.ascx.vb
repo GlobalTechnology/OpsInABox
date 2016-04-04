@@ -377,7 +377,7 @@ Namespace DotNetNuke.Modules.Stories
 
                 If (e.Row.RowState = DataControlRowState.Normal Or e.Row.RowState = DataControlRowState.Alternate) Then
                     'get thumbnail of image
-                    Dim imageFile As String = StoryFunctions.GetTagPhotoId(tagPhotoId)
+                    Dim imageFile As String = StoryFunctions.GetTagPhotoURL(tagPhotoId)
 
                     Dim thumbnail As WebControls.Image = CType(e.Row.FindControl("TagThumbnail"), WebControls.Image)
 
