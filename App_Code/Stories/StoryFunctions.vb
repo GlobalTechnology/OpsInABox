@@ -87,6 +87,12 @@ Public Class StoryModuleType
 
 End Class
 
+'StoryFunctions constants
+Public Module StoryFunctionsProperties
+    Public imageExtensions() As String = {"jpg", "jpeg", "gif", "png", "bmp"}
+    Public noImage As String = "/images/no-content.png?"
+End Module
+
 Public Class StoryFunctions
 
 #Region "Tags"
@@ -162,6 +168,23 @@ Public Class StoryFunctions
         tag.PhotoId = imageId
         d.SubmitChanges()
     End Sub
+
+    Public Shared Function GetTagPhotoId(ByVal imageId As Nullable(Of Integer)) As String
+
+        Dim theImage As New System.Web.UI.WebControls.Image
+        If (imageId IsNot Nothing) Then
+            Dim imageFile = FileManager.Instance.GetFile(imageId)
+            If (imageFile IsNot Nothing) And (StoryFunctionsProperties.imageExtensions.Contains(imageFile.Extension.ToLower)) Then
+                theImage.ImageUrl = FileManager.Instance.GetUrl(imageFile)
+            Else
+                theImage.ImageUrl = StoryFunctionsProperties.noImage
+            End If
+        Else
+            theImage.ImageUrl = StoryFunctionsProperties.noImage
+        End If
+
+        Return theImage.ImageUrl
+    End Function
 
 #End Region 'Tags
 
