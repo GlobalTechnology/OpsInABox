@@ -11,11 +11,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
     Partial Class TagList_Fr
         Inherits Entities.Modules.PortalModuleBase
 
-        Dim d As New StoriesDataContext
-
-        Public divWidth As Integer = 150
-        Public divHeight As Integer = 150
-
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             'Allowing dynamically loaded controls to be translated using the DNN translation system is complex...
             'However this code does the trick. Just copy this Sub (Page_Init) ,as is, to make it work
@@ -52,27 +47,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
         End Sub
 
         Public Sub Initialize(ByVal TagsCache As List(Of AP_Stories_Tag), settings As Hashtable)
-
-            Dim out As String = ""
-
-            Dim photoWidth As Integer = 150
-            If Not String.IsNullOrEmpty(settings("PhotoWidth")) Then
-                photoWidth = settings("PhotoWidth")
-            End If
-
-            Dim photoAspect As Double = 1.0
-            If Not String.IsNullOrEmpty(settings("PhotoWidth")) Then
-                photoAspect = Double.Parse(CStr(settings("Aspect")), New CultureInfo(""))
-            End If
-
-            Dim photoHeight As Integer = CDbl(photoWidth) / photoAspect
-
-            Dim AspectMode As Integer = 1
-            If Not String.IsNullOrEmpty(settings("AspectMode")) Then
-                AspectMode = settings("AspectMode")
-            End If
-            divWidth = photoWidth
-            divHeight = photoHeight
 
             Try
                 dlTags.DataSource = TagsCache

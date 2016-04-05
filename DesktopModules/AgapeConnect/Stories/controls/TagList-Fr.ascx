@@ -7,7 +7,7 @@
     }
     #<%= dlTags.ClientID%> td{
 
-<%--    width: 50%;--%>
+        width: 33%;
     }
 
     .StoriesList {
@@ -43,7 +43,7 @@
 
     .dnnGridItem, .dnnGridAltItem {
         border: 2px inset transparent;
-        <%--max-width: 50%;--%>
+        max-width: 33%;>
     }
 
     ul, ol {
@@ -68,7 +68,7 @@
 
 </style>
 
-<asp:DataList runat="server" ID="dlTags" AllowPaging="false" RepeatColumns="3" RepeatDirection="Horizontal" BorderStyle="None" CellSpacing="4" CellPadding="4" ShowHeader="False" GridLines="None" PagerStyle-Visible="false" CssClass="StoriesList">
+<asp:DataList runat="server" ID="dlTags" AllowPaging="false" RepeatColumns="3" RepeatDirection="Horizontal" BorderStyle="None" CellSpacing="4" CellPadding="4" ShowHeader="False" GridLines="None" PagerStyle-Visible="false" CssClass="TagsList">
     <ItemStyle CssClass="dnnGridItem" HorizontalAlign="Left" VerticalAlign="Top"  />
     <AlternatingItemStyle CssClass="dnnGridItem" />
     <FooterStyle CssClass="dnnGridFooter" />
@@ -77,7 +77,7 @@
         <asp:HyperLink ID="lnkLink" runat="server" CssClass="CommandButton" NavigateUrl='<%# NavigateURL() & "?tags=" + HttpUtility.UrlEncode(Eval("TagName"))%>'>
             
             <div>
-                <%--<asp:Image ID="imgPhoto" runat="server" ImageUrl='<%# GetImageURL(Eval("PhotoId"))%>' />--%>
+                <asp:Image ID="imgPhoto" runat="server" ImageUrl='<%# GetImageURL(Eval("PhotoId"))%>' class="seachImage" />
             </div>
             <div style="clear: both;"></div>
             <h4><asp:Label ID="HyperLink1" runat="server" CssClass="storyTitle"  Text='<%# Eval("TagName")%>' /></h4>
