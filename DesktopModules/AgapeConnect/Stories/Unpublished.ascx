@@ -24,7 +24,7 @@
 
     
 </script>
-<asp:HiddenField ID="hfPortalId" runat="server" Value="-1" />
+<asp:HiddenField ID="hfTabModuleID" runat="server" Value="-1" />
 
 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="StoryId" DataSourceID="dsStagedStories" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical">
     <AlternatingRowStyle BackColor="White" />
@@ -62,9 +62,9 @@
     <SortedDescendingHeaderStyle BackColor="#575357" />
     </asp:GridView>
 
-    <asp:LinqDataSource ID="dsStagedStories" runat="server" ContextTypeName="Stories.StoriesDataContext" EnableDelete="True" EntityTypeName="" OrderBy="StoryDate desc" TableName="AP_Stories" Where="PortalID == @PortalID &amp;&amp; IsVisible == @IsVisible">
+    <asp:LinqDataSource ID="dsStagedStories" runat="server" ContextTypeName="Stories.StoriesDataContext" EnableDelete="True" EntityTypeName="" OrderBy="StoryDate desc" TableName="AP_Stories" Where="TabModuleID == @TabModuleID &amp;&amp; IsVisible == @IsVisible">
         <WhereParameters>
-            <asp:ControlParameter ControlID="hfPortalId" Name="PortalID" PropertyName="Value" Type="Int32" />
+            <asp:ControlParameter ControlID="hfTabModuleID" Name="TabModuleID" PropertyName="Value" Type="Int32" />
             <asp:Parameter DefaultValue="False" Name="IsVisible" Type="Boolean" />
         </WhereParameters>
     </asp:LinqDataSource>
