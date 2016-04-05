@@ -278,11 +278,14 @@ Partial Class DesktopModules_AgapePortal_StaffBroker_acImage
     End Function
 
     Public Function CheckAspect() As Boolean
+        Dim rtn As Boolean = False
         _theFile = FileManager.Instance.GetFile(hfFileId.Value)
-        Dim rtn As Boolean = Math.Abs((CDbl(_theFile.Width) / CDbl(_theFile.Height)) - Double.Parse(Aspect, New CultureInfo(""))) < 0.04
-        If rtn = False And hfW.Value <> "" Then
-            btnUpdate_Click(Me, Nothing)
-            rtn = Math.Abs((theImage.Width.Value / theImage.Height.Value) - Double.Parse(Aspect, New CultureInfo(""))) < 0.04
+        If (_theFile IsNot Nothing) Then
+            rtn = Math.Abs((CDbl(_theFile.Width) / CDbl(_theFile.Height)) - Double.Parse(Aspect, New CultureInfo(""))) < 0.04
+            If rtn = False And hfW.Value <> "" Then
+                btnUpdate_Click(Me, Nothing)
+                rtn = Math.Abs((theImage.Width.Value / theImage.Height.Value) - Double.Parse(Aspect, New CultureInfo(""))) < 0.04
+            End If
         End If
         Return rtn
     End Function
