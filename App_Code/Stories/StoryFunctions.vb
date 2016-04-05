@@ -117,6 +117,20 @@ Public Class StoryFunctions
         Return From c In d.AP_Stories_Tags Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId Order By c.TagName
     End Function
 
+    ' Get list of tags in module linked to at least one story
+    Public Shared Function GetTagsWithStories(ByVal TabModuleId As Integer) As IQueryable(Of AP_Stories_Tag)
+        Dim d As New StoriesDataContext
+
+        Dim tags = From cache In d.AP_Stories_Module_Channel_Caches _
+                       Join st In d.AP_Stories On CInt(cache.GUID) Equals st.StoryId _
+                       Join meta In d.AP_Stories_Tag_Metas On meta.StoryId Equals st.StoryId _
+                       Join tag In d.AP_Stories_Tags On meta.StoryTagMetaId Equals tag.StoryTagId _
+                       Where tag.StoryModuleId = StoryFunctions.GetStoryModule(TabModuleId).StoryModuleId _
+                       Select tag Distinct Order By tag.TagName
+
+        Return tags
+    End Function
+
     Public Shared Function GetTag(ByVal tagId As Integer, ByVal TabModuleId As Integer) As AP_Stories_Tag
         Dim d As New StoriesDataContext
         Return (From c In d.AP_Stories_Tags Where c.StoryTagId = tagId).First
@@ -169,10 +183,12 @@ Public Class StoryFunctions
         d.SubmitChanges()
     End Sub
 
-    Public Shared Function GetTagPhotoURL(ByVal imageId As Nullable(Of Integer)) As String
+#End Region 'Tags
+
+    Public Shared Function GetPhotoURL(ByVal imageId As Nullable(Of Integer)) As String
 
         Dim imageUrl As String
-        If (imageId IsNot Nothing) Then
+        If (imageId IsNot Nothing And imageId > 0) Then
             Dim imageFile = FileManager.Instance.GetFile(imageId)
             If (imageFile IsNot Nothing) And (StoryFunctionsProperties.imageExtensions.Contains(imageFile.Extension.ToLower)) Then
                 imageUrl = FileManager.Instance.GetUrl(imageFile)
@@ -185,8 +201,6 @@ Public Class StoryFunctions
 
         Return imageUrl
     End Function
-
-#End Region 'Tags
 
     Public Shared Function GetAdvancedSettings(ByVal TabModuleId As Integer) As Dictionary(Of String, String)
 

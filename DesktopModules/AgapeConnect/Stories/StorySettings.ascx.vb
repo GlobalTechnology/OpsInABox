@@ -378,7 +378,7 @@ Namespace DotNetNuke.Modules.Stories
                 If (e.Row.RowState = DataControlRowState.Normal Or e.Row.RowState = DataControlRowState.Alternate) Then
                     'get thumbnail of image
                     Dim thumbnail As WebControls.Image = CType(e.Row.FindControl("TagThumbnail"), WebControls.Image)
-                    thumbnail.ImageUrl = StoryFunctions.GetTagPhotoURL(tagPhotoId)
+                    thumbnail.ImageUrl = StoryFunctions.GetPhotoURL(tagPhotoId)
 
                 ElseIf ((e.Row.RowState And DataControlRowState.Edit) > 0) Then
                     'get reference to the image
