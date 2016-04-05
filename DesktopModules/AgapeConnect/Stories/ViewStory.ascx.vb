@@ -129,7 +129,7 @@ Namespace DotNetNuke.Modules.FullStory
                 ReplaceField(sv, "[STORYTEXT]", r.StoryText)
                 ReplaceField(sv, "[MAP]", " <div id=""map_canvas""></div>")
 
-                Dim URL = StoryFunctions.GetTagPhotoURL(r.PhotoId)
+                Dim URL = StoryFunctions.GetPhotoURL(r.PhotoId)
                 ReplaceField(sv, "[IMAGEURL]", URL)
 
                 Dim meta As New HtmlMeta
