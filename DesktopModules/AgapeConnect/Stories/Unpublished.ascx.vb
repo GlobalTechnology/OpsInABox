@@ -19,7 +19,7 @@ Namespace DotNetNuke.Modules.Stories
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-            hfPortalId.Value = PortalId
+            hfTabModuleID.Value = TabModuleId
 
 
 
