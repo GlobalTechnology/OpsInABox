@@ -128,13 +128,9 @@ Namespace DotNetNuke.Modules.FullStory
 
                 ReplaceField(sv, "[STORYTEXT]", r.StoryText)
                 ReplaceField(sv, "[MAP]", " <div id=""map_canvas""></div>")
-                Dim thePhoto = DotNetNuke.Services.FileSystem.FileManager.Instance.GetFile(r.PhotoId)
 
-                Dim URL = "https://" & PortalSettings.PortalAlias.HTTPAlias & DotNetNuke.Services.FileSystem.FileManager.Instance.GetUrl(thePhoto)
+                Dim URL = StoryFunctions.GetTagPhotoURL(r.PhotoId)
                 ReplaceField(sv, "[IMAGEURL]", URL)
-
-
-
 
                 Dim meta As New HtmlMeta
                 meta.Attributes.Add("property", "og:image")
