@@ -51,7 +51,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             End If
         End Sub
 
-        Public Sub Initialize(ByVal StoriesCache As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
+        Public Sub Initialize(ByVal TagsCache As List(Of AP_Stories_Tag), settings As Hashtable)
 
             Dim out As String = ""
 
@@ -71,27 +71,22 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             If Not String.IsNullOrEmpty(settings("AspectMode")) Then
                 AspectMode = settings("AspectMode")
             End If
-            If AspectMode > 2 Then
-                AspectMode = 1  ' Ascpect Modes 3 and 4 are not valid with this rotator. It requires a fixed size.
-            End If
             divWidth = photoWidth
             divHeight = photoHeight
 
             Try
-                'Dim tags = StoryFunctions.GetTags(5548)
-                Dim tags = From cache In StoriesCache _
-                               Join st In d.AP_Stories On CInt(cache.GUID) Equals st.StoryId _
-                               Join meta In d.AP_Stories_Tag_Metas On meta.StoryId Equals st.StoryId _
-                               Join tag In d.AP_Stories_Tags On meta.StoryTagMetaId Equals tag.StoryTagId _
-                               Select tag Distinct
-
-                dlTags.DataSource = tags
+                dlTags.DataSource = TagsCache
                 dlTags.DataBind()
             Catch e As Exception
                 AgapeLogger.Error(UserId, e.Message & e.StackTrace)
             End Try
 
         End Sub
+
+        'Return image URL corresponding to Tag Photo ID
+        Public Function GetImageURL(ByVal photoID As Integer) As String
+            Return StoryFunctions.GetPhotoURL(photoID)
+        End Function
 
     End Class
 End Namespace
