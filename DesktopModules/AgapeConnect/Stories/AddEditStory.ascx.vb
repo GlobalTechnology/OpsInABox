@@ -311,8 +311,6 @@ Namespace DotNetNuke.Modules.Stories
 
                     q.First.PhotoId = acImage1.FileId
                     d.SubmitChanges()
-                Else
-                    Return
                 End If
 
                 StoryFunctions.RefreshLocalChannel(CInt(TabModuleId))
@@ -352,8 +350,6 @@ Namespace DotNetNuke.Modules.Stories
 
                 If acImage1.CheckAspect() Then
                     insert.PhotoId = acImage1.FileId
-                Else
-                    Return
                 End If
 
                 insert.StoryDate = sd
