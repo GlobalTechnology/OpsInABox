@@ -74,26 +74,15 @@
     <FooterStyle CssClass="dnnGridFooter" />
     <ItemTemplate>
         
-        <asp:HyperLink ID="lnkLink" runat="server" CssClass="CommandButton" NavigateUrl=''>
-
+        <asp:HyperLink ID="lnkLink" runat="server" CssClass="CommandButton" NavigateUrl='<%# NavigateURL() & "?tags=" + HttpUtility.UrlEncode(Eval("TagName"))%>'>
+            
             <div>
-            <asp:Image ID="imgImage" runat="server" ImageUrl='<%# Eval("PhotoId")%>' CssClass="seachImage" />
-<%--                Dim _theFile = FileManager.Instance.GetFile(_FileId)
-        If _theFile Is Nothing Then
-            theImage.ImageUrl = "/images/no_avatar.gif"
-            _FileId = 0
-            hfFileId.Value = 0
-        ElseIf imgExt.Contains(_theFile.Extension.ToLower) Then
-            theImage.ImageUrl = FileManager.Instance.GetUrl(_theFile)--%>
-        </div>
-
-        <div style="clear: both;"></div>
-        <h4><asp:Label ID="HyperLink1" runat="server" CssClass="storyTitle"  Text='<%# Eval("TagName")%>' /></h4>
-
-
+                <%--<asp:Image ID="imgPhoto" runat="server" ImageUrl='<%# GetImageURL(Eval("PhotoId"))%>' />--%>
+            </div>
+            <div style="clear: both;"></div>
+            <h4><asp:Label ID="HyperLink1" runat="server" CssClass="storyTitle"  Text='<%# Eval("TagName")%>' /></h4>
 
         </asp:HyperLink>
-
 
     </ItemTemplate>
 

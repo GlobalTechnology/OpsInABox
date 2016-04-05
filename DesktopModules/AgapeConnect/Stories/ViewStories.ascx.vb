@@ -57,7 +57,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
                     If dControl.Count > 0 Then
 
-                        LoadStoryControl(dControl.First.Location, dControl.First.Type = StoryModuleType.TagList)
+                        LoadTagListControl(dControl.First.Location)
 
                     End If
 
@@ -146,6 +146,19 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             Dim ucType As Type = theControl.GetType()
 
             ucType.GetMethod("Initialize").Invoke(theControl, New Object() {storyList, Settings})
+
+        End Sub
+
+        Private Sub LoadTagListControl(ByVal URL As String)
+
+            phStoryControl.Controls.Clear()
+            theControl = LoadControl(URL)
+
+            theControl.ID = "theControl"
+            phStoryControl.Controls.Add(theControl)
+            Dim ucType As Type = theControl.GetType()
+
+            ucType.GetMethod("Initialize").Invoke(theControl, New Object() {StoryFunctions.GetTagsWithStories(TabModuleId).ToList(), Settings})
 
         End Sub
 
