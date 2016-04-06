@@ -327,8 +327,8 @@ Namespace DotNetNuke.Modules.FullStory
         Private Function GetTabId(ByVal OrigTabId As String) As String
             If String.IsNullOrEmpty(OrigTabId) Then
                 Return OrigTabId
-            ElseIf modTranslation.ContainsKey(OrigTabId) Then
-                Return modTranslation(OrigTabId)
+            ElseIf tabTranslation.ContainsKey(OrigTabId) Then
+                Return tabTranslation(OrigTabId)
             Else
                 Return OrigTabId
             End If
