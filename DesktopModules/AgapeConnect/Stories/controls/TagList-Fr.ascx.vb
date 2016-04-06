@@ -46,10 +46,10 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             End If
         End Sub
 
-        Public Sub Initialize(ByVal TagsCache As List(Of AP_Stories_Tag), settings As Hashtable)
+        Public Sub Initialize(ByVal StoriesCache As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
 
             Try
-                dlTags.DataSource = TagsCache
+                dlTags.DataSource = StoryFunctions.GetTagsOfStories(StoriesCache)
                 dlTags.DataBind()
             Catch e As Exception
                 AgapeLogger.Error(UserId, e.Message & e.StackTrace)
