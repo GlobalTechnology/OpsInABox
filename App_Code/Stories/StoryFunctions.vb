@@ -339,7 +339,7 @@ Public Class StoryFunctions
 
     End Function
 
-    Public Shared Function AddLocalChannel(ByVal tabModuleId As Integer, ByVal PortalAlias As String, ByVal Name As String, ByVal Longitude As Double, ByVal Latitude As Double, ByVal logo As String) As Integer
+    Public Shared Function AddLocalChannel(ByVal tabModuleId As Integer, ByVal PortalAlias As String, ByVal Name As String, ByVal Longitude As Double, ByVal Latitude As Double, ByVal logo As String, ByVal autoDetectLanguage As Boolean) As Integer
         Dim theModule = GetStoryModule(tabModuleId)
 
         Dim insert As New Stories.AP_Stories_Module_Channel
@@ -354,6 +354,7 @@ Public Class StoryFunctions
         insert.Language = CultureInfo.CurrentCulture.Name
         insert.Latitude = Latitude
         insert.Longitude = Longitude
+        insert.AutoDetectLanguage = autoDetectLanguage
 
         insert.ImageId = logo
 
