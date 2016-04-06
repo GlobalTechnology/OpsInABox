@@ -118,17 +118,43 @@ Public Class StoryFunctions
     End Function
 
     ' Get list of tags in module linked to at least one story
-    Public Shared Function GetTagsWithStories(ByVal TabModuleId As Integer) As IQueryable(Of AP_Stories_Tag)
+    Public Shared Function GetTagsOfStories(ByRef StoriesCache As List(Of AP_Stories_Module_Channel_Cache)) As IQueryable(Of AP_Stories_Tag)
         Dim d As New StoriesDataContext
 
-        Dim tags = From cache In d.AP_Stories_Module_Channel_Caches _
-                       Join st In d.AP_Stories On CInt(cache.GUID) Equals st.StoryId _
-                       Join meta In d.AP_Stories_Tag_Metas On meta.StoryId Equals st.StoryId _
-                       Join tag In d.AP_Stories_Tags On meta.StoryTagMetaId Equals tag.StoryTagId _
-                       Where tag.StoryModuleId = StoryFunctions.GetStoryModule(TabModuleId).StoryModuleId _
-                       Select tag Distinct Order By tag.TagName
+        Dim StoriesCacheGuids = From sc In StoriesCache Select sc.GUID
+        Dim StoriesIds = From s In d.AP_Stories Where StoriesCacheGuids.Contains(s.StoryId) Select s.StoryId
+        Dim StoriesTagMetaIds = From stmi In d.AP_Stories_Tag_Metas Where StoriesIds.Contains(stmi.StoryId) Select stmi.StoryTagMetaId
+        Dim StoriesTags = From st In d.AP_Stories_Tags ' Where StoriesTagMetaIds.Contains(st.StoryTagId) ' Order By st.TagName
 
-        Return tags
+
+        'Dim tagList = GetTags(5548)
+        'Dim stories = From c In StoriesCache Join b In d.AP_Stories On CInt(c.GUID) Equals b.StoryId Select b.AP_Stories_Tag_Metas.
+        'Dim tags = From tag In tagList.Where(Function(x) 
+
+        'Dim r = From c In StoriesCache Join b In d.AP_Stories On CInt(c.GUID) Equals b.StoryId Where b.AP_Stories_Tag_Metas.Where(Function(x) tagList.Contains(x.AP_Stories_Tag.TagName)).Count > 0 Select c
+        'r = r.Where(Function(c) CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToLower = c.c.Langauge.Substring(0, 2) And c.c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = TabModuleId And Not c.c.Block) _
+        '                .OrderByDescending(Function(c) c.ViewOrder) _
+        '            .Take(500)
+        'Dim storyList = r.Select(Function(x) x.c).ToList()
+
+
+
+
+
+        'Dim tags = From cache In StoriesCache _
+        '               Join st In d.AP_Stories On CInt(cache.GUID) Equals st.StoryId _
+        '               Join meta In d.AP_Stories_Tag_Metas On meta.StoryId Equals st.StoryId _
+        '               Join tag In d.AP_Stories_Tags On meta.StoryTagMetaId Equals tag.StoryTagId _
+        '               Select tag Distinct
+
+        'Dim tags = From tag In d.AP_Stories_Tags _
+        '    Join meta In d.AP_Stories_Tag_Metas On meta.StoryTagMetaId Equals tag.StoryTagId _
+        '    Join st In d.AP_Stories On meta.StoryId Equals st.StoryId
+        '    Join cache In StoriesCache On CInt(cache.GUID) Equals st.StoryId()
+        'Select tag Distinct Order By tag.TagName
+
+        Return StoriesTags '.OrderBy(Function(x) x.TagName).AsQueryable()
+
     End Function
 
     Public Shared Function GetTag(ByVal tagId As Integer, ByVal TabModuleId As Integer) As AP_Stories_Tag
