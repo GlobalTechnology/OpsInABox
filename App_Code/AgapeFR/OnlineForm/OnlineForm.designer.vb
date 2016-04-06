@@ -1065,6 +1065,8 @@ Namespace AgapeFR.OnlineForm
 		
 		Private _RDSPassword As String
 		
+		Private _AckMessage As String
+		
 		Private _Agape_Public_OnlineForm_Questions As EntitySet(Of Agape_Public_OnlineForm_Question)
 		
     #Region "Extensibility Method Definitions"
@@ -1113,6 +1115,10 @@ Namespace AgapeFR.OnlineForm
     Partial Private Sub OnRDSPasswordChanging(value As String)
     End Sub
     Partial Private Sub OnRDSPasswordChanged()
+    End Sub
+    Partial Private Sub OnAckMessageChanging(value As String)
+    End Sub
+    Partial Private Sub OnAckMessageChanged()
     End Sub
     #End Region
 		
@@ -1281,6 +1287,22 @@ Namespace AgapeFR.OnlineForm
 					Me._RDSPassword = value
 					Me.SendPropertyChanged("RDSPassword")
 					Me.OnRDSPasswordChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AckMessage", DbType:="VarChar(MAX)")>  _
+		Public Property AckMessage() As String
+			Get
+				Return Me._AckMessage
+			End Get
+			Set
+				If (String.Equals(Me._AckMessage, value) = false) Then
+					Me.OnAckMessageChanging(value)
+					Me.SendPropertyChanging
+					Me._AckMessage = value
+					Me.SendPropertyChanged("AckMessage")
+					Me.OnAckMessageChanged
 				End If
 			End Set
 		End Property

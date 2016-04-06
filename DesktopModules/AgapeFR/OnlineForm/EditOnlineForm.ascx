@@ -32,8 +32,12 @@
     </td>
 </tr>
 <tr>
-<td> Acknowledgement Text</td>
+<td> Acknowledgement Text (email)</td>
 <td><asp:TextBox ID="AckText" runat="server" Rows="3" TextMode="MultiLine" Width="300px" /> </td>
+</tr>
+<tr>
+<td> Acknowledgement Text (page)</td>
+<td><asp:TextBox ID="AckMessage" runat="server" Rows="3" TextMode="MultiLine" Width="300px" /> </td>
 </tr>
 <tr>
 <td>Make Email Address a Required Field.</td>

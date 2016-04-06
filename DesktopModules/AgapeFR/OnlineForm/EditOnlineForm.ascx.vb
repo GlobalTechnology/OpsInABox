@@ -35,6 +35,7 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
                     EmailTo.Text = q.EmailTo
                     Ack.Checked = q.Ack
                     AckText.Text = q.AckText
+                    AckMessage.Text = q.AckMessage
                     EmailReq.Checked = q.ReqEmail
 
                     FormIdHF.Value = q.FormId
@@ -66,6 +67,7 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
             q.EmailTo = EmailTo.Text
             q.Ack = Ack.Checked
             q.AckText = AckText.Text
+            q.AckMessage = AckMessage.Text
             q.ReqEmail = EmailReq.Checked
             d.SubmitChanges()
 
