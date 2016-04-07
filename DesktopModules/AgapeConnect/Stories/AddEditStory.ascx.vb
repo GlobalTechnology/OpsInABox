@@ -315,14 +315,12 @@ Namespace DotNetNuke.Modules.Stories
 
                 StoryFunctions.RefreshLocalChannel(CInt(TabModuleId))
 
-                If CType(Settings("ViewTab"), String) <> "" Then
-                    If Settings("ViewTab") <> TabId Then
-                        Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
-                    Else
-                        Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
-                    End If
+                Dim RequestStoryURL As String = "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId
+
+                If String.IsNullOrEmpty(Settings("ViewTab")) Or Settings("ViewTab") = 0 Then
+                    Response.Redirect(EditUrl("ViewStory") & RequestStoryURL)
                 Else
-                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
+                    Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & RequestStoryURL)
                 End If
 
             Else
@@ -409,35 +407,28 @@ Namespace DotNetNuke.Modules.Stories
                 Next
 
                 StoryFunctions.RefreshLocalChannel(CInt(TabModuleId))
+                Dim InsertStoryURL As String = "?StoryId=" & insert.StoryId & "&origTabId=" & TabId & "&origModId=" & ModuleId
 
-                If CType(Settings("ViewTab"), String) <> "" Then
-                    If Settings("ViewTab") <> TabId Then
-                        Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & "?StoryId=" & insert.StoryId & "&origTabId=" & TabId & "&origModId=" & ModuleId)
-                    Else
-                        Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & insert.StoryId & "&origTabId=" & TabId & "&origModId=" & ModuleId)
-                    End If
+                If String.IsNullOrEmpty(Settings("ViewTab")) Or Settings("ViewTab") = 0 Then
+                    Response.Redirect(EditUrl("ViewStory") & InsertStoryURL)
                 Else
-                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & insert.StoryId & "&origTabId=" & TabId & "&origModId=" & ModuleId)
+                    Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & InsertStoryURL)
                 End If
             End If
 
         End Sub
 
         Protected Sub btnCancel_Click(sender As Object, e As System.EventArgs) Handles btnCancel.Click
-           
-            If Request.QueryString("StoryId") = "" Then
-                Response.Redirect(NavigateURL())
-            Else
-                If CType(Settings("ViewTab"), String) <> "" Then
-                    If Settings("ViewTab") <> TabId Then
-                        Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
-                    Else
-                        Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
-                    End If
-                Else
-                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
-                End If
+            Dim RequestStoryURL As String = "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId
 
+            If Request.QueryString("StoryId") <> "" Then
+                If String.IsNullOrEmpty(Settings("ViewTab")) Or Settings("ViewTab") = 0 Then
+                    Response.Redirect(EditUrl("ViewStory") & RequestStoryURL)
+                Else
+                    Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & RequestStoryURL)
+                End If
+            Else
+                Response.Redirect(NavigateURL())
             End If
         End Sub
 
