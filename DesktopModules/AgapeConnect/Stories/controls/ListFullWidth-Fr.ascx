@@ -1,27 +1,16 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="ListFullWidth-Fr.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Stories.ListFullWidth_Fr" %>
 <link href="/DesktopModules/AgapeConnect/Stories/themes/default/default.css" rel="stylesheet" type="text/css" media="screen" />
 
-
 <script type="text/javascript">
     (function ($, Sys) {
         function setUpMyTabs() {
-
-
             $(".tagFilter").click(function () {
                 var querystring = "";
                 $(".tagFilter input:checked").each(function () {
                     querystring += $(this).next().text() + ",";
-
                 });
-
                 window.location.href = "<%= NavigateURL() & "?tags="%>" + querystring;
             });
-
-
-            
-
-
-
         }
 
         $(document).ready(function () {
@@ -32,7 +21,6 @@
         });
     }(jQuery, window.Sys));
 
-
     function registerClick(c, l) {
         $.ajax({
             type: 'POST', url: "<%= NavigateURL() %>",
@@ -41,14 +29,33 @@
         var target = "_blank"
         if (l.indexOf("<%= PortalSettings.DefaultPortalAlias %>") >= 0)
             target = "_self"
-
         window.open(l, target);
-
     }
-
 </script>
 
-<style type="text/css">
+<asp:DataList runat="server" ID="dlStories" AllowPaging="true" RepeatColumns="2" BorderStyle="None" CellSpacing="4" CellPadding="4" ShowHeader="False" GridLines="None" PagerStyle-Visible="false" ItemStyle-Width="50%" CssClass="StoriesList">
+    <ItemStyle CssClass="dnnGridItem" HorizontalAlign="Left" VerticalAlign="Top" Width="50%"  />
+    <AlternatingItemStyle CssClass="dnnGridItem" />
+    <FooterStyle CssClass="dnnGridFooter" />
+    <ItemTemplate>
+        <asp:HyperLink ID="lnkLink" runat="server" CssClass="CommandButton" NavigateUrl='<%# "javascript: registerClick(" & DataBinder.Eval(Container.DataItem, "CacheId") & ", """ & CStr(DataBinder.Eval(Container.DataItem, "Link")) & """); "%>'>
+            <div>
+                <asp:Image ID="imgImage" runat="server" ImageUrl='<%# Eval("ImageId")  %>' CssClass="seachImage" />
+            </div>
+            <div style="clear: both;"></div>
+            <h4><asp:Label ID="HyperLink1" runat="server" CssClass="storyTitle"  Text='<%# Eval("Headline")%>' /></h4>
+        </asp:HyperLink>
+    </ItemTemplate>
+</asp:DataList>
+
+<div style="width: 100%; text-align: center; margin-top: 20px;">
+    <asp:Hyperlink ID="btnPrev" runat="server" Text="Previous" CssClass="button" resourceKey="btnPrevious" Visible="false" Width="80px"/>
+    <asp:Hyperlink ID="btnNext" runat="server" Text="Next" CssClass="button" resourceKey="btnNext"  Visible="false" Width="80px"/>
+</div>
+<div style="clear: both;"></div>
+<asp:Literal ID="ltPagination" runat="server"></asp:Literal>
+
+<%--<style type="text/css">
     
     a.button, a.button:visited{
        text-decoration: none;
@@ -87,7 +94,7 @@
     }
         <%--.dnnGridItem:hover .storyTitle,.dnnGridAltItem:hover .storyTitle  {
             text-decoration: underline;
-        }--%>
+        }
 
     .dnnGridItem:hover, .dnnGridAltItem:hover {
         border: 2px solid lightgrey;
@@ -224,37 +231,5 @@
     .tagFilter label {
         margin-left: 5px;
     }
-</style>
+</style>--%>
 
-<asp:DataList runat="server" ID="dlStories" AllowPaging="true" RepeatColumns="2" BorderStyle="None" CellSpacing="4" CellPadding="4" ShowHeader="False" GridLines="None" PagerStyle-Visible="false" ItemStyle-Width="50%" CssClass="StoriesList">
-    <ItemStyle CssClass="dnnGridItem" HorizontalAlign="Left" VerticalAlign="Top" Width="50%"  />
-    <AlternatingItemStyle CssClass="dnnGridItem" />
-    <FooterStyle CssClass="dnnGridFooter" />
-    <ItemTemplate>
-        
-        <asp:HyperLink ID="lnkLink" runat="server" CssClass="CommandButton" NavigateUrl='<%# "javascript: registerClick(" & DataBinder.Eval(Container.DataItem, "CacheId") & ", """ &   CStr(DataBinder.Eval(Container.DataItem, "Link")) & """); "%>'>
-
-            <div>
-            <asp:Image ID="imgImage" runat="server" ImageUrl='<%# Eval("ImageId")  %>' CssClass="seachImage" />
-        </div>
-
-        <div style="clear: both;"></div>
-        <h4><asp:Label ID="HyperLink1" runat="server" CssClass="storyTitle"  Text='<%# Eval("Headline")%>' /></h4>
-
-
-
-        </asp:HyperLink>
-
-
-    </ItemTemplate>
-
-</asp:DataList>
-
-
-<div style="width: 100%; text-align: center; margin-top: 20px;">
-
-<asp:Hyperlink ID="btnPrev" runat="server" Text="Previous" CssClass="button" resourceKey="btnPrevious" Visible="false" Width="80px"/>
-<asp:Hyperlink ID="btnNext" runat="server" Text="Next" CssClass="button" resourceKey="btnNext"  Visible="false" Width="80px"/>
-</div>
-<div style="clear: both;"></div>
-<asp:Literal ID="ltPagination" runat="server"></asp:Literal>
