@@ -29,11 +29,13 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
             ' Redirect to view requested story
+            Dim RequestStoryURL As String = "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId
+
             If Request.QueryString("StoryId") <> "" Then
                 If String.IsNullOrEmpty(Settings("ViewTab")) Or Settings("ViewTab") = 0 Then
-                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
+                    Response.Redirect(EditUrl("ViewStory") & RequestStoryURL)
                 Else
-                    Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
+                    Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & RequestStoryURL)
                 End If
 
             End If
