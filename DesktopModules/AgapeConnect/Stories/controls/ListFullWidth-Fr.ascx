@@ -34,7 +34,7 @@
 </script>
 
 <div id="ListFullWidth">
-<asp:DataList runat="server" ID="dlStories" AllowPaging="true">
+<asp:DataList runat="server" ID="dlStories" AllowPaging="true" Width="100%">
     <ItemTemplate>
         <asp:HyperLink ID="hlStory" runat="server"
             NavigateUrl='<%# "javascript: registerClick(" & DataBinder.Eval(Container.DataItem, "CacheId") & ", """ & CStr(DataBinder.Eval(Container.DataItem, "Link")) & """); "%>'>
