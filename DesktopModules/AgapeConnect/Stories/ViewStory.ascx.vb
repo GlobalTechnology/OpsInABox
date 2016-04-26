@@ -446,7 +446,8 @@ Namespace DotNetNuke.Modules.FullStory
 
             If q.Count > 0 Then
 
-                rtn &= "<h2 class=""agendaTitle"">A lire aussi</h2>"
+                rtn &= "<h2 class=""agendaTitle"">" & LocalizeString(StoryFunctions.getChannelTitle(TabModuleID)) & "</h2>"
+
                 For Each row In q.Take(3).OrderByDescending(Function(c) c.story.StoryDate)
                     rtn &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?StoryId=" & row.story.StoryId & "&origModId=" & GetModId(Request.QueryString("origModId")) & "&origTabId=" & GetTabId(Request.QueryString("origTabId")) & """>"
                     rtn &= "<table><tr><td style='vertical-align: top;'>"
