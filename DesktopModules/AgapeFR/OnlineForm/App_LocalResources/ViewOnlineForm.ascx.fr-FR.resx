@@ -190,7 +190,7 @@
     <value>Formulaire</value>
   </data>
   <data name="ErrorMsgNotSent.Text" xml:space="preserve">
-    <value>Nous sommes désolés. Votre message n'a pas pu être envoyé.&lt;br /&gt;Veuillez nous contacter par email à l'adresse &lt;a href="mailto:adm@agapefrance.org" target=_blank&gt;adm@agapefrance.org&lt;/a&gt;</value>
+    <value>Nous sommes désolés. Votre message n'a pas pu être envoyé.&lt;br /&gt;Veuillez nous contacter par email à l'adresse &lt;a href="mailto:adm@agapefrance.org" target=_blank&gt;info@agapefrance.org&lt;/a&gt;</value>
   </data>
   <data name="Star.Text" xml:space="preserve">
     <value>*</value>
@@ -203,5 +203,8 @@
   </data>
   <data name="ReqEmail.Text" xml:space="preserve">
     <value>Veuillez renseigner votre adresse email.</value>
+  </data>
+  <data name="btnShowForm.Text" xml:space="preserve">
+    <value>Recommoncer</value>
   </data>
 </root>

@@ -16,10 +16,14 @@
     function enableButton(buttonID) {
         document.getElementById(buttonID).disabled = false;
     }
+    function showform() {
+        $(".OnlineForm").show();
+        $(".unhider").hide();
+    }
 </script>
 
 
-<div class="OnlineForm">
+<div id="OnlineFormDiv" class="OnlineForm" runat="server">
     <div class="Menu_Prefix">
        <asp:Label ID="PrefixLabel" runat="server" Text=""></asp:Label>
     </div>
@@ -41,4 +45,7 @@
         <asp:Label ID="SuffixLabel" runat="server" Text=""></asp:Label>
     </div>
 </div>
+<%--<div id="unhider" class="unhider" style="display:none;" runat="server">
+    <asp:Button ID="btnShowForm" runat="server" CssClass="button" OnClientClick="showform()" resourcekey="btnShowForm" />
+</div>--%>
 
