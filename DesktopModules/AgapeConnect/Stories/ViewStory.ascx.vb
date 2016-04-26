@@ -451,7 +451,7 @@ Namespace DotNetNuke.Modules.FullStory
                 For Each row In q.Take(3).OrderByDescending(Function(c) c.story.StoryDate)
                     rtn &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?StoryId=" & row.story.StoryId & "&origModId=" & GetModId(Request.QueryString("origModId")) & "&origTabId=" & GetTabId(Request.QueryString("origTabId")) & """>"
                     rtn &= "<table><tr><td style='vertical-align: top;'>"
-                    rtn &= "<img src='/DesktopModules/AgapeConnect/Stories/images/articleIcon.png' style='width:30px;' /></td><td style='padding-left: 12px;'>"
+                    rtn &= "<img src='/DesktopModules/AgapeConnect/Stories/images/articleIcon.png' /></td><td style='padding-left: 12px;'>"
                     rtn &= "<h4 class='eventTitle'>" & row.story.Headline & "</h4>"
 
                     rtn &= "<h6  class='eventSample'>" & row.story.StoryDate.ToString("dd MMMM yyyy", New CultureInfo("fr-fr")) & "</h6></td></tr></table></a></div>"
