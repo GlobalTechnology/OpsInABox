@@ -211,6 +211,61 @@ Public Class StoryFunctions
 
 #End Region 'Tags
 
+#Region "Channels"
+
+    Public Shared Function getChannelTitle(ByVal TabModuleId As Integer) As String
+        Dim d As New Stories.StoriesDataContext
+        Try
+            Return (From moduleChannel In d.AP_Stories_Module_Channels
+                    Join storiesModule In d.AP_Stories_Modules On moduleChannel.StoryModuleId Equals storiesModule.StoryModuleId
+                    Where storiesModule.TabModuleId = TabModuleId
+                    Select moduleChannel.ChannelTitle).First
+        Catch ex As Exception
+            Return ""
+        End Try
+
+    End Function
+
+    Public Shared Function AddLocalChannel(ByVal tabModuleId As Integer, ByVal PortalAlias As String, ByVal Name As String, ByVal Longitude As Double, ByVal Latitude As Double, ByVal logo As String, ByVal autoDetectLanguage As Boolean) As Integer
+        Dim theModule = GetStoryModule(tabModuleId)
+
+        Dim insert As New Stories.AP_Stories_Module_Channel
+        insert.StoryModuleId = theModule.StoryModuleId
+        insert.Weight = 1.0
+        insert.Type = 2
+        insert.URL = "https://" & PortalAlias & "/DesktopModules/AgapeConnect/Stories/Feed.aspx?channel=" & tabModuleId
+
+        Name = Name
+
+        insert.ChannelTitle = Name
+        insert.Language = CultureInfo.CurrentCulture.Name
+        insert.Latitude = Latitude
+        insert.Longitude = Longitude
+        insert.AutoDetectLanguage = autoDetectLanguage
+
+        insert.ImageId = logo
+
+        Dim d2 As New Stories.StoriesDataContext
+        d2.AP_Stories_Module_Channels.InsertOnSubmit(insert)
+        d2.SubmitChanges()
+        RefreshFeed(tabModuleId, insert.ChannelId, False)
+
+        Return insert.ChannelId
+    End Function
+
+    Public Shared Sub RefreshLocalChannel(ByVal tabModuleId As Integer)
+        Dim d As New Stories.StoriesDataContext
+        Dim Channels = From c In d.AP_Stories_Module_Channels Where c.URL.Contains("channel=" & tabModuleId)
+        For Each row In Channels
+            RefreshFeed(row.AP_Stories_Module.TabModuleId, row.ChannelId, False)
+        Next
+
+
+
+    End Sub
+
+#End Region 'Channels
+
     Public Shared Function GetPhotoURL(ByVal imageId As Nullable(Of Integer)) As String
 
         Dim imageUrl As String
@@ -325,57 +380,6 @@ Public Class StoryFunctions
             Return -1
         End Try
     End Function
-
-    Public Shared Function getChannelTitle(ByVal TabModuleId As Integer) As String
-        Dim d As New Stories.StoriesDataContext
-        Try
-            Dim smid = (From c In d.AP_Stories_Modules Where c.TabModuleId = TabModuleId).First.StoryModuleId
-
-            Return (From c In d.AP_Stories_Module_Channels Where c.StoryModuleId = smid).First.ChannelTitle
-
-        Catch ex As Exception
-            Return ""
-        End Try
-
-    End Function
-
-    Public Shared Function AddLocalChannel(ByVal tabModuleId As Integer, ByVal PortalAlias As String, ByVal Name As String, ByVal Longitude As Double, ByVal Latitude As Double, ByVal logo As String, ByVal autoDetectLanguage As Boolean) As Integer
-        Dim theModule = GetStoryModule(tabModuleId)
-
-        Dim insert As New Stories.AP_Stories_Module_Channel
-        insert.StoryModuleId = theModule.StoryModuleId
-        insert.Weight = 1.0
-        insert.Type = 2
-        insert.URL = "https://" & PortalAlias & "/DesktopModules/AgapeConnect/Stories/Feed.aspx?channel=" & tabModuleId
-
-        Name = Name
-
-        insert.ChannelTitle = Name
-        insert.Language = CultureInfo.CurrentCulture.Name
-        insert.Latitude = Latitude
-        insert.Longitude = Longitude
-        insert.AutoDetectLanguage = autoDetectLanguage
-
-        insert.ImageId = logo
-
-        Dim d2 As New Stories.StoriesDataContext
-        d2.AP_Stories_Module_Channels.InsertOnSubmit(insert)
-        d2.SubmitChanges()
-        RefreshFeed(tabModuleId, insert.ChannelId, False)
-
-        Return insert.ChannelId
-    End Function
-
-    Public Shared Sub RefreshLocalChannel(ByVal tabModuleId As Integer)
-        Dim d As New Stories.StoriesDataContext
-        Dim Channels = From c In d.AP_Stories_Module_Channels Where c.URL.Contains("channel=" & tabModuleId)
-        For Each row In Channels
-            RefreshFeed(row.AP_Stories_Module.TabModuleId, row.ChannelId, False)
-        Next
-
-
-
-    End Sub
 
     Public Shared Sub PublishStory(ByVal StoryId As Integer)
         Dim d As New Stories.StoriesDataContext
