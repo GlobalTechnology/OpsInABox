@@ -84,3 +84,9 @@
 {
 
 }
+
+.dnnFormMessage.dnnFormSuccess
+{
+    background-color: #F5F5F5;
+    border-color: #5F5F5F;
+}

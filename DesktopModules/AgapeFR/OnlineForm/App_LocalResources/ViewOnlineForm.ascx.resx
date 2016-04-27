@@ -189,4 +189,7 @@
   <data name="ReqEmail.Text" xml:space="preserve">
     <value>Please type a valid email address.</value>
   </data>
+  <data name="btnShowForm.Text" xml:space="preserve">
+    <value>Show Form</value>
+  </data>
 </root>

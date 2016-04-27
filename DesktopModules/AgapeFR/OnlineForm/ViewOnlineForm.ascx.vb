@@ -246,7 +246,9 @@ Namespace DotNetNuke.Modules.AgapeFR.OnlineForm
                             'Displpay Acknowledgement Message from form
                             UI.Skins.Skin.AddModuleMessage(Me, q.AckMessage, ModuleMessageType.GreenSuccess)
                         End If
-
+                        'Hide the form and show button
+                        OnlineFormDiv.Style("display") = "none"
+                        'unhider.Style("display") = ""
                     Else
                         'Display error message
                         UI.Skins.Skin.AddModuleMessage(Me, LocalizeString("ErrorMsgNotSent"), ModuleMessageType.RedError)
