@@ -33,6 +33,21 @@
     }
 </script>
 
+<script type="text/javascript">
+    (function ($, Sys) {
+        function initContentTitle() {
+            $('#ContentContainer #ContentTitle').text("<%=TabController.CurrentPage.TabName%> > <%=TagSelected%>");
+        }
+
+        $(document).ready(function () {
+            initContentTitle();
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
+                initContentTitle();
+            });
+        });
+    }(jQuery, window.Sys));
+</script>
+
 <div id="ListFullWidth">
 <asp:DataList runat="server" ID="dlStories" AllowPaging="true" Width="100%">
     <ItemTemplate>
