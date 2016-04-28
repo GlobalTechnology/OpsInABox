@@ -41,10 +41,6 @@
 #ListFullWidth .item {
     margin: 5px;
 }
- 
-#ListFullWidth .storyTitle {
-    margin: 5px 5px 5px 10px;
-}
 
 #ListFullWidth .storyPreview {
     font-size: small;
@@ -55,11 +51,9 @@
     margin: 5px;
 }
 
+/*Ressource ListFullWidth Section End*/
 
-
- /*Ressource ListFullWidth Section End*/
-
- /*Ressource TagList Section Begin*/
+/*Ressource TagList Section Begin*/
 
 #TagList a {
     text-decoration: none;
@@ -99,5 +93,5 @@
 #TagList .tagThumbnail {
     height: 200px;
 }
- /*Ressource TagList Section End*/
+/*Ressource TagList Section End*/
 
