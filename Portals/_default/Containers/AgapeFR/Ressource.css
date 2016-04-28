@@ -38,11 +38,25 @@
     box-shadow: 0 1px 0 lightgrey; /* To avoid moving text when adding a border on hover */
 }
 
-#ListFullWidth .thumbnail {
-    height:100px;
-    margin-left:5px;
+#ListFullWidth .item {
+    margin: 5px;
 }
  
+#ListFullWidth .storyTitle {
+    margin: 5px 5px 5px 10px;
+}
+
+#ListFullWidth .storyPreview {
+    font-size: small;
+}
+
+#ListFullWidth .thumbnail {
+    height: 100px;
+    margin: 5px;
+}
+
+
+
  /*Ressource ListFullWidth Section End*/
 
  /*Ressource TagList Section Begin*/
