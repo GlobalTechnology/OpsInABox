@@ -40,8 +40,8 @@
             NavigateUrl='<%# "javascript: registerClick(" & DataBinder.Eval(Container.DataItem, "CacheId") & ", """ & CStr(DataBinder.Eval(Container.DataItem, "Link")) & """); "%>'>
             <div class="items" runat="server">
                 <div class="item">
-                    <h4><asp:Label ID="lblStoryTitle" runat="server"  Text='<%# Eval("Headline")%>' /></h4>
-                    <p><asp:Label ID="lblStoryPreview" runat="server" Text='<%# Eval("Description")%>' /></p>
+                    <h4><asp:Label ID="lblStoryTitle" runat="server"  Text='<%# Eval("Headline")%>' class="storyTitle" /></h4>
+                    <p><asp:Label ID="lblStoryPreview" runat="server" Text='<%# Eval("Description")%>' class="storyPreview" /></p>
                 </div>
                 <div class="item">
                     <asp:Image ID="StoryThumbnail" runat="server" CssClass="thumbnail" ImageUrl='<%# Eval("ImageId")  %>' />
