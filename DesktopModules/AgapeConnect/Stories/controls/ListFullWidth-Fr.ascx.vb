@@ -18,6 +18,14 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
         Public divWidth As Integer = 150
         Public divHeight As Integer = 150
+
+        Public ReadOnly Property TagSelected() As String
+            Get
+                Dim tagList As String() = Request.QueryString("tags").Split(",")
+                Return String.Join(", ", tagList)
+            End Get
+        End Property
+
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             'Allowing dynamically loaded controls to be translated using the DNN translation system is complex...
             'However this code does the trick. Just copy this Sub (Page_Init) ,as is, to make it work
