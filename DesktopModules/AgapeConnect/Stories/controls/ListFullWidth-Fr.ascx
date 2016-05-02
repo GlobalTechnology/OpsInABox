@@ -2,24 +2,6 @@
 <link href="/DesktopModules/AgapeConnect/Stories/themes/default/default.css" rel="stylesheet" type="text/css" media="screen" />
 
 <script type="text/javascript">
-    (function ($, Sys) {
-        function setUpMyTabs() {
-            $(".tagFilter").click(function () {
-                var querystring = "";
-                $(".tagFilter input:checked").each(function () {
-                    querystring += $(this).next().text() + ",";
-                });
-                window.location.href = "<%= NavigateURL() & "?tags="%>" + querystring;
-            });
-        }
-
-        $(document).ready(function () {
-            setUpMyTabs();
-            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
-                setUpMyTabs();
-            });
-        });
-    }(jQuery, window.Sys));
 
     function registerClick(c, l) {
         $.ajax({
@@ -31,21 +13,6 @@
             target = "_self"
         window.open(l, target);
     }
-</script>
-
-<script type="text/javascript">
-    (function ($, Sys) {
-        function initContentTitle() {
-            $('#ContentContainer #ContentTitle').text("<%=TabController.CurrentPage.TabName%> > <%=TagSelected%>");
-        }
-
-        $(document).ready(function () {
-            initContentTitle();
-            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
-                initContentTitle();
-            });
-        });
-    }(jQuery, window.Sys));
 </script>
 
 <div id="ListFullWidth">

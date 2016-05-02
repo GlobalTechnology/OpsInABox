@@ -60,6 +60,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                     End If
                 End If
             End If
+
+            'Add tag list to page title (to be displayed on the browser tag and on the page blue rectangle)
+            Page.Title = Page.Title + " > " + TagSelected
         End Sub
 
         Public Sub Initialize(ByVal Stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
