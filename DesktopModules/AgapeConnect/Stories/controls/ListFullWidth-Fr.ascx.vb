@@ -19,13 +19,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
         Public divWidth As Integer = 150
         Public divHeight As Integer = 150
 
-        Public ReadOnly Property TagSelected() As String
-            Get
-                Dim tagList As String() = Request.QueryString("tags").Split(",")
-                Return String.Join(", ", tagList)
-            End Get
-        End Property
-
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             'Allowing dynamically loaded controls to be translated using the DNN translation system is complex...
             'However this code does the trick. Just copy this Sub (Page_Init) ,as is, to make it work
@@ -61,8 +54,12 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 End If
             End If
 
+        End Sub
+
+        Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
             'Add tag list to page title (to be displayed on the browser tag and on the page blue rectangle)
-            Page.Title = Page.Title + " > " + TagSelected
+            TabController.CurrentPage.TabName = TabController.CurrentPage.TabName + " " + TagsSelected()
         End Sub
 
         Public Sub Initialize(ByVal Stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
@@ -129,6 +126,15 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 End If
             End If
         End Sub
+
+        Private Function TagsSelected() As String
+            Dim tagsString As String = Request.QueryString("tags")
+            If String.IsNullOrEmpty(tagsString) Then
+                Return ""
+            Else
+                Return ("> " & String.Join(", ", tagsString.Split(",")))
+            End If
+        End Function
 
     End Class
 End Namespace
