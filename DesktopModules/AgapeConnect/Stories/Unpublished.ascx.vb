@@ -21,20 +21,25 @@ Namespace DotNetNuke.Modules.Stories
 
             hfTabModuleID.Value = TabModuleId
 
-
-
-
         End Sub
+
 
 
         Protected Sub CancelBtn_Click(sender As Object, e As EventArgs) Handles CancelBtn.Click
             Response.Redirect(NavigateURL())
         End Sub
 
-        Protected Sub GridView1_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView1.RowCommand
+        Protected Sub gvPublish_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gvPublish.RowCommand
             If e.CommandName = "Publish" Then
-                StoryFunctions.PublishStory(CInt(e.CommandArgument))
-                GridView1.DataBind()
+                Dim commandArgs() As String = e.CommandArgument.ToString.Split(",")
+
+                If StoryFunctions.PublishStory(CInt(commandArgs(0))) Then
+                    gvPublish.DataBind()
+                    PublishValidator.Visible = False
+                Else
+                    PublishValidator.Text = LocalizeString("NoPhoto") & commandArgs(1)
+                    PublishValidator.Visible = True
+                End If
             End If
         End Sub
     End Class
