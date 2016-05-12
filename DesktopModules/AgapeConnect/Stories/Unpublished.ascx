@@ -1,7 +1,6 @@
 ﻿    <%@ Control Language="VB" AutoEventWireup="false" CodeFile="Unpublished.ascx.vb"
     Inherits="DotNetNuke.Modules.Stories.Unpublished" %>
 
-<asp:HiddenField ID="hfTabModuleID" runat="server" Value="-1" />
 <div id="Unpublished">
     <div class=validationError>
         <asp:Label ID="PublishValidator" runat="server" Visible="False"></asp:Label>
@@ -51,13 +50,6 @@
                     CommandName="Publish"
                     CommandArgument='<%# Eval("StoryId") & "," & Eval("Headline")%>'
                     ResourceKey="Publish"
-                    CssClass="Button">
-                </asp:LinkButton>
-                <asp:LinkButton ID="lbDelete" 
-                    runat="server"
-                    CausesValidation="False"
-                    CommandName="Delete"
-                    ResourceKey="Delete"
                     CssClass="Button">
                 </asp:LinkButton>
             </ItemTemplate>

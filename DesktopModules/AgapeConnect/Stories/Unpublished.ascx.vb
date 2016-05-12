@@ -19,11 +19,8 @@ Namespace DotNetNuke.Modules.Stories
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
             If Not Page.IsPostBack Then
-                hfTabModuleID.Value = TabModuleId
                 BuildUnpublishedList()
             End If
-
-
         End Sub
 
 #Region "HelperFunctions"
@@ -51,7 +48,7 @@ Namespace DotNetNuke.Modules.Stories
                 Dim commandArgs() As String = e.CommandArgument.ToString.Split(",")
 
                 If StoryFunctions.PublishStory(CInt(commandArgs(0))) Then
-                    gvPublish.DataBind()
+                    BuildUnpublishedList()
                     PublishValidator.Visible = False
                 Else
                     PublishValidator.Text = LocalizeString("NoPhoto") & commandArgs(1)
