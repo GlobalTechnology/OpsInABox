@@ -240,6 +240,49 @@ Public Class StoryFunctions
 
 #End Region 'Channels
 
+#Region "Publishing"
+
+    Public Shared Function PublishStory(ByVal StoryId As Integer) As Boolean
+        Dim d As New Stories.StoriesDataContext
+        Dim theStory = From c In d.AP_Stories Where c.StoryId = StoryId
+        Dim r = False
+
+        If theStory.Count > 0 Then
+            'check if a photo has been uploaded for the story
+            If (theStory.First.PhotoId > 0) Then
+                r = True
+                theStory.First.IsVisible = True
+                d.SubmitChanges()
+
+                'Refresh all stories that are listening to the current channel
+                StoryFunctions.RefreshAfterStoryPublished(theStory.First.TabModuleId)
+            End If
+        End If
+        Return r
+    End Function
+
+    Public Shared Sub RefreshAfterStoryPublished(ByVal TabModuleId As Integer)
+        Dim d As New Stories.StoriesDataContext
+
+        Dim Channels = From c In d.AP_Stories_Module_Channels Where c.URL.EndsWith("channel=" & TabModuleId)
+
+        For Each channel In Channels
+            RefreshFeed(channel.AP_Stories_Module.TabModuleId, channel.ChannelId, False)
+            PrecalAllCaches(channel.AP_Stories_Module.TabModuleId)
+        Next
+        StoryFunctions.RefreshLocalChannel(TabModuleId)
+    End Sub
+
+    Public Shared Function GetUnpublishedStories(ByVal tabModuleId As Integer) As IQueryable(Of AP_Story)
+        Dim d As New Stories.StoriesDataContext
+
+        Return From c In d.AP_Stories
+               Where c.TabModuleId = tabModuleId And c.IsVisible = False
+               Order By c.StoryDate Descending
+    End Function
+
+#End Region 'Publishing
+
     Public Shared Function GetPhotoURL(ByVal imageId As Nullable(Of Integer)) As String
 
         Dim imageUrl As String
@@ -355,24 +398,7 @@ Public Class StoryFunctions
         End Try
     End Function
 
-    Public Shared Function PublishStory(ByVal StoryId As Integer) As Boolean
-        Dim d As New Stories.StoriesDataContext
-        Dim theStory = From c In d.AP_Stories Where c.StoryId = StoryId
-        Dim r = False
 
-        If theStory.Count > 0 Then
-            'check if a photo has been uploaded for the story
-            If (theStory.First.PhotoId > 0) Then
-                r = True
-                theStory.First.IsVisible = True
-                d.SubmitChanges()
-
-                'Refresh all stories that are listening to the current channel
-                StoryFunctions.RefreshEverythingListeningToFeedAtTab(theStory.First.TabModuleId)
-            End If
-        End If
-        Return r
-    End Function
 
     Public Shared Sub RefreshFeed(ByVal tabModuleId As Integer, ByVal ChannelId As Integer, Optional ByVal ClearCache As Boolean = False)
 
@@ -575,17 +601,7 @@ Public Class StoryFunctions
         d.SubmitChanges()
     End Sub
 
-    Public Shared Sub RefreshEverythingListeningToFeedAtTab(ByVal TabModuleId As Integer)
-        Dim d As New Stories.StoriesDataContext
 
-        Dim Channels = From c In d.AP_Stories_Module_Channels Where c.URL.EndsWith("channel=" & TabModuleId)
-
-        For Each channel In Channels
-            RefreshFeed(channel.AP_Stories_Module.TabModuleId, channel.ChannelId, False)
-            PrecalAllCaches(channel.AP_Stories_Module.TabModuleId)
-        Next
-        StoryFunctions.RefreshLocalChannel(TabModuleId)
-    End Sub
 
     Public Shared Function GetBoost(ByVal boostDate As Date?) As Double
         If boostDate Is Nothing Then
