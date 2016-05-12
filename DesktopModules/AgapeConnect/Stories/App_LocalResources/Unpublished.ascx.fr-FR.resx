@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Author.Text" xml:space="preserve">
+    <value>Auteur</value>
+  </data>
   <data name="Delete.Text" xml:space="preserve">
     <value>Supprimer</value>
   </data>
@@ -126,13 +129,16 @@
   <data name="Empty.Text" xml:space="preserve">
     <value>Il n'y a rien ici - tous est publié !</value>
   </data>
+  <data name="Headline.Text" xml:space="preserve">
+    <value>Titre</value>
+  </data>
   <data name="NoPhoto.Text" xml:space="preserve">
     <value>Publication pas possible, une photo droit être attribué : </value>
   </data>
   <data name="Publish.Text" xml:space="preserve">
     <value>Publier</value>
   </data>
-  <data name="StoryDate.HeaderText" xml:space="preserve">
+  <data name="StoryDate.Text" xml:space="preserve">
     <value>Date</value>
   </data>
 </root>
