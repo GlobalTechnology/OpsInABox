@@ -18,12 +18,18 @@ Namespace DotNetNuke.Modules.Stories
         Inherits Entities.Modules.PortalModuleBase
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+            If Not Page.IsPostBack Then
+                hfTabModuleID.Value = TabModuleId
+                BuildUnpublishedList()
+            End If
 
-            hfTabModuleID.Value = TabModuleId
 
         End Sub
 
-
+        Protected Sub BuildUnpublishedList()
+            gvPublish.DataSource = StoryFunctions.GetUnpublishedStories(TabModuleId)
+            gvPublish.DataBind()
+        End Sub
 
         Protected Sub CancelBtn_Click(sender As Object, e As EventArgs) Handles CancelBtn.Click
             Response.Redirect(NavigateURL())
