@@ -6,9 +6,25 @@
     color: red;
 }
 
+
+#Unpublished tr.GridViewHeader th {
+    padding: 10px;
+    text-align: left;
+}
+
+#Unpublished tr.GridViewRows td {
+    padding: 10px;
+    text-align: left;
+}
+
+#Unpublished .gvTemplateButtons {
+    padding: 10px;
+}
+
+
 #Unpublished .submitPanel {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 50px;
     text-align: center;
 }
 
