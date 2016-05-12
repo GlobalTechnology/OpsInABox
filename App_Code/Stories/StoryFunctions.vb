@@ -355,23 +355,24 @@ Public Class StoryFunctions
         End Try
     End Function
 
-    Public Shared Sub PublishStory(ByVal StoryId As Integer)
+    Public Shared Function PublishStory(ByVal StoryId As Integer) As Boolean
         Dim d As New Stories.StoriesDataContext
-
         Dim theStory = From c In d.AP_Stories Where c.StoryId = StoryId
+        Dim r = False
 
         If theStory.Count > 0 Then
-            theStory.First.IsVisible = True
-            d.SubmitChanges()
+            'check if a photo has been uploaded for the story
+            If (theStory.First.PhotoId > 0) Then
+                r = True
+                theStory.First.IsVisible = True
+                d.SubmitChanges()
 
-            'Refresh all stories that are listening to the current channel
-            StoryFunctions.RefreshEverythingListeningToFeedAtTab(theStory.First.TabModuleId)
-
-
-
-            'theStory.First.TabModuleId
+                'Refresh all stories that are listening to the current channel
+                StoryFunctions.RefreshEverythingListeningToFeedAtTab(theStory.First.TabModuleId)
+            End If
         End If
-    End Sub
+        Return r
+    End Function
 
     Public Shared Sub RefreshFeed(ByVal tabModuleId As Integer, ByVal ChannelId As Integer, Optional ByVal ClearCache As Boolean = False)
 
