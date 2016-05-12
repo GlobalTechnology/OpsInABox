@@ -23,7 +23,7 @@
     <Columns>
         <asp:BoundField DataField="StoryDate"
             DataFormatString="{0:dd MMM yyyy}"
-            HeaderText="Date" >
+            HeaderText="StoryDate" >
         </asp:BoundField>
 
         <asp:TemplateField HeaderText="Headline" >
