@@ -241,7 +241,7 @@ Public Class StoryFunctions
 #End Region 'Channels
 
 #Region "Publishing"
-
+    'Determines if a story is publishable, if true it is published
     Public Shared Function PublishStory(ByVal StoryId As Integer) As Boolean
         Dim d As New Stories.StoriesDataContext
         Dim theStory = From c In d.AP_Stories Where c.StoryId = StoryId

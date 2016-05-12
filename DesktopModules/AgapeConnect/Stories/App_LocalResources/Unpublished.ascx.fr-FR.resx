@@ -120,9 +120,6 @@
   <data name="Author.Text" xml:space="preserve">
     <value>Auteur</value>
   </data>
-  <data name="Delete.Text" xml:space="preserve">
-    <value>Supprimer</value>
-  </data>
   <data name="Done.Text" xml:space="preserve">
     <value>Fermer</value>
   </data>
