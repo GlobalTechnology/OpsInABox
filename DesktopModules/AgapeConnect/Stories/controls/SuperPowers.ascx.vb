@@ -1,7 +1,7 @@
 ﻿Imports Stories
 Imports System.Linq
 Partial Class DesktopModules_SuperPowers
-    Inherits System.Web.UI.UserControl
+    Inherits Entities.Modules.PortalModuleBase
     Private _cacheId As Integer
 
     <Bindable(True, BindingDirection.TwoWay)> <Browsable(True)> <Category("Common")> <Description("The DotNetNuke FileID")> <DefaultValue(0)> <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)> _
@@ -84,6 +84,7 @@ Partial Class DesktopModules_SuperPowers
             _tabModuleId = value
         End Set
     End Property
+
     Public Sub SetControls()
         Dim d As New StoriesDataContext
      
@@ -97,12 +98,12 @@ Partial Class DesktopModules_SuperPowers
 
                 If theCache.Count > 0 Then
                     If theCache.First.Block Then
-                        lblPowerStatus.Text = "This story has been blocked, and won't appear in the channel feed."
+                        lblPowerStatus.Text = Translate("Blocked")
                         IsBlocked = True
                     ElseIf Not theCache.First.BoostDate Is Nothing Then
                         If theCache.First.BoostDate >= Today Then
                             IsBoosted = True
-                            lblPowerStatus.Text = "Boosted until " & theCache.First.BoostDate.Value.ToString("dd MMM yyyy")
+                            lblPowerStatus.Text = Translate("BoostDate") & theCache.First.BoostDate.Value.ToString("dd MMM yyyy")
 
                         End If
                     End If
@@ -111,7 +112,7 @@ Partial Class DesktopModules_SuperPowers
                 pnlPublish.Visible = False
 
             Else
-                lblPowerStatus.Text = "This story not yet been published, and won't appear in any channel feeds."
+                lblPowerStatus.Text = Translate("NotPublished")
                 pnlBoostBlock.Visible = False
                 pnlPublish.Visible = True
             End If
@@ -162,8 +163,19 @@ Partial Class DesktopModules_SuperPowers
     End Sub
 
     Protected Sub btnPublish_Click(sender As Object, e As EventArgs) Handles btnPublish.Click
-        StoryFunctions.PublishStory(Request.QueryString("StoryId"))
-        SetControls()
-       
+        If StoryFunctions.PublishStory(Request.QueryString("StoryId")) Then
+            lblPowerStatus.Visible = False
+
+        Else
+            lblPowerStatus.Text = LocalizeString("NoPhoto")
+            lblPowerStatus.Visible = True
+        End If
     End Sub
+
+#Region "HelperFunctions"
+    Public Function Translate(ByVal ResourceString As String) As String
+
+        Return DotNetNuke.Services.Localization.Localization.GetString(ResourceString & ".Text", LocalResourceFile)
+    End Function
+#End Region 'HelperFunctions
 End Class
