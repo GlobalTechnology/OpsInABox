@@ -124,13 +124,13 @@
     <value>Fermer</value>
   </data>
   <data name="Empty.Text" xml:space="preserve">
-    <value>Il n'y a rien ici - tous est publié !</value>
+    <value>Il n'y a rien ici - tout est publié !</value>
   </data>
   <data name="Headline.Text" xml:space="preserve">
     <value>Titre</value>
   </data>
   <data name="NoPhoto.Text" xml:space="preserve">
-    <value>Publication pas possible, une photo droit être attribué : </value>
+    <value>Publication impossible, une photo doit être ajoutée : </value>
   </data>
   <data name="Publish.Text" xml:space="preserve">
     <value>Publier</value>
