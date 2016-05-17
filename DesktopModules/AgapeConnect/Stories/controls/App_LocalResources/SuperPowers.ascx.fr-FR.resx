@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Blocked.Text" xml:space="preserve">
-    <value>Cette histoire à été bloqué et n'apparaîtra pas dans le flux.</value>
+    <value>Cette histoire à été bloquée et n'apparaîtra pas dans le flux.</value>
   </data>
   <data name="BoostDate.Text" xml:space="preserve">
-    <value>Cette histoire est remonté jusqu'au </value>
+    <value>Cette histoire est mise en avant jusqu'au </value>
   </data>
   <data name="Edit.Text" xml:space="preserve">
     <value>Editer</value>
@@ -130,10 +130,10 @@
     <value>Nouveau</value>
   </data>
   <data name="NoPhoto.Text" xml:space="preserve">
-    <value>Publication pas possible, une photo droit être attribué.</value>
+    <value>Publication impossible, une photo doit être ajoutée.</value>
   </data>
   <data name="NotPublished.Text" xml:space="preserve">
-    <value>Cette histoire n'est pas publié et n'apparaîtra pas dans le flux.</value>
+    <value>Cette histoire n'est pas publiée et n'apparaîtra pas dans le flux.</value>
   </data>
   <data name="Publish.Text" xml:space="preserve">
     <value>Publier</value>
