@@ -330,7 +330,6 @@ Namespace DotNetNuke.Modules.Stories
         End Sub
 
         Protected Sub gvTags_RowDeleting(sender As Object, e As GridViewDeleteEventArgs) Handles gvTags.RowDeleting
-            StoryFunctions.DeleteMetaTags(e.Keys(0), TabModuleId)
             StoryFunctions.DeleteTag(e.Keys(0), TabModuleId)
             BuildTagList()
         End Sub

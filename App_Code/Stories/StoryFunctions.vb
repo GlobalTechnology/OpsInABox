@@ -151,16 +151,10 @@ Public Class StoryFunctions
     Public Shared Sub DeleteTag(tagId As Integer, ByVal TabModuleId As Integer)
         Dim d As New StoriesDataContext
         Dim tagToDelete = (From c In d.AP_Stories_Tags Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId And c.StoryTagId = CInt(tagId)).First
-        d.AP_Stories_Tags.DeleteOnSubmit(tagToDelete)
-        d.SubmitChanges()
-    End Sub
-
-    Public Shared Sub DeleteMetaTags(tagId As Integer, ByVal TabModuleId As Integer)
-        Dim d As New StoriesDataContext
-        Dim tag = (From c In d.AP_Stories_Tags Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId And c.StoryTagId = CInt(tagId)).First
-        If (tag IsNot Nothing) Then
+        If (tagToDelete IsNot Nothing) Then
             Dim metaTagsToDelete = From c In d.AP_Stories_Tag_Metas Where c.TagId = CInt(tagId)
             d.AP_Stories_Tag_Metas.DeleteAllOnSubmit(metaTagsToDelete)
+            d.AP_Stories_Tags.DeleteOnSubmit(tagToDelete)
             d.SubmitChanges()
         End If
     End Sub
