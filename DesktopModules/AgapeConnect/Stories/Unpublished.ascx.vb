@@ -18,24 +18,45 @@ Namespace DotNetNuke.Modules.Stories
         Inherits Entities.Modules.PortalModuleBase
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
-            hfPortalId.Value = PortalId
-
-
-
-
+            If Not Page.IsPostBack Then
+                BuildUnpublishedList()
+            End If
         End Sub
 
+#Region "HelperFunctions"
 
+        Protected Sub BuildUnpublishedList()
+            gvPublish.Columns(0).HeaderText = Translate("StoryDate")
+            gvPublish.Columns(1).HeaderText = Translate("Headline")
+            gvPublish.Columns(2).HeaderText = Translate("Author")
+            gvPublish.DataSource = StoryFunctions.GetUnpublishedStories(TabModuleId)
+            gvPublish.DataBind()
+        End Sub
+
+        Public Function Translate(ByVal ResourceString As String) As String
+            Return DotNetNuke.Services.Localization.Localization.GetString(ResourceString & ".Text", LocalResourceFile)
+        End Function
+#End Region 'HelperFunctions
+
+#Region "PageEvents"
         Protected Sub CancelBtn_Click(sender As Object, e As EventArgs) Handles CancelBtn.Click
             Response.Redirect(NavigateURL())
         End Sub
 
-        Protected Sub GridView1_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView1.RowCommand
+        Protected Sub gvPublish_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gvPublish.RowCommand
             If e.CommandName = "Publish" Then
-                StoryFunctions.PublishStory(CInt(e.CommandArgument))
-                GridView1.DataBind()
+                Dim commandArgs() As String = e.CommandArgument.ToString.Split(",")
+
+                If StoryFunctions.PublishStory(CInt(commandArgs(0))) Then
+                    BuildUnpublishedList()
+                    PublishValidator.Visible = False
+                Else
+                    PublishValidator.Text = LocalizeString("NoPhoto") & commandArgs(1)
+                    PublishValidator.Visible = True
+                End If
             End If
         End Sub
+#End Region 'PageEvents
+
     End Class
 End Namespace

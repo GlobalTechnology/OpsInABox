@@ -44,23 +44,12 @@ Namespace DotNetNuke.Modules.Stories
                     Next
                 Next
 
-                    StaffBrokerFunctions.EventLog("TabCount", allTabs.Count, UserId)
-
-                    ddlLanguage.DataSource = From c In CultureInfo.GetCultures(CultureTypes.SpecificCultures) Order By c.EnglishName Select Name = c.Name.ToLower, EnglishName = c.EnglishName
+                ddlLanguage.DataSource = From c In CultureInfo.GetCultures(CultureTypes.SpecificCultures) Order By c.EnglishName Select Name = c.Name.ToLower, EnglishName = c.EnglishName
                     ddlLanguage.DataValueField = "Name"
                     ddlLanguage.DataTextField = "EnglishName"
                     ddlLanguage.DataBind()
 
-
-
-                Dim tags = From c In d.AP_Stories_Tags Where c.PortalId = PortalId
-
-                cblTags.DataSource = d.AP_Stories_Tags.Where(Function(c) c.PortalId = PortalId)
-                cblTags.DataTextField = "TagName"
-                cblTags.DataValueField = "StoryTagId"
-                cblTags.DataBind()
-
-                
+                BuildTagList()
 
                 If Me.UserInfo.IsSuperUser And IsEditable() Then
                         'SuperPowers.Visible = True
@@ -322,21 +311,16 @@ Namespace DotNetNuke.Modules.Stories
 
                     q.First.PhotoId = acImage1.FileId
                     d.SubmitChanges()
-                Else
-                    Return
                 End If
 
                 StoryFunctions.RefreshLocalChannel(CInt(TabModuleId))
 
-                ' Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
-                If CType(Settings("ViewTab"), String) <> "" Then
-                    If Settings("ViewTab") <> TabId Then
-                        Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
-                    Else
-                        Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
-                    End If
+                Dim RequestStoryURL As String = "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId
+
+                If String.IsNullOrEmpty(Settings("ViewTab")) Or Settings("ViewTab") = 0 Then
+                    Response.Redirect(EditUrl("ViewStory") & RequestStoryURL)
                 Else
-                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
+                    Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & RequestStoryURL)
                 End If
 
             Else
@@ -364,8 +348,6 @@ Namespace DotNetNuke.Modules.Stories
 
                 If acImage1.CheckAspect() Then
                     insert.PhotoId = acImage1.FileId
-                Else
-                    Return
                 End If
 
                 insert.StoryDate = sd
@@ -425,36 +407,28 @@ Namespace DotNetNuke.Modules.Stories
                 Next
 
                 StoryFunctions.RefreshLocalChannel(CInt(TabModuleId))
-                'Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & insert.StoryId)
+                Dim InsertStoryURL As String = "?StoryId=" & insert.StoryId & "&origTabId=" & TabId & "&origModId=" & ModuleId
 
-                If CType(Settings("ViewTab"), String) <> "" Then
-                    If Settings("ViewTab") <> TabId Then
-                        Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & "?StoryId=" & insert.StoryId & "&origTabId=" & TabId & "&origModId=" & ModuleId)
-                    Else
-                        Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & insert.StoryId)
-                    End If
+                If String.IsNullOrEmpty(Settings("ViewTab")) Or Settings("ViewTab") = 0 Then
+                    Response.Redirect(EditUrl("ViewStory") & InsertStoryURL)
                 Else
-                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & insert.StoryId)
+                    Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & InsertStoryURL)
                 End If
             End If
 
         End Sub
 
         Protected Sub btnCancel_Click(sender As Object, e As System.EventArgs) Handles btnCancel.Click
-           
-            If Request.QueryString("StoryId") = "" Then
-                Response.Redirect(NavigateURL())
-            Else
-                If CType(Settings("ViewTab"), String) <> "" Then
-                    If Settings("ViewTab") <> TabId Then
-                        Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId)
-                    Else
-                        Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
-                    End If
-                Else
-                    Response.Redirect(EditUrl("ViewStory") & "?StoryId=" & Request.QueryString("StoryId"))
-                End If
+            Dim RequestStoryURL As String = "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId
 
+            If Request.QueryString("StoryId") <> "" Then
+                If String.IsNullOrEmpty(Settings("ViewTab")) Or Settings("ViewTab") = 0 Then
+                    Response.Redirect(EditUrl("ViewStory") & RequestStoryURL)
+                Else
+                    Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & RequestStoryURL)
+                End If
+            Else
+                Response.Redirect(NavigateURL())
             End If
         End Sub
 
@@ -522,5 +496,16 @@ Namespace DotNetNuke.Modules.Stories
                 End If
             End If
         End Sub
+
+#Region "Helper Functions"
+
+        Protected Sub BuildTagList()
+            cblTags.DataSource = StoryFunctions.GetTags(TabModuleId)
+            cblTags.DataTextField = "TagName"
+            cblTags.DataValueField = "StoryTagId"
+            cblTags.DataBind()
+        End Sub
+
+#End Region 'Helper Functions
     End Class
 End Namespace

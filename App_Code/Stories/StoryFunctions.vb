@@ -4,6 +4,8 @@ Imports System.Xml
 Imports System.Net
 Imports DotNetNuke
 Imports DotNetNuke.Services.FileSystem
+Imports Stories
+
 Namespace Stories
     Class StoryController
         Implements Entities.Modules.ISearchable
@@ -23,7 +25,7 @@ Namespace Stories
             'From c In d.AP_Stories_Module_Channel_Caches Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = ModInfo.TabModuleID()
 
             For Each row In Stories
-               
+
                 ' Dim t = mc.GetTabModule(row.TabModuleId)
                 'If (t.ModuleID = ModInfo.ModuleID) Then
                 Dim Keywords = row.Keywords
@@ -50,11 +52,11 @@ Namespace Stories
 
                 Dim SearchItem As Services.Search.SearchItemInfo
                 SearchItem = New Services.Search.SearchItemInfo _
-                 (row.Headline, _
-                 summary, _
-                row.UserId, _
-               row.StoryDate, ModInfo.ModuleID, _
-                 "S" & row.StoryId, _
+                 (row.Headline,
+                 summary,
+                row.UserId,
+               row.StoryDate, ModInfo.ModuleID,
+                 "S" & row.StoryId,
               SearchText, Guid:="StoryId=" & row.StoryId, Image:=row.PhotoId, TabID:=row.TabId)
                 SearchItemCollection.Add(SearchItem)
                 ' End If
@@ -72,10 +74,12 @@ End Namespace
 Public Class StoryModuleType
     Public Const Rotator As Integer = 1
     Public Const List As Integer = 2
+    Public Const TagList As Integer = 3
     Public Shared Function Name(ByVal value As Integer) As String
         Select Case value
             Case 1 : Return "Rotator"
             Case 2 : Return "List"
+            Case 3 : Return "TagList"
             Case Else : Return "Unknown"
 
         End Select
@@ -83,7 +87,212 @@ Public Class StoryModuleType
 
 End Class
 
+'StoryFunctions constants
+Public Module StoryFunctionsProperties
+    Public imageExtensions() As String = {"jpg", "jpeg", "gif", "png", "bmp"}
+    Public noImage As String = "/images/no-content.png?"
+End Module
+
 Public Class StoryFunctions
+
+#Region "Tags"
+    Public Shared Function StripTags(ByVal HTML As String) As String
+        ' Removes tags from passed HTML
+
+        Dim pattern As String = "<(.|\n)*?>"
+        Dim pattern2 As String = "\[.*?]]\]"
+        Dim pattern3 As String = "\[.*?]\]"
+        Dim pattern4 As String = "<script[\d\D]*?>[\d\D]*?</script>"
+        Dim pattern5 As String = "<style[\d\D]*?>[\d\D]*?</style>"
+        Dim s = HTML
+        s = Regex.Replace(s, pattern4, String.Empty)
+        s = Regex.Replace(s, pattern5, String.Empty)
+        s = Regex.Replace(s, pattern, String.Empty)
+
+        Return Regex.Replace(Regex.Replace(s, pattern2, String.Empty), pattern3, String.Empty).Trim()
+    End Function
+
+    Public Shared Function GetTags(ByVal TabModuleId As Integer) As IQueryable(Of AP_Stories_Tag)
+        Dim d As New StoriesDataContext
+        Return From c In d.AP_Stories_Tags Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId Order By c.TagName
+    End Function
+
+    ' Get list of tags in module linked to at least one story
+    Public Shared Function GetTagsOfStories(ByRef StoriesCache As List(Of AP_Stories_Module_Channel_Cache)) As IQueryable(Of AP_Stories_Tag)
+        Dim d As New StoriesDataContext
+
+        Dim StoriesTagMetaIds = From sc In StoriesCache
+                                Join stmi In d.AP_Stories_Tag_Metas On sc.GUID Equals stmi.StoryId
+                                Select stmi.TagId
+
+        Return From st In d.AP_Stories_Tags
+               Where StoriesTagMetaIds.Contains(st.StoryTagId)
+               Select st Order By st.TagName
+
+    End Function
+
+    Public Shared Function GetTag(ByVal tagId As Integer, ByVal TabModuleId As Integer) As AP_Stories_Tag
+        Dim d As New StoriesDataContext
+        Return (From c In d.AP_Stories_Tags Where c.StoryTagId = tagId).First
+    End Function
+
+    Public Shared Sub SetTag(ByVal name As String, ByVal TabModuleId As Integer)
+        Dim d As New StoriesDataContext
+        Dim insert As New AP_Stories_Tag
+
+        insert.TagName = name
+        insert.Master = False
+        insert.Keywords = ""
+        insert.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId
+        d.AP_Stories_Tags.InsertOnSubmit(insert)
+        d.SubmitChanges()
+    End Sub
+
+    Public Shared Sub DeleteTag(tagId As Integer, ByVal TabModuleId As Integer)
+        Dim d As New StoriesDataContext
+        Dim tagToDelete = (From c In d.AP_Stories_Tags Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId And c.StoryTagId = CInt(tagId)).First
+        If (tagToDelete IsNot Nothing) Then
+            Dim metaTagsToDelete = From c In d.AP_Stories_Tag_Metas Where c.TagId = CInt(tagId)
+            d.AP_Stories_Tag_Metas.DeleteAllOnSubmit(metaTagsToDelete)
+            d.AP_Stories_Tags.DeleteOnSubmit(tagToDelete)
+            d.SubmitChanges()
+        End If
+    End Sub
+
+    Public Shared Sub UpdateTag(ByVal name As String, ByVal keywords As String, ByVal master As String, ByVal tagId As Integer, ByVal TabModuleId As Integer)
+        Dim d As New StoriesDataContext
+        Dim tagToUpdate As AP_Stories_Tag = (From c In d.AP_Stories_Tags Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId And c.StoryTagId = tagId).First
+
+        tagToUpdate.TagName = name
+        tagToUpdate.Keywords = keywords
+        tagToUpdate.Master = master
+        d.SubmitChanges()
+    End Sub
+
+    Public Shared Sub SetTagPhotoId(ByVal imageId As Integer, ByVal tagId As Integer)
+        Dim d As New StoriesDataContext
+        Dim tag As AP_Stories_Tag = (From c In d.AP_Stories_Tags Where c.StoryTagId = tagId).First
+
+        tag.PhotoId = imageId
+        d.SubmitChanges()
+    End Sub
+
+#End Region 'Tags
+
+#Region "Channels"
+
+    Public Shared Function getChannelTitle(ByVal TabModuleId As Integer) As String
+        Dim d As New Stories.StoriesDataContext
+        Try
+            Return (From moduleChannel In d.AP_Stories_Module_Channels
+                    Join storiesModule In d.AP_Stories_Modules On moduleChannel.StoryModuleId Equals storiesModule.StoryModuleId
+                    Where storiesModule.TabModuleId = TabModuleId
+                    Select moduleChannel.ChannelTitle).First
+        Catch ex As Exception
+            Return ""
+        End Try
+
+    End Function
+
+    Public Shared Function AddLocalChannel(ByVal tabModuleId As Integer, ByVal PortalAlias As String, ByVal Name As String, ByVal Longitude As Double, ByVal Latitude As Double, ByVal logo As String, ByVal autoDetectLanguage As Boolean) As Integer
+        Dim theModule = GetStoryModule(tabModuleId)
+
+        Dim insert As New Stories.AP_Stories_Module_Channel
+        insert.StoryModuleId = theModule.StoryModuleId
+        insert.Weight = 1.0
+        insert.Type = 2
+        insert.URL = "https://" & PortalAlias & "/DesktopModules/AgapeConnect/Stories/Feed.aspx?channel=" & tabModuleId
+
+        Name = Name
+
+        insert.ChannelTitle = Name
+        insert.Language = CultureInfo.CurrentCulture.Name
+        insert.Latitude = Latitude
+        insert.Longitude = Longitude
+        insert.AutoDetectLanguage = autoDetectLanguage
+
+        insert.ImageId = logo
+
+        Dim d2 As New Stories.StoriesDataContext
+        d2.AP_Stories_Module_Channels.InsertOnSubmit(insert)
+        d2.SubmitChanges()
+        RefreshFeed(tabModuleId, insert.ChannelId, False)
+
+        Return insert.ChannelId
+    End Function
+
+    Public Shared Sub RefreshLocalChannel(ByVal tabModuleId As Integer)
+        Dim d As New Stories.StoriesDataContext
+        Dim Channels = From c In d.AP_Stories_Module_Channels Where c.URL.Contains("channel=" & tabModuleId)
+        For Each row In Channels
+            RefreshFeed(row.AP_Stories_Module.TabModuleId, row.ChannelId, False)
+        Next
+
+
+
+    End Sub
+
+#End Region 'Channels
+
+#Region "Publishing"
+    'Determines if a story is publishable, if true it is published
+    Public Shared Function PublishStory(ByVal StoryId As Integer) As Boolean
+        Dim d As New Stories.StoriesDataContext
+        Dim theStory = From c In d.AP_Stories Where c.StoryId = StoryId
+        Dim r = False
+
+        If theStory.Count > 0 Then
+            'check if a photo has been uploaded for the story
+            If (theStory.First.PhotoId > 0) Then
+                r = True
+                theStory.First.IsVisible = True
+                d.SubmitChanges()
+
+                'Refresh all stories that are listening to the current channel
+                StoryFunctions.RefreshAfterStoryPublished(theStory.First.TabModuleId)
+            End If
+        End If
+        Return r
+    End Function
+
+    Public Shared Sub RefreshAfterStoryPublished(ByVal TabModuleId As Integer)
+        Dim d As New Stories.StoriesDataContext
+
+        Dim Channels = From c In d.AP_Stories_Module_Channels Where c.URL.EndsWith("channel=" & TabModuleId)
+
+        For Each channel In Channels
+            RefreshFeed(channel.AP_Stories_Module.TabModuleId, channel.ChannelId, False)
+            PrecalAllCaches(channel.AP_Stories_Module.TabModuleId)
+        Next
+        StoryFunctions.RefreshLocalChannel(TabModuleId)
+    End Sub
+
+    Public Shared Function GetUnpublishedStories(ByVal tabModuleId As Integer) As IQueryable(Of AP_Story)
+        Dim d As New Stories.StoriesDataContext
+
+        Return From c In d.AP_Stories
+               Where c.TabModuleId = tabModuleId And c.IsVisible = False
+               Order By c.StoryDate Descending
+    End Function
+
+#End Region 'Publishing
+
+    Public Shared Function GetPhotoURL(ByVal imageId As Nullable(Of Integer)) As String
+
+        Dim imageUrl As String
+        If (imageId IsNot Nothing And imageId > 0) Then
+            Dim imageFile = FileManager.Instance.GetFile(imageId)
+            If (imageFile IsNot Nothing) And (StoryFunctionsProperties.imageExtensions.Contains(imageFile.Extension.ToLower)) Then
+                imageUrl = FileManager.Instance.GetUrl(imageFile)
+            Else
+                imageUrl = StoryFunctionsProperties.noImage
+            End If
+        Else
+            imageUrl = StoryFunctionsProperties.noImage
+        End If
+
+        Return imageUrl
+    End Function
 
     Public Shared Function GetAdvancedSettings(ByVal TabModuleId As Integer) As Dictionary(Of String, String)
 
@@ -147,25 +356,6 @@ Public Class StoryFunctions
         End If
     End Function
 
-    Public Shared Function StripTags(ByVal HTML As String) As String
-        ' Removes tags from passed HTML
-
-        Dim pattern As String = "<(.|\n)*?>"
-        Dim pattern2 As String = "\[.*?]]\]"
-        Dim pattern3 As String = "\[.*?]\]"
-        Dim pattern4 As String = "<script[\d\D]*?>[\d\D]*?</script>"
-        Dim pattern5 As String = "<style[\d\D]*?>[\d\D]*?</style>"
-        Dim s = HTML
-        s = Regex.Replace(s, pattern4, String.Empty)
-        s = Regex.Replace(s, pattern5, String.Empty)
-        s = Regex.Replace(s, pattern, String.Empty)
-
-        Return Regex.Replace(Regex.Replace(s, pattern2, String.Empty), pattern3, String.Empty).Trim()
-
-
-    End Function
-
-
     Private Shared Sub set_if(ByRef setting As Object, ByVal value As Object)
         If value Is Nothing Then
             Return
@@ -175,8 +365,8 @@ Public Class StoryFunctions
         End If
     End Sub
 
-    Public Shared Function GetStoryModule(ByVal TabModuleId As Integer) As Stories.AP_Stories_Module
-        Dim d As New Stories.StoriesDataContext
+    Public Shared Function GetStoryModule(ByVal TabModuleId As Integer) As AP_Stories_Module
+        Dim d As New StoriesDataContext
 
         If d.AP_Stories_Modules.Where(Function(x) x.TabModuleId = TabModuleId).Count = 0 Then
             Dim insert As New Stories.AP_Stories_Module
@@ -202,80 +392,12 @@ Public Class StoryFunctions
         End Try
     End Function
 
-    Public Shared Function getChannelTitle(ByVal TabModuleId As Integer) As String
-        Dim d As New Stories.StoriesDataContext
-        Try
-            Dim smid = (From c In d.AP_Stories_Modules Where c.TabModuleId = TabModuleId).First.StoryModuleId
-
-            Return (From c In d.AP_Stories_Module_Channels Where c.StoryModuleId = smid).First.ChannelTitle
-
-        Catch ex As Exception
-            Return ""
-        End Try
-
-    End Function
-
-    Public Shared Function AddLocalChannel(ByVal tabModuleId As Integer, ByVal PortalAlias As String, ByVal Name As String, ByVal Longitude As Double, ByVal Latitude As Double, ByVal logo As String) As Integer
-        Dim theModule = GetStoryModule(tabModuleId)
-
-        Dim insert As New Stories.AP_Stories_Module_Channel
-        insert.StoryModuleId = theModule.StoryModuleId
-        insert.Weight = 1.0
-        insert.Type = 2
-        insert.URL = "https://" & PortalAlias & "/DesktopModules/AgapeConnect/Stories/Feed.aspx?channel=" & tabModuleId
-
-        Name = Name
-
-        insert.ChannelTitle = Name
-        insert.Language = CultureInfo.CurrentCulture.Name
-        insert.Latitude = Latitude
-        insert.Longitude = Longitude
-
-        insert.ImageId = logo
-
-        Dim d2 As New Stories.StoriesDataContext
-        d2.AP_Stories_Module_Channels.InsertOnSubmit(insert)
-        d2.SubmitChanges()
-        RefreshFeed(tabModuleId, insert.ChannelId, False)
-
-        Return insert.ChannelId
-    End Function
-
-    Public Shared Sub RefreshLocalChannel(ByVal tabModuleId As Integer)
-        Dim d As New Stories.StoriesDataContext
-        Dim Channels = From c In d.AP_Stories_Module_Channels Where c.URL.Contains("channel=" & tabModuleId)
-        For Each row In Channels
-            RefreshFeed(row.AP_Stories_Module.TabModuleId, row.ChannelId, False)
-        Next
-
-
-
-    End Sub
-
-    Public Shared Sub PublishStory(ByVal StoryId As Integer)
-        Dim d As New Stories.StoriesDataContext
-
-        Dim theStory = From c In d.AP_Stories Where c.StoryId = StoryId
-
-        If theStory.Count > 0 Then
-            theStory.First.IsVisible = True
-            d.SubmitChanges()
-
-            'Refresh all stories that are listening to the current channel
-            StoryFunctions.RefreshEverythingListeningToFeedAtTab(theStory.First.TabModuleId)
-
-
-
-            'theStory.First.TabModuleId
-        End If
-    End Sub
-
 
 
     Public Shared Sub RefreshFeed(ByVal tabModuleId As Integer, ByVal ChannelId As Integer, Optional ByVal ClearCache As Boolean = False)
 
         'StaffBrokerFunctions.EventLog("Refreshing Channel: " & ChannelId, "", 1)
-       
+
         Dim d As New Stories.StoriesDataContext
 
         If d.AP_Stories_Modules.Where(Function(x) x.TabModuleId = tabModuleId).Count = 0 Then
@@ -323,7 +445,7 @@ Public Class StoryFunctions
 
             For Each row In feed.Items
                 Try
-                   
+
                     Dim existingStory = From c In theChannel.AP_Stories_Module_Channel_Caches Where c.Link = row.Links.First.Uri.AbsoluteUri
                     If existingStory.Count = 0 Then
                         Dim insert As New Stories.AP_Stories_Module_Channel_Cache
@@ -474,18 +596,6 @@ Public Class StoryFunctions
     End Sub
 
 
-    Public Shared Sub RefreshEverythingListeningToFeedAtTab(ByVal TabModuleId As Integer)
-        Dim d As New Stories.StoriesDataContext
-
-        Dim Channels = From c In d.AP_Stories_Module_Channels Where c.URL.EndsWith("channel=" & TabModuleId)
-
-        For Each channel In Channels
-            RefreshFeed(channel.AP_Stories_Module.TabModuleId, channel.ChannelId, False)
-            PrecalAllCaches(channel.AP_Stories_Module.TabModuleId)
-        Next
-        StoryFunctions.RefreshLocalChannel(TabModuleId)
-    End Sub
-
 
     Public Shared Function GetBoost(ByVal boostDate As Date?) As Double
         If boostDate Is Nothing Then
@@ -539,8 +649,6 @@ Public Class StoryFunctions
         End Try
     End Function
 
-
-
     Private Shared Sub SetImage(ByRef theField As Stories.AP_Stories_Module_Channel_Cache, ByVal theRow As SyndicationItem, ByVal ChannelImage As String)
         If theRow.ElementExtensions.Where(Function(x) x.OuterName = "thumbnail").Count > 0 Then
             'First look for a thumbnail in the rss feed element
@@ -581,7 +689,6 @@ Public Class StoryFunctions
 
     End Sub
 
-
     Public Shared Function distance(ByVal lat1 As Double, ByVal lon1 As Double, ByVal lat2 As Double, ByVal lon2 As Double) As Double
 
         Dim theta As Double = lon1 - lon2
@@ -609,8 +716,6 @@ Public Class StoryFunctions
     Private Shared Function rad2deg(ByVal rad As Double) As Double
         Return rad / Math.PI * 180.0
     End Function
-
-
 
 End Class
 

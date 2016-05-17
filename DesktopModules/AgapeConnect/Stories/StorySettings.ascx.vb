@@ -17,13 +17,15 @@ Namespace DotNetNuke.Modules.Stories
         Dim d As New StoriesDataContext
 #Region "Base Method Implementations"
 
-        
+
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
-            hfPortalId.Value = PortalId
+
             If Not Page.IsPostBack Then
 
-               
-                ddlDisplayTypes.DataSource = (From c In d.AP_Stories_Controls Select c.Name, Value = c.Type & ":" & c.StoryControlId)
+                ddlDisplayTypes.DataSource = (From c In d.AP_Stories_Controls Where c.Type <> StoryModuleType.TagList Select c.Name, Value = c.Type & ":" & c.StoryControlId)
+
+                ddlTagsDisplayTypes.DataSource = (From c In d.AP_Stories_Controls Where c.Type = StoryModuleType.TagList Select c.Name, Value = c.Type & ":" & c.StoryControlId)
+
                 Dim mc As New DotNetNuke.Entities.Modules.ModuleController
 
                 Dim dtp = DotNetNuke.Entities.Modules.DesktopModuleController.GetDesktopModuleByFriendlyName("ac_ViewStory")
@@ -52,6 +54,10 @@ Namespace DotNetNuke.Modules.Stories
                 ddlDisplayTypes.DataValueField = "Value"
                 ddlDisplayTypes.DataBind()
 
+                ddlTagsDisplayTypes.DataTextField = "Name"
+                ddlTagsDisplayTypes.DataValueField = "Value"
+                ddlTagsDisplayTypes.DataBind()
+
 
                 Dim newSettings As Boolean = False
                 Dim objModules As New Entities.Modules.ModuleController
@@ -74,8 +80,9 @@ Namespace DotNetNuke.Modules.Stories
 
 
                     Dim imageId = "https://" & PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(logoFile))
+                    Dim autoDetectLanguage As Boolean = False
 
-                    StoryFunctions.AddLocalChannel(TabModuleId, PortalAlias.HTTPAlias, RssName, l.longitude, l.latitude, imageId)
+                    StoryFunctions.AddLocalChannel(TabModuleId, PortalAlias.HTTPAlias, RssName, l.longitude, l.latitude, imageId, autoDetectLanguage)
 
                     theModule = StoryFunctions.GetStoryModule(TabModuleId)
 
@@ -91,12 +98,19 @@ Namespace DotNetNuke.Modules.Stories
                                 ddlDisplayTypes.SelectedValue = row.Value
                                 Exit For
                             End If
-
                         Next
-
                     End If
+                End If
 
-
+                If CType(TabModuleSettings("TagListControlId"), String) <> "" Then
+                    If d.AP_Stories_Controls.Where(Function(x) x.StoryControlId = CInt(TabModuleSettings("TagListControlId"))).Count > 0 Then
+                        For Each row As ListItem In ddlTagsDisplayTypes.Items
+                            If row.Value.EndsWith(":" & TabModuleSettings("TagListControlId")) Then
+                                ddlTagsDisplayTypes.SelectedValue = row.Value
+                                Exit For
+                            End If
+                        Next
+                    End If
                 End If
 
                 If CType(TabModuleSettings("AspectMode"), String) <> "" Then
@@ -166,8 +180,8 @@ Namespace DotNetNuke.Modules.Stories
                     tbAdvanceSettings.Text = TabModuleSettings("AdvancedSettings")
 
                 End If
-               
-              
+
+
                 If CType(TabModuleSettings("ShowFields"), String) <> "" Then
                     Dim s = CStr(TabModuleSettings("ShowFields")).Split(",")
                     For Each row As ListItem In cblShow.Items
@@ -186,20 +200,28 @@ Namespace DotNetNuke.Modules.Stories
                     tbBoostLength.Text = bl
                 End If
 
+                BuildTagList()
 
                 If newSettings Then
-                    SynchronizeModule()
+                    DotNetNuke.Entities.Modules.ModuleController.SynchronizeModule(ModuleId)
                 End If
-            End If
+            End If 'Not Page.IsPostBack
 
 
 
         End Sub
+#End Region 'Base Method Implementations
 
-       
+#Region "Helper Functions"
 
-#End Region
-       
+        Protected Sub BuildTagList()
+            gvTags.DataSource = StoryFunctions.GetTags(TabModuleId)
+            gvTags.DataBind()
+        End Sub
+
+#End Region 'Helper Functions
+
+#Region "Page Events"
 
         Protected Sub SaveBtn_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles SaveBtn.Click
             'Save Module Settings
@@ -220,15 +242,21 @@ Namespace DotNetNuke.Modules.Stories
                     Return
                 End Try
             End If
-            
-            Dim s As String = ddlDisplayTypes.SelectedValue
 
+            Dim s As String = ddlDisplayTypes.SelectedValue
             If Not String.IsNullOrEmpty(s) Then
                 Dim StoryControlId As Integer = s.Substring(s.IndexOf(":") + 1)
                 objModules.UpdateTabModuleSetting(TabModuleId, "StoryControlId", StoryControlId)
-
             End If
-           
+
+            Dim s2 As String = ddlTagsDisplayTypes.SelectedValue
+            If Not String.IsNullOrEmpty(s2) Then
+                Dim TagListControlId As Integer = s2.Substring(s2.IndexOf(":") + 1)
+                objModules.UpdateTabModuleSetting(TabModuleId, "TagListControlId", TagListControlId)
+            Else
+                objModules.UpdateTabModuleSetting(TabModuleId, "TagListControlId", "")
+            End If
+
             'Speed
             objModules.UpdateTabModuleSetting(TabModuleId, "Speed", CInt(hfSpeed.Value))
 
@@ -269,21 +297,21 @@ Namespace DotNetNuke.Modules.Stories
 
 
             '====== Need to update some of the channel table properties (for this module)
-            
+
             Dim LocalChannel = From c In d.AP_Stories_Module_Channels Where c.Type = 2 And c.AP_Stories_Module.TabModuleId = TabModuleId
 
-            If localChannel.Count > 0 Then
-                localChannel.First.Latitude = Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo(""))
-                localChannel.First.Longitude = Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo(""))
-                localChannel.First.ChannelTitle = tbRssName.Text
+            If LocalChannel.Count > 0 Then
+                LocalChannel.First.Latitude = Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo(""))
+                LocalChannel.First.Longitude = Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo(""))
+                LocalChannel.First.ChannelTitle = tbRssName.Text
                 d.SubmitChanges()
             End If
 
-           
-           
 
 
-           
+
+
+
             SynchronizeModule()
             Response.Redirect(NavigateURL())
 
@@ -294,29 +322,89 @@ Namespace DotNetNuke.Modules.Stories
 
         End Sub
 
-      
-
         Protected Sub btnAddTag_Click(sender As Object, e As System.EventArgs) Handles btnAddTag.Click
-            Dim insert As New AP_Stories_Tag
-            insert.PortalId = PortalId
-            insert.TagName = tbAddTag.Text
-            insert.Master = False
-            insert.Keywords = ""
-            d.AP_Stories_Tags.InsertOnSubmit(insert)
-            d.SubmitChanges()
-
-            GridView1.DataBind()
-
+            StoryFunctions.SetTag(tbAddTag.Text, TabModuleId)
+            BuildTagList()
+            tbAddTag.Text = ""
+            tbAddTag.Focus()
         End Sub
 
-
-        Protected Sub GridView1_RowDeleting(sender As Object, e As GridViewDeleteEventArgs) Handles GridView1.RowDeleting
-            Dim q = From c In d.AP_Stories_Tag_Metas Where c.TagId = CInt(e.Keys(0))
-
-            d.AP_Stories_Tag_Metas.DeleteAllOnSubmit(q)
-            d.SubmitChanges()
-
+        Protected Sub gvTags_RowDeleting(sender As Object, e As GridViewDeleteEventArgs) Handles gvTags.RowDeleting
+            StoryFunctions.DeleteTag(e.Keys(0), TabModuleId)
+            BuildTagList()
         End Sub
+
+        Protected Sub gvTags_RowEditing(sender As Object, e As GridViewEditEventArgs) Handles gvTags.RowEditing
+            'save the row that is being edited
+            gvTags.EditIndex = e.NewEditIndex
+            BuildTagList()
+        End Sub
+
+        Protected Sub gvTags_RowCancelingEdit(sender As Object, e As GridViewCancelEditEventArgs) Handles gvTags.RowCancelingEdit
+            'Reset the edit index
+            gvTags.EditIndex = -1
+            BuildTagList()
+        End Sub
+
+        Protected Sub gvTags_RowUpdating(sender As Object, e As GridViewUpdateEventArgs) Handles gvTags.RowUpdating
+            Dim tagIdToUpdate = gvTags.DataKeys(gvTags.EditIndex).Value
+            Dim name As String = ""
+            Dim keywords As String = ""
+
+            If (e.NewValues.Values(0) IsNot Nothing) Then
+                name = e.NewValues(0).ToString
+            End If
+
+            If (e.NewValues.Values(1) IsNot Nothing) Then
+                keywords = e.NewValues(1).ToString
+            End If
+
+            Dim master As Boolean = e.NewValues(2)
+
+            StoryFunctions.UpdateTag(name, keywords, master, tagIdToUpdate, TabModuleId)
+
+            'Reset the edit index
+            gvTags.EditIndex = -1
+            BuildTagList()
+        End Sub
+
+        Protected Sub gvTags_RowCreated(sender As Object, e As GridViewRowEventArgs) Handles gvTags.RowCreated
+
+            ' bind only rows that contain data (not header or footer rows...)
+            If e.Row.RowType = DataControlRowType.DataRow Then
+
+                Dim tagPhotoId As Nullable(Of Integer) = StoryFunctions.GetTag(gvTags.DataKeys(e.Row.RowIndex).Value, TabModuleId).PhotoId
+
+                If (e.Row.RowState = DataControlRowState.Normal Or e.Row.RowState = DataControlRowState.Alternate) Then
+                    'get thumbnail of image
+                    Dim thumbnail As WebControls.Image = CType(e.Row.FindControl("TagThumbnail"), WebControls.Image)
+                    thumbnail.ImageUrl = StoryFunctions.GetPhotoURL(tagPhotoId)
+
+                ElseIf ((e.Row.RowState And DataControlRowState.Edit) > 0) Then
+                    'get reference to the image
+                    Dim image As DesktopModules_AgapePortal_StaffBroker_acImage =
+                        DirectCast(e.Row.FindControl("ImagePicker"), DesktopModules_AgapePortal_StaffBroker_acImage)
+
+                    'add event handler for updated event raised in acImage
+                    AddHandler image.UpdatedWithImage, AddressOf ImagePicker_ImageUpdated
+
+                    'get image if one has already been uploaded 
+                    If (tagPhotoId IsNot Nothing) Then
+                        image.FileId = tagPhotoId
+                    End If
+
+                End If
+            End If
+        End Sub
+
+        Protected Sub ImagePicker_ImageUpdated(image As DesktopModules_AgapePortal_StaffBroker_acImage)
+            If image.CheckAspect() Then
+                StoryFunctions.SetTagPhotoId(image.FileId, gvTags.DataKeys(gvTags.EditIndex).Value)
+            End If
+        End Sub
+
+#End Region 'Page Events
+
     End Class
 
 End Namespace

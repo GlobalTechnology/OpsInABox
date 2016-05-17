@@ -11,13 +11,14 @@ Imports StaffBrokerFunctions
 Imports Stories
 'Imports DotNetNuke.Services.FileSystem
 Namespace DotNetNuke.Modules.AgapeConnect.Stories
-    Partial Class List_Fr
+    Partial Class ListFullWidth_Fr
         Inherits Entities.Modules.PortalModuleBase
         'Adding Stories Translation
         Dim d As New StoriesDataContext
 
         Public divWidth As Integer = 150
         Public divHeight As Integer = 150
+
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             'Allowing dynamically loaded controls to be translated using the DNN translation system is complex...
             'However this code does the trick. Just copy this Sub (Page_Init) ,as is, to make it work
@@ -52,17 +53,16 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                     End If
                 End If
             End If
+
+        End Sub
+
+        Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+            'Add tag list to page title (to be displayed on the browser tag and on the page blue rectangle)
+            TabController.CurrentPage.TabName = TabController.CurrentPage.TabName + " " + TagsSelected()
         End Sub
 
         Public Sub Initialize(ByVal Stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
-
-            'Dim d As New StoriesDataContext
-
-
-
-            Dim out As String = ""
-
-
 
             Dim photoWidth As Integer = 150
             If Not String.IsNullOrEmpty(settings("PhotoWidth")) Then
@@ -80,46 +80,61 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             If Not String.IsNullOrEmpty(settings("AspectMode")) Then
                 AspectMode = settings("AspectMode")
             End If
-            If AspectMode > 2 Then
-                AspectMode = 1  ' Ascpect Modes 3 and 4 are not valid with this rotator. It requires a fixed size.
-            End If
+
             divWidth = photoWidth
             divHeight = photoHeight
 
-            Dim Skip As Integer = 0
+            Dim skip As Integer = 0
             Dim pg As Integer = 0
             If Not String.IsNullOrEmpty(Request.QueryString("p")) Then
                 pg = Request.QueryString("p")
-                Skip = pg * CInt(settings("NumberOfStories"))
+                skip = pg * CInt(settings("NumberOfStories"))
             End If
 
-
-            dlStories.DataSource = Stories.Skip(Skip).Take(CInt(settings("NumberOfStories")))
+            dlStories.DataSource = Stories.Skip(skip).Take(CInt(settings("NumberOfStories")))
             dlStories.DataBind()
-
-
-
 
             If Stories.Count > CInt(settings("NumberOfStories")) Then
                 btnPrev.Visible = True
                 btnNext.Visible = True
-
                 Dim urlStub = NavigateURL()
 
-                btnPrev.Enabled = Not (pg = 0)
-
-                If (pg = 0) Then
-                    btnPrev.Style.Add("opacity", "0.5")
+                'Construct the URLs for btnPrev and btnNext
+                If (Request.QueryString("tags") <> "") Then
+                    urlStub = NavigateURL() & "?tags=" & Request.QueryString("tags").ToString & "&p="
+                Else
+                    urlStub = NavigateURL() & "?p="
                 End If
 
                 btnPrev.NavigateUrl = urlStub & (pg - 1)
                 btnNext.NavigateUrl = urlStub & (pg + 1)
-                btnNext.Enabled = (Math.Floor((Stories.Count - 1) / CInt(settings("NumberOfStories"))) > pg)
-                If Not btnNext.Enabled Then
+
+                'determine state of btnPrev
+                If (pg = 0) Then
+                    btnPrev.Style.Add("opacity", "0.5")
+                    btnPrev.Enabled = False
+                Else
+                    btnPrev.Enabled = True
+                End If
+
+                'determine state of btnNext
+                If (Math.Floor((Stories.Count - 1) / CInt(settings("NumberOfStories"))) > pg) Then
+                    btnNext.Enabled = True
+                Else
                     btnNext.Style.Add("opacity", "0.5")
+                    btnNext.Enabled = False
                 End If
             End If
         End Sub
+
+        Private Function TagsSelected() As String
+            Dim tagsString As String = Request.QueryString("tags")
+            If String.IsNullOrEmpty(tagsString) Then
+                Return ""
+            Else
+                Return ("> " & String.Join(", ", tagsString.Split(",")))
+            End If
+        End Function
 
     End Class
 End Namespace

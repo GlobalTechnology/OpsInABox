@@ -241,35 +241,6 @@
         margin-left: 5px;
     }
 </style>
-<div class="mynavbar-inner" style="display: none;">
-
-    <div class="pull-left">
-    </div>
-    <div class="row-fluid ">
-        <div class="span1">
-            <strong>Filter:</strong>
-        </div>
-        <div style="text-align: center;">
-            <asp:DataList ID="dlFilter" runat="server" RepeatColumns="3" Width="100%" >
-
-                <ItemTemplate>
-                    <div style="padding: 0 10px; width: 100%; text-align: left;">
-
-                        <asp:CheckBox ID="cbFilter" runat="server" CssClass="tagFilter" Text='<%# Eval("TagName")%>' Checked='<%# hfSelectedTags.Value.Split(",").Contains(Eval("TagName"))%>' />
-
-                    </div>
-
-                </ItemTemplate>
-
-            </asp:DataList>
-        </div>
-    </div>
-</div>
-
-
-
-<asp:HiddenField ID="hfSelectedTags" runat="server" />
-
 
 <asp:DataList runat="server" ID="dlStories" AllowPaging="true" RepeatColumns="2" RepeatDirection="Horizontal" BorderStyle="None" CellSpacing="4" CellPadding="4" ShowHeader="False" GridLines="None" PagerStyle-Visible="false" ItemStyle-Width="50%" CssClass="StoriesList">
     <ItemStyle CssClass="dnnGridItem" HorizontalAlign="Left" VerticalAlign="Top" Width="50%"  />
@@ -308,11 +279,3 @@
 </div>
 <div style="clear: both;"></div>
 <asp:Literal ID="ltPagination" runat="server"></asp:Literal>
-
-
-
-
-
-
-
-

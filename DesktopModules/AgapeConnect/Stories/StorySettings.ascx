@@ -3,6 +3,7 @@
     
 <%@ Register Assembly="DotNetNuke" Namespace="DotNetNuke.UI.WebControls" TagPrefix="uc1" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
+<%@ Register Src="../StaffAdmin/Controls/acImage.ascx" TagName="acImage" TagPrefix="uc1" %>
 
 
 <script src="/js/jquery.numeric.js" type="text/javascript"></script>
@@ -143,6 +144,23 @@
     {
         z-index: 999;   
     }
+      .SubmitPanel
+    {
+    margin-top: 10px;
+    padding-left: 200px;
+    width: 100%; 
+    text-align: center; 
+    }
+      .AddTagPanel
+    {
+    display: inline-block;
+    margin-top: 15px;
+    }
+       .DeleteTagWarning
+    {
+    display: inline-block;
+    margin-top: 10px;
+    }
     </style>
 
 <div style="width:100%; text-align: center;">
@@ -150,6 +168,18 @@
 <asp:HiddenField id='hfSpeed' runat="server"  Value="3"  />
 
 <table cellpadding="4px" border="1" class="SettingsTable" style="margin: 0 auto;">
+    
+    <tr>
+        <td>
+        <dnn:Label ID="lblTagsDisplayType" runat="server" ResourceKey="lblTagsDisplayType" />
+        </td>
+        <td style="text-align: center ;">
+            <asp:DropDownList ID="ddlTagsDisplayTypes" runat="server" AppendDataBoundItems="true">
+                <asp:ListItem Text="Don't show tag list" Value="" />
+            </asp:DropDownList>
+        </td>
+    </tr>
+
     <tr>
         <td>
         <dnn:Label ID="Label5" runat="server" ResourceKey="lblDisplayType" />
@@ -212,7 +242,7 @@
         </td>
         <td align="center">
           <asp:TextBox ID="tbLocation" runat="server" Width="200px"></asp:TextBox>
-               <div style="font-size: xx-small; color: #AAA; font-style: italic;">(City, country,region or  postocode etc)</div>
+               <div style="font-size: xx-small; color: #AAA; font-style: italic;">(City, country, region or  postocode etc)</div>
             <asp:Label ID="lblFeedError" runat="server" ForeColor="Red"></asp:Label>
              </td>
     </tr>
@@ -262,6 +292,7 @@
 
              </asp:Panel>
              <i>(drag the bottom-right corner to change)</i>
+            
         </td>
     </tr>
      <tr valign="middle">
@@ -270,9 +301,8 @@
         </td>
         <td style="text-align: left; " >
         
-     
-
-            <asp:GridView ID="GridView1" runat="server" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" DataSourceID="dsTags" AutoGenerateColumns="False" DataKeyNames="StoryTagId">
+            <asp:GridView ID="gvTags" runat="server" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px"
+                CellPadding="4" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="StoryTagId">
                 <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#CCCC99" />
                 <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
@@ -284,28 +314,23 @@
                 <SortedDescendingCellStyle BackColor="#EAEAD3" />
                 <SortedDescendingHeaderStyle BackColor="#575357" />
                 <Columns>
-
+                    <asp:TemplateField HeaderText="Image">
+                        <EditItemTemplate><uc1:acImage ID="ImagePicker" runat="server" Aspect="1.3" SaveWidth="700" Updated="ImagePicker_ImageUpdated"/></EditItemTemplate>
+                        <ItemTemplate><asp:Image ID="TagThumbnail" runat="server" Width="50px"/></ItemTemplate>
+                    </asp:TemplateField>
                     <asp:BoundField DataField="TagName" HeaderText="TagName" SortExpression="TagName" />
                     <asp:BoundField DataField="Keywords" HeaderText="Keywords" SortExpression="Keywords" />
-                    <asp:CheckBoxField DataField="Master" HeaderText="Master" SortExpression="Master" />
+                    <asp:CheckBoxField DataField="Master" HeaderText="Master" SortExpression="Master"/>
                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-
                 </Columns>
-                
             </asp:GridView>
-
-<asp:HiddenField runat="server" ID="hfPortalId"></asp:HiddenField>
-
-              <asp:LinqDataSource ID="dsTags" runat="server" EntityTypeName="" ContextTypeName="Stories.StoriesDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" OrderBy="TagName" TableName="AP_Stories_Tags" Where="PortalId == @PortalId">
-                  <WhereParameters>
-                      <asp:ControlParameter ControlID="hfPortalId" Name="PortalId" PropertyName="Value" Type="Int32" />
-                  </WhereParameters>
-            </asp:LinqDataSource>
-
-
-
-              <asp:TextBox ID="tbAddTag" runat="server"></asp:TextBox><asp:Button ID="btnAddTag" runat="server" Text="Add" CssClass="aButton btn" Font-Size="X-Small" /> 
-            <br />*Warning: Deleting a tag will remove this tag from all stories. This cannot be undone!
+            <div class="AddTagPanel">
+                <asp:TextBox ID="tbAddTag" runat="server"></asp:TextBox>
+                <asp:Button ID="btnAddTag" runat="server" ResourceKey="btnAddTag" CssClass="button" /> 
+            </div>
+            <div class="DeleteTagWarning">
+                <asp:Label ID="lblTagsDelete" runat="server" ResourceKey="lblTagsDelete"></asp:Label>
+            </div>
         </td>
     </tr>
     <tr valign="middle" >
@@ -358,12 +383,8 @@
     
 
 </table>
-
- <br /><br />
-<div style="width: 100%; text-align: center">
-    <asp:LinkButton ID="SaveBtn" runat="server" class="aButton btn" ResourceKey="btnSave">Save</asp:LinkButton>
-    &nbsp;
-    <asp:LinkButton ID="CancelBtn" runat="server" class="aButton btn" ResourceKey="btnCancel">Cancel</asp:LinkButton>
- 
+<div class="SubmitPanel">
+    <asp:LinkButton ID="SaveBtn" runat="server" Cssclass="button" ResourceKey="btnSave">Save</asp:LinkButton>
+    <asp:LinkButton ID="CancelBtn" runat="server" Cssclass="button" ResourceKey="btnCancel">Cancel</asp:LinkButton>
 </div>
-    </div>
+</div>

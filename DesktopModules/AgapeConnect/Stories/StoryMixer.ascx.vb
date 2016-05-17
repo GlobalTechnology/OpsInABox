@@ -57,7 +57,9 @@ Namespace DotNetNuke.Modules.Stories
 
                 Dim imageId = "https://" & PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(logoFile))
 
-                StoryFunctions.AddLocalChannel(TabModuleId, PortalAlias.HTTPAlias, RssName, l.longitude, l.latitude, imageId)
+                Dim autoDetectLanguage As Boolean = False
+
+                StoryFunctions.AddLocalChannel(TabModuleId, PortalAlias.HTTPAlias, RssName, l.longitude, l.latitude, imageId, autoDetectLanguage)
 
                 theModule = StoryFunctions.GetStoryModule(TabModuleId)
 
