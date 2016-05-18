@@ -165,8 +165,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
                 End If
                 Actions.Add(GetNextActionID, "Story Mixer", "StoryMixer", "", "action_settings.gif", EditUrl("Mixer"), False, SecurityAccessLevel.Edit, True, False)
-                Actions.Add(GetNextActionID, "Unpublished", "unpublished", "", "action_settings.gif", EditUrl("unpublished"), False, SecurityAccessLevel.Edit, True, False)
-
+                Actions.Add(GetNextActionID, "Unpublished", "unpublished", "", "action_settings.gif", EditUrl("Unpublished"), False, SecurityAccessLevel.Edit, True, False)
+                Actions.Add(GetNextActionID, "Tag Settings", "TagSettings", "", "action_settings.gif", EditUrl("TagSettings"), False, SecurityAccessLevel.Edit, True, False)
                 Actions.Add(GetNextActionID, "New Story", "NewStory", "", "add.gif", EditUrl("AddEditStory"), False, SecurityAccessLevel.Edit, True, False)
 
                 Return Actions
