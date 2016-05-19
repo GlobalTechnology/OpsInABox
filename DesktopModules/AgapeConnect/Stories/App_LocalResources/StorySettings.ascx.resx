@@ -141,11 +141,11 @@
   <data name="lblAdvancedSettings.Text" xml:space="preserve">
     <value>Advanced Settings</value>
   </data>
-  <data name="lblAspect.Help" xml:space="preserve">
+  <data name="lblStoryPhotoAspect.Help" xml:space="preserve">
     <value>The site looks alot better when all of the main photos have a consistent aspect ratio (ie they are the same shape). Whenever someone uploads a story, they are asked to crop their photos using a tool that constrains their photos to a predefined aspect. You can specify that aspect here. For square, enter 1. If you want the image wider than it is high, enter a number greater than 1 (eg 1.3). If you want the image taller than it is wide, enter a number less than 1 (eg 0.8).</value>
   </data>
-  <data name="lblAspect.Text" xml:space="preserve">
-    <value>PhotoAspect</value>
+  <data name="lblStoryPhotoAspect.Text" xml:space="preserve">
+    <value>Story Photo Aspect</value>
   </data>
   <data name="lblAspectMode.Help" xml:space="preserve">
     <value>Stories created on this site should be cropped to the corrected aspect. However if the story image differs from the shape of this module, select how you would like the image to displayed. </value>
@@ -228,7 +228,10 @@
   <data name="lblTagsDisplayType.Text" xml:space="preserve">
     <value>Tag List Display Type</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
+  <data name="lblTagPhotoAspect.Help" xml:space="preserve">
+    <value>The site looks alot better when all of the main photos have a consistent aspect ratio (ie they are the same shape). Whenever someone adds a tag with a photo, they are asked to crop their photos using a tool that constrains their photos to a predefined aspect. You can specify that aspect here. For square, enter 1. If you want the image wider than it is high, enter a number greater than 1 (eg 1.3). If you want the image taller than it is wide, enter a number less than 1 (eg 0.8).</value>
+  </data>
+  <data name="lblTagPhotoAspect.Text" xml:space="preserve">
+    <value>Tag Photo Aspect</value>
   </data>
 </root>

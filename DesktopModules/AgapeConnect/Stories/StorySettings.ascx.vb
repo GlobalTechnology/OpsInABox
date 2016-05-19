@@ -125,20 +125,31 @@ Namespace DotNetNuke.Modules.Stories
 
                 End If
 
-
+                'Init Story Photo Aspect
+                Dim storyPhotoAspect = "1.3"
                 If CType(TabModuleSettings("Aspect"), String) <> "" Then
-                    lblAspect.Text = Double.Parse(TabModuleSettings("Aspect"), New CultureInfo("")).ToString(New CultureInfo(""))
-                    resizable.Height = Unit.Pixel(80)
-                    resizable.Width = Unit.Pixel(Double.Parse(TabModuleSettings("Aspect"), New CultureInfo("")) * 80)
-                    hfAspect.Value = lblAspect.Text
+                    storyPhotoAspect = TabModuleSettings("Aspect")
                 Else
-                    hfAspect.Value = 1.3
-
-                    objModules.UpdateTabModuleSetting(TabModuleId, "Aspect", "1.3")
+                    objModules.UpdateTabModuleSetting(TabModuleId, "Aspect", storyPhotoAspect)
                     newSettings = True
-
-
                 End If
+                lblStoryPhotoAspect.Text = Double.Parse(storyPhotoAspect, New CultureInfo("")).ToString(New CultureInfo(""))
+                resizableStoryPhotoAspect.Height = Unit.Pixel(80)
+                resizableStoryPhotoAspect.Width = Unit.Pixel(Double.Parse(storyPhotoAspect, New CultureInfo("")) * 80)
+                hfStoryPhotoAspect.Value = lblStoryPhotoAspect.Text
+
+                'Init Tag Photo Aspect
+                Dim tagPhotoAspect = "1.3"
+                If CType(TabModuleSettings("TagAspect"), String) <> "" Then
+                    tagPhotoAspect = TabModuleSettings("TagAspect")
+                Else
+                    objModules.UpdateTabModuleSetting(TabModuleId, "TagAspect", tagPhotoAspect)
+                    newSettings = True
+                End If
+                lblTagPhotoAspect.Text = Double.Parse(tagPhotoAspect, New CultureInfo("")).ToString(New CultureInfo(""))
+                resizableTagPhotoAspect.Height = Unit.Pixel(80)
+                resizableTagPhotoAspect.Width = Unit.Pixel(Double.Parse(tagPhotoAspect, New CultureInfo("")) * 80)
+                hfTagPhotoAspect.Value = lblTagPhotoAspect.Text
 
                 lblRssPrefix.Text = Request.Url.Authority & Request.ApplicationPath & "DesktopModules/AgapeConnect/Stories/Feed.aspx?name="
 
@@ -273,8 +284,11 @@ Namespace DotNetNuke.Modules.Stories
             objModules.UpdateTabModuleSetting(TabModuleId, "ViewTab", ddlTabs.SelectedValue)
 
 
-            'Aspect
-            objModules.UpdateTabModuleSetting(TabModuleId, "Aspect", Double.Parse(hfAspect.Value, New CultureInfo("")).ToString(New CultureInfo("")))
+            'Story Photo Aspect
+            objModules.UpdateTabModuleSetting(TabModuleId, "Aspect", Double.Parse(hfStoryPhotoAspect.Value, New CultureInfo("")).ToString(New CultureInfo("")))
+
+            'Tag Photo Aspect
+            objModules.UpdateTabModuleSetting(TabModuleId, "TagAspect", Double.Parse(hfTagPhotoAspect.Value, New CultureInfo("")).ToString(New CultureInfo("")))
 
             '
             objModules.UpdateTabModuleSetting(TabModuleId, "AdvancedSettings", tbAdvanceSettings.Text)

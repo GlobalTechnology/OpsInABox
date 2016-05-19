@@ -18,10 +18,17 @@
 
         $('.numeric').numeric();
         $('.aButton').button();
-        $("#<%= resizable.ClientId %>").resizable({
+        $("#<%= resizableStoryPhotoAspect.ClientId %>").resizable({
             maxWidth: 320, maxHeight: 100, minWidth: 57, minHeight: 24, resize: function (event, ui) {
-                $("#<%= lblAspect.ClientId %>").html((ui.size.width / ui.size.height).toFixed(2));
-             $("#<%= hfAspect.ClientId %>").val((ui.size.width / ui.size.height).toFixed(2));
+                $("#<%= lblStoryPhotoAspect.ClientId %>").html((ui.size.width / ui.size.height).toFixed(2));
+             $("#<%= hfStoryPhotoAspect.ClientId %>").val((ui.size.width / ui.size.height).toFixed(2));
+
+         }
+        });
+        $("#<%= resizableTagPhotoAspect.ClientId %>").resizable({
+            maxWidth: 320, maxHeight: 100, minWidth: 57, minHeight: 24, resize: function (event, ui) {
+                $("#<%= lblTagPhotoAspect.ClientId %>").html((ui.size.width / ui.size.height).toFixed(2));
+             $("#<%= hfTagPhotoAspect.ClientId %>").val((ui.size.width / ui.size.height).toFixed(2));
 
          }
          });
@@ -164,7 +171,8 @@
     </style>
 
 <div style="width:100%; text-align: center;">
-<asp:HiddenField id='hfAspect' runat="server"    />
+<asp:HiddenField id='hfStoryPhotoAspect' runat="server"    />
+    <asp:HiddenField id='hfTagPhotoAspect' runat="server"    />
 <asp:HiddenField id='hfSpeed' runat="server"  Value="3"  />
 
 <table cellpadding="4px" border="1" class="SettingsTable" style="margin: 0 auto;">
@@ -179,7 +187,23 @@
             </asp:DropDownList>
         </td>
     </tr>
+    <tr valign="middle">
+        <td>
+            <dnn:Label ID="lblTagPhotoAspectTitle" runat="server" ResourceKey="lblTagPhotoAspect" />
+        </td>
+        <td style="text-align: center; " >
+            
+            <asp:Panel ID="resizableTagPhotoAspect" class="resizable" runat="server" style="text-align: center; vertical-align: middle; display: table-cell;  ">
+           
+           
+              <asp:Label ID="lblTagPhotoAspect" runat="server"    style=" font-weight: bold; font-size: large; text-align: center;  display: inline-block ;"></asp:Label>
+           
 
+             </asp:Panel>
+             <i>(drag the bottom-right corner to change)</i>
+            
+        </td>
+    </tr>
     <tr>
         <td>
         <dnn:Label ID="Label5" runat="server" ResourceKey="lblDisplayType" />
@@ -280,14 +304,14 @@
 
     <tr valign="middle">
         <td>
-            <dnn:Label ID="Label1" runat="server" ResourceKey="lblAspect" />
+            <dnn:Label ID="lblStoryPhotoAspectTitle" runat="server" ResourceKey="lblStoryPhotoAspect" />
         </td>
         <td style="text-align: center; " >
             
-            <asp:Panel ID="resizable" class="resizable" runat="server" style="text-align: center; vertical-align: middle; display: table-cell;  ">
+            <asp:Panel ID="resizableStoryPhotoAspect" class="resizable" runat="server" style="text-align: center; vertical-align: middle; display: table-cell;  ">
            
            
-              <asp:Label ID="lblAspect" runat="server"    style=" font-weight: bold; font-size: large; text-align: center;  display: inline-block ;"></asp:Label>
+              <asp:Label ID="lblStoryPhotoAspect" runat="server"    style=" font-weight: bold; font-size: large; text-align: center;  display: inline-block ;"></asp:Label>
            
 
              </asp:Panel>
@@ -315,7 +339,7 @@
                 <SortedDescendingHeaderStyle BackColor="#575357" />
                 <Columns>
                     <asp:TemplateField HeaderText="Image">
-                        <EditItemTemplate><uc1:acImage ID="ImagePicker" runat="server" Aspect="1.3" SaveWidth="700" Updated="ImagePicker_ImageUpdated"/></EditItemTemplate>
+                        <EditItemTemplate><uc1:acImage ID="ImagePicker" runat="server" Aspect="<%=hfTagPhotoAspect.Value %>" SaveWidth="700" Updated="ImagePicker_ImageUpdated"/></EditItemTemplate>
                         <ItemTemplate><asp:Image ID="TagThumbnail" runat="server" Width="50px"/></ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="TagName" HeaderText="TagName" SortExpression="TagName" />
