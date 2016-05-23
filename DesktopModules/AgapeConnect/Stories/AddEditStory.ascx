@@ -59,9 +59,7 @@
 
 </script>
 
-<style type="text/css">
-  
-</style>
+
 
 <asp:HiddenField ID="StoryIdHF" runat="server" />
 <asp:HiddenField ID="ShortTextHF" runat="server" />
@@ -74,17 +72,17 @@
 <asp:Panel ID="PagePanel" runat="server" Style="margin-right: 0px; margin-left: 0px; padding-left 0px;">
     <div class="Agape_Story_storymain">
         <h1 class="AgapeH2">
-            <asp:TextBox ID="Headline" CssClass="AgapeH2" Style="border-bottom-style: none; width: 100%;" runat="server"></asp:TextBox>
+            <asp:TextBox ID="Headline" CssClass="AgapeH2" Style="border-bottom-style: none; width: 100%;" runat="server" MaxLength="154"></asp:TextBox>
         </h1>
         <div class="Agape_Story_subtitle">
             <table width="100%">
                 <tr>
                     <td class="Agape_Story_subtitle" align="left" style="width: 25%; white-space: nowrap">By
-                        <asp:TextBox ID="Author" runat="server" class="Agape_Story_subtitle" Style="width: 90%; display: inline;"></asp:TextBox>
+                        <asp:TextBox ID="Author" runat="server" class="Agape_Story_subtitle" MaxLength="50" Style="width: 90%; display: inline;"></asp:TextBox>
                         <asp:DropDownList ID="ddlAuthor" runat="server" Style="width: 90%; display: inline;" Visible="false"></asp:DropDownList>
                     </td>
                     <td style="width: 65%;">
-                        <asp:TextBox ID="Subtitle" runat="server" class="Agape_Story_subtitle" Style="width: 90%; display: inline;"></asp:TextBox>
+                        <asp:TextBox ID="Subtitle" runat="server" class="Agape_Story_subtitle" MaxLength="80" Style="width: 90%; display: inline;"></asp:TextBox>
                     </td>
                     <td class="Agape_Story_subtitle" align="right" style="padding-right: 25px">
                         <%-- <asp:Label ID="StoryDate2" runat="server"></asp:Label>--%>
@@ -187,7 +185,7 @@
                                     <b>Field1:</b>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="tbField1" runat="server" TextMode="MultiLine" Width="100%"></asp:TextBox>
+                                    <asp:TextBox ID="tbField1" runat="server" Width="100%" TextMode="MultiLine"></asp:TextBox>
                                 </td>
                             </tr>
 
@@ -196,7 +194,7 @@
                                     <b>Field2:</b>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="tbField2" runat="server" TextMode="MultiLine" Width="100%" MaxLength="50"></asp:TextBox>
+                                    <asp:TextBox ID="tbField2" runat="server" Width="100%" MaxLength="50"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -205,7 +203,7 @@
                                         <asp:Label ID="lblField3" runat="server" Text="Field3:"></asp:Label></b>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="tbField3" runat="server" TextMode="MultiLine" Width="100%" MaxLength="50"></asp:TextBox>
+                                    <asp:TextBox ID="tbField3" runat="server" Width="100%" MaxLength="50"></asp:TextBox>
                                 </td>
                             </tr>
                         </table>
