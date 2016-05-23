@@ -32,7 +32,20 @@
 
          }
          });
-         
+        
+        $('.TagsDisplayType').change(function () {
+            var v = $(this).val();
+
+            if(v != "") {
+                //Show parameters used for tag list
+                $("[class^='TagListParam']").show();
+            } else {
+                //Hide parameters used for tag list
+                $("[class^='TagListParam']").hide();
+            }
+        });
+        $('.TagsDisplayType').change();
+
         $('.DisplayType').change(function () {
             //alert($(this).val());
             var v = $(this).val();
@@ -182,25 +195,23 @@
         <dnn:Label ID="lblTagsDisplayType" runat="server" ResourceKey="lblTagsDisplayType" />
         </td>
         <td style="text-align: center ;">
-            <asp:DropDownList ID="ddlTagsDisplayTypes" runat="server" AppendDataBoundItems="true">
+            <asp:DropDownList ID="ddlTagsDisplayTypes" runat="server" CssClass="TagsDisplayType" AppendDataBoundItems="true">
                 <asp:ListItem Text="Don't show tag list" Value="" />
             </asp:DropDownList>
         </td>
     </tr>
-    <tr valign="middle">
+    <tr valign="middle" class="TagListParam" style="display: none;" >
         <td>
             <dnn:Label ID="lblTagPhotoAspectTitle" runat="server" ResourceKey="lblTagPhotoAspect" />
         </td>
-        <td style="text-align: center; " >
+        <td style="text-align: center;" >
             
             <asp:Panel ID="resizableTagPhotoAspect" class="resizable" runat="server" style="text-align: center; vertical-align: middle; display: table-cell;  ">
            
-           
-              <asp:Label ID="lblTagPhotoAspect" runat="server"    style=" font-weight: bold; font-size: large; text-align: center;  display: inline-block ;"></asp:Label>
-           
+                <asp:Label ID="lblTagPhotoAspect" runat="server"    style=" font-weight: bold; font-size: large; text-align: center;  display: inline-block ;"></asp:Label>
 
-             </asp:Panel>
-             <i>(drag the bottom-right corner to change)</i>
+            </asp:Panel>
+            <i>(drag the bottom-right corner to change)</i>
             
         </td>
     </tr>
