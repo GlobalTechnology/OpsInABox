@@ -160,7 +160,7 @@
     <value>Paramètres des catégories</value>
   </data>
   <data name="Cancel.Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>&lt;br&gt;&lt;br&gt;Annuler</value>
   </data>
   <data name="Update.Text" xml:space="preserve">
     <value>Mettre à jour</value>
