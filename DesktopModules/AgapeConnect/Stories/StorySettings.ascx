@@ -319,44 +319,6 @@
             
         </td>
     </tr>
-     <tr valign="middle">
-        <td>
-            <dnn:Label ID="Label16" runat="server" ResourceKey="lblTags" />
-        </td>
-        <td style="text-align: left; " >
-        
-            <asp:GridView ID="gvTags" runat="server" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px"
-                CellPadding="4" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="StoryTagId">
-                <AlternatingRowStyle BackColor="White" />
-                <FooterStyle BackColor="#CCCC99" />
-                <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
-                <RowStyle BackColor="#F7F7DE" />
-                <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#FBFBF2" />
-                <SortedAscendingHeaderStyle BackColor="#848384" />
-                <SortedDescendingCellStyle BackColor="#EAEAD3" />
-                <SortedDescendingHeaderStyle BackColor="#575357" />
-                <Columns>
-                    <asp:TemplateField HeaderText="Image">
-                        <EditItemTemplate><uc1:acImage ID="ImagePicker" runat="server" Aspect="<%=hfTagPhotoAspect.Value %>" SaveWidth="700" Updated="ImagePicker_ImageUpdated"/></EditItemTemplate>
-                        <ItemTemplate><asp:Image ID="TagThumbnail" runat="server" Width="50px"/></ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:BoundField DataField="TagName" HeaderText="TagName" SortExpression="TagName" />
-                    <asp:BoundField DataField="Keywords" HeaderText="Keywords" SortExpression="Keywords" />
-                    <asp:CheckBoxField DataField="Master" HeaderText="Master" SortExpression="Master"/>
-                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-                </Columns>
-            </asp:GridView>
-            <div class="AddTagPanel">
-                <asp:TextBox ID="tbAddTag" runat="server"></asp:TextBox>
-                <asp:Button ID="btnAddTag" runat="server" ResourceKey="btnAddTag" CssClass="button" /> 
-            </div>
-            <div class="DeleteTagWarning">
-                <asp:Label ID="lblTagsDelete" runat="server" ResourceKey="lblTagsDelete"></asp:Label>
-            </div>
-        </td>
-    </tr>
     <tr valign="middle" >
         <td>
             <dnn:Label ID="Label17" runat="server" ResourceKey="lblMode" />
