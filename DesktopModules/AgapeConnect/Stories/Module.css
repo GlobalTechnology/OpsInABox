@@ -6,14 +6,13 @@
     color: red;
 }
 
-
 #Unpublished tr.GridViewHeader th {
-    padding: 10px;
+    padding: 20px;
     text-align: left;
 }
 
 #Unpublished tr.GridViewRows td {
-    padding: 10px;
+    padding: 10px 20px 10px 20px;
     text-align: left;
 }
 
@@ -66,10 +65,16 @@
 
 #TagSettings .submitPanel {
     width: 100%;
-    margin-top: 50px;
+    margin-top: 30px;
     text-align: center;
 }
 
-/*Tag Settings Section End*/
+#TagSettings .gvTemplateButtons {
+    padding:20px;
 
+
+}
+    
+
+/*Tag Settings Section End*/
 

@@ -31,6 +31,7 @@ Namespace DotNetNuke.Modules.Stories
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
 
             If Not Page.IsPostBack Then
+                TranslateGridViewWords()
                 BuildTagList()
             End If
         End Sub
@@ -38,12 +39,19 @@ Namespace DotNetNuke.Modules.Stories
 #Region "Helper Functions"
 
         Protected Sub BuildTagList()
+            gvTags.DataSource = StoryFunctions.GetTags(TabModuleId)
+            gvTags.DataBind()
+        End Sub
+
+        Protected Sub TranslateGridViewWords()
+            Dim cfedit As CommandField = DirectCast(gvTags.Columns(4), CommandField)
+            cfedit.EditText = Translate("Edit")
+            cfedit.CancelText = Translate("Cancel")
+            cfedit.UpdateText = Translate("Update")
             gvTags.Columns(0).HeaderText = Translate("Image")
             gvTags.Columns(1).HeaderText = Translate("TagName")
             gvTags.Columns(2).HeaderText = Translate("Keywords")
             gvTags.Columns(3).HeaderText = Translate("Master")
-            gvTags.DataSource = StoryFunctions.GetTags(TabModuleId)
-            gvTags.DataBind()
         End Sub
 
         Public Function Translate(ByVal ResourceString As String) As String

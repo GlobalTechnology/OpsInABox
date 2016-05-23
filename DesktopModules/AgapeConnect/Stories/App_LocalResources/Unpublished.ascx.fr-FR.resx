@@ -138,4 +138,7 @@
   <data name="StoryDate.Text" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="TitleUnpublished.Text" xml:space="preserve">
+    <value>Histoires non publié</value>
+  </data>
 </root>

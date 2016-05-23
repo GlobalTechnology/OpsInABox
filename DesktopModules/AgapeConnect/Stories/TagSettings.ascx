@@ -29,7 +29,6 @@
 
     <asp:GridView ID="gvTags"
         runat="server"
-        BorderColor="#DEDFDE"
         BorderStyle="None"
         GridLines="Vertical"
         AutoGenerateColumns="False"
@@ -47,7 +46,7 @@
         <asp:BoundField DataField="Keywords" HeaderText="Keywords" SortExpression="Keywords" />
         <asp:CheckBoxField DataField="Master" HeaderText="Master" SortExpression="Master"/>
         <asp:CommandField ShowEditButton="True" ControlStyle-CssClass="gvTemplateButtons" />
-        <asp:TemplateField ShowHeader="False" ControlStyle-CssClass="gvTemplateButtons btnDelete">
+        <asp:TemplateField ShowHeader="False" ControlStyle-CssClass="btnDelete">
             <ItemTemplate>
                 <asp:LinkButton ID="btnDelete"
                     runat="server"

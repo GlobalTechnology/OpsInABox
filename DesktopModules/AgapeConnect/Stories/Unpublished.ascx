@@ -8,10 +8,7 @@
 
     <asp:GridView ID="gvPublish"
         runat="server"
-        BackColor="White"
-        BorderColor="#DEDFDE"
         BorderStyle="None"
-        ForeColor="Black"
         GridLines="Vertical"
         AutoGenerateColumns="False"
         DataKeyNames="StoryId"

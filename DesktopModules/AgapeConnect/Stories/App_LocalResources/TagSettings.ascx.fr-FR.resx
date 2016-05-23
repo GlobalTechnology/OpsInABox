@@ -145,7 +145,7 @@
     <value>Non</value>
   </data>
   <data name="deleteTagConfirmationQuestion.Text" xml:space="preserve">
-    <value>ATTENTION : cette opération est irréversible. Quand la catégorie sera supprimée, elle sera enlevée de toutes les histoires auxquelles elle est associée. Etes-vous sûr de vouloir supprimer la catégorie ?</value>
+    <value>ATTENTION : cette opération est irréversible. Quand la catégorie sera supprimée, elle sera enlevée de toutes les histoires auxquelles elle est associée. &lt;br&gt;&lt;br&gt;Etes-vous sûr de vouloir supprimer la catégorie ?</value>
   </data>
   <data name="deleteTagConfirmationTitle.Text" xml:space="preserve">
     <value>Supprimer la catégorie</value>
@@ -155,5 +155,14 @@
   </data>
   <data name="Edit.Text" xml:space="preserve">
     <value>Editer</value>
+  </data>
+  <data name="TitleTagSettings.Text" xml:space="preserve">
+    <value>Paramètres des catégories</value>
+  </data>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Update.Text" xml:space="preserve">
+    <value>Mettre à jour</value>
   </data>
 </root>
