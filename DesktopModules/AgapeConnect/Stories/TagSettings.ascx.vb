@@ -20,21 +20,25 @@ Namespace DotNetNuke.Modules.Stories
         'Command names for actions event handlers
         Private Const DELETE_TAG_COMMAND_NAME As String = "DeleteTag"
 
+        'Setting names
+        Private Const TAG_ASPECT_SETTING As String = "TagAspect"
+
 #End Region 'Constants
 
-        Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
-            ' Register DNN Jquery plugins
-            ClientAPI.RegisterClientReference(Me.Page, ClientAPI.ClientNamespaceReferences.dnn)
-            JavaScript.RequestRegistration(CommonJs.DnnPlugins)
-        End Sub
+#Region "Page properties"
 
-        Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
+        'TagAspect retrieved in module settings. This is the width/length ratio for the tag photos.
+        Protected ReadOnly Property TagAspect() As String
+            Get
+                Dim tagPhotoAspect = "1.3"
+                If CType(TabModuleSettings(TAG_ASPECT_SETTING), String) <> "" Then
+                    tagPhotoAspect = TabModuleSettings(TAG_ASPECT_SETTING)
+                End If
+                Return tagPhotoAspect
+            End Get
+        End Property
 
-            If Not Page.IsPostBack Then
-                TranslateGridViewWords()
-                BuildTagList()
-            End If
-        End Sub
+#End Region 'Page properties
 
 #Region "Helper Functions"
 
@@ -61,6 +65,20 @@ Namespace DotNetNuke.Modules.Stories
 #End Region 'Helper Functions
 
 #Region "Page Events"
+
+        Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
+            ' Register DNN Jquery plugins
+            ClientAPI.RegisterClientReference(Me.Page, ClientAPI.ClientNamespaceReferences.dnn)
+            JavaScript.RequestRegistration(CommonJs.DnnPlugins)
+        End Sub
+
+        Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
+
+            If Not Page.IsPostBack Then
+                TranslateGridViewWords()
+                BuildTagList()
+            End If
+        End Sub
 
         Protected Sub CancelBtn_Click(sender As Object, e As System.EventArgs) Handles CancelBtn.Click
             Response.Redirect(NavigateURL())
@@ -126,6 +144,9 @@ Namespace DotNetNuke.Modules.Stories
 
                     'add event handler for updated event raised in acImage
                     AddHandler image.UpdatedWithImage, AddressOf ImagePicker_ImageUpdated
+
+                    'set image aspect
+                    image.Aspect = TagAspect
 
                     'get image if one has already been uploaded 
                     If (tagPhotoId IsNot Nothing) Then

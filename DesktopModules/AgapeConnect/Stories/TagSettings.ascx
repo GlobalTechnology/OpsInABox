@@ -39,7 +39,7 @@
     <RowStyle CssClass="GridViewRows" />
     <Columns>
         <asp:TemplateField HeaderText="Image">
-            <EditItemTemplate><uc1:acImage ID="ImagePicker" runat="server" Aspect="1.3" SaveWidth="700" Updated="ImagePicker_ImageUpdated"/></EditItemTemplate>
+            <EditItemTemplate><uc1:acImage ID="ImagePicker" runat="server" SaveWidth="700" Updated="ImagePicker_ImageUpdated"/></EditItemTemplate>
             <ItemTemplate><asp:Image ID="TagThumbnail" runat="server" Width="50px"/></ItemTemplate>
         </asp:TemplateField>
         <asp:BoundField DataField="TagName" HeaderText="TagName" SortExpression="TagName" />
