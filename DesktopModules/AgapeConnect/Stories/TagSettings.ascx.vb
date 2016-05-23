@@ -5,6 +5,8 @@ Imports System.ServiceModel.Syndication
 Imports System.Xml
 Imports System.Net
 Imports Stories
+Imports DotNetNuke.Framework.JavaScriptLibraries
+Imports DotNetNuke.UI.Utilities
 
 Imports DotNetNuke.Services.FileSystem
 
@@ -13,6 +15,18 @@ Namespace DotNetNuke.Modules.Stories
 
     Partial Class TagSettings
         Inherits Entities.Modules.ModuleSettingsBase
+
+#Region "Constants"
+        'Command names for actions event handlers
+        Private Const DELETE_TAG_COMMAND_NAME As String = "DeleteTag"
+
+#End Region 'Constants
+
+        Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
+            ' Register DNN Jquery plugins
+            ClientAPI.RegisterClientReference(Me.Page, ClientAPI.ClientNamespaceReferences.dnn)
+            JavaScript.RequestRegistration(CommonJs.DnnPlugins)
+        End Sub
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -49,11 +63,6 @@ Namespace DotNetNuke.Modules.Stories
             BuildTagList()
             tbAddTag.Text = ""
             tbAddTag.Focus()
-        End Sub
-
-        Protected Sub gvTags_RowDeleting(sender As Object, e As GridViewDeleteEventArgs) Handles gvTags.RowDeleting
-            StoryFunctions.DeleteTag(e.Keys(0), TabModuleId)
-            BuildTagList()
         End Sub
 
         Protected Sub gvTags_RowEditing(sender As Object, e As GridViewEditEventArgs) Handles gvTags.RowEditing
@@ -116,6 +125,13 @@ Namespace DotNetNuke.Modules.Stories
                     End If
 
                 End If
+            End If
+        End Sub
+
+        Protected Sub gvTags_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gvTags.RowCommand
+            If e.CommandName = DELETE_TAG_COMMAND_NAME Then
+                StoryFunctions.DeleteTag(e.CommandArgument, TabModuleId)
+                BuildTagList()
             End If
         End Sub
 
