@@ -132,13 +132,28 @@
   <data name="Keywords.Text" xml:space="preserve">
     <value>Mots-clefs</value>
   </data>
-  <data name="lblTagsDelete.Text" xml:space="preserve">
-    <value>ATTENTION : cette opération est irréversible. Quand la catégorie sera supprimée, elle sera enlevée de toutes les histoires auxquelles elle est associée.</value>
-  </data>
   <data name="Master.Text" xml:space="preserve">
     <value>Catégorie principale</value>
   </data>
   <data name="TagName.Text" xml:space="preserve">
     <value>Nom de la catégorie</value>
+  </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="deleteTagConfirmationNo.Text" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="deleteTagConfirmationQuestion.Text" xml:space="preserve">
+    <value>ATTENTION : cette opération est irréversible. Quand la catégorie sera supprimée, elle sera enlevée de toutes les histoires auxquelles elle est associée. Etes-vous sûr de vouloir supprimer la catégorie ?</value>
+  </data>
+  <data name="deleteTagConfirmationTitle.Text" xml:space="preserve">
+    <value>Supprimer la catégorie</value>
+  </data>
+  <data name="deleteTagConfirmationYes.Text" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="Edit.Text" xml:space="preserve">
+    <value>Editer</value>
   </data>
 </root>
