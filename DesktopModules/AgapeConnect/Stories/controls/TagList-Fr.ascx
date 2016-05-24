@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="TagList-Fr.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Stories.TagList_Fr" %>
 
 <div id="TagList">
-    <asp:DataList runat="server" ID="dlTags" AllowPaging="false" RepeatColumns="3" Width="100%">
+    <asp:DataList runat="server" ID="dlTags" AllowPaging="false" RepeatColumns="3" RepeatDirection="Horizontal" Width="100%">
         <ItemTemplate>
             <asp:HyperLink ID="lnkLink" runat="server" CssClass="CommandButton" 
                 NavigateUrl='<%# NavigateURL() & "?tags=" + HttpUtility.UrlEncode(Eval("TagName"))%>'>
