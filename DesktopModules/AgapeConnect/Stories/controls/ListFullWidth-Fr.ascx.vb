@@ -101,9 +101,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
                 'Construct the URLs for btnPrev and btnNext
                 If (Request.QueryString("tags") <> "") Then
-                    urlStub = NavigateURL() & "?tags=" & Request.QueryString("tags").ToString & "&p="
+                    urlStub &= "?tags=" & Request.QueryString("tags").ToString & "&p="
                 Else
-                    urlStub = NavigateURL() & "?p="
+                    urlStub &= "?p="
                 End If
 
                 btnPrev.NavigateUrl = urlStub & (pg - 1)
