@@ -117,28 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Author.Text" xml:space="preserve">
-    <value>Auteur</value>
+  <data name="btnAddTag.Text" xml:space="preserve">
+    <value>Ajouter une catégorie</value>
   </data>
   <data name="Done.Text" xml:space="preserve">
     <value>Fermer</value>
   </data>
   <data name="Empty.Text" xml:space="preserve">
-    <value>Il n'y a rien ici - tout est publié !</value>
+    <value>Il n'y a rien ici - ajouter une catégorie !</value>
   </data>
-  <data name="Headline.Text" xml:space="preserve">
-    <value>Titre</value>
+  <data name="Image.Text" xml:space="preserve">
+    <value>Image</value>
   </data>
-  <data name="NoPhoto.Text" xml:space="preserve">
-    <value>Publication impossible, une photo doit être ajoutée : </value>
+  <data name="Keywords.Text" xml:space="preserve">
+    <value>Mots-clefs</value>
   </data>
-  <data name="Publish.Text" xml:space="preserve">
-    <value>Publier</value>
+  <data name="Master.Text" xml:space="preserve">
+    <value>Catégorie principale</value>
   </data>
-  <data name="StoryDate.Text" xml:space="preserve">
-    <value>Date</value>
+  <data name="TagName.Text" xml:space="preserve">
+    <value>Nom de la catégorie</value>
   </data>
-  <data name="TitleUnpublished.Text" xml:space="preserve">
-    <value>Histoires non publiées</value>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="deleteTagConfirmationNo.Text" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="deleteTagConfirmationQuestion.Text" xml:space="preserve">
+    <value>ATTENTION : cette opération est irréversible. Quand la catégorie sera supprimée, elle sera enlevée de toutes les histoires auxquelles elle est associée. &lt;br&gt;&lt;br&gt;Etes-vous sûr de vouloir supprimer la catégorie ?</value>
+  </data>
+  <data name="deleteTagConfirmationTitle.Text" xml:space="preserve">
+    <value>Supprimer la catégorie</value>
+  </data>
+  <data name="deleteTagConfirmationYes.Text" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="Edit.Text" xml:space="preserve">
+    <value>Editer</value>
+  </data>
+  <data name="TitleTagSettings.Text" xml:space="preserve">
+    <value>Paramètres des catégories</value>
+  </data>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value>&lt;br&gt;&lt;br&gt;Annuler</value>
+  </data>
+  <data name="Update.Text" xml:space="preserve">
+    <value>Mettre à jour</value>
   </data>
 </root>

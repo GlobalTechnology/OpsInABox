@@ -160,14 +160,25 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
                 Dim Actions As New Entities.Modules.Actions.ModuleActionCollection
 
+                Actions.Add(GetNextActionID, LocalizeString(StoryFunctionsConstants.StoryMixerControlKey),
+                            StoryFunctionsConstants.StoryMixerControlKey, "", "icon_configuration_16px.png",
+                            EditUrl(StoryFunctionsConstants.StoryMixerControlKey), False, SecurityAccessLevel.Edit, True, False)
+                Actions.Add(GetNextActionID, LocalizeString(StoryFunctionsConstants.UnpublishedControlKey),
+                            StoryFunctionsConstants.UnpublishedControlKey, "", "icon_lists_16px.gif",
+                            EditUrl(StoryFunctionsConstants.UnpublishedControlKey), False, SecurityAccessLevel.Edit, True, False)
+                Actions.Add(GetNextActionID, LocalizeString(StoryFunctionsConstants.TagSettingsControlKey),
+                            StoryFunctionsConstants.TagSettingsControlKey, "", "action_settings.gif",
+                            EditUrl(StoryFunctionsConstants.TagSettingsControlKey), False, SecurityAccessLevel.Edit, True, False)
+
                 If UserInfo.IsInRole("Administrators") Or UserInfo.IsSuperUser Then
-                    Actions.Add(GetNextActionID, "Story Settings", "StorySettings", "", "action_settings.gif", EditUrl("StorySettings"), False, SecurityAccessLevel.Edit, True, False)
-
+                    Actions.Add(GetNextActionID, LocalizeString(StoryFunctionsConstants.StorySettingsControlKey),
+                                StoryFunctionsConstants.StorySettingsControlKey, "", "action_settings.gif",
+                                EditUrl(StoryFunctionsConstants.StorySettingsControlKey), False, SecurityAccessLevel.Edit, True, False)
                 End If
-                Actions.Add(GetNextActionID, "Story Mixer", "StoryMixer", "", "action_settings.gif", EditUrl("Mixer"), False, SecurityAccessLevel.Edit, True, False)
-                Actions.Add(GetNextActionID, "Unpublished", "unpublished", "", "action_settings.gif", EditUrl("unpublished"), False, SecurityAccessLevel.Edit, True, False)
 
-                Actions.Add(GetNextActionID, "New Story", "NewStory", "", "add.gif", EditUrl("AddEditStory"), False, SecurityAccessLevel.Edit, True, False)
+                Actions.Add(GetNextActionID, LocalizeString(StoryFunctionsConstants.NewStoryControlKey),
+                            StoryFunctionsConstants.NewStoryControlKey, "", "add.gif",
+                            EditUrl(StoryFunctionsConstants.NewStoryControlKey), False, SecurityAccessLevel.Edit, True, False)
 
                 Return Actions
             End Get

@@ -125,20 +125,31 @@ Namespace DotNetNuke.Modules.Stories
 
                 End If
 
-
+                'Init Story Photo Aspect
+                Dim storyPhotoAspect = "1.3"
                 If CType(TabModuleSettings("Aspect"), String) <> "" Then
-                    lblAspect.Text = Double.Parse(TabModuleSettings("Aspect"), New CultureInfo("")).ToString(New CultureInfo(""))
-                    resizable.Height = Unit.Pixel(80)
-                    resizable.Width = Unit.Pixel(Double.Parse(TabModuleSettings("Aspect"), New CultureInfo("")) * 80)
-                    hfAspect.Value = lblAspect.Text
+                    storyPhotoAspect = TabModuleSettings("Aspect")
                 Else
-                    hfAspect.Value = 1.3
-
-                    objModules.UpdateTabModuleSetting(TabModuleId, "Aspect", "1.3")
+                    objModules.UpdateTabModuleSetting(TabModuleId, "Aspect", storyPhotoAspect)
                     newSettings = True
-
-
                 End If
+                lblStoryPhotoAspect.Text = Double.Parse(storyPhotoAspect, New CultureInfo("")).ToString(New CultureInfo(""))
+                resizableStoryPhotoAspect.Height = Unit.Pixel(80)
+                resizableStoryPhotoAspect.Width = Unit.Pixel(Double.Parse(storyPhotoAspect, New CultureInfo("")) * 80)
+                hfStoryPhotoAspect.Value = lblStoryPhotoAspect.Text
+
+                'Init Tag Photo Aspect
+                Dim tagPhotoAspect = "1.3"
+                If CType(TabModuleSettings("TagAspect"), String) <> "" Then
+                    tagPhotoAspect = TabModuleSettings("TagAspect")
+                Else
+                    objModules.UpdateTabModuleSetting(TabModuleId, "TagAspect", tagPhotoAspect)
+                    newSettings = True
+                End If
+                lblTagPhotoAspect.Text = Double.Parse(tagPhotoAspect, New CultureInfo("")).ToString(New CultureInfo(""))
+                resizableTagPhotoAspect.Height = Unit.Pixel(80)
+                resizableTagPhotoAspect.Width = Unit.Pixel(Double.Parse(tagPhotoAspect, New CultureInfo("")) * 80)
+                hfTagPhotoAspect.Value = lblTagPhotoAspect.Text
 
                 lblRssPrefix.Text = Request.Url.Authority & Request.ApplicationPath & "DesktopModules/AgapeConnect/Stories/Feed.aspx?name="
 
@@ -200,8 +211,6 @@ Namespace DotNetNuke.Modules.Stories
                     tbBoostLength.Text = bl
                 End If
 
-                BuildTagList()
-
                 If newSettings Then
                     DotNetNuke.Entities.Modules.ModuleController.SynchronizeModule(ModuleId)
                 End If
@@ -211,15 +220,6 @@ Namespace DotNetNuke.Modules.Stories
 
         End Sub
 #End Region 'Base Method Implementations
-
-#Region "Helper Functions"
-
-        Protected Sub BuildTagList()
-            gvTags.DataSource = StoryFunctions.GetTags(TabModuleId)
-            gvTags.DataBind()
-        End Sub
-
-#End Region 'Helper Functions
 
 #Region "Page Events"
 
@@ -273,8 +273,11 @@ Namespace DotNetNuke.Modules.Stories
             objModules.UpdateTabModuleSetting(TabModuleId, "ViewTab", ddlTabs.SelectedValue)
 
 
-            'Aspect
-            objModules.UpdateTabModuleSetting(TabModuleId, "Aspect", Double.Parse(hfAspect.Value, New CultureInfo("")).ToString(New CultureInfo("")))
+            'Story Photo Aspect
+            objModules.UpdateTabModuleSetting(TabModuleId, "Aspect", Double.Parse(hfStoryPhotoAspect.Value, New CultureInfo("")).ToString(New CultureInfo("")))
+
+            'Tag Photo Aspect
+            objModules.UpdateTabModuleSetting(TabModuleId, "TagAspect", Double.Parse(hfTagPhotoAspect.Value, New CultureInfo("")).ToString(New CultureInfo("")))
 
             '
             objModules.UpdateTabModuleSetting(TabModuleId, "AdvancedSettings", tbAdvanceSettings.Text)
@@ -320,87 +323,6 @@ Namespace DotNetNuke.Modules.Stories
         Protected Sub CancelBtn_Click(sender As Object, e As System.EventArgs) Handles CancelBtn.Click
             Response.Redirect(NavigateURL())
 
-        End Sub
-
-        Protected Sub btnAddTag_Click(sender As Object, e As System.EventArgs) Handles btnAddTag.Click
-            StoryFunctions.SetTag(tbAddTag.Text, TabModuleId)
-            BuildTagList()
-            tbAddTag.Text = ""
-            tbAddTag.Focus()
-        End Sub
-
-        Protected Sub gvTags_RowDeleting(sender As Object, e As GridViewDeleteEventArgs) Handles gvTags.RowDeleting
-            StoryFunctions.DeleteTag(e.Keys(0), TabModuleId)
-            BuildTagList()
-        End Sub
-
-        Protected Sub gvTags_RowEditing(sender As Object, e As GridViewEditEventArgs) Handles gvTags.RowEditing
-            'save the row that is being edited
-            gvTags.EditIndex = e.NewEditIndex
-            BuildTagList()
-        End Sub
-
-        Protected Sub gvTags_RowCancelingEdit(sender As Object, e As GridViewCancelEditEventArgs) Handles gvTags.RowCancelingEdit
-            'Reset the edit index
-            gvTags.EditIndex = -1
-            BuildTagList()
-        End Sub
-
-        Protected Sub gvTags_RowUpdating(sender As Object, e As GridViewUpdateEventArgs) Handles gvTags.RowUpdating
-            Dim tagIdToUpdate = gvTags.DataKeys(gvTags.EditIndex).Value
-            Dim name As String = ""
-            Dim keywords As String = ""
-
-            If (e.NewValues.Values(0) IsNot Nothing) Then
-                name = e.NewValues(0).ToString
-            End If
-
-            If (e.NewValues.Values(1) IsNot Nothing) Then
-                keywords = e.NewValues(1).ToString
-            End If
-
-            Dim master As Boolean = e.NewValues(2)
-
-            StoryFunctions.UpdateTag(name, keywords, master, tagIdToUpdate, TabModuleId)
-
-            'Reset the edit index
-            gvTags.EditIndex = -1
-            BuildTagList()
-        End Sub
-
-        Protected Sub gvTags_RowCreated(sender As Object, e As GridViewRowEventArgs) Handles gvTags.RowCreated
-
-            ' bind only rows that contain data (not header or footer rows...)
-            If e.Row.RowType = DataControlRowType.DataRow Then
-
-                Dim tagPhotoId As Nullable(Of Integer) = StoryFunctions.GetTag(gvTags.DataKeys(e.Row.RowIndex).Value, TabModuleId).PhotoId
-
-                If (e.Row.RowState = DataControlRowState.Normal Or e.Row.RowState = DataControlRowState.Alternate) Then
-                    'get thumbnail of image
-                    Dim thumbnail As WebControls.Image = CType(e.Row.FindControl("TagThumbnail"), WebControls.Image)
-                    thumbnail.ImageUrl = StoryFunctions.GetPhotoURL(tagPhotoId)
-
-                ElseIf ((e.Row.RowState And DataControlRowState.Edit) > 0) Then
-                    'get reference to the image
-                    Dim image As DesktopModules_AgapePortal_StaffBroker_acImage =
-                        DirectCast(e.Row.FindControl("ImagePicker"), DesktopModules_AgapePortal_StaffBroker_acImage)
-
-                    'add event handler for updated event raised in acImage
-                    AddHandler image.UpdatedWithImage, AddressOf ImagePicker_ImageUpdated
-
-                    'get image if one has already been uploaded 
-                    If (tagPhotoId IsNot Nothing) Then
-                        image.FileId = tagPhotoId
-                    End If
-
-                End If
-            End If
-        End Sub
-
-        Protected Sub ImagePicker_ImageUpdated(image As DesktopModules_AgapePortal_StaffBroker_acImage)
-            If image.CheckAspect() Then
-                StoryFunctions.SetTagPhotoId(image.FileId, gvTags.DataKeys(gvTags.EditIndex).Value)
-            End If
         End Sub
 
 #End Region 'Page Events

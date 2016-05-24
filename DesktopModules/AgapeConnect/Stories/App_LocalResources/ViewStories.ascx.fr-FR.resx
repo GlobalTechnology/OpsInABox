@@ -117,28 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Author.Text" xml:space="preserve">
-    <value>Auteur</value>
+  <data name="AddEditStory.Text" xml:space="preserve">
+    <value>Nouvelle histoire</value>
   </data>
-  <data name="Done.Text" xml:space="preserve">
-    <value>Fermer</value>
+  <data name="Mixer.Text" xml:space="preserve">
+    <value>Table de mixage</value>
   </data>
-  <data name="Empty.Text" xml:space="preserve">
-    <value>Il n'y a rien ici - tout est publié !</value>
+  <data name="StorySettings.Text" xml:space="preserve">
+    <value>Paramètres des histoires</value>
   </data>
-  <data name="Headline.Text" xml:space="preserve">
-    <value>Titre</value>
+  <data name="TagSettings.Text" xml:space="preserve">
+    <value>Paramètres des catégories</value>
   </data>
-  <data name="NoPhoto.Text" xml:space="preserve">
-    <value>Publication impossible, une photo doit être ajoutée : </value>
-  </data>
-  <data name="Publish.Text" xml:space="preserve">
-    <value>Publier</value>
-  </data>
-  <data name="StoryDate.Text" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="TitleUnpublished.Text" xml:space="preserve">
-    <value>Histoires non publiées</value>
+  <data name="Unpublished.Text" xml:space="preserve">
+    <value>Non publié</value>
   </data>
 </root>

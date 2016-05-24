@@ -18,14 +18,34 @@
 
         $('.numeric').numeric();
         $('.aButton').button();
-        $("#<%= resizable.ClientId %>").resizable({
+        $("#<%= resizableStoryPhotoAspect.ClientId %>").resizable({
             maxWidth: 320, maxHeight: 100, minWidth: 57, minHeight: 24, resize: function (event, ui) {
-                $("#<%= lblAspect.ClientId %>").html((ui.size.width / ui.size.height).toFixed(2));
-             $("#<%= hfAspect.ClientId %>").val((ui.size.width / ui.size.height).toFixed(2));
+                $("#<%= lblStoryPhotoAspect.ClientId %>").html((ui.size.width / ui.size.height).toFixed(2));
+             $("#<%= hfStoryPhotoAspect.ClientId %>").val((ui.size.width / ui.size.height).toFixed(2));
+
+         }
+        });
+        $("#<%= resizableTagPhotoAspect.ClientId %>").resizable({
+            maxWidth: 320, maxHeight: 100, minWidth: 57, minHeight: 24, resize: function (event, ui) {
+                $("#<%= lblTagPhotoAspect.ClientId %>").html((ui.size.width / ui.size.height).toFixed(2));
+             $("#<%= hfTagPhotoAspect.ClientId %>").val((ui.size.width / ui.size.height).toFixed(2));
 
          }
          });
-         
+        
+        $('.TagsDisplayType').change(function () {
+            var v = $(this).val();
+
+            if(v != "") {
+                //Show parameters used for tag list
+                $("[class^='TagListParam']").show();
+            } else {
+                //Hide parameters used for tag list
+                $("[class^='TagListParam']").hide();
+            }
+        });
+        $('.TagsDisplayType').change();
+
         $('.DisplayType').change(function () {
             //alert($(this).val());
             var v = $(this).val();
@@ -164,7 +184,8 @@
     </style>
 
 <div style="width:100%; text-align: center;">
-<asp:HiddenField id='hfAspect' runat="server"    />
+<asp:HiddenField id='hfStoryPhotoAspect' runat="server"    />
+    <asp:HiddenField id='hfTagPhotoAspect' runat="server"    />
 <asp:HiddenField id='hfSpeed' runat="server"  Value="3"  />
 
 <table cellpadding="4px" border="1" class="SettingsTable" style="margin: 0 auto;">
@@ -174,12 +195,26 @@
         <dnn:Label ID="lblTagsDisplayType" runat="server" ResourceKey="lblTagsDisplayType" />
         </td>
         <td style="text-align: center ;">
-            <asp:DropDownList ID="ddlTagsDisplayTypes" runat="server" AppendDataBoundItems="true">
+            <asp:DropDownList ID="ddlTagsDisplayTypes" runat="server" CssClass="TagsDisplayType" AppendDataBoundItems="true">
                 <asp:ListItem Text="Don't show tag list" Value="" />
             </asp:DropDownList>
         </td>
     </tr>
+    <tr valign="middle" class="TagListParam" style="display: none;" >
+        <td>
+            <dnn:Label ID="lblTagPhotoAspectTitle" runat="server" ResourceKey="lblTagPhotoAspect" />
+        </td>
+        <td style="text-align: center;" >
+            
+            <asp:Panel ID="resizableTagPhotoAspect" class="resizable" runat="server" style="text-align: center; vertical-align: middle; display: table-cell;  ">
+           
+                <asp:Label ID="lblTagPhotoAspect" runat="server"    style=" font-weight: bold; font-size: large; text-align: center;  display: inline-block ;"></asp:Label>
 
+            </asp:Panel>
+            <i>(drag the bottom-right corner to change)</i>
+            
+        </td>
+    </tr>
     <tr>
         <td>
         <dnn:Label ID="Label5" runat="server" ResourceKey="lblDisplayType" />
@@ -280,57 +315,19 @@
 
     <tr valign="middle">
         <td>
-            <dnn:Label ID="Label1" runat="server" ResourceKey="lblAspect" />
+            <dnn:Label ID="lblStoryPhotoAspectTitle" runat="server" ResourceKey="lblStoryPhotoAspect" />
         </td>
         <td style="text-align: center; " >
             
-            <asp:Panel ID="resizable" class="resizable" runat="server" style="text-align: center; vertical-align: middle; display: table-cell;  ">
+            <asp:Panel ID="resizableStoryPhotoAspect" class="resizable" runat="server" style="text-align: center; vertical-align: middle; display: table-cell;  ">
            
            
-              <asp:Label ID="lblAspect" runat="server"    style=" font-weight: bold; font-size: large; text-align: center;  display: inline-block ;"></asp:Label>
+              <asp:Label ID="lblStoryPhotoAspect" runat="server"    style=" font-weight: bold; font-size: large; text-align: center;  display: inline-block ;"></asp:Label>
            
 
              </asp:Panel>
              <i>(drag the bottom-right corner to change)</i>
             
-        </td>
-    </tr>
-     <tr valign="middle">
-        <td>
-            <dnn:Label ID="Label16" runat="server" ResourceKey="lblTags" />
-        </td>
-        <td style="text-align: left; " >
-        
-            <asp:GridView ID="gvTags" runat="server" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px"
-                CellPadding="4" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="StoryTagId">
-                <AlternatingRowStyle BackColor="White" />
-                <FooterStyle BackColor="#CCCC99" />
-                <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
-                <RowStyle BackColor="#F7F7DE" />
-                <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#FBFBF2" />
-                <SortedAscendingHeaderStyle BackColor="#848384" />
-                <SortedDescendingCellStyle BackColor="#EAEAD3" />
-                <SortedDescendingHeaderStyle BackColor="#575357" />
-                <Columns>
-                    <asp:TemplateField HeaderText="Image">
-                        <EditItemTemplate><uc1:acImage ID="ImagePicker" runat="server" Aspect="1.3" SaveWidth="700" Updated="ImagePicker_ImageUpdated"/></EditItemTemplate>
-                        <ItemTemplate><asp:Image ID="TagThumbnail" runat="server" Width="50px"/></ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:BoundField DataField="TagName" HeaderText="TagName" SortExpression="TagName" />
-                    <asp:BoundField DataField="Keywords" HeaderText="Keywords" SortExpression="Keywords" />
-                    <asp:CheckBoxField DataField="Master" HeaderText="Master" SortExpression="Master"/>
-                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-                </Columns>
-            </asp:GridView>
-            <div class="AddTagPanel">
-                <asp:TextBox ID="tbAddTag" runat="server"></asp:TextBox>
-                <asp:Button ID="btnAddTag" runat="server" ResourceKey="btnAddTag" CssClass="button" /> 
-            </div>
-            <div class="DeleteTagWarning">
-                <asp:Label ID="lblTagsDelete" runat="server" ResourceKey="lblTagsDelete"></asp:Label>
-            </div>
         </td>
     </tr>
     <tr valign="middle" >

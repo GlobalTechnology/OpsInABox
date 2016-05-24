@@ -93,6 +93,16 @@ Public Module StoryFunctionsProperties
     Public noImage As String = "/images/no-content.png?"
 End Module
 
+Public Module StoryFunctionsConstants
+
+    ' Module control keys used in DNN extension definition
+    Public Const StorySettingsControlKey As String = "StorySettings"
+    Public Const StoryMixerControlKey As String = "Mixer"
+    Public Const UnpublishedControlKey As String = "Unpublished"
+    Public Const TagSettingsControlKey As String = "TagSettings"
+    Public Const NewStoryControlKey As String = "AddEditStory"
+End Module
+
 Public Class StoryFunctions
 
 #Region "Tags"

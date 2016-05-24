@@ -106,6 +106,13 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
                 Dim urlStub = NavigateURL()
 
+                'Construct the URLs for btnPrev and btnNext
+                If (Request.QueryString("tags") <> "") Then
+                    urlStub &= "?tags=" & Request.QueryString("tags").ToString & "&p="
+                Else
+                    urlStub &= "?p="
+                End If
+
                 btnPrev.Enabled = Not (pg = 0)
 
                 If (pg = 0) Then

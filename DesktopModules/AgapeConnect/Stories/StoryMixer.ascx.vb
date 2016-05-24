@@ -28,7 +28,7 @@ Namespace DotNetNuke.Modules.Stories
         End Sub
         Protected Sub LoadMixer()
             If CType(TabModuleSettings("Aspect"), String) <> "" Then
-                icImage.Aspect = CDbl(TabModuleSettings("Aspect")).ToString(New CultureInfo(""))
+                icImage.Aspect = Double.Parse(TabModuleSettings("Aspect"), New CultureInfo("")).ToString(New CultureInfo(""))
 
             Else
                 icImage.Aspect = "1.0"
