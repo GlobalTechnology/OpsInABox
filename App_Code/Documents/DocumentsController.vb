@@ -436,7 +436,10 @@ Public Class DocumentsController
         FileManager.Instance.SetAttributes(newFile, IO.FileAttributes.Hidden)
 
         'If file added, delete old one
-        FileManager.Instance.DeleteFile(FileManager.Instance.GetFile(fileId))
+        If Not newFile.FileId = fileId Then
+            FileManager.Instance.DeleteFile(FileManager.Instance.GetFile(fileId))
+        End If
+
         Return newFile.FileId
     End Function
 
