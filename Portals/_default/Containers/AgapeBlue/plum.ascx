@@ -1,5 +1,5 @@
 <%@ Control language="vb" AutoEventWireup="false" Explicit="True" Inherits="DotNetNuke.UI.Containers.Container" %>
-<%@ Register TagPrefix="dnn" TagName="ACTIONS" Src="~/Admin/Containers/SolPartActions.ascx" %>
+
 <%@ Register TagPrefix="dnn" TagName="TITLE" Src="~/Admin/Containers/Title.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="ACTIONBUTTON" Src="~/Admin/Containers/ActionButton.ascx" %>
 
@@ -15,7 +15,7 @@
               <td class="PlumMainContent">
               <table cellpadding="0" cellspacing="0" width="100%" >
                     <tr>
-                        <td valign="middle" ><dnn:ACTIONS runat="server" id="dnnACTIONS" ProviderName="DNNMenuNavigationProvider" ExpandDepth="1" PopulateNodesFromClient="True" /></td>
+                        <td valign="middle" ></td>
                        
                         <td valign="middle" align="center"   nowrap="nowrap" width="100%" class="PlumTitle"><dnn:TITLE runat="server" id="dnnTITLE" /></td>
                        
