@@ -21,341 +21,107 @@ Namespace DotNetNuke.Modules.FullStory
 
 
     Partial Class ViewFullStory
-
-
-
-
         Inherits Entities.Modules.PortalModuleBase
 
+#Region "Constants"
 
         'Translation for France migration to OIB (Old TabIds -key- > New Tab Ids -Value-, likewise for modules)
         Private tabTranslation As New Dictionary(Of String, String) From {{"190", "2341"}, {"55", "2335"}, {"200", "2351"}}
         Private modTranslation As New Dictionary(Of String, String) From {{"419", "5548"}, {"434", "5524"}, {"507", "5571"}}
 
-
-
-        Public IsBoosted As Boolean = False
-        Public IsBlocked As Boolean = False
         Public location As String = ""
         Public zoomLevel As Integer = 4
-        Public eventIcon As String = "/DesktopModules/AgapeConnect/Stories/images/eventIcon.png"
-        Public articleIcon As String = "/DesktopModules/AgapeConnect/Stories/images/articleIcon.png"
+
+#End Region
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-            If String.IsNullOrEmpty(Request.QueryString("StoryId")) Then
+
+            Dim storyIdString As String = Request.QueryString(ViewStoryConstants.STORYID)
+
+            If String.IsNullOrEmpty(storyIdString) Then
                 PagePanel.Visible = False
                 NotFoundLabel.Visible = True
                 NotFoundLabel.Text = ""
                 Return
             End If
 
-            Dim d As New StoriesDataContext
-            Dim r = (From c In d.AP_Stories Where c.StoryId = Request.QueryString("StoryID")).First
-            Dim thecache = From c In d.AP_Stories_Module_Channel_Caches Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = r.TabModuleId And c.Link.EndsWith("StoryId=" & r.StoryId)
+            Dim story As AP_Story = StoryFunctions.GetStory(CInt(storyIdString))
+            Dim thecache As AP_Stories_Module_Channel_Cache = StoryFunctions.GetStoryInCache(story.StoryId, story.TabModuleId)
 
 
-            If Not String.IsNullOrEmpty(Request.Form("Boosted")) Then
+            'Boost/Block section
+            Dim RequestBoosted As String = Request.Form(BOOSTED)
+            If Not String.IsNullOrEmpty(RequestBoosted) Then
+                Dim requestIsBoosted As Boolean = CBool(RequestBoosted)
+                Dim requestIsBlocked As Boolean = CBool(Request.Form(BLOCKED))
 
-                If thecache.Count > 0 Then
-                    If CBool(Request.Form("Blocked")) And Not thecache.First.Block Then
+                If Not IsNothing(thecache) Then
+                    If requestIsBlocked And Not thecache.Block Then
 
-                        StoryFunctions.BlockStoryAccrossSite(thecache.First.Link)
+                        StoryFunctions.BlockStoryAccrossSite(thecache.Link)
 
-                        'thecache.First.Block = CBool(Request.Form("Blocked"))
-                    ElseIf (Not CBool(Request.Form("Blocked"))) And thecache.First.Block Then
-                        StoryFunctions.UnBlockStoryAccrossSite(thecache.First.Link)
-
+                    ElseIf (Not requestIsBlocked) And thecache.Block Then
+                        StoryFunctions.UnBlockStoryAccrossSite(thecache.Link)
                     End If
+
                     Dim changed As Boolean = False
-                    If (Not CBool(Request.Form("Blocked"))) And CBool(Request.Form("Boosted")) Then
+                    Dim changedDate As New System.Nullable(Of Date)
+                    If (Not requestIsBlocked) And requestIsBoosted Then
                         changed = True
-                        If Not thecache.First.BoostDate Is Nothing Then
-                            thecache.First.BoostDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
-
+                        If Not thecache.BoostDate Is Nothing Then
+                            changedDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
                         Else
-                            thecache.First.BoostDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
-
+                            changedDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
                         End If
-                    ElseIf (Not CBool(Request.Form("Blocked"))) And (Not CBool(Request.Form("Boosted"))) Then
-                        thecache.First.BoostDate = Nothing
+
+                    ElseIf (Not requestIsBlocked) And (Not requestIsBoosted) Then
+                        changedDate = Nothing
                         changed = True
                     End If
                     If changed Then
-                        d.SubmitChanges()
+                        StoryFunctions.SetBoostDate(thecache.GUID, changedDate, story.TabModuleId)
                         Dim theMod = StoryFunctions.GetStoryModule(TabModuleId)
-                        StoryFunctions.RefreshFeed(r.TabModuleId, thecache.First.ChannelId, True)
-
-                        StoryFunctions.PrecalAllCaches(r.TabModuleId)
-
+                        StoryFunctions.RefreshFeed(story.TabModuleId, thecache.ChannelId, True)
+                        StoryFunctions.PrecalAllCaches(story.TabModuleId)
                     End If
-
-
-
                 End If
                 Return
             End If
+            'End Boost/Block section
 
-
-
-            If String.IsNullOrEmpty(Request.QueryString("StoryID")) Then
+            If String.IsNullOrEmpty(storyIdString) Then
                 PagePanel.Visible = False
                 NotFoundLabel.Visible = True
 
             Else
 
-                '!!!!!!!btnEdit.Visible = IsEditable
-                '!!!!!!!btnNew.Visible = IsEditable
-
-                If Me.UserInfo.IsSuperUser And IsEditable() Then
-                    'SuperPowers.Visible = True
-                End If
-
-
                 PagePanel.Visible = True
                 NotFoundLabel.Visible = False
-                StoryIdHF.Value = Request.QueryString("StoryId")
 
-                ' Get template name from Story module advanced settings - "StoryView" is default template
-                Dim AdvSettings As Dictionary(Of String, String) = StoryFunctions.GetAdvancedSettings(r.TabModuleId)
-                Dim TemplateName As String = AdvSettings.GetValue("template", "StoryView")
+                Dim template As String = TemplateActions(story)
 
-                Dim sv As String = StaffBrokerFunctions.GetTemplate(TemplateName, PortalId)
-
-                ReplaceField(sv, "[HEADLINE]", r.Headline)
-                Dim tp As DotNetNuke.Framework.CDefault = CType(Me.Page, DotNetNuke.Framework.CDefault)
-                tp.Title = r.Headline & " - " & PortalSettings.PortalName
-                location = r.Latitude.Value.ToString(New CultureInfo("")) & ", " & r.Longitude.Value.ToString(New CultureInfo(""))
-
-                ReplaceField(sv, "[STORYTEXT]", r.StoryText)
-                ReplaceField(sv, "[MAP]", " <div id=""map_canvas""></div>")
-
-                Dim URL = StoryFunctions.GetPhotoURL(r.PhotoId)
-                ReplaceField(sv, "[IMAGEURL]", URL)
-
-                Dim meta As New HtmlMeta
-                meta.Attributes.Add("property", "og:image")
-                meta.Content = URL
-                Page.Header.Controls.AddAt(0, meta)
-                Dim meta2 As New HtmlMeta
-                meta2.Attributes.Add("property", "og:title")
-                meta2.Content = r.Headline
-                Page.Header.Controls.AddAt(0, meta2)
-
-                Dim permalink = NavigateURL(TabId, "", "StoryId=" & Request.QueryString("StoryId"), "origTabId=" & Request.QueryString("origTabId"), "origModId=" & Request.QueryString("origModId"))
-                ReplaceField(sv, "[DATAHREF]", permalink)
-                Dim meta3 As New HtmlMeta
-                meta3.Attributes.Add("property", "og:url")
-
-                meta3.Content = permalink
-                Page.Header.Controls.AddAt(0, meta3)
-
-                Dim meta4 As New HtmlMeta
-                meta4.Attributes.Add("property", "og:description")
-                meta4.Content = r.TextSample.Replace("<br />", " / ")
-                Page.Header.Controls.AddAt(0, meta4)
-
-                Dim meta5 As New HtmlMeta
-                meta5.Attributes.Add("property", "og:site_name")
-                meta5.Content = PortalSettings.PortalName
-                Page.Header.Controls.AddAt(0, meta5)
-
-                Dim Fid = StaffBrokerFunctions.GetSetting("FacebookId", PortalId)
-                If Not String.IsNullOrEmpty(Fid) Then
-                    Dim meta6 As New HtmlMeta
-                    meta6.Attributes.Add("property", "fb:app_id")
-                    meta6.Content = Fid
-                    Page.Header.Controls.AddAt(0, meta6)
-                End If
-
-                Dim meta7 As New HtmlMeta
-                meta7.Attributes.Add("property", "og:type")
-                meta7.Content = "article"
-                Page.Header.Controls.AddAt(0, meta7)
-
-
-                ReplaceField(sv, "[FACEBOOKID]", Fid)
-
-
-
-                ReplaceField(sv, "[AUTHOR]", r.Author)
-                ReplaceField(sv, "[DATE]", r.StoryDate.ToString("d MMMM yyyy"))
-
-                If (Not r.UpdatedDate Is Nothing) Then
-                    If (DateDiff(DateInterval.Day, r.StoryDate, r.UpdatedDate.Value) > 14) Then
-                        'Only show updated date if the update was more than two weeks after the creation date
-                        ReplaceField(sv, "[UPDATEDDATE]", "(updated " & r.UpdatedDate.Value.ToString("d MMM yyyy") & ")")
-                    End If
-
-                End If
-                ReplaceField(sv, "[UPDATEDDATE]", "")
-                ReplaceField(sv, "[RSSURL]", "/DesktopModules/AgapeConnect/Stories/Feed.aspx?channel=" & TabModuleId)
-                ReplaceField(sv, "[SAMPLE]", r.TextSample)
-                ReplaceField(sv, "[SUBTITLE]", r.Subtitle)
-                ReplaceField(sv, "[FIELD1]", r.Field1)
-                ReplaceField(sv, "[FIELD2]", r.Field2)
-
-                Dim isEventTag As Boolean = (From c In r.AP_Stories_Tag_Metas Where c.AP_Stories_Tag.TagName = "Evénement").Count > 0
-
-                ReplaceField(sv, "[TYPEICON]", IIf(isEventTag, eventIcon, articleIcon))
-                ReplaceField(sv, "[TYPENAME]", IIf(isEventTag, "Evénement", "Article"))
-
-                If (isEventTag) Then
-                    'The story is an event
-                    ReplaceField(sv, "[AGENDA]", GetEventAgenda(r.StoryId, r.TabModuleId))
-                    zoomLevel = 15
-                Else
-                    'The story is an article
-                    'the call GetArticleAgenda passes the list of tag ids of the current story as parameter
-                    ReplaceField(sv, "[AGENDA]", GetArticleAgenda(r.AP_Stories_Tag_Metas.Select(Function(c) c.AP_Stories_Tag.StoryTagId).ToList, r.TabModuleId))
-                End If
-
-
-
-
-                If r.Field3.Contains("#selAuth#") Then
-                    Dim authID = r.Field3.Substring(9)
-                    Dim uc As New UserController()
-                    Dim auth = uc.GetUser(Me.PortalId, authID)
-                    Dim thisPhoto As String = ""
-                    Dim thisBio As String = ""
-                    Try
-                        Dim FileID = auth.Profile.GetPropertyValue("Photo")
-                        Dim _theFile = DotNetNuke.Services.FileSystem.FileManager.Instance.GetFile(FileID)
-                        thisPhoto = DotNetNuke.Services.FileSystem.FileManager.Instance.GetUrl(_theFile)
-                        thisBio = auth.Profile.GetPropertyValue("Biography")
-                    Catch ex As Exception
-                        thisPhoto = "/images/no_avatar.gif"
-                        thisBio = "No Bio information"
-                    End Try
-                    ReplaceField(sv, "[AUTHPHOTO]", thisPhoto)
-                    ReplaceField(sv, "[AUTHBIO]", thisBio)
-                Else
-                    ReplaceField(sv, "[FIELD3]", r.Field3)
-                End If
-
-
-
-                PhotoIdHF.Value = r.PhotoId
-
-
-
-                'Generate Related Stories Sections
-                ReplaceField(sv, "[RELATEDSTORIES]", GetRelatedStories(r.AP_Stories_Tag_Metas.Select(Function(c) c.AP_Stories_Tag.StoryTagId).ToList, r.Author))
-
-                ReplaceField(sv, "[RELATEDARTICLES]", GetRelatedArticles(r.AP_Stories_Tag_Metas.Select(Function(c) c.AP_Stories_Tag.StoryTagId).ToList, r.TabModuleId))
-
-                If Not r.TranslationGroup Is Nothing Then
-
-                    'TranslationGroupHF.Value = r.TranslationGroup
-                    SuperPowers.TranslationGroupId = r.TranslationGroup
-
-                    Dim Translist = From c In d.AP_Stories Where c.TranslationGroup = r.TranslationGroup And c.PortalID = r.PortalID And c.StoryId <> r.StoryId Select c.Language, c.StoryId
-
-                    If Translist.Count > 0 Then
-                        Dim Flags As String = "<div style=""width: 100%;""><i>This story is also available in:</i> <div style=""margin: 4px 0 12px 0;"">"
-
-
-                        For Each row In Translist
-                            Dim Lang = GetLanguageName(row.Language)
-                            Flags &= "<a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & "&origModId=" & GetModId(Request.QueryString("origModId")) & "&origTabId=" & GetTabId(Request.QueryString("origTabId")) & """ target=""_self""><span title=""" & Lang & """><img  src=""" & GetFlag(row.Language) & """ alt=""" & Lang & """  /></span></a>"
-
-                        Next
-
-                        Flags &= "</div> </div>"
-
-
-                        ReplaceField(sv, "[LANGUAGES]", Flags)
-                    End If
-
-
-                End If
-                ReplaceField(sv, "[LANGUAGES]", "")
-                If (sv.IndexOf("[SUPERPOWERS]") < 0) Then
-                    ltStory1.Text = sv
+                'SuperPowers
+                Dim superpowersIndex As Integer = template.IndexOf(SUPERPOWERS_TEMPLATE_KEY)
+                If (superpowersIndex < 0) Then
+                    ltStory1.Text = template
                     ltStory2.Text = ""
                 Else
-                    ltStory1.Text = sv.Substring(0, sv.IndexOf("[SUPERPOWERS]"))
-
-                    ltStory2.Text = sv.Substring(sv.IndexOf("[SUPERPOWERS]") + 13)
+                    ltStory1.Text = template.Substring(0, superpowersIndex)
+                    ltStory2.Text = template.Substring(superpowersIndex + SUPERPOWERS_TEMPLATE_KEY.Length)
                 End If
-
-
-
 
                 If IsEditable Then
                     SuperPowers.Visible = True
-                    If thecache.Count > 0 Then
-
-                        SuperPowers.CacheId = thecache.First.CacheId
-
-
+                    If Not IsNothing(thecache) Then
+                        SuperPowers.CacheId = thecache.CacheId
                     End If
                     SuperPowers.SuperEditor = UserInfo.IsSuperUser
                     SuperPowers.EditUrl = NavigateURL(CInt(GetTabId(Request.QueryString("origTabId"))), "AddEditStory", {"mid", GetModId(Request.QueryString("origModId"))})
                     SuperPowers.PortalId = PortalId
                     SuperPowers.SetControls()
-
                 End If
-
-
-                'Get Current Channel 
-
-
-
-                'If thecache.Count > 0 Then
-                '    If thecache.First.Block Then
-                '        lblPowerStatus.Text = "This story has been blocked, and won't appear in the channel feed."
-                '        IsBlocked = True
-                '    ElseIf Not thecache.First.BoostDate Is Nothing Then
-                '        If thecache.First.BoostDate >= Today Then
-                '            IsBoosted = True
-                '            lblPowerStatus.Text = "Boosted until " & thecache.First.BoostDate.Value.ToString("dd MMM yyyy")
-
-                '        End If
-                '    End If
-                'End If
-
-
-
             End If
-
-
-
-
-
         End Sub
-        Private Function GetTabId(ByVal OrigTabId As String) As String
-            If String.IsNullOrEmpty(OrigTabId) Then
-                Return OrigTabId
-            ElseIf tabTranslation.ContainsKey(OrigTabId) Then
-                Return tabTranslation(OrigTabId)
-            Else
-                Return OrigTabId
-            End If
-        End Function
-        Private Function GetModId(ByVal OrigModId As String) As String
-            If String.IsNullOrEmpty(OrigModId) Then
-                Return OrigModId
-            ElseIf modTranslation.ContainsKey(OrigModId) Then
-                Return modTranslation(OrigModId)
-            Else
-                Return OrigModId
-            End If
-        End Function
-        Private Sub ReplaceField(ByRef sv As String, ByVal fieldName As String, ByVal fieldValue As String)
-            If Not String.IsNullOrEmpty(fieldValue) Then
-                sv = sv.Replace(fieldName, fieldValue)
-            Else
-                sv = sv.Replace(fieldName, "")
-            End If
-
-        End Sub
-
-        'Protected Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEdit.Click
-        '    Response.Redirect(EditUrl("AddEditStory") & "?StoryID=" & Request.QueryString("StoryID"))
-
-        'End Sub
-
 
         Public Function GetLanguageName(ByVal language As String) As String
 
@@ -397,146 +163,216 @@ Namespace DotNetNuke.Modules.FullStory
 
         End Function
 
+#Region "Templating functions"
 
+        Protected Function TemplateActions(ByRef story As AP_Story) As String
 
-        Protected Function GetRelatedStories(ByVal Tags As List(Of Integer), ByVal Author As String) As String
-            Dim d As New StoriesDataContext
-            Dim rtn As String = ""
+            'Get template name from Story module advanced settings - "StoryView" is default template
+            Dim template As String = StoryFunctions.GetTemplate(story.TabModuleId, TEMPLATE_SETTING, TEMPLATE_DEFAULT, PortalId)
 
-
-            'Dim q = From c In d.AP_Stories Where c.PortalID = PortalId And c.IsVisible And (c.Author.ToLower = Author.ToLower Or c.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) And Not c.StoryId = Request.QueryString("StoryId")
-
-            Dim q = From c In d.AP_Stories Where c.PortalID = PortalId And c.IsVisible And (c.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) And Not c.StoryId = Request.QueryString("StoryId")
-
-
-            If q.Count > 0 Then
-
-
-                rtn &= "<h3>Related News Items:</h3><ul class=""nav nav-tabs nav-stacked"">"
-                For Each row In q.Take(5).OrderByDescending(Function(c) c.StoryDate)
-
-                    rtn &= "<li><a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & "&origModId=" & GetModId(Request.QueryString("origModId")) & "&origTabId=" & GetTabId(Request.QueryString("origTabId")) & """>" & row.Headline & "</a></li>"
-
-                Next
-
-
-                rtn &= "</ul>"
-
-
+            'Set template
+            If StoryFunctions.IsStoryType(story, FRENCH_EVENT) Then
+                Dim relatedAgenda As IQueryable(Of AP_Story) =
+                        StoryFunctions.GetRelatedEventsForEvents(story.StoryId, story.TabModuleId, PortalId, NUM_OF_RELATED_AGENDA)
+                SetTemplateFields(template, story, eventIcon, FRENCH_EVENT, FormatingRelatedAgenda(relatedAgenda))
+                zoomLevel = 15
+            Else
+                Dim relatedAgenda As IQueryable(Of AP_Story) =
+                        StoryFunctions.GetRelatedEventsForArticles(story.StoryId, story.TabModuleId, PortalId, NUM_OF_RELATED_AGENDA)
+                SetTemplateFields(template, story, articleIcon, FRENCH_ARTICLE, FormatingRelatedAgenda(relatedAgenda))
             End If
 
-            Return rtn
+            Return template
         End Function
 
-        'The story is an event or an article. This finds the related articles (with same TabModuleID to exclude stories from other installed Stories module instances and is not blocked in the cache table).
-        Protected Function GetRelatedArticles(ByVal Tags As List(Of Integer), ByVal TabModuleID As Integer) As String
-            Dim d As New StoriesDataContext
-            Dim rtn As String = ""
+        Protected Sub SetTemplateFields(ByRef template As String, ByVal story As AP_Story, ByRef icon As String,
+                                        ByRef typeName As String, ByRef relatedAgendaStories As String)
 
-            Dim q = From story In d.AP_Stories Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId
-                    Where story.PortalID = PortalId _
-                    And story.TabModuleId = TabModuleID _
-                    And story.IsVisible _
-                    And story.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count = 0 _
-                    And (story.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) _
-                    And Not story.StoryId = Request.QueryString("StoryId") _
-                    And Not channel.Block = True _
-                    And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId
-                    Order By story.StoryDate Descending
+            CType(Me.Page, DotNetNuke.Framework.CDefault).Title = story.Headline & " - " & PortalSettings.PortalName
 
-            If q.Count > 0 Then
+            location = story.Latitude.Value.ToString(New CultureInfo("")) & ", " & story.Longitude.Value.ToString(New CultureInfo(""))
+            Dim URL = StoryFunctions.GetPhotoURL(story.PhotoId)
+            Dim Fid = StaffBrokerFunctions.GetSetting("FacebookId", PortalSettings.PortalId)
+            Dim permalink = NavigateURL(TabId, "", GetStoryURL(story.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)))
 
-                rtn &= "<h2 class=""agendaTitle"">" & LocalizeString(StoryFunctions.getChannelTitle(TabModuleID)) & "</h2>"
+            ReplaceField(template, "[HEADLINE]", story.Headline)
+            ReplaceField(template, "[STORYTEXT]", story.StoryText)
+            ReplaceField(template, "[MAP]", " <div id=""map_canvas""></div>")
+            ReplaceField(template, "[IMAGEURL]", URL)
+            ReplaceField(template, "[FACEBOOKID]", Fid)
+            ReplaceField(template, "[AUTHOR]", story.Author)
+            ReplaceField(template, "[DATE]", story.StoryDate.ToString("d MMMM yyyy"))
+            ReplaceField(template, "[UPDATEDDATE]", "")
+            ReplaceField(template, "[RSSURL]", "/DesktopModules/AgapeConnect/Stories/Feed.aspx?channel=" & story.TabModuleId)
+            ReplaceField(template, "[SAMPLE]", story.TextSample)
+            ReplaceField(template, "[SUBTITLE]", story.Subtitle)
+            ReplaceField(template, "[FIELD1]", story.Field1)
+            ReplaceField(template, "[FIELD2]", story.Field2)
+            ReplaceField(template, "[TYPEICON]", icon)
+            ReplaceField(template, "[TYPENAME]", typeName)
+            ReplaceField(template, "[AGENDA]", relatedAgendaStories)
+            ReplaceField(template, "[DATAHREF]", permalink)
+            ReplaceField(template, "[LANGUAGES]", "")
 
-                For Each row In q.Take(3).OrderByDescending(Function(c) c.story.StoryDate)
-                    rtn &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?StoryId=" & row.story.StoryId & "&origModId=" & GetModId(Request.QueryString("origModId")) & "&origTabId=" & GetTabId(Request.QueryString("origTabId")) & """>"
-                    rtn &= "<table><tr><td style='vertical-align: top;'>"
-                    rtn &= "<img src='/DesktopModules/AgapeConnect/Stories/images/articleIcon.png' /></td><td style='padding-left: 12px;'>"
-                    rtn &= "<h4 class='eventTitle'>" & row.story.Headline & "</h4>"
-
-                    rtn &= "<h6  class='eventSample'>" & row.story.StoryDate.ToString("dd MMMM yyyy", New CultureInfo("fr-fr")) & "</h6></td></tr></table></a></div>"
-
-                Next
-
-                rtn &= "</ul>"
-
+            'Only show updated date if the update was more than two weeks after the creation date
+            If (Not IsNothing(story.UpdatedDate)) _
+                AndAlso DateDiff(DateInterval.Day, story.StoryDate, story.UpdatedDate.Value) > 14 Then
+                ReplaceField(template, "[UPDATEDDATE]", "(updated " & story.UpdatedDate.Value.ToString("d MMM yyyy") & ")")
             End If
 
-            Return rtn
-        End Function
+            'ReplaceField logic for Field3
+            If story.Field3.Contains("#selAuth#") Then
+                Dim authID = story.Field3.Substring(9)
+                Dim uc As New UserController()
+                Dim auth = uc.GetUser(PortalSettings.PortalId, authID)
+                Dim thisPhoto As String = ""
+                Dim thisBio As String = ""
+                Try
+                    Dim FileID = auth.Profile.GetPropertyValue("Photo")
+                    Dim _theFile = DotNetNuke.Services.FileSystem.FileManager.Instance.GetFile(FileID)
+                    thisPhoto = DotNetNuke.Services.FileSystem.FileManager.Instance.GetUrl(_theFile)
+                    thisBio = auth.Profile.GetPropertyValue("Biography")
+                Catch ex As Exception
+                    thisPhoto = "/images/no_avatar.gif"
+                    thisBio = "No Bio information"
+                End Try
+                ReplaceField(template, "[AUTHPHOTO]", thisPhoto)
+                ReplaceField(template, "[AUTHBIO]", thisBio)
+            Else
+                ReplaceField(template, "[FIELD3]", story.Field3)
+            End If
 
-        'The story is an event. This finds the first 3 upcoming events (with same TabModuleID to exclude stories from other installed Stories module instances and is not blocked in the cache table).
-        Protected Function GetEventAgenda(ByVal StoryId As String, ByVal TabModuleID As Integer) As String
-            Dim d As New StoriesDataContext
-            Dim rtn As String = ""
+            'If Not story.TranslationGroup Is Nothing Then
+            '    SuperPowers.TranslationGroupId = story.TranslationGroup
+            '    Dim Translist = From c In d.AP_Stories Where c.TranslationGroup = r.TranslationGroup And c.PortalID = r.PortalID And c.StoryId <> r.StoryId Select c.Language, c.StoryId
 
-            'gets all stories with date of today or future and tagged Evénement that are not blocked in the cache and are in the same channel. 
-            Dim q = From story In d.AP_Stories Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId
-                    Where story.PortalID = PortalId _
-                    And story.TabModuleId = TabModuleID _
-                    And story.IsVisible _
-                    And (story.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0) _
-                    And story.StoryDate >= Today _
-                    And Not story.StoryId = StoryId _
-                    And Not channel.Block = True _
-                    And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId Order By story.StoryDate Ascending
+            '    If Translist.Count > 0 Then
+            '        Dim Flags As String = "<div style=""width: 100%;""><i>This story is also available in:</i> <div style=""margin: 4px 0 12px 0;"">"
 
-            'prints results under Agenda heading on left hand side of each story
-            If q.Count > 0 Then
+            '        For Each row In Translist
+            '            Dim Lang = GetLanguageName(row.Language)
+            '            Flags &= "<a href=""" & NavigateURL() & "?StoryId=" & row.StoryId & "&origModId=" & GetModId(Request.QueryString("origModId")) & "&origTabId=" & GetTabId(Request.QueryString("origTabId")) & """ target=""_self""><span title=""" & Lang & """><img  src=""" & GetFlag(row.Language) & """ alt=""" & Lang & """  /></span></a>"
+            '        Next
 
+            '        Flags &= "</div> </div>"
+            '        ReplaceField(template, "[LANGUAGES]", Flags)
+            '    End If
+            'End If
 
-                rtn &= "<h2 class=""agendaTitle"">Agenda</h2>"
-                For Each row In q.Take(3)
+            ' Generate related Stories Sections
+            Dim relatedStories As IQueryable(Of AP_Story) = StoryFunctions.GetRelatedStories(story.StoryId, story.TabModuleId,
+                                                                                             PortalId, NUM_OF_RELATED_STORIES)
+            ReplaceField(template, "[RELATEDSTORIES]", FormatingRelatedStories(relatedStories))
 
-                    rtn &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?StoryId=" & row.story.StoryId & "&origModId=" & GetModId(Request.QueryString("origModId")) & "&origTabId=" & GetTabId(Request.QueryString("origTabId")) & """>"
-                    rtn &= "<table><tr><td style='vertical-align: top;'><div class='eventDay' >" & row.story.StoryDate.Day & "</div>"
-                    rtn &= "<div class='eventMonth'>" & row.story.StoryDate.ToString("MMM", New CultureInfo("fr-fr")) & "</div>"
-                    rtn &= "<img src='/DesktopModules/AgapeConnect/Stories/images/cal.png' style='width:32px;' /></td><td style='padding-left: 12px;'>"
-                    rtn &= "<h4 class='eventTitle'>" & row.story.Headline & "</h4>"
+            Dim relatedArticles As IQueryable(Of AP_Story) = StoryFunctions.GetRelatedArticles(story.StoryId, story.TabModuleId,
+                                                                                               PortalId, NUM_OF_RELATED_ARTICLES)
+            ReplaceField(template, "[RELATEDARTICLES]", FormatingRelatedArticles(relatedArticles))
 
-                    rtn &= "<h6  class='eventSample'>" & row.story.TextSample & "</h6></td></tr></table></a></div>"
+            ' HTML Meta tags for social media 
+            StoryFunctions.SetSocialMediaMetaTags(URL, story.Headline, permalink,
+                                                  story.TextSample.Replace("<br />", " / "),
+                                                  PortalSettings.PortalName, Fid,
+                                                  StoryFunctionsProperties.SOCIAL_MEDIA_ARTICLE,
+                                                  Page.Header.Controls)
+        End Sub
 
+        Private Sub ReplaceField(ByRef template As String, ByVal fieldName As String, ByVal fieldValue As String)
+            If Not String.IsNullOrEmpty(fieldValue) Then
+                template = template.Replace(fieldName, fieldValue)
+            Else
+                template = template.Replace(fieldName, "")
+            End If
+        End Sub
+
+        'Prints results under Calendar heading on left hand side of each story
+        Protected Function FormatingRelatedAgenda(ByRef relatedStories As IQueryable(Of AP_Story)) As String
+            Dim returnString As String = ""
+
+            If relatedStories.Count > 0 Then
+                returnString &= "<h2 class=""agendaTitle"">Agenda</h2>"
+                For Each relatedStory In relatedStories
+                    returnString &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?"
+                    returnString &= GetStoryURL(relatedStory.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)) & """>"
+                    returnString &= "<table><tr><td style='vertical-align: top;'><div class='eventDay' >" & relatedStory.StoryDate.Day & "</div>"
+                    returnString &= "<div class='eventMonth'>" & relatedStory.StoryDate.ToString("MMM", New CultureInfo("fr-fr")) & "</div>"
+                    returnString &= "<img src='/DesktopModules/AgapeConnect/Stories/images/cal.png' style='width:32px;' /></td><td style='padding-left: 12px;'>"
+                    returnString &= "<h4 class='eventTitle'>" & relatedStory.Headline & "</h4>"
+
+                    returnString &= "<h6  class='eventSample'>" & relatedStory.TextSample & "</h6></td></tr></table></a></div>"
+                    relatedStory.StoryDate.ToString()
                 Next
             End If
 
-            Return rtn
+
+            Return returnString
         End Function
 
-        'The story is an article. This finds the first 3 upcoming events with the same tag (with same TabModuleID to exclude stories from other installed Stories module instances and is not blocked in the cache table).
-        Protected Function GetArticleAgenda(ByVal Tags As List(Of Integer), ByVal TabModuleID As Integer) As String
-            Dim d As New StoriesDataContext
-            Dim rtn As String = ""
+        'Prints results under Article heading on left hand side of each story
+        Protected Function FormatingRelatedArticles(ByRef relatedStories As IQueryable(Of AP_Story)) As String
+            Dim returnString As String = ""
 
-            'gets all stories tagged Evénement and having the same tag as current and with date of today or future
-            Dim q = From story In d.AP_Stories Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId
-                    Where story.PortalID = PortalId _
-                    And story.TabModuleId = TabModuleID _
-                    And story.IsVisible _
-                    And story.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = "Evénement").Count > 0 _
-                    And (story.AP_Stories_Tag_Metas.Where(Function(x) Tags.Contains(x.TagId)).Count > 0) _
-                    And story.StoryDate >= Today _
-                    And Not story.StoryId = Request.QueryString("StoryId") _
-                    And Not channel.Block = True _
-                    And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId Order By story.StoryDate Ascending
+            If relatedStories.Count > 0 Then
+                returnString &= "<h2 class=""agendaTitle"">" & LocalizeString(StoryFunctions.getChannelTitle(relatedStories.First.TabModuleId)) & "</h2>"
 
-            If q.Count > 0 Then
-
-                rtn &= "<h2 class=""agendaTitle"">Agenda</h2>"
-                For Each row In q.Take(3).OrderBy(Function(c) c.story.StoryDate)
-
-                    rtn &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?StoryId=" & row.story.StoryId & "&origModId=" & GetModId(Request.QueryString("origModId")) & "&origTabId=" & GetTabId(Request.QueryString("origTabId")) & """>"
-                    rtn &= "<table><tr><td style='vertical-align: top;'><div class='eventDay' >" & row.story.StoryDate.Day & "</div>"
-                    rtn &= "<div class='eventMonth'>" & row.story.StoryDate.ToString("MMM", New CultureInfo("fr-fr")) & "</div>"
-                    rtn &= "<img src='/DesktopModules/AgapeConnect/Stories/images/cal.png' style='width:32px;' /></td><td style='padding-left: 12px;'>"
-                    rtn &= "<h4 class='eventTitle'>" & row.story.Headline & "</h4>"
-
-                    rtn &= "<h6  class='eventSample'>" & row.story.TextSample & "</h6></td></tr></table></a></div>"
-
+                For Each relatedStory In relatedStories
+                    returnString &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?"
+                    returnString &= GetStoryURL(relatedStory.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)) & """>"
+                    returnString &= "<table><tr><td style='vertical-align: top;'>"
+                    returnString &= "<img src='/DesktopModules/AgapeConnect/Stories/images/articleIcon.png' /></td><td style='padding-left: 12px;'>"
+                    returnString &= "<h4 class='eventTitle'>" & relatedStory.Headline & "</h4>"
+                    returnString &= "<h6  class='eventSample'>" & relatedStory.StoryDate.ToString("dd MMMM yyyy", New CultureInfo("fr-fr")) & "</h6></td></tr></table></a></div>"
                 Next
+                returnString &= "</ul>"
             End If
-
-            Return rtn
+            Return returnString
         End Function
+
+        Protected Function FormatingRelatedStories(ByRef relatedStories As IQueryable(Of AP_Story)) As String
+            Dim returnString As String = ""
+
+            If relatedStories.Count > 0 Then
+                returnString &= "<h3>Related News Items:</h3><ul class=""nav nav-tabs nav-stacked"">"
+                For Each relatedStory In relatedStories
+                    returnString &= "<li><a href=""" & NavigateURL() & "?"
+                    returnString &= GetStoryURL(relatedStory.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)) & """>"
+                    returnString &= relatedStory.Headline & "</a></li>"
+                Next
+                returnString &= "</ul>"
+            End If
+            Return returnString
+        End Function
+
+#End Region 'Templating functions
+
+#Region "Helper functions for translation after France's migration to OIB"
+
+        Private Function GetStoryURL(ByVal storyId As Integer, ByVal origModString As String, ByVal origTabString As String) As String
+            Return ViewStoryConstants.STORYID & "=" & storyId & "&" &
+                ViewStoryConstants.ORIGINAL_MODULEID & GetModId(origModString) & "&" &
+                ViewStoryConstants.ORIGINAL_TABID & GetTabId(origTabString)
+        End Function
+
+        Private Function GetTabId(ByVal OrigTabId As String) As String
+            If String.IsNullOrEmpty(OrigTabId) Then
+                Return OrigTabId
+            ElseIf tabTranslation.ContainsKey(OrigTabId) Then
+                Return tabTranslation(OrigTabId)
+            Else
+                Return OrigTabId
+            End If
+        End Function
+
+        Private Function GetModId(ByVal OrigModId As String) As String
+            If String.IsNullOrEmpty(OrigModId) Then
+                Return OrigModId
+            ElseIf modTranslation.ContainsKey(OrigModId) Then
+                Return modTranslation(OrigModId)
+            Else
+                Return OrigModId
+            End If
+        End Function
+
+#End Region 'Helper functions for translation after France's migration to OIB
 
     End Class
 End Namespace

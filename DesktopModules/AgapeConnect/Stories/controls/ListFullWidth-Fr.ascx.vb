@@ -59,7 +59,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
         Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
             'Add tag list to page title (to be displayed on the browser tag and on the page blue rectangle)
-            TabController.CurrentPage.TabName = TabController.CurrentPage.TabName + " " + TagsSelected()
+            TabController.CurrentPage.TabName = TabController.CurrentPage.TabName + " " +
+                StoryFunctions.FormatTagsSelected(Request.QueryString(TAGS_KEYWORD))
         End Sub
 
         Public Sub Initialize(ByVal Stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
@@ -100,8 +101,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 Dim urlStub = NavigateURL()
 
                 'Construct the URLs for btnPrev and btnNext
-                If (Request.QueryString("tags") <> "") Then
-                    urlStub &= "?tags=" & Request.QueryString("tags").ToString & "&p="
+                If (Request.QueryString(TAGS_KEYWORD) <> "") Then
+                    urlStub &= TAGS_IN_URL & Request.QueryString(TAGS_KEYWORD).ToString & "&p="
                 Else
                     urlStub &= "?p="
                 End If
@@ -126,15 +127,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 End If
             End If
         End Sub
-
-        Private Function TagsSelected() As String
-            Dim tagsString As String = Request.QueryString("tags")
-            If String.IsNullOrEmpty(tagsString) Then
-                Return ""
-            Else
-                Return ("> " & String.Join(", ", tagsString.Split(",")))
-            End If
-        End Function
 
     End Class
 End Namespace

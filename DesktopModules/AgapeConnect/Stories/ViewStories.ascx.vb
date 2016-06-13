@@ -53,7 +53,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
             If Not Page.IsPostBack Then
 
-                If Not String.IsNullOrEmpty(Settings("TagListControlId")) And (Request.QueryString("tags") = "") Then ' Show tag list for current Story module
+                Dim tagsQueryString As String = Request.QueryString(TAGS_KEYWORD)
+
+                If Not String.IsNullOrEmpty(Settings("TagListControlId")) And (tagsQueryString = "") Then ' Show tag list for current Story module
 
                     Dim dControl = From c In d.AP_Stories_Controls Where c.StoryControlId = CInt(Settings("TagListControlId"))
 
@@ -76,6 +78,22 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                         If dControl.Count > 0 Then
 
                             LoadStoryControl(dControl.First.Location, dControl.First.Type = 2)
+
+                            ' HTML Meta tags for social media for tags
+                            If Not (tagsQueryString = "") Then
+
+                                'select first tag for getting image in case there is more than one tag selected
+                                Dim firstTag As String = tagsQueryString.Split(",").First
+
+                                StoryFunctions.SetSocialMediaMetaTags(StoryFunctions.GetPhotoURL(StoryFunctions.GetTagByName(firstTag, TabModuleId).PhotoId),
+                                                                       TabController.CurrentPage.TabName & " " & StoryFunctions.FormatTagsSelected(tagsQueryString),
+                                                                       TabController.CurrentPage.FullUrl & TAGS_IN_URL & tagsQueryString,
+                                                                       TabController.CurrentPage.Description,
+                                                                       PortalSettings.PortalName,
+                                                                       StaffBrokerFunctions.GetSetting("FacebookId", PortalSettings.PortalId),
+                                                                       StoryFunctionsProperties.SOCIAL_MEDIA_ARTICLE,
+                                                                       Page.Header.Controls)
+                            End If
 
                         End If
 

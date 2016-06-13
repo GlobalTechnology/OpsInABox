@@ -89,8 +89,14 @@ End Class
 
 'StoryFunctions constants
 Public Module StoryFunctionsProperties
+    Public Const SOCIAL_MEDIA_ARTICLE As String = "article"
+    Public Const TAGS_IN_URL As String = "?tags="
+    Public Const TAGS_KEYWORD As String = "tags"
+    Public Const SUPERPOWERS_TEMPLATE_KEY As String = "[SUPERPOWERS]"
+
     Public imageExtensions() As String = {"jpg", "jpeg", "gif", "png", "bmp"}
     Public noImage As String = "/images/no-content.png?"
+    Public socialMediaProperties() As String = {"og:image", "og:title", "og:url", "og:description", "og:site_name", "fb:app_id", "og:type"}
 End Module
 
 Public Module StoryFunctionsConstants
@@ -101,6 +107,27 @@ Public Module StoryFunctionsConstants
     Public Const UnpublishedControlKey As String = "Unpublished"
     Public Const TagSettingsControlKey As String = "TagSettings"
     Public Const NewStoryControlKey As String = "AddEditStory"
+End Module
+
+'ViewStory constants
+Public Module ViewStoryConstants
+
+    Public Const STORYID As String = "StoryID"
+    Public Const BOOSTED As String = "Boosted"
+    Public Const BLOCKED As String = "Blocked"
+    Public Const TEMPLATE_SETTING As String = "template"
+    Public Const TEMPLATE_DEFAULT As String = "StoryView"
+    Public Const ORIGINAL_TABID As String = "origTabId"
+    Public Const ORIGINAL_MODULEID As String = "origModId"
+    Public Const FRENCH_EVENT As String = "Evénement"
+    Public Const FRENCH_ARTICLE As String = "Article"
+    Public Const NUM_OF_RELATED_STORIES As Integer = 5
+    Public Const NUM_OF_RELATED_ARTICLES As Integer = 3
+    Public Const NUM_OF_RELATED_AGENDA As Integer = 3
+    Public Const HTML_META_PROPERTY As String = "property"
+
+    Public eventIcon As String = "/DesktopModules/AgapeConnect/Stories/images/eventIcon.png"
+    Public articleIcon As String = "/DesktopModules/AgapeConnect/Stories/images/articleIcon.png"
 End Module
 
 Public Class StoryFunctions
@@ -146,6 +173,11 @@ Public Class StoryFunctions
         Return (From c In d.AP_Stories_Tags Where c.StoryTagId = tagId).First
     End Function
 
+    Public Shared Function GetTagByName(ByVal name As String, ByVal TabModuleId As Integer) As AP_Stories_Tag
+        Dim d As New StoriesDataContext
+        Return (From c In GetTags(TabModuleId) Where c.TagName = name).First
+    End Function
+
     Public Shared Sub SetTag(ByVal name As String, ByVal TabModuleId As Integer)
         Dim d As New StoriesDataContext
         Dim insert As New AP_Stories_Tag
@@ -186,6 +218,14 @@ Public Class StoryFunctions
         tag.PhotoId = imageId
         d.SubmitChanges()
     End Sub
+
+    Public Shared Function FormatTagsSelected(ByVal tagsQueryString As String) As String
+        If String.IsNullOrEmpty(tagsQueryString) Then
+            Return ""
+        Else
+            Return (": " & String.Join(", ", tagsQueryString.Split(",")))
+        End If
+    End Function
 
 #End Region 'Tags
 
@@ -287,6 +327,231 @@ Public Class StoryFunctions
 
 #End Region 'Publishing
 
+#Region "Story"
+
+    Public Shared Function GetStory(ByVal storyID As Integer) As AP_Story
+        Dim d As New StoriesDataContext
+        Return (From c In d.AP_Stories Where c.StoryId = storyID).First
+    End Function
+
+    Public Shared Function GetStoryInCache(ByVal storyID As Integer, ByVal tabModuleID As Integer) As AP_Stories_Module_Channel_Cache
+        Dim d As New StoriesDataContext
+        Return (From c In d.AP_Stories_Module_Channel_Caches
+                Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = tabModuleID _
+                                And c.GUID = storyID).First
+    End Function
+
+    Public Shared Function IsStoryType(ByVal story As AP_Story, ByVal type As String) As Boolean
+        Dim d As New StoriesDataContext
+        Return (From c In story.AP_Stories_Tag_Metas Where c.AP_Stories_Tag.TagName = type).Count > 0
+    End Function
+
+    'Input Parameters
+    '   StoryId : an event
+    '   Quantity : the number of storys that will be returned 
+    'Returns
+    '   The events the most in the future 
+    '   with same TabModuleID (in same channel)
+    '   if they are not blocked in the cache table
+    '   with date of today or future
+    Public Shared Function GetRelatedEventsForEvents(ByVal StoryId As Integer, ByVal TabModuleID As Integer,
+                                            ByVal portalID As Integer, ByVal quantity As Integer) As IQueryable(Of AP_Story)
+        Dim d As New StoriesDataContext
+
+        Dim related As IQueryable(Of AP_Story) = From story In d.AP_Stories
+                                                 Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId
+                                                 Where story.PortalID = portalID _
+                                                     And story.TabModuleId = TabModuleID _
+                                                     And story.IsVisible _
+                                                     And (story.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = FRENCH_EVENT).Count > 0) _
+                                                     And story.StoryDate >= Today _
+                                                     And Not story.StoryId = StoryId _
+                                                     And Not channel.Block = True _
+                                                     And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId
+                                                 Select story
+                                                 Order By story.StoryDate Ascending
+        Return related.Take(quantity)
+    End Function
+
+    'Input Parameters
+    '   StoryId : an article
+    '   Quantity : the number of storys that will be returned 
+    'Returns
+    '   The events the most in the future 
+    '   with same TabModuleID (in same channel)
+    '   with the same tag
+    '   if they are not blocked in the cache table
+    '   with date of today or future
+    Public Shared Function GetRelatedEventsForArticles(ByVal storyId As Integer, ByVal tabModuleID As Integer,
+                                            ByVal portalID As Integer, ByVal quantity As Integer) As IQueryable(Of AP_Story)
+        Dim d As New StoriesDataContext
+        Dim storyList As New List(Of AP_Stories_Module_Channel_Cache)()
+        storyList.Add(GetStoryInCache(storyId, tabModuleID))
+
+        Dim tagIdList As List(Of Integer) = (From c In GetTagsOfStories(storyList) Select c.StoryTagId).ToList
+        Dim related As IQueryable(Of AP_Story) = From story In d.AP_Stories
+                                                 Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId
+                                                 Where story.PortalID = portalID _
+                                                     And story.TabModuleId = tabModuleID _
+                                                     And story.IsVisible _
+                                                     And story.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = FRENCH_EVENT).Count > 0 _
+                                                     And (story.AP_Stories_Tag_Metas.Where(Function(x) tagIdList.Contains(x.TagId)).Count > 0) _
+                                                     And story.StoryDate >= Today _
+                                                     And Not story.StoryId = storyId _
+                                                     And Not channel.Block = True _
+                                                     And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId
+                                                 Select story
+                                                 Order By story.StoryDate Ascending
+        Return related.Take(quantity)
+    End Function
+
+    Public Shared Function GetRelatedStories(ByVal storyId As Integer, ByVal tabModuleID As Integer,
+                                          ByVal portalID As Integer, ByVal quantity As Integer) As IQueryable(Of AP_Story)
+        Dim d As New StoriesDataContext
+        Dim storyList As New List(Of AP_Stories_Module_Channel_Cache)()
+        storyList.Add(GetStoryInCache(storyId, tabModuleID))
+
+        Dim tagIdList As List(Of Integer) = (From c In GetTagsOfStories(storyList) Select c.StoryTagId).ToList
+
+        Dim related As IQueryable(Of AP_Story) = From story In d.AP_Stories
+                                                 Where story.PortalID = portalID _
+                                                     And story.IsVisible _
+                                                     And (story.AP_Stories_Tag_Metas.Where(Function(x) tagIdList.Contains(x.TagId)).Count > 0) _
+                                                     And Not story.StoryId = storyId
+                                                 Select story
+        Return related.Take(quantity)
+    End Function
+
+    'Input Parameters
+    '   StoryId : an event or an article
+    '   Quantity : the number of storys that will be returned 
+    'Returns
+    '   related articles 
+    '   the most recent
+    '   with same TabModuleID (in same channel)
+    '   with the same tag
+    Public Shared Function GetRelatedArticles(ByVal storyId As Integer, ByVal tabModuleID As Integer,
+                                          ByVal portalID As Integer, ByVal quantity As Integer) As IQueryable(Of AP_Story)
+        Dim d As New StoriesDataContext
+        Dim storyList As New List(Of AP_Stories_Module_Channel_Cache)()
+        storyList.Add(GetStoryInCache(storyId, tabModuleID))
+
+        Dim tagIdList As List(Of Integer) = (From c In GetTagsOfStories(storyList) Select c.StoryTagId).ToList
+
+        Dim related As IQueryable(Of AP_Story) = From story In d.AP_Stories
+                                                 Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId
+                                                 Where story.PortalID = portalID _
+                                                     And story.TabModuleId = tabModuleID _
+                                                     And story.IsVisible _
+                                                     And story.AP_Stories_Tag_Metas.Where(Function(x) x.AP_Stories_Tag.TagName = FRENCH_EVENT).Count = 0 _
+                                                     And (story.AP_Stories_Tag_Metas.Where(Function(x) tagIdList.Contains(x.TagId)).Count > 0) _
+                                                     And Not story.StoryId = storyId _
+                                                     And Not channel.Block = True _
+                                                     And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId
+                                                 Select story
+                                                 Order By story.StoryDate Descending
+        Return related.Take(quantity)
+    End Function
+
+#End Region 'Story
+
+#Region "Templates"
+
+    Public Shared Function GetTemplate(ByVal TabModuleID As Integer, ByVal templateSetting As String,
+                                ByVal templateDefault As String, ByVal portalID As Integer) As String
+
+        Dim AdvSettings As Dictionary(Of String, String) = StoryFunctions.GetAdvancedSettings(TabModuleID)
+        Dim TemplateName As String = AdvSettings.GetValue(templateSetting, templateDefault)
+        Return StaffBrokerFunctions.GetTemplate(TemplateName, portalID)
+    End Function
+
+    Public Shared Sub SetSocialMediaMetaTags(ByVal image As String, ByVal title As String,
+                                             ByVal url As String, ByVal description As String,
+                                             ByVal siteName As String, ByVal appId As String,
+                                             ByVal type As String, ByRef controls As ControlCollection)
+
+        Dim dictionary As New Dictionary(Of String, String)
+        dictionary.Add(StoryFunctionsProperties.socialMediaProperties.ElementAt(0), image)
+        dictionary.Add(StoryFunctionsProperties.socialMediaProperties.ElementAt(1), title)
+        dictionary.Add(StoryFunctionsProperties.socialMediaProperties.ElementAt(2), url)
+        dictionary.Add(StoryFunctionsProperties.socialMediaProperties.ElementAt(3), description)
+        dictionary.Add(StoryFunctionsProperties.socialMediaProperties.ElementAt(4), siteName)
+        dictionary.Add(StoryFunctionsProperties.socialMediaProperties.ElementAt(5), appId)
+        dictionary.Add(StoryFunctionsProperties.socialMediaProperties.ElementAt(6), type)
+
+        For Each pair As KeyValuePair(Of String, String) In dictionary
+            If Not String.IsNullOrEmpty(pair.Value) Then
+                Dim meta As New HtmlMeta
+                meta.Attributes.Add(HTML_META_PROPERTY, pair.Key)
+                meta.Content = pair.Value
+                controls.AddAt(0, meta)
+            End If
+        Next
+    End Sub
+
+#End Region 'Templates
+
+#Region "Boost/Block"
+
+    Public Shared Sub BlockStoryAccrossSite(ByVal StoryURL As String)
+        Dim d As New Stories.StoriesDataContext
+
+        Dim theCacheItems = From c In d.AP_Stories_Module_Channel_Caches Where c.Link = StoryURL
+
+
+        For Each row In theCacheItems
+            row.Block = True
+            row.BoostDate = Nothing
+
+
+        Next
+        d.SubmitChanges()
+    End Sub
+
+    Public Shared Sub UnBlockStoryAccrossSite(ByVal StoryURL As String)
+        Dim d As New Stories.StoriesDataContext
+
+        Dim theCacheItems = From c In d.AP_Stories_Module_Channel_Caches Where c.Link = StoryURL
+
+
+        For Each row In theCacheItems
+            row.Block = False
+
+        Next
+        d.SubmitChanges()
+    End Sub
+
+    Public Shared Function GetBoostDuration(ByVal PortalId As Integer) As Integer
+        Dim bl As String = StaffBrokerFunctions.GetSetting("StoryBoostLength", PortalId)
+        If Not String.IsNullOrEmpty(bl) Then
+            Return CInt(bl)
+        Else
+            Return 30
+        End If
+    End Function
+
+    Public Shared Function GetBoost(ByVal boostDate As Date?) As Double
+        If boostDate Is Nothing Then
+            Return 0
+        Else
+            Return IIf(boostDate >= Today, 3, 0)
+
+        End If
+    End Function
+
+    Public Shared Sub SetBoostDate(ByVal GUID As Integer, ByVal boostDate As Nullable(Of Date), ByVal tabModuleID As Integer)
+        Dim d As New StoriesDataContext
+        Dim storyInCache As AP_Stories_Module_Channel_Cache =
+            (From c In d.AP_Stories_Module_Channel_Caches
+             Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = tabModuleID _
+                 And c.GUID = GUID).First
+
+        storyInCache.BoostDate = boostDate
+        d.SubmitChanges()
+    End Sub
+
+#End Region 'Boost/Block
+
     Public Shared Function GetPhotoURL(ByVal imageId As Nullable(Of Integer)) As String
 
         Dim imageUrl As String
@@ -331,41 +596,6 @@ Public Class StoryFunctions
 
     End Function
 
-    Public Shared Sub BlockStoryAccrossSite(ByVal StoryURL As String)
-        Dim d As New Stories.StoriesDataContext
-
-        Dim theCacheItems = From c In d.AP_Stories_Module_Channel_Caches Where c.Link = StoryURL
-
-
-        For Each row In theCacheItems
-            row.Block = True
-            row.BoostDate = Nothing
-
-
-        Next
-        d.SubmitChanges()
-    End Sub
-    Public Shared Sub UnBlockStoryAccrossSite(ByVal StoryURL As String)
-        Dim d As New Stories.StoriesDataContext
-
-        Dim theCacheItems = From c In d.AP_Stories_Module_Channel_Caches Where c.Link = StoryURL
-
-
-        For Each row In theCacheItems
-            row.Block = False
-
-        Next
-        d.SubmitChanges()
-    End Sub
-    Public Shared Function GetBoostDuration(ByVal PortalId As Integer) As Integer
-        Dim bl As String = StaffBrokerFunctions.GetSetting("StoryBoostLength", PortalId)
-        If Not String.IsNullOrEmpty(bl) Then
-            Return CInt(bl)
-        Else
-            Return 30
-        End If
-    End Function
-
     Private Shared Sub set_if(ByRef setting As Object, ByVal value As Object)
         If value Is Nothing Then
             Return
@@ -401,8 +631,6 @@ Public Class StoryFunctions
             Return -1
         End Try
     End Function
-
-
 
     Public Shared Sub RefreshFeed(ByVal tabModuleId As Integer, ByVal ChannelId As Integer, Optional ByVal ClearCache As Boolean = False)
 
@@ -604,17 +832,6 @@ Public Class StoryFunctions
 
         d.SubmitChanges()
     End Sub
-
-
-
-    Public Shared Function GetBoost(ByVal boostDate As Date?) As Double
-        If boostDate Is Nothing Then
-            Return 0
-        Else
-            Return IIf(boostDate >= Today, 3, 0)
-
-        End If
-    End Function
 
     Public Shared Function GetRecencyScore(ByVal theDate As Date?) As Double
         If theDate Is Nothing Then
