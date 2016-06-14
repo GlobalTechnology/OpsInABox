@@ -46,8 +46,7 @@ Namespace DotNetNuke.Modules.FullStory
             End If
 
             Dim story As AP_Story = StoryFunctions.GetStory(CInt(storyIdString))
-            Dim thecache As AP_Stories_Module_Channel_Cache = StoryFunctions.GetStoryInCache(story.StoryId, story.TabModuleId)
-
+            Dim thecache As IQueryable(Of AP_Stories_Module_Channel_Cache) = StoryFunctions.GetStoryInCache(story.StoryId, story.TabModuleId)
 
             'Boost/Block section
             Dim RequestBoosted As String = Request.Form(BOOSTED)
@@ -55,20 +54,20 @@ Namespace DotNetNuke.Modules.FullStory
                 Dim requestIsBoosted As Boolean = CBool(RequestBoosted)
                 Dim requestIsBlocked As Boolean = CBool(Request.Form(BLOCKED))
 
-                If Not IsNothing(thecache) Then
-                    If requestIsBlocked And Not thecache.Block Then
+                If thecache.Count > 0 Then
+                    If requestIsBlocked And Not thecache.First.Block Then
 
-                        StoryFunctions.BlockStoryAccrossSite(thecache.Link)
+                        StoryFunctions.BlockStoryAccrossSite(thecache.First.Link)
 
-                    ElseIf (Not requestIsBlocked) And thecache.Block Then
-                        StoryFunctions.UnBlockStoryAccrossSite(thecache.Link)
+                    ElseIf (Not requestIsBlocked) And thecache.First.Block Then
+                        StoryFunctions.UnBlockStoryAccrossSite(thecache.First.Link)
                     End If
 
                     Dim changed As Boolean = False
                     Dim changedDate As New System.Nullable(Of Date)
                     If (Not requestIsBlocked) And requestIsBoosted Then
                         changed = True
-                        If Not thecache.BoostDate Is Nothing Then
+                        If Not thecache.First.BoostDate Is Nothing Then
                             changedDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
                         Else
                             changedDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
@@ -79,9 +78,9 @@ Namespace DotNetNuke.Modules.FullStory
                         changed = True
                     End If
                     If changed Then
-                        StoryFunctions.SetBoostDate(thecache.GUID, changedDate, story.TabModuleId)
+                        StoryFunctions.SetBoostDate(thecache.First.GUID, changedDate, story.TabModuleId)
                         Dim theMod = StoryFunctions.GetStoryModule(TabModuleId)
-                        StoryFunctions.RefreshFeed(story.TabModuleId, thecache.ChannelId, True)
+                        StoryFunctions.RefreshFeed(story.TabModuleId, thecache.First.ChannelId, True)
                         StoryFunctions.PrecalAllCaches(story.TabModuleId)
                     End If
                 End If
@@ -112,8 +111,8 @@ Namespace DotNetNuke.Modules.FullStory
 
                 If IsEditable Then
                     SuperPowers.Visible = True
-                    If Not IsNothing(thecache) Then
-                        SuperPowers.CacheId = thecache.CacheId
+                    If thecache.Count > 0 Then
+                        SuperPowers.CacheId = thecache.First.CacheId
                     End If
                     SuperPowers.SuperEditor = UserInfo.IsSuperUser
                     SuperPowers.EditUrl = NavigateURL(CInt(GetTabId(Request.QueryString("origTabId"))), "AddEditStory", {"mid", GetModId(Request.QueryString("origModId"))})
@@ -190,7 +189,6 @@ Namespace DotNetNuke.Modules.FullStory
 
             CType(Me.Page, DotNetNuke.Framework.CDefault).Title = story.Headline & " - " & PortalSettings.PortalName
 
-            location = story.Latitude.Value.ToString(New CultureInfo("")) & ", " & story.Longitude.Value.ToString(New CultureInfo(""))
             Dim URL = StoryFunctions.GetPhotoURL(story.PhotoId)
             Dim Fid = StaffBrokerFunctions.GetSetting("FacebookId", PortalSettings.PortalId)
             Dim permalink = NavigateURL(TabId, "", GetStoryURL(story.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)))
@@ -213,6 +211,10 @@ Namespace DotNetNuke.Modules.FullStory
             ReplaceField(template, "[AGENDA]", relatedAgendaStories)
             ReplaceField(template, "[DATAHREF]", permalink)
             ReplaceField(template, "[LANGUAGES]", "")
+
+            If ((story.Latitude IsNot Nothing) And (story.Longitude IsNot Nothing)) Then
+                location = story.Latitude.Value.ToString(New CultureInfo("")) & ", " & story.Longitude.Value.ToString(New CultureInfo(""))
+            End If
 
             'Only show updated date if the update was more than two weeks after the creation date
             If (Not IsNothing(story.UpdatedDate)) _

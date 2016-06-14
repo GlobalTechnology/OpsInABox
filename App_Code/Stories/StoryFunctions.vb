@@ -168,6 +168,19 @@ Public Class StoryFunctions
 
     End Function
 
+    Public Shared Function GetTagsOfStory(ByRef Story As List(Of AP_Story)) As IQueryable(Of AP_Stories_Tag)
+        Dim d As New StoriesDataContext
+
+        Dim StoriesTagMetaIds = From s In Story
+                                Join stmi In d.AP_Stories_Tag_Metas On s.StoryId Equals stmi.StoryId
+                                Select stmi.TagId
+
+        Return From st In d.AP_Stories_Tags
+               Where StoriesTagMetaIds.Contains(st.StoryTagId)
+               Select st Order By st.TagName
+
+    End Function
+
     Public Shared Function GetTag(ByVal tagId As Integer, ByVal TabModuleId As Integer) As AP_Stories_Tag
         Dim d As New StoriesDataContext
         Return (From c In d.AP_Stories_Tags Where c.StoryTagId = tagId).First
@@ -334,11 +347,11 @@ Public Class StoryFunctions
         Return (From c In d.AP_Stories Where c.StoryId = storyID).First
     End Function
 
-    Public Shared Function GetStoryInCache(ByVal storyID As Integer, ByVal tabModuleID As Integer) As AP_Stories_Module_Channel_Cache
+    Public Shared Function GetStoryInCache(ByVal storyID As Integer, ByVal tabModuleID As Integer) As IQueryable(Of AP_Stories_Module_Channel_Cache)
         Dim d As New StoriesDataContext
-        Return (From c In d.AP_Stories_Module_Channel_Caches
-                Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = tabModuleID _
-                                And c.GUID = storyID).First
+        Return From c In d.AP_Stories_Module_Channel_Caches
+               Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = tabModuleID _
+                                And c.GUID = storyID
     End Function
 
     Public Shared Function IsStoryType(ByVal story As AP_Story, ByVal type As String) As Boolean
@@ -385,10 +398,10 @@ Public Class StoryFunctions
     Public Shared Function GetRelatedEventsForArticles(ByVal storyId As Integer, ByVal tabModuleID As Integer,
                                             ByVal portalID As Integer, ByVal quantity As Integer) As IQueryable(Of AP_Story)
         Dim d As New StoriesDataContext
-        Dim storyList As New List(Of AP_Stories_Module_Channel_Cache)()
-        storyList.Add(GetStoryInCache(storyId, tabModuleID))
+        Dim storyList As New List(Of AP_Story)()
+        storyList.Add(GetStory(storyId))
 
-        Dim tagIdList As List(Of Integer) = (From c In GetTagsOfStories(storyList) Select c.StoryTagId).ToList
+        Dim tagIdList As List(Of Integer) = (From c In GetTagsOfStory(storyList) Select c.StoryTagId).ToList
         Dim related As IQueryable(Of AP_Story) = From story In d.AP_Stories
                                                  Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId
                                                  Where story.PortalID = portalID _
@@ -408,10 +421,10 @@ Public Class StoryFunctions
     Public Shared Function GetRelatedStories(ByVal storyId As Integer, ByVal tabModuleID As Integer,
                                           ByVal portalID As Integer, ByVal quantity As Integer) As IQueryable(Of AP_Story)
         Dim d As New StoriesDataContext
-        Dim storyList As New List(Of AP_Stories_Module_Channel_Cache)()
-        storyList.Add(GetStoryInCache(storyId, tabModuleID))
+        Dim storyList As New List(Of AP_Story)()
+        storyList.Add(GetStory(storyId))
 
-        Dim tagIdList As List(Of Integer) = (From c In GetTagsOfStories(storyList) Select c.StoryTagId).ToList
+        Dim tagIdList As List(Of Integer) = (From c In GetTagsOfStory(storyList) Select c.StoryTagId).ToList
 
         Dim related As IQueryable(Of AP_Story) = From story In d.AP_Stories
                                                  Where story.PortalID = portalID _
@@ -433,10 +446,10 @@ Public Class StoryFunctions
     Public Shared Function GetRelatedArticles(ByVal storyId As Integer, ByVal tabModuleID As Integer,
                                           ByVal portalID As Integer, ByVal quantity As Integer) As IQueryable(Of AP_Story)
         Dim d As New StoriesDataContext
-        Dim storyList As New List(Of AP_Stories_Module_Channel_Cache)()
-        storyList.Add(GetStoryInCache(storyId, tabModuleID))
+        Dim storyList As New List(Of AP_Story)()
+        storyList.Add(GetStory(storyId))
 
-        Dim tagIdList As List(Of Integer) = (From c In GetTagsOfStories(storyList) Select c.StoryTagId).ToList
+        Dim tagIdList As List(Of Integer) = (From c In GetTagsOfStory(storyList) Select c.StoryTagId).ToList
 
         Dim related As IQueryable(Of AP_Story) = From story In d.AP_Stories
                                                  Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId
