@@ -89,6 +89,8 @@ End Class
 
 'StoryFunctions constants
 Public Module StoryFunctionsProperties
+    Public StoriesModulePath As String = "/DesktopModules/AgapeConnect/Stories"
+
     Public Const SOCIAL_MEDIA_ARTICLE As String = "article"
     Public Const TAGS_IN_URL As String = "?tags="
     Public Const TAGS_KEYWORD As String = "tags"
@@ -126,8 +128,10 @@ Public Module ViewStoryConstants
     Public Const NUM_OF_RELATED_AGENDA As Integer = 3
     Public Const HTML_META_PROPERTY As String = "property"
 
-    Public eventIcon As String = "/DesktopModules/AgapeConnect/Stories/images/eventIcon.png"
-    Public articleIcon As String = "/DesktopModules/AgapeConnect/Stories/images/articleIcon.png"
+    Public eventIcon As String = StoryFunctionsProperties.StoriesModulePath & "/images/eventIcon.png"
+    Public articleIcon As String = StoryFunctionsProperties.StoriesModulePath & "/images/articleIcon.png"
+    Public calendarIcon As String = StoryFunctionsProperties.StoriesModulePath & "/images/cal.png"
+
 End Module
 
 Public Class StoryFunctions
@@ -264,7 +268,7 @@ Public Class StoryFunctions
         insert.StoryModuleId = theModule.StoryModuleId
         insert.Weight = 1.0
         insert.Type = 2
-        insert.URL = "https://" & PortalAlias & "/DesktopModules/AgapeConnect/Stories/Feed.aspx?channel=" & tabModuleId
+        insert.URL = "https://" & PortalAlias & StoryFunctionsProperties.StoriesModulePath & "/Feed.aspx?channel=" & tabModuleId
 
         Name = Name
 

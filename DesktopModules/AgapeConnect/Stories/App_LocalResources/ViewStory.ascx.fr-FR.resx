@@ -129,4 +129,10 @@
   <data name="Ressources.Text" xml:space="preserve">
     <value>A découvrir</value>
   </data>
+  <data name="Agenda.Text" xml:space="preserve">
+    <value>Agenda</value>
+  </data>
+  <data name="RelatedNews.Text" xml:space="preserve">
+    <value>Actualités similaires :</value>
+  </data>
 </root>

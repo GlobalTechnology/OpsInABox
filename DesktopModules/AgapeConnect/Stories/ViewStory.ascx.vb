@@ -201,7 +201,7 @@ Namespace DotNetNuke.Modules.FullStory
             ReplaceField(template, "[AUTHOR]", story.Author)
             ReplaceField(template, "[DATE]", story.StoryDate.ToString("d MMMM yyyy"))
             ReplaceField(template, "[UPDATEDDATE]", "")
-            ReplaceField(template, "[RSSURL]", "/DesktopModules/AgapeConnect/Stories/Feed.aspx?channel=" & story.TabModuleId)
+            ReplaceField(template, "[RSSURL]", StoryFunctionsProperties.StoriesModulePath & "/Feed.aspx?channel=" & story.TabModuleId)
             ReplaceField(template, "[SAMPLE]", story.TextSample)
             ReplaceField(template, "[SUBTITLE]", story.Subtitle)
             ReplaceField(template, "[FIELD1]", story.Field1)
@@ -291,13 +291,13 @@ Namespace DotNetNuke.Modules.FullStory
             Dim returnString As String = ""
 
             If relatedStories.Count > 0 Then
-                returnString &= "<h2 class=""agendaTitle"">Agenda</h2>"
+                returnString &= "<h2 class=""agendaTitle"">" & LocalizeString("Agenda") & "</h2>"
                 For Each relatedStory In relatedStories
                     returnString &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?"
                     returnString &= GetStoryURL(relatedStory.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)) & """>"
                     returnString &= "<table><tr><td style='vertical-align: top;'><div class='eventDay' >" & relatedStory.StoryDate.Day & "</div>"
                     returnString &= "<div class='eventMonth'>" & relatedStory.StoryDate.ToString("MMM", New CultureInfo("fr-fr")) & "</div>"
-                    returnString &= "<img src='/DesktopModules/AgapeConnect/Stories/images/cal.png' style='width:32px;' /></td><td style='padding-left: 12px;'>"
+                    returnString &= "<img src='" & ViewStoryConstants.calendarIcon & "' style='width:32px;' /></td><td style='padding-left: 12px;'>"
                     returnString &= "<h4 class='eventTitle'>" & relatedStory.Headline & "</h4>"
 
                     returnString &= "<h6  class='eventSample'>" & relatedStory.TextSample & "</h6></td></tr></table></a></div>"
@@ -320,7 +320,7 @@ Namespace DotNetNuke.Modules.FullStory
                     returnString &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?"
                     returnString &= GetStoryURL(relatedStory.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)) & """>"
                     returnString &= "<table><tr><td style='vertical-align: top;'>"
-                    returnString &= "<img src='/DesktopModules/AgapeConnect/Stories/images/articleIcon.png' /></td><td style='padding-left: 12px;'>"
+                    returnString &= "<img src='" & ViewStoryConstants.articleIcon & "' /></td><td style='padding-left: 12px;'>"
                     returnString &= "<h4 class='eventTitle'>" & relatedStory.Headline & "</h4>"
                     returnString &= "<h6  class='eventSample'>" & relatedStory.StoryDate.ToString("dd MMMM yyyy", New CultureInfo("fr-fr")) & "</h6></td></tr></table></a></div>"
                 Next
@@ -333,7 +333,7 @@ Namespace DotNetNuke.Modules.FullStory
             Dim returnString As String = ""
 
             If relatedStories.Count > 0 Then
-                returnString &= "<h3>Related News Items:</h3><ul class=""nav nav-tabs nav-stacked"">"
+                returnString &= "<h3>" & LocalizeString("RelatedNews") & "</h3><ul class=""nav nav-tabs nav-stacked"">"
                 For Each relatedStory In relatedStories
                     returnString &= "<li><a href=""" & NavigateURL() & "?"
                     returnString &= GetStoryURL(relatedStory.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)) & """>"
