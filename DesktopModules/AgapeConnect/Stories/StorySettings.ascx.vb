@@ -171,7 +171,7 @@ Namespace DotNetNuke.Modules.Stories
                 End If
 
                 If CType(TabModuleSettings("Latitude"), String) <> "" And CType(TabModuleSettings("Longitude"), String) <> "" Then
-                    tbLocation.Text = CDbl(TabModuleSettings("Latitude")).ToString(New CultureInfo("")) & ", " & Double.Parse(TabModuleSettings("Longitude"), New CultureInfo("")).ToString(New CultureInfo(""))
+                    tbLocation.Text = CDbl(TabModuleSettings("Latitude")).ToString(New CultureInfo("")) & ", " & CDbl(TabModuleSettings("Longitude")).ToString(New CultureInfo(""))
 
                 Else
                     tbLocation.Text = l.latitude.ToString(New CultureInfo("")) & ", " & l.longitude.ToString(New CultureInfo(""))
