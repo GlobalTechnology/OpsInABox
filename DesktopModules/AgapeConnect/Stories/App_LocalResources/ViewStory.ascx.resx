@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Actualites.Text" xml:space="preserve">
-    <value>A lire aussi</value>
+    <value>Also read</value>
   </data>
   <data name="blockedMsg.Text" xml:space="preserve">
-    <value>Cette histoire à été bloquée et n\'apparaîtra pas dans le flux.</value>
+    <value>This story has been blocked, and won\'t appear in the channel feed.</value>
   </data>
   <data name="boostedMsg.Text" xml:space="preserve">
-    <value>Cette histoire est mise en avant jusqu\'au </value>
+    <value>Boosted until </value>
   </data>
   <data name="Ressources.Text" xml:space="preserve">
-    <value>A découvrir</value>
+    <value>Discover</value>
   </data>
   <data name="Agenda.Text" xml:space="preserve">
     <value>Agenda</value>
   </data>
   <data name="RelatedNews.Text" xml:space="preserve">
-    <value>Actualités similaires :</value>
+    <value>Related News Items:</value>
   </data>
 </root>
