@@ -191,7 +191,7 @@ Namespace DotNetNuke.Modules.FullStory
 
             Dim URL = StoryFunctions.GetPhotoURL(story.PhotoId)
             Dim Fid = StaffBrokerFunctions.GetSetting("FacebookId", PortalSettings.PortalId)
-            Dim permalink = NavigateURL(TabId, "", GetStoryURL(story.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)))
+            Dim permalink = NavigateURL(TabId, "", GetStoryURLParams(story.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)))
 
             ReplaceField(template, "[HEADLINE]", story.Headline)
             ReplaceField(template, "[STORYTEXT]", story.StoryText)
@@ -294,7 +294,7 @@ Namespace DotNetNuke.Modules.FullStory
                 returnString &= "<h2 class=""agendaTitle"">" & LocalizeString("Agenda") & "</h2>"
                 For Each relatedStory In relatedStories
                     returnString &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?"
-                    returnString &= GetStoryURL(relatedStory.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)) & """>"
+                    returnString &= GetStoryURLParams(relatedStory.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)) & """>"
                     returnString &= "<table><tr><td style='vertical-align: top;'><div class='eventDay' >" & relatedStory.StoryDate.Day & "</div>"
                     returnString &= "<div class='eventMonth'>" & relatedStory.StoryDate.ToString("MMM", New CultureInfo("fr-fr")) & "</div>"
                     returnString &= "<img src='" & ViewStoryConstants.calendarIcon & "' style='width:32px;' /></td><td style='padding-left: 12px;'>"
@@ -318,7 +318,7 @@ Namespace DotNetNuke.Modules.FullStory
 
                 For Each relatedStory In relatedStories
                     returnString &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?"
-                    returnString &= GetStoryURL(relatedStory.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)) & """>"
+                    returnString &= GetStoryURLParams(relatedStory.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)) & """>"
                     returnString &= "<table><tr><td style='vertical-align: top;'>"
                     returnString &= "<img src='" & ViewStoryConstants.articleIcon & "' /></td><td style='padding-left: 12px;'>"
                     returnString &= "<h4 class='eventTitle'>" & relatedStory.Headline & "</h4>"
@@ -336,7 +336,7 @@ Namespace DotNetNuke.Modules.FullStory
                 returnString &= "<h3>" & LocalizeString("RelatedNews") & "</h3><ul class=""nav nav-tabs nav-stacked"">"
                 For Each relatedStory In relatedStories
                     returnString &= "<li><a href=""" & NavigateURL() & "?"
-                    returnString &= GetStoryURL(relatedStory.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)) & """>"
+                    returnString &= GetStoryURLParams(relatedStory.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)) & """>"
                     returnString &= relatedStory.Headline & "</a></li>"
                 Next
                 returnString &= "</ul>"
@@ -348,10 +348,10 @@ Namespace DotNetNuke.Modules.FullStory
 
 #Region "Helper functions for translation after France's migration to OIB"
 
-        Private Function GetStoryURL(ByVal storyId As Integer, ByVal origModString As String, ByVal origTabString As String) As String
+        Private Function GetStoryURLParams(ByVal storyId As Integer, ByVal origModString As String, ByVal origTabString As String) As String
             Return ViewStoryConstants.STORYID & "=" & storyId & "&" &
-                ViewStoryConstants.ORIGINAL_MODULEID & GetModId(origModString) & "&" &
-                ViewStoryConstants.ORIGINAL_TABID & GetTabId(origTabString)
+                ViewStoryConstants.ORIGINAL_MODULEID & "=" & GetModId(origModString) & "&" &
+                ViewStoryConstants.ORIGINAL_TABID & "=" & GetTabId(origTabString)
         End Function
 
         Private Function GetTabId(ByVal OrigTabId As String) As String
