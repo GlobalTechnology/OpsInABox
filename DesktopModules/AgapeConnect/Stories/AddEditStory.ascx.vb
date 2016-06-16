@@ -13,7 +13,7 @@ Imports Stories
 Namespace DotNetNuke.Modules.Stories
 
     Partial Class AddEditStory
-        Inherits Entities.Modules.PortalModuleBase
+        Inherits Entities.Modules.ModuleSettingsBase
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
             Dim d As New StoriesDataContext
@@ -45,63 +45,46 @@ Namespace DotNetNuke.Modules.Stories
                 Next
 
                 ddlLanguage.DataSource = From c In CultureInfo.GetCultures(CultureTypes.SpecificCultures) Order By c.EnglishName Select Name = c.Name.ToLower, EnglishName = c.EnglishName
-                    ddlLanguage.DataValueField = "Name"
-                    ddlLanguage.DataTextField = "EnglishName"
-                    ddlLanguage.DataBind()
+                ddlLanguage.DataValueField = "Name"
+                ddlLanguage.DataTextField = "EnglishName"
+                ddlLanguage.DataBind()
 
                 BuildTagList()
 
                 If Me.UserInfo.IsSuperUser And IsEditable() Then
-                        'SuperPowers.Visible = True
-                    End If
-                    PagePanel.Visible = True
-                    NotFoundLabel.Visible = False
+                    'SuperPowers.Visible = True
+                End If
+                PagePanel.Visible = True
+                NotFoundLabel.Visible = False
 
-                    Dim authorTitle = StaffBrokerFunctions.GetSetting("Authors", Me.PortalId)
-                    If authorTitle <> "" Then
-                        Dim rc As New DotNetNuke.Security.Roles.RoleController()
-                        Dim theseAuthors = rc.GetUsersByRoleName(Me.PortalId, authorTitle)
-                        ddlAuthor.DataTextField = "DisplayName"
-                        ddlAuthor.DataValueField = "UserID"
-                        ddlAuthor.DataSource = theseAuthors
-                        ddlAuthor.DataBind()
-                        ddlAuthor.Visible = True
-                        Author.Visible = False
-                        tbField3.Visible = False
-                        lblField3.Visible = False
-                    Else
-                        ddlAuthor.Visible = False
-                        Author.Visible = True
-                        tbField3.Visible = True
-                        lblField3.Visible = True
-                    End If
+                Dim authorTitle = StaffBrokerFunctions.GetSetting("Authors", Me.PortalId)
+                If authorTitle <> "" Then
+                    Dim rc As New DotNetNuke.Security.Roles.RoleController()
+                    Dim theseAuthors = rc.GetUsersByRoleName(Me.PortalId, authorTitle)
+                    ddlAuthor.DataTextField = "DisplayName"
+                    ddlAuthor.DataValueField = "UserID"
+                    ddlAuthor.DataSource = theseAuthors
+                    ddlAuthor.DataBind()
+                    ddlAuthor.Visible = True
+                    Author.Visible = False
+                    tbField3.Visible = False
+                    lblField3.Visible = False
+                Else
+                    ddlAuthor.Visible = False
+                    Author.Visible = True
+                    tbField3.Visible = True
+                    lblField3.Visible = True
+                End If
 
-                    If Request.QueryString("StoryID") <> "" Then
+                If Request.QueryString("StoryID") <> "" Then
 
-                        StoryIdHF.Value = Request.QueryString("StoryId")
-
-                        Dim r = (From c In d.AP_Stories Where c.StoryId = Request.QueryString("StoryID")).First
-
-
+                    StoryIdHF.Value = Request.QueryString("StoryId")
+                    Dim r = (From c In d.AP_Stories Where c.StoryId = Request.QueryString("StoryID")).First
 
                     Headline.Text = r.Headline
-                    ' imgbtnPrint.OnClientClick = "window.open('/DesktopModules/FullStory/PrintStory.aspx?StoryId=" & Request.QueryString("StoryId") & "', '_blank'); "
-                    'If Me.UserInfo.IsSuperUser Then
-                    '    If Not Page.IsPostBack Then
-                    '        Dim BoostDate As String
-                    '        If r.EditorBoost <= Date.Now Then
-                    '            BoostLabel.Text = "Not currently boosted."
-                    '        Else
-                    '            BoostDate = r.EditorBoost.Value.ToShortDateString()
-                    '            BoostLabel.Text = "Boosted until " & BoostDate
-                    '        End If
-                    '        Editable.Checked = r.Editable
-                    '    End If
-                    'End If
-
                     StoryText.Text = r.StoryText
 
-                    tbLocation.Text = r.Latitude.Value.ToString(New CultureInfo("")) & ", " & r.Longitude.Value.ToString(New CultureInfo(""))
+                    tbLocation.Text = CDbl(r.Latitude).ToString(New CultureInfo("")) & ", " & CDbl(r.Longitude).ToString(New CultureInfo(""))
 
                     StoryDate.Text = r.StoryDate.ToShortDateString
 
@@ -156,14 +139,11 @@ Namespace DotNetNuke.Modules.Stories
 
                 Else
 
-                    If String.IsNullOrEmpty(Session("Long")) Or String.IsNullOrEmpty(Session("Lat")) Then
-                        Dim ls As New LookupService(Server.MapPath("~/App_Data/GeoLiteCity.dat"), LookupService.GEOIP_STANDARD)
-                        ' Dim l As Location = ls.getRegion(Request.ServerVariables("remote_addr"))
+                    'Populate latitude/longitude textbox for new story
+                    Dim geolocation As Location = StoryFunctions.GetDefaultLatLong()
+                    tbLocation.Text = CDbl(geolocation.latitude).ToString(New CultureInfo("")) & ", " & CDbl(geolocation.longitude).ToString(New CultureInfo(""))
 
-                        Dim l As Location = ls.getLocation("80.193.180.102")   '(Solihill)
-                        Session("Long") = l.longitude
-                        Session("Lat") = l.latitude
-                    End If
+
                     If Request.QueryString("tg") <> "" Then
                         pnlLanguages.Visible = False
 
@@ -177,10 +157,6 @@ Namespace DotNetNuke.Modules.Stories
                         End If
 
                     End If
-
-                    Dim lg As Double = Session("Long")
-                    Dim lt As Double = Session("Lat")
-                    tbLocation.Text = lt.ToString(New CultureInfo("")) & ", " & lg.ToString(New CultureInfo(""))
 
                     StoryDate.Text = Today.ToString("dd MMM yyyy")
                     StoryText.Text = "Enter your news here..."
@@ -295,24 +271,13 @@ Namespace DotNetNuke.Modules.Stories
                     q.First.TextSample = tbSample.Text
                 End If
 
-                Try
-                    Dim geoLoc = tbLocation.Text.Split(",")
-                    If geoLoc.Count = 2 Then
-
-                        q.First.Latitude = Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo(""))
-                        q.First.Longitude = Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo(""))
-
-                    End If
-                Catch ex As Exception
-
-                End Try
+                SetStoryLatLong(tbLocation.Text, q.First)
 
                 If acImage1.CheckAspect() Then
-
                     q.First.PhotoId = acImage1.FileId
-                    d.SubmitChanges()
                 End If
 
+                d.SubmitChanges()
                 StoryFunctions.RefreshLocalChannel(CInt(TabModuleId))
 
                 Dim RequestStoryURL As String = "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId
@@ -375,17 +340,8 @@ Namespace DotNetNuke.Modules.Stories
                     insert.TranslationGroup = Request.QueryString("tg")
                 End If
 
-                Try
-                    Dim geoLoc = tbLocation.Text.Split(",")
-                    If geoLoc.Count = 2 Then
+                SetStoryLatLong(tbLocation.Text, insert)
 
-                        insert.Latitude = Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo(""))
-                        insert.Longitude = Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo(""))
-
-                    End If
-                Catch ex As Exception
-
-                End Try
                 d.AP_Stories.InsertOnSubmit(insert)
                 d.SubmitChanges()
 
@@ -504,6 +460,34 @@ Namespace DotNetNuke.Modules.Stories
             cblTags.DataTextField = "TagName"
             cblTags.DataValueField = "StoryTagId"
             cblTags.DataBind()
+        End Sub
+
+        'Protected Function GetDefaultLatLong() As Location
+        '    Dim geolocation As New Location
+
+        '    If CType(TabModuleSettings(StoryFunctionsProperties.LatitudeKey), String) <> "" And
+        '    CType(TabModuleSettings(StoryFunctionsProperties.LongitudeKey), String) <> "" Then
+
+        '        geolocation.latitude = CDbl(TabModuleSettings(StoryFunctionsProperties.LatitudeKey))
+        '        geolocation.longitude = CDbl(TabModuleSettings(StoryFunctionsProperties.LongitudeKey))
+
+        '    Else
+        '        geolocation = Location.GetLocation(Request.ServerVariables("remote_addr"))
+        '    End If
+        '    Return geolocation
+
+        'End Function
+
+        Protected Sub SetStoryLatLong(ByRef location As String, ByRef story As AP_Story)
+            Dim geoLoc = location.Split(",")
+            If geoLoc.Count = 2 Then
+                story.Latitude = Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo(""))
+                story.Longitude = Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo(""))
+            Else 'the contents of the map textbox is empty
+                Dim geolocation As Location = StoryFunctions.GetDefaultLatLong()
+                story.Latitude = geolocation.latitude
+                story.Longitude = geolocation.longitude
+            End If
         End Sub
 
 #End Region 'Helper Functions

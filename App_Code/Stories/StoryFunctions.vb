@@ -99,6 +99,10 @@ Public Module StoryFunctionsProperties
     Public imageExtensions() As String = {"jpg", "jpeg", "gif", "png", "bmp"}
     Public noImage As String = "/images/no-content.png?"
     Public socialMediaProperties() As String = {"og:image", "og:title", "og:url", "og:description", "og:site_name", "fb:app_id", "og:type"}
+
+    Public Const LatitudeKey As String = "Latitude"
+    Public Const LongitudeKey As String = "Longitude"
+
 End Module
 
 Public Module StoryFunctionsConstants
@@ -959,6 +963,22 @@ Public Class StoryFunctions
 
     Private Shared Function rad2deg(ByVal rad As Double) As Double
         Return rad / Math.PI * 180.0
+    End Function
+
+    Public Shared Function GetDefaultLatLong() As Location
+        Dim geolocation As New Location
+
+        If CType(TabModuleSettings(StoryFunctionsProperties.LatitudeKey), String) <> "" And
+        CType(TabModuleSettings(StoryFunctionsProperties.LongitudeKey), String) <> "" Then
+
+            geolocation.latitude = CDbl(TabModuleSettings(StoryFunctionsProperties.LatitudeKey))
+            geolocation.longitude = CDbl(TabModuleSettings(StoryFunctionsProperties.LongitudeKey))
+
+        Else
+            geolocation = Location.GetLocation(Request.ServerVariables("remote_addr"))
+        End If
+        Return geolocation
+
     End Function
 
 End Class

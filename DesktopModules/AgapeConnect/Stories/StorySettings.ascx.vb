@@ -62,7 +62,6 @@ Namespace DotNetNuke.Modules.Stories
                 Dim newSettings As Boolean = False
                 Dim objModules As New Entities.Modules.ModuleController
                 Dim theModule = StoryFunctions.GetStoryModule(TabModuleId)
-                Dim l = Location.GetLocation(Request.ServerVariables("remote_addr"))
 
                 If theModule.AP_Stories_Module_Channels.Where(Function(x) x.Type = 2).Count = 0 Then
                     'add a local channel!
@@ -170,12 +169,9 @@ Namespace DotNetNuke.Modules.Stories
                     lblSpeed.Text = TabModuleSettings("Speed")
                 End If
 
-                If CType(TabModuleSettings("Latitude"), String) <> "" And CType(TabModuleSettings("Longitude"), String) <> "" Then
-                    tbLocation.Text = CDbl(TabModuleSettings("Latitude")).ToString(New CultureInfo("")) & ", " & CDbl(TabModuleSettings("Longitude")).ToString(New CultureInfo(""))
-
-                Else
-                    tbLocation.Text = l.latitude.ToString(New CultureInfo("")) & ", " & l.longitude.ToString(New CultureInfo(""))
-                End If
+                'Populate latitude/longitude textbox
+                Dim geolocation As Location = StoryFunctions.GetDefaultLatLong()
+                tbLocation.Text = CDbl(geolocation.latitude).ToString(New CultureInfo("")) & ", " & CDbl(geolocation.longitude).ToString(New CultureInfo(""))
 
                 If CType(TabModuleSettings("PhotoWidth"), String) <> "" Then
                     tbPhotoSize.Text = TabModuleSettings("PhotoWidth")
@@ -228,20 +224,7 @@ Namespace DotNetNuke.Modules.Stories
             Dim objModules As New Entities.Modules.ModuleController
 
             'Location
-            Dim geoLoc = tbLocation.Text.Split(",")
-            If geoLoc.Count <> 2 Then
-                lblFeedError.Text = "Invalid location. Please click search, to convert into latitude/longitude<br />"
-                Return
-            Else
-                Try
-                    objModules.UpdateTabModuleSetting(TabModuleId, "Latitude", Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo("")))
-                    objModules.UpdateTabModuleSetting(TabModuleId, "Longitude", Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo("")))
-
-                Catch ex As Exception
-                    lblFeedError.Text = "Invalid location. Please click search, to convert into latitude/longitude<br />"
-                    Return
-                End Try
-            End If
+            SetModuleLatLong(tbLocation.Text, objModules)
 
             Dim s As String = ddlDisplayTypes.SelectedValue
             If Not String.IsNullOrEmpty(s) Then
@@ -304,8 +287,9 @@ Namespace DotNetNuke.Modules.Stories
             Dim LocalChannel = From c In d.AP_Stories_Module_Channels Where c.Type = 2 And c.AP_Stories_Module.TabModuleId = TabModuleId
 
             If LocalChannel.Count > 0 Then
-                LocalChannel.First.Latitude = Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo(""))
-                LocalChannel.First.Longitude = Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo(""))
+                Dim geolocation As Location = StoryFunctions.GetDefaultLatLong()
+                LocalChannel.First.Latitude = geolocation.latitude
+                LocalChannel.First.Longitude = geolocation.longitude
                 LocalChannel.First.ChannelTitle = tbRssName.Text
                 d.SubmitChanges()
             End If
@@ -326,6 +310,22 @@ Namespace DotNetNuke.Modules.Stories
         End Sub
 
 #End Region 'Page Events
+
+#Region "Helper Functions"
+
+        Protected Sub SetModuleLatLong(ByRef location As String, ByRef objModules As Entities.Modules.ModuleController)
+            Dim geoLoc = location.Split(",")
+            If geoLoc.Count = 2 Then
+                objModules.UpdateTabModuleSetting(TabModuleId, StoryFunctionsProperties.LatitudeKey, Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo("")))
+                objModules.UpdateTabModuleSetting(TabModuleId, StoryFunctionsProperties.LongitudeKey, Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo("")))
+            Else 'the contents of the map textbox is empty
+                Dim geolocation As Location = StoryFunctions.GetDefaultLatLong()
+                objModules.UpdateTabModuleSetting(TabModuleId, StoryFunctionsProperties.LatitudeKey, geolocation.latitude)
+                objModules.UpdateTabModuleSetting(TabModuleId, StoryFunctionsProperties.LongitudeKey, geolocation.longitude)
+            End If
+        End Sub
+
+#End Region 'Helper Functions
 
     End Class
 
