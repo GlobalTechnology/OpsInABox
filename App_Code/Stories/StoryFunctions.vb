@@ -580,12 +580,12 @@ Public Class StoryFunctions
         Dim location As String = ""
         Dim localChannel = (From c In d.AP_Stories_Module_Channels
                             Where c.Type = 2 _
-                            And c.AP_Stories_Module.TabModuleId = TabModuleId).First
+                            And c.AP_Stories_Module.TabModuleId = TabModuleId)
 
-        If (localChannel.Latitude IsNot Nothing And localChannel.Longitude IsNot Nothing) Then
-            location = CDbl(localChannel.Latitude).ToString(New CultureInfo("")) & ", " & CDbl(localChannel.Longitude).ToString(New CultureInfo(""))
+        If localChannel.Count > 0 AndAlso (localChannel.First.Latitude IsNot Nothing And localChannel.First.Longitude IsNot Nothing) Then
+            location = CDbl(localChannel.First.Latitude).ToString(New CultureInfo("")) & ", " & CDbl(localChannel.First.Longitude).ToString(New CultureInfo(""))
         Else
-            location = HttpContext.Current.Request.ServerVariables("REMOTE_ADDR")
+            location = CDbl(0.000000).ToString(New CultureInfo("")) & ", " & CDbl(0.000000).ToString(New CultureInfo(""))
         End If
         Return location
 

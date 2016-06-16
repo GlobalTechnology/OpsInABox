@@ -8,10 +8,6 @@
 
 <script src="/js/jquery.numeric.js" type="text/javascript"></script>
 
-<script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false'></script>
-<script src="/js/jquery.locationpicker.js" type="text/javascript"></script>
-
-
 <script type="text/javascript">
 
     function setUpMyTabs() {
@@ -89,18 +85,6 @@
             }
          });
         $("#<%= lblSpeed.ClientID%>").html($("#speed").slider("value"));
-
-        $("#<%= tbLocation.ClientId %>").locationPicker();
-        $('.picker-search-button').button();
-        $('.picker-search-button').css('font-size','x-small');
-
-
-        $('.RssName').keyup(function() {
-            if (this.value.match(/[^a-zA-Z0-9_]/g)) {
-                this.value = this.value.replace(/[^a-zA-Z0-9_]/g, '');
-            }
-        });
-
     }
 
     $(document).ready(function () {
@@ -132,7 +116,7 @@
         border-right: 1px solid #e5eff8;
        
         border-collapse: collapse;
-        width: 500px;
+        width: inherit;
   
     }
     .SettingsTable td
@@ -149,21 +133,6 @@
      .resizable { color: White; background-color: #1482b4; }
     .resizable .ui-resizable-se { color: White;}
 
-    .RssPrefix
-    {
-        font-family:'Courier New';
-        color: #999;
-    }
-     .RssName
-    {
-        font-family:'Courier New';
-        color: Black;
-        font-weight: bold;
-    }
-      .pickermap
-    {
-        z-index: 999;   
-    }
       .SubmitPanel
     {
     margin-top: 10px;
@@ -271,28 +240,6 @@
           <asp:TextBox ID="tbPhotoSize" runat="server" CssClass="numeric"></asp:TextBox> Pixels
         </td>
     </tr>
-    <tr valign="middle" >
-        <td>
-            <dnn:Label ID="Label6" runat="server" ResourceKey="lblLocation" />
-        </td>
-        <td align="center">
-          <asp:TextBox ID="tbLocation" runat="server" Width="200px"></asp:TextBox>
-               <div style="font-size: xx-small; color: #AAA; font-style: italic;">(City, country, region or  postocode etc)</div>
-            <asp:Label ID="lblFeedError" runat="server" ForeColor="Red"></asp:Label>
-             </td>
-    </tr>
-    <tr valign="middle" >
-        <td>
-            <dnn:Label ID="Label7" runat="server" ResourceKey="lblRssName" />
-        </td>
-        
-        <td align="center" style=" white-space: nowrap;">
-          <asp:Label ID="lblRssPrefix" runat="server" CssClass="RssPrefix" ></asp:Label>
-
-        <asp:TextBox ID="tbRssName" runat="server" CssClass="RssName"></asp:TextBox>
-        </td>
-    </tr>
-    
     <tr valign="middle"  style="display: none;" >
         <td>
             <dnn:Label ID="Label9" runat="server" ResourceKey="lblAspectMode" />
