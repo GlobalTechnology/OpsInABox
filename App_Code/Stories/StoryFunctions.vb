@@ -99,6 +99,10 @@ Public Module StoryFunctionsProperties
     Public imageExtensions() As String = {"jpg", "jpeg", "gif", "png", "bmp"}
     Public noImage As String = "/images/no-content.png?"
     Public socialMediaProperties() As String = {"og:image", "og:title", "og:url", "og:description", "og:site_name", "fb:app_id", "og:type"}
+
+    Public Const LatitudeKey As String = "Latitude"
+    Public Const LongitudeKey As String = "Longitude"
+
 End Module
 
 Public Module StoryFunctionsConstants
@@ -568,6 +572,38 @@ Public Class StoryFunctions
     End Sub
 
 #End Region 'Boost/Block
+
+#Region "Latitude/Longitude"
+
+    Public Shared Function GetDefaultLatLong(ByVal TabModuleId As Integer) As String
+        Dim d As New StoriesDataContext
+        Dim location As String = ""
+        Dim localChannel = (From c In d.AP_Stories_Module_Channels
+                            Where c.Type = 2 _
+                            And c.AP_Stories_Module.TabModuleId = TabModuleId)
+
+        If localChannel.Count > 0 AndAlso (localChannel.First.Latitude IsNot Nothing And localChannel.First.Longitude IsNot Nothing) Then
+            location = CDbl(localChannel.First.Latitude).ToString(New CultureInfo("")) & ", " & CDbl(localChannel.First.Longitude).ToString(New CultureInfo(""))
+        Else
+            location = CDbl(0.000000).ToString(New CultureInfo("")) & ", " & CDbl(0.000000).ToString(New CultureInfo(""))
+        End If
+        Return location
+
+    End Function
+
+    Public Shared Sub SetStoryLatLong(ByRef location As String, ByRef story As AP_Story, ByVal TabModuleId As Integer)
+        Dim geoLoc = location.Split(",")
+        If geoLoc.Count = 2 Then
+            story.Latitude = Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo(""))
+            story.Longitude = Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo(""))
+        Else 'the contents of the map textbox is empty
+            Dim geoLocation As String = StoryFunctions.GetDefaultLatLong(TabModuleId)
+            story.Latitude = Double.Parse(geoLocation.Split(",")(0).Replace(" ", ""), New CultureInfo(""))
+            story.Longitude = Double.Parse(geoLocation.Split(",")(1).Replace(" ", ""), New CultureInfo(""))
+        End If
+    End Sub
+
+#End Region 'Latitude/Longitude
 
     Public Shared Function GetPhotoURL(ByVal imageId As Nullable(Of Integer)) As String
 

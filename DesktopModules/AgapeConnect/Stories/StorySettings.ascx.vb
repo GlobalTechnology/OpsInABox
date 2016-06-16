@@ -62,7 +62,7 @@ Namespace DotNetNuke.Modules.Stories
                 Dim newSettings As Boolean = False
                 Dim objModules As New Entities.Modules.ModuleController
                 Dim theModule = StoryFunctions.GetStoryModule(TabModuleId)
-                Dim l = Location.GetLocation(Request.ServerVariables("remote_addr"))
+                Dim geoLocation As String = StoryFunctions.GetDefaultLatLong(TabModuleId)
 
                 If theModule.AP_Stories_Module_Channels.Where(Function(x) x.Type = 2).Count = 0 Then
                     'add a local channel!
@@ -82,7 +82,7 @@ Namespace DotNetNuke.Modules.Stories
                     Dim imageId = "https://" & PortalAlias.HTTPAlias & FileManager.Instance.GetUrl(FileManager.Instance.GetFile(logoFile))
                     Dim autoDetectLanguage As Boolean = False
 
-                    StoryFunctions.AddLocalChannel(TabModuleId, PortalAlias.HTTPAlias, RssName, l.longitude, l.latitude, imageId, autoDetectLanguage)
+                    StoryFunctions.AddLocalChannel(TabModuleId, PortalAlias.HTTPAlias, RssName, geoLocation.Split(",")(1), geoLocation.Split(",")(0), imageId, autoDetectLanguage)
 
                     theModule = StoryFunctions.GetStoryModule(TabModuleId)
 
@@ -151,30 +151,10 @@ Namespace DotNetNuke.Modules.Stories
                 resizableTagPhotoAspect.Width = Unit.Pixel(Double.Parse(tagPhotoAspect, New CultureInfo("")) * 80)
                 hfTagPhotoAspect.Value = lblTagPhotoAspect.Text
 
-                lblRssPrefix.Text = Request.Url.Authority & Request.ApplicationPath & "DesktopModules/AgapeConnect/Stories/Feed.aspx?name="
-
-                If CType(TabModuleSettings("RssName"), String) = "" Then
-                    objModules.UpdateTabModuleSetting(TabModuleId, "RssName", TabController.CurrentPage.TabName)
-                    tbRssName.Text = TabController.CurrentPage.TabName
-
-                    newSettings = True
-                Else
-                    tbRssName.Text = CType(TabModuleSettings("RssName"), String)
-
-                End If
-
-
                 If CType(TabModuleSettings("Speed"), String) <> "" Then
 
                     hfSpeed.Value = TabModuleSettings("Speed")
                     lblSpeed.Text = TabModuleSettings("Speed")
-                End If
-
-                If CType(TabModuleSettings("Latitude"), String) <> "" And CType(TabModuleSettings("Longitude"), String) <> "" Then
-                    tbLocation.Text = CDbl(TabModuleSettings("Latitude")).ToString(New CultureInfo("")) & ", " & Double.Parse(TabModuleSettings("Longitude"), New CultureInfo("")).ToString(New CultureInfo(""))
-
-                Else
-                    tbLocation.Text = l.latitude.ToString(New CultureInfo("")) & ", " & l.longitude.ToString(New CultureInfo(""))
                 End If
 
                 If CType(TabModuleSettings("PhotoWidth"), String) <> "" Then
@@ -227,22 +207,6 @@ Namespace DotNetNuke.Modules.Stories
             'Save Module Settings
             Dim objModules As New Entities.Modules.ModuleController
 
-            'Location
-            Dim geoLoc = tbLocation.Text.Split(",")
-            If geoLoc.Count <> 2 Then
-                lblFeedError.Text = "Invalid location. Please click search, to convert into latitude/longitude<br />"
-                Return
-            Else
-                Try
-                    objModules.UpdateTabModuleSetting(TabModuleId, "Latitude", Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo("")))
-                    objModules.UpdateTabModuleSetting(TabModuleId, "Longitude", Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo("")))
-
-                Catch ex As Exception
-                    lblFeedError.Text = "Invalid location. Please click search, to convert into latitude/longitude<br />"
-                    Return
-                End Try
-            End If
-
             Dim s As String = ddlDisplayTypes.SelectedValue
             If Not String.IsNullOrEmpty(s) Then
                 Dim StoryControlId As Integer = s.Substring(s.IndexOf(":") + 1)
@@ -259,9 +223,6 @@ Namespace DotNetNuke.Modules.Stories
 
             'Speed
             objModules.UpdateTabModuleSetting(TabModuleId, "Speed", CInt(hfSpeed.Value))
-
-            'RssName
-            objModules.UpdateTabModuleSetting(TabModuleId, "RssName", tbRssName.Text)
 
             'PhotoWidth
             objModules.UpdateTabModuleSetting(TabModuleId, "PhotoWidth", CInt(tbPhotoSize.Text))
@@ -297,23 +258,6 @@ Namespace DotNetNuke.Modules.Stories
 
             StaffBrokerFunctions.SetSetting("StoryPublishMode", ddlMode.SelectedValue, PortalId)
             StaffBrokerFunctions.SetSetting("StoryBoostLength", CInt(tbBoostLength.Text), PortalId)
-
-
-            '====== Need to update some of the channel table properties (for this module)
-
-            Dim LocalChannel = From c In d.AP_Stories_Module_Channels Where c.Type = 2 And c.AP_Stories_Module.TabModuleId = TabModuleId
-
-            If LocalChannel.Count > 0 Then
-                LocalChannel.First.Latitude = Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo(""))
-                LocalChannel.First.Longitude = Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo(""))
-                LocalChannel.First.ChannelTitle = tbRssName.Text
-                d.SubmitChanges()
-            End If
-
-
-
-
-
 
             SynchronizeModule()
             Response.Redirect(NavigateURL())
