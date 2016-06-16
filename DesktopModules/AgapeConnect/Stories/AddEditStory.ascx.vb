@@ -140,9 +140,7 @@ Namespace DotNetNuke.Modules.Stories
                 Else
 
                     'Populate latitude/longitude textbox for new story
-                    Dim geolocation As Location = StoryFunctions.GetDefaultLatLong()
-                    tbLocation.Text = CDbl(geolocation.latitude).ToString(New CultureInfo("")) & ", " & CDbl(geolocation.longitude).ToString(New CultureInfo(""))
-
+                    tbLocation.Text = StoryFunctions.GetDefaultLatLong(TabModuleId)
 
                     If Request.QueryString("tg") <> "" Then
                         pnlLanguages.Visible = False
@@ -271,7 +269,7 @@ Namespace DotNetNuke.Modules.Stories
                     q.First.TextSample = tbSample.Text
                 End If
 
-                SetStoryLatLong(tbLocation.Text, q.First)
+                StoryFunctions.SetStoryLatLong(tbLocation.Text, q.First, TabModuleId)
 
                 If acImage1.CheckAspect() Then
                     q.First.PhotoId = acImage1.FileId
@@ -340,7 +338,7 @@ Namespace DotNetNuke.Modules.Stories
                     insert.TranslationGroup = Request.QueryString("tg")
                 End If
 
-                SetStoryLatLong(tbLocation.Text, insert)
+                StoryFunctions.SetStoryLatLong(tbLocation.Text, insert, TabModuleId)
 
                 d.AP_Stories.InsertOnSubmit(insert)
                 d.SubmitChanges()
@@ -460,34 +458,6 @@ Namespace DotNetNuke.Modules.Stories
             cblTags.DataTextField = "TagName"
             cblTags.DataValueField = "StoryTagId"
             cblTags.DataBind()
-        End Sub
-
-        'Protected Function GetDefaultLatLong() As Location
-        '    Dim geolocation As New Location
-
-        '    If CType(TabModuleSettings(StoryFunctionsProperties.LatitudeKey), String) <> "" And
-        '    CType(TabModuleSettings(StoryFunctionsProperties.LongitudeKey), String) <> "" Then
-
-        '        geolocation.latitude = CDbl(TabModuleSettings(StoryFunctionsProperties.LatitudeKey))
-        '        geolocation.longitude = CDbl(TabModuleSettings(StoryFunctionsProperties.LongitudeKey))
-
-        '    Else
-        '        geolocation = Location.GetLocation(Request.ServerVariables("remote_addr"))
-        '    End If
-        '    Return geolocation
-
-        'End Function
-
-        Protected Sub SetStoryLatLong(ByRef location As String, ByRef story As AP_Story)
-            Dim geoLoc = location.Split(",")
-            If geoLoc.Count = 2 Then
-                story.Latitude = Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo(""))
-                story.Longitude = Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo(""))
-            Else 'the contents of the map textbox is empty
-                Dim geolocation As Location = StoryFunctions.GetDefaultLatLong()
-                story.Latitude = geolocation.latitude
-                story.Longitude = geolocation.longitude
-            End If
         End Sub
 
 #End Region 'Helper Functions

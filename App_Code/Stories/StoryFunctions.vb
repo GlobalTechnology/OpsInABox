@@ -573,6 +573,38 @@ Public Class StoryFunctions
 
 #End Region 'Boost/Block
 
+#Region "Latitude/Longitude"
+
+    Public Shared Function GetDefaultLatLong(ByVal TabModuleId As Integer) As String
+        Dim d As New StoriesDataContext
+        Dim location As String = ""
+        Dim localChannel = (From c In d.AP_Stories_Module_Channels
+                            Where c.Type = 2 _
+                            And c.AP_Stories_Module.TabModuleId = TabModuleId).First
+
+        If (localChannel.Latitude IsNot Nothing And localChannel.Longitude IsNot Nothing) Then
+            location = CDbl(localChannel.Latitude).ToString(New CultureInfo("")) & ", " & CDbl(localChannel.Longitude).ToString(New CultureInfo(""))
+        Else
+            location = HttpContext.Current.Request.ServerVariables("REMOTE_ADDR")
+        End If
+        Return location
+
+    End Function
+
+    Public Shared Sub SetStoryLatLong(ByRef location As String, ByRef story As AP_Story, ByVal TabModuleId As Integer)
+        Dim geoLoc = location.Split(",")
+        If geoLoc.Count = 2 Then
+            story.Latitude = Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo(""))
+            story.Longitude = Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo(""))
+        Else 'the contents of the map textbox is empty
+            Dim geoLocation As String = StoryFunctions.GetDefaultLatLong(TabModuleId)
+            story.Latitude = Double.Parse(geoLocation.Split(",")(0).Replace(" ", ""), New CultureInfo(""))
+            story.Longitude = Double.Parse(geoLocation.Split(",")(1).Replace(" ", ""), New CultureInfo(""))
+        End If
+    End Sub
+
+#End Region 'Latitude/Longitude
+
     Public Shared Function GetPhotoURL(ByVal imageId As Nullable(Of Integer)) As String
 
         Dim imageUrl As String
@@ -963,22 +995,6 @@ Public Class StoryFunctions
 
     Private Shared Function rad2deg(ByVal rad As Double) As Double
         Return rad / Math.PI * 180.0
-    End Function
-
-    Public Shared Function GetDefaultLatLong() As Location
-        Dim geolocation As New Location
-
-        If CType(TabModuleSettings(StoryFunctionsProperties.LatitudeKey), String) <> "" And
-        CType(TabModuleSettings(StoryFunctionsProperties.LongitudeKey), String) <> "" Then
-
-            geolocation.latitude = CDbl(TabModuleSettings(StoryFunctionsProperties.LatitudeKey))
-            geolocation.longitude = CDbl(TabModuleSettings(StoryFunctionsProperties.LongitudeKey))
-
-        Else
-            geolocation = Location.GetLocation(Request.ServerVariables("remote_addr"))
-        End If
-        Return geolocation
-
     End Function
 
 End Class
