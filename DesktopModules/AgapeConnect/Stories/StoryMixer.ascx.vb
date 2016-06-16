@@ -434,7 +434,12 @@ Namespace DotNetNuke.Modules.Stories
                     tbTitle.Text = q.First.ChannelTitle
                     tbLocation.Text = q.First.Latitude.Value.ToString(New CultureInfo("")) & ", " & q.First.Longitude.Value.ToString(New CultureInfo(""))
                     ddlLanguages.SelectedValue = q.First.Language.ToLower
-                    cbAutoDetectLanguage.Checked = q.First.AutoDetectLanguage
+                    If (q.First.AutoDetectLanguage IsNot Nothing) Then
+                        cbAutoDetectLanguage.Checked = q.First.AutoDetectLanguage
+                    Else
+                        cbAutoDetectLanguage.Checked = False
+                    End If
+
                     Try
                         icImage.FileId = q.First.ImageId
 
