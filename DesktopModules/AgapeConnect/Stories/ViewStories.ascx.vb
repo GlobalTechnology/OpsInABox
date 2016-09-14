@@ -54,62 +54,63 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             If Not Page.IsPostBack Then
 
                 Dim tagsQueryString As String = Request.QueryString(TAGS_KEYWORD)
+                Dim validTagQueryList = StoryFunctions.ValidTagList(tagsQueryString, TabModuleId)
 
-                If Not String.IsNullOrEmpty(Settings("TagListControlId")) And (tagsQueryString = "") Then ' Show tag list for current Story module
+                'NO tag is chosen or NO valid tag is in query string
+                'Will show a list of stories or a list of tags
+                If (validTagQueryList.Count < 1) Then
 
-                    Dim dControl = From c In d.AP_Stories_Controls Where c.StoryControlId = CInt(Settings("TagListControlId"))
+                    'A tag list is viewable
+                    If Not String.IsNullOrEmpty(Settings("TagListControlId")) Then
+                        Dim control = StoryFunctions.GetStoryControlLocation(Settings("TagListControlId"))
+                        LoadStoryControl(control.Location, validTagQueryList, True)
 
-                    If dControl.Count > 0 Then
+                    Else  'A tag list is not viewable
 
-                        LoadStoryControl(dControl.First.Location, True)
+                        'Load default Display Type (first row in database) if none defined
+                        If String.IsNullOrEmpty(Settings("StoryControlId")) Then
+                            Dim control = StoryFunctions.GetStoryControlLocation(StoryFunctionsProperties.FIRST_CONTROL)
+                            LoadStoryControl(control.Location, validTagQueryList, control.Type = 2)
 
-                    End If
-
-                Else ' Show list of stories
-
-                    If String.IsNullOrEmpty(Settings("StoryControlId")) Then 'Load default Display Type if none defined in module settings
-                        If d.AP_Stories_Controls.Count > 0 Then
-                            LoadStoryControl(d.AP_Stories_Controls.First.Location)
-                        End If
-                    Else 'Load Display Type defined in module settings
-
-                        Dim dControl = From c In d.AP_Stories_Controls Where c.StoryControlId = CInt(Settings("StoryControlId"))
-
-                        If dControl.Count > 0 Then
-
-                            LoadStoryControl(dControl.First.Location, dControl.First.Type = 2)
-
-                            ' HTML Meta tags for social media for tags
-                            If Not (tagsQueryString = "") Then
-
-                                'select first tag for getting image in case there is more than one tag selected
-                                Dim firstTag As String = tagsQueryString.Split(",").First
-
-                                StoryFunctions.SetSocialMediaMetaTags(StoryFunctions.GetPhotoURL(StoryFunctions.GetTagByName(firstTag, TabModuleId).PhotoId),
-                                                                       TabController.CurrentPage.TabName & " " & StoryFunctions.FormatTagsSelected(tagsQueryString),
-                                                                       TabController.CurrentPage.FullUrl & TAGS_IN_URL & tagsQueryString,
-                                                                       TabController.CurrentPage.Description,
-                                                                       PortalSettings.PortalName,
-                                                                       StaffBrokerFunctions.GetSetting("FacebookId", PortalSettings.PortalId),
-                                                                       StoryFunctionsProperties.SOCIAL_MEDIA_ARTICLE,
-                                                                       Page.Header.Controls)
-                            End If
-
+                        Else  'Load Display Type defined in module settings
+                            Dim control = StoryFunctions.GetStoryControlLocation(Settings("StoryControlId"))
+                            LoadStoryControl(control.Location, validTagQueryList, control.Type = 2)
                         End If
 
                     End If
 
+                Else ' Show list of stories that correspond to the valid tag(s)
+
+                    'Load default Display Type (first row in database) if none defined
+                    If String.IsNullOrEmpty(Settings("StoryControlId")) Then
+                        Dim control = StoryFunctions.GetStoryControlLocation(StoryFunctionsProperties.FIRST_CONTROL)
+                        LoadStoryControl(control.Location, validTagQueryList, control.Type = 2)
+
+                    Else  'Load Display Type defined in module settings
+                        Dim control = StoryFunctions.GetStoryControlLocation(Settings("StoryControlId"))
+                        LoadStoryControl(control.Location, validTagQueryList, control.Type = 2)
+
+                        'Html Meta tags for social media for tags
+                        Dim tag = StoryFunctions.GetTagByName(validTagQueryList.First, TabModuleId)
+
+                        StoryFunctions.SetSocialMediaMetaTags(StoryFunctions.GetPhotoURL(tag.PhotoId),
+                                                                   TabController.CurrentPage.TabName & " " & StoryFunctions.FormatTagsSelected(tagsQueryString),
+                                                                   TabController.CurrentPage.FullUrl & TAGS_IN_URL & tagsQueryString,
+                                                                   TabController.CurrentPage.Description,
+                                                                   PortalSettings.PortalName,
+                                                                   StaffBrokerFunctions.GetSetting("FacebookId", PortalSettings.PortalId),
+                                                                   StoryFunctionsProperties.SOCIAL_MEDIA_ARTICLE,
+                                                                   Page.Header.Controls)
+                    End If
                 End If
-
             End If
-
         End Sub
 
 #End Region 'Base Method Implementations
 
 #Region "Helper Functions"
 
-        Private Sub LoadStoryControl(ByVal URL As String, Optional IsList As Boolean = False)
+        Private Sub LoadStoryControl(ByVal URL As String, ByVal validTagQueryList As List(Of String), Optional IsList As Boolean = False)
 
             Dim l As Location = Location.GetLocation(Request.ServerVariables("remote_addr"))
             Dim lg = l.longitude
@@ -130,7 +131,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             Dim N As Integer = Settings("NumberOfStories")
             If IsList Then
                 N = 500
-
             End If
 
             If Settings("WeightRegional") <> "" Then
@@ -143,20 +143,31 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
             Dim culture = CultureInfo.CurrentCulture.Name.ToLower
 
-            Dim r = From c In d.AP_Stories_Module_Channel_Caches Select c, ViewOrder = CDbl(c.Precal) * (CDbl(1.0 + (Math.Log(c.Clicks) * P / 200))) * (1.0 + (G * (CDbl(1.0) - CDbl(CDbl(Math.Min(CDbl(200), ((Math.Acos(CDbl(Math.Sin(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Sin(deg2Rad * CDbl(c.Latitude))) + CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(c.Latitude))) * CDbl(Math.Cos(CDbl(deg2Rad) * (CDbl(lg) - CDbl(c.Longitude)))))) / CDbl(Math.PI) * CDbl(180.0)) * CDbl(1.1515) * CDbl(60.0))) / CDbl(200.0)))) / CDbl(2.0))
+            Dim sortedChannelCache = From channelCache In d.AP_Stories_Module_Channel_Caches Select channelCache, ViewOrder = CDbl(channelCache.Precal) * (CDbl(1.0 + (Math.Log(channelCache.Clicks) * P / 200))) * (1.0 + (G * (CDbl(1.0) - CDbl(CDbl(Math.Min(CDbl(200), ((Math.Acos(CDbl(Math.Sin(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Sin(deg2Rad * CDbl(channelCache.Latitude))) + CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(channelCache.Latitude))) * CDbl(Math.Cos(CDbl(deg2Rad) * (CDbl(lg) - CDbl(channelCache.Longitude)))))) / CDbl(Math.PI) * CDbl(180.0)) * CDbl(1.1515) * CDbl(60.0))) / CDbl(200.0)))) / CDbl(2.0))
 
-            If (Request.QueryString("tags") <> "") Then
+            If (validTagQueryList.Count > 0) Then
 
-                Dim tagList = Request.QueryString("tags").Split(",")
-
-                r = From c In r Join b In d.AP_Stories On CInt(c.c.GUID) Equals b.StoryId Where b.AP_Stories_Tag_Metas.Where(Function(x) tagList.Contains(x.AP_Stories_Tag.TagName)).Count > 0 Select c
+                sortedChannelCache = From c In sortedChannelCache
+                                     Join stories In d.AP_Stories On CInt(c.channelCache.GUID) Equals stories.StoryId
+                                     Where stories.AP_Stories_Tag_Metas.Where(Function(x) validTagQueryList.Contains(x.AP_Stories_Tag.TagName)).Count > 0
+                                     Select c
 
             End If
 
-            r = r.Where(Function(c) CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToLower = c.c.Langauge.Substring(0, 2) And c.c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = TabModuleId And Not c.c.Block) _
-                            .OrderByDescending(Function(c) c.ViewOrder) _
-                        .Take(N)
-            Dim storyList = r.Select(Function(x) x.c).ToList()
+            sortedChannelCache = sortedChannelCache.Where(Function(c) CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToLower = c.channelCache.Langauge.Substring(0, 2) And
+                                                              c.channelCache.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = TabModuleId And Not _
+                                                              c.channelCache.Block) _
+                                                              .OrderByDescending(Function(c) c.ViewOrder) _
+                                                              .Take(N)
+
+            Dim storyList = sortedChannelCache.Select(Function(x) x.channelCache).ToList()
+
+            If (Request.QueryString(TAGS_KEYWORD) <> "") Then
+                Dim absoluteURL As String = HttpContext.Current.Request.Url.AbsoluteUri
+                Dim seperateURL As String() = absoluteURL.Split("?")
+                'TODO http://www.c-sharpcorner.com/blogs/add-remove-or-modify-the-query-string-value-in-url-in-asp-net1
+
+            End If
 
             phStoryControl.Controls.Clear()
             theControl = LoadControl(URL)
