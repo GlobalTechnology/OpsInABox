@@ -11,6 +11,7 @@ Imports StaffBrokerFunctions
 Imports Stories
 Imports DotNetNuke.Services.FileSystem
 Imports DotNetNuke.Entities.Modules
+Imports System.Reflection
 
 Namespace DotNetNuke.Modules.AgapeConnect.Stories
     Partial Class ViewStories
@@ -54,7 +55,27 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             If Not Page.IsPostBack Then
 
                 Dim tagsQueryString As String = Request.QueryString(TAGS_KEYWORD)
-                Dim validTagQueryList = StoryFunctions.ValidTagList(tagsQueryString, TabModuleId)
+                Dim validTagQueryList As List(Of String) = StoryFunctions.ValidTagList(tagsQueryString, TabModuleId)
+                Dim cleanTagsQueryString As String = String.Join(",", validTagQueryList)
+
+                'If tags query string isn't empty and it is different from the clean query string
+                'make query string editable, remove tags query string and add clean tags query string.
+                If ((Not String.IsNullOrEmpty(tagsQueryString)) And (Not String.Equals(cleanTagsQueryString, tagsQueryString))) Then
+
+                    Dim isreadonly As PropertyInfo = GetType(System.Collections.Specialized.NameValueCollection).GetProperty("IsReadOnly", BindingFlags.Instance Or BindingFlags.NonPublic)
+
+                    ' make collection editable
+                    isreadonly.SetValue(Me.Request.QueryString, False, Nothing)
+
+                    ' remove
+                    Me.Request.QueryString.Remove(TAGS_KEYWORD)
+
+                    ' add
+                    Me.Request.QueryString.Add(TAGS_KEYWORD, cleanTagsQueryString)
+
+                    ' make collection read only again
+                    isreadonly.SetValue(Me.Request.QueryString, True, Nothing)
+                End If
 
                 'NO tag is chosen or NO valid tag is in query string
                 'Will show a list of stories or a list of tags
@@ -161,13 +182,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                                                               .Take(N)
 
             Dim storyList = sortedChannelCache.Select(Function(x) x.channelCache).ToList()
-
-            If (Request.QueryString(TAGS_KEYWORD) <> "") Then
-                Dim absoluteURL As String = HttpContext.Current.Request.Url.AbsoluteUri
-                Dim seperateURL As String() = absoluteURL.Split("?")
-                'TODO http://www.c-sharpcorner.com/blogs/add-remove-or-modify-the-query-string-value-in-url-in-asp-net1
-
-            End If
 
             phStoryControl.Controls.Clear()
             theControl = LoadControl(URL)
