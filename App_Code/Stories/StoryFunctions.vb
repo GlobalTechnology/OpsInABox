@@ -16,11 +16,9 @@ Namespace Stories
 
             Dim mc = New DotNetNuke.Entities.Modules.ModuleController
 
+            Dim Stories = StoryFunctions.GetVisibleNonBlockedStories(ModInfo.TabModuleID, ModInfo.PortalID)
 
-
-            Dim Stories = From c In d.AP_Stories Where c.PortalID = ModInfo.PortalID And c.TabId = ModInfo.TabID And c.IsVisible = True
-
-
+            'Dim Stories = From c In d.AP_Stories Where c.PortalID = ModInfo.PortalID And c.TabId = ModInfo.TabID And c.IsVisible = True
 
             'From c In d.AP_Stories_Module_Channel_Caches Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = ModInfo.TabModuleID()
 
@@ -388,6 +386,21 @@ Public Class StoryFunctions
         Return From c In d.AP_Stories_Module_Channel_Caches
                Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = tabModuleID _
                                 And c.GUID = storyID
+    End Function
+
+    'Returns only visible and non-blocked stories 
+    Public Shared Function GetVisibleNonBlockedStories(ByVal TabModuleID As Integer, ByVal portalID As Integer) As IQueryable(Of AP_Story)
+        Dim d As New StoriesDataContext
+
+        Dim stories As IQueryable(Of AP_Story) = From story In d.AP_Stories
+                                                 Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId
+                                                 Where story.PortalID = portalID _
+                                                     And story.TabModuleId = TabModuleID _
+                                                     And story.IsVisible = True _
+                                                     And channel.Block = False _
+                                                     And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId
+                                                 Select story
+        Return stories
     End Function
 
     Public Shared Function IsStoryType(ByVal story As AP_Story, ByVal type As String) As Boolean
