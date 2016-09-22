@@ -18,10 +18,6 @@ Namespace Stories
 
             Dim Stories = StoryFunctions.GetVisibleNonBlockedStories(ModInfo.TabModuleID, ModInfo.PortalID)
 
-            'Dim Stories = From c In d.AP_Stories Where c.PortalID = ModInfo.PortalID And c.TabId = ModInfo.TabID And c.IsVisible = True
-
-            'From c In d.AP_Stories_Module_Channel_Caches Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = ModInfo.TabModuleID()
-
             For Each row In Stories
 
                 ' Dim t = mc.GetTabModule(row.TabModuleId)
@@ -393,12 +389,11 @@ Public Class StoryFunctions
         Dim d As New StoriesDataContext
 
         Dim stories As IQueryable(Of AP_Story) = From story In d.AP_Stories
-                                                 Join channel In d.AP_Stories_Module_Channel_Caches On channel.GUID Equals story.StoryId
+                                                 Join channelCache In d.AP_Stories_Module_Channel_Caches On channelCache.GUID Equals story.StoryId
                                                  Where story.PortalID = portalID _
                                                      And story.TabModuleId = TabModuleID _
                                                      And story.IsVisible = True _
-                                                     And channel.Block = False _
-                                                     And channel.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = story.TabModuleId
+                                                     And channelCache.Block = False
                                                  Select story
         Return stories
     End Function
