@@ -16,13 +16,7 @@ Namespace Stories
 
             Dim mc = New DotNetNuke.Entities.Modules.ModuleController
 
-
-
-            Dim Stories = From c In d.AP_Stories Where c.PortalID = ModInfo.PortalID And c.TabId = ModInfo.TabID And c.IsVisible = True
-
-
-
-            'From c In d.AP_Stories_Module_Channel_Caches Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = ModInfo.TabModuleID()
+            Dim Stories = StoryFunctions.GetVisibleNonBlockedStories(ModInfo.TabModuleID, ModInfo.PortalID)
 
             For Each row In Stories
 
@@ -95,6 +89,7 @@ Public Module StoryFunctionsProperties
     Public Const TAGS_IN_URL As String = "?tags="
     Public Const TAGS_KEYWORD As String = "tags"
     Public Const SUPERPOWERS_TEMPLATE_KEY As String = "[SUPERPOWERS]"
+    Public Const FIRST_CONTROL As String = "FIRST"
 
     Public imageExtensions() As String = {"jpg", "jpeg", "gif", "png", "bmp"}
     Public noImage As String = "/images/no-content.png?"
@@ -196,7 +191,34 @@ Public Class StoryFunctions
 
     Public Shared Function GetTagByName(ByVal name As String, ByVal TabModuleId As Integer) As AP_Stories_Tag
         Dim d As New StoriesDataContext
-        Return (From c In GetTags(TabModuleId) Where c.TagName = name).First
+        Dim tag As New AP_Stories_Tag
+        Dim tags = (From c In GetTags(TabModuleId) Where c.TagName = name)
+        If tags.Count > 0 Then
+            tag = tags.First
+        End If
+        Return tag
+    End Function
+
+    Public Shared Function IsTagValid(ByVal name As String, ByVal TabModuleId As Integer) As Boolean
+        Dim d As New StoriesDataContext
+        Return (From c In GetTags(TabModuleId) Where c.TagName = name).Count > 0
+    End Function
+
+    Public Shared Function ValidTagList(ByVal tagsString As String, ByVal TabModuleId As Integer) As List(Of String)
+        Dim d As New StoriesDataContext
+        Dim validTags As New List(Of String)
+
+        If Not String.IsNullOrEmpty(tagsString) Then
+            Dim tagList As New List(Of String)(tagsString.Split(","))
+
+            For Each tag In tagList
+                If (IsTagValid(tag, TabModuleId)) Then
+                    validTags.Add(tag)
+                End If
+            Next
+        End If
+
+        Return validTags
     End Function
 
     Public Shared Sub SetTag(ByVal name As String, ByVal TabModuleId As Integer)
@@ -362,6 +384,20 @@ Public Class StoryFunctions
                                 And c.GUID = storyID
     End Function
 
+    'Returns only visible and non-blocked stories 
+    Public Shared Function GetVisibleNonBlockedStories(ByVal TabModuleID As Integer, ByVal portalID As Integer) As IQueryable(Of AP_Story)
+        Dim d As New StoriesDataContext
+
+        Dim stories As IQueryable(Of AP_Story) = From story In d.AP_Stories
+                                                 Join channelCache In d.AP_Stories_Module_Channel_Caches On channelCache.GUID Equals story.StoryId
+                                                 Where story.PortalID = portalID _
+                                                     And story.TabModuleId = TabModuleID _
+                                                     And story.IsVisible = True _
+                                                     And channelCache.Block = False
+                                                 Select story
+        Return stories
+    End Function
+
     Public Shared Function IsStoryType(ByVal story As AP_Story, ByVal type As String) As Boolean
         Dim d As New StoriesDataContext
         Return (From c In story.AP_Stories_Tag_Metas Where c.AP_Stories_Tag.TagName = type).Count > 0
@@ -475,6 +511,28 @@ Public Class StoryFunctions
     End Function
 
 #End Region 'Story
+
+#Region "Story Controls"
+
+    Public Shared Function GetStoryControlLocation(ByVal storyControlId As String) As AP_Stories_Control
+        Dim d As New StoriesDataContext
+        Dim control As New AP_Stories_Control
+
+        If String.Equals(StoryFunctionsProperties.FIRST_CONTROL, storyControlId) Then
+            control = d.AP_Stories_Controls.First
+        Else
+
+            Dim controls = From c In d.AP_Stories_Controls Where c.StoryControlId = CInt(storyControlId)
+            If controls.Count > 0 Then
+                control = controls.First
+            End If
+
+        End If
+
+        Return control
+    End Function
+
+#End Region
 
 #Region "Templates"
 

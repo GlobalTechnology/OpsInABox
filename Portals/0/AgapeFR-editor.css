@@ -12,3 +12,54 @@ body {
     text-align: left;
 }
 
+/* display in Style CSS menu */
+.button {
+    color: white;
+    border: 1px #3784cd solid;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+
+    background: #3784cd;  /* Old browsers */
+    background: -moz-linear-gradient(top,  #3784cd 0%, #4aa1e5 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3784cd), color-stop(100%,#4aa1e5)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #3784cd 0%,#4aa1e5 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #3784cd 0%,#4aa1e5 100%); /* Opera 11.10+ */
+    background: #3784cd -ms-linear-gradient(top,  #3784cd 0%,#4aa1e5 100%); /* IE10+ */ /* Fixed color before gradient solves a transparent bar on the left with IE10+ */
+    background: #3784cd linear-gradient(to bottom,  #3784cd 0%,#4aa1e5 100%); /* W3C */ /* Fixed color before gradient solves a transparent bar on the left with IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3784cd', endColorstr='#4aa1e5',GradientType=0 ); /* IE6-9 */
+}
+
+/* display in editor */
+a.button {
+    height: 42px;
+    line-height: 42px;
+    display: inline-block;
+    padding: 0px 20px 0 20px;
+    font-family: OpenSansSemiBold;
+    font-size: medium;
+    font-weight: normal;
+    white-space: nowrap;
+    color: white;
+    border: 1px #3784cd solid;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+  
+    background: #3784cd; /* Old browsers */
+    background: -moz-linear-gradient(top,  #3784cd 0%, #4aa1e5 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3784cd), color-stop(100%,#4aa1e5)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #3784cd 0%,#4aa1e5 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #3784cd 0%,#4aa1e5 100%); /* Opera 11.10+ */
+    background: #3784cd -ms-linear-gradient(top,  #3784cd 0%,#4aa1e5 100%); /* IE10+ */ /* Fixed color before gradient solves a transparent bar on the left with IE10+ */
+    background: #3784cd linear-gradient(to bottom,  #3784cd 0%,#4aa1e5 100%); /* W3C */ /* Fixed color before gradient solves a transparent bar on the left with IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3784cd', endColorstr='#4aa1e5',GradientType=0 ); /* IE6-9 */
+
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    text-shadow: none;
+    text-decoration: none;
+}
+
+
+
