@@ -113,7 +113,7 @@ End Module
 'ViewStory constants
 Public Module ViewStoryConstants
 
-    Public Const STORYID As String = "StoryID"
+    Public Const STORYID As String = "StoryId"
     Public Const BOOSTED As String = "Boosted"
     Public Const BLOCKED As String = "Blocked"
     Public Const TEMPLATE_SETTING As String = "template"
@@ -1027,6 +1027,8 @@ Public Class StoryFunctions
 
     End Sub
 
+#Region "Helper functions"
+
     Public Shared Function distance(ByVal lat1 As Double, ByVal lon1 As Double, ByVal lat2 As Double, ByVal lon2 As Double) As Double
 
         Dim theta As Double = lon1 - lon2
@@ -1043,8 +1045,6 @@ Public Class StoryFunctions
         Dim w As Double = 1.0 - dist / 200
         Return (1.0 + w) / 2.0
 
-
-
     End Function
 
     Private Shared Function deg2rad(ByVal deg As Double) As Double
@@ -1054,6 +1054,17 @@ Public Class StoryFunctions
     Private Shared Function rad2deg(ByVal rad As Double) As Double
         Return rad / Math.PI * 180.0
     End Function
+
+    Public Shared Function IsInt(ByVal value As Object) As Boolean
+        Try
+            Dim temp As Integer = CInt(value)
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+#End Region 'Helper functions
 
 End Class
 
