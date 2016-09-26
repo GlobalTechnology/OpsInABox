@@ -4,18 +4,7 @@
 'Purpose :  Builds the fields that are used in the Story 
 '           templates for showing the related/associated Stories.
 '===============================================================
-Imports DotNetNuke
-Imports DotNetNuke.UI.Skins.Controls.ModuleMessage
-Imports System.Web.UI
-Imports System.Collections.Generic
-Imports System.Reflection
-Imports System.Math
-Imports System.Net
 Imports System.IO
-Imports System.Text
-Imports System.Net.Mail
-Imports System.Collections.Specialized
-Imports System.Linq
 Imports Stories
 
 Namespace DotNetNuke.Modules.FullStory
@@ -39,9 +28,11 @@ Namespace DotNetNuke.Modules.FullStory
 
             Dim storyIdString As String = Request.QueryString(ViewStoryConstants.STORYID)
 
-            If (StoryFunctions.IsInt(storyIdString)) Then
-                'TODO need to handle if story isn't found or if it isn't published
-                Dim story As AP_Story = StoryFunctions.GetStory(CInt(storyIdString))
+            Dim story As AP_Story = StoryFunctions.GetStory(storyIdString)
+
+            'Story isn't found or it isn't published
+            If (story.IsVisible Or IsEditable Or UserInfo.IsInRole("Administrators") Or UserInfo.IsSuperUser) Then
+
                 Dim thecache As IQueryable(Of AP_Stories_Module_Channel_Cache) = StoryFunctions.GetStoryInCache(story.StoryId, story.TabModuleId)
 
                 'Boost/Block section
@@ -83,8 +74,6 @@ Namespace DotNetNuke.Modules.FullStory
                     Return
                 End If
                 'End Boost/Block section
-
-                PagePanel.Visible = True
 
                 Dim template As String = TemplateActions(story)
 

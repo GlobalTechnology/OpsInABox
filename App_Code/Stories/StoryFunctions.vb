@@ -372,9 +372,18 @@ Public Class StoryFunctions
 
 #Region "Story"
 
-    Public Shared Function GetStory(ByVal storyID As Integer) As AP_Story
+    Public Shared Function GetStory(ByVal storyID As String) As AP_Story
         Dim d As New StoriesDataContext
-        Return (From c In d.AP_Stories Where c.StoryId = storyID).First
+        Dim story As New AP_Story
+
+        If (IsInt(storyID)) Then
+            Dim storyQuery As IQueryable(Of AP_Story) = From c In d.AP_Stories Where c.StoryId = storyID
+            If (storyQuery.Count > 0) Then
+                story = storyQuery.First
+            End If
+        End If
+
+        Return story
     End Function
 
     Public Shared Function GetStoryInCache(ByVal storyID As Integer, ByVal tabModuleID As Integer) As IQueryable(Of AP_Stories_Module_Channel_Cache)
