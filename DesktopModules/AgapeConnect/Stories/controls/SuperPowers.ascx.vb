@@ -121,9 +121,8 @@ Partial Class DesktopModules_SuperPowers
 
     End Sub
 
-    Protected Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEdit.Click
+    Protected Sub Edit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEdit.Click
         Response.Redirect(_editUrl & "?StoryID=" & Request.QueryString("StoryID"))
-
     End Sub
 
     Protected Sub btnNew_Click(sender As Object, e As System.EventArgs) Handles btnNew.Click

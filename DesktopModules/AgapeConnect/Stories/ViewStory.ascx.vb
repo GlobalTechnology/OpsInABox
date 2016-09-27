@@ -12,6 +12,7 @@ Namespace DotNetNuke.Modules.FullStory
 
     Partial Class ViewFullStory
         Inherits Entities.Modules.PortalModuleBase
+        ' Implements Entities.Modules.IActionable
 
 #Region "Constants"
 
@@ -30,76 +31,78 @@ Namespace DotNetNuke.Modules.FullStory
 
             Dim story As AP_Story = StoryFunctions.GetStory(storyIdString)
 
-            'Story isn't found or it isn't published
-            If (story.IsVisible Or IsEditable Or UserInfo.IsInRole("Administrators") Or UserInfo.IsSuperUser) Then
+            'Check if story isn't found or it isn't published 
+            If (story.IsVisible Or IsEditable Or UserInfo.IsInRole("Administrators")) Then
 
-                Dim thecache As IQueryable(Of AP_Stories_Module_Channel_Cache) = StoryFunctions.GetStoryInCache(story.StoryId, story.TabModuleId)
+                Dim thecache As AP_Stories_Module_Channel_Cache = StoryFunctions.GetStoryInCache(story.StoryId, story.TabModuleId)
 
-                'Boost/Block section
-                Dim RequestBoosted As String = Request.Form(BOOSTED)
-                If Not String.IsNullOrEmpty(RequestBoosted) Then
-                    Dim requestIsBoosted As Boolean = CBool(RequestBoosted)
-                    Dim requestIsBlocked As Boolean = CBool(Request.Form(BLOCKED))
+                If (Not String.IsNullOrEmpty(thecache.Headline)) Then
 
-                    If thecache.Count > 0 Then
-                        If requestIsBlocked And Not thecache.First.Block Then
+                    'Boost/Block section
+                    Dim RequestBoosted As String = Request.Form(BOOSTED)
+                    If Not String.IsNullOrEmpty(RequestBoosted) Then
+                        Dim requestIsBoosted As Boolean = CBool(RequestBoosted)
+                        Dim requestIsBlocked As Boolean = CBool(Request.Form(BLOCKED))
 
-                            StoryFunctions.BlockStoryAccrossSite(thecache.First.Link)
 
-                        ElseIf (Not requestIsBlocked) And thecache.First.Block Then
-                            StoryFunctions.UnBlockStoryAccrossSite(thecache.First.Link)
+                        If requestIsBlocked And Not thecache.Block Then
+
+                            StoryFunctions.BlockStoryAccrossSite(thecache.Link)
+
+                        ElseIf (Not requestIsBlocked) And thecache.Block Then
+                            StoryFunctions.UnBlockStoryAccrossSite(thecache.Link)
                         End If
 
-                        Dim changed As Boolean = False
-                        Dim changedDate As New System.Nullable(Of Date)
-                        If (Not requestIsBlocked) And requestIsBoosted Then
-                            changed = True
-                            If Not thecache.First.BoostDate Is Nothing Then
+                            Dim changed As Boolean = False
+                            Dim changedDate As New System.Nullable(Of Date)
+                            If (Not requestIsBlocked) And requestIsBoosted Then
+                                changed = True
+                            If Not thecache.BoostDate Is Nothing Then
                                 changedDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
                             Else
                                 changedDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
+                                End If
+
+                            ElseIf (Not requestIsBlocked) And (Not requestIsBoosted) Then
+                                changedDate = Nothing
+                                changed = True
+                            End If
+                            If changed Then
+                            StoryFunctions.SetBoostDate(thecache.GUID, changedDate, story.TabModuleId)
+                            Dim theMod = StoryFunctions.GetStoryModule(TabModuleId)
+                            StoryFunctions.RefreshFeed(story.TabModuleId, thecache.ChannelId, True)
+                            StoryFunctions.PrecalAllCaches(story.TabModuleId)
                             End If
 
-                        ElseIf (Not requestIsBlocked) And (Not requestIsBoosted) Then
-                            changedDate = Nothing
-                            changed = True
                         End If
-                        If changed Then
-                            StoryFunctions.SetBoostDate(thecache.First.GUID, changedDate, story.TabModuleId)
-                            Dim theMod = StoryFunctions.GetStoryModule(TabModuleId)
-                            StoryFunctions.RefreshFeed(story.TabModuleId, thecache.First.ChannelId, True)
-                            StoryFunctions.PrecalAllCaches(story.TabModuleId)
-                        End If
+                    'End Boost/Block section
+
+                    Dim template As String = TemplateActions(story)
+
+                    'Setup display of SuperPowers and template together
+                    Dim superpowersIndex As Integer = template.IndexOf(SUPERPOWERS_TEMPLATE_KEY)
+                    If (superpowersIndex < 0) Then
+                        ltStory1.Text = template
+                        ltStory2.Text = ""
+                    Else
+                        ltStory1.Text = template.Substring(0, superpowersIndex)
+                        ltStory2.Text = template.Substring(superpowersIndex + SUPERPOWERS_TEMPLATE_KEY.Length)
                     End If
-                    Return
-                End If
-                'End Boost/Block section
 
-                Dim template As String = TemplateActions(story)
-
-                'SuperPowers
-                Dim superpowersIndex As Integer = template.IndexOf(SUPERPOWERS_TEMPLATE_KEY)
-                If (superpowersIndex < 0) Then
-                    ltStory1.Text = template
-                    ltStory2.Text = ""
+                    'If in edit mode
+                    If IsEditable Then
+                        SuperPowers.Visible = True
+                        SuperPowers.CacheId = thecache.CacheId
+                        SuperPowers.SuperEditor = UserInfo.IsSuperUser
+                        SuperPowers.EditUrl = NavigateURL(CInt(GetTabId(Request.QueryString("origTabId"))), "AddEditStory", {"mid", GetModId(Request.QueryString("origModId"))})
+                        SuperPowers.PortalId = PortalId
+                        SuperPowers.SetControls()
+                    End If
                 Else
-                    ltStory1.Text = template.Substring(0, superpowersIndex)
-                    ltStory2.Text = template.Substring(superpowersIndex + SUPERPOWERS_TEMPLATE_KEY.Length)
+                    Response.Redirect(NavigateURL(PortalSettings.Current.ErrorPage404))
                 End If
-
-                If IsEditable Then
-                    SuperPowers.Visible = True
-                    If thecache.Count > 0 Then
-                        SuperPowers.CacheId = thecache.First.CacheId
-                    End If
-                    SuperPowers.SuperEditor = UserInfo.IsSuperUser
-                    SuperPowers.EditUrl = NavigateURL(CInt(GetTabId(Request.QueryString("origTabId"))), "AddEditStory", {"mid", GetModId(Request.QueryString("origModId"))})
-                    SuperPowers.PortalId = PortalId
-                    SuperPowers.SetControls()
-                End If
-
             Else
-                Response.Redirect(NavigateURL(PortalSettings.Current.ErrorPage404))
+                    Response.Redirect(NavigateURL(PortalSettings.Current.ErrorPage404))
             End If
         End Sub
 
@@ -356,6 +359,39 @@ Namespace DotNetNuke.Modules.FullStory
         End Function
 
 #End Region 'Helper functions for translation after France's migration to OIB
+
+        '#Region "Optional Interfaces"
+
+        '        Public ReadOnly Property ModuleActions() As Entities.Modules.Actions.ModuleActionCollection Implements Entities.Modules.IActionable.ModuleActions
+        '            Get
+
+        '                Dim Actions As New Entities.Modules.Actions.ModuleActionCollection
+
+        '                Actions.Add(GetNextActionID, LocalizeString(StoryFunctionsConstants.NewStoryControlKey),
+        '                            StoryFunctionsConstants.NewStoryControlKey, "", "eip_edit.png",
+        '                            NavigateURL(CInt(GetTabId(Request.QueryString("origTabId"))), "AddEditStory", {"mid", GetModId(Request.QueryString("origModId"))}), False, SecurityAccessLevel.Edit, True, False)
+        '                Actions.Add(GetNextActionID, LocalizeString(StoryFunctionsConstants.UnpublishedControlKey),
+        '                            StoryFunctionsConstants.UnpublishedControlKey, "", "icon_lists_16px.gif",
+        '                            EditUrl(StoryFunctionsConstants.UnpublishedControlKey), False, SecurityAccessLevel.Edit, True, False)
+        '                Actions.Add(GetNextActionID, LocalizeString(StoryFunctionsConstants.TagSettingsControlKey),
+        '                            StoryFunctionsConstants.TagSettingsControlKey, "", "action_settings.gif",
+        '                            EditUrl(StoryFunctionsConstants.TagSettingsControlKey), False, SecurityAccessLevel.Edit, True, False)
+
+        '                If UserInfo.IsInRole("Administrators") Or UserInfo.IsSuperUser Then
+        '                    Actions.Add(GetNextActionID, LocalizeString(StoryFunctionsConstants.StorySettingsControlKey),
+        '                                StoryFunctionsConstants.StorySettingsControlKey, "", "action_settings.gif",
+        '                                EditUrl(StoryFunctionsConstants.StorySettingsControlKey), False, SecurityAccessLevel.Edit, True, False)
+        '                End If
+
+        '                Actions.Add(GetNextActionID, LocalizeString(StoryFunctionsConstants.NewStoryControlKey),
+        '                            StoryFunctionsConstants.NewStoryControlKey, "", "add.gif",
+        '                            EditUrl(StoryFunctionsConstants.NewStoryControlKey), False, SecurityAccessLevel.Edit, True, False)
+
+        '                Return Actions
+        '            End Get
+        '        End Property
+
+        '#End Region
 
     End Class
 End Namespace

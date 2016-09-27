@@ -16,7 +16,7 @@ Namespace Stories
 
             Dim mc = New DotNetNuke.Entities.Modules.ModuleController
 
-            Dim Stories = StoryFunctions.GetVisibleNonBlockedStories(ModInfo.TabModuleID, ModInfo.PortalID)
+            Dim Stories = StoryFunctions.GetPublishedStories(ModInfo.TabModuleID, ModInfo.PortalID)
 
             For Each row In Stories
 
@@ -386,23 +386,28 @@ Public Class StoryFunctions
         Return story
     End Function
 
-    Public Shared Function GetStoryInCache(ByVal storyID As Integer, ByVal tabModuleID As Integer) As IQueryable(Of AP_Stories_Module_Channel_Cache)
+    Public Shared Function GetStoryInCache(ByVal storyID As Integer, ByVal tabModuleID As Integer) As AP_Stories_Module_Channel_Cache
         Dim d As New StoriesDataContext
-        Return From c In d.AP_Stories_Module_Channel_Caches
-               Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = tabModuleID _
-                                And c.GUID = storyID
+        Dim storyCache As New AP_Stories_Module_Channel_Cache
+
+        Dim storyCacheQuery As IQueryable(Of AP_Stories_Module_Channel_Cache) = From c In d.AP_Stories_Module_Channel_Caches
+                                                                                Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = tabModuleID _
+                                                                                And c.GUID = storyID
+        If (storyCacheQuery.Count > 0) Then
+            storyCache = storyCacheQuery.First
+        End If
+
+        Return storyCache
     End Function
 
-    'Returns only visible and non-blocked stories 
-    Public Shared Function GetVisibleNonBlockedStories(ByVal TabModuleID As Integer, ByVal portalID As Integer) As IQueryable(Of AP_Story)
+    'Returns only published stories 
+    Public Shared Function GetPublishedStories(ByVal TabModuleID As Integer, ByVal portalID As Integer) As IQueryable(Of AP_Story)
         Dim d As New StoriesDataContext
 
         Dim stories As IQueryable(Of AP_Story) = From story In d.AP_Stories
-                                                 Join channelCache In d.AP_Stories_Module_Channel_Caches On channelCache.GUID Equals story.StoryId
                                                  Where story.PortalID = portalID _
                                                      And story.TabModuleId = TabModuleID _
-                                                     And story.IsVisible = True _
-                                                     And channelCache.Block = False
+                                                     And story.IsVisible = True
                                                  Select story
         Return stories
     End Function
