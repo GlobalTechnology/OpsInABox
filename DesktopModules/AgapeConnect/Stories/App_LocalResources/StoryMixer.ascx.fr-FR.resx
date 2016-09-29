@@ -118,49 +118,55 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Age.Text" xml:space="preserve">
-    <value>Age of the story</value>
+    <value>L'âge de l'histoire</value>
+  </data>
+  <data name="Author.Text" xml:space="preserve">
+    <value>Auteur</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Fermer</value>
   </data>
   <data name="btnNewChannel.Text" xml:space="preserve">
-    <value>Add a new channel</value>
+    <value>Ajouter un nouveau chaine</value>
   </data>
   <data name="btnRefresh.Text" xml:space="preserve">
-    <value>Refresh cache</value>
+    <value>Actualiser le cache</value>
   </data>
   <data name="btnSave.Text" xml:space="preserve">
-    <value>Save</value>
+    <value>Enregistrer</value>
   </data>
   <data name="Clicks.Text" xml:space="preserve">
-    <value>Number of clicks</value>
+    <value>Nombre de clics</value>
   </data>
   <data name="Distance.Text" xml:space="preserve">
     <value>Distance</value>
   </data>
   <data name="Headline.Text" xml:space="preserve">
-    <value>Title</value>
+    <value>Titre</value>
   </data>
-  <data name="lblAspect.Help" xml:space="preserve">
-    <value>The site looks alot better when all of the main photos have a consistent aspect ratio (ie they are the same shape). Whenever someone uploads a story, they are asked to crop their photos using a tool that constrains their photos to a predefined aspect. You can specify that aspect here. For square, enter 1. If you want the image wider than it is high, enter a number greater than 1 (eg 1.3). If you want the image taller than it is wide, enter a number less than 1 (eg 0.8).</value>
-  </data>
-  <data name="lblAspect.Text" xml:space="preserve">
-    <value>PhotoAspect</value>
+  <data name="lblLocal.Text" xml:space="preserve">
+    <value>Localisée</value>
   </data>
   <data name="lblNumberOfStories.Help" xml:space="preserve">
-    <value>Enter the maximum number of stories to display in the module. Entering a large number here will increase the time it takes for the page to load. </value>
+    <value>Le nombre maximum d'histoires sur une page ou visible sur un carrousel.</value>
   </data>
   <data name="lblNumberOfStories.Text" xml:space="preserve">
-    <value>Number of Stories</value>
+    <value>Nombre d'histoires</value>
+  </data>
+  <data name="lblPopular.Text" xml:space="preserve">
+    <value>Populaire</value>
+  </data>
+  <data name="lblRecent.Text" xml:space="preserve">
+    <value>Récente</value>
   </data>
   <data name="lblSettings.Help" xml:space="preserve">
-    <value>To prioritize Popular stories, raise the 'Popular' slider. To prioritize stories that are geographicaly close to the to user, increase the the 'Local' slider.</value>
+    <value>Haut : ce critère a une priorité haute. Bas : ce critère a une priorité basse.</value>
   </data>
   <data name="lblSettings.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>La priorisation</value>
   </data>
   <data name="Precal.Text" xml:space="preserve">
-    <value>Calculated value</value>
+    <value>Note de calcul</value>
   </data>
   <data name="Score.Text" xml:space="preserve">
     <value>Score</value>

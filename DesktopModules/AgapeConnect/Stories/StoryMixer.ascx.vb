@@ -20,12 +20,14 @@ Namespace DotNetNuke.Modules.Stories
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
             Try
                 If (Page.IsPostBack = False) Then
+                    BuildPreviewHeaders()
                     LoadMixer()
                 End If
             Catch exc As Exception           'Module failed to load
                 ProcessModuleLoadException(Me, exc)
             End Try
         End Sub
+
         Protected Sub LoadMixer()
             If CType(TabModuleSettings("Aspect"), String) <> "" Then
                 icImage.Aspect = Double.Parse(TabModuleSettings("Aspect"), New CultureInfo("")).ToString(New CultureInfo(""))
@@ -117,6 +119,7 @@ Namespace DotNetNuke.Modules.Stories
         End Sub
 
 #End Region
+
         Private Sub PreviewResults()
             Dim l As Location = Location.GetLocation(Request.ServerVariables("remote_addr"))
 
@@ -454,6 +457,8 @@ Namespace DotNetNuke.Modules.Stories
             End If
         End Sub
 
+#Region "HelperFunctions"
+
         Public Function IsBoosted(ByVal CacheId As String, ByVal Boosted As Date?) As String
             If Boosted Is Nothing Then
                 Return "/DesktopModules/AgapeConnect/Stories/images/thumb_up_off.png"
@@ -576,6 +581,21 @@ Namespace DotNetNuke.Modules.Stories
             btnAddChannel.Visible = True
             btnEditChannel.Visible = False
         End Sub
+
+        Public Function Translate(ByVal ResourceString As String) As String
+            Return DotNetNuke.Services.Localization.Localization.GetString(ResourceString & ".Text", LocalResourceFile)
+        End Function
+
+        Protected Sub BuildPreviewHeaders()
+            gvPreview.Columns(0).HeaderText = Translate("Headline")
+            gvPreview.Columns(1).HeaderText = Translate("Score")
+            gvPreview.Columns(2).HeaderText = Translate("Clicks")
+            gvPreview.Columns(3).HeaderText = Translate("Age")
+            gvPreview.Columns(4).HeaderText = Translate("Distance")
+            gvPreview.Columns(5).HeaderText = Translate("Precal")
+        End Sub
+#End Region 'HelperFunctions
+
     End Class
 
 End Namespace
