@@ -34,9 +34,9 @@ Namespace DotNetNuke.Modules.FullStory
             'Check if story isn't found or it isn't published 
             If (story.IsVisible Or IsEditable Or UserInfo.IsInRole("Administrators")) Then
 
-                Dim thecache As AP_Stories_Module_Channel_Cache = StoryFunctions.GetStoryInCache(story.StoryId, story.TabModuleId)
+                Dim theCache As AP_Stories_Module_Channel_Cache = StoryFunctions.GetCacheByStoryId(story.StoryId, story.TabModuleId)
 
-                If (Not String.IsNullOrEmpty(thecache.Headline)) Then
+                If (Not String.IsNullOrEmpty(theCache.Headline)) Then
 
                     'Boost/Block section
                     Dim RequestBoosted As String = Request.Form(BOOSTED)
@@ -45,36 +45,36 @@ Namespace DotNetNuke.Modules.FullStory
                         Dim requestIsBlocked As Boolean = CBool(Request.Form(BLOCKED))
 
 
-                        If requestIsBlocked And Not thecache.Block Then
+                        If requestIsBlocked And Not theCache.Block Then
+                            StoryFunctions.BlockStory(theCache, story.TabModuleId)
 
-                            StoryFunctions.BlockStoryAccrossSite(thecache.Link)
 
-                        ElseIf (Not requestIsBlocked) And thecache.Block Then
-                            StoryFunctions.UnBlockStoryAccrossSite(thecache.Link)
+                        ElseIf (Not requestIsBlocked) And theCache.Block Then
+                            StoryFunctions.UnBlockStory(theCache.CacheId)
                         End If
 
-                            Dim changed As Boolean = False
-                            Dim changedDate As New System.Nullable(Of Date)
-                            If (Not requestIsBlocked) And requestIsBoosted Then
-                                changed = True
-                            If Not thecache.BoostDate Is Nothing Then
+                        Dim changed As Boolean = False
+                        Dim changedDate As New System.Nullable(Of Date)
+                        If (Not requestIsBlocked) And requestIsBoosted Then
+                            changed = True
+                            If Not theCache.BoostDate Is Nothing Then
                                 changedDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
                             Else
                                 changedDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
-                                End If
-
-                            ElseIf (Not requestIsBlocked) And (Not requestIsBoosted) Then
-                                changedDate = Nothing
-                                changed = True
-                            End If
-                            If changed Then
-                            StoryFunctions.SetBoostDate(thecache.GUID, changedDate, story.TabModuleId)
-                            Dim theMod = StoryFunctions.GetStoryModule(TabModuleId)
-                            StoryFunctions.RefreshFeed(story.TabModuleId, thecache.ChannelId, True)
-                            StoryFunctions.PrecalAllCaches(story.TabModuleId)
                             End If
 
+                        ElseIf (Not requestIsBlocked) And (Not requestIsBoosted) Then
+                            changedDate = Nothing
+                            changed = True
                         End If
+                        If changed Then
+                            StoryFunctions.SetBoostDate(theCache.GUID, changedDate, story.TabModuleId)
+                            Dim theMod = StoryFunctions.GetStoryModule(TabModuleId)
+                            StoryFunctions.RefreshFeed(story.TabModuleId, theCache.ChannelId, True)
+                            StoryFunctions.PrecalAllCaches(story.TabModuleId)
+                        End If
+
+                    End If
                     'End Boost/Block section
 
                     Dim template As String = TemplateActions(story)
@@ -92,7 +92,7 @@ Namespace DotNetNuke.Modules.FullStory
                     'If in edit mode
                     If IsEditable Then
                         SuperPowers.Visible = True
-                        SuperPowers.CacheId = thecache.CacheId
+                        SuperPowers.CacheId = theCache.CacheId
                         SuperPowers.SuperEditor = UserInfo.IsSuperUser
                         SuperPowers.EditUrl = NavigateURL(CInt(GetTabId(Request.QueryString("origTabId"))), "AddEditStory", {"mid", GetModId(Request.QueryString("origModId"))})
                         SuperPowers.PortalId = PortalId

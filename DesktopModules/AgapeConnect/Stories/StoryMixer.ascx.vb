@@ -154,8 +154,6 @@ Namespace DotNetNuke.Modules.Stories
         Protected Sub SaveBtn_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles SaveBtn.Click
             Dim objModules As New Entities.Modules.ModuleController
 
-            ' objModules.UpdateTabModuleSetting(TabModuleId, "Aspect", Double.Parse(hfAspect.Value, New CultureInfo("")).ToString(New CultureInfo("")))
-
             objModules.UpdateTabModuleSetting(TabModuleId, "NumberOfStories", CInt(hfNumberOfStories.Value))
             objModules.UpdateTabModuleSetting(TabModuleId, "WeightPopular", CDbl(IIf(hfPopular.Value = "", 0, hfPopular.Value / 100)).ToString(New CultureInfo("")))
             objModules.UpdateTabModuleSetting(TabModuleId, "WeightRegional", CDbl(IIf(hfRegional.Value = "", 0, hfRegional.Value / 100)).ToString(New CultureInfo("")))
@@ -172,55 +170,39 @@ Namespace DotNetNuke.Modules.Stories
                 End If
             Next
 
-            Dim channels = From c In d.AP_Stories_Module_Channels Where c.StoryModuleId = CInt(hfStoryModuleId.Value)
+            StoryFunctions.setChannelWeight(Volumes, CInt(hfStoryModuleId.Value))
 
-            For Each row In channels
-                row.Weight = CDbl(Volumes(row.ChannelId)) / 30
-            Next
-
+            'Set boost date for stories that were boosted
             Dim boosts = hfBoosts.Value.Split(";")
             For Each boost In boosts
-                If boost <> "" Then
-                    Dim theCache = (From c In d.AP_Stories_Module_Channel_Caches Where c.CacheId = CInt(boost))
-                    If theCache.Count > 0 Then
-                        theCache.First.Block = False
-                        If theCache.First.BoostDate Is Nothing Then
-                            theCache.First.BoostDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
-                        ElseIf theCache.First.BoostDate < Today Then
-                            theCache.First.BoostDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
-                        End If
+                Dim theCache = StoryFunctions.GetCacheByCacheId(boost)
+
+                If (Not String.IsNullOrEmpty(theCache.Headline)) Then
+                    theCache.Block = False
+                    If theCache.BoostDate Is Nothing Then
+                        theCache.BoostDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
+                    ElseIf theCache.BoostDate < Today Then
+                        theCache.BoostDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
                     End If
+                    StoryFunctions.SetBoostDate(theCache.GUID, theCache.BoostDate, TabModuleId)
                 End If
             Next
+
+            'Block stories that were blocked
             Dim blocks = hfBlocks.Value.Split(";")
+
             For Each block In blocks
-                If block <> "" Then
-                    Dim theCache = (From c In d.AP_Stories_Module_Channel_Caches Where c.CacheId = CInt(block))
-                    If theCache.Count > 0 Then
+                Dim theCache = StoryFunctions.GetCacheByCacheId(block)
 
-                        StoryFunctions.BlockStoryAccrossSite(theCache.First.Link)
-
-                    End If
+                If (Not String.IsNullOrEmpty(theCache.Headline)) Then
+                    StoryFunctions.BlockStory(theCache, TabModuleId)
                 End If
             Next
 
-            Dim PrevioslyBoosted = From c In d.AP_Stories_Module_Channel_Caches Where c.AP_Stories_Module_Channel.StoryModuleId = CInt(hfStoryModuleId.Value) And (Not c.BoostDate Is Nothing) And (Not boosts.Contains(c.CacheId))
+            StoryFunctions.SetPreviouslyBoosted(CInt(hfStoryModuleId.Value), boosts)
+            StoryFunctions.SetPreviouslyBlocked(CInt(hfStoryModuleId.Value), blocks)
 
-            For Each row In PrevioslyBoosted
-                row.BoostDate = Nothing
-            Next
-            Dim PrevioslyBlocked = From c In d.AP_Stories_Module_Channel_Caches Where c.AP_Stories_Module_Channel.StoryModuleId = CInt(hfStoryModuleId.Value) And (c.Block = True) And (Not blocks.Contains(c.CacheId))
-
-            For Each row In PrevioslyBlocked
-                StoryFunctions.UnBlockStoryAccrossSite(row.Link)
-            Next
-
-            d.SubmitChanges()
-
-            ' refresh cache
-            'SynchronizeModule()
             ModuleController.SynchronizeModule(ModuleId)
-
             StoryFunctions.PrecalAllCaches(TabModuleId)
             LoadMixer()
         End Sub

@@ -325,6 +325,17 @@ Public Class StoryFunctions
 
     End Sub
 
+    Public Shared Sub setChannelWeight(ByVal Volumes As Dictionary(Of Integer, Integer), ByVal storyModuleId As Integer)
+        Dim d As New Stories.StoriesDataContext
+        Dim channels = From c In d.AP_Stories_Module_Channels Where c.StoryModuleId = storyModuleId
+
+        For Each channel In channels
+            channel.Weight = CDbl(Volumes(channel.ChannelId)) / 30
+        Next
+
+        d.SubmitChanges()
+    End Sub
+
 #End Region 'Channels
 
 #Region "Publishing"
@@ -386,15 +397,16 @@ Public Class StoryFunctions
         Return story
     End Function
 
-    Public Shared Function GetStoryInCache(ByVal storyID As Integer, ByVal tabModuleID As Integer) As AP_Stories_Module_Channel_Cache
+    Public Shared Function GetCacheByCacheId(ByVal cacheID As String) As AP_Stories_Module_Channel_Cache
         Dim d As New StoriesDataContext
         Dim storyCache As New AP_Stories_Module_Channel_Cache
 
-        Dim storyCacheQuery As IQueryable(Of AP_Stories_Module_Channel_Cache) = From c In d.AP_Stories_Module_Channel_Caches
-                                                                                Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = tabModuleID _
-                                                                                And c.GUID = storyID
-        If (storyCacheQuery.Count > 0) Then
-            storyCache = storyCacheQuery.First
+        If (IsInt(cacheID)) Then
+            Dim storyCacheQuery As IQueryable(Of AP_Stories_Module_Channel_Cache) = From c In d.AP_Stories_Module_Channel_Caches
+                                                                                    Where c.CacheId = cacheID
+            If (storyCacheQuery.Count > 0) Then
+                storyCache = storyCacheQuery.First
+            End If
         End If
 
         Return storyCache
@@ -586,31 +598,45 @@ Public Class StoryFunctions
 
 #Region "Boost/Block"
 
-    Public Shared Sub BlockStoryAccrossSite(ByVal StoryURL As String)
+    Public Shared Sub BlockStory(ByVal storyInCache As AP_Stories_Module_Channel_Cache, ByVal storyTabModuleId As Integer)
         Dim d As New Stories.StoriesDataContext
 
-        Dim theCacheItems = From c In d.AP_Stories_Module_Channel_Caches Where c.Link = StoryURL
+        Dim tabModuleIdOfCachedStory = (From channelCache In d.AP_Stories_Module_Channel_Caches
+                                        Join moduleChannel In d.AP_Stories_Module_Channels On channelCache.ChannelId Equals moduleChannel.ChannelId
+                                        Join storiesModule In d.AP_Stories_Modules On moduleChannel.StoryModuleId Equals storiesModule.StoryModuleId
+                                        Select storiesModule.TabModuleId).First
 
+        Dim cachedStories As IQueryable(Of AP_Stories_Module_Channel_Cache)
 
-        For Each row In theCacheItems
-            row.Block = True
-            row.BoostDate = Nothing
+        'block story across site because it is being blocked from the channel where it was originally created
+        If (tabModuleIdOfCachedStory = storyTabModuleId) Then
 
+            cachedStories = From c In d.AP_Stories_Module_Channel_Caches Where c.Link = storyInCache.Link
 
+        Else  'only block this story's cache line because it is being blocked from a channel different from the original
+            cachedStories = From c In d.AP_Stories_Module_Channel_Caches Where c.CacheId = storyInCache.CacheId
+        End If
+
+        For Each story In cachedStories
+            story.Block = True
+            story.BoostDate = Nothing
         Next
         d.SubmitChanges()
+
     End Sub
 
-    Public Shared Sub UnBlockStoryAccrossSite(ByVal StoryURL As String)
+    'Unblock only the story cache that is being requested. 
+    'Even if the story cache from original module is being unblocked.
+    'Even if the story cache from original module will still be blocked.
+    Public Shared Sub UnBlockStory(ByVal cacheId As Integer)
         Dim d As New Stories.StoriesDataContext
 
-        Dim theCacheItems = From c In d.AP_Stories_Module_Channel_Caches Where c.Link = StoryURL
+        Dim storyCache As IQueryable(Of AP_Stories_Module_Channel_Cache) = From c In d.AP_Stories_Module_Channel_Caches
+                                                                               Where c.CacheId = cacheId
+        If (storyCache.Count > 0) Then
+            storyCache.First.Block = False
+        End If
 
-
-        For Each row In theCacheItems
-            row.Block = False
-
-        Next
         d.SubmitChanges()
     End Sub
 
@@ -641,6 +667,33 @@ Public Class StoryFunctions
 
         storyInCache.BoostDate = boostDate
         d.SubmitChanges()
+    End Sub
+
+    Public Shared Sub SetPreviouslyBoosted(ByVal storyModuleId As Integer, ByVal cacheIds As String())
+        Dim d As New StoriesDataContext
+
+        Dim previouslyBoosted = From c In d.AP_Stories_Module_Channel_Caches
+                                Where c.AP_Stories_Module_Channel.StoryModuleId = storyModuleId _
+                                    And (Not c.BoostDate Is Nothing) _
+                                    And (Not cacheIds.Contains(c.CacheId))
+
+        For Each row In previouslyBoosted
+            row.BoostDate = Nothing
+        Next
+        d.SubmitChanges()
+    End Sub
+
+    Public Shared Sub SetPreviouslyBlocked(ByVal storyModuleId As Integer, ByVal cacheIds As String())
+        Dim d As New StoriesDataContext
+
+        Dim previouslyBlocked = From c In d.AP_Stories_Module_Channel_Caches
+                                Where c.AP_Stories_Module_Channel.StoryModuleId = storyModuleId _
+                                    And (c.Block = True) _
+                                    And (Not cacheIds.Contains(c.CacheId))
+
+        For Each row In previouslyBlocked
+            StoryFunctions.UnBlockStory(row.CacheId)
+        Next
     End Sub
 
 #End Region 'Boost/Block
