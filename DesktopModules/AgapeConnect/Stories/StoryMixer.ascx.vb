@@ -120,40 +120,7 @@ Namespace DotNetNuke.Modules.Stories
 
 #End Region
 
-        Private Sub PreviewResults()
-            Dim l As Location = Location.GetLocation(Request.ServerVariables("remote_addr"))
-
-            Dim lg = l.longitude
-            Dim lt = l.latitude
-
-            Dim localFactor As Double = 1
-            Dim deg2Rad As Double = Math.PI / CDbl(180.0)
-            Dim G As Double = hfRegional.Value / 100
-            Dim P As Double = hfPopular.Value / 100
-            Dim N As Integer = hfNumberOfStories.Value
-
-            Dim culture = CultureInfo.CurrentCulture.Name.ToLower
-            Dim r = From c In d.AP_Stories_Module_Channel_Caches Select c, c.Clicks, Age = DateDiff(DateInterval.Day, c.StoryDate.Value, Today),
-                  Distance = (0.0 + (1 * (CDbl(1.0) - CDbl(CDbl(Math.Min(CDbl(200), ((Math.Acos(CDbl(Math.Sin(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Sin(deg2Rad * CDbl(c.Latitude))) + CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(c.Latitude))) * CDbl(Math.Cos(CDbl(deg2Rad) * (CDbl(lg) - CDbl(c.Longitude)))))) / CDbl(Math.PI) * CDbl(180.0)) * CDbl(1.1515) * CDbl(60.0))) / CDbl(200.0)))) / CDbl(2.0)),
-                  ViewOrder = CDbl(c.Precal) * (CDbl(1.0 + (Math.Log(c.Clicks) * P / 200))) * (1.0 + (G * (CDbl(1.0) - CDbl(CDbl(Math.Min(CDbl(200), ((Math.Acos(CDbl(Math.Sin(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Sin(deg2Rad * CDbl(c.Latitude))) + CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(c.Latitude))) * CDbl(Math.Cos(CDbl(deg2Rad) * (CDbl(lg) - CDbl(c.Longitude)))))) / CDbl(Math.PI) * CDbl(180.0)) * CDbl(1.1515) * CDbl(60.0))) / CDbl(200.0)))) / CDbl(2.0))
-
-            If (Request.QueryString("tags") <> "") Then
-
-                Dim tagList = Request.QueryString("tags").Split(",")
-
-                r = From c In r Join b In d.AP_Stories On CInt(c.c.GUID) Equals b.StoryId Where b.AP_Stories_Tag_Metas.Where(Function(x) tagList.Contains(x.AP_Stories_Tag.TagName)).Count > 0 Select c
-
-            End If
-
-            r = r.Where(Function(c) CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToLower = c.c.Langauge.Substring(0, 2) And c.c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = TabModuleId And Not c.c.Block) _
-                            .OrderByDescending(Function(c) c.ViewOrder) _
-                        .Take(N)
-            Dim storyList = From c In r Select c.c.Headline, c.Clicks, c.Distance, c.Age, c.c.Precal, Score = c.ViewOrder
-
-            gvPreview.DataSource = storyList
-            gvPreview.DataBind()
-        End Sub
-
+#Region "Page Events"
         Protected Sub SaveBtn_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles SaveBtn.Click
             Dim objModules As New Entities.Modules.ModuleController
 
@@ -222,6 +189,126 @@ Namespace DotNetNuke.Modules.Stories
                 StoryFunctions.RefreshFeed(TabModuleId, channel.ChannelId, True)
             Next
             SaveBtn_Click(Me, Nothing)
+        End Sub
+
+        Protected Sub btnAddChannel_Click(sender As Object, e As System.EventArgs) Handles btnAddChannel.Click
+            'Validations
+            lblFeedError.Text = ""
+            If tbRssFeed.Text = "" Then
+                lblFeedError.Text = "No feed found!<br />"
+            End If
+
+            Dim check = From c In d.AP_Stories_Module_Channels Where c.StoryModuleId = CInt(hfStoryModuleId.Value) And c.URL = tbRssFeed.Text
+            If check.Count > 0 Then
+                lblFeedError.Text = "This feed is already loaded.<br />"
+            End If
+
+            Dim insert As New AP_Stories_Module_Channel
+            insert.StoryModuleId = CInt(hfStoryModuleId.Value)
+            insert.Weight = 0.8
+            insert.Type = 0
+            insert.URL = tbRssFeed.Text
+
+            If tbTitle.Text = "" Then
+                lblFeedError.Text = "Please enter a title for this feed.<br />"
+            End If
+            insert.ChannelTitle = tbTitle.Text
+            insert.Language = ddlLanguages.SelectedValue
+            insert.AutoDetectLanguage = cbAutoDetectLanguage.Checked
+            Dim geoLoc = tbLocation.Text.Split(",")
+            If geoLoc.Count <> 2 Then
+                lblFeedError.Text = "Invalid location. Please click search, to convert into latitude/longitude<br />"
+            Else
+                Try
+                    insert.Latitude = Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo(""))
+                    insert.Longitude = Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo(""))
+                Catch ex As Exception
+                    lblFeedError.Text = "Invalid location. Please click search, to convert into latitude/longitude<br />"
+                End Try
+            End If
+
+            insert.ImageId = icImage.FileId
+
+            If lblFeedError.Text <> "" Then
+                Dim t As Type = icImage.GetType()
+                Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
+                sb.Append("<script language='javascript'>")
+                sb.Append("$(document).ready(function() { showPopup();});")
+                sb.Append("</script>")
+                ScriptManager.RegisterStartupScript(icImage, t, "thePopup", sb.ToString, False)
+                Return
+            End If
+
+            d.AP_Stories_Module_Channels.InsertOnSubmit(insert)
+            d.SubmitChanges()
+
+            StoryFunctions.RefreshFeed(TabModuleId, insert.ChannelId, False)
+            Dim d2 As New StoriesDataContext
+            Dim channels = From c In d2.AP_Stories_Module_Channels Where c.StoryModuleId = CInt(hfStoryModuleId.Value)
+
+            dlChannelMixer.DataSource = channels.OrderByDescending(Function(x) x.Type = 2).ThenBy(Function(x) x.ChannelId)
+            dlChannelMixer.DataBind()
+
+            tbRssFeed.Text = ""
+            tbRssFeed.Enabled = True
+            tbLocation.Text = ""
+            icImage.FileId = 0
+            tbTitle.Text = ""
+            'pnlloaded.Visible = False
+            btnAddChannel.Enabled = False
+
+            Dim volumes = ""
+            For Each row In channels
+                volumes &= row.ChannelId & "=" & (row.Weight * 30).ToString(New CultureInfo("")) & ";"
+            Next
+
+            hfLoadVolumes.Value = volumes
+
+            'Dim t2 As Type = Page.GetType()
+            'Dim sb2 As System.Text.StringBuilder = New System.Text.StringBuilder()
+            'sb2.Append("<script language='javascript'>")
+            'sb2.Append("")
+            'sb2.Append("</script>")
+            'ScriptManager.RegisterStartupScript(Page, t2, "theDials", sb2.ToString, False)
+
+        End Sub
+
+#End Region 'Page Events
+
+#Region "HelperFunctions"
+
+        Private Sub PreviewResults()
+            Dim l As Location = Location.GetLocation(Request.ServerVariables("remote_addr"))
+
+            Dim lg = l.longitude
+            Dim lt = l.latitude
+
+            Dim localFactor As Double = 1
+            Dim deg2Rad As Double = Math.PI / CDbl(180.0)
+            Dim G As Double = hfRegional.Value / 100
+            Dim P As Double = hfPopular.Value / 100
+            Dim N As Integer = hfNumberOfStories.Value
+
+            Dim culture = CultureInfo.CurrentCulture.Name.ToLower
+            Dim r = From c In d.AP_Stories_Module_Channel_Caches Select c, c.Clicks, Age = DateDiff(DateInterval.Day, c.StoryDate.Value, Today),
+                  Distance = (0.0 + (1 * (CDbl(1.0) - CDbl(CDbl(Math.Min(CDbl(200), ((Math.Acos(CDbl(Math.Sin(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Sin(deg2Rad * CDbl(c.Latitude))) + CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(c.Latitude))) * CDbl(Math.Cos(CDbl(deg2Rad) * (CDbl(lg) - CDbl(c.Longitude)))))) / CDbl(Math.PI) * CDbl(180.0)) * CDbl(1.1515) * CDbl(60.0))) / CDbl(200.0)))) / CDbl(2.0)),
+                  ViewOrder = CDbl(c.Precal) * (CDbl(1.0 + (Math.Log(c.Clicks) * P / 200))) * (1.0 + (G * (CDbl(1.0) - CDbl(CDbl(Math.Min(CDbl(200), ((Math.Acos(CDbl(Math.Sin(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Sin(deg2Rad * CDbl(c.Latitude))) + CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(lt))) * CDbl(Math.Cos(CDbl(deg2Rad) * CDbl(c.Latitude))) * CDbl(Math.Cos(CDbl(deg2Rad) * (CDbl(lg) - CDbl(c.Longitude)))))) / CDbl(Math.PI) * CDbl(180.0)) * CDbl(1.1515) * CDbl(60.0))) / CDbl(200.0)))) / CDbl(2.0))
+
+            If (Request.QueryString("tags") <> "") Then
+
+                Dim tagList = Request.QueryString("tags").Split(",")
+
+                r = From c In r Join b In d.AP_Stories On CInt(c.c.GUID) Equals b.StoryId Where b.AP_Stories_Tag_Metas.Where(Function(x) tagList.Contains(x.AP_Stories_Tag.TagName)).Count > 0 Select c
+
+            End If
+
+            r = r.Where(Function(c) CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToLower = c.c.Langauge.Substring(0, 2) And c.c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = TabModuleId And Not c.c.Block) _
+                            .OrderByDescending(Function(c) c.ViewOrder) _
+                        .Take(N)
+            Dim storyList = From c In r Select c.c.Headline, c.Clicks, c.Distance, c.Age, c.c.Precal, Score = c.ViewOrder
+
+            gvPreview.DataSource = storyList
+            gvPreview.DataBind()
         End Sub
 
         Protected Sub lbVerifyURL_Click(sender As Object, e As System.EventArgs) Handles lbVerifyURL.Click
@@ -315,88 +402,6 @@ Namespace DotNetNuke.Modules.Stories
         '    End Try
         'End Function
 
-        Protected Sub btnAddChannel_Click(sender As Object, e As System.EventArgs) Handles btnAddChannel.Click
-            'Validations
-            lblFeedError.Text = ""
-            If tbRssFeed.Text = "" Then
-                lblFeedError.Text = "No feed found!<br />"
-            End If
-
-            Dim check = From c In d.AP_Stories_Module_Channels Where c.StoryModuleId = CInt(hfStoryModuleId.Value) And c.URL = tbRssFeed.Text
-            If check.Count > 0 Then
-                lblFeedError.Text = "This feed is already loaded.<br />"
-            End If
-
-            Dim insert As New AP_Stories_Module_Channel
-            insert.StoryModuleId = CInt(hfStoryModuleId.Value)
-            insert.Weight = 0.8
-            insert.Type = 0
-            insert.URL = tbRssFeed.Text
-
-            If tbTitle.Text = "" Then
-                lblFeedError.Text = "Please enter a title for this feed.<br />"
-            End If
-            insert.ChannelTitle = tbTitle.Text
-            insert.Language = ddlLanguages.SelectedValue
-            insert.AutoDetectLanguage = cbAutoDetectLanguage.Checked
-            Dim geoLoc = tbLocation.Text.Split(",")
-            If geoLoc.Count <> 2 Then
-                lblFeedError.Text = "Invalid location. Please click search, to convert into latitude/longitude<br />"
-            Else
-                Try
-                    insert.Latitude = Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo(""))
-                    insert.Longitude = Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo(""))
-                Catch ex As Exception
-                    lblFeedError.Text = "Invalid location. Please click search, to convert into latitude/longitude<br />"
-                End Try
-            End If
-
-            insert.ImageId = icImage.FileId
-
-            If lblFeedError.Text <> "" Then
-                Dim t As Type = icImage.GetType()
-                Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
-                sb.Append("<script language='javascript'>")
-                sb.Append("$(document).ready(function() { showPopup();});")
-                sb.Append("</script>")
-                ScriptManager.RegisterStartupScript(icImage, t, "thePopup", sb.ToString, False)
-                Return
-            End If
-
-            d.AP_Stories_Module_Channels.InsertOnSubmit(insert)
-            d.SubmitChanges()
-
-            StoryFunctions.RefreshFeed(TabModuleId, insert.ChannelId, False)
-            Dim d2 As New StoriesDataContext
-            Dim channels = From c In d2.AP_Stories_Module_Channels Where c.StoryModuleId = CInt(hfStoryModuleId.Value)
-
-            dlChannelMixer.DataSource = channels.OrderByDescending(Function(x) x.Type = 2).ThenBy(Function(x) x.ChannelId)
-            dlChannelMixer.DataBind()
-
-            tbRssFeed.Text = ""
-            tbRssFeed.Enabled = True
-            tbLocation.Text = ""
-            icImage.FileId = 0
-            tbTitle.Text = ""
-            'pnlloaded.Visible = False
-            btnAddChannel.Enabled = False
-
-            Dim volumes = ""
-            For Each row In channels
-                volumes &= row.ChannelId & "=" & (row.Weight * 30).ToString(New CultureInfo("")) & ";"
-            Next
-
-            hfLoadVolumes.Value = volumes
-
-            'Dim t2 As Type = Page.GetType()
-            'Dim sb2 As System.Text.StringBuilder = New System.Text.StringBuilder()
-            'sb2.Append("<script language='javascript'>")
-            'sb2.Append("")
-            'sb2.Append("</script>")
-            'ScriptManager.RegisterStartupScript(Page, t2, "theDials", sb2.ToString, False)
-
-        End Sub
-
         Protected Sub dlChannelMixer_ItemCommand(source As Object, e As System.Web.UI.WebControls.DataListCommandEventArgs) Handles dlChannelMixer.ItemCommand
             If e.CommandName = "DeleteChannel" Then
 
@@ -456,8 +461,6 @@ Namespace DotNetNuke.Modules.Stories
 
             End If
         End Sub
-
-#Region "HelperFunctions"
 
         Public Function IsBoosted(ByVal CacheId As String, ByVal Boosted As Date?) As String
             If Boosted Is Nothing Then

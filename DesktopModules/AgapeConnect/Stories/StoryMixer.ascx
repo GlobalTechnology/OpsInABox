@@ -304,12 +304,18 @@
     </div>
 </div>  <%--END Settings--%>
 
-<div class="submitPanel">
-    <asp:LinkButton ID="SaveBtn" runat="server" class="Button" ResourceKey="btnSave"></asp:LinkButton>
-    <asp:LinkButton ID="CancelBtn" runat="server" class="Button" ResourceKey="btnCancel"></asp:LinkButton>
-    <asp:LinkButton ID="btnCache" runat="server" class="Button" ResourceKey="btnRefresh"></asp:LinkButton>
-    <input type="button" value='<%= Translate("btnNewChannel") %>'  onclick="showPopup();" class="Button" />
+
+<div class="submitPanel">    
+    <asp:UpdatePanel runat="server"> 
+        <ContentTemplate>
+            <asp:LinkButton ID="SaveBtn" runat="server" class="Button" ResourceKey="btnSave"></asp:LinkButton>
+            <asp:LinkButton ID="CancelBtn" runat="server" class="Button" ResourceKey="btnCancel"></asp:LinkButton>
+            <asp:LinkButton ID="btnCache" runat="server" class="Button" ResourceKey="btnRefresh"></asp:LinkButton>
+            <input type="button" value='<%= Translate("btnNewChannel") %>'  onclick="showPopup();" class="Button" />
+         </ContentTemplate> 
+    </asp:UpdatePanel>
 </div>
+
 
 <div id="AddChannel">
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
