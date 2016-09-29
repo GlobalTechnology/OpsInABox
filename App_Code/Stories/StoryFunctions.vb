@@ -397,6 +397,20 @@ Public Class StoryFunctions
         Return story
     End Function
 
+    Public Shared Function GetCacheByStoryId(ByVal storyID As Integer, ByVal tabModuleID As Integer) As AP_Stories_Module_Channel_Cache
+        Dim d As New StoriesDataContext
+        Dim storyCache As New AP_Stories_Module_Channel_Cache
+
+        Dim storyCacheQuery As IQueryable(Of AP_Stories_Module_Channel_Cache) = From c In d.AP_Stories_Module_Channel_Caches
+                                                                                Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = tabModuleID _
+                                                                                And c.GUID = storyID
+        If (storyCacheQuery.Count > 0) Then
+            storyCache = storyCacheQuery.First
+        End If
+
+        Return storyCache
+    End Function
+
     Public Shared Function GetCacheByCacheId(ByVal cacheID As String) As AP_Stories_Module_Channel_Cache
         Dim d As New StoriesDataContext
         Dim storyCache As New AP_Stories_Module_Channel_Cache
