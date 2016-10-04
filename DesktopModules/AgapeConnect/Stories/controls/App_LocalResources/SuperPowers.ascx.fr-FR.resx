@@ -127,7 +127,7 @@
     <value>Editer</value>
   </data>
   <data name="New.Text" xml:space="preserve">
-    <value>Nouveau</value>
+    <value>Nouveau histoire</value>
   </data>
   <data name="NoPhoto.Text" xml:space="preserve">
     <value>Publication impossible, une photo doit être ajoutée.</value>
@@ -140,5 +140,8 @@
   </data>
   <data name="Translate.Text" xml:space="preserve">
     <value>Traduire</value>
+  </data>
+  <data name="Unpublish.Text" xml:space="preserve">
+    <value>Dépublier</value>
   </data>
 </root>

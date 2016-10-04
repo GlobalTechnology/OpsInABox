@@ -1,22 +1,22 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="SuperPowers.ascx.vb" Inherits="DesktopModules_SuperPowers" %>
 
-<div style="white-space: nowrap;">
-                <asp:Button ID="btnTranslate" runat="server" ResourceKey="Translate"  Font-Size="X-Small" class="aButton btn" style="float: left;"  />
-              
-                 <asp:Button ID="btnEdit" runat="server" ResourceKey="Edit" Font-Size="X-Small" class="aButton btn" style="float: left;" />
-              
-                  <asp:Button ID="btnNew" runat="server" ResourceKey="New"  Font-Size="X-Small" class="aButton btn" style="float: left;"  />
-    <asp:Panel ID="pnlBoostBlock" runat="server" Visible="true">
-              <input type="checkbox" id="boost" class="boost" style="height:20px;" /><label for="boost" style="height:20px; float: left;" >Boost</label>
-	            <input type="checkbox" id="block" class="block" style="height:20px;"  /><label for="block" style="height:20px; float: left;" >Block</label>
-              </asp:Panel>
-               <asp:Panel ID="pnlPublish" runat="server" Visible="false">
-                    <asp:Button ID="btnPublish" runat="server" ResourceKey="Publish"  Font-Size="X-Small" class="aButton btn" style="float: left;"  />
-                   </asp:Panel>
-               <br />
-                  <div style="clear: both;"></div>
-                
-               
-               </div>
-                 <asp:Label ID="lblPowerStatus" runat="server" CssClass="PowerStatus" ForeColor="Red" Font-Italic="true" ></asp:Label>
-               
+<div id="SuperPowers"> 
+    <div class="thisStory"> 
+        <asp:Button ID="btnEdit" runat="server" ResourceKey="Edit" class="Button" />
+        <asp:Button ID="btnPublish" runat="server" ResourceKey="Publish" class="Button"  />
+        <asp:Button ID="btnUnPublish" runat="server" ResourceKey="Unpublish" class="Button"  />
+    </div>
+    <div class="boostBlock"> 
+        <asp:Panel ID="pnlBoostBlock" runat="server" Visible="true">
+            <input type="checkbox" id="boost" class="boost" /><label for="boost">Boost</label>
+            <input type="checkbox" id="block" class="block" /><label for="block">Block</label>
+        </asp:Panel>
+    </div>
+
+    <div class="newStory">
+        <asp:Button ID="btnNew" runat="server" ResourceKey="New" class="Button"  />
+    </div>
+    <div class="powerStatus">
+        <asp:Label ID="lblPowerStatus" runat="server"></asp:Label>
+    </div>
+</div>    

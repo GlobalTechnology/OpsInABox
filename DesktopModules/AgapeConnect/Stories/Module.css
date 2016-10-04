@@ -132,3 +132,26 @@
 }
 
 /*StoryMixer Section End*/
+
+/*SuperPowers Section Begin*/
+
+#SuperPowers .thisStory .Button {
+    margin-bottom: 5px;
+    font-size: x-small;
+}
+
+#SuperPowers .boostBlock {
+    margin-bottom: 5px;
+}
+
+#SuperPowers .newStory .Button  {
+    margin-bottom: 5px;
+    font-size: x-small;
+}
+
+#SuperPowers .powerStatus  {
+    color: red;
+    font-style: italic;
+}
+
+/*SuperPowers Section End*/
