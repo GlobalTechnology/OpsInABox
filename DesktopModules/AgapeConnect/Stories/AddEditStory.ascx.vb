@@ -20,6 +20,10 @@ Namespace DotNetNuke.Modules.Stories
             Dim q = From chan In d.AP_Stories_Module_Channels Join smod In d.AP_Stories_Modules On chan.StoryModuleId Equals smod.StoryModuleId Where smod.TabModuleId = TabModuleId And chan.Type = 2 Select chan.ChannelTitle
             lblChannel.Text = q.First
 
+            If (Not IsEditable And Not UserInfo.IsInRole("Administrators")) Then
+                Response.Redirect(NavigateURL(PortalSettings.Current.ErrorPage404))
+            End If
+
             If Not Page.IsPostBack Then
                 If Settings("Aspect") <> "" Then
                     acImage1.Aspect = Double.Parse(Settings("Aspect"), New CultureInfo(""))

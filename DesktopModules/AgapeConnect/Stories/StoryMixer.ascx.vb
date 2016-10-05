@@ -18,14 +18,20 @@ Namespace DotNetNuke.Modules.Stories
 #Region "Base Method Implementations"
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
+
+            If (Not IsEditable And Not UserInfo.IsInRole("Administrators")) Then
+                Response.Redirect(NavigateURL(PortalSettings.Current.ErrorPage404))
+            End If
+
             Try
-                If (Page.IsPostBack = False) Then
-                    BuildPreviewHeaders()
-                    LoadMixer()
-                End If
-            Catch exc As Exception           'Module failed to load
-                ProcessModuleLoadException(Me, exc)
-            End Try
+                    If (Page.IsPostBack = False) Then
+                        BuildPreviewHeaders()
+                        LoadMixer()
+                    End If
+                Catch exc As Exception           'Module failed to load
+                    ProcessModuleLoadException(Me, exc)
+                End Try
+
         End Sub
 
         Protected Sub LoadMixer()

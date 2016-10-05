@@ -18,6 +18,9 @@ Namespace DotNetNuke.Modules.Stories
         Inherits Entities.Modules.PortalModuleBase
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+            If (Not IsEditable And Not UserInfo.IsInRole("Administrators")) Then
+                Response.Redirect(NavigateURL(PortalSettings.Current.ErrorPage404))
+            End If
             If Not Page.IsPostBack Then
                 BuildUnpublishedList()
             End If
