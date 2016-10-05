@@ -114,17 +114,33 @@ Partial Class DesktopModules_SuperPowers
     End Sub
 
     Protected Sub btnPublish_Click(sender As Object, e As EventArgs) Handles btnPublish.Click
+        Dim storyId As String = Request.QueryString("StoryId")
         If StoryFunctions.PublishStory(Request.QueryString("StoryId")) Then
             lblPowerStatus.Visible = False
-
+            pnlBoostBlock.Visible = True
+            btnPublish.Visible = False
+            btnUnPublish.Visible = True
         Else
             lblPowerStatus.Text = LocalizeString("NoPhoto")
             lblPowerStatus.Visible = True
+            btnPublish.Visible = True
+            btnUnPublish.Visible = False
         End If
+
     End Sub
 
     Protected Sub btnUnpublish_Click(sender As Object, e As EventArgs) Handles btnUnpublish.Click
-        AgapeLogger.Warn(UserId, "inside unpublish")
+        If StoryFunctions.UnPublishStory(Request.QueryString("StoryId")) Then
+            lblPowerStatus.Text = LocalizeString("NotPublished")
+            lblPowerStatus.Visible = True
+            pnlBoostBlock.Visible = False
+            btnPublish.Visible = True
+            btnUnPublish.Visible = False
+        Else
+            lblPowerStatus.Visible = True
+            btnPublish.Visible = False
+            btnUnPublish.Visible = True
+        End If
     End Sub
 
 #Region "HelperFunctions"
