@@ -73,7 +73,7 @@ Namespace DotNetNuke.Modules.FullStory
                             If changed Then
                                 StoryFunctions.SetBoostDate(theCache.GUID, changedDate, story.TabModuleId)
                                 Dim theMod = StoryFunctions.GetStoryModule(TabModuleId)
-                                StoryFunctions.RefreshFeed(story.TabModuleId, theCache.ChannelId, True)
+                                StoryFunctions.RefreshFeed(story.TabModuleId, theCache.ChannelId)
                                 StoryFunctions.PrecalAllCaches(story.TabModuleId)
                             End If
 

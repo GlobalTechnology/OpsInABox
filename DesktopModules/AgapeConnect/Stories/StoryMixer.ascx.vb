@@ -186,7 +186,7 @@ Namespace DotNetNuke.Modules.Stories
             SaveBtn_Click(Me, Nothing)
             Dim theMod = StoryFunctions.GetStoryModule(TabModuleId)
             For Each channel In theMod.AP_Stories_Module_Channels
-                StoryFunctions.RefreshFeed(TabModuleId, channel.ChannelId, True)
+                StoryFunctions.RefreshFeed(TabModuleId, channel.ChannelId)
             Next
             SaveBtn_Click(Me, Nothing)
         End Sub
@@ -242,7 +242,7 @@ Namespace DotNetNuke.Modules.Stories
             d.AP_Stories_Module_Channels.InsertOnSubmit(insert)
             d.SubmitChanges()
 
-            StoryFunctions.RefreshFeed(TabModuleId, insert.ChannelId, False)
+            StoryFunctions.RefreshFeed(TabModuleId, insert.ChannelId)
             Dim d2 As New StoriesDataContext
             Dim channels = From c In d2.AP_Stories_Module_Channels Where c.StoryModuleId = CInt(hfStoryModuleId.Value)
 
@@ -565,7 +565,7 @@ Namespace DotNetNuke.Modules.Stories
 
                 d.SubmitChanges()
 
-                StoryFunctions.RefreshFeed(TabModuleId, theChannel.First.ChannelId, False)
+                StoryFunctions.RefreshFeed(TabModuleId, theChannel.First.ChannelId)
                 Dim d2 As New StoriesDataContext
                 Dim channels = From c In d2.AP_Stories_Module_Channels Where c.StoryModuleId = CInt(hfStoryModuleId.Value)
 
