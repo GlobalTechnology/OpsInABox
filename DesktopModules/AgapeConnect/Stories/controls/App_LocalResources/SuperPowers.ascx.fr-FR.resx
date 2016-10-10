@@ -127,7 +127,7 @@
     <value>Editer</value>
   </data>
   <data name="New.Text" xml:space="preserve">
-    <value>Nouveau histoire</value>
+    <value>Nouvelle histoire</value>
   </data>
   <data name="NoPhoto.Text" xml:space="preserve">
     <value>Publication impossible, une photo doit être ajoutée.</value>
