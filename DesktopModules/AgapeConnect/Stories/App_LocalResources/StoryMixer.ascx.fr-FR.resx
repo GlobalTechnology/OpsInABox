@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Age.Text" xml:space="preserve">
-    <value>L'âge de l'histoire</value>
+    <value>Ancienneté en jours</value>
   </data>
   <data name="Author.Text" xml:space="preserve">
     <value>Auteur</value>
@@ -127,7 +127,7 @@
     <value>Fermer</value>
   </data>
   <data name="btnNewChannel.Text" xml:space="preserve">
-    <value>Ajouter un nouveau chaine</value>
+    <value>Ajouter une nouvelle chaîne</value>
   </data>
   <data name="btnRefresh.Text" xml:space="preserve">
     <value>Actualiser le cache</value>
@@ -145,10 +145,10 @@
     <value>Titre</value>
   </data>
   <data name="lblLocal.Text" xml:space="preserve">
-    <value>Localisée</value>
+    <value>Locale</value>
   </data>
   <data name="lblNumberOfStories.Help" xml:space="preserve">
-    <value>Le nombre maximum d'histoires sur une page ou visible sur un carrousel.</value>
+    <value>Nombre maximum d'histoires sur une page ou visible sur un carrousel.</value>
   </data>
   <data name="lblNumberOfStories.Text" xml:space="preserve">
     <value>Nombre d'histoires</value>
@@ -163,10 +163,10 @@
     <value>Haut : ce critère a une priorité haute. Bas : ce critère a une priorité basse.</value>
   </data>
   <data name="lblSettings.Text" xml:space="preserve">
-    <value>La priorisation</value>
+    <value>Critères d'affichage</value>
   </data>
   <data name="Precal.Text" xml:space="preserve">
-    <value>Note de calcul</value>
+    <value>Valeur calculée</value>
   </data>
   <data name="Score.Text" xml:space="preserve">
     <value>Score</value>
