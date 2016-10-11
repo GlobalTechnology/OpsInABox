@@ -29,9 +29,9 @@ Namespace DotNetNuke.Modules.FullStory
 
             Dim story As AP_Story = StoryFunctions.GetStory(storyIdString)
 
-            'If story is not published, if the page is not in edit mode or 
-            'if the user is not an admin - 404 Error.
-            If (Not story.IsVisible And Not IsEditable And Not UserInfo.IsInRole("Administrators")) Then
+            'If story is not found (incorrect story id) or if it is not published and
+            'if the page is not in edit mode and if the user is not an admin - 404 Error.
+            If (String.IsNullOrEmpty(story.Headline) Or (Not story.IsVisible And Not IsEditable And Not UserInfo.IsInRole("Administrators"))) Then
                 Response.Redirect(NavigateURL(PortalSettings.Current.ErrorPage404))
             Else
                 'Check if story is published 
