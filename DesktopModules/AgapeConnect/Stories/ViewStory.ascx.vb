@@ -4,21 +4,10 @@
 'Purpose :  Builds the fields that are used in the Story 
 '           templates for showing the related/associated Stories.
 '===============================================================
-Imports DotNetNuke
-Imports System.Web.UI
-Imports System.Collections.Generic
-Imports System.Reflection
-Imports System.Math
-Imports System.Net
 Imports System.IO
-Imports System.Text
-Imports System.Net.Mail
-Imports System.Collections.Specialized
-Imports System.Linq
 Imports Stories
 
 Namespace DotNetNuke.Modules.FullStory
-
 
     Partial Class ViewFullStory
         Inherits Entities.Modules.PortalModuleBase
@@ -38,68 +27,65 @@ Namespace DotNetNuke.Modules.FullStory
 
             Dim storyIdString As String = Request.QueryString(ViewStoryConstants.STORYID)
 
-            If String.IsNullOrEmpty(storyIdString) Then
-                PagePanel.Visible = False
-                NotFoundLabel.Visible = True
-                NotFoundLabel.Text = ""
-                Return
-            End If
+            Dim story As AP_Story = StoryFunctions.GetStory(storyIdString)
 
-            Dim story As AP_Story = StoryFunctions.GetStory(CInt(storyIdString))
-            Dim thecache As IQueryable(Of AP_Stories_Module_Channel_Cache) = StoryFunctions.GetStoryInCache(story.StoryId, story.TabModuleId)
-
-            'Boost/Block section
-            Dim RequestBoosted As String = Request.Form(BOOSTED)
-            If Not String.IsNullOrEmpty(RequestBoosted) Then
-                Dim requestIsBoosted As Boolean = CBool(RequestBoosted)
-                Dim requestIsBlocked As Boolean = CBool(Request.Form(BLOCKED))
-
-                If thecache.Count > 0 Then
-                    If requestIsBlocked And Not thecache.First.Block Then
-
-                        StoryFunctions.BlockStoryAccrossSite(thecache.First.Link)
-
-                    ElseIf (Not requestIsBlocked) And thecache.First.Block Then
-                        StoryFunctions.UnBlockStoryAccrossSite(thecache.First.Link)
-                    End If
-
-                    Dim changed As Boolean = False
-                    Dim changedDate As New System.Nullable(Of Date)
-                    If (Not requestIsBlocked) And requestIsBoosted Then
-                        changed = True
-                        If Not thecache.First.BoostDate Is Nothing Then
-                            changedDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
-                        Else
-                            changedDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
-                        End If
-
-                    ElseIf (Not requestIsBlocked) And (Not requestIsBoosted) Then
-                        changedDate = Nothing
-                        changed = True
-                    End If
-                    If changed Then
-                        StoryFunctions.SetBoostDate(thecache.First.GUID, changedDate, story.TabModuleId)
-                        Dim theMod = StoryFunctions.GetStoryModule(TabModuleId)
-                        StoryFunctions.RefreshFeed(story.TabModuleId, thecache.First.ChannelId, True)
-                        StoryFunctions.PrecalAllCaches(story.TabModuleId)
-                    End If
-                End If
-                Return
-            End If
-            'End Boost/Block section
-
-            If String.IsNullOrEmpty(storyIdString) Then
-                PagePanel.Visible = False
-                NotFoundLabel.Visible = True
-
+            'If story is not published, if the page is not in edit mode or 
+            'if the user is not an admin - 404 Error.
+            If (Not story.IsVisible And Not IsEditable And Not UserInfo.IsInRole("Administrators")) Then
+                Response.Redirect(NavigateURL(PortalSettings.Current.ErrorPage404))
             Else
+                'Check if story is published 
+                If (story.IsVisible) Then
 
-                PagePanel.Visible = True
-                NotFoundLabel.Visible = False
+                    Dim theCache As AP_Stories_Module_Channel_Cache = StoryFunctions.GetCacheByStoryId(story.StoryId, story.TabModuleId)
+
+                    If (Not String.IsNullOrEmpty(theCache.Headline)) Then
+
+                        'Boost/Block section
+                        Dim RequestBoosted As String = Request.Form(BOOSTED)
+                        If Not String.IsNullOrEmpty(RequestBoosted) Then
+                            Dim requestIsBoosted As Boolean = CBool(RequestBoosted)
+                            Dim requestIsBlocked As Boolean = CBool(Request.Form(BLOCKED))
+
+
+                            If requestIsBlocked And Not theCache.Block Then
+                                StoryFunctions.BlockStory(theCache, story.TabModuleId)
+
+
+                            ElseIf (Not requestIsBlocked) And theCache.Block Then
+                                StoryFunctions.UnBlockStory(theCache.CacheId)
+                            End If
+
+                            Dim changed As Boolean = False
+                            Dim changedDate As New System.Nullable(Of Date)
+                            If (Not requestIsBlocked) And requestIsBoosted Then
+                                changed = True
+                                If Not theCache.BoostDate Is Nothing Then
+                                    changedDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
+                                Else
+                                    changedDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
+                                End If
+
+                            ElseIf (Not requestIsBlocked) And (Not requestIsBoosted) Then
+                                changedDate = Nothing
+                                changed = True
+                            End If
+                            If changed Then
+                                StoryFunctions.SetBoostDate(theCache.GUID, changedDate, story.TabModuleId)
+                                Dim theMod = StoryFunctions.GetStoryModule(TabModuleId)
+                                StoryFunctions.RefreshFeed(story.TabModuleId, theCache.ChannelId)
+                                StoryFunctions.PrecalAllCaches(story.TabModuleId)
+                            End If
+
+                        End If 'End Boost/Block section
+                    Else
+                        Response.Redirect(NavigateURL(PortalSettings.Current.ErrorPage404))
+                    End If
+                End If 'End story.IsVisible section
 
                 Dim template As String = TemplateActions(story)
 
-                'SuperPowers
+                'Setup display of SuperPowers and template together
                 Dim superpowersIndex As Integer = template.IndexOf(SUPERPOWERS_TEMPLATE_KEY)
                 If (superpowersIndex < 0) Then
                     ltStory1.Text = template
@@ -109,58 +95,16 @@ Namespace DotNetNuke.Modules.FullStory
                     ltStory2.Text = template.Substring(superpowersIndex + SUPERPOWERS_TEMPLATE_KEY.Length)
                 End If
 
-                If IsEditable Then
+                If (IsEditable Or UserInfo.IsInRole("Administrators")) Then
                     SuperPowers.Visible = True
-                    If thecache.Count > 0 Then
-                        SuperPowers.CacheId = thecache.First.CacheId
-                    End If
                     SuperPowers.SuperEditor = UserInfo.IsSuperUser
                     SuperPowers.EditUrl = NavigateURL(CInt(GetTabId(Request.QueryString("origTabId"))), "AddEditStory", {"mid", GetModId(Request.QueryString("origModId"))})
                     SuperPowers.PortalId = PortalId
-                    SuperPowers.SetControls()
+                    SuperPowers.SetControls(story)
                 End If
             End If
+
         End Sub
-
-        Public Function GetLanguageName(ByVal language As String) As String
-
-            Dim thename = CultureInfo.GetCultures(CultureTypes.AllCultures).Where(Function(x) x.Name.ToLower = language.ToLower).Select(Function(x) x.EnglishName & " / " & x.NativeName)
-            If thename.Count > 0 Then
-                Return thename.First()
-            Else
-                Return ""
-            End If
-        End Function
-
-        Public Function GetFlag(ByVal language As String) As String
-            If String.IsNullOrEmpty(language) Then
-                Return ""
-            End If
-            If language = "en" Then
-                language = "en-GB"
-
-            ElseIf language.Length = 2 Then
-                language = language.ToLower & "-" & language.ToUpper
-
-            End If
-
-
-            Dim flagDir = New DirectoryInfo(Server.MapPath("/images/Flags/"))
-            If Not flagDir Is Nothing Then
-
-                Dim flags = flagDir.GetFiles().Where(Function(x) x.Name.ToLower.Contains(language.ToLower))
-
-                If flags.Count = 0 Then
-                    Return ""  ' couldn't find flag
-                Else
-                    Return "/images/Flags/" & flags.First.Name
-
-                End If
-            Else
-                Return ""
-            End If
-
-        End Function
 
 #Region "Templating functions"
 

@@ -117,31 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Blocked.Text" xml:space="preserve">
-    <value>Cette histoire à été bloquée et n'apparaîtra pas dans le flux.</value>
+  <data name="Age.Text" xml:space="preserve">
+    <value>Ancienneté en jours</value>
   </data>
-  <data name="BoostDate.Text" xml:space="preserve">
-    <value>Cette histoire est mise en avant jusqu'au </value>
+  <data name="Author.Text" xml:space="preserve">
+    <value>Auteur</value>
   </data>
-  <data name="Edit.Text" xml:space="preserve">
-    <value>Editer</value>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Fermer</value>
   </data>
-  <data name="New.Text" xml:space="preserve">
-    <value>Nouvelle histoire</value>
+  <data name="btnNewChannel.Text" xml:space="preserve">
+    <value>Ajouter une nouvelle chaîne</value>
   </data>
-  <data name="NoPhoto.Text" xml:space="preserve">
-    <value>Publication impossible, une photo doit être ajoutée.</value>
+  <data name="btnRefresh.Text" xml:space="preserve">
+    <value>Actualiser le cache</value>
   </data>
-  <data name="NotPublished.Text" xml:space="preserve">
-    <value>Cette histoire n'est pas publiée et n'apparaîtra pas dans le flux.</value>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Enregistrer</value>
   </data>
-  <data name="Publish.Text" xml:space="preserve">
-    <value>Publier</value>
+  <data name="Clicks.Text" xml:space="preserve">
+    <value>Nombre de clics</value>
   </data>
-  <data name="Translate.Text" xml:space="preserve">
-    <value>Traduire</value>
+  <data name="Distance.Text" xml:space="preserve">
+    <value>Distance</value>
   </data>
-  <data name="Unpublish.Text" xml:space="preserve">
-    <value>Dépublier</value>
+  <data name="Headline.Text" xml:space="preserve">
+    <value>Titre</value>
+  </data>
+  <data name="lblLocal.Text" xml:space="preserve">
+    <value>Locale</value>
+  </data>
+  <data name="lblNumberOfStories.Help" xml:space="preserve">
+    <value>Nombre maximum d'histoires sur une page ou visible sur un carrousel.</value>
+  </data>
+  <data name="lblNumberOfStories.Text" xml:space="preserve">
+    <value>Nombre d'histoires</value>
+  </data>
+  <data name="lblPopular.Text" xml:space="preserve">
+    <value>Populaire</value>
+  </data>
+  <data name="lblRecent.Text" xml:space="preserve">
+    <value>Récente</value>
+  </data>
+  <data name="lblSettings.Help" xml:space="preserve">
+    <value>Haut : ce critère a une priorité haute. Bas : ce critère a une priorité basse.</value>
+  </data>
+  <data name="lblSettings.Text" xml:space="preserve">
+    <value>Critères d'affichage</value>
+  </data>
+  <data name="Precal.Text" xml:space="preserve">
+    <value>Valeur calculée</value>
+  </data>
+  <data name="Score.Text" xml:space="preserve">
+    <value>Score</value>
   </data>
 </root>

@@ -4,14 +4,14 @@ Partial Class DesktopModules_SuperPowers
     Inherits Entities.Modules.PortalModuleBase
     Private _cacheId As Integer
 
-    <Bindable(True, BindingDirection.TwoWay)> <Browsable(True)> <Category("Common")> <Description("The DotNetNuke FileID")> <DefaultValue(0)> <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)> _
+    <Bindable(True, BindingDirection.TwoWay)> <Browsable(True)> <Category("Common")> <Description("The DotNetNuke FileID")> <DefaultValue(0)> <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)>
     Public Property CacheId() As Integer
         Get
             Return _cacheId
         End Get
         Set(ByVal value As Integer)
             _cacheId = value
-           
+
         End Set
     End Property
 
@@ -55,16 +55,6 @@ Partial Class DesktopModules_SuperPowers
         End Set
     End Property
 
-    Private _translationGroupId As String = ""
-    Public Property TranslationGroupId() As String
-        Get
-            Return _translationGroupId
-        End Get
-        Set(ByVal value As String)
-            _translationGroupId = value
-        End Set
-    End Property
-
     Private _portalId As Integer
     Public Property PortalId() As Integer
         Get
@@ -85,90 +75,71 @@ Partial Class DesktopModules_SuperPowers
         End Set
     End Property
 
-    Public Sub SetControls()
-        Dim d As New StoriesDataContext
-     
-        Dim theStory = From c In d.AP_Stories Where c.StoryId = CInt(Request.QueryString("StoryId"))
+    Public Sub SetControls(ByVal story As AP_Story)
 
-        If theStory.Count > 0 Then
-            If theStory.First.IsVisible Then
+        If story.IsVisible Then
 
+            Dim theCache = StoryFunctions.GetCacheByStoryId(story.StoryId, story.TabModuleId)
 
-                Dim theCache = From c In d.AP_Stories_Module_Channel_Caches Where c.CacheId = _cacheId
+            If (Not String.IsNullOrEmpty(theCache.Headline)) Then
+                If theCache.Block Then
+                    lblPowerStatus.Text = Translate("Blocked")
+                    IsBlocked = True
+                ElseIf Not theCache.BoostDate Is Nothing Then
+                    If theCache.BoostDate >= Today Then
+                        IsBoosted = True
+                        lblPowerStatus.Text = Translate("BoostDate") & theCache.BoostDate.Value.ToString("dd MMM yyyy")
 
-                If theCache.Count > 0 Then
-                    If theCache.First.Block Then
-                        lblPowerStatus.Text = Translate("Blocked")
-                        IsBlocked = True
-                    ElseIf Not theCache.First.BoostDate Is Nothing Then
-                        If theCache.First.BoostDate >= Today Then
-                            IsBoosted = True
-                            lblPowerStatus.Text = Translate("BoostDate") & theCache.First.BoostDate.Value.ToString("dd MMM yyyy")
-
-                        End If
                     End If
                 End If
-                pnlBoostBlock.Visible = True
-                pnlPublish.Visible = False
-
-            Else
-                lblPowerStatus.Text = Translate("NotPublished")
-                pnlBoostBlock.Visible = False
-                pnlPublish.Visible = True
             End If
-
+            pnlBoostBlock.Visible = True
+            btnPublish.Visible = False
+            btnUnPublish.Visible = True
+        Else
+            lblPowerStatus.Text = Translate("NotPublished")
+            pnlBoostBlock.Visible = False
+            btnPublish.Visible = True
+            btnUnPublish.Visible = False
         End If
 
     End Sub
 
-    Protected Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEdit.Click
+    Protected Sub Edit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnEdit.Click
         Response.Redirect(_editUrl & "?StoryID=" & Request.QueryString("StoryID"))
-
     End Sub
 
     Protected Sub btnNew_Click(sender As Object, e As System.EventArgs) Handles btnNew.Click
         Response.Redirect(_editUrl)
     End Sub
 
-    Protected Sub btnTranslate_Click(sender As Object, e As EventArgs) Handles btnTranslate.Click
-        'Dim tg As Integer
-        If String.IsNullOrEmpty(_translationGroupId) Then
-            'generate new Translation group
-            Dim d As New StoriesDataContext
-            Dim maxTransGroupId = d.AP_Stories.Where(Function(x) x.PortalID = PortalId And Not x.TranslationGroup Is Nothing)
-            If maxTransGroupId.Count = 0 Then
-                _translationGroupId = 1
-            Else
-                _translationGroupId = maxTransGroupId.Max(Function(x) x.TranslationGroup)
-            End If
-            'Need to apply  the translation Group to the Current Story
-
-            Dim theStory = From c In d.AP_Stories Where c.StoryId = CInt(Request.QueryString("StoryId"))
-
-            If theStory.Count > 0 Then
-                theStory.First.TranslationGroup = _translationGroupId
-                d.SubmitChanges()
-
-            End If
-
-
-
-        Else
-            _translationGroupId = CInt(TranslationGroupId)
-        End If
-
-
-
-        Response.Redirect(_editUrl & "?tg=" & _translationGroupId)
-    End Sub
-
     Protected Sub btnPublish_Click(sender As Object, e As EventArgs) Handles btnPublish.Click
+        Dim storyId As String = Request.QueryString("StoryId")
         If StoryFunctions.PublishStory(Request.QueryString("StoryId")) Then
             lblPowerStatus.Visible = False
-
+            pnlBoostBlock.Visible = True
+            btnPublish.Visible = False
+            btnUnPublish.Visible = True
         Else
             lblPowerStatus.Text = LocalizeString("NoPhoto")
             lblPowerStatus.Visible = True
+            btnPublish.Visible = True
+            btnUnPublish.Visible = False
+        End If
+
+    End Sub
+
+    Protected Sub btnUnpublish_Click(sender As Object, e As EventArgs) Handles btnUnpublish.Click
+        If StoryFunctions.UnPublishStory(Request.QueryString("StoryId")) Then
+            lblPowerStatus.Text = LocalizeString("NotPublished")
+            lblPowerStatus.Visible = True
+            pnlBoostBlock.Visible = False
+            btnPublish.Visible = True
+            btnUnPublish.Visible = False
+        Else
+            lblPowerStatus.Visible = True
+            btnPublish.Visible = False
+            btnUnPublish.Visible = True
         End If
     End Sub
 

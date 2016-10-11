@@ -16,7 +16,7 @@ Namespace Stories
 
             Dim mc = New DotNetNuke.Entities.Modules.ModuleController
 
-            Dim Stories = StoryFunctions.GetVisibleNonBlockedStories(ModInfo.TabModuleID, ModInfo.PortalID)
+            Dim Stories = StoryFunctions.GetPublishedStories(ModInfo.TabModuleID, ModInfo.PortalID)
 
             For Each row In Stories
 
@@ -113,7 +113,7 @@ End Module
 'ViewStory constants
 Public Module ViewStoryConstants
 
-    Public Const STORYID As String = "StoryID"
+    Public Const STORYID As String = "StoryId"
     Public Const BOOSTED As String = "Boosted"
     Public Const BLOCKED As String = "Blocked"
     Public Const TEMPLATE_SETTING As String = "template"
@@ -309,7 +309,7 @@ Public Class StoryFunctions
         Dim d2 As New Stories.StoriesDataContext
         d2.AP_Stories_Module_Channels.InsertOnSubmit(insert)
         d2.SubmitChanges()
-        RefreshFeed(tabModuleId, insert.ChannelId, False)
+        RefreshFeed(tabModuleId, insert.ChannelId)
 
         Return insert.ChannelId
     End Function
@@ -318,46 +318,94 @@ Public Class StoryFunctions
         Dim d As New Stories.StoriesDataContext
         Dim Channels = From c In d.AP_Stories_Module_Channels Where c.URL.Contains("channel=" & tabModuleId)
         For Each row In Channels
-            RefreshFeed(row.AP_Stories_Module.TabModuleId, row.ChannelId, False)
+            RefreshFeed(row.AP_Stories_Module.TabModuleId, row.ChannelId)
+        Next
+    End Sub
+
+    Public Shared Sub setChannelWeight(ByVal Volumes As Dictionary(Of Integer, Integer), ByVal storyModuleId As Integer)
+        Dim d As New Stories.StoriesDataContext
+        Dim channels = From c In d.AP_Stories_Module_Channels Where c.StoryModuleId = storyModuleId
+
+        For Each channel In channels
+            channel.Weight = CDbl(Volumes(channel.ChannelId)) / 30
         Next
 
-
-
+        d.SubmitChanges()
     End Sub
 
 #End Region 'Channels
 
 #Region "Publishing"
     'Determines if a story is publishable, if true it is published
-    Public Shared Function PublishStory(ByVal StoryId As Integer) As Boolean
+    Public Shared Function PublishStory(ByVal storyId As String) As Boolean
         Dim d As New Stories.StoriesDataContext
-        Dim theStory = From c In d.AP_Stories Where c.StoryId = StoryId
+        Dim theStory As New AP_Story
         Dim r = False
 
-        If theStory.Count > 0 Then
-            'check if a photo has been uploaded for the story
-            If (theStory.First.PhotoId > 0) Then
-                r = True
-                theStory.First.IsVisible = True
-                d.SubmitChanges()
+        If (IsInt(storyId)) Then
+            Dim storyQuery As IQueryable(Of AP_Story) = From c In d.AP_Stories Where c.StoryId = storyId
+            If (storyQuery.Count > 0) Then
+                theStory = storyQuery.First
 
-                'Refresh all stories that are listening to the current channel
-                StoryFunctions.RefreshAfterStoryPublished(theStory.First.TabModuleId)
+                'check if a photo has been uploaded for the story
+                If (theStory.PhotoId > 0) Then
+
+                    theStory.IsVisible = True
+                    d.SubmitChanges()
+
+                    'Refresh all stories that are listening to the current channel
+                    Dim channels = From c In d.AP_Stories_Module_Channels
+                                   Where c.URL.EndsWith("channel=" & theStory.TabModuleId)
+
+                    For Each channel In channels
+                        RefreshFeed(channel.AP_Stories_Module.TabModuleId, channel.ChannelId)
+                        PrecalAllCaches(channel.AP_Stories_Module.TabModuleId)
+                    Next
+                    r = True
+                End If
             End If
         End If
         Return r
     End Function
 
-    Public Shared Sub RefreshAfterStoryPublished(ByVal TabModuleId As Integer)
+    Public Shared Function UnPublishStory(ByVal StoryId As String) As Boolean
+        Dim d As New Stories.StoriesDataContext
+        Dim theStory As New AP_Story
+        Dim r = False
+
+        If (IsInt(StoryId)) Then
+            Dim storyQuery As IQueryable(Of AP_Story) = From c In d.AP_Stories Where c.StoryId = StoryId
+            If (storyQuery.Count > 0) Then
+                theStory = storyQuery.First
+
+                theStory.IsVisible = False
+                d.SubmitChanges()
+
+                'Refresh all stories that are listening to the current channel
+                Dim channels = From c In d.AP_Stories_Module_Channels
+                               Where c.URL.EndsWith("channel=" & theStory.TabModuleId)
+
+                For Each channel In channels
+                    RefreshAfterStoryUnpublished(theStory)
+                Next
+                r = True
+            End If
+        End If
+        Return r
+    End Function
+
+    Public Shared Sub RefreshAfterStoryUnpublished(ByVal theStory As AP_Story)
         Dim d As New Stories.StoriesDataContext
 
-        Dim Channels = From c In d.AP_Stories_Module_Channels Where c.URL.EndsWith("channel=" & TabModuleId)
+        'DELETE story from AP_Stories_Module_Channel_Cache
+        If (Not theStory.IsVisible) Then
+            Dim storyToDelete = (From c In d.AP_Stories_Module_Channel_Caches
+                                 Where c.GUID = theStory.StoryId).First
 
-        For Each channel In Channels
-            RefreshFeed(channel.AP_Stories_Module.TabModuleId, channel.ChannelId, False)
-            PrecalAllCaches(channel.AP_Stories_Module.TabModuleId)
-        Next
-        StoryFunctions.RefreshLocalChannel(TabModuleId)
+            d.AP_Stories_Module_Channel_Caches.DeleteOnSubmit(storyToDelete)
+            d.SubmitChanges()
+        End If
+
     End Sub
 
     Public Shared Function GetUnpublishedStories(ByVal tabModuleId As Integer) As IQueryable(Of AP_Story)
@@ -372,28 +420,57 @@ Public Class StoryFunctions
 
 #Region "Story"
 
-    Public Shared Function GetStory(ByVal storyID As Integer) As AP_Story
+    Public Shared Function GetStory(ByVal storyID As String) As AP_Story
         Dim d As New StoriesDataContext
-        Return (From c In d.AP_Stories Where c.StoryId = storyID).First
+        Dim story As New AP_Story
+
+        If (IsInt(storyID)) Then
+            Dim storyQuery As IQueryable(Of AP_Story) = From c In d.AP_Stories Where c.StoryId = storyID
+            If (storyQuery.Count > 0) Then
+                story = storyQuery.First
+            End If
+        End If
+
+        Return story
     End Function
 
-    Public Shared Function GetStoryInCache(ByVal storyID As Integer, ByVal tabModuleID As Integer) As IQueryable(Of AP_Stories_Module_Channel_Cache)
+    Public Shared Function GetCacheByStoryId(ByVal storyID As Integer, ByVal tabModuleID As Integer) As AP_Stories_Module_Channel_Cache
         Dim d As New StoriesDataContext
-        Return From c In d.AP_Stories_Module_Channel_Caches
-               Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = tabModuleID _
-                                And c.GUID = storyID
+        Dim storyCache As New AP_Stories_Module_Channel_Cache
+
+        Dim storyCacheQuery As IQueryable(Of AP_Stories_Module_Channel_Cache) = From c In d.AP_Stories_Module_Channel_Caches
+                                                                                Where c.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = tabModuleID _
+                                                                                And c.GUID = storyID
+        If (storyCacheQuery.Count > 0) Then
+            storyCache = storyCacheQuery.First
+        End If
+
+        Return storyCache
     End Function
 
-    'Returns only visible and non-blocked stories 
-    Public Shared Function GetVisibleNonBlockedStories(ByVal TabModuleID As Integer, ByVal portalID As Integer) As IQueryable(Of AP_Story)
+    Public Shared Function GetCacheByCacheId(ByVal cacheID As String) As AP_Stories_Module_Channel_Cache
+        Dim d As New StoriesDataContext
+        Dim storyCache As New AP_Stories_Module_Channel_Cache
+
+        If (IsInt(cacheID)) Then
+            Dim storyCacheQuery As IQueryable(Of AP_Stories_Module_Channel_Cache) = From c In d.AP_Stories_Module_Channel_Caches
+                                                                                    Where c.CacheId = cacheID
+            If (storyCacheQuery.Count > 0) Then
+                storyCache = storyCacheQuery.First
+            End If
+        End If
+
+        Return storyCache
+    End Function
+
+    'Returns only published stories 
+    Public Shared Function GetPublishedStories(ByVal TabModuleID As Integer, ByVal portalID As Integer) As IQueryable(Of AP_Story)
         Dim d As New StoriesDataContext
 
         Dim stories As IQueryable(Of AP_Story) = From story In d.AP_Stories
-                                                 Join channelCache In d.AP_Stories_Module_Channel_Caches On channelCache.GUID Equals story.StoryId
                                                  Where story.PortalID = portalID _
                                                      And story.TabModuleId = TabModuleID _
-                                                     And story.IsVisible = True _
-                                                     And channelCache.Block = False
+                                                     And story.IsVisible = True
                                                  Select story
         Return stories
     End Function
@@ -572,31 +649,45 @@ Public Class StoryFunctions
 
 #Region "Boost/Block"
 
-    Public Shared Sub BlockStoryAccrossSite(ByVal StoryURL As String)
+    Public Shared Sub BlockStory(ByVal storyInCache As AP_Stories_Module_Channel_Cache, ByVal storyTabModuleId As Integer)
         Dim d As New Stories.StoriesDataContext
 
-        Dim theCacheItems = From c In d.AP_Stories_Module_Channel_Caches Where c.Link = StoryURL
+        Dim tabModuleIdOfCachedStory = (From channelCache In d.AP_Stories_Module_Channel_Caches
+                                        Join moduleChannel In d.AP_Stories_Module_Channels On channelCache.ChannelId Equals moduleChannel.ChannelId
+                                        Join storiesModule In d.AP_Stories_Modules On moduleChannel.StoryModuleId Equals storiesModule.StoryModuleId
+                                        Select storiesModule.TabModuleId).First
 
+        Dim cachedStories As IQueryable(Of AP_Stories_Module_Channel_Cache)
 
-        For Each row In theCacheItems
-            row.Block = True
-            row.BoostDate = Nothing
+        'block story across site because it is being blocked from the channel where it was originally created
+        If (tabModuleIdOfCachedStory = storyTabModuleId) Then
 
+            cachedStories = From c In d.AP_Stories_Module_Channel_Caches Where c.Link = storyInCache.Link
 
+        Else  'only block this story's cache line because it is being blocked from a channel different from the original
+            cachedStories = From c In d.AP_Stories_Module_Channel_Caches Where c.CacheId = storyInCache.CacheId
+        End If
+
+        For Each story In cachedStories
+            story.Block = True
+            story.BoostDate = Nothing
         Next
         d.SubmitChanges()
+
     End Sub
 
-    Public Shared Sub UnBlockStoryAccrossSite(ByVal StoryURL As String)
+    'Unblock only the story cache that is being requested. 
+    'Even if the story cache from original module is being unblocked.
+    'Even if the story cache from original module will still be blocked.
+    Public Shared Sub UnBlockStory(ByVal cacheId As Integer)
         Dim d As New Stories.StoriesDataContext
 
-        Dim theCacheItems = From c In d.AP_Stories_Module_Channel_Caches Where c.Link = StoryURL
+        Dim storyCache As IQueryable(Of AP_Stories_Module_Channel_Cache) = From c In d.AP_Stories_Module_Channel_Caches
+                                                                               Where c.CacheId = cacheId
+        If (storyCache.Count > 0) Then
+            storyCache.First.Block = False
+        End If
 
-
-        For Each row In theCacheItems
-            row.Block = False
-
-        Next
         d.SubmitChanges()
     End Sub
 
@@ -627,6 +718,33 @@ Public Class StoryFunctions
 
         storyInCache.BoostDate = boostDate
         d.SubmitChanges()
+    End Sub
+
+    Public Shared Sub SetPreviouslyBoosted(ByVal storyModuleId As Integer, ByVal cacheIds As String())
+        Dim d As New StoriesDataContext
+
+        Dim previouslyBoosted = From c In d.AP_Stories_Module_Channel_Caches
+                                Where c.AP_Stories_Module_Channel.StoryModuleId = storyModuleId _
+                                    And (Not c.BoostDate Is Nothing) _
+                                    And (Not cacheIds.Contains(c.CacheId))
+
+        For Each row In previouslyBoosted
+            row.BoostDate = Nothing
+        Next
+        d.SubmitChanges()
+    End Sub
+
+    Public Shared Sub SetPreviouslyBlocked(ByVal storyModuleId As Integer, ByVal cacheIds As String())
+        Dim d As New StoriesDataContext
+
+        Dim previouslyBlocked = From c In d.AP_Stories_Module_Channel_Caches
+                                Where c.AP_Stories_Module_Channel.StoryModuleId = storyModuleId _
+                                    And (c.Block = True) _
+                                    And (Not cacheIds.Contains(c.CacheId))
+
+        For Each row In previouslyBlocked
+            StoryFunctions.UnBlockStory(row.CacheId)
+        Next
     End Sub
 
 #End Region 'Boost/Block
@@ -743,12 +861,11 @@ Public Class StoryFunctions
         End Try
     End Function
 
-    Public Shared Sub RefreshFeed(ByVal tabModuleId As Integer, ByVal ChannelId As Integer, Optional ByVal ClearCache As Boolean = False)
-
-        'StaffBrokerFunctions.EventLog("Refreshing Channel: " & ChannelId, "", 1)
+    Public Shared Sub RefreshFeed(ByVal tabModuleId As Integer, ByVal ChannelId As Integer)
 
         Dim d As New Stories.StoriesDataContext
 
+        'Insert a new Stories_Module if none are found.
         If d.AP_Stories_Modules.Where(Function(x) x.TabModuleId = tabModuleId).Count = 0 Then
             Dim insert As New Stories.AP_Stories_Module
             insert.TabModuleId = tabModuleId
@@ -760,42 +877,18 @@ Public Class StoryFunctions
 
         Dim theModule = (From c In d.AP_Stories_Modules Where c.TabModuleId = tabModuleId).First
 
-        'Dim reader = XmlReader.Create("http://rss.cnn.com/rss/edition.rss")
-        ' Dim reader = XmlReader.Create("http://feeds.bbci.co.uk/news/rss.xml")
-        ' Dim reader = XmlReader.Create("http://www.agapeeurope.com/?feed=rss2")
-
         Try
-
-
-
-
-
-            'Refresh the feed
-
-
-            If ClearCache Then
-                ' d.AP_Stories_Module_Channel_Caches.DeleteAllOnSubmit(theModule.AP_Stories_Module_Channels.Where(Function(x) x.ChannelId = ChannelId).First.AP_Stories_Module_Channel_Caches.Where(Function(x) x.Block <> True And (x.BoostDate Is Nothing Or x.BoostDate < Today)))
-                'd.SubmitChanges()
-            End If
 
             Dim theChannel = (From c In theModule.AP_Stories_Module_Channels Where c.ChannelId = ChannelId).First
             Dim reader = XmlReader.Create(theChannel.URL)
             Dim feed = SyndicationFeed.Load(reader)
-            'If Not feed.BaseUri Is Nothing Then
-            '    set_if(theChannel.URL, feed.BaseUri.AbsoluteUri)
-            'End If
-            'If Not feed.Title Is Nothing Then
-            '    set_if(theChannel.ChannelTitle, Left(feed.Title.Text, 154))
-            'End If
-
-            'set_if(theChannel.Language, feed.Language)
-
-
 
             For Each row In feed.Items
                 Try
 
                     Dim existingStory = From c In theChannel.AP_Stories_Module_Channel_Caches Where c.Link = row.Links.First.Uri.AbsoluteUri
+
+                    'INSERT new story into AP_Stories_Module_Channel_Cache
                     If existingStory.Count = 0 Then
                         Dim insert As New Stories.AP_Stories_Module_Channel_Cache
                         If Not row.Title Is Nothing Then
@@ -822,14 +915,9 @@ Public Class StoryFunctions
                             insert.Longitude = theChannel.Longitude
                         End If
                         Try
-
-
                             If row.ElementExtensions.Where(Function(x) x.OuterName = "translationGroup").Count > 0 Then
                                 insert.TranslationGroup = CInt(row.ElementExtensions.Where(Function(x) x.OuterName = "translationGroup").First.GetObject(Of XElement).Value)
                             End If
-
-
-
 
                             If row.ElementExtensions.Where(Function(x) x.OuterName = "language").Count > 0 Then
                                 insert.Langauge = row.ElementExtensions.Where(Function(x) x.OuterName = "language").First.GetObject(Of XElement).Value
@@ -854,17 +942,14 @@ Public Class StoryFunctions
                         Catch ex As Exception
 
                         End Try
+
                         If insert.Langauge Is Nothing Then
                             insert.Langauge = theChannel.Language
                         End If
-                        ' insert.TranslationGroup = row.Id
-
-
 
                         If Not row.Id Is Nothing Then
                             insert.GUID = Left(row.Id, 154)
                         End If
-
 
                         If row.PublishDate = Nothing Then
                             insert.StoryDate = Today
@@ -876,7 +961,8 @@ Public Class StoryFunctions
                         SetImage(insert, row, theChannel.ImageId)
 
                         d.AP_Stories_Module_Channel_Caches.InsertOnSubmit(insert)
-                    Else
+
+                    Else 'UPDATE existing story in AP_Stories_Module_Channel_Cache
                         If Not row.Title Is Nothing Then
                             existingStory.First.Headline = Left(row.Title.Text, 154)
                         End If
@@ -892,7 +978,6 @@ Public Class StoryFunctions
                         SetImage(existingStory.First, row, theChannel.ImageId)
 
                         Try
-
 
                             If row.ElementExtensions.Where(Function(x) x.OuterName = "translationGroup").Count > 0 Then
                                 existingStory.First.TranslationGroup = CInt(row.ElementExtensions.Where(Function(x) x.OuterName = "translationGroup").First.GetObject(Of XElement).Value)
@@ -911,18 +996,11 @@ Public Class StoryFunctions
 
                     StaffBrokerFunctions.EventLog("AddStoryToCache Failed", s, 1)
                 End Try
-
             Next
-
-
-
 
         Catch ex As Exception
             StaffBrokerFunctions.EventLog("Refresh Cache Failed", ex.ToString(), 1)
         End Try
-
-
-
     End Sub
 
     Public Shared Sub PrecalAllCaches(ByVal TabModuleId As Integer)
@@ -1027,6 +1105,8 @@ Public Class StoryFunctions
 
     End Sub
 
+#Region "Helper functions"
+
     Public Shared Function distance(ByVal lat1 As Double, ByVal lon1 As Double, ByVal lat2 As Double, ByVal lon2 As Double) As Double
 
         Dim theta As Double = lon1 - lon2
@@ -1043,8 +1123,6 @@ Public Class StoryFunctions
         Dim w As Double = 1.0 - dist / 200
         Return (1.0 + w) / 2.0
 
-
-
     End Function
 
     Private Shared Function deg2rad(ByVal deg As Double) As Double
@@ -1054,6 +1132,17 @@ Public Class StoryFunctions
     Private Shared Function rad2deg(ByVal rad As Double) As Double
         Return rad / Math.PI * 180.0
     End Function
+
+    Public Shared Function IsInt(ByVal value As Object) As Boolean
+        Try
+            Dim temp As Integer = CInt(value)
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+#End Region 'Helper functions
 
 End Class
 

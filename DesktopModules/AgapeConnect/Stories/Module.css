@@ -73,3 +73,85 @@
 
 /*Tag Settings Section End*/
 
+/*StoryMixer Section Begin*/
+
+#StoryMixer .Settings {
+    margin-top: 60px;
+}
+
+#StoryMixer .FieldLabel {
+	display: inline-block;
+	zoom: 1; *display: inline; /* IE fix for inline-block display */
+    vertical-align: top;
+    text-align: left;
+}
+
+#StoryMixer .divPriorities {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-around;
+}
+
+#StoryMixer .divPriority {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 200px;
+}
+
+#StoryMixer .divNumber {
+    display: flex;
+}
+
+#StoryMixer .itemNumber1 {
+    flex-basis: 20px;
+}
+
+#StoryMixer .itemNumber2 {
+    flex-basis: 300px;
+}
+
+#StoryMixer .submitPanel {
+    width: 100%;
+    margin-top: 60px;
+    text-align: center;
+}
+
+#StoryMixer tr.GridViewHeader th {
+    padding: 20px 10px 20px;
+    text-align: left;
+}
+
+#StoryMixer tr.GridViewRows td {
+    padding: 10px 20px 10px 20px;
+    text-align: left;
+}
+
+#StoryMixer .GridView {
+    margin-top: 50px;
+}
+
+/*StoryMixer Section End*/
+
+/*SuperPowers Section Begin*/
+
+#SuperPowers .thisStory .Button {
+    margin-bottom: 5px;
+    font-size: x-small;
+}
+
+#SuperPowers .boostBlock {
+    margin-bottom: 5px;
+}
+
+#SuperPowers .newStory .Button  {
+    margin-bottom: 5px;
+    font-size: x-small;
+}
+
+#SuperPowers .powerStatus  {
+    color: red;
+    font-style: italic;
+}
+
+/*SuperPowers Section End*/

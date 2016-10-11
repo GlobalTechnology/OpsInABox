@@ -70,8 +70,6 @@
         }
 </script>
 
-<asp:Label ID="NotFoundLabel" runat="server" Text="Story Not Found" Font-Bold="True" Visible="False"
-                ForeColor="Red"></asp:Label>
 
 <asp:Panel ID="PagePanel" runat="server" >
     <asp:Literal ID="ltStory1" runat="server"></asp:Literal>

@@ -196,30 +196,6 @@
    }
 </script>
 <style type="text/css">
-    .SettingsTable
-    {
-        border-top: 1px solid #e5eff8;
-        border-right: 1px solid #e5eff8;
-       
-        border-collapse: collapse;
-        width: 500px;
-  
-    }
-    .SettingsTable td
-    {
-        color: #678197;
-        border-bottom: 1px solid #e5eff8;
-        border-left: 1px solid #e5eff8;
-        padding: .3em 1em;
-    }
-    .SettingsTable td td
-    {
-        border-style: none;
-    }
-
-    #eq span {
-		height:120px; float:left; margin:15px;
-	}
     .resizable { color: White; background-color: #1482b4; }
     .resizable .ui-resizable-se { color: White;}
     .pickermap
@@ -228,17 +204,17 @@
     }
    .no-close div.ui-dialog-titlebar > .ui-dialog-titlebar-close {
   display: none;
-}
-    
+}    
 </style>
 
+<div id="StoryMixer">
 <asp:HiddenField ID="hfStoryModuleId" runat="server" Value="-1" />
 <asp:HiddenField ID='hfVolumes' runat="server" />
 <asp:HiddenField ID='hfLoadVolumes' runat="server" />
 <asp:HiddenField ID='hfNumberOfStories' runat="server" />
 <asp:HiddenField ID='hfBlocks' runat="server" Value=";" />
 <asp:HiddenField ID='hfBoosts' runat="server" Value=";" />
-<div>
+
 <asp:Panel ID="pnlChannelMixer" runat="server" BackColor="Black">
 <div style="overflow-y: hidden; overflow-x: auto;  width: 1050px; " >
     <asp:DataList ID="dlChannelMixer" runat="server" RepeatDirection="Horizontal" BorderStyle="Dashed"
@@ -300,66 +276,46 @@
     </div>
     
 </asp:Panel>
-  
-<table cellpadding="4px" border="1" class="SettingsTable">
-    <tr>
-        <td>
-        <dnn:Label ID="Label5" runat="server" ResourceKey="lblSettings" />
-        </td>
-        <td align="center">
-        <table>
-            <tr>
-                <td>
-                    <asp:HiddenField ID="hfPopular" runat="server" />
-                <div id="popular" class="eq" style="height:100px; margin:15px;"></div>
-                Popular
-                </td>
-                <td>
-                <asp:HiddenField ID="hfRegional" runat="server" />
-                 <div id="regional" class="eq" style="height:100px; margin:15px;"></div>
-                 Local
-                </td>
-                <td>
-                <asp:HiddenField ID="hfRecent" runat="server" />
-                 <div id="recent" class="eq" style="height:100px; margin:15px;"></div>
-                 Recent
-                </td>
-                
-            </tr>
-        </table>
-        
-       
-        </td>
-    </tr>
-    <tr valign="middle">
-        <td>
-            <dnn:Label ID="Label2" runat="server" ResourceKey="lblNumberOfStories" />
-        </td>
-        <td align="center">
-            <asp:Label ID="lblNumberOfStories" runat="server" style="float: right; margin-top: 12px;"></asp:Label>
-         <div id="numberOfStories" style="width:200px; margin:15px;"></div>
-         
-           
-            <div style="clear: both;"></div>
-        </td>
-    </tr>
-    
-</table>
-
-</div>
-<br /><br />
-<div style="width: 100%; text-align: center">
-    <asp:LinkButton ID="SaveBtn" runat="server" class="aButton btn" ResourceKey="btnSave">Save</asp:LinkButton>
-    &nbsp;
-    <asp:LinkButton ID="CancelBtn" runat="server" class="aButton btn" ResourceKey="btnCancel">Done</asp:LinkButton>
-    &nbsp;
-    <asp:LinkButton ID="btnCache" runat="server" class="aButton btn">Refresh Cache</asp:LinkButton>
- &nbsp;
-    <input type="button" value="Add New Channel"  onclick="showPopup();" class="aButton btn" style="font-size: 8pt" />
  
+<div class="Settings">
+    <dnn:Label ID="lblSettings" runat="server" ResourceKey="lblSettings" CssClass="FieldLabel"/>
+    <div class="divPriorities">
+        <div class="divPriority">
+            <asp:HiddenField ID="hfPopular" runat="server" />
+            <div id="popular" class=itemPriority1></div>
+            <div class=itemPriority2><asp:Label ID="lblPopular" runat="server" ResourceKey="lblPopular"></asp:Label></div>
+        </div>
+        <div class="divPriority">
+            <asp:HiddenField ID="hfRegional" runat="server" />
+            <div id="regional"  class=itemPriority1></div>
+            <div class=itemPriority2><asp:Label ID="lblLocal" runat="server" ResourceKey="lblLocal"></asp:Label></div>
+        </div>
+        <div class="divPriority">
+            <asp:HiddenField ID="hfRecent" runat="server" />
+            <div id="recent"  class=itemPriority1></div>
+            <div class=itemPriority2><asp:Label ID="lblRecent" runat="server" ResourceKey="lblRecent"></asp:Label></div>
+        </div>
+    </div>
+    <dnn:Label ID="lblNumberStories" runat="server" ResourceKey="lblNumberOfStories"  CssClass="FieldLabel" />
+    <div class="divNumber">
+        <div class=itemNumber1><asp:Label ID="lblNumberOfStories" runat="server"></asp:Label></div>
+        <div class=itemNumber2 id="numberOfStories"></div>
+        <div style="clear: both;"></div>
+    </div>
+</div>  <%--END Settings--%>
+
+
+<div class="submitPanel">    
+    <asp:UpdatePanel runat="server"> 
+        <ContentTemplate>
+            <asp:LinkButton ID="SaveBtn" runat="server" class="Button" ResourceKey="btnSave"></asp:LinkButton>
+            <asp:LinkButton ID="CancelBtn" runat="server" class="Button" ResourceKey="btnCancel"></asp:LinkButton>
+            <asp:LinkButton ID="btnCache" runat="server" class="Button" ResourceKey="btnRefresh"></asp:LinkButton>
+            <input type="button" value='<%= Translate("btnNewChannel") %>'  onclick="showPopup();" class="Button" />
+         </ContentTemplate> 
+    </asp:UpdatePanel>
 </div>
 
- 
 
 <div id="AddChannel">
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -432,39 +388,28 @@
           <asp:PostBackTrigger ControlID="dlChannelMixer"  />
     </Triggers>
                 </asp:UpdatePanel>
-</div>
-
-<fieldset>
-    <legend><h4>Preview Results</h4></legend>
+</div> <%--END AddChannel--%>
 
 
-
-    <asp:GridView ID="gvPreview" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical">
-        <AlternatingRowStyle BackColor="White" />
+<div class="GridView">
+    <asp:GridView ID="gvPreview" 
+        runat="server"
+        BorderStyle="None"
+        GridLines="Vertical"
+        AutoGenerateColumns="False"
+        EmptyDataText="">
+        <AlternatingRowStyle BackColor="#F7F7DE" />
+        <HeaderStyle BackColor="#6B696B" ForeColor="White" CssClass="GridViewHeader" />
+        <RowStyle CssClass="GridViewRows" />
         <Columns>
             <asp:BoundField DataField="Headline" HeaderText="Headline" />
-            <asp:BoundField DataField="Score" DataFormatString="{0:0.000000}" HeaderText="Score">
-            <ItemStyle HorizontalAlign="Right" />
-            </asp:BoundField>
+            <asp:BoundField DataField="Score" DataFormatString="{0:0.000000}" HeaderText="Score"/>
             <asp:BoundField DataField="Clicks" HeaderText="Clicks" />
             <asp:BoundField DataField="Age" HeaderText="Age" />
-            <asp:BoundField />
             <asp:BoundField DataField="Distance" HeaderText="Distance" />
-            <asp:BoundField DataField="Precal" HeaderText="Precal"  DataFormatString="{0:0.000000}" >
-                <ItemStyle HorizontalAlign="Right" />
-                </asp:BoundField>
-
+            <asp:BoundField DataField="Precal" HeaderText="Precal"  DataFormatString="{0:0.000000}" />
         </Columns>
-        <FooterStyle BackColor="#CCCC99" />
-        <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
-        <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
-        <RowStyle BackColor="#F7F7DE" />
-        <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
-        <SortedAscendingCellStyle BackColor="#FBFBF2" />
-        <SortedAscendingHeaderStyle BackColor="#848384" />
-        <SortedDescendingCellStyle BackColor="#EAEAD3" />
-        <SortedDescendingHeaderStyle BackColor="#575357" />
     </asp:GridView>
+</div>
 
-
-</fieldset>
+</div> <%--END StoryMixer--%>

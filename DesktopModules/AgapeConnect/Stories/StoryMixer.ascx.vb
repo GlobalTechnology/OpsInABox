@@ -18,14 +18,22 @@ Namespace DotNetNuke.Modules.Stories
 #Region "Base Method Implementations"
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
+
+            If (Not IsEditable And Not UserInfo.IsInRole("Administrators")) Then
+                Response.Redirect(NavigateURL(PortalSettings.Current.ErrorPage404))
+            End If
+
             Try
-                If (Page.IsPostBack = False) Then
-                    LoadMixer()
-                End If
-            Catch exc As Exception           'Module failed to load
-                ProcessModuleLoadException(Me, exc)
-            End Try
+                    If (Page.IsPostBack = False) Then
+                        BuildPreviewHeaders()
+                        LoadMixer()
+                    End If
+                Catch exc As Exception           'Module failed to load
+                    ProcessModuleLoadException(Me, exc)
+                End Try
+
         End Sub
+
         Protected Sub LoadMixer()
             If CType(TabModuleSettings("Aspect"), String) <> "" Then
                 icImage.Aspect = Double.Parse(TabModuleSettings("Aspect"), New CultureInfo("")).ToString(New CultureInfo(""))
@@ -117,6 +125,164 @@ Namespace DotNetNuke.Modules.Stories
         End Sub
 
 #End Region
+
+#Region "Page Events"
+        Protected Sub SaveBtn_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles SaveBtn.Click
+            Dim objModules As New Entities.Modules.ModuleController
+
+            objModules.UpdateTabModuleSetting(TabModuleId, "NumberOfStories", CInt(hfNumberOfStories.Value))
+            objModules.UpdateTabModuleSetting(TabModuleId, "WeightPopular", CDbl(IIf(hfPopular.Value = "", 0, hfPopular.Value / 100)).ToString(New CultureInfo("")))
+            objModules.UpdateTabModuleSetting(TabModuleId, "WeightRegional", CDbl(IIf(hfRegional.Value = "", 0, hfRegional.Value / 100)).ToString(New CultureInfo("")))
+            objModules.UpdateTabModuleSetting(TabModuleId, "WeightRecent", CDbl(IIf(hfRecent.Value = "", 0, hfRecent.Value / 100)).ToString(New CultureInfo("")))
+
+            'Save each channel weight:
+            Dim x = hfVolumes.Value.Split(";")
+            Dim Volumes As New Dictionary(Of Integer, Integer)
+            For Each row In x
+                If row.Contains("=") Then
+                    Dim theSplit = row.Split("=")
+
+                    Volumes.Add(theSplit(0), theSplit(1))
+                End If
+            Next
+
+            StoryFunctions.setChannelWeight(Volumes, CInt(hfStoryModuleId.Value))
+
+            'Set boost date for stories that were boosted
+            Dim boosts = hfBoosts.Value.Split(";")
+            For Each boost In boosts
+                Dim theCache = StoryFunctions.GetCacheByCacheId(boost)
+
+                If (Not String.IsNullOrEmpty(theCache.Headline)) Then
+                    theCache.Block = False
+                    If theCache.BoostDate Is Nothing Then
+                        theCache.BoostDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
+                    ElseIf theCache.BoostDate < Today Then
+                        theCache.BoostDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
+                    End If
+                    StoryFunctions.SetBoostDate(theCache.GUID, theCache.BoostDate, TabModuleId)
+                End If
+            Next
+
+            'Block stories that were blocked
+            Dim blocks = hfBlocks.Value.Split(";")
+
+            For Each block In blocks
+                Dim theCache = StoryFunctions.GetCacheByCacheId(block)
+
+                If (Not String.IsNullOrEmpty(theCache.Headline)) Then
+                    StoryFunctions.BlockStory(theCache, TabModuleId)
+                End If
+            Next
+
+            StoryFunctions.SetPreviouslyBoosted(CInt(hfStoryModuleId.Value), boosts)
+            StoryFunctions.SetPreviouslyBlocked(CInt(hfStoryModuleId.Value), blocks)
+
+            ModuleController.SynchronizeModule(ModuleId)
+            StoryFunctions.PrecalAllCaches(TabModuleId)
+            LoadMixer()
+        End Sub
+
+        Protected Sub CancelBtn_Click(sender As Object, e As System.EventArgs) Handles CancelBtn.Click
+            Response.Redirect(NavigateURL())
+        End Sub
+
+        Protected Sub btnCache_Click(sender As Object, e As System.EventArgs) Handles btnCache.Click
+            ' StoryFunctions.RefreshFeed(1)
+            SaveBtn_Click(Me, Nothing)
+            Dim theMod = StoryFunctions.GetStoryModule(TabModuleId)
+            For Each channel In theMod.AP_Stories_Module_Channels
+                StoryFunctions.RefreshFeed(TabModuleId, channel.ChannelId)
+            Next
+            SaveBtn_Click(Me, Nothing)
+        End Sub
+
+        Protected Sub btnAddChannel_Click(sender As Object, e As System.EventArgs) Handles btnAddChannel.Click
+            'Validations
+            lblFeedError.Text = ""
+            If tbRssFeed.Text = "" Then
+                lblFeedError.Text = "No feed found!<br />"
+            End If
+
+            Dim check = From c In d.AP_Stories_Module_Channels Where c.StoryModuleId = CInt(hfStoryModuleId.Value) And c.URL = tbRssFeed.Text
+            If check.Count > 0 Then
+                lblFeedError.Text = "This feed is already loaded.<br />"
+            End If
+
+            Dim insert As New AP_Stories_Module_Channel
+            insert.StoryModuleId = CInt(hfStoryModuleId.Value)
+            insert.Weight = 0.8
+            insert.Type = 0
+            insert.URL = tbRssFeed.Text
+
+            If tbTitle.Text = "" Then
+                lblFeedError.Text = "Please enter a title for this feed.<br />"
+            End If
+            insert.ChannelTitle = tbTitle.Text
+            insert.Language = ddlLanguages.SelectedValue
+            insert.AutoDetectLanguage = cbAutoDetectLanguage.Checked
+            Dim geoLoc = tbLocation.Text.Split(",")
+            If geoLoc.Count <> 2 Then
+                lblFeedError.Text = "Invalid location. Please click search, to convert into latitude/longitude<br />"
+            Else
+                Try
+                    insert.Latitude = Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo(""))
+                    insert.Longitude = Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo(""))
+                Catch ex As Exception
+                    lblFeedError.Text = "Invalid location. Please click search, to convert into latitude/longitude<br />"
+                End Try
+            End If
+
+            insert.ImageId = icImage.FileId
+
+            If lblFeedError.Text <> "" Then
+                Dim t As Type = icImage.GetType()
+                Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
+                sb.Append("<script language='javascript'>")
+                sb.Append("$(document).ready(function() { showPopup();});")
+                sb.Append("</script>")
+                ScriptManager.RegisterStartupScript(icImage, t, "thePopup", sb.ToString, False)
+                Return
+            End If
+
+            d.AP_Stories_Module_Channels.InsertOnSubmit(insert)
+            d.SubmitChanges()
+
+            StoryFunctions.RefreshFeed(TabModuleId, insert.ChannelId)
+            Dim d2 As New StoriesDataContext
+            Dim channels = From c In d2.AP_Stories_Module_Channels Where c.StoryModuleId = CInt(hfStoryModuleId.Value)
+
+            dlChannelMixer.DataSource = channels.OrderByDescending(Function(x) x.Type = 2).ThenBy(Function(x) x.ChannelId)
+            dlChannelMixer.DataBind()
+
+            tbRssFeed.Text = ""
+            tbRssFeed.Enabled = True
+            tbLocation.Text = ""
+            icImage.FileId = 0
+            tbTitle.Text = ""
+            'pnlloaded.Visible = False
+            btnAddChannel.Enabled = False
+
+            Dim volumes = ""
+            For Each row In channels
+                volumes &= row.ChannelId & "=" & (row.Weight * 30).ToString(New CultureInfo("")) & ";"
+            Next
+
+            hfLoadVolumes.Value = volumes
+
+            'Dim t2 As Type = Page.GetType()
+            'Dim sb2 As System.Text.StringBuilder = New System.Text.StringBuilder()
+            'sb2.Append("<script language='javascript'>")
+            'sb2.Append("")
+            'sb2.Append("</script>")
+            'ScriptManager.RegisterStartupScript(Page, t2, "theDials", sb2.ToString, False)
+
+        End Sub
+
+#End Region 'Page Events
+
+#Region "HelperFunctions"
+
         Private Sub PreviewResults()
             Dim l As Location = Location.GetLocation(Request.ServerVariables("remote_addr"))
 
@@ -149,94 +315,6 @@ Namespace DotNetNuke.Modules.Stories
 
             gvPreview.DataSource = storyList
             gvPreview.DataBind()
-        End Sub
-
-        Protected Sub SaveBtn_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles SaveBtn.Click
-            Dim objModules As New Entities.Modules.ModuleController
-
-            ' objModules.UpdateTabModuleSetting(TabModuleId, "Aspect", Double.Parse(hfAspect.Value, New CultureInfo("")).ToString(New CultureInfo("")))
-
-            objModules.UpdateTabModuleSetting(TabModuleId, "NumberOfStories", CInt(hfNumberOfStories.Value))
-            objModules.UpdateTabModuleSetting(TabModuleId, "WeightPopular", CDbl(IIf(hfPopular.Value = "", 0, hfPopular.Value / 100)).ToString(New CultureInfo("")))
-            objModules.UpdateTabModuleSetting(TabModuleId, "WeightRegional", CDbl(IIf(hfRegional.Value = "", 0, hfRegional.Value / 100)).ToString(New CultureInfo("")))
-            objModules.UpdateTabModuleSetting(TabModuleId, "WeightRecent", CDbl(IIf(hfRecent.Value = "", 0, hfRecent.Value / 100)).ToString(New CultureInfo("")))
-
-            'Save each channel weight:
-            Dim x = hfVolumes.Value.Split(";")
-            Dim Volumes As New Dictionary(Of Integer, Integer)
-            For Each row In x
-                If row.Contains("=") Then
-                    Dim theSplit = row.Split("=")
-
-                    Volumes.Add(theSplit(0), theSplit(1))
-                End If
-            Next
-
-            Dim channels = From c In d.AP_Stories_Module_Channels Where c.StoryModuleId = CInt(hfStoryModuleId.Value)
-
-            For Each row In channels
-                row.Weight = CDbl(Volumes(row.ChannelId)) / 30
-            Next
-
-            Dim boosts = hfBoosts.Value.Split(";")
-            For Each boost In boosts
-                If boost <> "" Then
-                    Dim theCache = (From c In d.AP_Stories_Module_Channel_Caches Where c.CacheId = CInt(boost))
-                    If theCache.Count > 0 Then
-                        theCache.First.Block = False
-                        If theCache.First.BoostDate Is Nothing Then
-                            theCache.First.BoostDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
-                        ElseIf theCache.First.BoostDate < Today Then
-                            theCache.First.BoostDate = Today.AddDays(StoryFunctions.GetBoostDuration(PortalId))
-                        End If
-                    End If
-                End If
-            Next
-            Dim blocks = hfBlocks.Value.Split(";")
-            For Each block In blocks
-                If block <> "" Then
-                    Dim theCache = (From c In d.AP_Stories_Module_Channel_Caches Where c.CacheId = CInt(block))
-                    If theCache.Count > 0 Then
-
-                        StoryFunctions.BlockStoryAccrossSite(theCache.First.Link)
-
-                    End If
-                End If
-            Next
-
-            Dim PrevioslyBoosted = From c In d.AP_Stories_Module_Channel_Caches Where c.AP_Stories_Module_Channel.StoryModuleId = CInt(hfStoryModuleId.Value) And (Not c.BoostDate Is Nothing) And (Not boosts.Contains(c.CacheId))
-
-            For Each row In PrevioslyBoosted
-                row.BoostDate = Nothing
-            Next
-            Dim PrevioslyBlocked = From c In d.AP_Stories_Module_Channel_Caches Where c.AP_Stories_Module_Channel.StoryModuleId = CInt(hfStoryModuleId.Value) And (c.Block = True) And (Not blocks.Contains(c.CacheId))
-
-            For Each row In PrevioslyBlocked
-                StoryFunctions.UnBlockStoryAccrossSite(row.Link)
-            Next
-
-            d.SubmitChanges()
-
-            ' refresh cache
-            'SynchronizeModule()
-            ModuleController.SynchronizeModule(ModuleId)
-
-            StoryFunctions.PrecalAllCaches(TabModuleId)
-            LoadMixer()
-        End Sub
-
-        Protected Sub CancelBtn_Click(sender As Object, e As System.EventArgs) Handles CancelBtn.Click
-            Response.Redirect(NavigateURL())
-        End Sub
-
-        Protected Sub btnCache_Click(sender As Object, e As System.EventArgs) Handles btnCache.Click
-            ' StoryFunctions.RefreshFeed(1)
-            SaveBtn_Click(Me, Nothing)
-            Dim theMod = StoryFunctions.GetStoryModule(TabModuleId)
-            For Each channel In theMod.AP_Stories_Module_Channels
-                StoryFunctions.RefreshFeed(TabModuleId, channel.ChannelId, True)
-            Next
-            SaveBtn_Click(Me, Nothing)
         End Sub
 
         Protected Sub lbVerifyURL_Click(sender As Object, e As System.EventArgs) Handles lbVerifyURL.Click
@@ -329,88 +407,6 @@ Namespace DotNetNuke.Modules.Stories
         '        Return -1
         '    End Try
         'End Function
-
-        Protected Sub btnAddChannel_Click(sender As Object, e As System.EventArgs) Handles btnAddChannel.Click
-            'Validations
-            lblFeedError.Text = ""
-            If tbRssFeed.Text = "" Then
-                lblFeedError.Text = "No feed found!<br />"
-            End If
-
-            Dim check = From c In d.AP_Stories_Module_Channels Where c.StoryModuleId = CInt(hfStoryModuleId.Value) And c.URL = tbRssFeed.Text
-            If check.Count > 0 Then
-                lblFeedError.Text = "This feed is already loaded.<br />"
-            End If
-
-            Dim insert As New AP_Stories_Module_Channel
-            insert.StoryModuleId = CInt(hfStoryModuleId.Value)
-            insert.Weight = 0.8
-            insert.Type = 0
-            insert.URL = tbRssFeed.Text
-
-            If tbTitle.Text = "" Then
-                lblFeedError.Text = "Please enter a title for this feed.<br />"
-            End If
-            insert.ChannelTitle = tbTitle.Text
-            insert.Language = ddlLanguages.SelectedValue
-            insert.AutoDetectLanguage = cbAutoDetectLanguage.Checked
-            Dim geoLoc = tbLocation.Text.Split(",")
-            If geoLoc.Count <> 2 Then
-                lblFeedError.Text = "Invalid location. Please click search, to convert into latitude/longitude<br />"
-            Else
-                Try
-                    insert.Latitude = Double.Parse(geoLoc(0).Replace(" ", ""), New CultureInfo(""))
-                    insert.Longitude = Double.Parse(geoLoc(1).Replace(" ", ""), New CultureInfo(""))
-                Catch ex As Exception
-                    lblFeedError.Text = "Invalid location. Please click search, to convert into latitude/longitude<br />"
-                End Try
-            End If
-
-            insert.ImageId = icImage.FileId
-
-            If lblFeedError.Text <> "" Then
-                Dim t As Type = icImage.GetType()
-                Dim sb As System.Text.StringBuilder = New System.Text.StringBuilder()
-                sb.Append("<script language='javascript'>")
-                sb.Append("$(document).ready(function() { showPopup();});")
-                sb.Append("</script>")
-                ScriptManager.RegisterStartupScript(icImage, t, "thePopup", sb.ToString, False)
-                Return
-            End If
-
-            d.AP_Stories_Module_Channels.InsertOnSubmit(insert)
-            d.SubmitChanges()
-
-            StoryFunctions.RefreshFeed(TabModuleId, insert.ChannelId, False)
-            Dim d2 As New StoriesDataContext
-            Dim channels = From c In d2.AP_Stories_Module_Channels Where c.StoryModuleId = CInt(hfStoryModuleId.Value)
-
-            dlChannelMixer.DataSource = channels.OrderByDescending(Function(x) x.Type = 2).ThenBy(Function(x) x.ChannelId)
-            dlChannelMixer.DataBind()
-
-            tbRssFeed.Text = ""
-            tbRssFeed.Enabled = True
-            tbLocation.Text = ""
-            icImage.FileId = 0
-            tbTitle.Text = ""
-            'pnlloaded.Visible = False
-            btnAddChannel.Enabled = False
-
-            Dim volumes = ""
-            For Each row In channels
-                volumes &= row.ChannelId & "=" & (row.Weight * 30).ToString(New CultureInfo("")) & ";"
-            Next
-
-            hfLoadVolumes.Value = volumes
-
-            'Dim t2 As Type = Page.GetType()
-            'Dim sb2 As System.Text.StringBuilder = New System.Text.StringBuilder()
-            'sb2.Append("<script language='javascript'>")
-            'sb2.Append("")
-            'sb2.Append("</script>")
-            'ScriptManager.RegisterStartupScript(Page, t2, "theDials", sb2.ToString, False)
-
-        End Sub
 
         Protected Sub dlChannelMixer_ItemCommand(source As Object, e As System.Web.UI.WebControls.DataListCommandEventArgs) Handles dlChannelMixer.ItemCommand
             If e.CommandName = "DeleteChannel" Then
@@ -575,7 +571,7 @@ Namespace DotNetNuke.Modules.Stories
 
                 d.SubmitChanges()
 
-                StoryFunctions.RefreshFeed(TabModuleId, theChannel.First.ChannelId, False)
+                StoryFunctions.RefreshFeed(TabModuleId, theChannel.First.ChannelId)
                 Dim d2 As New StoriesDataContext
                 Dim channels = From c In d2.AP_Stories_Module_Channels Where c.StoryModuleId = CInt(hfStoryModuleId.Value)
 
@@ -594,6 +590,21 @@ Namespace DotNetNuke.Modules.Stories
             btnAddChannel.Visible = True
             btnEditChannel.Visible = False
         End Sub
+
+        Public Function Translate(ByVal ResourceString As String) As String
+            Return DotNetNuke.Services.Localization.Localization.GetString(ResourceString & ".Text", LocalResourceFile)
+        End Function
+
+        Protected Sub BuildPreviewHeaders()
+            gvPreview.Columns(0).HeaderText = Translate("Headline")
+            gvPreview.Columns(1).HeaderText = Translate("Score")
+            gvPreview.Columns(2).HeaderText = Translate("Clicks")
+            gvPreview.Columns(3).HeaderText = Translate("Age")
+            gvPreview.Columns(4).HeaderText = Translate("Distance")
+            gvPreview.Columns(5).HeaderText = Translate("Precal")
+        End Sub
+#End Region 'HelperFunctions
+
     End Class
 
 End Namespace
