@@ -1,0 +1,28 @@
+﻿.ActionForm input[type="text"], .ActionForm textarea {
+    border: 1px gray solid;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.ActionForm  input[type="text"] {
+    height: 25px;
+    line-height: 25px;
+    width: 200px;
+}
+
+.ActionForm textarea {
+    width: 400px;
+    height: 150px;
+}
+
+.ActionForm .form-horizontal .form-group .control-label {
+	display: inline-block;
+	zoom: 1; *display: inline; /* IE fix for inline-block display */
+    vertical-align: top;
+    width: 200px;
+    float:left;
+    padding-top:0;
+    font-weight:normal !important;
+    padding-right:10px;
+}
