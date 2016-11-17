@@ -5,7 +5,7 @@
     border-radius: 3px;
 }
 
-.ActionForm  input[type="text"] {
+.ActionForm input[type="text"] {
     height: 25px;
     line-height: 25px;
     width: 200px;
@@ -25,4 +25,23 @@
     padding-top:0;
     font-weight:normal !important;
     padding-right:10px;
+}
+
+.ActionForm .form-horizontal .form-group .control-label::after {
+	content:"*";
+    color: rgba(0,0,0,0);
+}
+
+
+.ActionForm .form-horizontal .form-group .control-label.required::after {
+    color: #3A8BC2;
+}
+
+.ActionForm .form-horizontal .form-group .checkbox label {
+    margin-left:15px;
+    display:block;
+}
+
+.ActionForm .form-horizontal .form-group .checkbox label input{
+    margin-left:-15px;
 }
