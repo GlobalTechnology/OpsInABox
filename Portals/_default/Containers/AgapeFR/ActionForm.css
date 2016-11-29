@@ -1,11 +1,14 @@
-﻿.ActionForm input[type="text"], .ActionForm textarea {
+﻿.ActionForm input[type="text"], .ActionForm textarea, .ActionForm select.form-control {
     border: 1px gray solid;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
+.ActionForm select.form-control {
+    padding:0 0 0 8px;
+}
 
-.ActionForm input[type="text"] {
+.ActionForm input[type="text"], .ActionForm select.form-control {
     height: 25px;
     line-height: 25px;
     width: 200px;
@@ -45,4 +48,7 @@
 .ActionForm .form-horizontal .form-group .checkbox label input{
     margin-left:-15px;
     margin-top: 5px;
+}
+.form-group-obligtext p {
+    font-size:small;
 }
