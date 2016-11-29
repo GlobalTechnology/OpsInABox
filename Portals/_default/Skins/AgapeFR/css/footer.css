@@ -64,7 +64,7 @@
     zoom: 1; *display: inline; /* IE fix for inline-block display */
 }
 
-#footer2 #facebook, #footer2 #youtube {
+#footer2 #newsletter, #footer2 #facebook, #footer2 #youtube {
     -webkit-border-radius: .5em;
     -moz-border-radius: .5em;
     border-radius: .5em;
@@ -77,9 +77,18 @@
     vertical-align: middle;
 }
 
+#footer2 #newsletter {
+    background: #3A8BC2 url('../images/newsletter.png') no-repeat center center;
+    margin: 0 0 0 20px;
+}
+
+#footer2 #newsletter:hover {
+	background-color: #ABACAE;
+}
+
 #footer2 #facebook {
     background: #3A8BC2 url('../images/facebook.png') no-repeat center center;
-    margin: 0 0 0 20px;
+    margin: 0 0 0 5px;
 }
 
 #footer2 #facebook:hover {

@@ -31,6 +31,7 @@
 		<div id="bar7" class="bar">
 			<div id="footer2" class="centeredbox">
                 <div id="socialmedia"><dnn:TEXT runat="server" ID="txtSocialMedia" ResourceKey="SocialMedia" CssClass=""/></div>
+                <a href="/nousconnaitre/newsletter" id="newsletter" title="Newsletter"></a>
                 <a href="http://www.facebook.com/agapefrance" target="_blank" id="facebook" title="Facebook"></a>
                 <a href="http://www.youtube.com/user/VideosAgapeFrance" target="_blank" id="youtube" title="YouTube"></a>
 			</div>		
