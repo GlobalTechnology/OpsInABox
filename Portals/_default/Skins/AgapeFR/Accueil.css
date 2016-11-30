@@ -111,7 +111,7 @@ a.BlocLienRapide:hover h1 {
 
 /*===================== LIENS RESEAUX SOCIAUX ===================== */
 
-.RightPane #facebook, .RightPane #youtube {
+.RightPane #newsletter, .RightPane #facebook, .RightPane #youtube {
     -webkit-border-radius: .3em;
     -moz-border-radius: .3em;
     border-radius: .3em;
@@ -124,8 +124,17 @@ a.BlocLienRapide:hover h1 {
     margin-top: 20px;
 }
 
+.RightPane #newsletter {
+    background: #3A8BC2 url('./images/newsletter2.png') no-repeat center center;
+}
+
+.RightPane #newsletter:hover {
+	background-color: #ABACAE;
+}
+
 .RightPane #facebook {
     background: #3A8BC2 url('./images/facebook2.png') no-repeat center center;
+    margin-left: 15px;
 }
 
 .RightPane #facebook:hover {
