@@ -104,6 +104,7 @@
         <paragraph name="&lt;H5>Titre 5&lt;/H5&gt;" value="&lt;H5&gt;" />
         <paragraph name="&lt;H6>Titre 6&lt;/H6&gt;" value="&lt;H6&gt;" />
         <paragraph name="&lt;P class='introduction'&gt;Introduction&lt;/P&gt;" value="&lt;P class='introduction'&gt;" />
+        <paragraph name="&lt;P class='fontSmall'&gt;Paragraphe taille petite&lt;/P&gt;" value="&lt;P class='fontSmall'&gt;" />
         <paragraph name="&lt;P class='quote'&gt;Citation&lt;/P&gt;" value="&lt;P class='quote'&gt;" />
     </paragraphs>
 
