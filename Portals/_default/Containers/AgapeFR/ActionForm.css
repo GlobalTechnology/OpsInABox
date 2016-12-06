@@ -52,3 +52,13 @@
 .form-group-obligtext p {
     font-size:small;
 }
+.bstrap30 span.text-danger {
+    font-size:small;
+    color:red;
+}
+.bstrap30 .has-error input.form-control {
+    border-color:red;
+}
+.bstrap30 .has-error input.form-control:focus {
+    border-color:red;
+}
