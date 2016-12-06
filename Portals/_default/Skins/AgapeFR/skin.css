@@ -42,7 +42,7 @@ html, body, form {
 .button, a.button:link, a.button:visited,
 .dnnPrimaryAction, a.dnnPrimaryAction, p a.dnnPrimaryAction,
 .dnnFormPopup .ui-dialog-buttonpane button.dnnPrimaryAction,
-.dnnFormItem input[type="submit"], .bstrap30 .btn.agapefrancebutton {
+.dnnFormItem input[type="submit"], .bstrap30 .btn.agapefrancebutton, .bstrap30 .btn.agapefrancebutton:focus {
     height: 42px;
     line-height: 42px;
     display: inline-block;
