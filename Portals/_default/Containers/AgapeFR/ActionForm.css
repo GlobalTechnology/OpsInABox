@@ -52,6 +52,9 @@
 .form-group-obligtext p {
     font-size:small;
 }
+.form-group-agaperequiretext p {
+    color:red;
+}
 .bstrap30 span.text-danger {
     font-size:small;
     color:red;
@@ -61,4 +64,14 @@
 }
 .bstrap30 .has-error input.form-control:focus {
     border-color:red;
+}
+.bstrap30 div.alert-danger{
+	background-color: rgba(255,0,0,0.15);
+    border-color: rgba(255,0,0,0.2);
+	color:#444;
+}
+
+.bstrap30 div.alert-info{
+	background-color: #F5F5F5;
+    border-color: #5F5F5F;	
 }
