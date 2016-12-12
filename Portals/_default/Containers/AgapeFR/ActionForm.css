@@ -40,12 +40,8 @@
     color: #3A8BC2;
 }
 
-.ActionForm .form-horizontal .form-group .checkbox label {
-    margin-left:15px;
-    display:block;
-}
-
 .ActionForm .form-horizontal .form-group .checkbox label input{
+
     margin-top: 5px;
 }
 .form-group-obligtext p {
