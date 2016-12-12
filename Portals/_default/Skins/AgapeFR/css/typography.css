@@ -98,6 +98,10 @@ h6 {
     font-size: medium;
 }
 
+.fontSmall {
+    font-size: small;
+}
+
 .quote {
     background: white url(/Portals/_default/Skins/AgapeFR/images/quote.png) no-repeat;
     margin: 15px 0 0 0;

@@ -42,6 +42,11 @@ cd ..\ToolsFile
 del %var%DesktopModules\Admin\RadEditorProvider\ToolsFile\ToolsFile.PortalId.0.xml
 cd ..\..\..
 
+REM SETUP FRANCE PORTAL SPECIFIC DNNSharp RESOURCE FILES
+cd DnnSharp\ActionForm\App_LocalResources
+del %var%DesktopModules\DnnSharp\ActionForm\App_LocalResources\Form.fr-FR.resx
+cd ..\..\..
+
 REM SETUP APP_WebRefereces
 cd ..\App_WebReferences
 IF NOT EXIST %var%App_WebReferences ( 

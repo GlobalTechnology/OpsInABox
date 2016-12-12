@@ -40,15 +40,33 @@
     color: #3A8BC2;
 }
 
-.ActionForm .form-horizontal .form-group .checkbox label {
-    margin-left:15px;
-    display:block;
-}
-
 .ActionForm .form-horizontal .form-group .checkbox label input{
-    margin-left:-15px;
+
     margin-top: 5px;
 }
 .form-group-obligtext p {
     font-size:small;
+}
+.bstrap30 span.text-danger {
+    font-size:small;
+    color:red;
+}
+.bstrap30 .has-error input.form-control {
+    border-color:red;
+}
+.bstrap30 .has-error input.form-control:focus {
+    border-color:red;
+}
+.bstrap30 div.alert-danger{
+	background-color: rgba(255,0,0,0.15);
+    border-color: rgba(255,0,0,0.2);
+	color:#444;
+}
+.bstrap30 div.alert-danger div{
+	display:none;
+}
+
+.bstrap30 div.alert-info{
+	background-color: #F5F5F5;
+    border-color: #5F5F5F;	
 }
