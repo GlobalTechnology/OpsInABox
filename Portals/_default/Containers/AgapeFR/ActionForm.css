@@ -62,6 +62,9 @@
     border-color: rgba(255,0,0,0.2);
 	color:#444;
 }
+.bstrap30 div.alert-danger div{
+	display:none;
+}
 
 .bstrap30 div.alert-info{
 	background-color: #F5F5F5;
