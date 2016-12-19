@@ -157,7 +157,7 @@
     <value>Veuillez renseigner une adresse email valide.</value>
   </data>
   <data name="validation.equalTo" xml:space="preserve">
-    <value>Veuillez renseigner la même valeur encore.</value>
+    <value>Veuillez renseigner la même valeur à nouveau.</value>
   </data>
   <data name="validation.letters" xml:space="preserve">
     <value>Veuillez renseigner uniquement des lettres.</value>
@@ -175,10 +175,10 @@
     <value>Veuillez renseigner au moins {0} caractères.</value>
   </data>
   <data name="validation.nowhitespace" xml:space="preserve">
-    <value>Les espaces ne sont pas permis.</value>
+    <value>Les espaces ne sont pas autorisés.</value>
   </data>
   <data name="validation.number" xml:space="preserve">
-    <value>Veuillez renseigner un numèro valide.</value>
+    <value>Veuillez renseigner un numéro valide.</value>
   </data>
   <data name="validation.number.integer" xml:space="preserve">
     <value>Veuillez renseigner un nombre entier valide.</value>
@@ -193,7 +193,7 @@
     <value>Veuillez renseigner un nombre entier positif valide.</value>
   </data>
   <data name="validation.passwordNoMatch" xml:space="preserve">
-    <value>Les champs mot de passe ne corrrespondent pas.</value>
+    <value>Les champs mot de passe ne correspondent pas.</value>
   </data>
   <data name="validation.range" xml:space="preserve">
     <value>Veuillez renseigner une valeur entre {0} et {1}.</value>
@@ -211,10 +211,10 @@
     <value>Au moins un champ est obligatoire.</value>
   </data>
   <data name="validation.required-cblist" xml:space="preserve">
-    <value>Au moins un élément doit être sélectionné</value>
+    <value>Au moins un élément doit être sélectionné.</value>
   </data>
   <data name="validation.required-file" xml:space="preserve">
-    <value>Le fichier est obligatoire</value>
+    <value>Le fichier est obligatoire.</value>
   </data>
   <data name="validation.required-fromclass" xml:space="preserve">
     <value>Ce champ est obligatoire.</value>
@@ -223,7 +223,7 @@
     <value>Champ obligatoire {0} manquant.</value>
   </data>
   <data name="validation.url" xml:space="preserve">
-    <value>Veuillez renseigner un URL valide.</value>
+    <value>Veuillez renseigner une URL valide.</value>
   </data>
   <data name="wysiwyg.bold" xml:space="preserve">
     <value>Gras</value>
@@ -232,16 +232,16 @@
     <value>Code snippet</value>
   </data>
   <data name="wysiwyg.indent" xml:space="preserve">
-    <value>Indent</value>
+    <value>Augmenter le retrait</value>
   </data>
   <data name="wysiwyg.italic" xml:space="preserve">
     <value>Italique</value>
   </data>
   <data name="wysiwyg.outdent" xml:space="preserve">
-    <value>Outdent</value>
+    <value>Réduire le retrait</value>
   </data>
   <data name="wysiwyg.removeFormat" xml:space="preserve">
-    <value>Remove formatting</value>
+    <value>Supprimer le style</value>
   </data>
   <data name="wysiwyg.strikeThrough" xml:space="preserve">
     <value>Texte barré</value>
