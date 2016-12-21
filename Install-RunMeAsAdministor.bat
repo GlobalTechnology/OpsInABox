@@ -87,6 +87,9 @@ REM SETUP the sso and Scripts Directory
 mklink /J %var%sso sso
 mklink /J %var%Scripts Scripts
 
+REM SETUP the Site Analytics file
+mklink %var%SiteAnalytics.config SiteAnalytics.config
+
 REM SETUP THE MODULE INSTALLERS
 
 

@@ -89,6 +89,9 @@ REM SETUP the sso and Scripts Directory
 rd %var%sso
 rd %var%Scripts
 
+REM SETUP the Site Analytics file
+del %var%SiteAnalytics.config
+
 echo complete. Press any key to exit.
 pause > nul
 
