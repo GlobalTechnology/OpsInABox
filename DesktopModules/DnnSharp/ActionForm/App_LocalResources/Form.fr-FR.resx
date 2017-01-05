@@ -262,15 +262,33 @@
     <value>Non</value>
   </data>
   <data name="moduleAction.manage" xml:space="preserve">
-    <value>Paramètres du formulaire</value>
+    <value>Editer le formulaire</value>
   </data>
   <data name="moduleAction.manageFull" xml:space="preserve">
-    <value>Paramètres du formulaire (plein écran)</value>
+    <value>Editer le formulaire (plein écran)</value>
   </data>
   <data name="moduleAction.reports" xml:space="preserve">
     <value>Rapports</value>
   </data>
   <data name="validation.fieldsWithIssuesMessage" xml:space="preserve">
-    <value>Veuillez verifier les champs suivants :</value>
+    <value>Veuillez verifier les suivants :</value>
+  </data>
+  <data name="jquery.datepicker.dayNames" xml:space="preserve">
+    <value>["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"]</value>
+  </data>
+  <data name="jquery.datepicker.dayNamesMin" xml:space="preserve">
+    <value>["di","lu","ma","me","je","ve","sa"]</value>
+  </data>
+  <data name="jquery.datepicker.dayNamesShort" xml:space="preserve">
+    <value>["di","lu","ma","me","je","ve","sa"]</value>
+  </data>
+  <data name="jquery.datepicker.firstDay" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="jquery.datepicker.monthNames" xml:space="preserve">
+    <value>["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]</value>
+  </data>
+  <data name="jquery.datepicker.monthNamesShort" xml:space="preserve">
+    <value>["jan", "fév", "mar", "avr", "mai", "jui", "jui", "aoû", "sep", "oct", "nov", "déc"]</value>
   </data>
 </root>
