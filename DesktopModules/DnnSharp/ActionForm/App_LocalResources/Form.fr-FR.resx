@@ -261,4 +261,16 @@
   <data name="No" xml:space="preserve">
     <value>Non</value>
   </data>
+  <data name="moduleAction.manage" xml:space="preserve">
+    <value>Paramètres du formulaire</value>
+  </data>
+  <data name="moduleAction.manageFull" xml:space="preserve">
+    <value>Paramètres du formulaire (plein écran)</value>
+  </data>
+  <data name="moduleAction.reports" xml:space="preserve">
+    <value>Rapports</value>
+  </data>
+  <data name="validation.fieldsWithIssuesMessage" xml:space="preserve">
+    <value>Veuillez verifier les champs suivants :</value>
+  </data>
 </root>
