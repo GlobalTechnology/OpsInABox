@@ -190,7 +190,7 @@
     <value>Veuillez renseigner un nombre entier positif valide.</value>
   </data>
   <data name="validation.numberPositive" xml:space="preserve">
-    <value>Veuillez renseigner un nombre entier positif valide.</value>
+    <value>Veuillez renseigner un nombre positif valide.</value>
   </data>
   <data name="validation.passwordNoMatch" xml:space="preserve">
     <value>Les champs mot de passe ne correspondent pas.</value>
@@ -199,7 +199,7 @@
     <value>Veuillez renseigner une valeur entre {0} et {1}.</value>
   </data>
   <data name="validation.rangelength" xml:space="preserve">
-    <value>Veuillez renseigner une valeur entre {0} et {1} caractères.</value>
+    <value>Veuillez renseigner une valeur avec {0} à {1} chiffres.</value>
   </data>
   <data name="validation.remote" xml:space="preserve">
     <value>Veuillez corriger ce champ.</value>
@@ -208,7 +208,7 @@
     <value>Veuillez remplir ce champ.</value>
   </data>
   <data name="validation.atleastoneingroup" xml:space="preserve">
-    <value>Au moins un champ est obligatoire.</value>
+    <value>Au moins une option doit être sélectionnée.</value>
   </data>
   <data name="validation.required-cblist" xml:space="preserve">
     <value>Au moins un élément doit être sélectionné.</value>
@@ -260,5 +260,35 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>Non</value>
+  </data>
+  <data name="moduleAction.manage" xml:space="preserve">
+    <value>Editer le formulaire</value>
+  </data>
+  <data name="moduleAction.manageFull" xml:space="preserve">
+    <value>Editer le formulaire (plein écran)</value>
+  </data>
+  <data name="moduleAction.reports" xml:space="preserve">
+    <value>Rapports</value>
+  </data>
+  <data name="validation.fieldsWithIssuesMessage" xml:space="preserve">
+    <value>Veuillez vérifier les champs suivants :</value>
+  </data>
+  <data name="jquery.datepicker.dayNames" xml:space="preserve">
+    <value>["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"]</value>
+  </data>
+  <data name="jquery.datepicker.dayNamesMin" xml:space="preserve">
+    <value>["di","lu","ma","me","je","ve","sa"]</value>
+  </data>
+  <data name="jquery.datepicker.dayNamesShort" xml:space="preserve">
+    <value>["di","lu","ma","me","je","ve","sa"]</value>
+  </data>
+  <data name="jquery.datepicker.firstDay" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="jquery.datepicker.monthNames" xml:space="preserve">
+    <value>["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]</value>
+  </data>
+  <data name="jquery.datepicker.monthNamesShort" xml:space="preserve">
+    <value>["jan", "fév", "mar", "avr", "mai", "jui", "jui", "aoû", "sep", "oct", "nov", "déc"]</value>
   </data>
 </root>

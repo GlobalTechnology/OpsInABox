@@ -45,6 +45,7 @@ cd ..\..\..
 REM SETUP FRANCE PORTAL SPECIFIC DNNSharp RESOURCE FILES
 cd DnnSharp\ActionForm\App_LocalResources
 del %var%DesktopModules\DnnSharp\ActionForm\App_LocalResources\Form.fr-FR.resx
+del %var%DesktopModules\DnnSharp\ActionForm\App_LocalResources\Reports.fr-FR.resx
 cd ..\..\..
 
 REM SETUP APP_WebRefereces
