@@ -118,34 +118,34 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="backButton.label" xml:space="preserve">
-    <value>Back</value>
+    <value>Fermer</value>
   </data>
   <data name="columnHeader.value.id" xml:space="preserve">
-    <value>ID</value>
+    <value>Les IDs</value>
   </data>
   <data name="columnHeader.value.name" xml:space="preserve">
-    <value>Name</value>
+    <value>Les titres</value>
   </data>
   <data name="columnHeaders.label" xml:space="preserve">
-    <value>Column headers</value>
+    <value>En-têtes de colonnes</value>
   </data>
   <data name="downloadCSVButton.label" xml:space="preserve">
-    <value>Download as CSV</value>
+    <value>Téléchargez en format CSV</value>
   </data>
   <data name="endDate.helpText" xml:space="preserve">
-    <value>leave blank to get all entries until today</value>
+    <value>Ce champ vide retournera les écritures jusqu'à aujourd'hui.</value>
   </data>
   <data name="endDate.label" xml:space="preserve">
-    <value>End Date</value>
+    <value>Date de fin</value>
   </data>
   <data name="fieldSeparator.helpText" xml:space="preserve">
-    <value>use semicolon if you open CSV Files with Excel and your region Format is set to other than English (United States)</value>
+    <value>que vous voulez dan le fichier CSV à télécharger.</value>
   </data>
   <data name="fieldSeparator.label" xml:space="preserve">
-    <value>Field Separator</value>
+    <value>Séparateurs de champs</value>
   </data>
   <data name="fieldSeparator.upload.helpText" xml:space="preserve">
-    <value>use the delimitator from within the CSV file, usually preset by the software that you saved the file with.</value>
+    <value>dans votre ficher CSV à charger.</value>
   </data>
   <data name="fieldSeparator.value.comma" xml:space="preserve">
     <value>,</value>
@@ -154,39 +154,39 @@
     <value>;</value>
   </data>
   <data name="fieldSeparator.value.tab" xml:space="preserve">
-    <value>tab</value>
+    <value>tabulation</value>
   </data>
   <data name="formHeader.download" xml:space="preserve">
-    <value>Download Report for form</value>
+    <value>Téléchargez le rapport du formulaire en format CSV</value>
   </data>
   <data name="formHeader.upload" xml:space="preserve">
-    <value>Upload CSV Report</value>
+    <value>Charger le rapport du formulaire en format CSV</value>
   </data>
   <data name="formHeader.upload.helpText" xml:space="preserve">
-    <value>If you need to make modifications to the submitted data, download the CSV above then upload it back in the If you need to make modifications to the submitted data, download the CSV above then upload it back in the form below.</value>
+    <value>Si vous avez besoin d'apporter des modifications aux données, télécharger les en format CSV ci-dessus, puis renvoyez-le ci-dessous.</value>
   </data>
   <data name="promoText.1" xml:space="preserve">
-    <value>For rich web based reports with search and filtering capabilities, please check our</value>
+    <value>Pour des rapports visible depuis une page web avec des fonctionnalités de recherche et de filtrage, veuillez consulter</value>
   </data>
   <data name="promoText.2" xml:space="preserve">
     <value>module</value>
   </data>
   <data name="promoText.3" xml:space="preserve">
-    <value>Here's a live</value>
+    <value>Voici une </value>
   </data>
   <data name="promoText.4" xml:space="preserve">
-    <value>demo</value>
+    <value>démonstration</value>
   </data>
   <data name="startDate.helpText" xml:space="preserve">
-    <value>leave blank to get all entries before start date</value>
+    <value>Ce champ vide retournera les écritures à partir de la mise en place de ce module.</value>
   </data>
   <data name="startDate.label" xml:space="preserve">
-    <value>Start Date</value>
+    <value>Date de début</value>
   </data>
   <data name="upload.label" xml:space="preserve">
-    <value>CSV File</value>
+    <value>Fichier en format CSV</value>
   </data>
   <data name="uploadButton.label" xml:space="preserve">
-    <value>Upload</value>
+    <value>Charger</value>
   </data>
 </root>
