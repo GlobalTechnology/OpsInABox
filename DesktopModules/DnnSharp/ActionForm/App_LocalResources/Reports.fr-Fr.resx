@@ -121,28 +121,28 @@
     <value>Fermer</value>
   </data>
   <data name="columnHeader.value.id" xml:space="preserve">
-    <value>Les IDs</value>
+    <value>Identifiant</value>
   </data>
   <data name="columnHeader.value.name" xml:space="preserve">
-    <value>Les titres</value>
+    <value>Libellé</value>
   </data>
   <data name="columnHeaders.label" xml:space="preserve">
     <value>En-têtes de colonnes</value>
   </data>
   <data name="downloadCSVButton.label" xml:space="preserve">
-    <value>Téléchargez en format CSV</value>
+    <value>Téléchargez au format CSV</value>
   </data>
   <data name="endDate.helpText" xml:space="preserve">
-    <value>Ce champ vide retournera les écritures jusqu'à aujourd'hui.</value>
+    <value>Laisser ce champ vide pour obtenir les entrées jusqu'à aujourd'hui.</value>
   </data>
   <data name="endDate.label" xml:space="preserve">
     <value>Date de fin</value>
   </data>
   <data name="fieldSeparator.helpText" xml:space="preserve">
-    <value>que vous voulez dan le fichier CSV à télécharger.</value>
+    <value>que vous voulez dans le fichier CSV à télécharger.</value>
   </data>
   <data name="fieldSeparator.label" xml:space="preserve">
-    <value>Séparateurs de champs</value>
+    <value>Séparateur de champs</value>
   </data>
   <data name="fieldSeparator.upload.helpText" xml:space="preserve">
     <value>dans votre ficher CSV à charger.</value>
@@ -157,16 +157,16 @@
     <value>tabulation</value>
   </data>
   <data name="formHeader.download" xml:space="preserve">
-    <value>Téléchargez le rapport du formulaire en format CSV</value>
+    <value>Téléchargez le rapport du formulaire au format CSV</value>
   </data>
   <data name="formHeader.upload" xml:space="preserve">
-    <value>Charger le rapport du formulaire en format CSV</value>
+    <value>Charger le rapport du formulaire au format CSV</value>
   </data>
   <data name="formHeader.upload.helpText" xml:space="preserve">
-    <value>Si vous avez besoin d'apporter des modifications aux données, télécharger les en format CSV ci-dessus, puis renvoyez-le ci-dessous.</value>
+    <value>Si vous avez besoin d'apporter des modifications aux données, télécharger les au format CSV ci-dessus, puis renvoyez-le ci-dessous.</value>
   </data>
   <data name="promoText.1" xml:space="preserve">
-    <value>Pour des rapports visible depuis une page web avec des fonctionnalités de recherche et de filtrage, veuillez consulter</value>
+    <value>Pour des rapports visibles depuis une page web avec des fonctionnalités de recherche et de filtrage, veuillez consulter</value>
   </data>
   <data name="promoText.2" xml:space="preserve">
     <value>module</value>
@@ -178,13 +178,13 @@
     <value>démonstration</value>
   </data>
   <data name="startDate.helpText" xml:space="preserve">
-    <value>Ce champ vide retournera les écritures à partir de la mise en place de ce module.</value>
+    <value>Laisse ce champ vide pour obtenir les entrées à partir de la mise en place de ce module.</value>
   </data>
   <data name="startDate.label" xml:space="preserve">
     <value>Date de début</value>
   </data>
   <data name="upload.label" xml:space="preserve">
-    <value>Fichier en format CSV</value>
+    <value>Fichier au format CSV</value>
   </data>
   <data name="uploadButton.label" xml:space="preserve">
     <value>Charger</value>

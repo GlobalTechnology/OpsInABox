@@ -190,7 +190,7 @@
     <value>Veuillez renseigner un nombre entier positif valide.</value>
   </data>
   <data name="validation.numberPositive" xml:space="preserve">
-    <value>Veuillez renseigner un nombre entier positif valide.</value>
+    <value>Veuillez renseigner un nombre positif valide.</value>
   </data>
   <data name="validation.passwordNoMatch" xml:space="preserve">
     <value>Les champs mot de passe ne correspondent pas.</value>
@@ -199,7 +199,7 @@
     <value>Veuillez renseigner une valeur entre {0} et {1}.</value>
   </data>
   <data name="validation.rangelength" xml:space="preserve">
-    <value>Veuillez renseigner une valeur entre {0} et {1} caractères.</value>
+    <value>Veuillez renseigner une valeur avec {0} à {1} chiffres.</value>
   </data>
   <data name="validation.remote" xml:space="preserve">
     <value>Veuillez corriger ce champ.</value>
@@ -208,7 +208,7 @@
     <value>Veuillez remplir ce champ.</value>
   </data>
   <data name="validation.atleastoneingroup" xml:space="preserve">
-    <value>Au moins un champ est obligatoire.</value>
+    <value>Au moins une option doit être sélectionnée.</value>
   </data>
   <data name="validation.required-cblist" xml:space="preserve">
     <value>Au moins un élément doit être sélectionné.</value>
@@ -271,7 +271,7 @@
     <value>Rapports</value>
   </data>
   <data name="validation.fieldsWithIssuesMessage" xml:space="preserve">
-    <value>Veuillez verifier les suivants :</value>
+    <value>Veuillez vérifier les champs suivants :</value>
   </data>
   <data name="jquery.datepicker.dayNames" xml:space="preserve">
     <value>["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"]</value>
