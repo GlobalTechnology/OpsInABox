@@ -3,7 +3,7 @@
 <%@ Register Src="~/DesktopModules/AgapeConnect/Stories/controls/SuperPowers.ascx" TagPrefix="uc1" TagName="SuperPowers" %>
 
 <script type="text/javascript" src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-500677234debf3af"></script>
-<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key=<%= hfmapsKey.Value %>' async defer></script>
 
 <script type="text/javascript">
 
@@ -70,9 +70,12 @@
         }
 </script>
 
+<div id="ViewStory">
+<asp:HiddenField ID='hfmapsKey' runat="server" />
 
 <asp:Panel ID="PagePanel" runat="server" >
     <asp:Literal ID="ltStory1" runat="server"></asp:Literal>
     <uc1:SuperPowers runat="server" ID="SuperPowers" Visible="False" />
     <asp:Literal ID="ltStory2" runat="server"></asp:Literal>
 </asp:Panel>
+</div>
