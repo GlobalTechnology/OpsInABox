@@ -57,7 +57,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
         Public Sub Initialize(ByVal Stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
 
-
+            hfChannelId.Value = Stories.First.ChannelId
             Dim out As String = ""
 
             If (Not String.IsNullOrEmpty(settings("Speed"))) Then
