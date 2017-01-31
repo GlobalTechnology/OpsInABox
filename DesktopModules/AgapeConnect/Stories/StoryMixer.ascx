@@ -56,7 +56,7 @@
             orientation: "horizontal",
             range: "min",
             animate: true,
-            min: 5,
+            min: 1,
             max: 50,
             step: 1,
             slide: function (event, ui) {
