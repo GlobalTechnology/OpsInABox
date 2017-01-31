@@ -6,17 +6,17 @@
  <script type="text/javascript">
      (function ($, Sys) {
          function setUpMyTabs() {
-             $('#slider').nivoSlider({
+             $('#slider<%= hfChannelId.Value %>').css({'visibility':'visible'}).nivoSlider({
                  effect: 'fade',
                  pauseTime: <%= PauseTime %>,
                  width: <%= divWidth %>
              });
 
-             var w= $('#rotatorContainer').width();
+             var w= $('#rotatorContainer<%= hfChannelId.Value %>').width();
              var scale = w/<%= divWidth %>;
              var offset = (1.0- scale) *50;
              var newH = <%= divHeight%> * scale;
-             $('#rotatorContainer').css({
+             $('#rotatorContainer<%= hfChannelId.Value %>').css({
                  'transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
                  '-ms-transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
                  '-moz-transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
@@ -24,13 +24,6 @@
                  '-o-transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
                  'width':<%= divWidth %> +'px', 'height':(newH-8) + 'px' });
            
-               
-             //$('.nivo-imageLink').click(function(e){
-             //    console.log('hello');
-             //    var storylink= this.href;
-             //    eval(storyLink);
-             //});
-
          }
 
          $(document).ready(function () {
@@ -51,21 +44,13 @@
   
 </script>
 
+<asp:HiddenField ID="hfChannelId" runat="server" />
 
-<div id="sampleDiv" width="100%" style="height:0;"></div>
-<div id="rotatorContainer" >
-<div >
+<div id="rotatorContainer<%= hfChannelId.Value %>" >
     <div class="slider-wrapper theme-default" style="width: <%= divWidth %>px;  left:0; height: <%= divHeight + 40%>px !important; ">
         
-        <div id="slider" class="nivoSlider" style="height: <%= divHeight%>px; max-height: <%= divHeight%>px;  background-color: Black; ">
-          <%--  <div style="height: 420px; width: 420px; #position: absolute; #top: 50%;display: table-cell; vertical-align: middle;">
-              <div class="greenBorder" style="#position: relative; #top: -50%">--%>
+        <div id="slider<%= hfChannelId.Value %>" class="nivoSlider" style="height: <%= divHeight%>px; max-height: <%= divHeight%>px;  background-color: Black; visibility: hidden;">
             <asp:Literal ID="ltStories" runat="server"></asp:Literal>
-            </div>
-            </div>
-
-       
         </div>
-      </div>
-
-
+    </div>
+</div>
