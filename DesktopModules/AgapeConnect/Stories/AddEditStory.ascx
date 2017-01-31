@@ -8,7 +8,7 @@
 
 
 <script src="/js/jquery.watermarkinput.js" type="text/javascript"></script>
-<script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false'></script>
+<script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key=<%= hfmapsKey.Value %>' async defer></script>
 <script src="/js/jquery.locationpicker.js" type="text/javascript"></script>
 <script type="text/javascript">
     /*globals jQuery, window, Sys */
@@ -64,7 +64,7 @@
 <asp:HiddenField ID="StoryIdHF" runat="server" />
 <asp:HiddenField ID="ShortTextHF" runat="server" />
 <asp:HiddenField ID="PhotoIdHF" runat="server" />
-
+<asp:HiddenField ID='hfmapsKey' runat="server" />
 
 
 <asp:Label ID="NotFoundLabel" runat="server" Text="Story Not Found" Font-Bold="True"

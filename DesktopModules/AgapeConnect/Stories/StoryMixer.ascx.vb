@@ -24,13 +24,15 @@ Namespace DotNetNuke.Modules.Stories
             End If
 
             Try
-                    If (Page.IsPostBack = False) Then
-                        BuildPreviewHeaders()
-                        LoadMixer()
-                    End If
-                Catch exc As Exception           'Module failed to load
-                    ProcessModuleLoadException(Me, exc)
-                End Try
+                If (Page.IsPostBack = False) Then
+
+                    hfmapsKey.Value = StoryFunctions.GetGoogleMapsApiKey(PortalId)
+                    BuildPreviewHeaders()
+                    LoadMixer()
+                End If
+            Catch exc As Exception           'Module failed to load
+                ProcessModuleLoadException(Me, exc)
+            End Try
 
         End Sub
 

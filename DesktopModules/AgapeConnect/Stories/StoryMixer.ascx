@@ -8,11 +8,11 @@
 <dnn:DnnJsInclude runat="server" FilePath="~/js/knobKnob/knobKnob.jquery.js" />
 <dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.jscrollpane.min.js" />
 <dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.mousewheel.js" />
-<dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.mwheelIntent.js" />
+<%--<dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.mwheelIntent.js" />--%>
 <dnn:DnnCssInclude runat="server" FilePath="~/js/jquery.jscrollpane.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/js/knobKnob/knobKnob.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/js/knobKnob/styles.css" />
-<script type="text/javascript" src='https://maps.google.com/maps/api/js'></script>
+<script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key=<%= hfmapsKey.Value %>' async defer></script>
 <dnn:DnnJsInclude runat="server" FilePath="~/js/jquery.locationpicker.js" />
 
 <script type="text/javascript">
@@ -214,6 +214,7 @@
 <asp:HiddenField ID='hfNumberOfStories' runat="server" />
 <asp:HiddenField ID='hfBlocks' runat="server" Value=";" />
 <asp:HiddenField ID='hfBoosts' runat="server" Value=";" />
+<asp:HiddenField ID='hfmapsKey' runat="server" />
 
 <asp:Panel ID="pnlChannelMixer" runat="server" BackColor="Black">
 <div style="overflow-y: hidden; overflow-x: auto;  width: 1050px; " >

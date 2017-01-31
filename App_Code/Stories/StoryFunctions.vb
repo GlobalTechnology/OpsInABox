@@ -751,6 +751,10 @@ Public Class StoryFunctions
 
 #Region "Latitude/Longitude"
 
+    Public Shared Function GetGoogleMapsApiKey(ByVal PortalId As String) As String
+        Return PortalController.GetPortalSetting("GoogleMapsKey", PortalId, "")
+    End Function
+
     Public Shared Function GetDefaultLatLong(ByVal TabModuleId As Integer) As String
         Dim d As New StoriesDataContext
         Dim location As String = ""
