@@ -16,6 +16,7 @@ Namespace DotNetNuke.Modules.Stories
         Inherits Entities.Modules.ModuleSettingsBase
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
             Dim d As New StoriesDataContext
             Dim q = From chan In d.AP_Stories_Module_Channels Join smod In d.AP_Stories_Modules On chan.StoryModuleId Equals smod.StoryModuleId Where smod.TabModuleId = TabModuleId And chan.Type = 2 Select chan.ChannelTitle
             lblChannel.Text = q.First
@@ -25,6 +26,9 @@ Namespace DotNetNuke.Modules.Stories
             End If
 
             If Not Page.IsPostBack Then
+
+                hfmapsKey.Value = StoryFunctions.GetGoogleMapsApiKey(PortalId)
+
                 If Settings("Aspect") <> "" Then
                     acImage1.Aspect = Double.Parse(Settings("Aspect"), New CultureInfo(""))
                 End If
