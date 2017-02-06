@@ -9,7 +9,8 @@
              $('#slider<%= hfChannelId.Value %>').css({'visibility':'visible'}).nivoSlider({
                  effect: 'fade',
                  pauseTime: <%= PauseTime %>,
-                 width: <%= divWidth %>
+                 width: <%= divWidth %>,
+                 manualAdvance: <%= ManualAdvance %>,
              });
 
              var w= $('#rotatorContainer<%= hfChannelId.Value %>').width();

@@ -18,6 +18,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
         Public PauseTime As Integer = 3000 ' milliseconds
         Public divWidth As Integer = 150
         Public divHeight As Integer = 150
+        Public ManualAdvance As String = "false"
 
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             'Allowing dynamically loaded controls to be translated using the DNN translation system is complex...
@@ -60,6 +61,10 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             hfChannelId.Value = Stories.First.ChannelId
             Dim out As String = ""
 
+            If (Not String.IsNullOrEmpty(settings("ManualAdvance"))) Then
+                ManualAdvance = settings("ManualAdvance").ToLower
+            End If
+
             If (Not String.IsNullOrEmpty(settings("Speed"))) Then
                 PauseTime = CInt(settings("Speed")) * 1000   ' milliseconds
             End If
@@ -85,6 +90,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             End If
             divWidth = photoWidth
             divHeight = photoHeight
+
+
 
             For Each row In Stories
 
