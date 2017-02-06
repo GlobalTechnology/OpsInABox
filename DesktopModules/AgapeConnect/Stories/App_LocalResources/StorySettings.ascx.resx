@@ -234,4 +234,10 @@
   <data name="lblTagPhotoAspect.Text" xml:space="preserve">
     <value>Tag Photo Aspect</value>
   </data>
+  <data name="lblManualAdvance.Help" xml:space="preserve">
+    <value>Select so rotator will advance only by a click from the user.</value>
+  </data>
+  <data name="lblManualAdvance.Text" xml:space="preserve">
+    <value>Manual Rotation</value>
+  </data>
 </root>
