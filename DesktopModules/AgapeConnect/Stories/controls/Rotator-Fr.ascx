@@ -46,7 +46,7 @@
 </script>
 
 <style type="text/css">
-.overlay {
+/*.overlay {
     position: absolute; 
     top: 0; 
     left: 10px;
@@ -56,7 +56,7 @@
     z-index: 100;
     background-image: url(/DesktopModules/AgapeConnect/Stories/images/thumb_down.png);
     background-repeat: no-repeat;
-}
+}*/
 
 .slider-wrapper theme-default {
     width: <%= divWidth %>px;
@@ -83,7 +83,21 @@
 <div id="rotatorContainer<%= hfChannelId.Value %>">
     <div class="slider-wrapper theme-default">
         <div id="slider<%= hfChannelId.Value %>" class="nivoSlider">
-            <asp:Literal ID="ltStories" runat="server"></asp:Literal>
+            <asp:Repeater ID="SliderImageList" runat="server">
+            <ItemTemplate>
+            <asp:HyperLink Url=<%# Eval("sliderLink") %> CssClass="nivo-imageLink" ID="hlImageSlider" runat="server">
+                <asp:Image 
+                    src=<%# Eval("sliderImage") %> 
+                    alt=<%# Eval("sliderImageAltText") %> 
+                    data-title=<%# Eval("sliderImageDataTitle") %> 
+                    style=<%# Eval("sliderImageStyle") %> 
+                    runat="server" />
+           <%--     <asp:Image <%# Eval("sliderOverlay") %> runat="server" />--%>
+       <%--         ID=<%# Eval("sliderLink.ID") %> CssClass=<%# Eval("sliderLink.CssClass") %>--%>
+            </asp:HyperLink>
+                    </ItemTemplate>
+                </asp:Repeater>
+           <asp:Literal ID="ltStories" runat="server"></asp:Literal>
         </div>
     </div>
 </div>

@@ -76,37 +76,59 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             divWidth = photoWidth
             divHeight = photoHeight
             hfChannelId.Value = Stories.First.ChannelId
-            Dim out As String = ""
+
+            Dim sliderData As New DataTable()
+            sliderData.Columns.Add("sliderLink")
+            sliderData.Columns.Add("sliderImage")
+            sliderData.Columns.Add("sliderImageStyle")
+            sliderData.Columns.Add("sliderImageAltText")
+            sliderData.Columns.Add("sliderImageDataTitle")
+            sliderData.Columns.Add("sliderOverlay")
 
             For Each row In Stories
                 Try
+
                     Dim target = "_blank"
                     If row.Link.Contains(PortalSettings.DefaultPortalAlias) Then
                         target = "_self"
                     End If
 
-                    Dim href = "javascript: registerClick(" & row.CacheId & "); window.open('" & row.Link & "', '" & target & "');"
+                    Dim sliderLink As New HyperLink
+                    sliderLink.NavigateUrl = "javascript: registerClick(" & row.CacheId & "); window.open('" & row.Link & "', '" & target & "');"
 
-                    out &= "<a href=""" & href & """> "
+                    Dim sliderImage As New System.Web.UI.WebControls.Image
+                    sliderImage.ImageUrl = row.ImageId
+                    sliderImage.AlternateText = row.Headline
+                    sliderImage.Attributes("data-title") = "<h1 Class='slider-image-text'>" & HttpUtility.HtmlEncode(row.Headline) & "</h1>"
 
-                    Dim title As String = "<h1 class='slider-image-text'>" & HttpUtility.HtmlEncode(row.Headline) & "</h1>"
+                    Dim sliderOverlay As New System.Web.UI.WebControls.Image
 
                     If photoAspect < (CDbl(row.ImageWidth) / CDbl(row.ImageHeight)) Then
-                        out &= "<img src=""" & row.ImageId & """ style=""width: " & divWidth & "px; height: " & CInt((CDbl(divWidth) * row.ImageHeight) / row.ImageWidth) & "px;"" data-thumb=""" & row.ImageId & """ alt=""" & href & """  data-title=""" & title & """ />"
-
+                        sliderImage.Width = divWidth
+                        sliderImage.Height = CInt((CDbl(divWidth) * row.ImageHeight) / row.ImageWidth)
                     Else
-                        out &= "<img src=""" & row.ImageId & """ style=""width: " & CInt((CDbl(divHeight) * row.ImageWidth) / row.ImageHeight) & "px; height: " & divHeight & "px;"" data-thumb=""" & row.ImageId & """ alt=""" & href & """  data-title=""" & title & """ />"
+                        sliderImage.Width = CInt((CDbl(divHeight) * row.ImageWidth) / row.ImageHeight)
+                        sliderImage.Height = divHeight
                     End If
+                    sliderImage.Style.Add("height", sliderImage.Height.ToString)
+                    sliderImage.Style.Add("width", sliderImage.Width.ToString)
 
-                    out &= "</a>"
+                    Dim dataRow As DataRow = sliderData.NewRow()
+                    dataRow("sliderLink") = "javascript: registerClick(" & row.CacheId & "); window.open('" & row.Link & "', '" & target & "');"
+                    dataRow("sliderImage") = sliderImage.ImageUrl
+                    dataRow("sliderImageAltText") = sliderImage.AlternateText
+                    dataRow("sliderImageDataTitle") = sliderImage.Attributes("data-title")
+                    dataRow("sliderImageStyle") = sliderImage.Style
+                    AgapeLogger.Info(UserId, sliderImage.ImageUrl & "  " & sliderImage.Style("height") & "  " & sliderImage.Style("width"))
+                    sliderData.Rows.Add(dataRow)
 
                 Catch ex As Exception
-
                 End Try
 
             Next
+            SliderImageList.DataSource = sliderData
+            SliderImageList.DataBind()
 
-            ltStories.Text = out
         End Sub
 
 
