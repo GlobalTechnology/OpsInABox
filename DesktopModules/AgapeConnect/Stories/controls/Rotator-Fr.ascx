@@ -10,7 +10,7 @@
                  effect: 'fade',
                  pauseTime: <%= PauseTime %>,
                  width: <%= divWidth %>,
-                 manualAdvance: <%= ManualAdvance %>,
+                 manualAdvance: <%= manualAdvance %>,
              });
 
              var w= $('#rotatorContainer<%= hfChannelId.Value %>').width();
@@ -45,13 +45,46 @@
   
 </script>
 
+<style type="text/css">
+.overlay {
+    position: absolute; 
+    top: 0; 
+    left: 10px;
+    height: <%= divHeight +40 %>px;
+    width: <%= divWidth %>px;
+    background: rgba(255, 0, 0, 0.5);
+    z-index: 100;
+    background-image: url(/DesktopModules/AgapeConnect/Stories/images/thumb_down.png);
+    background-repeat: no-repeat;
+}
+
+.slider-wrapper theme-default {
+    width: <%= divWidth %>px;
+    left:0;
+    height: <%= divHeight + 40%>px !important;
+}
+
+.nivoSlider {
+    height: <%= divHeight%>px;
+    max-height: <%= divHeight%>px;
+    background-color: Black;
+    visibility: hidden;
+    z-index: 3;
+}
+
+.slider-image-text {
+    opacity: 1.0 !important;
+    line-height: 42px;
+}
+    </style>
+
 <asp:HiddenField ID="hfChannelId" runat="server" />
 
-<div id="rotatorContainer<%= hfChannelId.Value %>" >
-    <div class="slider-wrapper theme-default" style="width: <%= divWidth %>px;  left:0; height: <%= divHeight + 40%>px !important; ">
-        
-        <div id="slider<%= hfChannelId.Value %>" class="nivoSlider" style="height: <%= divHeight%>px; max-height: <%= divHeight%>px;  background-color: Black; visibility: hidden;">
+<div id="rotatorContainer<%= hfChannelId.Value %>">
+    <div class="slider-wrapper theme-default">
+        <div id="slider<%= hfChannelId.Value %>" class="nivoSlider">
             <asp:Literal ID="ltStories" runat="server"></asp:Literal>
         </div>
     </div>
 </div>
+

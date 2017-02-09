@@ -3,22 +3,17 @@ Imports System.Collections
 Imports System.Configuration
 Imports System.Data
 Imports System.Linq
-
-'Imports DotNetNuke
-'Imports DotNetNuke.Security
-'Imports StaffBroker
 Imports StaffBrokerFunctions
 Imports Stories
-'Imports DotNetNuke.Services.FileSystem
+
 Namespace DotNetNuke.Modules.AgapeConnect.Stories
     Partial Class Rotator_Fr
         Inherits Entities.Modules.PortalModuleBase
-        'Adding Stories Translation
-        Dim d As New StoriesDataContext
+
         Public PauseTime As Integer = 3000 ' milliseconds
         Public divWidth As Integer = 150
         Public divHeight As Integer = 150
-        Public ManualAdvance As String = "false"
+        Public manualAdvance As String = "false"
 
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             'Allowing dynamically loaded controls to be translated using the DNN translation system is complex...
@@ -58,11 +53,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
         Public Sub Initialize(ByVal Stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
 
-            hfChannelId.Value = Stories.First.ChannelId
-            Dim out As String = ""
-
             If (Not String.IsNullOrEmpty(settings("ManualAdvance"))) Then
-                ManualAdvance = settings("ManualAdvance").ToLower
+                manualAdvance = settings("ManualAdvance").ToLower
             End If
 
             If (Not String.IsNullOrEmpty(settings("Speed"))) Then
@@ -81,75 +73,33 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
             Dim photoHeight As Integer = CDbl(photoWidth) / photoAspect
 
-            Dim AspectMode As Integer = 1
-            If Not String.IsNullOrEmpty(settings("AspectMode")) Then
-                AspectMode = settings("AspectMode")
-            End If
-            If AspectMode > 2 Then
-                AspectMode = 1  ' Ascpect Modes 3 and 4 are not valid with this rotator. It requires a fixed size.
-            End If
             divWidth = photoWidth
             divHeight = photoHeight
-
-
+            hfChannelId.Value = Stories.First.ChannelId
+            Dim out As String = ""
 
             For Each row In Stories
-
                 Try
-                    If True Then '(CultureInfo.CurrentCulture.Name.ToLower.Contains(row.Langauge.ToLower) Or row.Langauge.ToLower.Contains(CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToLower)) Then
-
-                        Dim target = "_blank"
-                        If row.Link.Contains(PortalSettings.DefaultPortalAlias) Then
-                            target = "_self"
-                        End If
-                        Dim href = "javascript: registerClick(" & row.CacheId & "); window.open('" & row.Link & "', '" & target & "');"
-
-                        out &= "<a href=""" & href & """> "
-
-
-                        Dim title As String = "<h1 style='line-height: 42px;'><span style=' opacity: 1.0 !important;'>" & HttpUtility.HtmlEncode(row.Headline) & "</span></h1>"
-
-                        Select Case AspectMode
-                            Case 0
-
-                                If photoAspect < (CDbl(row.ImageWidth) / CDbl(row.ImageHeight)) Then
-                                    out &= "<img src=""" & row.ImageId & """ style=""width: " & divWidth & "px; height: " & CInt((CDbl(divWidth) * row.ImageHeight) / row.ImageWidth) & "px;"" data-thumb=""" & row.ImageId & """ alt=""" & href & """  data-title=""" & title & """ />"
-                                    'out &= "<img src=""" & row.ImageId & """ style=""width: " & divWidth & "px; data-thumb=""" & row.ImageId & """ alt=""""  title="""" />"
-
-                                Else
-                                    out &= "<img src=""" & row.ImageId & """ style=""width: " & CInt((CDbl(divHeight) * row.ImageWidth) / row.ImageHeight) & "px; height: " & divHeight & "px;"" data-thumb=""" & row.ImageId & """ alt=""" & href & """  data-title=""" & title & """ />"
-                                    ' out &= "<img src=""" & row.ImageId & """ style="" height: " & divHeight & "px;"" data-thumb=""" & row.ImageId & """ alt=""""  title="""" />"
-
-                                End If
-                            Case 1
-
-                                If photoAspect < (CDbl(row.ImageWidth) / CDbl(row.ImageHeight)) Then
-                                    out &= "<img src=""" & row.ImageId & """ style=""width: " & divWidth & "px; height: " & CInt((CDbl(divWidth) * row.ImageHeight) / row.ImageWidth) & "px;"" data-thumb=""" & row.ImageId & """ alt=""" & href & """  data-title=""" & title & """ />"
-                                    'out &= "<img src=""" & row.ImageId & """ style=""width: " & divWidth & "px; data-thumb=""" & row.ImageId & """ alt=""""  title="""" />"
-
-                                Else
-                                    out &= "<img src=""" & row.ImageId & """ style=""width: " & CInt((CDbl(divHeight) * row.ImageWidth) / row.ImageHeight) & "px; height: " & divHeight & "px;"" data-thumb=""" & row.ImageId & """ alt=""" & href & """  data-title=""" & title & """ />"
-                                    ' out &= "<img src=""" & row.ImageId & """ style="" height: " & divHeight & "px;"" data-thumb=""" & row.ImageId & """ alt=""""  title="""" />"
-
-                                End If
-
-                            Case 2
-
-                            Case 3
-
-                            Case 4
-
-                            Case Else
-
-                        End Select
-                        '        out &= "<img src=""" & row.ImageId & """ style=""width: " & photoWidth & "px; height: " & CInt((photoWidth * row.ImageHeight) / row.ImageWidth) & "px;"" data-thumb=""" & row.ImageId & """ alt=""" & row.Headline & """  title=""" & row.Headline & """ />"
-
-
-
-
-
-                        out &= "</a>"
+                    Dim target = "_blank"
+                    If row.Link.Contains(PortalSettings.DefaultPortalAlias) Then
+                        target = "_self"
                     End If
+
+                    Dim href = "javascript: registerClick(" & row.CacheId & "); window.open('" & row.Link & "', '" & target & "');"
+
+                    out &= "<a href=""" & href & """> "
+
+                    Dim title As String = "<h1 class='slider-image-text'>" & HttpUtility.HtmlEncode(row.Headline) & "</h1>"
+
+                    If photoAspect < (CDbl(row.ImageWidth) / CDbl(row.ImageHeight)) Then
+                        out &= "<img src=""" & row.ImageId & """ style=""width: " & divWidth & "px; height: " & CInt((CDbl(divWidth) * row.ImageHeight) / row.ImageWidth) & "px;"" data-thumb=""" & row.ImageId & """ alt=""" & href & """  data-title=""" & title & """ />"
+
+                    Else
+                        out &= "<img src=""" & row.ImageId & """ style=""width: " & CInt((CDbl(divHeight) * row.ImageWidth) / row.ImageHeight) & "px; height: " & divHeight & "px;"" data-thumb=""" & row.ImageId & """ alt=""" & href & """  data-title=""" & title & """ />"
+                    End If
+
+                    out &= "</a>"
+
                 Catch ex As Exception
 
                 End Try
