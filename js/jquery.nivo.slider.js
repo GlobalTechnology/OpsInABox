@@ -79,7 +79,7 @@
         } else {
             vars.currentImage = $(kids[vars.currentSlide]).find('img:first');
         }
-
+        
         // Show initial link
         if ($(kids[vars.currentSlide]).is('a')) {
             $(kids[vars.currentSlide]).css('display', 'block');
@@ -89,14 +89,14 @@
         var sliderImg = $('<img class="nivo-main-image" src="#" />');
         sliderImg.attr('src', vars.currentImage.attr('src')).show();
         slider.append(sliderImg);
-        ///alert(parseInt(vars.currentImage.css('height').replace("px", "")));
-        
-        var offset = ($(kids[vars.currentSlide]).css('height').replace("px", "") - parseInt(vars.currentImage.css('height').replace("px", ""))) / 2;
+
+       // var offset = ($(kids[vars.currentSlide]).css('height').replace("px", "") - parseInt(vars.currentImage.css('height').replace("px", ""))) / 2;
+        var offset = ($(kids[vars.currentSlide]).css('height') - parseInt(vars.currentImage.css('height'))) / 2;
      //   var offset = (sliceHeight - parseInt(vars.currentImage.css('height').replace("px", ""))) / 2;
 
        
         $('.nivo-main-image').css('top', offset + 'px');        
-       //    $('.nivo-main-image').css('opacity',0);
+        //    $('.nivo-main-image').css('opacity',0);
 
         // Detect Window Resize
         $(window).resize(function () {
