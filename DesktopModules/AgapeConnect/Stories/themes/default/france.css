@@ -32,13 +32,11 @@ Author URI: http://dev7studios.com
 
 .theme-default .nivo-controlNav 
 {
-    position: absolute;
-   
+    position: relative;
     height: 10px;
 	text-align: right;
 	margin-top: 5px;
-	/*bottom: -20px;*/
-   color: transparent;
+    color: transparent;
 	z-index: 9;
 	padding:  0;
 }
@@ -145,8 +143,13 @@ Author URI: http://dev7studios.com
 	width: 100%;
 	height:auto;
 	overflow: visible;
-   
-	 /*background:url(/DesktopModules/AgapeConnect/Stories/themes/default/loading.gif) no-repeat 50% 50%;*/
+	background-color: Black;
+    visibility: hidden;
+}
+
+.theme-default .slider-image-text {
+    opacity: 1.0 !important;
+    line-height: 42px;
 }
 
 .dnnGridItem:hover span.storyTitle, .dnnGridAltItem:hover span.storyTitle {

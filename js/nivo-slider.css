@@ -1,5 +1,5 @@
 /*
- * jQuery Nivo Slider v3.0.1
+ * jQuery Nivo Slider v3.2
  * http://nivo.dev7studios.com
  *
  * Copyright 2012, Dev7studios
@@ -9,21 +9,23 @@
  
 /* The Nivo Slider styles */
 .nivoSlider {
-	position:relative;
-	width: 100%;
-	height:auto;
-	overflow: hidden;
-	 /*background:url(/DesktopModules/AgapeConnect/Stories/themes/default/loading.gif) no-repeat 50% 50%;*/
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
 }
+
 .nivoSlider img {
-	/*position:absolute;
+	position:absolute;
 	top:0px;
-	left:0px;*/
+	left:0px;
 }
+
 .nivo-main-image {
 	display: block !important;
 	position: relative !important; 
 	width: 100% !important;
+    max-width: none;
 }
 
 /* If an image is wrapped in a link */
@@ -38,6 +40,9 @@
 	margin:0;
 	z-index:6;
 	display:none;
+    background:white; 
+	filter:alpha(opacity=0); 
+	opacity:0;
 }
 /* The slices and boxes in the Slider */
 .nivo-slice {
@@ -60,17 +65,17 @@
 	position:absolute;
 	left:0px;
 	bottom:0px;
-	background:rgba(0,0,0,0.6);
+	background:#000;
 	color:#fff;
 	width:100%;
 	z-index:8;
 	padding: 5px 10px;
-	
+	opacity: 0.8;
 	overflow: hidden;
 	display: none;
-    /*opacity: 0.6;
+
 	-moz-opacity: 0.8;
-	filter:alpha(opacity=6);*/
+	filter:alpha(opacity=8);
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
