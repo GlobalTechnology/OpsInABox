@@ -58,7 +58,7 @@
     background-repeat: no-repeat;
 }*/
 
-.slider-wrapper theme-default {
+.slider-wrapper {
     width: <%= divWidth %>px;
     left:0;
     height: <%= divHeight + 40%>px !important;
@@ -67,16 +67,8 @@
 .nivoSlider {
     height: <%= divHeight%>px;
     max-height: <%= divHeight%>px;
-    background-color: Black;
-    visibility: hidden;
-    z-index: 3;
 }
-
-.slider-image-text {
-    opacity: 1.0 !important;
-    line-height: 42px;
-}
-    </style>
+</style>
 
 <asp:HiddenField ID="hfChannelId" runat="server" />
 
@@ -85,15 +77,17 @@
         <div id="slider<%= hfChannelId.Value %>" class="nivoSlider">
             <asp:Repeater ID="SliderImageList" runat="server">
             <ItemTemplate>
-            <asp:HyperLink Url=<%# Eval("sliderLink") %> CssClass="nivo-imageLink" ID="hlImageSlider" runat="server">
+            <asp:HyperLink href=<%# Eval("sliderLink") %> CssClass="nivo-imageLink" ID="hlImageSlider" runat="server">
                 <asp:Image 
                     src=<%# Eval("sliderImage") %> 
                     alt=<%# Eval("sliderImageAltText") %> 
-                    data-title=<%# Eval("sliderImageDataTitle") %> 
+                    title=<%# Eval("sliderImageTitle") %> 
                     style=<%# Eval("sliderImageStyle") %> 
                     runat="server" />
-           <%--     <asp:Image <%# Eval("sliderOverlay") %> runat="server" />--%>
-       <%--         ID=<%# Eval("sliderLink.ID") %> CssClass=<%# Eval("sliderLink.CssClass") %>--%>
+<%--                <asp:Image 
+                    src =<%# Eval("sliderOverlay") %>
+                    CssClass = "theme-default slider-overlay"
+                    runat="server" />--%>
             </asp:HyperLink>
                     </ItemTemplate>
                 </asp:Repeater>

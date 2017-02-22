@@ -1,5 +1,5 @@
 /*
- * jQuery Nivo Slider v3.0.1
+ * jQuery Nivo Slider v3.2
  * http://nivo.dev7studios.com
  *
  * Copyright 2012, Dev7studios
@@ -20,8 +20,7 @@
             running: false,
             paused: false,
             stop: false,
-            controlNavEl: false,
-           
+            controlNavEl: false
         };
 
         // Get this slider
@@ -44,21 +43,10 @@
             var childWidth = (childWidth === 0) ? child.attr('width') : child.width(),
                 childHeight = (childHeight === 0) ? child.attr('height') : child.height();
 
-            // var offset = slider.height() - childHeight / 2;
-            ///alert(childHeight);
-          //  child.css('height', 'auto');
-            child.css('height', childHeight);
-            child.css('width', slider.width() + 'px');
-           // alert(child.height());
-
             if (link !== '') {
                 link.css('display', 'none');
             }
-            //child.removeAttr('title')
-
-            child.css('opacity', '0.0');
-            //child.css('display', 'none');
-            //child.hide();
+            child.css('display', 'none');
             vars.totalSlides++;
         });
 
@@ -79,24 +67,16 @@
         } else {
             vars.currentImage = $(kids[vars.currentSlide]).find('img:first');
         }
-        
+
         // Show initial link
         if ($(kids[vars.currentSlide]).is('a')) {
             $(kids[vars.currentSlide]).css('display', 'block');
         }
 
         // Set first background
-        var sliderImg = $('<img class="nivo-main-image" src="#" />');
+        var sliderImg = $('<img/>').addClass('nivo-main-image');
         sliderImg.attr('src', vars.currentImage.attr('src')).show();
         slider.append(sliderImg);
-
-       // var offset = ($(kids[vars.currentSlide]).css('height').replace("px", "") - parseInt(vars.currentImage.css('height').replace("px", ""))) / 2;
-        var offset = ($(kids[vars.currentSlide]).css('height') - parseInt(vars.currentImage.css('height'))) / 2;
-     //   var offset = (sliceHeight - parseInt(vars.currentImage.css('height').replace("px", ""))) / 2;
-
-       
-        $('.nivo-main-image').css('top', offset + 'px');        
-        //    $('.nivo-main-image').css('opacity',0);
 
         // Detect Window Resize
         $(window).resize(function () {
@@ -108,29 +88,24 @@
         });
 
         //Create caption
-        slider.append($('<a class="nivo-caption"></a>'));  //Changed div to a
+        slider.append($('<div class="nivo-caption"></div>'));
 
         // Process caption function
         var processCaption = function (settings) {
             var nivoCaption = $('.nivo-caption', slider);
-
-            if (vars.currentImage.attr('data-title') != '' && vars.currentImage.attr('data-title') != undefined) {
-               
-                var title = vars.currentImage.attr('data-title');
-               
+            if (vars.currentImage.attr('title') != '' && vars.currentImage.attr('title') != undefined) {
+                var title = vars.currentImage.attr('title');
                 if (title.substr(0, 1) == '#') title = $(title).html();
 
                 if (nivoCaption.css('display') == 'block') {
                     setTimeout(function () {
                         nivoCaption.html(title);
-                        nivoCaption.attr('href', vars.currentImage.attr('alt'));
                     }, settings.animSpeed);
                 } else {
                     nivoCaption.html(title);
                     nivoCaption.stop().fadeIn(settings.animSpeed);
                 }
             } else {
-                
                 nivoCaption.stop().fadeOut(settings.animSpeed);
             }
         }
@@ -148,17 +123,7 @@
         if (settings.directionNav) {
             slider.append('<div class="nivo-directionNav"><a class="nivo-prevNav">' + settings.prevText + '</a><a class="nivo-nextNav">' + settings.nextText + '</a></div>');
 
-            // Hide Direction nav
-            if (settings.directionNavHide) {
-                $('.nivo-directionNav', slider).hide();
-                slider.hover(function () {
-                    $('.nivo-directionNav', slider).show();
-                }, function () {
-                    $('.nivo-directionNav', slider).hide();
-                });
-            }
-
-            $('a.nivo-prevNav', slider).live('click', function () {
+            $(slider).on('click', 'a.nivo-prevNav', function () {
                 if (vars.running) { return false; }
                 clearInterval(timer);
                 timer = '';
@@ -166,7 +131,7 @@
                 nivoRun(slider, kids, settings, 'prev');
             });
 
-            $('a.nivo-nextNav', slider).live('click', function () {
+            $(slider).on('click', 'a.nivo-nextNav', function () {
                 if (vars.running) { return false; }
                 clearInterval(timer);
                 timer = '';
@@ -176,8 +141,7 @@
 
         // Add Control nav
         if (settings.controlNav) {
-           // alert(vars.width);
-            vars.controlNavEl = $('<div class="nivo-controlNav" style="width: ' + settings.width +'px"></div>');
+            vars.controlNavEl = $('<div class="nivo-controlNav"></div>');
             slider.after(vars.controlNavEl);
             for (var i = 0; i < kids.length; i++) {
                 if (settings.controlNavThumbs) {
@@ -201,8 +165,6 @@
                 clearInterval(timer);
                 timer = '';
                 sliderImg.attr('src', vars.currentImage.attr('src'));
-
-
                 vars.currentSlide = $(this).attr('rel') - 1;
                 nivoRun(slider, kids, settings, 'control');
             });
@@ -226,13 +188,6 @@
         // Event when Animation finishes
         slider.bind('nivo:animFinished', function () {
             sliderImg.attr('src', vars.currentImage.attr('src'));
-            sliderImg.css('opacity', 1.0);
-          
-           // alert(slider.css('height').replace('px', '') );
-            var offset = (slider.css('height').replace('px', '') - vars.currentImage.css('height').replace('px', '')) / 2;
-            
-           sliderImg.css('top', offset +'px');
-
             vars.running = false;
             // Hide child links
             $(kids).each(function () {
@@ -254,16 +209,10 @@
 
         // Add slices for slice animations
         var createSlices = function (slider, settings, vars) {
-
             if ($(vars.currentImage).parent().is('a')) $(vars.currentImage).parent().css('display', 'block');
-            //   $('img[src="' + vars.currentImage.attr('src') + '"]', slider).not('.nivo-main-image,.nivo-control img').width(slider.width()).css('visibility', 'hidden').show();
-            $('img[src="' + vars.currentImage.attr('src') + '"]', slider).not('.nivo-main-image,.nivo-control img').width(slider.width());
+            $('img[src="' + vars.currentImage.attr('src') + '"]', slider).not('.nivo-main-image,.nivo-control img').width(slider.width()).css('visibility', 'hidden').show();
             var sliceHeight = ($('img[src="' + vars.currentImage.attr('src') + '"]', slider).not('.nivo-main-image,.nivo-control img').parent().is('a')) ? $('img[src="' + vars.currentImage.attr('src') + '"]', slider).not('.nivo-main-image,.nivo-control img').parent().height() : $('img[src="' + vars.currentImage.attr('src') + '"]', slider).not('.nivo-main-image,.nivo-control img').height();
-          
-           
-            var offset = (sliceHeight - parseInt(vars.currentImage.css('height').replace("px", ""))) / 2;
-          
-          
+
             for (var i = 0; i < settings.slices; i++) {
                 var sliceWidth = Math.round(slider.width() / settings.slices);
 
@@ -274,9 +223,7 @@
                             width: (slider.width() - (sliceWidth * i)) + 'px',
                             height: sliceHeight + 'px',
                             opacity: '0',
-                            overflow: 'hidden',
-                            top: offset + 'px'
-
+                            overflow: 'hidden'
                         })
                     );
                 } else {
@@ -286,20 +233,16 @@
                             width: sliceWidth + 'px',
                             height: sliceHeight + 'px',
                             opacity: '0',
-                            overflow: 'hidden',
-                            top: offset + 'px'
+                            overflow: 'hidden'
                         })
                     );
                 }
             }
 
             $('.nivo-slice', slider).height(sliceHeight);
-
-        //    sliderImg.css('height', $(vars.currentImage).height() + 'px');
-            
-           // sliderImg.stop().animate({
-           //     height: sliceHeight + 'px' // $(vars.currentImage).height()
-            //}, settings.animSpeed);
+            sliderImg.stop().animate({
+                height: $(vars.currentImage).height()
+            }, settings.animSpeed);
         };
 
         // Add boxes for box animations
@@ -369,7 +312,6 @@
                     sliderImg.attr('src', vars.currentImage.attr('src'));
                 }
             }
-           
 
             vars.currentSlide++;
             // Trigger the slideshowEnd callback
@@ -384,7 +326,6 @@
             } else {
                 vars.currentImage = $(kids[vars.currentSlide]).find('img:first');
             }
-          
 
             // Set active links
             if (settings.controlNav) {
@@ -530,19 +471,11 @@
                 });
             } else if (currentEffect === 'fade') {
                 createSlices(slider, settings, vars);
-               
+
                 firstSlice = $('.nivo-slice:first', slider);
                 firstSlice.css({
                     'width': slider.width() + 'px'
                 });
-                sliderImg.css('opacity', 1.0);
-                
-               var offset = (slider.height() - sliderImg.css('height').replace('px', '')) / 2;
-            
-               sliderImg.css('top', offset + 'px');
-               sliderImg.css('height', slider.height + 'px');
-              
-               sliderImg.animate({ opacity: '0.0' }, (settings.animSpeed * 2), '');
 
                 firstSlice.animate({ opacity: '1.0' }, (settings.animSpeed * 2), '', function () { slider.trigger('nivo:animFinished'); });
             } else if (currentEffect === 'slideInRight') {
@@ -555,7 +488,6 @@
                 });
 
                 firstSlice.animate({ width: slider.width() + 'px' }, (settings.animSpeed * 2), '', function () { slider.trigger('nivo:animFinished'); });
-
             } else if (currentEffect === 'slideInLeft') {
                 createSlices(slider, settings, vars);
 
@@ -624,7 +556,7 @@
                 });
 
                 // Run animation
-                for (var cols = 0; cols < (settings.boxCols * 2); cols++) {
+                for (var cols = 0; cols < (settings.boxCols * 2) ; cols++) {
                     var prevCol = cols;
                     for (var rows = 0; rows < settings.boxRows; rows++) {
                         if (prevCol >= 0 && prevCol < settings.boxCols) {
@@ -711,7 +643,6 @@
         pauseTime: 3000,
         startSlide: 0,
         directionNav: true,
-        directionNavHide: true,
         controlNav: true,
         controlNavThumbs: false,
         pauseOnHover: true,
@@ -723,8 +654,7 @@
         afterChange: function () { },
         slideshowEnd: function () { },
         lastSlide: function () { },
-        afterLoad: function () { },
-        width: 420
+        afterLoad: function () { }
     };
 
     $.fn._reverse = [].reverse;

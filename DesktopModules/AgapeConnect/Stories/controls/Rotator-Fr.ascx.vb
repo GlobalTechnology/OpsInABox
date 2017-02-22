@@ -82,26 +82,26 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             sliderData.Columns.Add("sliderImage")
             sliderData.Columns.Add("sliderImageStyle")
             sliderData.Columns.Add("sliderImageAltText")
-            sliderData.Columns.Add("sliderImageDataTitle")
+            sliderData.Columns.Add("sliderImageTitle")
             sliderData.Columns.Add("sliderOverlay")
 
             For Each row In Stories
                 Try
+                    Dim dataRow As DataRow = sliderData.NewRow()
 
+                    'setup for the link
                     Dim target = "_blank"
                     If row.Link.Contains(PortalSettings.DefaultPortalAlias) Then
                         target = "_self"
                     End If
 
-                    Dim sliderLink As New HyperLink
-                    sliderLink.NavigateUrl = "javascript: registerClick(" & row.CacheId & "); window.open('" & row.Link & "', '" & target & "');"
+                    dataRow("sliderLink") = "javascript: registerClick(" & row.CacheId & "); window.open('" & row.Link & "', '" & target & "');"
 
+                    'setup for the image
                     Dim sliderImage As New System.Web.UI.WebControls.Image
                     sliderImage.ImageUrl = row.ImageId
                     sliderImage.AlternateText = row.Headline
-                    sliderImage.Attributes("data-title") = "<h1 Class='slider-image-text'>" & HttpUtility.HtmlEncode(row.Headline) & "</h1>"
-
-                    Dim sliderOverlay As New System.Web.UI.WebControls.Image
+                    sliderImage.Attributes("title") = "<h1 class='slider-image-text'>" & HttpUtility.HtmlEncode(row.Headline) & "</h1>"
 
                     If photoAspect < (CDbl(row.ImageWidth) / CDbl(row.ImageHeight)) Then
                         sliderImage.Width = divWidth
@@ -113,13 +113,17 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                     sliderImage.Style.Add("height", sliderImage.Height.ToString)
                     sliderImage.Style.Add("width", sliderImage.Width.ToString)
 
-                    Dim dataRow As DataRow = sliderData.NewRow()
-                    dataRow("sliderLink") = "javascript: registerClick(" & row.CacheId & "); window.open('" & row.Link & "', '" & target & "');"
                     dataRow("sliderImage") = sliderImage.ImageUrl
                     dataRow("sliderImageAltText") = sliderImage.AlternateText
-                    dataRow("sliderImageDataTitle") = sliderImage.Attributes("data-title")
+                    dataRow("sliderImageTitle") = sliderImage.Attributes("title")
                     dataRow("sliderImageStyle") = sliderImage.Style
-                    AgapeLogger.Info(UserId, sliderImage.ImageUrl & "  " & sliderImage.Style("height") & "  " & sliderImage.Style("width"))
+
+                    'setup for the overlay
+                    Dim sliderOverlay As New System.Web.UI.WebControls.Image
+
+                    dataRow("sliderOverlay") = "/DesktopModules/AgapeConnect/Stories/images/dev7logo.png"
+
+
                     sliderData.Rows.Add(dataRow)
 
                 Catch ex As Exception
