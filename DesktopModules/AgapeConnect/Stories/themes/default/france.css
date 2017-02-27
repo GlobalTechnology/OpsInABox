@@ -105,38 +105,25 @@ Author URI: http://dev7studios.com
 }
 
 .theme-default .nivo-caption {
-	    font-family: Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
     font-size: x-large ;
-
-
 	background:transparent;
-   color:#3A8BC2;
-   position: absolute ;
-   bottom: -120px;
-   overflow-y: hidden;
-   overflow-x: hidden;
-   /*max-width: 650px;*/
-   white-space: normal;
-   vertical-align: top;
+    color:#3A8BC2;
+    position: absolute ;
+    bottom: -120px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    /*max-width: 650px;*/
+    white-space: normal;
+    vertical-align: top;
     height : 120px !important;
-    
-     padding: 10px 0 10px 0;
-}
-
-.theme-default .nivo-capiton h3 span {
-  
-    white-space: normal ;
-     height : 120px;
-    
+    padding: 10px 0 10px 0;
 }
 
 .theme-default .nivo-box {
-
 	overflow: visible;
 }
 .nivo-box img { display:block; }
-
-
 
 .theme-default .nivoSlider {
 	position:relative;
@@ -154,4 +141,11 @@ Author URI: http://dev7studios.com
 
 .dnnGridItem:hover span.storyTitle, .dnnGridAltItem:hover span.storyTitle {
     text-decoration: none;
+}
+
+/* if the background for nivo-imageLink is changed 
+   playButtonDimension in Rotator-Fr.ascx may also need to change */
+.theme-default a.nivo-imageLink {
+    background:url(play.png) no-repeat; 
+    opacity:1;
 }

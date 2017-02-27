@@ -77,13 +77,18 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             divHeight = photoHeight
             hfChannelId.Value = Stories.First.ChannelId
 
+            'Dim playButtonDimension = 100
+            'Dim playButtonTop = (divHeight / 2) - (playButtonDimension / 2)
+            'Dim playButtonLeft = (divWidth / 2) - (playButtonDimension / 2)
+
             Dim sliderData As New DataTable()
             sliderData.Columns.Add("sliderLink")
             sliderData.Columns.Add("sliderImage")
             sliderData.Columns.Add("sliderImageStyle")
             sliderData.Columns.Add("sliderImageAltText")
             sliderData.Columns.Add("sliderImageTitle")
-            sliderData.Columns.Add("sliderOverlay")
+            sliderData.Columns.Add("sliderLinkBackground")
+            ' sliderData.Columns.Add("sliderLinkBackgroundStyle")
 
             For Each row In Stories
                 Try
@@ -118,11 +123,16 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                     dataRow("sliderImageTitle") = sliderImage.Attributes("title")
                     dataRow("sliderImageStyle") = sliderImage.Style
 
-                    'setup for the overlay
-                    Dim sliderOverlay As New System.Web.UI.WebControls.Image
+                    'setup for the Link Background Image
 
-                    dataRow("sliderOverlay") = "/DesktopModules/AgapeConnect/Stories/images/dev7logo.png"
+                    'TODO if it is a video
+                    'Dim sliderLinkBackground As New System.Web.UI.WebControls.Image
+                    'sliderLinkBackground.ImageUrl = "/DesktopModules/AgapeConnect/Stories/themes/default/play.png"
+                    'sliderLinkBackground.Style.Add("top", playButtonTop.ToString)
+                    'sliderLinkBackground.Style.Add("left", playButtonLeft.ToString)
 
+                    'dataRow("sliderLinkBackground") = sliderLinkBackground.ImageUrl
+                    'dataRow("sliderLinkBackgroundStyle") = sliderLinkBackground.Style
 
                     sliderData.Rows.Add(dataRow)
 
