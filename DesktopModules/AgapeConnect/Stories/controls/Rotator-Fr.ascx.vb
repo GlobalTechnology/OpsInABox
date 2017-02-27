@@ -77,9 +77,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             divHeight = photoHeight
             hfChannelId.Value = Stories.First.ChannelId
 
-            'Dim playButtonDimension = 100
-            'Dim playButtonTop = (divHeight / 2) - (playButtonDimension / 2)
-            'Dim playButtonLeft = (divWidth / 2) - (playButtonDimension / 2)
+            Dim playButtonDimension = 100
+            Dim playButtonTop = (divHeight / 2) - (playButtonDimension / 2)
+            Dim playButtonLeft = (divWidth / 2) - (playButtonDimension / 2)
 
             Dim sliderData As New DataTable()
             sliderData.Columns.Add("sliderLink")
