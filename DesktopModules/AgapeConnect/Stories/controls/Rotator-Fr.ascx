@@ -24,7 +24,19 @@
                  '-webkit-transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
                  '-o-transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
                  'width':<%= divWidth %> +'px', 'height':(newH-8) + 'px' });
-           
+
+             // if the background for nivo-imageLink is changed in Stories/themes/default/france.css
+             // playButtonDimension may also need to change
+             var playButtonDimension = 100;
+             var playButtonTop = ((<%= divHeight / 2 %>) - (playButtonDimension / 2)).toFixed(0);  
+             var playButtonLeft = ((<%= divWidth / 2 %>) - (playButtonDimension / 2)).toFixed(0);
+
+             $('a.nivo-imageLink').css('margin-top', playButtonTop);
+             $('a.nivo-imageLink').css('margin-left', playButtonLeft);
+
+             $('.nivoSlider').css('height', <%= divHeight%>);
+             $('.nivoSlider').css('max-height', <%= divHeight%>);
+
          }
 
          $(document).ready(function () {
@@ -45,54 +57,26 @@
   
 </script>
 
-<style type="text/css">
-/*.overlay {
-    position: absolute; 
-    top: 0; 
-    left: 10px;
-    height: <%= divHeight +40 %>px;
-    width: <%= divWidth %>px;
-    background: rgba(255, 0, 0, 0.5);
-    z-index: 100;
-    background-image: url(/DesktopModules/AgapeConnect/Stories/images/thumb_down.png);
-    background-repeat: no-repeat;
-}*/
-
-.slider-wrapper {
-    width: <%= divWidth %>px;
-    left:0;
-    height: <%= divHeight + 40%>px !important;
-}
-
-.nivoSlider {
-    height: <%= divHeight%>px;
-    max-height: <%= divHeight%>px;
-}
-</style>
-
 <asp:HiddenField ID="hfChannelId" runat="server" />
 
-<div id="rotatorContainer<%= hfChannelId.Value %>">
-    <div class="slider-wrapper theme-default">
-        <div id="slider<%= hfChannelId.Value %>" class="nivoSlider">
-            <asp:Repeater ID="SliderImageList" runat="server">
+<div id="rotatorContainer<%= hfChannelId.Value %>" class="theme-default">
+    <div id="slider<%= hfChannelId.Value %>" class="nivoSlider">
+        <asp:Repeater ID="SliderImageList" runat="server">
             <ItemTemplate>
-            <asp:HyperLink href=<%# Eval("sliderLink") %> CssClass="nivo-imageLink" ID="hlImageSlider" runat="server">
+            <asp:HyperLink 
+                href=<%# Eval("sliderLink") %> 
+                CssClass="nivo-imageLink" 
+                ID="hlImageSlider"
+                runat="server">
                 <asp:Image 
                     src=<%# Eval("sliderImage") %> 
                     alt=<%# Eval("sliderImageAltText") %> 
                     title=<%# Eval("sliderImageTitle") %> 
                     style=<%# Eval("sliderImageStyle") %> 
                     runat="server" />
-<%--                <asp:Image 
-                    src =<%# Eval("sliderOverlay") %>
-                    CssClass = "theme-default slider-overlay"
-                    runat="server" />--%>
             </asp:HyperLink>
-                    </ItemTemplate>
-                </asp:Repeater>
-           <asp:Literal ID="ltStories" runat="server"></asp:Literal>
-        </div>
+            </ItemTemplate>
+        </asp:Repeater>
     </div>
 </div>
 
