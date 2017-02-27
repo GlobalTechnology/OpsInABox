@@ -6,7 +6,10 @@
  <script type="text/javascript">
      (function ($, Sys) {
          function setUpMyTabs() {
-             $('#slider<%= hfChannelId.Value %>').css({'visibility':'visible'}).nivoSlider({
+             $('#slider<%= hfChannelId.Value %>').css({
+                 'visibility':'visible',
+                 'height': <%= divHeight%>,
+                 'max-height': <%= divHeight%>}).nivoSlider({
                  effect: 'fade',
                  pauseTime: <%= PauseTime %>,
                  width: <%= divWidth %>,
@@ -34,8 +37,6 @@
              $('a.nivo-imageLink').css('margin-top', playButtonTop);
              $('a.nivo-imageLink').css('margin-left', playButtonLeft);
 
-             $('.nivoSlider').css('height', <%= divHeight%>);
-             $('.nivoSlider').css('max-height', <%= divHeight%>);
 
          }
 
