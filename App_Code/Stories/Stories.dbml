@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AgapeConnect" Class="StoriesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=oib-ress-pub;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=oib;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AP_Stories_Module" Member="AP_Stories_Modules">
     <Type Name="AP_Stories_Module">
       <Column Name="StoryModuleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -111,6 +111,8 @@
       <Column Name="Master" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="StoryModuleId" Type="System.Int32" CanBeNull="false" />
       <Column Name="PhotoId" Type="System.Int32" CanBeNull="true" />
+      <Column Member="LinkImage" Type="System.String" CanBeNull="true" />
+      <Column Member="OpenStyle" Type="System.String" CanBeNull="true" />
       <Association Name="AP_Stories_Tag_AP_Stories_Tag_Meta" Member="AP_Stories_Tag_Metas" ThisKey="StoryTagId" OtherKey="TagId" Type="AP_Stories_Tag_Meta" />
     </Type>
   </Table>
