@@ -48,7 +48,7 @@ Namespace DotNetNuke.Modules.Stories
         End Sub
 
         Protected Sub TranslateGridViewWords()
-            Dim cfedit As CommandField = DirectCast(gvTags.Columns(4), CommandField)
+            Dim cfedit As CommandField = DirectCast(gvTags.Columns(6), CommandField)
             cfedit.EditText = Translate("Edit")
             cfedit.CancelText = Translate("Cancel")
             cfedit.UpdateText = Translate("Update")
@@ -56,6 +56,8 @@ Namespace DotNetNuke.Modules.Stories
             gvTags.Columns(1).HeaderText = Translate("TagName")
             gvTags.Columns(2).HeaderText = Translate("Keywords")
             gvTags.Columns(3).HeaderText = Translate("Master")
+            gvTags.Columns(4).HeaderText = Translate("LinkImage")
+            gvTags.Columns(5).HeaderText = Translate("OpenStyle")
         End Sub
 
         Public Function Translate(ByVal ResourceString As String) As String
@@ -122,7 +124,10 @@ Namespace DotNetNuke.Modules.Stories
 
             Dim master As Boolean = e.NewValues(2)
 
-            StoryFunctions.UpdateTag(name, keywords, master, tagIdToUpdate, TabModuleId)
+            Dim linkImage = TryCast(gvTags.Rows(e.RowIndex).FindControl("ddlLinkImage"), DropDownList).SelectedItem.Value
+            Dim openStyle = TryCast(gvTags.Rows(e.RowIndex).FindControl("ddlOpenStyle"), DropDownList).SelectedItem.Value
+
+            StoryFunctions.UpdateTag(name, keywords, master, linkImage, openStyle, tagIdToUpdate, TabModuleId)
 
             'Reset the edit index
             gvTags.EditIndex = -1
@@ -171,6 +176,35 @@ Namespace DotNetNuke.Modules.Stories
         Protected Sub ImagePicker_ImageUpdated(image As DesktopModules_AgapePortal_StaffBroker_acImage)
             If image.CheckAspect() Then
                 StoryFunctions.SetTagPhotoId(image.FileId, gvTags.DataKeys(gvTags.EditIndex).Value)
+            End If
+        End Sub
+
+        Protected Sub gvTags_RowDataBound(ByVal sender As Object, ByVal e As GridViewRowEventArgs) Handles gvTags.RowDataBound
+            If (e.Row.RowType = DataControlRowType.DataRow And e.Row.RowState = DataControlRowState.Edit) Then
+                'Populate ddlLinkImage in the Row
+                Dim ddlLinkImage As DropDownList = CType(e.Row.FindControl("ddlLinkImage"), DropDownList)
+                Dim linkImageItems As Array = System.Enum.GetNames(GetType(TagSettingsConstants.LinkImage))
+
+                For Each linkImageItem In linkImageItems
+                    Dim item As ListItem = New ListItem(Translate(linkImageItem), linkImageItem)
+                    ddlLinkImage.Items.Add(item)
+                Next
+                ddlLinkImage.DataBind()
+
+                'Populate ddlOpenStyle in the Row
+                Dim ddlOpenStyle As DropDownList = CType(e.Row.FindControl("ddlOpenStyle"), DropDownList)
+                Dim openStyleItems As Array = System.Enum.GetNames(GetType(TagSettingsConstants.OpenStyle))
+
+                For Each openStyleItem In openStyleItems
+                    Dim item As ListItem = New ListItem(Translate(openStyleItem), openStyleItem)
+                    ddlOpenStyle.Items.Add(item)
+                Next
+                ddlOpenStyle.DataBind()
+
+                'Use hidden label to remember the selected row in each ddl
+                ddlLinkImage.Items.FindByValue(TryCast(e.Row.FindControl("lblLinkImage"), Label).Text).Selected = True
+                ddlOpenStyle.Items.FindByValue(TryCast(e.Row.FindControl("lblOpenStyle"), Label).Text).Selected = True
+
             End If
         End Sub
 
