@@ -133,6 +133,21 @@ Public Module ViewStoryConstants
 
 End Module
 
+'TagSettings constants
+Public Module TagSettingsConstants
+
+    Public Enum LinkImage
+        None
+        PlayButton
+    End Enum
+
+    Public Enum OpenStyle
+        NewPage
+        Popup
+    End Enum
+
+End Module
+
 Public Class StoryFunctions
 
 #Region "Tags"
@@ -244,13 +259,19 @@ Public Class StoryFunctions
         End If
     End Sub
 
-    Public Shared Sub UpdateTag(ByVal name As String, ByVal keywords As String, ByVal master As String, ByVal tagId As Integer, ByVal TabModuleId As Integer)
+    Public Shared Sub UpdateTag(ByVal name As String, ByVal keywords As String,
+                                ByVal master As String, ByVal linkImage As String,
+                                ByVal openStyle As String, ByVal tagId As Integer, ByVal TabModuleId As Integer)
         Dim d As New StoriesDataContext
-        Dim tagToUpdate As AP_Stories_Tag = (From c In d.AP_Stories_Tags Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId And c.StoryTagId = tagId).First
+        Dim tagToUpdate As AP_Stories_Tag = (From c In d.AP_Stories_Tags
+                                             Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId _
+                                                 And c.StoryTagId = tagId).First
 
         tagToUpdate.TagName = name
         tagToUpdate.Keywords = keywords
         tagToUpdate.Master = master
+        tagToUpdate.LinkImage = linkImage
+        tagToUpdate.OpenStyle = openStyle
         d.SubmitChanges()
     End Sub
 

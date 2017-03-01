@@ -165,4 +165,22 @@
   <data name="Update.Text" xml:space="preserve">
     <value>Mettre à jour</value>
   </data>
+  <data name="LinkImage.Text" xml:space="preserve">
+    <value>Image couverture</value>
+  </data>
+  <data name="NewPage.Text" xml:space="preserve">
+    <value>Nouvelle page</value>
+  </data>
+  <data name="None.Text" xml:space="preserve">
+    <value>Aucun</value>
+  </data>
+  <data name="OpenStyle.Text" xml:space="preserve">
+    <value>Style d'ouverture</value>
+  </data>
+  <data name="PlayButton.Text" xml:space="preserve">
+    <value>Bouton de lecture</value>
+  </data>
+  <data name="Popup.Text" xml:space="preserve">
+    <value>Pop-up</value>
+  </data>
 </root>

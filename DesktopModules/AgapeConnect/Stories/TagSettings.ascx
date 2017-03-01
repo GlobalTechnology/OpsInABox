@@ -45,6 +45,24 @@
         <asp:BoundField DataField="TagName" HeaderText="TagName" SortExpression="TagName" />
         <asp:BoundField DataField="Keywords" HeaderText="Keywords" SortExpression="Keywords" />
         <asp:CheckBoxField DataField="Master" HeaderText="Master" SortExpression="Master"/>
+        <asp:TemplateField HeaderText="LinkImage">
+            <ItemTemplate>
+                <asp:Label ID="lblLinkImage" runat="server" ResourceKey='<%# Eval("LinkImage") %>' />
+            </ItemTemplate>
+            <EditItemTemplate>
+                <asp:Label ID="lblLinkImage" runat="server" Text='<%# Eval("LinkImage") %>' Visible = "false" />
+                <asp:DropDownList ID="ddlLinkImage" runat="server"></asp:DropDownList>
+            </EditItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="OpenStyle">
+            <ItemTemplate>
+                <asp:Label ID="lblOpenStyle" runat="server" ResourceKey='<%# Eval("OpenStyle") %>' />
+            </ItemTemplate>
+            <EditItemTemplate>
+                <asp:Label ID="lblOpenStyle" runat="server" Text='<%# Eval("OpenStyle") %>' Visible = "false" />
+                <asp:DropDownList ID="ddlOpenStyle" runat="server"></asp:DropDownList>
+            </EditItemTemplate>
+        </asp:TemplateField>
         <asp:CommandField ShowEditButton="True" ControlStyle-CssClass="gvTemplateButtons" />
         <asp:TemplateField ShowHeader="False" ControlStyle-CssClass="btnDelete">
             <ItemTemplate>
