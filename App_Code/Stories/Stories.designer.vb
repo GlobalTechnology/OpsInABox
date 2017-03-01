@@ -2204,6 +2204,10 @@ Namespace Stories
 		
 		Private _PhotoId As System.Nullable(Of Integer)
 		
+		Private _LinkImage As String
+		
+		Private _OpenStyle As String
+		
 		Private _AP_Stories_Tag_Metas As EntitySet(Of AP_Stories_Tag_Meta)
 		
     #Region "Extensibility Method Definitions"
@@ -2236,6 +2240,14 @@ Namespace Stories
     Partial Private Sub OnPhotoIdChanging(value As System.Nullable(Of Integer))
     End Sub
     Partial Private Sub OnPhotoIdChanged()
+    End Sub
+    Partial Private Sub OnLinkImageChanging(value As String)
+    End Sub
+    Partial Private Sub OnLinkImageChanged()
+    End Sub
+    Partial Private Sub OnOpenStyleChanging(value As String)
+    End Sub
+    Partial Private Sub OnOpenStyleChanged()
     End Sub
     #End Region
 		
@@ -2340,6 +2352,38 @@ Namespace Stories
 					Me._PhotoId = value
 					Me.SendPropertyChanged("PhotoId")
 					Me.OnPhotoIdChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LinkImage")>  _
+		Public Property LinkImage() As String
+			Get
+				Return Me._LinkImage
+			End Get
+			Set
+				If (String.Equals(Me._LinkImage, value) = false) Then
+					Me.OnLinkImageChanging(value)
+					Me.SendPropertyChanging
+					Me._LinkImage = value
+					Me.SendPropertyChanged("LinkImage")
+					Me.OnLinkImageChanged
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_OpenStyle")>  _
+		Public Property OpenStyle() As String
+			Get
+				Return Me._OpenStyle
+			End Get
+			Set
+				If (String.Equals(Me._OpenStyle, value) = false) Then
+					Me.OnOpenStyleChanging(value)
+					Me.SendPropertyChanging
+					Me._OpenStyle = value
+					Me.SendPropertyChanged("OpenStyle")
+					Me.OnOpenStyleChanged
 				End If
 			End Set
 		End Property
