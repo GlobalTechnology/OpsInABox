@@ -14,6 +14,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
         Public divWidth As Integer = 150
         Public divHeight As Integer = 150
         Public manualAdvance As String = "false"
+        Public linkImage As String = TagSettingsConstants.LinkImage.None
+        Public openStyle As String = TagSettingsConstants.OpenStyle.NewPage
 
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             'Allowing dynamically loaded controls to be translated using the DNN translation system is complex...
@@ -123,16 +125,20 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                     dataRow("sliderImageTitle") = sliderImage.Attributes("title")
                     dataRow("sliderImageStyle") = sliderImage.Style
 
-                    'setup for the Link Background Image
+                    'check for personalized link image and open style
+                    Dim viewStyles As Dictionary(Of String, String) = StoryFunctions.GetStoryPersonalisation(row.GUID, TabModuleId)
 
-                    'TODO if it is a video
-                    'Dim sliderLinkBackground As New System.Web.UI.WebControls.Image
-                    'sliderLinkBackground.ImageUrl = "/DesktopModules/AgapeConnect/Stories/themes/default/play.png"
-                    'sliderLinkBackground.Style.Add("top", playButtonTop.ToString)
-                    'sliderLinkBackground.Style.Add("left", playButtonLeft.ToString)
+                    'If viewStyles.TryGetValue("linkImage", TagSettingsConstants.LinkImage.PlayButton.ToString) Then
+                    '    Dim hlImageSlider As WebControls.HyperLink = FindControl("hlImageSlider")
+                    '    'hlImageSlider.CssClass(playButton)
+                    'End If
 
-                    'dataRow("sliderLinkBackground") = sliderLinkBackground.ImageUrl
-                    'dataRow("sliderLinkBackgroundStyle") = sliderLinkBackground.Style
+                    ' sliderLinkBackground.ImageUrl = "DesktopModules/AgapeConnect/Stories/themes/default/play.png"
+                    '  sliderLinkBackground.Style.Add("margin-top", playButtonTop.ToString)
+                    ' sliderLinkBackground.Style.Add("margin-left", playButtonLeft.ToString)
+
+                    '  dataRow("sliderLinkBackground") = sliderLinkBackground.ImageUrl
+                    ' dataRow("sliderLinkBackgroundStyle") = sliderLinkBackground.Style
 
                     sliderData.Rows.Add(dataRow)
 
@@ -144,11 +150,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             SliderImageList.DataBind()
 
         End Sub
-
-
-
-
-
 
     End Class
 End Namespace

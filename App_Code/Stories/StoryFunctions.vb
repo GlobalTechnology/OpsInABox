@@ -503,6 +503,29 @@ Public Class StoryFunctions
         Return (From c In story.AP_Stories_Tag_Metas Where c.AP_Stories_Tag.TagName = type).Count > 0
     End Function
 
+    Public Shared Function GetStoryPersonalisation(ByRef storyId As Integer, ByVal tabModuleId As Integer) As Dictionary(Of String, String)
+        Dim d As New StoriesDataContext
+        Dim storyList As New List(Of AP_Story)
+        Dim tagList As New List(Of Integer)
+        Dim personalDict As New Dictionary(Of String, String)
+        personalDict.Add("linkImage", TagSettingsConstants.LinkImage.None)
+        personalDict.Add("openStyle", TagSettingsConstants.OpenStyle.NewPage)
+
+        storyList.Add(StoryFunctions.GetStory(storyId))
+        tagList = (From c In StoryFunctions.GetTagsOfStory(storyList) Select c.StoryTagId).ToList
+
+        For Each tagID In tagList
+            If (StoryFunctions.GetTag(tagID, tabModuleId)).LinkImage <> (TagSettingsConstants.LinkImage.None).ToString Then
+                personalDict("linkImage") = TagSettingsConstants.LinkImage.PlayButton.ToString
+            End If
+
+            If (StoryFunctions.GetTag(tagID, tabModuleId)).OpenStyle <> (TagSettingsConstants.OpenStyle.NewPage).ToString Then
+                personalDict("openStyle") = TagSettingsConstants.OpenStyle.Popup
+            End If
+        Next
+        Return personalDict
+    End Function
+
     'Input Parameters
     '   StoryId : an event
     '   Quantity : the number of storys that will be returned 
