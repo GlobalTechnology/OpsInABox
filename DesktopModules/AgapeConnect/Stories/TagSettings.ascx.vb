@@ -180,7 +180,9 @@ Namespace DotNetNuke.Modules.Stories
         End Sub
 
         Protected Sub gvTags_RowDataBound(ByVal sender As Object, ByVal e As GridViewRowEventArgs) Handles gvTags.RowDataBound
-            If (e.Row.RowType = DataControlRowType.DataRow And e.Row.RowState = DataControlRowState.Edit) Then
+
+            If (e.Row.RowType = DataControlRowType.DataRow And ((e.Row.RowState And DataControlRowState.Edit) > 0)) Then
+
                 'Populate ddlLinkImage in the Row
                 Dim ddlLinkImage As DropDownList = CType(e.Row.FindControl("ddlLinkImage"), DropDownList)
                 Dim linkImageItems As Array = System.Enum.GetNames(GetType(TagSettingsConstants.LinkImage))
