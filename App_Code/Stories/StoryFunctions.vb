@@ -244,6 +244,8 @@ Public Class StoryFunctions
         insert.Master = False
         insert.Keywords = ""
         insert.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId
+        insert.LinkImage = TagSettingsConstants.LinkImage.None.ToString
+        insert.OpenStyle = TagSettingsConstants.OpenStyle.NewPage.ToString()
         d.AP_Stories_Tags.InsertOnSubmit(insert)
         d.SubmitChanges()
     End Sub
