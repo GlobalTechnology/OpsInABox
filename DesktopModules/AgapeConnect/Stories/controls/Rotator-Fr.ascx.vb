@@ -89,8 +89,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             sliderData.Columns.Add("sliderImageStyle")
             sliderData.Columns.Add("sliderImageAltText")
             sliderData.Columns.Add("sliderImageTitle")
-            sliderData.Columns.Add("sliderLinkBackground")
-            ' sliderData.Columns.Add("sliderLinkBackgroundStyle")
+            sliderData.Columns.Add("sliderLinkImageCSS")
+
 
             For Each row In Stories
                 Try
@@ -127,18 +127,14 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
                     'check for personalized link image and open style
                     Dim viewStyles As Dictionary(Of String, String) = StoryFunctions.GetStoryPersonalisation(row.GUID, TabModuleId)
-
-                    'If viewStyles.TryGetValue("linkImage", TagSettingsConstants.LinkImage.PlayButton.ToString) Then
-                    '    Dim hlImageSlider As WebControls.HyperLink = FindControl("hlImageSlider")
-                    '    'hlImageSlider.CssClass(playButton)
-                    'End If
-
-                    ' sliderLinkBackground.ImageUrl = "DesktopModules/AgapeConnect/Stories/themes/default/play.png"
-                    '  sliderLinkBackground.Style.Add("margin-top", playButtonTop.ToString)
-                    ' sliderLinkBackground.Style.Add("margin-left", playButtonLeft.ToString)
-
-                    '  dataRow("sliderLinkBackground") = sliderLinkBackground.ImageUrl
-                    ' dataRow("sliderLinkBackgroundStyle") = sliderLinkBackground.Style
+                    Dim cssHyperlink As String = ""
+                    AgapeLogger.Info(UserId, viewStyles.TryGetValue("linkImage", TagSettingsConstants.LinkImage.PlayButton.ToString))
+                    If viewStyles.TryGetValue("linkImage", TagSettingsConstants.LinkImage.PlayButton.ToString) Then
+                        cssHyperlink = "nivo-imageLink playbutton"
+                    Else
+                        cssHyperlink = "nivo-imageLink"
+                    End If
+                    dataRow("sliderLinkImageCSS") = cssHyperlink
 
                     sliderData.Rows.Add(dataRow)
 
