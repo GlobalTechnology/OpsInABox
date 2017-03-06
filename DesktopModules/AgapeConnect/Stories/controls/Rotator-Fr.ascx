@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="Rotator-Fr.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Stories.Rotator_Fr" %>
 <script src="/js/jquery.nivo.slider.js" type="text/javascript"></script>
-<link href="/DesktopModules/AgapeConnect/Stories/themes/default/france.css" rel="stylesheet" type="text/css" media="screen"  />
 <link href="/js/nivo-slider.css" rel="stylesheet" type="text/css" media="screen"  />
+<link href="/DesktopModules/AgapeConnect/Stories/themes/default/france.css" rel="stylesheet" type="text/css" media="screen"  />
 
  <script type="text/javascript">
      (function ($, Sys) {
@@ -27,17 +27,6 @@
                  '-webkit-transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
                  '-o-transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
                  'width':<%= divWidth %> +'px', 'height':(newH-8) + 'px' });
-
-             // if the background for nivo-imageLink is changed in Stories/themes/default/france.css
-             // playButtonDimension may also need to change
-             var playButtonDimension = 100;
-             var playButtonTop = ((<%= divHeight / 2 %>) - (playButtonDimension / 2)).toFixed(0);  
-             var playButtonLeft = ((<%= divWidth / 2 %>) - (playButtonDimension / 2)).toFixed(0);
-
-             $('a.nivo-imageLink').css('margin-top', playButtonTop);
-             $('a.nivo-imageLink').css('margin-left', playButtonLeft);
-
-
          }
 
          $(document).ready(function () {
@@ -65,11 +54,11 @@
         <asp:Repeater ID="SliderImageList" runat="server">
             <ItemTemplate>
             <asp:HyperLink 
-                href=<%# Eval("sliderLink") %> 
-                CssClass="nivo-imageLink" 
+                href=<%# Eval("sliderLink") %>
                 ID="hlImageSlider"
+                CssClass = <%# Eval("sliderLinkImageCSS") %>
                 runat="server">
-                <asp:Image 
+                <asp:Image
                     src=<%# Eval("sliderImage") %> 
                     alt=<%# Eval("sliderImageAltText") %> 
                     title=<%# Eval("sliderImageTitle") %> 

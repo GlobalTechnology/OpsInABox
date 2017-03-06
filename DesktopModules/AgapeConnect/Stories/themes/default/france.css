@@ -143,10 +143,12 @@ Author URI: http://dev7studios.com
     text-decoration: none;
 }
 
-/* if the background for nivo-imageLink is changed 
-   playButtonDimension in Rotator-Fr.ascx may also need to change */
-.theme-default a.nivo-imageLink {
-    background: url(play.png) no-repeat; 
+.playbutton {
+    background: url(play.png) no-repeat center; 
     opacity: 1;
+}
 
+.theme-default a.nivo-imageLink {
+    background: url(play.png) no-repeat center;
+    opacity: 1;
 }
