@@ -143,12 +143,11 @@ Author URI: http://dev7studios.com
     text-decoration: none;
 }
 
-.playbutton {
+.theme-default a.nivo-imageLink.PlayButton {
     background: url(play.png) no-repeat center; 
     opacity: 1;
 }
 
 .theme-default a.nivo-imageLink {
-    background: url(play.png) no-repeat center;
-    opacity: 1;
+	background:none; 
 }

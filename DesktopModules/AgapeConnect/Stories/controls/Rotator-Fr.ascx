@@ -14,6 +14,8 @@
                  pauseTime: <%= PauseTime %>,
                  width: <%= divWidth %>,
                  manualAdvance: <%= manualAdvance %>,
+                // beforeChange: function() {hlBeforeChange()},
+                 //afterChange: function (){hlAfterChange()}
              });
 
              var w= $('#rotatorContainer<%= hfChannelId.Value %>').width();
@@ -38,13 +40,22 @@
      } (jQuery, window.Sys));
    
 
+     function hlBeforeChange()
+     {
+             $('.theme-default a.nivo-imageLink.playbutton').css({opacity:0})
+     }
+
+     function hlAfterChange()
+     {
+         $('.theme-default a.nivo-imageLink.playbutton').css({opacity:0})
+     }
+
    function registerClick(c)
    {
         $.ajax({ type: 'POST', url: "<%= NavigateURL() %>",
                         data: ({ StoryLink: c })
                     });
    }
-  
 </script>
 
 <asp:HiddenField ID="hfChannelId" runat="server" />

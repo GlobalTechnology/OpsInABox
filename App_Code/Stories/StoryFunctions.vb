@@ -520,7 +520,7 @@ Public Class StoryFunctions
             End If
 
             If (StoryFunctions.GetTag(tagID, tabModuleId)).OpenStyle <> (TagSettingsConstants.OpenStyle.NewPage).ToString Then
-                personalDict("openStyle") = TagSettingsConstants.OpenStyle.Popup
+                personalDict("openStyle") = TagSettingsConstants.OpenStyle.Popup.ToString
             End If
         Next
         Return personalDict
