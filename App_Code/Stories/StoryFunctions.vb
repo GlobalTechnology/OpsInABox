@@ -136,6 +136,9 @@ End Module
 'TagSettings constants
 Public Module TagSettingsConstants
 
+    Public Const LINKIMAGESTRING As String = "linkImage"
+    Public Const OPENSTYLESTRING As String = "openStyle"
+
     Public Enum LinkImage
         None
         PlayButton
@@ -508,19 +511,19 @@ Public Class StoryFunctions
         Dim storyList As New List(Of AP_Story)
         Dim tagList As New List(Of Integer)
         Dim personalDict As New Dictionary(Of String, String)
-        personalDict.Add("linkImage", TagSettingsConstants.LinkImage.None)
-        personalDict.Add("openStyle", TagSettingsConstants.OpenStyle.NewPage)
+        personalDict.Add(TagSettingsConstants.LINKIMAGESTRING, TagSettingsConstants.LinkImage.None)
+        personalDict.Add(TagSettingsConstants.OPENSTYLESTRING, TagSettingsConstants.OpenStyle.NewPage)
 
         storyList.Add(StoryFunctions.GetStory(storyId))
         tagList = (From c In StoryFunctions.GetTagsOfStory(storyList) Select c.StoryTagId).ToList
 
         For Each tagID In tagList
             If (StoryFunctions.GetTag(tagID, tabModuleId)).LinkImage <> (TagSettingsConstants.LinkImage.None).ToString Then
-                personalDict("linkImage") = TagSettingsConstants.LinkImage.PlayButton.ToString
+                personalDict(TagSettingsConstants.LINKIMAGESTRING) = TagSettingsConstants.LinkImage.PlayButton.ToString
             End If
 
             If (StoryFunctions.GetTag(tagID, tabModuleId)).OpenStyle <> (TagSettingsConstants.OpenStyle.NewPage).ToString Then
-                personalDict("openStyle") = TagSettingsConstants.OpenStyle.Popup.ToString
+                personalDict(TagSettingsConstants.OPENSTYLESTRING) = TagSettingsConstants.OpenStyle.Popup.ToString
             End If
         Next
         Return personalDict
