@@ -14,8 +14,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
         Public divWidth As Integer = 150
         Public divHeight As Integer = 150
         Public manualAdvance As String = "false"
-        Public linkImage As String = TagSettingsConstants.LinkImage.None
-        Public openStyle As String = TagSettingsConstants.OpenStyle.NewPage
 
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             'Allowing dynamically loaded controls to be translated using the DNN translation system is complex...
@@ -91,7 +89,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             sliderData.Columns.Add("sliderImageTitle")
             sliderData.Columns.Add("sliderLinkImageCSS")
 
-
             For Each row In Stories
                 Try
                     Dim dataRow As DataRow = sliderData.NewRow()
@@ -128,16 +125,15 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                     'check for personalized link image and open style
                     Dim viewStyles As Dictionary(Of String, String) = StoryFunctions.GetStoryPersonalisation(row.GUID, TabModuleId)
                     Dim cssHyperlink As String = ""
-                    AgapeLogger.Info(UserId, viewStyles.TryGetValue("linkImage", TagSettingsConstants.LinkImage.PlayButton.ToString))
-                    If viewStyles.TryGetValue("linkImage", TagSettingsConstants.LinkImage.PlayButton.ToString) Then
-                        cssHyperlink = "nivo-imageLink playbutton"
+
+                    If (viewStyles.Item("linkImage").Equals(TagSettingsConstants.LinkImage.PlayButton.ToString)) Then
+                        cssHyperlink = "nivo-imageLink " & TagSettingsConstants.LinkImage.PlayButton.ToString
                     Else
                         cssHyperlink = "nivo-imageLink"
                     End If
                     dataRow("sliderLinkImageCSS") = cssHyperlink
 
                     sliderData.Rows.Add(dataRow)
-
                 Catch ex As Exception
                 End Try
 
