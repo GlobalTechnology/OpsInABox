@@ -94,12 +94,32 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                     Dim dataRow As DataRow = sliderData.NewRow()
 
                     'setup for the link
+
+                    Dim viewStyles As Dictionary(Of String, String) = StoryFunctions.GetStoryPersonalisation(row.GUID, TabModuleId)
+                    Dim cssHyperlink As String = ""
+                    Dim clickAction As String = ""
+
                     Dim target = "_blank"
                     If row.Link.Contains(PortalSettings.DefaultPortalAlias) Then
                         target = "_self"
                     End If
 
-                    dataRow("sliderLink") = "javascript: registerClick(" & row.CacheId & "); window.open('" & row.Link & "', '" & target & "');"
+                    'check for personalized link image
+                    If (viewStyles.Item(TagSettingsConstants.LINKIMAGESTRING).Equals(TagSettingsConstants.LinkImage.PlayButton.ToString)) Then
+                        cssHyperlink = "nivo-imageLink " & TagSettingsConstants.LinkImage.PlayButton.ToString
+                    Else
+                        cssHyperlink = "nivo-imageLink"
+                    End If
+                    dataRow("sliderLinkImageCSS") = cssHyperlink
+
+                    'check for personalized opening style
+                    If (viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING).Equals(TagSettingsConstants.OpenStyle.Popup.ToString)) Then
+                        clickAction = "onclick=alert('Here is the pop-up')"
+                    Else
+                        clickAction = "window.open('" & row.Link & "', '" & target & "');"
+                    End If
+
+                    dataRow("sliderLink") = "javascript: registerClick(" & row.CacheId & "); " & clickAction
 
                     'setup for the image
                     Dim sliderImage As New System.Web.UI.WebControls.Image
@@ -121,17 +141,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                     dataRow("sliderImageAltText") = sliderImage.AlternateText
                     dataRow("sliderImageTitle") = sliderImage.Attributes("title")
                     dataRow("sliderImageStyle") = sliderImage.Style
-
-                    'check for personalized link image and open style
-                    Dim viewStyles As Dictionary(Of String, String) = StoryFunctions.GetStoryPersonalisation(row.GUID, TabModuleId)
-                    Dim cssHyperlink As String = ""
-
-                    If (viewStyles.Item("linkImage").Equals(TagSettingsConstants.LinkImage.PlayButton.ToString)) Then
-                        cssHyperlink = "nivo-imageLink " & TagSettingsConstants.LinkImage.PlayButton.ToString
-                    Else
-                        cssHyperlink = "nivo-imageLink"
-                    End If
-                    dataRow("sliderLinkImageCSS") = cssHyperlink
 
                     sliderData.Rows.Add(dataRow)
                 Catch ex As Exception
