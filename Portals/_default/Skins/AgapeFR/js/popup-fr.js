@@ -1,14 +1,10 @@
 ﻿$(document).ready(function () {
-    //checkCookie();
-    poppit();
+    checkCookie();
+    $("#popupclose").click(function () {
+        $('#my_popup').fadeOut();
+        setCookie('sawpopup', true, 1);
+    });
 });
-
-document.getElementById("popupclose").onclick = function () { popclose() };
-
-function popclose() {
-    setCookie('sawpopup', true, 30);
-    $('#my_popup').fadeOut();
-}
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
@@ -35,13 +31,8 @@ function checkCookie() {
     var sawpopup = getCookie("sawpopup");
     if (sawpopup != 'true') {
         poppit();
-        //alert("1 Snap Crackle POP! ");
-    } else {
-        //poppit();
-        //alert("2 Snap Crackle POP! ");
     }
 }
 function poppit() {
-    $('#my_popup').delay(5000).fadeIn();
-    setCookie('sawpopup', true, 1);
+    $('#my_popup').delay(0).fadeIn();
 }

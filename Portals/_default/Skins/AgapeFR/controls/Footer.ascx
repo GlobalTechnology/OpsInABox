@@ -5,7 +5,7 @@
 <%@ Register TagPrefix="ddr" TagName="MENU" Src="~/DesktopModules/DDRMenu/Menu.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="TEXT" Src="~/Admin/Skins/Text.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
-<dnn:DnnJsInclude runat="server" FilePath="popup-fr.js" PathNameAlias="SkinPath" />
+<dnn:DnnJsInclude runat="server" FilePath="js/popup-fr.js" PathNameAlias="SkinPath" />
 
 <div class="bar">
     <div class="globalbox">
@@ -63,19 +63,22 @@
                     </div>
                     <div id="mentionslegales"><a href="/mentionslegales" rel="nofollow"><%=Translate("MentionsLegales.Text")%></a></div>
                 </div>
-                <div id="my_popup">
-                    <div>
-                        <div>
-                            <a id="popupclose" class="my_popup_close">🗙</a>
-                        </div>
-                        <h3>S'inscrire &agrave; notre Newsletter</h3>
-                        <p>Restez informés</p>
-                    </div>
-                    <div>
-                        <a class="button" href="/nousconnaitre/newsletter">Je m'inscris</a>
-                    </div>
-                </div>
+
             </div>
+        </div>
+    </div>
+</div>
+<div id="fr_popup" runat="server">
+    <div id="my_popup">
+        <div>
+            <div class="my_popup_close">
+                <a id="popupclose">🗙</a>
+            </div>
+            <h3>S'inscrire à notre Newsletter</h3>
+            <p>Restez informés</p>
+        </div>
+        <div>
+            <a class="button" href="/Nous-connaitre/Newsletter">Je m'inscris</a>
         </div>
     </div>
 </div>

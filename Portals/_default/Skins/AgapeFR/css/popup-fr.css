@@ -3,7 +3,6 @@
     color:#3a8bc2;
     cursor:pointer;
 }
-
 #my_popup {
     z-index: 1001;
     position: fixed;
@@ -15,5 +14,7 @@
     border: 2px solid #3a8bc2;
     width: 20%;
     border-radius: 5px 0px 0px 5px;
+}
+.my_popup_close {
     text-align: right;
 }
