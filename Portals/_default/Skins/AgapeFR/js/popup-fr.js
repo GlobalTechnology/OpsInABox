@@ -4,6 +4,9 @@
         $('#my_popup').fadeOut();
         setCookie('sawpopup', true, 1);
     });
+    $("#frsignup").click(function () {
+        setCookie('sawpopup', true, 1);
+    });
 });
 
 function setCookie(cname, cvalue, exdays) {
@@ -34,5 +37,5 @@ function checkCookie() {
     }
 }
 function poppit() {
-    $('#my_popup').delay(0).fadeIn();
+    $('#my_popup').delay(5000).fadeIn();
 }
