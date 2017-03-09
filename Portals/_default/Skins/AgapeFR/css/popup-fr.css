@@ -1,0 +1,19 @@
+﻿#popupclose {
+    text-decoration:none;
+    color:#3a8bc2;
+    cursor:pointer;
+}
+
+#my_popup {
+    z-index: 1001;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: none;
+    padding: 0px 25px 25px;
+    background: rgba(255,255,255,0.8);
+    border: 2px solid #3a8bc2;
+    width: 20%;
+    border-radius: 5px 0px 0px 5px;
+    text-align: right;
+}
