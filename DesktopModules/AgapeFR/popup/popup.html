@@ -28,12 +28,11 @@
     poppit();
     });
 
-    document.getElementById("popupclose").onclick = function() {popclose()};
-
-function popclose() {
-    setCookie('sawpopup', true, 30);
-	$('#my_popup').fadeOut();
-}
+$("#popupclose").click(function () {
+    alert("hey!");
+    $('#my_popup').fadeOut();
+    setCookie('sawpopup', true, 1);
+});
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
@@ -67,7 +66,7 @@ function checkCookie() {
     }
 }
 function poppit(){
-    $('#my_popup').delay(5000).fadeIn();
+    $('#my_popup').delay(0).fadeIn();
     setCookie('sawpopup', true, 1);
 }
   </script>
