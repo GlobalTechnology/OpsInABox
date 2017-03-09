@@ -1,4 +1,4 @@
-﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="Rotator-Fr.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Stories.Rotator_Fr" %>
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="Rotator1-Fr.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Stories.Rotator_Fr" %>
 <script src="/js/jquery.nivo.slider.js" type="text/javascript"></script>
 <link href="/js/nivo-slider.css" rel="stylesheet" type="text/css" media="screen"  />
 <link href="/DesktopModules/AgapeConnect/Stories/themes/default/france.css" rel="stylesheet" type="text/css" media="screen"  />
