@@ -72,7 +72,7 @@
     <div id="my_popup">
         <div>
             <div class="my_popup_close">
-                <a id="popupclose">🗙</a>
+                <a id="popupclose">&#x2716</a>
             </div>
             <h3>S'inscrire à notre Newsletter</h3>
             <p>Restez informés</p>
