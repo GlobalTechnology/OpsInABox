@@ -13,6 +13,7 @@
     background: rgba(255,255,255,0.8);
     border: 2px solid #3a8bc2;
     width: 20%;
+    min-width: 270px;
     border-radius: 5px 0px 0px 5px;
 }
 .my_popup_close {
