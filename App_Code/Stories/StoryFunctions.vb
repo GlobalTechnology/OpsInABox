@@ -296,6 +296,29 @@ Public Class StoryFunctions
         End If
     End Function
 
+    Public Shared Function GetTagPersonalisation(ByRef storyId As Integer, ByVal tabModuleId As Integer) As Dictionary(Of String, String)
+        Dim d As New StoriesDataContext
+        Dim storyList As New List(Of AP_Story)
+        Dim tagList As New List(Of Integer)
+        Dim personalDict As New Dictionary(Of String, String)
+        personalDict.Add(TagSettingsConstants.LINKIMAGESTRING, TagSettingsConstants.LinkImage.None)
+        personalDict.Add(TagSettingsConstants.OPENSTYLESTRING, TagSettingsConstants.OpenStyle.NewPage)
+
+        storyList.Add(StoryFunctions.GetStory(storyId))
+        tagList = (From c In StoryFunctions.GetTagsOfStory(storyList) Select c.StoryTagId).ToList
+
+        For Each tagID In tagList
+            If (StoryFunctions.GetTag(tagID, tabModuleId)).LinkImage <> (TagSettingsConstants.LinkImage.None).ToString Then
+                personalDict(TagSettingsConstants.LINKIMAGESTRING) = TagSettingsConstants.LinkImage.PlayButton.ToString
+            End If
+
+            If (StoryFunctions.GetTag(tagID, tabModuleId)).OpenStyle <> (TagSettingsConstants.OpenStyle.NewPage).ToString Then
+                personalDict(TagSettingsConstants.OPENSTYLESTRING) = TagSettingsConstants.OpenStyle.Popup.ToString
+            End If
+        Next
+        Return personalDict
+    End Function
+
 #End Region 'Tags
 
 #Region "Channels"
@@ -506,29 +529,6 @@ Public Class StoryFunctions
         Return (From c In story.AP_Stories_Tag_Metas Where c.AP_Stories_Tag.TagName = type).Count > 0
     End Function
 
-    Public Shared Function GetStoryPersonalisation(ByRef storyId As Integer, ByVal tabModuleId As Integer) As Dictionary(Of String, String)
-        Dim d As New StoriesDataContext
-        Dim storyList As New List(Of AP_Story)
-        Dim tagList As New List(Of Integer)
-        Dim personalDict As New Dictionary(Of String, String)
-        personalDict.Add(TagSettingsConstants.LINKIMAGESTRING, TagSettingsConstants.LinkImage.None)
-        personalDict.Add(TagSettingsConstants.OPENSTYLESTRING, TagSettingsConstants.OpenStyle.NewPage)
-
-        storyList.Add(StoryFunctions.GetStory(storyId))
-        tagList = (From c In StoryFunctions.GetTagsOfStory(storyList) Select c.StoryTagId).ToList
-
-        For Each tagID In tagList
-            If (StoryFunctions.GetTag(tagID, tabModuleId)).LinkImage <> (TagSettingsConstants.LinkImage.None).ToString Then
-                personalDict(TagSettingsConstants.LINKIMAGESTRING) = TagSettingsConstants.LinkImage.PlayButton.ToString
-            End If
-
-            If (StoryFunctions.GetTag(tagID, tabModuleId)).OpenStyle <> (TagSettingsConstants.OpenStyle.NewPage).ToString Then
-                personalDict(TagSettingsConstants.OPENSTYLESTRING) = TagSettingsConstants.OpenStyle.Popup.ToString
-            End If
-        Next
-        Return personalDict
-    End Function
-
     'Input Parameters
     '   StoryId : an event
     '   Quantity : the number of storys that will be returned 
@@ -732,7 +732,7 @@ Public Class StoryFunctions
         Dim d As New Stories.StoriesDataContext
 
         Dim storyCache As IQueryable(Of AP_Stories_Module_Channel_Cache) = From c In d.AP_Stories_Module_Channel_Caches
-                                                                               Where c.CacheId = cacheId
+                                                                           Where c.CacheId = cacheId
         If (storyCache.Count > 0) Then
             storyCache.First.Block = False
         End If
@@ -833,6 +833,48 @@ Public Class StoryFunctions
     End Sub
 
 #End Region 'Latitude/Longitude
+
+#Region "Rotators"
+    Public Shared Function GetRotatorSettings(ByRef channelID As Integer, ByVal settings As Hashtable) As Hashtable
+        Dim rotatorSettings As New Hashtable
+
+        If settings.ContainsKey("ManualAdvance") And
+            Not String.IsNullOrEmpty(settings("ManualAdvance")) Then
+            rotatorSettings.Add("ManualAdvance", settings("ManualAdvance").toLower)
+        Else
+            rotatorSettings.Add("ManualAdvance", "false")
+        End If
+
+        If settings.ContainsKey("Speed") And
+            Not String.IsNullOrEmpty(settings("Speed")) Then
+            rotatorSettings.Add("Speed", CInt(settings("Speed")) * 1000)
+        Else
+            rotatorSettings.Add("Speed", 3000)
+        End If
+
+        If settings.ContainsKey("PhotoWidth") And
+            Not String.IsNullOrEmpty(settings("PhotoWidth")) Then
+            rotatorSettings.Add("PhotoWidth", settings("PhotoWidth"))
+        Else
+            rotatorSettings.Add("PhotoWidth", 150)
+        End If
+
+        If settings.ContainsKey("Aspect") And
+            Not String.IsNullOrEmpty(settings("Aspect")) Then
+            rotatorSettings("Aspect") = Double.Parse(CStr(settings("Aspect")), New CultureInfo(""))
+        Else
+            rotatorSettings.Add("Aspect", 1.0)
+        End If
+
+        rotatorSettings.Add("PhotoHeight", CDbl(rotatorSettings("PhotoWidth")) / CDbl(rotatorSettings("Aspect")))
+
+        rotatorSettings.Add("ChannelId", channelID)
+
+
+        Return rotatorSettings
+    End Function
+
+#End Region 'Rotators
 
     Public Shared Function GetPhotoURL(ByVal imageId As Nullable(Of Integer)) As String
 
