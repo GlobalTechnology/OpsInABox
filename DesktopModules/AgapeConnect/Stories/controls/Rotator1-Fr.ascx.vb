@@ -91,7 +91,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
                     'setup for the link
 
-                    Dim viewStyles As Dictionary(Of String, String) = StoryFunctions.GetStoryPersonalisation(row.GUID, TabModuleId)
+                    Dim viewStyles As Dictionary(Of String, String) = StoryFunctions.GetTagPersonalisation(row.GUID, TabModuleId)
                     Dim cssHyperlink As String = ""
                     Dim clickAction As String = ""
 
