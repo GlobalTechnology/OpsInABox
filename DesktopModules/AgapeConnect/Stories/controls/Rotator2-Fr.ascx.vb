@@ -10,11 +10,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
     Partial Class Rotator_Fr
         Inherits Entities.Modules.PortalModuleBase
 
-        Public PauseTime As Integer = 3000 ' milliseconds
-        Public divWidth As Integer = 150
-        Public divHeight As Integer = 150
-        Public manualAdvance As String = "false"
-
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             'Allowing dynamically loaded controls to be translated using the DNN translation system is complex...
             'However this code does the trick. Just copy this Sub (Page_Init) ,as is, to make it work
@@ -51,31 +46,15 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             End If
         End Sub
 
-        Public Sub Initialize(ByVal Stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
+        Public Sub Initialize(ByVal stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
 
-            If (Not String.IsNullOrEmpty(settings("ManualAdvance"))) Then
-                manualAdvance = settings("ManualAdvance").ToLower
-            End If
+            Dim rotatorSettings As Hashtable = StoryFunctions.GetRotatorSettings(stories.First.ChannelId, settings)
 
-            If (Not String.IsNullOrEmpty(settings("Speed"))) Then
-                PauseTime = CInt(settings("Speed")) * 1000   ' milliseconds
-            End If
-
-            Dim photoWidth As Integer = 150
-            If Not String.IsNullOrEmpty(settings("PhotoWidth")) Then
-                photoWidth = settings("PhotoWidth")
-            End If
-
-            Dim photoAspect As Double = 1.0
-            If Not String.IsNullOrEmpty(settings("PhotoWidth")) Then
-                photoAspect = Double.Parse(CStr(settings("Aspect")), New CultureInfo(""))
-            End If
-
-            Dim photoHeight As Integer = CDbl(photoWidth) / photoAspect
-
-            divWidth = photoWidth
-            divHeight = photoHeight
-            hfChannelId.Value = Stories.First.ChannelId
+            hfManualAdvance.Value = rotatorSettings.Item("ManualAdvance")
+            hfPauseTime.Value = rotatorSettings.Item("Speed")
+            hfDivWidth.Value = rotatorSettings.Item("PhotoWidth")
+            hfDivHeight.Value = rotatorSettings.Item("PhotoHeight")
+            hfChannelId.Value = rotatorSettings.Item("ChannelId")
 
             Dim sliderData As New DataTable()
             sliderData.Columns.Add("sliderLink")
@@ -85,13 +64,13 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             sliderData.Columns.Add("sliderImageTitle")
             sliderData.Columns.Add("sliderLinkImageCSS")
 
-            For Each row In Stories
+            For Each row In stories
                 Try
                     Dim dataRow As DataRow = sliderData.NewRow()
 
                     'setup for the link
 
-                    Dim viewStyles As Dictionary(Of String, String) = StoryFunctions.GetStoryPersonalisation(row.GUID, TabModuleId)
+                    Dim viewStyles As Dictionary(Of String, String) = StoryFunctions.GetTagPersonalisation(row.GUID, TabModuleId)
                     Dim cssHyperlink As String = ""
                     Dim clickAction As String = ""
 
@@ -123,12 +102,12 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                     sliderImage.AlternateText = row.Headline
                     sliderImage.Attributes("title") = "<h1 class='slider-image-text'>" & HttpUtility.HtmlEncode(row.Headline) & "</h1>"
 
-                    If photoAspect < (CDbl(row.ImageWidth) / CDbl(row.ImageHeight)) Then
-                        sliderImage.Width = divWidth
-                        sliderImage.Height = CInt((CDbl(divWidth) * row.ImageHeight) / row.ImageWidth)
+                    If CInt(settings("Aspect")) < (CDbl(row.ImageWidth) / CDbl(row.ImageHeight)) Then
+                        sliderImage.Width = hfDivWidth.Value
+                        sliderImage.Height = CInt((CDbl(hfDivWidth.Value) * row.ImageHeight) / row.ImageWidth)
                     Else
-                        sliderImage.Width = CInt((CDbl(divHeight) * row.ImageWidth) / row.ImageHeight)
-                        sliderImage.Height = divHeight
+                        sliderImage.Width = CInt((CDbl(hfDivHeight.Value) * row.ImageWidth) / row.ImageHeight)
+                        sliderImage.Height = hfDivHeight.Value
                     End If
                     sliderImage.Style.Add("height", sliderImage.Height.ToString)
                     sliderImage.Style.Add("width", sliderImage.Width.ToString)
