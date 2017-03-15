@@ -151,6 +151,31 @@ Public Module TagSettingsConstants
 
 End Module
 
+'Rotator constants
+Public Module RotatorConstants
+    Public Const MANUALADVANCE As String = "ManualAdvance"
+    Public Const SPEED As String = "Speed"
+    Public Const PHOTOWIDTH As String = "PhotoWidth"
+    Public Const ASPECT As String = "Aspect"
+    Public Const PHOTOHEIGHT As String = "PhotoHeight"
+    Public Const CHANNELID As String = "ChannelId"
+    Public Const MANUALADVANCEDEFALUT As String = "false"
+
+    Public Const SLIDELINK As String = "slideLink"
+    Public Const SLIDEIMAGE As String = "slideImage"
+    Public Const SLIDEIMAGESTYLE As String = "slideImageStyle"
+    Public Const SLIDEIMAGEALTTEXT As String = "slideImageAltText"
+    Public Const SLIDEIMAGETITLE As String = "slideImageTitle"
+    Public Const SLIDEIMAGECSS As String = "slideLinkImageCSS"
+    Public Const TITLE As String = "title"
+    Public Const HEIGHT As String = "height"
+    Public Const WIDTH As String = "width"
+    Public Const TARGETSELF As String = "_self"
+    Public Const TARGETBLANK As String = "_blank"
+    Public Const IMAGELINKCLASS As String = "nivo-imageLink"
+
+End Module
+
 Public Class StoryFunctions
 
 #Region "Tags"
@@ -838,50 +863,53 @@ Public Class StoryFunctions
     Public Shared Function GetRotatorSettings(ByRef channelID As Integer, ByVal settings As Hashtable) As Hashtable
         Dim rotatorSettings As New Hashtable
 
-        If settings.ContainsKey("ManualAdvance") And
-            Not String.IsNullOrEmpty(settings("ManualAdvance")) Then
-            rotatorSettings.Add("ManualAdvance", settings("ManualAdvance").toLower)
+        If settings.ContainsKey(RotatorConstants.MANUALADVANCE) And
+            Not String.IsNullOrEmpty(settings(RotatorConstants.MANUALADVANCE)) Then
+            rotatorSettings.Add(RotatorConstants.MANUALADVANCE, settings(RotatorConstants.MANUALADVANCE).toLower)
         Else
-            rotatorSettings.Add("ManualAdvance", "false")
+            rotatorSettings.Add(RotatorConstants.MANUALADVANCE, RotatorConstants.MANUALADVANCEDEFALUT)
         End If
 
-        If settings.ContainsKey("Speed") And
-            Not String.IsNullOrEmpty(settings("Speed")) Then
-            rotatorSettings.Add("Speed", CInt(settings("Speed")) * 1000)
+        If settings.ContainsKey(RotatorConstants.SPEED) And
+            Not String.IsNullOrEmpty(settings(RotatorConstants.SPEED)) Then
+            rotatorSettings.Add(RotatorConstants.SPEED, CInt(settings(RotatorConstants.SPEED)) * 1000)
         Else
-            rotatorSettings.Add("Speed", 3000)
+            rotatorSettings.Add(RotatorConstants.SPEED, 3000)
         End If
 
-        If settings.ContainsKey("PhotoWidth") And
-            Not String.IsNullOrEmpty(settings("PhotoWidth")) Then
-            rotatorSettings.Add("PhotoWidth", settings("PhotoWidth"))
+        If settings.ContainsKey(RotatorConstants.PHOTOWIDTH) And
+            Not String.IsNullOrEmpty(settings(RotatorConstants.PHOTOWIDTH)) Then
+            rotatorSettings.Add(RotatorConstants.PHOTOWIDTH, settings(RotatorConstants.PHOTOWIDTH))
         Else
-            rotatorSettings.Add("PhotoWidth", 150)
+            rotatorSettings.Add(RotatorConstants.PHOTOWIDTH, 150)
         End If
 
-        If settings.ContainsKey("Aspect") And
-            Not String.IsNullOrEmpty(settings("Aspect")) Then
-            rotatorSettings("Aspect") = Double.Parse(CStr(settings("Aspect")), New CultureInfo(""))
+        If settings.ContainsKey(RotatorConstants.ASPECT) And
+            Not String.IsNullOrEmpty(settings(RotatorConstants.ASPECT)) Then
+            rotatorSettings(RotatorConstants.ASPECT) = Double.Parse(CStr(settings(RotatorConstants.ASPECT)), New CultureInfo(""))
         Else
-            rotatorSettings.Add("Aspect", 1.0)
+            rotatorSettings.Add(RotatorConstants.ASPECT, 1.0)
         End If
 
-        rotatorSettings.Add("PhotoHeight", CDbl(rotatorSettings("PhotoWidth")) / CDbl(rotatorSettings("Aspect")))
+        rotatorSettings.Add(RotatorConstants.PHOTOHEIGHT,
+                            CDbl(rotatorSettings(RotatorConstants.PHOTOWIDTH)) / CDbl(rotatorSettings(RotatorConstants.ASPECT)))
 
-        rotatorSettings.Add("ChannelId", channelID)
+        rotatorSettings.Add(RotatorConstants.CHANNELID, channelID)
 
         Return rotatorSettings
     End Function
 
-    Public Shared Function GetRotatorSlides(ByRef stories As List(Of AP_Stories_Module_Channel_Cache), ByRef rotatorSettings As Hashtable, ByVal portalAlias As String, ByVal tabModuleId As Integer) As DataTable
+    Public Shared Function GetRotatorSlides(ByRef stories As List(Of AP_Stories_Module_Channel_Cache),
+                                            ByRef rotatorSettings As Hashtable, ByVal portalAlias As String,
+                                            ByVal tabModuleId As Integer) As DataTable
         Dim sliderData As New DataTable
 
-        sliderData.Columns.Add("sliderLink")
-        sliderData.Columns.Add("sliderImage")
-        sliderData.Columns.Add("sliderImageStyle")
-        sliderData.Columns.Add("sliderImageAltText")
-        sliderData.Columns.Add("sliderImageTitle")
-        sliderData.Columns.Add("sliderLinkImageCSS")
+        sliderData.Columns.Add(RotatorConstants.SLIDELINK)
+        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGE)
+        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGESTYLE)
+        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGEALTTEXT)
+        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGETITLE)
+        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGECSS)
 
         For Each story In stories
             Try
@@ -892,18 +920,18 @@ Public Class StoryFunctions
                 Dim cssHyperlink As String = ""
                 Dim clickAction As String = ""
 
-                Dim target = "_blank"
+                Dim target = RotatorConstants.TARGETBLANK
                 If story.Link.Contains(portalAlias) Then
-                    target = "_self"
+                    target = RotatorConstants.TARGETSELF
                 End If
 
                 'check for personalized link image
                 If (viewStyles.Item(TagSettingsConstants.LINKIMAGESTRING).Equals(TagSettingsConstants.LinkImage.PlayButton.ToString)) Then
-                    cssHyperlink = "nivo-imageLink " & TagSettingsConstants.LinkImage.PlayButton.ToString
+                    cssHyperlink = RotatorConstants.IMAGELINKCLASS & " " & TagSettingsConstants.LinkImage.PlayButton.ToString
                 Else
-                    cssHyperlink = "nivo-imageLink"
+                    cssHyperlink = RotatorConstants.IMAGELINKCLASS
                 End If
-                dataRow("sliderLinkImageCSS") = cssHyperlink
+                dataRow(RotatorConstants.SLIDEIMAGECSS) = cssHyperlink
 
                 'check for personalized opening style
                 If (viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING).Equals(TagSettingsConstants.OpenStyle.Popup.ToString)) Then
@@ -912,29 +940,29 @@ Public Class StoryFunctions
                     clickAction = "window.open('" & story.Link & "', '" & target & "');"
                 End If
 
-                dataRow("sliderLink") = "javascript: registerClick(" & story.CacheId & "); " & clickAction
+                dataRow(RotatorConstants.SLIDELINK) = "javascript: registerClick(" & story.CacheId & "); " & clickAction
 
                 'setup for the image
                 Dim sliderImage As New System.Web.UI.WebControls.Image
                 sliderImage.ImageUrl = story.ImageId
                 sliderImage.AlternateText = story.Headline
-                sliderImage.Attributes("title") = "<h1 class='slider-image-text'>" & HttpUtility.HtmlEncode(story.Headline) & "</h1>"
+                sliderImage.Attributes(RotatorConstants.TITLE) = HttpUtility.HtmlEncode(story.Headline)
 
-                If CInt(rotatorSettings.Item("Aspect")) < (CDbl(story.ImageWidth) / CDbl(story.ImageHeight)) Then
-                    sliderImage.Width = CInt(rotatorSettings.Item("PhotoWidth"))
-                    sliderImage.Height = CInt(CDbl(rotatorSettings.Item("PhotoWidth")) * story.ImageHeight / story.ImageWidth)
+                If CInt(rotatorSettings.Item(RotatorConstants.ASPECT)) < (CDbl(story.ImageWidth) / CDbl(story.ImageHeight)) Then
+                    sliderImage.Width = CInt(rotatorSettings.Item(RotatorConstants.PHOTOWIDTH))
+                    sliderImage.Height = CInt(CDbl(rotatorSettings.Item(RotatorConstants.PHOTOWIDTH)) * story.ImageHeight / story.ImageWidth)
                 Else
-                    sliderImage.Width = CInt(CDbl(rotatorSettings.Item("PhotoHeight")) * story.ImageWidth / story.ImageHeight)
-                    sliderImage.Height = CInt(rotatorSettings.Item("PhotoHeight"))
+                    sliderImage.Width = CInt(CDbl(rotatorSettings.Item(RotatorConstants.PHOTOHEIGHT)) * story.ImageWidth / story.ImageHeight)
+                    sliderImage.Height = CInt(rotatorSettings.Item(RotatorConstants.PHOTOHEIGHT))
                 End If
 
-                sliderImage.Style.Add("height", sliderImage.Height.ToString)
-                sliderImage.Style.Add("width", sliderImage.Width.ToString)
+                sliderImage.Style.Add(RotatorConstants.HEIGHT, sliderImage.Height.ToString)
+                sliderImage.Style.Add(RotatorConstants.WIDTH, sliderImage.Width.ToString)
 
-                dataRow("sliderImage") = sliderImage.ImageUrl
-                dataRow("sliderImageAltText") = sliderImage.AlternateText
-                dataRow("sliderImageTitle") = sliderImage.Attributes("title")
-                dataRow("sliderImageStyle") = sliderImage.Style
+                dataRow(RotatorConstants.SLIDEIMAGE) = sliderImage.ImageUrl
+                dataRow(RotatorConstants.SLIDEIMAGEALTTEXT) = sliderImage.AlternateText
+                dataRow(RotatorConstants.SLIDEIMAGETITLE) = sliderImage.Attributes(RotatorConstants.TITLE)
+                dataRow(RotatorConstants.SLIDEIMAGESTYLE) = sliderImage.Style
 
                 sliderData.Rows.Add(dataRow)
             Catch ex As Exception
