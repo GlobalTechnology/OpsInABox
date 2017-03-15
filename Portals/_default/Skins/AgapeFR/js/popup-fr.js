@@ -2,10 +2,10 @@
     checkCookie();
     $("#popupclose").click(function () {
         $('#my_popup').fadeOut();
-        setCookie('sawpopup', true, 1);
+        setCookie('frpopupinscription', true, 1);
     });
     $("#frsignup").click(function () {
-        setCookie('sawpopup', true, 1);
+        setCookie('frpopupinscription', true, 1);
     });
 });
 
@@ -33,8 +33,8 @@ function getCookie(cname) {
 }
 
 function checkCookie() {
-    var sawpopup = getCookie("sawpopup");
-    if (sawpopup != 'true') {
+    var frpopupinscription = getCookie("frpopupinscription");
+    if (frpopupinscription != 'true') {
         poppit();
     }
 }
