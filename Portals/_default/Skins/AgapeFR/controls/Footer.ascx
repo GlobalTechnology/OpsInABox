@@ -74,11 +74,11 @@
             <div class="my_popup_close">
                 <a id="popupclose">&#x2716</a>
             </div>
-            <h3>S'inscrire à notre Newsletter</h3>
-            <p>Restez informés</p>
+            <h3><%=Translate("PopupHeader.Text")%></h3>
+            <p><%=Translate("PopupParagraph.Text")%></p>
         </div>
         <div>
-            <a id="frsignup" class="button" href="/nousconnaitre/newsletter">Je m'inscris</a>
+            <a id="frsignup" class="button" href="/nousconnaitre/newsletter"><%=Translate("PopupButton.Text")%></a>
         </div>
     </div>
 </div>

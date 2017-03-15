@@ -138,6 +138,15 @@
   <data name="OzoirPhone.Text" xml:space="preserve">
     <value>01 60 02 55 56</value>
   </data>
+  <data name="PopupButton.Text" xml:space="preserve">
+    <value>Je m'inscris</value>
+  </data>
+  <data name="PopupHeader.Text" xml:space="preserve">
+    <value>S'inscrire à notre Newsletter</value>
+  </data>
+  <data name="PopupParagraph.Text" xml:space="preserve">
+    <value>Restez informés</value>
+  </data>
   <data name="SearchButton.Text" xml:space="preserve">
     <value>Rechercher</value>
   </data>
