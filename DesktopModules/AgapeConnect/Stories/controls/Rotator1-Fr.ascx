@@ -31,39 +31,18 @@
              $('#fr_video_popup_close').click(function() {
                  popclose();
              });
-             function setupvideo(){
-                 var tag = document.createElement('script');
-
-                 tag.src = "https://www.youtube.com/iframe_api";
-                 var firstScriptTag = document.getElementsByTagName('script')[0];
-                 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-                 // 3. This function creates an <iframe> (and YouTube player)
-                 //    after the API code downloads.
-                 var player;
-                 function onYouTubeIframeAPIReady() {
-                     player = new YT.Player('popplayer', {
-                         height: '432',
-                         width: '768',
-                         videoId: 'LSW9XgU0xC8',
-                         playerVars: { 'showinfo' : 0 }
-                     });
-                 }
-                 function pauseVideo() {
-                     player.pauseVideo();
-                 }
-                 function playVideo() {
-                     player.playVideo()
-                 }
-             }
+             
              
          }
+
+         
+
 
          $(document).ready(function () {
              setUpMyTabs();
              Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
                  setUpMyTabs();
-                 
+                 setupvideo();
              });
          });
      } (jQuery, window.Sys));
@@ -74,6 +53,30 @@
                         data: ({ StoryLink: c })
                     });
    }
+     //set up video
+     var tag = document.createElement('script');
+
+     tag.src = "https://www.youtube.com/iframe_api";
+     var firstScriptTag = document.getElementsByTagName('script')[0];
+     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+     // 3. This function creates an <iframe> (and YouTube player)
+     //    after the API code downloads.
+     var player;
+     function onYouTubeIframeAPIReady() {
+         player = new YT.Player('popplayer', {
+             height: '432',
+             width: '768',
+             videoId: 'LSW9XgU0xC8',
+             playerVars: { 'showinfo' : 0 }
+         });
+     }
+     function pauseVideo() {
+         player.pauseVideo();
+     }
+     function playVideo() {
+         player.playVideo()
+     }
 
      function popclose() {
          $('#fr_video_popup').fadeOut();
