@@ -81,15 +81,13 @@
      function popclosevideo() {
          $('#fr_video_popup').fadeOut();
          pauseVideo();
-         
-         //setTimeout("$('#slider').data('nivoslider').start()",10000);
+         setTimeout("$('#slider').data('nivoslider').start()",10000); //restart the slider after the video is closed (not working)
      }
 
      function popupvideo(){
          $('#fr_video_popup').fadeIn();
          $('#fr_video_popup').css("display","flex");
-         //playVideo();
-         //$('#slider').data('nivoslider').stop();
+         $('#slider').data('nivoslider').stop(); //stop the slider while the video is open (not working)
      }
      $(document).keyup(function(e) {
          if (e.which == 27) { 
