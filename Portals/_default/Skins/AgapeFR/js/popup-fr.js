@@ -15,6 +15,7 @@ function setCookie(cname, cvalue, exdays) {
     var expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -30,12 +31,14 @@ function getCookie(cname) {
     }
     return "";
 }
+
 function checkCookie() {
     var sawpopup = getCookie("sawpopup");
     if (sawpopup != 'true') {
         poppit();
     }
 }
+
 function poppit() {
     $('#my_popup').delay(5000).fadeIn();
 }
