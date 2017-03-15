@@ -78,7 +78,7 @@
             <p>Restez informés</p>
         </div>
         <div>
-            <a id="frsignup" class="button" href="/Nous-connaitre/Newsletter">Je m'inscris</a>
+            <a id="frsignup" class="button" href="/nousconnaitre/newsletter">Je m'inscris</a>
         </div>
     </div>
 </div>
