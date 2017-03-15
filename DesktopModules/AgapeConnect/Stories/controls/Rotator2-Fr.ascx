@@ -50,27 +50,23 @@
 <asp:HiddenField ID="hfDivHeight" runat="server" />
 <asp:HiddenField ID="hfChannelId" runat="server" />
 
-<div class="rotator2">
 <div id="rotatorContainer<%= hfChannelId.Value %>" class="theme-default">
     <div id="slider<%= hfChannelId.Value %>" class="nivoSlider">
         <asp:Repeater ID="SliderImageList" runat="server">
             <ItemTemplate>
             <asp:HyperLink 
-                href=<%# Eval("sliderLink") %>
+                href=<%# Eval(RotatorConstants.SLIDELINK) %>
                 ID="hlImageSlider"
-                CssClass = <%# Eval("sliderLinkImageCSS") %>
+                CssClass = <%# Eval(RotatorConstants.SLIDEIMAGECSS) %>
                 runat="server">
                 <asp:Image
-                    src=<%# Eval("sliderImage") %> 
-                    alt=<%# Eval("sliderImageAltText") %> 
-                    title=<%# Eval("sliderImageTitle") %> 
-                    style=<%# Eval("sliderImageStyle") %> 
+                    src=<%# Eval(RotatorConstants.SLIDEIMAGE) %> 
+                    alt=<%# Eval(RotatorConstants.SLIDEIMAGEALTTEXT) %> 
+                    title=<%# Eval(RotatorConstants.SLIDEIMAGETITLE) %> 
+                    style=<%# Eval(RotatorConstants.SLIDEIMAGESTYLE) %> 
                     runat="server" />
             </asp:HyperLink>
-           <%-- <div id="title<%= hfChannelId.Value %>"><%# Eval("sliderImageTitle") %></div>--%>
             </ItemTemplate>
         </asp:Repeater>
     </div>
 </div>
-    </div>
-
