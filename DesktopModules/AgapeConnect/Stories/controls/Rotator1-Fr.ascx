@@ -29,7 +29,7 @@
                  'width':<%= hfDivWidth.Value %> +'px', 'height':(newH-8) + 'px' });
 
              $('#fr_video_popup_close').click(function() {
-                 popclose();
+                 popclosevideo();
              });
              
              
@@ -78,20 +78,22 @@
          player.playVideo()
      }
 
-     function popclose() {
+     function popclosevideo() {
          $('#fr_video_popup').fadeOut();
          pauseVideo();
+         
+         //setTimeout("$('#slider').data('nivoslider').start()",10000);
      }
 
      function popupvideo(){
          $('#fr_video_popup').fadeIn();
          $('#fr_video_popup').css("display","flex");
          //playVideo();
-         
+         //$('#slider').data('nivoslider').stop();
      }
      $(document).keyup(function(e) {
          if (e.which == 27) { 
-             popclose();
+             popclosevideo();
          }
      });
      
