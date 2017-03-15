@@ -29,13 +29,41 @@
                  'width':<%= hfDivWidth.Value %> +'px', 'height':(newH-8) + 'px' });
 
              $('#fr_video_popup_close').click(function() {
-                 popclose();});
+                 popclose();
+             });
+             function setupvideo(){
+                 var tag = document.createElement('script');
+
+                 tag.src = "https://www.youtube.com/iframe_api";
+                 var firstScriptTag = document.getElementsByTagName('script')[0];
+                 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                 // 3. This function creates an <iframe> (and YouTube player)
+                 //    after the API code downloads.
+                 var player;
+                 function onYouTubeIframeAPIReady() {
+                     player = new YT.Player('popplayer', {
+                         height: '432',
+                         width: '768',
+                         videoId: 'LSW9XgU0xC8',
+                         playerVars: { 'showinfo' : 0 }
+                     });
+                 }
+                 function pauseVideo() {
+                     player.pauseVideo();
+                 }
+                 function playVideo() {
+                     player.playVideo()
+                 }
+             }
+             
          }
 
          $(document).ready(function () {
              setUpMyTabs();
              Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
                  setUpMyTabs();
+                 
              });
          });
      } (jQuery, window.Sys));
@@ -47,14 +75,12 @@
                     });
    }
 
-     
-
      function popclose() {
          $('#fr_video_popup').fadeOut();
          pauseVideo();
      }
 
-     function poppit(){
+     function popupvideo(){
          $('#fr_video_popup').fadeIn();
          $('#fr_video_popup').css("display","flex");
          //playVideo();
@@ -65,31 +91,7 @@
              popclose();
          }
      });
-     function setupvideo(){
-         var tag = document.createElement('script');
-
-         tag.src = "https://www.youtube.com/iframe_api";
-         var firstScriptTag = document.getElementsByTagName('script')[0];
-         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-         // 3. This function creates an <iframe> (and YouTube player)
-         //    after the API code downloads.
-         var player;
-         function onYouTubeIframeAPIReady() {
-             player = new YT.Player('popplayer', {
-                 height: '432',
-                 width: '768',
-                 videoId: 'LSW9XgU0xC8',
-                 playerVars: { 'showinfo' : 0 }
-             });
-         }
-         function pauseVideo() {
-             player.pauseVideo();
-         }
-         function playVideo() {
-             player.playVideo()
-         }
-     }
+     
 </script>
 <asp:HiddenField ID="hfManualAdvance" runat="server" />
 <asp:HiddenField ID="hfPauseTime" runat="server" />
