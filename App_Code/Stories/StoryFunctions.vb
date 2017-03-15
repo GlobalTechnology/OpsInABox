@@ -870,8 +870,78 @@ Public Class StoryFunctions
 
         rotatorSettings.Add("ChannelId", channelID)
 
-
         Return rotatorSettings
+    End Function
+
+    Public Shared Function GetRotatorSlides(ByRef stories As List(Of AP_Stories_Module_Channel_Cache), ByRef rotatorSettings As Hashtable, ByVal portalAlias As String, ByVal tabModuleId As Integer) As DataTable
+        Dim sliderData As New DataTable
+
+        sliderData.Columns.Add("sliderLink")
+        sliderData.Columns.Add("sliderImage")
+        sliderData.Columns.Add("sliderImageStyle")
+        sliderData.Columns.Add("sliderImageAltText")
+        sliderData.Columns.Add("sliderImageTitle")
+        sliderData.Columns.Add("sliderLinkImageCSS")
+
+        For Each story In stories
+            Try
+                Dim dataRow As DataRow = sliderData.NewRow()
+
+                'setup for the link
+                Dim viewStyles As Dictionary(Of String, String) = StoryFunctions.GetTagPersonalisation(story.GUID, tabModuleId)
+                Dim cssHyperlink As String = ""
+                Dim clickAction As String = ""
+
+                Dim target = "_blank"
+                If story.Link.Contains(portalAlias) Then
+                    target = "_self"
+                End If
+
+                'check for personalized link image
+                If (viewStyles.Item(TagSettingsConstants.LINKIMAGESTRING).Equals(TagSettingsConstants.LinkImage.PlayButton.ToString)) Then
+                    cssHyperlink = "nivo-imageLink " & TagSettingsConstants.LinkImage.PlayButton.ToString
+                Else
+                    cssHyperlink = "nivo-imageLink"
+                End If
+                dataRow("sliderLinkImageCSS") = cssHyperlink
+
+                'check for personalized opening style
+                If (viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING).Equals(TagSettingsConstants.OpenStyle.Popup.ToString)) Then
+                    clickAction = "onclick=alert('Here is the pop-up')"
+                Else
+                    clickAction = "window.open('" & story.Link & "', '" & target & "');"
+                End If
+
+                dataRow("sliderLink") = "javascript: registerClick(" & story.CacheId & "); " & clickAction
+
+                'setup for the image
+                Dim sliderImage As New System.Web.UI.WebControls.Image
+                sliderImage.ImageUrl = story.ImageId
+                sliderImage.AlternateText = story.Headline
+                sliderImage.Attributes("title") = "<h1 class='slider-image-text'>" & HttpUtility.HtmlEncode(story.Headline) & "</h1>"
+
+                If CInt(rotatorSettings.Item("Aspect")) < (CDbl(story.ImageWidth) / CDbl(story.ImageHeight)) Then
+                    sliderImage.Width = CInt(rotatorSettings.Item("PhotoWidth"))
+                    sliderImage.Height = CInt(CDbl(rotatorSettings.Item("PhotoWidth")) * story.ImageHeight / story.ImageWidth)
+                Else
+                    sliderImage.Width = CInt(CDbl(rotatorSettings.Item("PhotoHeight")) * story.ImageWidth / story.ImageHeight)
+                    sliderImage.Height = CInt(rotatorSettings.Item("PhotoHeight"))
+                End If
+
+                sliderImage.Style.Add("height", sliderImage.Height.ToString)
+                sliderImage.Style.Add("width", sliderImage.Width.ToString)
+
+                dataRow("sliderImage") = sliderImage.ImageUrl
+                dataRow("sliderImageAltText") = sliderImage.AlternateText
+                dataRow("sliderImageTitle") = sliderImage.Attributes("title")
+                dataRow("sliderImageStyle") = sliderImage.Style
+
+                sliderData.Rows.Add(dataRow)
+            Catch ex As Exception
+            End Try
+        Next
+
+        Return sliderData
     End Function
 
 #End Region 'Rotators
