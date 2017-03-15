@@ -2,7 +2,7 @@
 Partial Class Portals__default_Skins_AgapeFR_controls_Footer
     Inherits System.Web.UI.UserControl
     Protected Overrides Sub OnLoad(ByVal e As EventArgs)
-        If (Request.IsAuthenticated) Or (Request.RawUrl.Equals("/nousconnaitre/newsletter")) Then
+        If (Request.IsAuthenticated) Or (Request.RawUrl.ToLower.Equals("/nousconnaitre/newsletter")) Then
             fr_popup.Visible = False
         Else
             fr_popup.Visible = True
