@@ -88,11 +88,18 @@
         });
 
         //Create caption
-        slider.append($('<div class="nivo-caption"></div>'));
+// BEGIN Custom edits so caption will appear outside of slider
+        if (!settings.manualCaption) {
+            slider.append($('<div class="nivo-caption"></div>'));
+        }
 
         // Process caption function
         var processCaption = function (settings) {
-            var nivoCaption = $('.nivo-caption', slider);
+            var nivoCaption
+
+            if (!settings.manualCaption) { nivoCaption = $('.nivo-caption', slider); }
+            else { nivoCaption = $('.nivo-caption'); }
+// END Custom edits so caption will appear outside of slider
             if (vars.currentImage.attr('title') != '' && vars.currentImage.attr('title') != undefined) {
                 var title = vars.currentImage.attr('title');
                 if (title.substr(0, 1) == '#') title = $(title).html();
@@ -654,7 +661,8 @@
         afterChange: function () { },
         slideshowEnd: function () { },
         lastSlide: function () { },
-        afterLoad: function () { }
+        afterLoad: function () { },
+        manualCaption: false  // Custom parameter so caption will appear outside of slider
     };
 
     $.fn._reverse = [].reverse;

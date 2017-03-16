@@ -14,6 +14,7 @@
                  pauseTime: <%= hfPauseTime.Value %>,
                  width: <%= hfDivWidth.Value %>,
                  manualAdvance: <%= hfManualAdvance.Value %>,
+                 manualCaption: true,
              });
 
              var w= $('#rotatorContainer<%= hfChannelId.Value %>').width();
@@ -70,5 +71,6 @@
             </ItemTemplate>
         </asp:Repeater>
     </div>
+    <div id="manual-nivo-caption<%= hfChannelId.Value %>" class="nivo-caption"></div>
 </div>
 </div>
