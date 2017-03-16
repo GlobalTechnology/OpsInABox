@@ -68,7 +68,6 @@
              origin: 'https://www.agapefrance.org',
              height: '432',
              width: '768',
-             videoId: 'LSW9XgU0xC8',
              playerVars: { 'showinfo' : 0, 'rel' : 0, 'color' : 'white' }
          });
      }
@@ -76,14 +75,14 @@
      function popclosevideo() {
          $('#fr_video_popup').fadeOut();
          player.pauseVideo();
-         setTimeout("$('#slider').data('nivoslider').start()",10000); //restart the slider after the video is closed (not working)
+         //setTimeout("$('#slider').data('nivoslider').start()",10000); //restart the slider after the video is closed (not working)
      }
 
      function popupvideo(videoid){
-         alert(videoid);
+         player.loadVideoById(videoid);
          $('#fr_video_popup').fadeIn();
          $('#fr_video_popup').css("display","flex");
-         $('#slider').data('nivoslider').stop(); //stop the slider while the video is open (not working)
+         //$('#slider').data('nivoslider').stop(); //stop the slider while the video is open (not working)
      }
      $(document).keyup(function(e) {
          if (e.which == 27) { 
