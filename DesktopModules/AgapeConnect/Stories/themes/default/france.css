@@ -1,13 +1,8 @@
-/*
-Skin Name: Nivo Slider Default Theme
-Skin URI: http://nivo.dev7studios.com
-Skin Type: flexible
-Description: The default skin for the Nivo Slider.
-Version: 1.2
-Author: Gilbert Pellegrom
-Author URI: http://dev7studios.com
-*/
 
+/* France's custom skin for the Stories module */
+
+
+/* END Slider Customization */
 .theme-default .nivoSlider {
 	position:relative;
 	background:#fff url(loading.gif) no-repeat 50% 50%;
@@ -19,10 +14,6 @@ Author URI: http://dev7studios.com
 .theme-default .nivoSlider img     
 {
     position: relative;
-	/*position:absolute;
-	top:0px;
-	left:0px;
-	display:none;*/
     overflow: hidden;
 }
 .theme-default .nivoSlider a {
@@ -141,10 +132,6 @@ Author URI: http://dev7studios.com
     line-height: 42px;
 }
 
-.dnnGridItem:hover span.storyTitle, .dnnGridAltItem:hover span.storyTitle {
-    text-decoration: none;
-}
-
 .theme-default a.nivo-imageLink.PlayButton {
     background: url(play.png) no-repeat center; 
     opacity: 1;
@@ -153,6 +140,10 @@ Author URI: http://dev7studios.com
 .theme-default a.nivo-imageLink {
 	background:none; 
 }
+
+/* END Slider Customization */
+
+/* BEGIN video popup */
 
 #fr_video_popup {
     display: none;
@@ -192,3 +183,13 @@ Author URI: http://dev7studios.com
     color: white;
     cursor:pointer;
 }
+
+/* END video popup */
+
+/* BEGIN don't know what this goes to */
+
+.dnnGridItem:hover span.storyTitle, .dnnGridAltItem:hover span.storyTitle {
+    text-decoration: none;
+}
+
+/* END don't know what this goes to */
