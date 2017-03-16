@@ -195,6 +195,31 @@
     -webkit-box-shadow: inset 20px 0px 20px -25px rgba(0, 0, 0, 0.45), inset -20px 0px 20px -25px rgba(0, 0, 0, 0.45);
     -moz-box-shadow: inset 20px 0px 20px -25px rgba(0, 0, 0, 0.45), inset -20px 0px 20px -25px rgba(0, 0, 0, 0.45);
     box-shadow: inset 20px 0px 20px -25px rgba(0, 0, 0, 0.45), inset -20px 0px 20px -25px rgba(0, 0, 0, 0.45);
+    display: flex;
+}
+
+
+.rotator2 .theme-default {
+    flex: 0 0 50%;
+    order: 0;
+}
+
+.rotator2 .nivo-caption {
+	font-family: Helvetica, Arial, sans-serif;
+    font-size: x-large ;
+	background:transparent;
+    color:#3A8BC2;
+    /*bottom: -120px;*/
+    overflow-y: hidden;
+    overflow-x: hidden;
+    /*max-width: 650px;*/
+    white-space: normal;
+    vertical-align: top;
+    /*height : 120px !important;
+    padding: 10px 0 10px 0;*/
+    flex: 0 0 50%;
+    order: 1;
+}
 }
 
 /* END Rotator2-Fr */
