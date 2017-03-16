@@ -65,6 +65,7 @@
      var player;
      function onYouTubeIframeAPIReady() {
          player = new YT.Player('popplayer', {
+             origin: 'https://www.agapefrance.org',
              height: '432',
              width: '768',
              videoId: 'LSW9XgU0xC8',
