@@ -166,6 +166,7 @@ Public Module RotatorConstants
     Public Const SLIDEIMAGESTYLE As String = "slideImageStyle"
     Public Const SLIDEIMAGEALTTEXT As String = "slideImageAltText"
     Public Const SLIDEIMAGETITLE As String = "slideImageTitle"
+    Public Const SLIDETEXTLINK As String = "slideTextLink"
     Public Const SLIDEIMAGECSS As String = "slideLinkImageCSS"
     Public Const TITLE As String = "title"
     Public Const HEIGHT As String = "height"
@@ -908,6 +909,7 @@ Public Class StoryFunctions
         sliderData.Columns.Add(RotatorConstants.SLIDEIMAGE)
         sliderData.Columns.Add(RotatorConstants.SLIDEIMAGESTYLE)
         sliderData.Columns.Add(RotatorConstants.SLIDEIMAGEALTTEXT)
+        sliderData.Columns.Add(RotatorConstants.SLIDETEXTLINK)
         sliderData.Columns.Add(RotatorConstants.SLIDEIMAGETITLE)
         sliderData.Columns.Add(RotatorConstants.SLIDEIMAGECSS)
 
@@ -940,7 +942,11 @@ Public Class StoryFunctions
                     clickAction = "window.open('" & story.Link & "', '" & target & "');"
                 End If
 
+                'creation of link on slider
                 dataRow(RotatorConstants.SLIDELINK) = "javascript: registerClick(" & story.CacheId & "); " & clickAction
+
+                'creation of link on slider title
+                dataRow(RotatorConstants.SLIDETEXTLINK) = "<a href=""" & dataRow(RotatorConstants.SLIDELINK) & """>"
 
                 'setup for the image
                 Dim sliderImage As New System.Web.UI.WebControls.Image

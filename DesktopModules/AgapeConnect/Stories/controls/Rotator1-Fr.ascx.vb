@@ -57,7 +57,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
             'customize title for this rotator
             For Each row As DataRow In sliderData.Rows
-                row.Item(RotatorConstants.SLIDEIMAGETITLE) = "<h1 class='slider-image-text'>" & row.Item(RotatorConstants.SLIDEIMAGETITLE) & "</h1>"
+                row.Item(RotatorConstants.SLIDEIMAGETITLE) = row.Item(RotatorConstants.SLIDETEXTLINK) &
+                    "<h1 class='slider-image-text'>" & row.Item(RotatorConstants.SLIDEIMAGETITLE) & "</h1></a>"
             Next
 
             SliderImageList.DataSource = sliderData
