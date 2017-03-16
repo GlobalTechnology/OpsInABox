@@ -186,6 +186,19 @@
 
 /* END video popup */
 
+
+/* BEGIN Rotator2-Fr */
+
+.rotator2 {
+    background: #F5F5F5;
+    padding: 30px 20px 30px 20px;
+    -webkit-box-shadow: inset 20px 0px 20px -25px rgba(0, 0, 0, 0.45), inset -20px 0px 20px -25px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: inset 20px 0px 20px -25px rgba(0, 0, 0, 0.45), inset -20px 0px 20px -25px rgba(0, 0, 0, 0.45);
+    box-shadow: inset 20px 0px 20px -25px rgba(0, 0, 0, 0.45), inset -20px 0px 20px -25px rgba(0, 0, 0, 0.45);
+}
+
+/* END Rotator2-Fr */
+
 /* BEGIN don't know what this goes to */
 
 .dnnGridItem:hover span.storyTitle, .dnnGridAltItem:hover span.storyTitle {
