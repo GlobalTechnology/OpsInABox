@@ -27,12 +27,22 @@
                  '-webkit-transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
                  '-o-transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
                  'width':<%= hfDivWidth.Value %> +'px', 'height':(newH-8) + 'px' });
+
+             $('#fr_video_popup_close').click(function() {
+                 popclosevideo();
+             });
+             
+             
          }
+
+         
+
 
          $(document).ready(function () {
              setUpMyTabs();
              Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
                  setUpMyTabs();
+                 setupvideo();
              });
          });
      } (jQuery, window.Sys));
@@ -43,6 +53,48 @@
                         data: ({ StoryLink: c })
                     });
    }
+     //set up video
+     var tag = document.createElement('script');
+
+     tag.src = "https://www.youtube.com/iframe_api";
+     var firstScriptTag = document.getElementsByTagName('script')[0];
+     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+     // 3. This function creates an <iframe> (and YouTube player)
+     //    after the API code downloads.
+     var player;
+     function onYouTubeIframeAPIReady() {
+         player = new YT.Player('popplayer', {
+             height: '432',
+             width: '768',
+             videoId: 'LSW9XgU0xC8',
+             playerVars: { 'showinfo' : 0 }
+         });
+     }
+     function pauseVideo() {
+         player.pauseVideo();
+     }
+     function playVideo() {
+         player.playVideo()
+     }
+
+     function popclosevideo() {
+         $('#fr_video_popup').fadeOut();
+         pauseVideo();
+         setTimeout("$('#slider').data('nivoslider').start()",10000); //restart the slider after the video is closed (not working)
+     }
+
+     function popupvideo(){
+         $('#fr_video_popup').fadeIn();
+         $('#fr_video_popup').css("display","flex");
+         $('#slider').data('nivoslider').stop(); //stop the slider while the video is open (not working)
+     }
+     $(document).keyup(function(e) {
+         if (e.which == 27) { 
+             popclosevideo();
+         }
+     });
+     
 </script>
 <asp:HiddenField ID="hfManualAdvance" runat="server" />
 <asp:HiddenField ID="hfPauseTime" runat="server" />
@@ -69,4 +121,12 @@
             </ItemTemplate>
         </asp:Repeater>
     </div>
+</div>
+<div id="fr_video_popup">
+<div id="playerspace">
+<div style="text-align: right;">
+<a id="fr_video_popup_close" class="fr_video_popup_close">&#x2716</a>
+</div>
+<div id="popplayer"></div>
+</div>
 </div>
