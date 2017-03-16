@@ -68,23 +68,18 @@
              height: '432',
              width: '768',
              videoId: 'LSW9XgU0xC8',
-             playerVars: { 'showinfo' : 0 }
+             playerVars: { 'showinfo' : 0, 'rel' : 0, 'color' : 'white' }
          });
-     }
-     function pauseVideo() {
-         player.pauseVideo();
-     }
-     function playVideo() {
-         player.playVideo()
      }
 
      function popclosevideo() {
          $('#fr_video_popup').fadeOut();
-         pauseVideo();
+         player.pauseVideo();
          setTimeout("$('#slider').data('nivoslider').start()",10000); //restart the slider after the video is closed (not working)
      }
 
-     function popupvideo(){
+     function popupvideo(videoid){
+         alert(videoid);
          $('#fr_video_popup').fadeIn();
          $('#fr_video_popup').css("display","flex");
          $('#slider').data('nivoslider').stop(); //stop the slider while the video is open (not working)

@@ -937,7 +937,8 @@ Public Class StoryFunctions
 
                 'check for personalized opening style
                 If (viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING).Equals(TagSettingsConstants.OpenStyle.Popup.ToString)) Then
-                    clickAction = "onclick=popupvideo();"
+                    clickAction = "onclick=popupvideo('" & story.Spare3 & "');" 'pass video id to pop up
+
                 Else
                     clickAction = "window.open('" & story.Link & "', '" & target & "');"
                 End If
