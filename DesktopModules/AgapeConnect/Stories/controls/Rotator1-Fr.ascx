@@ -68,7 +68,7 @@
              origin: 'https://www.agapefrance.org',
              height: '432',
              width: '768',
-             playerVars: { 'showinfo' : 0, 'rel' : 0, 'color' : 'white' }
+             playerVars: { 'rel' : 0, 'color' : 'white' }
          });
      }
 
