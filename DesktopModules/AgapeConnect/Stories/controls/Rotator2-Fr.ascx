@@ -15,6 +15,7 @@
                  width: <%= hfDivWidth.Value %>,
                  manualAdvance: <%= hfManualAdvance.Value %>,
                  manualCaption: true,
+                 channelID: <%= hfChannelId.Value %>,
              });
 
              var w= $('#rotatorContainer<%= hfChannelId.Value %>').width();

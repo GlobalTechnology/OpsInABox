@@ -14,6 +14,7 @@
                  pauseTime: <%= hfPauseTime.Value %>,
                  width: <%= hfDivWidth.Value %>,
                  manualAdvance: <%= hfManualAdvance.Value %>,
+                 channelID: <%= hfChannelId.Value %>,
              });
 
              var w= $('#rotatorContainer<%= hfChannelId.Value %>').width();

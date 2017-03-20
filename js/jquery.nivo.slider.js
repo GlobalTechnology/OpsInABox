@@ -90,15 +90,15 @@
         //Create caption
 // BEGIN Custom edits so caption will appear outside of slider
         if (!settings.manualCaption) {
-            slider.append($('<div class="nivo-caption"></div>'));
+            slider.append($('<div id="' + settings.channelID + '" class="nivo-caption"></div>'));
         }
 
         // Process caption function
         var processCaption = function (settings) {
             var nivoCaption
 
-            if (!settings.manualCaption) { nivoCaption = $('.nivo-caption', slider); }
-            else { nivoCaption = $('.nivo-caption'); }
+            if (!settings.manualCaption) { nivoCaption = $('#' + settings.channelID, slider); }
+            else { nivoCaption = $('#manual-nivo-caption' + settings.channelID ); }
 // END Custom edits so caption will appear outside of slider
             if (vars.currentImage.attr('title') != '' && vars.currentImage.attr('title') != undefined) {
                 var title = vars.currentImage.attr('title');
@@ -662,7 +662,8 @@
         slideshowEnd: function () { },
         lastSlide: function () { },
         afterLoad: function () { },
-        manualCaption: false  // Custom parameter so caption will appear outside of slider
+        manualCaption: false,  // Custom parameter so caption will appear outside of slider
+        channelID: 0  // Custom parameter so caption will appear outside of slider
     };
 
     $.fn._reverse = [].reverse;
