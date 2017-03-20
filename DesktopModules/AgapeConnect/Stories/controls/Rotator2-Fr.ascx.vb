@@ -43,27 +43,35 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
         Public Sub Initialize(ByVal stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
 
-            Dim rotatorSettings As Hashtable = StoryFunctions.GetRotatorSettings(stories.First.ChannelId, settings)
+            'When adding a new stories module need to assign a temporary channelId
+            Dim channelId As Integer
+            If stories.Count > 0 Then
+                channelId = stories.First.ChannelId
+            Else
+                channelId = 1
+                lblNoStories.Visible = True
+            End If
+
+            Dim rotatorSettings As Hashtable = StoryFunctions.GetRotatorSettings(channelId, settings)
 
             hfManualAdvance.Value = rotatorSettings.Item(RotatorConstants.MANUALADVANCE)
-            hfPauseTime.Value = rotatorSettings.Item(RotatorConstants.SPEED)
-            hfDivWidth.Value = rotatorSettings.Item(RotatorConstants.PHOTOWIDTH)
-            hfDivHeight.Value = rotatorSettings.Item(RotatorConstants.PHOTOHEIGHT)
-            hfChannelId.Value = rotatorSettings.Item(RotatorConstants.CHANNELID)
+                hfPauseTime.Value = rotatorSettings.Item(RotatorConstants.SPEED)
+                hfDivWidth.Value = rotatorSettings.Item(RotatorConstants.PHOTOWIDTH)
+                hfDivHeight.Value = rotatorSettings.Item(RotatorConstants.PHOTOHEIGHT)
+                hfChannelId.Value = rotatorSettings.Item(RotatorConstants.CHANNELID)
 
-            Dim sliderData As DataTable = StoryFunctions.GetRotatorSlides(stories, rotatorSettings,
+                Dim sliderData As DataTable = StoryFunctions.GetRotatorSlides(stories, rotatorSettings,
                                                                           PortalSettings.DefaultPortalAlias,
                                                                           TabModuleId)
 
-            'customize title for this rotator
-            For Each row As DataRow In sliderData.Rows
-                row.Item(RotatorConstants.SLIDEIMAGETITLE) = row.Item(RotatorConstants.SLIDETEXTLINK) &
+                'customize title for this rotator
+                For Each row As DataRow In sliderData.Rows
+                    row.Item(RotatorConstants.SLIDEIMAGETITLE) = row.Item(RotatorConstants.SLIDETEXTLINK) &
                     "<h1 class='slider-image-text'>" & row.Item(RotatorConstants.SLIDEIMAGETITLE) & "</h1></a>"
-            Next
+                Next
 
-            SliderImageList.DataSource = sliderData
+                SliderImageList.DataSource = sliderData
             SliderImageList.DataBind()
-
         End Sub
 
     End Class

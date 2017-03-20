@@ -186,6 +186,13 @@
 
 /* END video popup */
 
+/* BEGIN Rotator1-Fr and Rotator2-Fr */
+.no-stories {
+    font-size: x-large;
+    color: red;
+}
+
+/* END Rotator1-Fr and Rotator2-Fr */
 
 /* BEGIN Rotator2-Fr */
 
@@ -200,8 +207,6 @@
 
 
 .rotator2 .theme-default {
-    flex: 0 0 50%;
-    order: 0;
 }
 
 .rotator2 .nivo-caption {
@@ -217,8 +222,6 @@
     vertical-align: top;
     /*height : 120px !important;
     padding: 10px 0 10px 0;*/
-    flex: 0 0 50%;
-    order: 1;
 }
 }
 

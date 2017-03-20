@@ -74,4 +74,9 @@
     
 </div>
     <div id="manual-nivo-caption<%= hfChannelId.Value %>" class="nivo-caption"></div>
+    <div class="no-stories">
+        <asp:Label ID="lblNoStories" runat="server" ResourceKey="lblNoStories" Visible="false"></asp:Label>
+    </div>
 </div>
+
+

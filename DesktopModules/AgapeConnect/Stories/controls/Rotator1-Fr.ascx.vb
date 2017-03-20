@@ -43,7 +43,16 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
         Public Sub Initialize(ByVal stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
 
-            Dim rotatorSettings As Hashtable = StoryFunctions.GetRotatorSettings(stories.First.ChannelId, settings)
+            'When adding a new stories module need to assign a temporary channelId
+            Dim channelId As Integer
+            If stories.Count > 0 Then
+                channelId = stories.First.ChannelId
+            Else
+                channelId = 1
+                lblNoStories.Visible = True
+            End If
+
+            Dim rotatorSettings As Hashtable = StoryFunctions.GetRotatorSettings(channelId, settings)
 
             hfManualAdvance.Value = rotatorSettings.Item(RotatorConstants.MANUALADVANCE)
             hfPauseTime.Value = rotatorSettings.Item(RotatorConstants.SPEED)
