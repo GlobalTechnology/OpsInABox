@@ -7,9 +7,7 @@
      (function ($, Sys) {
          function setUpMyTabs() {
              $('#slider<%= hfChannelId.Value %>').css({
-                 'visibility':'visible',
-                 'height': <%= hfDivHeight.Value %>,
-                 'max-height': <%= hfDivHeight.Value %>}).nivoSlider({
+                 'visibility':'visible'}).nivoSlider({
                  effect: 'fade',
                  pauseTime: <%= hfPauseTime.Value %>,
                  width: <%= hfDivWidth.Value %>,
@@ -18,7 +16,7 @@
                  channelID: <%= hfChannelId.Value %>,
              });
 
-             var w= $('#rotatorContainer<%= hfChannelId.Value %>').width();
+             <%--var w= $('#rotatorContainer<%= hfChannelId.Value %>').width();
              var scale = w/<%= hfDivWidth.Value %>;
              var offset = (1.0- scale) *50;
              var newH = <%= hfDivHeight.Value %> * scale;
@@ -28,7 +26,7 @@
                  '-moz-transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
                  '-webkit-transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
                  '-o-transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
-                 'width':<%= hfDivWidth.Value %> +'px', 'height':(newH-8) + 'px' });
+                 'width':<%= hfDivWidth.Value %> +'px', 'height':(newH-8) + 'px' });--%>
          }
 
          $(document).ready(function () {
@@ -53,7 +51,7 @@
 <asp:HiddenField ID="hfChannelId" runat="server" />
 
 <div id="rotator<%= hfChannelId.Value %>" class="rotator2">
-<div id="rotatorContainer<%= hfChannelId.Value %>" class="theme-default">
+<div id="rotatorContainer<%= hfChannelId.Value %>" class="theme-default" style="width:<%= hfDivWidth.Value %>">
     <div id="slider<%= hfChannelId.Value %>" class="nivoSlider">
         <asp:Repeater ID="SliderImageList" runat="server">
             <ItemTemplate>

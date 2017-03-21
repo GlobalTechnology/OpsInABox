@@ -220,9 +220,10 @@
     /*max-width: 650px;*/
     white-space: normal;
     vertical-align: top;
-    /*height : 120px !important;
-    padding: 10px 0 10px 0;*/
+    /*height : 120px !important;*/
+    padding: 0 10px;
     position:relative;
+    width:300px;
 }
 
 
