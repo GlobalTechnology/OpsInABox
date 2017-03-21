@@ -62,12 +62,3 @@
 <div class="no-stories">
     <asp:Label ID="lblNoStories" runat="server" ResourceKey="lblNoStories" Visible="false"></asp:Label>
 </div>
-
-<div id="fr_video_popup">
-<div id="playerspace">
-<div style="text-align: right;">
-<a id="fr_video_popup_close" class="fr_video_popup_close">&#x2716</a>
-</div>
-<div id="popplayer"></div>
-</div>
-</div>

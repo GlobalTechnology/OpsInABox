@@ -65,5 +65,3 @@
         <asp:Label ID="lblNoStories" runat="server" ResourceKey="lblNoStories" Visible="false"></asp:Label>
     </div>
 </div>
-
-
