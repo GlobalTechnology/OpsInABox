@@ -14,7 +14,7 @@
                  pauseTime: <%= hfPauseTime.Value %>,
                  width: <%= hfDivWidth.Value %>,
                  manualAdvance: <%= hfManualAdvance.Value %>,
-                 manualCaption: true,
+                 manualCaption: false,
                  channelID: <%= hfChannelId.Value %>,
              });
          }
