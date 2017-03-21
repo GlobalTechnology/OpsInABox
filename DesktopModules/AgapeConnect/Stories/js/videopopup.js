@@ -1,5 +1,7 @@
-﻿$('#fr_video_popup_close').click(function () {
-    popclosevideo();
+﻿$(document).ready(function () {
+    $('#fr_video_popup_close').click(function () {
+        popclosevideo();
+    });
 });
 
 //set up video
