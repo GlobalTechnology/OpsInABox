@@ -163,7 +163,6 @@ Public Module RotatorConstants
 
     Public Const SLIDELINK As String = "slideLink"
     Public Const SLIDEIMAGE As String = "slideImage"
-    Public Const SLIDEIMAGESTYLE As String = "slideImageStyle"
     Public Const SLIDEIMAGEALTTEXT As String = "slideImageAltText"
     Public Const SLIDEIMAGETITLE As String = "slideImageTitle"
     Public Const SLIDETEXTLINK As String = "slideTextLink"
@@ -892,9 +891,6 @@ Public Class StoryFunctions
             rotatorSettings.Add(RotatorConstants.ASPECT, 1.0)
         End If
 
-        rotatorSettings.Add(RotatorConstants.PHOTOHEIGHT,
-                            CDbl(rotatorSettings(RotatorConstants.PHOTOWIDTH)) / CDbl(rotatorSettings(RotatorConstants.ASPECT)))
-
         rotatorSettings.Add(RotatorConstants.CHANNELID, channelID)
 
         Return rotatorSettings
@@ -907,7 +903,6 @@ Public Class StoryFunctions
 
         sliderData.Columns.Add(RotatorConstants.SLIDELINK)
         sliderData.Columns.Add(RotatorConstants.SLIDEIMAGE)
-        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGESTYLE)
         sliderData.Columns.Add(RotatorConstants.SLIDEIMAGEALTTEXT)
         sliderData.Columns.Add(RotatorConstants.SLIDETEXTLINK)
         sliderData.Columns.Add(RotatorConstants.SLIDEIMAGETITLE)
@@ -955,21 +950,9 @@ Public Class StoryFunctions
                 sliderImage.AlternateText = story.Headline
                 sliderImage.Attributes(RotatorConstants.TITLE) = HttpUtility.HtmlEncode(story.Headline)
 
-                If CInt(rotatorSettings.Item(RotatorConstants.ASPECT)) < (CDbl(story.ImageWidth) / CDbl(story.ImageHeight)) Then
-                    sliderImage.Width = CInt(rotatorSettings.Item(RotatorConstants.PHOTOWIDTH))
-                    sliderImage.Height = CInt(CDbl(rotatorSettings.Item(RotatorConstants.PHOTOWIDTH)) * story.ImageHeight / story.ImageWidth)
-                Else
-                    sliderImage.Width = CInt(CDbl(rotatorSettings.Item(RotatorConstants.PHOTOHEIGHT)) * story.ImageWidth / story.ImageHeight)
-                    sliderImage.Height = CInt(rotatorSettings.Item(RotatorConstants.PHOTOHEIGHT))
-                End If
-
-                sliderImage.Style.Add(RotatorConstants.HEIGHT, sliderImage.Height.ToString)
-                sliderImage.Style.Add(RotatorConstants.WIDTH, sliderImage.Width.ToString)
-
                 dataRow(RotatorConstants.SLIDEIMAGE) = sliderImage.ImageUrl
                 dataRow(RotatorConstants.SLIDEIMAGEALTTEXT) = sliderImage.AlternateText
                 dataRow(RotatorConstants.SLIDEIMAGETITLE) = sliderImage.Attributes(RotatorConstants.TITLE)
-                dataRow(RotatorConstants.SLIDEIMAGESTYLE) = sliderImage.Style
 
                 sliderData.Rows.Add(dataRow)
             Catch ex As Exception

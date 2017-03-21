@@ -55,10 +55,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             Dim rotatorSettings As Hashtable = StoryFunctions.GetRotatorSettings(channelId, settings)
 
             hfManualAdvance.Value = rotatorSettings.Item(RotatorConstants.MANUALADVANCE)
-                hfPauseTime.Value = rotatorSettings.Item(RotatorConstants.SPEED)
-                hfDivWidth.Value = rotatorSettings.Item(RotatorConstants.PHOTOWIDTH)
-                hfDivHeight.Value = rotatorSettings.Item(RotatorConstants.PHOTOHEIGHT)
-                hfChannelId.Value = rotatorSettings.Item(RotatorConstants.CHANNELID)
+            hfPauseTime.Value = rotatorSettings.Item(RotatorConstants.SPEED)
+            hfDivWidth.Value = rotatorSettings.Item(RotatorConstants.PHOTOWIDTH)
+            hfChannelId.Value = rotatorSettings.Item(RotatorConstants.CHANNELID)
 
                 Dim sliderData As DataTable = StoryFunctions.GetRotatorSlides(stories, rotatorSettings,
                                                                           PortalSettings.DefaultPortalAlias,

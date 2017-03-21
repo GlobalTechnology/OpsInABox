@@ -1,34 +1,22 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="Rotator1-Fr.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Stories.Rotator_Fr" %>
-<script src="/js/jquery.nivo.slider.js" type="text/javascript"></script>
-<script src="/DesktopModules/AgapeConnect/Stories/js/videopopup.js" type="text/javascript"></script>
-<link href="/js/nivo-slider.css" rel="stylesheet" type="text/css" media="screen"  />
-<link href="/DesktopModules/AgapeConnect/Stories/themes/default/france.css" rel="stylesheet" type="text/css" media="screen"  />
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+<dnn:DnnJsInclude runat="server" FilePath="/js/jquery.nivo.slider.js" />
+<dnn:DnnJsInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/js/videopopup.js" />
+<dnn:DnnCssInclude runat="server" FilePath="/js/nivo-slider.css" />
+<dnn:DnnCssInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/themes/default/france.css" />
 
-<script type="text/javascript">
-    (function ($, Sys) {
-        function setUpMyTabs() {
-            $('#slider<%= hfChannelId.Value %>').css({
-                 'visibility':'visible',
-                 'height': <%= hfDivHeight.Value %>,
-                 'max-height': <%= hfDivHeight.Value %>}).nivoSlider({
-                     effect: 'fade',
-                     pauseTime: <%= hfPauseTime.Value %>,
+ <script type="text/javascript">
+     (function ($, Sys) {
+         function setUpMyTabs() {
+             $('#slider<%= hfChannelId.Value %>').css({
+                 'visibility':'visible'}).nivoSlider({
+                 effect: 'fade',
+                 pauseTime: <%= hfPauseTime.Value %>,
                  width: <%= hfDivWidth.Value %>,
-                     manualAdvance: <%= hfManualAdvance.Value %>,
-                     channelID: <%= hfChannelId.Value %>,
-                 });
-
-             var w= $('#rotatorContainer<%= hfChannelId.Value %>').width();
-             var scale = w/<%= hfDivWidth.Value %>;
-             var offset = (1.0- scale) *50;
-             var newH = <%= hfDivHeight.Value %> * scale;
-             $('#rotatorContainer<%= hfChannelId.Value %>').css({
-                 'transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
-                 '-ms-transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
-                 '-moz-transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
-                 '-webkit-transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
-                 '-o-transform': 'translate(-' + offset + '%, -' + offset + '%) scale(' + scale + ')' ,
-                 'width':<%= hfDivWidth.Value %> +'px', 'height':(newH-8) + 'px' });
+                 manualAdvance: <%= hfManualAdvance.Value %>,
+                 manualCaption: true,
+                 channelID: <%= hfChannelId.Value %>,
+             });
          }
 
          $(document).ready(function () {
@@ -39,17 +27,17 @@
          });
      } (jQuery, window.Sys));
    
-     function registerClick(c)
-     {
-         $.ajax({ type: 'POST', url: "<%= NavigateURL() %>",
-           data: ({ StoryLink: c })
-       });
+   function registerClick(c)
+   {
+        $.ajax({ type: 'POST', url: "<%= NavigateURL() %>",
+                        data: ({ StoryLink: c })
+                    });
    }
 </script>
+
 <asp:HiddenField ID="hfManualAdvance" runat="server" />
 <asp:HiddenField ID="hfPauseTime" runat="server" />
 <asp:HiddenField ID="hfDivWidth" runat="server" />
-<asp:HiddenField ID="hfDivHeight" runat="server" />
 <asp:HiddenField ID="hfChannelId" runat="server" />
 
 <div id="rotatorContainer<%= hfChannelId.Value %>" class="theme-default">
@@ -65,7 +53,6 @@
                     src=<%# Eval(RotatorConstants.SLIDEIMAGE) %> 
                     alt=<%# Eval(RotatorConstants.SLIDEIMAGEALTTEXT) %> 
                     title=<%# Eval(RotatorConstants.SLIDEIMAGETITLE) %> 
-                    style=<%# Eval(RotatorConstants.SLIDEIMAGESTYLE) %> 
                     runat="server" />
             </asp:HyperLink>
             </ItemTemplate>
