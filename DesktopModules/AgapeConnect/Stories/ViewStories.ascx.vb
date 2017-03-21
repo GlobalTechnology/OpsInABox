@@ -32,13 +32,15 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             ' Redirect to view requested story
             Dim RequestStoryURL As String = "?StoryId=" & Request.QueryString("StoryId") & "&origTabId=" & TabId & "&origModId=" & ModuleId
 
-            If Request.QueryString("StoryId") <> "" Then
+            'REDIRECTION
+            'Verify that storyid is part of tabmoduleid (in case there are multiple story modules on one page).
+            If Request.QueryString("StoryId") <> "" And
+                    StoryFunctions.GetStory(Request.QueryString("StoryId")).TabModuleId = TabModuleId Then
                 If String.IsNullOrEmpty(Settings("ViewTab")) Or Settings("ViewTab") = 0 Then
                     Response.Redirect(EditUrl("ViewStory") & RequestStoryURL)
                 Else
                     Response.Redirect(NavigateURL(CInt(Settings("ViewTab"))) & RequestStoryURL)
                 End If
-
             End If
 
             If Not String.IsNullOrEmpty(Request.Form("StoryLink")) Then
