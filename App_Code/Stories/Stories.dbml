@@ -60,6 +60,7 @@
       <Column Name="Spare1" Type="System.String" DbType="NVarChar(154)" CanBeNull="true" />
       <Column Name="Spare2" Type="System.String" DbType="NVarChar(154)" CanBeNull="true" />
       <Column Name="Spare3" Type="System.String" DbType="NVarChar(154)" CanBeNull="true" />
+      <Column Name="Subtitle" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
       <Association Name="AP_Stories_Module_Channel_AP_Stories_Module_Channel_Cache" Member="AP_Stories_Module_Channel" ThisKey="ChannelId" OtherKey="ChannelId" Type="AP_Stories_Module_Channel" IsForeignKey="true" />
     </Type>
   </Table>
@@ -111,8 +112,8 @@
       <Column Name="Master" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="StoryModuleId" Type="System.Int32" CanBeNull="false" />
       <Column Name="PhotoId" Type="System.Int32" CanBeNull="true" />
-      <Column Member="LinkImage" Type="System.String" CanBeNull="true" />
-      <Column Member="OpenStyle" Type="System.String" CanBeNull="true" />
+      <Column Name="LinkImage" Type="System.String" CanBeNull="true" />
+      <Column Name="OpenStyle" Type="System.String" CanBeNull="true" />
       <Association Name="AP_Stories_Tag_AP_Stories_Tag_Meta" Member="AP_Stories_Tag_Metas" ThisKey="StoryTagId" OtherKey="TagId" Type="AP_Stories_Tag_Meta" />
     </Type>
   </Table>

@@ -68,6 +68,7 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
             insert.ElementExtensions.Add("Field1", "", row.Field1.ToString)
             insert.ElementExtensions.Add("Field2", "", row.Field2.ToString)
             insert.ElementExtensions.Add("Field3", "", row.Field3.ToString)
+            insert.ElementExtensions.Add("Subtitle", "", row.Subtitle.ToString)
 
             insert.PublishDate = row.StoryDate
             Dim author As New SyndicationPerson

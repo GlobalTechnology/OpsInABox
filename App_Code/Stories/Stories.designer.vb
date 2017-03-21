@@ -880,6 +880,8 @@ Namespace Stories
 		
 		Private _Spare3 As String
 		
+		Private _Subtitle As String
+		
 		Private _AP_Stories_Module_Channel As EntityRef(Of AP_Stories_Module_Channel)
 		
     #Region "Extensibility Method Definitions"
@@ -972,6 +974,10 @@ Namespace Stories
     Partial Private Sub OnSpare3Changing(value As String)
     End Sub
     Partial Private Sub OnSpare3Changed()
+    End Sub
+    Partial Private Sub OnSubtitleChanging(value As String)
+    End Sub
+    Partial Private Sub OnSubtitleChanged()
     End Sub
     #End Region
 		
@@ -1317,6 +1323,22 @@ Namespace Stories
 					Me._Spare3 = value
 					Me.SendPropertyChanged("Spare3")
 					Me.OnSpare3Changed
+				End If
+			End Set
+		End Property
+		
+		<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Subtitle", DbType:="NVarChar(80)")>  _
+		Public Property Subtitle() As String
+			Get
+				Return Me._Subtitle
+			End Get
+			Set
+				If (String.Equals(Me._Subtitle, value) = false) Then
+					Me.OnSubtitleChanging(value)
+					Me.SendPropertyChanging
+					Me._Subtitle = value
+					Me.SendPropertyChanged("Subtitle")
+					Me.OnSubtitleChanged
 				End If
 			End Set
 		End Property

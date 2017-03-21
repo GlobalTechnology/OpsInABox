@@ -947,7 +947,7 @@ Public Class StoryFunctions
                 dataRow(RotatorConstants.SLIDEIMAGE) = story.ImageId
                 dataRow(RotatorConstants.SLIDEIMAGEALTTEXT) = story.Headline
                 dataRow(RotatorConstants.SLIDEIMAGETITLE) = story.Headline
-                ' dataRow(RotatorConstants.SLIDEIMAGESUBTITLE) = story.Subtitle
+                dataRow(RotatorConstants.SLIDEIMAGESUBTITLE) = story.Subtitle
                 dataRow(RotatorConstants.SLIDEIMAGEDESC) = story.Description
 
                 sliderData.Rows.Add(dataRow)
@@ -1098,6 +1098,7 @@ Public Class StoryFunctions
                             insert.Spare1 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field1").First.GetObject(Of XElement).Value
                             insert.Spare2 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field2").First.GetObject(Of XElement).Value
                             insert.Spare3 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field3").First.GetObject(Of XElement).Value
+                            insert.Subtitle = row.ElementExtensions.Where(Function(x) x.OuterName = "Subtitle").First.GetObject(Of XElement).Value
 
                             If row.ElementExtensions.Where(Function(x) x.OuterName = "translationGroup").Count > 0 Then
                                 insert.TranslationGroup = CInt(row.ElementExtensions.Where(Function(x) x.OuterName = "translationGroup").First.GetObject(Of XElement).Value)
@@ -1170,6 +1171,7 @@ Public Class StoryFunctions
                             existingStory.First.Spare1 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field1").First.GetObject(Of XElement).Value
                             existingStory.First.Spare2 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field2").First.GetObject(Of XElement).Value
                             existingStory.First.Spare3 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field3").First.GetObject(Of XElement).Value
+                            existingStory.First.Subtitle = row.ElementExtensions.Where(Function(x) x.OuterName = "Subtitle").First.GetObject(Of XElement).Value
 
                         Catch ex As Exception
 
