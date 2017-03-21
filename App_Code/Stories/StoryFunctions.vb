@@ -937,7 +937,7 @@ Public Class StoryFunctions
 
                 'check for personalized opening style
                 If (viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING).Equals(TagSettingsConstants.OpenStyle.Popup.ToString)) Then
-                    clickAction = "onclick=popupvideo('" & story.Spare3 & "');" 'pass video id to pop up
+                    clickAction = "onclick=popupvideo('" & story.Spare1 & "');" 'pass video id to pop up
 
                 Else
                     clickAction = "window.open('" & story.Link & "', '" & target & "');"
@@ -1115,6 +1115,11 @@ Public Class StoryFunctions
                             insert.Longitude = theChannel.Longitude
                         End If
                         Try
+
+                            insert.Spare1 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field1").First.GetObject(Of XElement).Value
+                            insert.Spare2 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field2").First.GetObject(Of XElement).Value
+                            insert.Spare3 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field3").First.GetObject(Of XElement).Value
+
                             If row.ElementExtensions.Where(Function(x) x.OuterName = "translationGroup").Count > 0 Then
                                 insert.TranslationGroup = CInt(row.ElementExtensions.Where(Function(x) x.OuterName = "translationGroup").First.GetObject(Of XElement).Value)
                             End If
@@ -1182,6 +1187,10 @@ Public Class StoryFunctions
                             If row.ElementExtensions.Where(Function(x) x.OuterName = "translationGroup").Count > 0 Then
                                 existingStory.First.TranslationGroup = CInt(row.ElementExtensions.Where(Function(x) x.OuterName = "translationGroup").First.GetObject(Of XElement).Value)
                             End If
+
+                            existingStory.First.Spare1 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field1").First.GetObject(Of XElement).Value
+                            existingStory.First.Spare2 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field2").First.GetObject(Of XElement).Value
+                            existingStory.First.Spare3 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field3").First.GetObject(Of XElement).Value
 
                         Catch ex As Exception
 

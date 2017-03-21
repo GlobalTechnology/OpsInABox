@@ -65,12 +65,16 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
 
             insert.Summary = TextSyndicationContent.CreatePlaintextContent(summary)
 
+            insert.ElementExtensions.Add("Field1", "", row.Field1.ToString)
+            insert.ElementExtensions.Add("Field2", "", row.Field2.ToString)
+            insert.ElementExtensions.Add("Field3", "", row.Field3.ToString)
+
             insert.PublishDate = row.StoryDate
             Dim author As New SyndicationPerson
             author.Name = row.Author
             author.Email = ""
             insert.Authors.Add(author)
-            myList.Add(insert)
+
             Dim thePhoto = FileManager.Instance.GetFile(row.PhotoId)
             Dim media As XNamespace = XNamespace.Get("http://www.w3.org/2003/01/media/wgs84_pos#")
 
@@ -113,7 +117,7 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
             End If
 
             insert.Id = row.StoryId
-
+            myList.Add(insert)
         Next
 
         myFeed.Items = myList
