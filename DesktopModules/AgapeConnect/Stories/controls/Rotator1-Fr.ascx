@@ -40,7 +40,7 @@
 <asp:HiddenField ID="hfDivWidth" runat="server" />
 <asp:HiddenField ID="hfChannelId" runat="server" />
 
-<div id="rotatorContainer<%= hfChannelId.Value %>" class="theme-default">
+<div id="rotatorContainer<%= hfChannelId.Value %>" class="theme-default"style="width:<%= hfDivWidth.Value %>">
     <div id="slider<%= hfChannelId.Value %>" class="nivoSlider">
         <asp:Repeater ID="SliderImageList" runat="server">
             <ItemTemplate>
