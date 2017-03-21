@@ -65,13 +65,32 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
                 'customize title for this rotator
                 For Each row As DataRow In sliderData.Rows
-                    row.Item(RotatorConstants.SLIDEIMAGETITLE) = row.Item(RotatorConstants.SLIDETEXTLINK) &
-                    "<h1 class='slider-image-text'>" & row.Item(RotatorConstants.SLIDEIMAGETITLE) & "</h1></a>"
-                Next
+                row.Item(RotatorConstants.SLIDEIMAGETITLE) = row.Item(RotatorConstants.SLIDETEXTLINK) &
+                    "<h1>" & row.Item(RotatorConstants.SLIDEIMAGETITLE) & "</h1> " &
+                    "<h2>" & row.Item(RotatorConstants.SLIDEIMAGESUBTITLE) & "</h2> " &
+                    "<p>" & row.Item(RotatorConstants.SLIDEIMAGEDESC) & "</p></a>" &
+                     AddThisDiv(row)
+            Next
 
                 SliderImageList.DataSource = sliderData
             SliderImageList.DataBind()
         End Sub
 
+#Region "Helper functions"
+
+        Private Function AddThisDiv(ByRef row As DataRow) As String
+            Return " <div class='addthis_toolbox addthis_default_style addthis_32x32_style;' " &
+                    "addthis:title=""" & row.Item(RotatorConstants.SLIDEIMAGETITLE) & """ " &
+                    "addthis:description=""" & row.Item(RotatorConstants.SLIDEIMAGEDESC) & """ " &
+                    "addthis:media=""" & row.Item(RotatorConstants.SLIDEIMAGE) & """ " &
+                    " style=""" & "width: 200px; margin-top: 40px; margin-bottom: 20px;""" & ">" &
+                    " <a class='addthis_button_facebook'></a> " &
+                    " <a class='addthis_button_twitter'></a> " &
+                    " <a class='addthis_button_google_plusone_share'></a> " &
+                    " <a class='addthis_button_email'></a> " &
+                    " <a class='addthis_button_compact'></a></div>"
+        End Function
+#End Region
+        '  "addthis:url=https://youtu.be/" & row.Item(RotatorConstants.SLIDELINK) &
     End Class
 End Namespace

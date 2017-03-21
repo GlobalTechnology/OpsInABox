@@ -157,7 +157,6 @@ Public Module RotatorConstants
     Public Const SPEED As String = "Speed"
     Public Const PHOTOWIDTH As String = "PhotoWidth"
     Public Const ASPECT As String = "Aspect"
-    Public Const PHOTOHEIGHT As String = "PhotoHeight"
     Public Const CHANNELID As String = "ChannelId"
     Public Const MANUALADVANCEDEFALUT As String = "false"
 
@@ -165,11 +164,10 @@ Public Module RotatorConstants
     Public Const SLIDEIMAGE As String = "slideImage"
     Public Const SLIDEIMAGEALTTEXT As String = "slideImageAltText"
     Public Const SLIDEIMAGETITLE As String = "slideImageTitle"
+    Public Const SLIDEIMAGESUBTITLE As String = "slideImageSubTitle"
+    Public Const SLIDEIMAGEDESC As String = "slideImageDesc"
     Public Const SLIDETEXTLINK As String = "slideTextLink"
     Public Const SLIDEIMAGECSS As String = "slideLinkImageCSS"
-    Public Const TITLE As String = "title"
-    Public Const HEIGHT As String = "height"
-    Public Const WIDTH As String = "width"
     Public Const TARGETSELF As String = "_self"
     Public Const TARGETBLANK As String = "_blank"
     Public Const IMAGELINKCLASS As String = "nivo-imageLink"
@@ -906,6 +904,8 @@ Public Class StoryFunctions
         sliderData.Columns.Add(RotatorConstants.SLIDEIMAGEALTTEXT)
         sliderData.Columns.Add(RotatorConstants.SLIDETEXTLINK)
         sliderData.Columns.Add(RotatorConstants.SLIDEIMAGETITLE)
+        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGESUBTITLE)
+        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGEDESC)
         sliderData.Columns.Add(RotatorConstants.SLIDEIMAGECSS)
 
         For Each story In stories
@@ -944,15 +944,11 @@ Public Class StoryFunctions
                 'creation of link on slider title
                 dataRow(RotatorConstants.SLIDETEXTLINK) = "<a href=""" & dataRow(RotatorConstants.SLIDELINK) & """>"
 
-                'setup for the image
-                Dim sliderImage As New System.Web.UI.WebControls.Image
-                sliderImage.ImageUrl = story.ImageId
-                sliderImage.AlternateText = story.Headline
-                sliderImage.Attributes(RotatorConstants.TITLE) = HttpUtility.HtmlEncode(story.Headline)
-
-                dataRow(RotatorConstants.SLIDEIMAGE) = sliderImage.ImageUrl
-                dataRow(RotatorConstants.SLIDEIMAGEALTTEXT) = sliderImage.AlternateText
-                dataRow(RotatorConstants.SLIDEIMAGETITLE) = sliderImage.Attributes(RotatorConstants.TITLE)
+                dataRow(RotatorConstants.SLIDEIMAGE) = story.ImageId
+                dataRow(RotatorConstants.SLIDEIMAGEALTTEXT) = story.Headline
+                dataRow(RotatorConstants.SLIDEIMAGETITLE) = story.Headline
+                ' dataRow(RotatorConstants.SLIDEIMAGESUBTITLE) = story.Subtitle
+                dataRow(RotatorConstants.SLIDEIMAGEDESC) = story.Description
 
                 sliderData.Rows.Add(dataRow)
             Catch ex As Exception
