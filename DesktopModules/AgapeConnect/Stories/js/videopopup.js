@@ -1,4 +1,8 @@
 ﻿$(document).ready(function () {
+    //create the popup div
+    $('body').append("<div id='popdiv'></div>");
+    $('#popdiv').load("/DesktopModules/AgapeConnect/Stories/controls/popup.html");
+
     $('#fr_video_popup_close').click(function () {
         popclosevideo();
     });
