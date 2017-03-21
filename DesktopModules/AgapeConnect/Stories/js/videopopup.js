@@ -1,8 +1,5 @@
-﻿$(document).ready(function () {
-    setupvideo();
-    $('#fr_video_popup_close').click(function () {
-        popclosevideo();
-    });
+﻿$('#fr_video_popup_close').click(function () {
+    popclosevideo();
 });
 
 //set up video
