@@ -55,12 +55,12 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             hfDivWidth.Value = rotatorSettings.Item(RotatorConstants.PHOTOWIDTH)
             hfChannelId.Value = rotatorSettings.Item(RotatorConstants.CHANNELID)
 
-                Dim sliderData As DataTable = StoryFunctions.GetRotatorSlides(stories, rotatorSettings,
+            Dim sliderData As DataTable = StoryFunctions.GetRotatorSlides(stories, rotatorSettings,
                                                                           PortalSettings.DefaultPortalAlias,
                                                                           TabModuleId)
 
-                'customize title for this rotator
-                For Each row As DataRow In sliderData.Rows
+            'customize title for this rotator
+            For Each row As DataRow In sliderData.Rows
                 row.Item(RotatorConstants.SLIDEIMAGETITLE) = row.Item(RotatorConstants.SLIDETEXTLINK) &
                     "<h1>" & row.Item(RotatorConstants.SLIDEIMAGETITLE) & "</h1> " &
                     "<h2>" & row.Item(RotatorConstants.SLIDEIMAGESUBTITLE) & "</h2> " &
@@ -76,6 +76,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
         Private Function AddThisDiv(ByRef row As DataRow) As String
             Return " <div class='addthis_toolbox addthis_default_style addthis_32x32_style;' " &
+                    "addthis:url=""" & row.Item(RotatorConstants.SLIDERAWURL) & """ " &
                     "addthis:title=""" & row.Item(RotatorConstants.SLIDEIMAGETITLE) & """ " &
                     "addthis:description=""" & row.Item(RotatorConstants.SLIDEIMAGEDESC) & """ " &
                     "addthis:media=""" & row.Item(RotatorConstants.SLIDEIMAGE) & """ " &
@@ -87,6 +88,5 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                     " <a class='addthis_button_compact'></a></div>"
         End Function
 #End Region
-        '  "addthis:url=https://youtu.be/" & row.Item(RotatorConstants.SLIDELINK) &
     End Class
 End Namespace

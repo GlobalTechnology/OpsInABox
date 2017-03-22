@@ -168,6 +168,7 @@ Public Module RotatorConstants
     Public Const SLIDEIMAGEDESC As String = "slideImageDesc"
     Public Const SLIDETEXTLINK As String = "slideTextLink"
     Public Const SLIDEIMAGECSS As String = "slideLinkImageCSS"
+    Public Const SLIDERAWURL As String = "slideRawURL"
     Public Const TARGETSELF As String = "_self"
     Public Const TARGETBLANK As String = "_blank"
     Public Const IMAGELINKCLASS As String = "nivo-imageLink"
@@ -912,6 +913,7 @@ Public Class StoryFunctions
         sliderData.Columns.Add(RotatorConstants.SLIDEIMAGESUBTITLE)
         sliderData.Columns.Add(RotatorConstants.SLIDEIMAGEDESC)
         sliderData.Columns.Add(RotatorConstants.SLIDEIMAGECSS)
+        sliderData.Columns.Add(RotatorConstants.SLIDERAWURL)
 
         For Each story In stories
             Try
@@ -938,9 +940,10 @@ Public Class StoryFunctions
                 'check for personalized opening style
                 If (viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING).Equals(TagSettingsConstants.OpenStyle.Popup.ToString)) Then
                     clickAction = "onclick=popupvideo('" & story.Spare1 & "');" 'pass video id to pop up
-
+                    dataRow(RotatorConstants.SLIDERAWURL) = "youtube.com/watch?v=" & story.Spare1
                 Else
                     clickAction = "window.open('" & story.Link & "', '" & target & "');"
+                    dataRow(RotatorConstants.SLIDERAWURL) = story.Link
                 End If
 
                 'creation of link on slider
