@@ -17,6 +17,7 @@
                  manualAdvance: <%= hfManualAdvance.Value %>,
                  manualCaption: true,
                  channelID: <%= hfChannelId.Value %>,
+                 beforeChange: function(){linkImageFadeOut();},
              });
          }
 
@@ -34,6 +35,14 @@
                         data: ({ StoryLink: c })
                     });
    }
+
+     // Fades out immediately the play button
+     // The next slide is loaded before the old one disappears
+     // so both play buttons would be visible at the same time.
+     function linkImageFadeOut() {
+         jQuery('a.nivo-imageLink')
+         .fadeOut(0)
+         ;};
 
      var addthis_config = { 'data_track_addressbar': true };
 
