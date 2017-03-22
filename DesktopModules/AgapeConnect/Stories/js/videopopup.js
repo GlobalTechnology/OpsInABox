@@ -11,6 +11,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // creates an <iframe> (and YouTube player) after the API code downloads.
 var player;
+var currentvidslider;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('popplayer', {
         origin: 'https://www.agapefrance.org',
@@ -23,14 +24,16 @@ function onYouTubeIframeAPIReady() {
 function popclosevideo() {
     $('#fr_video_popup').fadeOut();
     player.pauseVideo();
-    //setTimeout("$('#slider').data('nivoslider').start()",10000); //restart the slider after the video is closed (not working)
+    setTimeout("$('#slider' + currentvidslider).data('nivoslider').start()",1000); //restart the slider after the video is closed (not working)
 }
 
-function popupvideo(videoid) {
+function popupvideo(videoid, sliderid) {
+    //console.log(sliderid);
+    currentvidslider = sliderid;
     player.loadVideoById(videoid);
     $('#fr_video_popup').fadeIn();
     $('#fr_video_popup').css("display", "flex");
-    //$('#slider').data('nivoslider').stop(); //stop the slider while the video is open (not working)
+    $('#slider' + sliderid).data('nivoslider').stop(); //stop the slider while the video is open (not working)
 }
 
 $(document).keyup(function (e) {
