@@ -858,7 +858,8 @@ Public Class StoryFunctions
 #End Region 'Latitude/Longitude
 
 #Region "Rotators"
-    Public Shared Function GetRotatorSettings(ByRef channelID As Integer, ByVal settings As Hashtable) As Hashtable
+    Public Shared Function GetRotatorSettings(ByRef stories As List(Of AP_Stories_Module_Channel_Cache),
+                                              ByVal settings As Hashtable) As Hashtable
         Dim rotatorSettings As New Hashtable
 
         If settings.ContainsKey(RotatorConstants.MANUALADVANCE) And
@@ -889,7 +890,11 @@ Public Class StoryFunctions
             rotatorSettings.Add(RotatorConstants.ASPECT, 1.0)
         End If
 
-        rotatorSettings.Add(RotatorConstants.CHANNELID, channelID)
+        If stories.Count > 0 Then
+            rotatorSettings.Add(RotatorConstants.CHANNELID, stories.First.ChannelId)
+        Else
+            rotatorSettings.Add(RotatorConstants.CHANNELID, 1)
+        End If
 
         Return rotatorSettings
     End Function

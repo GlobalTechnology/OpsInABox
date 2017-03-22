@@ -43,16 +43,12 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
         Public Sub Initialize(ByVal stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
 
-            'When adding a new stories module need to assign a temporary channelId
-            Dim channelId As Integer
-            If stories.Count > 0 Then
-                channelId = stories.First.ChannelId
-            Else
-                channelId = 1
+            'No stories in module
+            If stories.Count < 1 Then
                 lblNoStories.Visible = True
             End If
 
-            Dim rotatorSettings As Hashtable = StoryFunctions.GetRotatorSettings(channelId, settings)
+            Dim rotatorSettings As Hashtable = StoryFunctions.GetRotatorSettings(stories, settings)
 
             hfManualAdvance.Value = rotatorSettings.Item(RotatorConstants.MANUALADVANCE)
             hfPauseTime.Value = rotatorSettings.Item(RotatorConstants.SPEED)
@@ -72,7 +68,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                      AddThisDiv(row)
             Next
 
-                SliderImageList.DataSource = sliderData
+            SliderImageList.DataSource = sliderData
             SliderImageList.DataBind()
         End Sub
 
