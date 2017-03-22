@@ -80,7 +80,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                     "addthis:title=""" & row.Item(RotatorConstants.SLIDEIMAGETITLE) & """ " &
                     "addthis:description=""" & row.Item(RotatorConstants.SLIDEIMAGEDESC) & """ " &
                     "addthis:media=""" & row.Item(RotatorConstants.SLIDEIMAGE) & """ " &
-                    " style=""" & "width: 200px; margin-top: 40px; margin-bottom: 20px;""" & ">" &
+                    " style=""" & "width: 200px;""" & ">" &
                     " <a class='addthis_button_facebook'></a> " &
                     " <a class='addthis_button_twitter'></a> " &
                     " <a class='addthis_button_google_plusone_share'></a> " &

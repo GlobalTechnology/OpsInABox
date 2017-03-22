@@ -106,7 +106,6 @@
     bottom: -120px;
     overflow-y: hidden;
     overflow-x: hidden;
-    /*max-width: 650px;*/
     white-space: normal;
     vertical-align: top;
     height : 120px !important;
@@ -215,13 +214,10 @@
     font-size: x-large ;
 	background:transparent;
     color:#3A8BC2;
-    /*bottom: -120px;*/
     overflow-y: hidden;
     overflow-x: hidden;
-    /*max-width: 650px;*/
     white-space: normal;
     vertical-align: top;
-    /*height : 120px !important;*/
     padding: 0 10px;
     position:relative;
     width:300px;
@@ -243,6 +239,14 @@
 
 .rotator2 .nivo-caption h2 {
     margin-top:-10px;
+}
+
+.addthis_toolbox {
+    padding-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: absolute;
+    bottom: 0;
 }
 
 /* END Rotator2-Fr */

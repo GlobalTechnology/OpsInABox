@@ -18,6 +18,7 @@
                  manualCaption: true,
                  channelID: <%= hfChannelId.Value %>,
                  beforeChange: function(){linkImageFadeOut('#slider<%= hfChannelId.Value %>');},
+                 afterChange: function(){loadAddThis();},
              });
          }
 
@@ -41,6 +42,10 @@
          $(sliderId + ' a.nivo-imageLink')
          .fadeOut(0)
          ;};
+
+     function loadAddThis() {
+         addthis.toolbox('.addthis_toolbox')
+     }
 
      var addthis_config = { 'data_track_addressbar': true };
 
