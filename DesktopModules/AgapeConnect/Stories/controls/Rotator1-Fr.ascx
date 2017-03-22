@@ -16,6 +16,7 @@
                  manualAdvance: <%= hfManualAdvance.Value %>,
                  manualCaption: false,
                  channelID: <%= hfChannelId.Value %>,
+                 beforeChange: function(){linkImageFadeOut('#slider<%= hfChannelId.Value %>');},
              });
          }
 
@@ -33,6 +34,13 @@
                         data: ({ StoryLink: c })
                     });
    }
+
+     // Fades out the play button immediately
+     function linkImageFadeOut(sliderId) {
+         $(sliderId + ' a.nivo-imageLink')
+         .fadeOut(0)
+         ;};
+
 </script>
 
 <asp:HiddenField ID="hfManualAdvance" runat="server" />

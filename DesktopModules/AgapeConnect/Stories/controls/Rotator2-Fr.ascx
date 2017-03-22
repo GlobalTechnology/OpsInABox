@@ -17,7 +17,7 @@
                  manualAdvance: <%= hfManualAdvance.Value %>,
                  manualCaption: true,
                  channelID: <%= hfChannelId.Value %>,
-                 beforeChange: function(){linkImageFadeOut();},
+                 beforeChange: function(){linkImageFadeOut('#slider<%= hfChannelId.Value %>');},
              });
          }
 
@@ -36,11 +36,9 @@
                     });
    }
 
-     // Fades out immediately the play button
-     // The next slide is loaded before the old one disappears
-     // so both play buttons would be visible at the same time.
-     function linkImageFadeOut() {
-         jQuery('a.nivo-imageLink')
+     // Fades out the play button immediately
+     function linkImageFadeOut(sliderId) {
+         $(sliderId + ' a.nivo-imageLink')
          .fadeOut(0)
          ;};
 
