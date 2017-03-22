@@ -25,17 +25,16 @@ function onYouTubeIframeAPIReady() {
 function popclosevideo() {
     $('#fr_video_popup').fadeOut();
     player.pauseVideo();
-    setTimeout("$('#slider' + currentvidslider).data('nivoslider').start()",1000); //restart the slider after the video is closed (not working)
+    setTimeout("$('#slider' + currentvidslider).data('nivoslider').start()",1000); //restart the slider after the video is closed
 }
 
 function popupvideo(videoid, sliderid) {
     currentvidslider = sliderid;
     if (currentvidid == videoid) { } else { player.loadVideoById(videoid); }
-    
     currentvidid = videoid;
     $('#fr_video_popup').fadeIn();
     $('#fr_video_popup').css("display", "flex");
-    $('#slider' + sliderid).data('nivoslider').stop(); //stop the slider while the video is open (not working)
+    $('#slider' + sliderid).data('nivoslider').stop(); //stop the slider while the video is open
 }
 
 $(document).keyup(function (e) {
