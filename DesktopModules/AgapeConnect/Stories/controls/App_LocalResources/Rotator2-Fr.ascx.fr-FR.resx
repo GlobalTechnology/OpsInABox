@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="lblNoStories.Text" xml:space="preserve">
-    <value>Il n' y a pas d'histories.</value>
+    <value>Aucune histoire à afficher. </value>
   </data>
 </root>
