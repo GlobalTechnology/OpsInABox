@@ -30,7 +30,7 @@ function popclosevideo() {
 
 function popupvideo(videoid, sliderid) {
     currentvidslider = sliderid;
-    if (currentvidid == videoid) { } else { player.loadVideoById(videoid); }
+    if (currentvidid == videoid) { } else { player.cueVideoById(videoid); }
     currentvidid = videoid;
     $('#fr_video_popup').fadeIn();
     $('#fr_video_popup').css("display", "flex");
