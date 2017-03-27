@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="lblYouTube.Help" xml:space="preserve">
-    <value>Veuillez renseigner que l'identifant YouTube du vidéo, exemple LSW9XgU0xC8.</value>
+    <value>Veuillez entrer uniquement l'identifant YouTube de la vidéo (exemple : LSW9XgU0xC8).</value>
   </data>
   <data name="lblYouTube.Text" xml:space="preserve">
     <value>Identifant YouTube: </value>
