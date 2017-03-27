@@ -166,7 +166,7 @@
     <value>Mettre à jour</value>
   </data>
   <data name="LinkImage.Text" xml:space="preserve">
-    <value>Image couverture</value>
+    <value>Image de surimpression</value>
   </data>
   <data name="NewPage.Text" xml:space="preserve">
     <value>Nouvelle page</value>
@@ -175,7 +175,7 @@
     <value>Aucun</value>
   </data>
   <data name="OpenStyle.Text" xml:space="preserve">
-    <value>Style d'ouverture</value>
+    <value>Mode d'ouverture des histoires</value>
   </data>
   <data name="PlayButton.Text" xml:space="preserve">
     <value>Bouton de lecture</value>
