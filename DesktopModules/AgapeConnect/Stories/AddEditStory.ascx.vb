@@ -243,7 +243,12 @@ Namespace DotNetNuke.Modules.Stories
                     q.First.Field3 = tbField3.Text
                 End If
 
-                q.First.Subtitle = Subtitle.Text
+                If Subtitle.Text.Equals("Subtitle") Then
+                    q.First.Subtitle = ""
+                Else
+                    q.First.Subtitle = Subtitle.Text
+                End If
+
                 q.First.Field1 = tbField1.Text
                 q.First.Field2 = tbField2.Text
                 q.First.UpdatedDate = Today
@@ -305,7 +310,12 @@ Namespace DotNetNuke.Modules.Stories
                     insert.Field3 = tbField3.Text
                 End If
 
-                insert.Subtitle = Subtitle.Text
+                If Subtitle.Text.Equals("Subtitle") Then
+                    q.First.Subtitle = ""
+                Else
+                    q.First.Subtitle = Subtitle.Text
+                End If
+
                 insert.Field1 = tbField1.Text
                 insert.Field2 = tbField2.Text
 

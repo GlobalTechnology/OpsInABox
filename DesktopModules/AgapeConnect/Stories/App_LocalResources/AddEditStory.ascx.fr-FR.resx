@@ -117,22 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblKeywords.Help" xml:space="preserve">
-    <value>Enter keywords that relevent to this story. Keywords help people search for your stories</value>
-  </data>
-  <data name="lblKeywords.Text" xml:space="preserve">
-    <value>Keywords</value>
-  </data>
-  <data name="lblTags.Help" xml:space="preserve">
-    <value>Check the tags that are relevent to this story.</value>
-  </data>
-  <data name="lblTags.Text" xml:space="preserve">
-    <value>Tags</value>
-  </data>
   <data name="lblYouTube.Help" xml:space="preserve">
-    <value>Please insert the YouTube video id, example LSW9XgU0xC8.</value>
+    <value>Veuillez entrer uniquement l'identifant YouTube de la vidéo (exemple : LSW9XgU0xC8).</value>
   </data>
   <data name="lblYouTube.Text" xml:space="preserve">
-    <value>YouTube ID:</value>
+    <value>Identifant YouTube: </value>
   </data>
 </root>

@@ -1,13 +1,8 @@
-/*
-Skin Name: Nivo Slider Default Theme
-Skin URI: http://nivo.dev7studios.com
-Skin Type: flexible
-Description: The default skin for the Nivo Slider.
-Version: 1.2
-Author: Gilbert Pellegrom
-Author URI: http://dev7studios.com
-*/
 
+/* France's custom skin for the Stories module */
+
+
+/* END Slider Customization */
 .theme-default .nivoSlider {
 	position:relative;
 	background:#fff url(loading.gif) no-repeat 50% 50%;
@@ -19,10 +14,6 @@ Author URI: http://dev7studios.com
 .theme-default .nivoSlider img     
 {
     position: relative;
-	/*position:absolute;
-	top:0px;
-	left:0px;
-	display:none;*/
     overflow: hidden;
 }
 .theme-default .nivoSlider a {
@@ -32,13 +23,11 @@ Author URI: http://dev7studios.com
 
 .theme-default .nivo-controlNav 
 {
-    position: absolute;
-   
+    position: relative;
     height: 10px;
 	text-align: right;
 	margin-top: 5px;
-	/*bottom: -20px;*/
-   color: transparent;
+    color: transparent;
 	z-index: 9;
 	padding:  0;
 }
@@ -64,7 +53,13 @@ Author URI: http://dev7studios.com
 	background:url(arrows.png) no-repeat;
 	text-indent:-9999px;
 	border:0;
+    opacity: 0;
 }
+
+.theme-default:hover .nivo-directionNav a {
+    opacity: 1;
+}
+
 .theme-default a.nivo-nextNav {
 	background-position:-30px 0;
 	right:15px;
@@ -73,17 +68,13 @@ Author URI: http://dev7studios.com
 	left:15px;
 }
 
-
-.theme-default .nivo-caption {
-
-    /*padding-bottom: 22px;*/   
-}
 .theme-default .nivo-caption a {
     color:#3A8BC2;
     border-bottom:1px dotted #fff;
 }
 .theme-default .nivo-caption a:hover {
     color:#3A8BC2;
+    text-decoration: none;
 }
 .theme-default a.nivo-caption, .theme-default a.nivo-caption:hover,  .theme-default a.nivo-caption:link,  .theme-default a.nivoCaption:visited
 {
@@ -107,48 +98,163 @@ Author URI: http://dev7studios.com
 }
 
 .theme-default .nivo-caption {
-	    font-family: Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
     font-size: x-large ;
-
-
 	background:transparent;
-   color:#3A8BC2;
-   position: absolute ;
-   bottom: -120px;
-   overflow-y: hidden;
-   overflow-x: hidden;
-   /*max-width: 650px;*/
-   white-space: normal;
-   vertical-align: top;
+    color:#3A8BC2;
+    position: absolute ;
+    bottom: -120px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    white-space: normal;
+    vertical-align: top;
     height : 120px !important;
-    
-     padding: 10px 0 10px 0;
-}
-
-.theme-default .nivo-capiton h3 span {
-  
-    white-space: normal ;
-     height : 120px;
-    
+    padding: 10px 0 10px 0;
 }
 
 .theme-default .nivo-box {
-
 	overflow: visible;
 }
 .nivo-box img { display:block; }
-
-
 
 .theme-default .nivoSlider {
 	position:relative;
 	width: 100%;
 	height:auto;
 	overflow: visible;
-   
-	 /*background:url(/DesktopModules/AgapeConnect/Stories/themes/default/loading.gif) no-repeat 50% 50%;*/
+	background-color: Black;
+    visibility: hidden;
 }
+
+.theme-default .slider-image-text {
+    opacity: 1.0 !important;
+    line-height: 42px;
+}
+
+.theme-default a.nivo-imageLink.PlayButton {
+    background: url(play.png) no-repeat center; 
+    opacity: 1;
+}
+
+.theme-default a.nivo-imageLink {
+	background:none; 
+}
+
+/* END Slider Customization */
+
+/* BEGIN video popup */
+
+#fr_video_popup {
+    display: none;
+    z-index:10000;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    resize: both;
+    overflow: auto;
+}
+
+.fr_video_popup_close {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    -webkit-transition-duration: .5s;
+    transition-duration: .5s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+}
+
+.fr_video_popup_close:hover, .fr_video_popup_close:focus, .fr_video_popup_close:active {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    text-decoration: none;
+    color: white;
+    cursor:pointer;
+}
+
+/* END video popup */
+
+/* BEGIN Rotator1-Fr and Rotator2-Fr */
+.no-stories {
+    font-size: small;
+    color: red;
+}
+
+/* END Rotator1-Fr and Rotator2-Fr */
+
+/* BEGIN Rotator2-Fr */
+
+.rotator2 {
+    background: #F5F5F5;
+    padding: 30px 20px 30px 20px;
+    -webkit-box-shadow: inset 20px 0px 20px -25px rgba(0, 0, 0, 0.45), inset -20px 0px 20px -25px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: inset 20px 0px 20px -25px rgba(0, 0, 0, 0.45), inset -20px 0px 20px -25px rgba(0, 0, 0, 0.45);
+    box-shadow: inset 20px 0px 20px -25px rgba(0, 0, 0, 0.45), inset -20px 0px 20px -25px rgba(0, 0, 0, 0.45);
+    display: flex;
+    margin-top: 30px;
+}
+
+
+.rotator2 .theme-default {
+}
+
+.rotator2 .nivo-caption {
+	font-family: Helvetica, Arial, sans-serif;
+    font-size: x-large ;
+	background:transparent;
+    color:#3A8BC2;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    white-space: normal;
+    vertical-align: top;
+    padding: 0 10px;
+    position:relative;
+    width:300px;
+    margin-left: 10px;
+}
+
+.rotator2 .nivo-caption a:hover {
+    text-decoration: none;
+}
+
+.rotator2 a.nivo-caption, .rotator2 a.nivo-caption:hover,  .rotator2 a.nivo-caption:link,  .rotator2 a.nivoCaption:visited
+{
+    text-decoration: none;
+}
+
+.rotator2 .nivo-caption h1 {
+    margin-top:-10px;
+}
+
+.rotator2 .nivo-caption h2 {
+    margin-top:-10px;
+}
+
+.addthis_toolbox {
+    padding-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: absolute;
+    bottom: 0;
+}
+
+/* END Rotator2-Fr */
+
+/* BEGIN don't know what this goes to */
 
 .dnnGridItem:hover span.storyTitle, .dnnGridAltItem:hover span.storyTitle {
     text-decoration: none;
 }
+
+/* END don't know what this goes to */

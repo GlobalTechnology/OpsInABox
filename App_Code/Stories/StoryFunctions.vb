@@ -133,6 +133,48 @@ Public Module ViewStoryConstants
 
 End Module
 
+'TagSettings constants
+Public Module TagSettingsConstants
+
+    Public Const LINKIMAGESTRING As String = "linkImage"
+    Public Const OPENSTYLESTRING As String = "openStyle"
+
+    Public Enum LinkImage
+        None
+        PlayButton
+    End Enum
+
+    Public Enum OpenStyle
+        NewPage
+        Popup
+    End Enum
+
+End Module
+
+'Rotator constants
+Public Module RotatorConstants
+    Public Const MANUALADVANCE As String = "ManualAdvance"
+    Public Const SPEED As String = "Speed"
+    Public Const PHOTOWIDTH As String = "PhotoWidth"
+    Public Const ASPECT As String = "Aspect"
+    Public Const CHANNELID As String = "ChannelId"
+    Public Const MANUALADVANCEDEFALUT As String = "false"
+
+    Public Const SLIDELINK As String = "slideLink"
+    Public Const SLIDEIMAGE As String = "slideImage"
+    Public Const SLIDEIMAGEALTTEXT As String = "slideImageAltText"
+    Public Const SLIDEIMAGETITLE As String = "slideImageTitle"
+    Public Const SLIDEIMAGESUBTITLE As String = "slideImageSubTitle"
+    Public Const SLIDEIMAGEDESC As String = "slideImageDesc"
+    Public Const SLIDETEXTLINK As String = "slideTextLink"
+    Public Const SLIDEIMAGECSS As String = "slideLinkImageCSS"
+    Public Const SLIDERAWURL As String = "slideRawURL"
+    Public Const TARGETSELF As String = "_self"
+    Public Const TARGETBLANK As String = "_blank"
+    Public Const IMAGELINKCLASS As String = "nivo-imageLink"
+
+End Module
+
 Public Class StoryFunctions
 
 #Region "Tags"
@@ -229,6 +271,8 @@ Public Class StoryFunctions
         insert.Master = False
         insert.Keywords = ""
         insert.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId
+        insert.LinkImage = TagSettingsConstants.LinkImage.None.ToString
+        insert.OpenStyle = TagSettingsConstants.OpenStyle.NewPage.ToString()
         d.AP_Stories_Tags.InsertOnSubmit(insert)
         d.SubmitChanges()
     End Sub
@@ -244,13 +288,19 @@ Public Class StoryFunctions
         End If
     End Sub
 
-    Public Shared Sub UpdateTag(ByVal name As String, ByVal keywords As String, ByVal master As String, ByVal tagId As Integer, ByVal TabModuleId As Integer)
+    Public Shared Sub UpdateTag(ByVal name As String, ByVal keywords As String,
+                                ByVal master As String, ByVal linkImage As String,
+                                ByVal openStyle As String, ByVal tagId As Integer, ByVal TabModuleId As Integer)
         Dim d As New StoriesDataContext
-        Dim tagToUpdate As AP_Stories_Tag = (From c In d.AP_Stories_Tags Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId And c.StoryTagId = tagId).First
+        Dim tagToUpdate As AP_Stories_Tag = (From c In d.AP_Stories_Tags
+                                             Where c.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId _
+                                                 And c.StoryTagId = tagId).First
 
         tagToUpdate.TagName = name
         tagToUpdate.Keywords = keywords
         tagToUpdate.Master = master
+        tagToUpdate.LinkImage = linkImage
+        tagToUpdate.OpenStyle = openStyle
         d.SubmitChanges()
     End Sub
 
@@ -268,6 +318,29 @@ Public Class StoryFunctions
         Else
             Return (": " & String.Join(", ", tagsQueryString.Split(",")))
         End If
+    End Function
+
+    Public Shared Function GetTagPersonalisation(ByRef storyId As Integer, ByVal tabModuleId As Integer) As Dictionary(Of String, String)
+        Dim d As New StoriesDataContext
+        Dim storyList As New List(Of AP_Story)
+        Dim tagList As New List(Of Integer)
+        Dim personalDict As New Dictionary(Of String, String)
+        personalDict.Add(TagSettingsConstants.LINKIMAGESTRING, TagSettingsConstants.LinkImage.None)
+        personalDict.Add(TagSettingsConstants.OPENSTYLESTRING, TagSettingsConstants.OpenStyle.NewPage)
+
+        storyList.Add(StoryFunctions.GetStory(storyId))
+        tagList = (From c In StoryFunctions.GetTagsOfStory(storyList) Select c.StoryTagId).ToList
+
+        For Each tagID In tagList
+            If (StoryFunctions.GetTag(tagID, tabModuleId)).LinkImage <> (TagSettingsConstants.LinkImage.None).ToString Then
+                personalDict(TagSettingsConstants.LINKIMAGESTRING) = TagSettingsConstants.LinkImage.PlayButton.ToString
+            End If
+
+            If (StoryFunctions.GetTag(tagID, tabModuleId)).OpenStyle <> (TagSettingsConstants.OpenStyle.NewPage).ToString Then
+                personalDict(TagSettingsConstants.OPENSTYLESTRING) = TagSettingsConstants.OpenStyle.Popup.ToString
+            End If
+        Next
+        Return personalDict
     End Function
 
 #End Region 'Tags
@@ -683,7 +756,7 @@ Public Class StoryFunctions
         Dim d As New Stories.StoriesDataContext
 
         Dim storyCache As IQueryable(Of AP_Stories_Module_Channel_Cache) = From c In d.AP_Stories_Module_Channel_Caches
-                                                                               Where c.CacheId = cacheId
+                                                                           Where c.CacheId = cacheId
         If (storyCache.Count > 0) Then
             storyCache.First.Block = False
         End If
@@ -784,6 +857,116 @@ Public Class StoryFunctions
     End Sub
 
 #End Region 'Latitude/Longitude
+
+#Region "Rotators"
+    Public Shared Function GetRotatorSettings(ByRef stories As List(Of AP_Stories_Module_Channel_Cache),
+                                              ByVal settings As Hashtable) As Hashtable
+        Dim rotatorSettings As New Hashtable
+
+        If settings.ContainsKey(RotatorConstants.MANUALADVANCE) And
+            Not String.IsNullOrEmpty(settings(RotatorConstants.MANUALADVANCE)) Then
+            rotatorSettings.Add(RotatorConstants.MANUALADVANCE, settings(RotatorConstants.MANUALADVANCE).toLower)
+        Else
+            rotatorSettings.Add(RotatorConstants.MANUALADVANCE, RotatorConstants.MANUALADVANCEDEFALUT)
+        End If
+
+        If settings.ContainsKey(RotatorConstants.SPEED) And
+            Not String.IsNullOrEmpty(settings(RotatorConstants.SPEED)) Then
+            rotatorSettings.Add(RotatorConstants.SPEED, CInt(settings(RotatorConstants.SPEED)) * 1000)
+        Else
+            rotatorSettings.Add(RotatorConstants.SPEED, 3000)
+        End If
+
+        If settings.ContainsKey(RotatorConstants.PHOTOWIDTH) And
+            Not String.IsNullOrEmpty(settings(RotatorConstants.PHOTOWIDTH)) Then
+            rotatorSettings.Add(RotatorConstants.PHOTOWIDTH, settings(RotatorConstants.PHOTOWIDTH))
+        Else
+            rotatorSettings.Add(RotatorConstants.PHOTOWIDTH, 150)
+        End If
+
+        If settings.ContainsKey(RotatorConstants.ASPECT) And
+            Not String.IsNullOrEmpty(settings(RotatorConstants.ASPECT)) Then
+            rotatorSettings(RotatorConstants.ASPECT) = Double.Parse(CStr(settings(RotatorConstants.ASPECT)), New CultureInfo(""))
+        Else
+            rotatorSettings.Add(RotatorConstants.ASPECT, 1.0)
+        End If
+
+        If stories.Count > 0 Then
+            rotatorSettings.Add(RotatorConstants.CHANNELID, stories.First.ChannelId)
+        Else
+            rotatorSettings.Add(RotatorConstants.CHANNELID, 1)
+        End If
+
+        Return rotatorSettings
+    End Function
+
+    Public Shared Function GetRotatorSlides(ByRef stories As List(Of AP_Stories_Module_Channel_Cache),
+                                            ByRef rotatorSettings As Hashtable, ByVal portalAlias As String,
+                                            ByVal tabModuleId As Integer) As DataTable
+        Dim sliderData As New DataTable
+
+        sliderData.Columns.Add(RotatorConstants.SLIDELINK)
+        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGE)
+        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGEALTTEXT)
+        sliderData.Columns.Add(RotatorConstants.SLIDETEXTLINK)
+        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGETITLE)
+        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGESUBTITLE)
+        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGEDESC)
+        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGECSS)
+        sliderData.Columns.Add(RotatorConstants.SLIDERAWURL)
+
+        For Each story In stories
+            Try
+                Dim dataRow As DataRow = sliderData.NewRow()
+
+                'setup for the link
+                Dim viewStyles As Dictionary(Of String, String) = StoryFunctions.GetTagPersonalisation(story.GUID, tabModuleId)
+                Dim cssHyperlink As String = ""
+                Dim clickAction As String = ""
+
+                Dim target = RotatorConstants.TARGETBLANK
+                If story.Link.Contains(portalAlias) Then
+                    target = RotatorConstants.TARGETSELF
+                End If
+
+                'check for personalized link image
+                If (viewStyles.Item(TagSettingsConstants.LINKIMAGESTRING).Equals(TagSettingsConstants.LinkImage.PlayButton.ToString)) Then
+                    cssHyperlink = RotatorConstants.IMAGELINKCLASS & " " & TagSettingsConstants.LinkImage.PlayButton.ToString
+                Else
+                    cssHyperlink = RotatorConstants.IMAGELINKCLASS
+                End If
+                dataRow(RotatorConstants.SLIDEIMAGECSS) = cssHyperlink
+
+                'check for personalized opening style
+                If (viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING).Equals(TagSettingsConstants.OpenStyle.Popup.ToString)) Then
+                    clickAction = "onclick=popupvideo('" & story.Spare1 & "', '" & story.ChannelId & "');" 'pass video id to pop up
+                    dataRow(RotatorConstants.SLIDERAWURL) = "youtube.com/watch?v=" & story.Spare1
+                Else
+                    clickAction = "window.open('" & story.Link & "', '" & target & "');"
+                    dataRow(RotatorConstants.SLIDERAWURL) = story.Link
+                End If
+
+                'creation of link on slider
+                dataRow(RotatorConstants.SLIDELINK) = "javascript: registerClick(" & story.CacheId & "); " & clickAction
+
+                'creation of link on slider title
+                dataRow(RotatorConstants.SLIDETEXTLINK) = "<a href=""" & dataRow(RotatorConstants.SLIDELINK) & """>"
+
+                dataRow(RotatorConstants.SLIDEIMAGE) = story.ImageId
+                dataRow(RotatorConstants.SLIDEIMAGEALTTEXT) = story.Headline
+                dataRow(RotatorConstants.SLIDEIMAGETITLE) = story.Headline
+                dataRow(RotatorConstants.SLIDEIMAGESUBTITLE) = story.Subtitle
+                dataRow(RotatorConstants.SLIDEIMAGEDESC) = story.Description
+
+                sliderData.Rows.Add(dataRow)
+            Catch ex As Exception
+            End Try
+        Next
+
+        Return sliderData
+    End Function
+
+#End Region 'Rotators
 
     Public Shared Function GetPhotoURL(ByVal imageId As Nullable(Of Integer)) As String
 
@@ -919,6 +1102,12 @@ Public Class StoryFunctions
                             insert.Longitude = theChannel.Longitude
                         End If
                         Try
+
+                            insert.Spare1 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field1").First.GetObject(Of XElement).Value
+                            insert.Spare2 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field2").First.GetObject(Of XElement).Value
+                            insert.Spare3 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field3").First.GetObject(Of XElement).Value
+                            insert.Subtitle = row.ElementExtensions.Where(Function(x) x.OuterName = "Subtitle").First.GetObject(Of XElement).Value
+
                             If row.ElementExtensions.Where(Function(x) x.OuterName = "translationGroup").Count > 0 Then
                                 insert.TranslationGroup = CInt(row.ElementExtensions.Where(Function(x) x.OuterName = "translationGroup").First.GetObject(Of XElement).Value)
                             End If
@@ -986,6 +1175,11 @@ Public Class StoryFunctions
                             If row.ElementExtensions.Where(Function(x) x.OuterName = "translationGroup").Count > 0 Then
                                 existingStory.First.TranslationGroup = CInt(row.ElementExtensions.Where(Function(x) x.OuterName = "translationGroup").First.GetObject(Of XElement).Value)
                             End If
+
+                            existingStory.First.Spare1 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field1").First.GetObject(Of XElement).Value
+                            existingStory.First.Spare2 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field2").First.GetObject(Of XElement).Value
+                            existingStory.First.Spare3 = row.ElementExtensions.Where(Function(x) x.OuterName = "Field3").First.GetObject(Of XElement).Value
+                            existingStory.First.Subtitle = row.ElementExtensions.Where(Function(x) x.OuterName = "Subtitle").First.GetObject(Of XElement).Value
 
                         Catch ex As Exception
 

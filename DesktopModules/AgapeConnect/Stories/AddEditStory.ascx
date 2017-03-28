@@ -90,6 +90,29 @@
                     </td>
                 </tr>
             </table>
+            <table width="100%" border="0" cellpadding="10" cellspacing="2">
+                <tr>
+                    <td><strong>Tags:</strong></td>
+                    <td><asp:CheckBoxList ID="cblTags" runat="server" Font-Size="Small"></asp:CheckBoxList></td>
+                </tr>
+                <tr>
+                    <td><strong>Keywords:</strong></td>
+                    <td><asp:TextBox ID="tbKeywords" runat="server" Width="100%" MaxLength="50"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td><b><dnn:Label ID="lblYouTube" runat="server" ResourceKey="lblYouTube" ></dnn:Label></b></td>
+                    <td><asp:TextBox ID="tbField1" runat="server" Width="100%"></asp:TextBox></td>
+                </tr>
+                <tr>
+                     <td><b>Field2:</b></td>
+                     <td><asp:TextBox ID="tbField2" runat="server" Width="100%" MaxLength="50"></asp:TextBox></td>
+                </tr>
+                <tr>
+                     <td><b><asp:Label ID="lblField3" runat="server" Text="Field3:"></asp:Label></b></td>
+                     <td><asp:TextBox ID="tbField3" runat="server" Width="100%" MaxLength="50"></asp:TextBox></td>
+                </tr>
+            </table>
+            <br />
         </div>
         <div class="Agape_FullStory_bodytext" style="padding-right: 12px; margin-bottom: 10px;">
             <table>
@@ -161,52 +184,7 @@
 
 
 
-                        <table border="0" cellpadding="2" cellspacing="2">
-                            <tr>
-                                <td>
-                                    <strong>Tags:</strong>
 
-                                </td>
-                                <td>
-                                    <asp:CheckBoxList ID="cblTags" runat="server" Font-Size="Small"></asp:CheckBoxList>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <strong>Keywords:</strong>
-                                </td>
-                                <td>
-                                    <asp:TextBox ID="tbKeywords" runat="server" Width="100%" MaxLength="50"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Field1:</b>
-                                </td>
-                                <td>
-                                    <asp:TextBox ID="tbField1" runat="server" Width="100%" TextMode="MultiLine"></asp:TextBox>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <b>Field2:</b>
-                                </td>
-                                <td>
-                                    <asp:TextBox ID="tbField2" runat="server" Width="100%" MaxLength="50"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>
-                                        <asp:Label ID="lblField3" runat="server" Text="Field3:"></asp:Label></b>
-                                </td>
-                                <td>
-                                    <asp:TextBox ID="tbField3" runat="server" Width="100%" MaxLength="50"></asp:TextBox>
-                                </td>
-                            </tr>
-                        </table>
 
 
 

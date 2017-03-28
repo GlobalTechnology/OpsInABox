@@ -1,10 +1,8 @@
 <%@ Control Language="vb" AutoEventWireup="false" CodeFile="StorySettings.ascx.vb"
     Inherits="DotNetNuke.Modules.Stories.StorySettings" %>
-    
 <%@ Register Assembly="DotNetNuke" Namespace="DotNetNuke.UI.WebControls" TagPrefix="uc1" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <%@ Register Src="../StaffAdmin/Controls/acImage.ascx" TagName="acImage" TagPrefix="uc1" %>
-
 
 <script src="/js/jquery.numeric.js" type="text/javascript"></script>
 
@@ -43,32 +41,37 @@
         $('.TagsDisplayType').change();
 
         $('.DisplayType').change(function () {
-            //alert($(this).val());
             var v = $(this).val();
-
             var t = v.substring(0, v.indexOf(':'));
-
-
             $("[class^='Type']").hide();
             $('.Type' + t).show();
-
-
         });
         $('.DisplayType').change();
 
         $("#<%= ddlAspectMode.ClientID %>").change(function () {
-            //alert($(this).val());
             var m = $(this).val();
-
-            
-            
             $("[class^='AspectMode']").hide();
             $('.AspectMode' + m).show();
-
-
         });
         $("#<%= ddlAspectMode.ClientID %>").change();
 
+        //show or hide speed slider on click of manual rotation
+        $('#<%= cbManualAdvance.ClientId %>').click(function () {
+        if ($(this).is(':checked')) {
+            $("[class='Type1 Speed']").hide();
+        }
+        else {
+            $("[class='Type1 Speed']").show();
+        }
+        });
+
+        //check current status of manual rotation and show or hide speed slider
+        if ($('#<%=cbManualAdvance.ClientID %>').attr('checked')) {
+            $("[class='Type1 Speed']").hide();
+        }
+        else {
+            $("[class='Type1 Speed']").show();
+        }
 
         $("#speed").slider({
             value: <%= lblSpeed.Text%>,
@@ -85,6 +88,8 @@
             }
          });
         $("#<%= lblSpeed.ClientID%>").html($("#speed").slider("value"));
+
+
     }
 
     $(document).ready(function () {
@@ -154,7 +159,7 @@
 
 <div style="width:100%; text-align: center;">
 <asp:HiddenField id='hfStoryPhotoAspect' runat="server"    />
-    <asp:HiddenField id='hfTagPhotoAspect' runat="server"    />
+<asp:HiddenField id='hfTagPhotoAspect' runat="server"    />
 <asp:HiddenField id='hfSpeed' runat="server"  Value="3"  />
 
 <table cellpadding="4px" border="1" class="SettingsTable" style="margin: 0 auto;">
@@ -195,8 +200,18 @@
         </td>
     </tr>
 
+        <tr class="Type1">
+        <td>
+            <dnn:Label ID="lblManualAdvance" runat="server" ResourceKey="lblManualAdvance" />
+        </td>
+        <td align="center">
+         <div id="ManualAdvance" style="width:400px; margin:15px;"></div>
+            <asp:CheckBox ID="cbManualAdvance" runat="server" />
+            <div style="clear: both;"></div>
+        </td>
+    </tr>
 
-    <tr valign="middle" class="Type1">
+    <tr valign="middle" class="Type1 Speed">
         <td>
             <dnn:Label ID="Label2" runat="server" ResourceKey="lblSpeed" />
         </td>
