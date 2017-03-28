@@ -311,9 +311,9 @@ Namespace DotNetNuke.Modules.Stories
                 End If
 
                 If Subtitle.Text.Equals("Subtitle") Then
-                    q.First.Subtitle = ""
+                    insert.Subtitle = ""
                 Else
-                    q.First.Subtitle = Subtitle.Text
+                    insert.Subtitle = Subtitle.Text
                 End If
 
                 insert.Field1 = tbField1.Text
