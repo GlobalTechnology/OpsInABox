@@ -1,8 +1,5 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" Explicit="True" CodeFile="Footer.ascx.vb" Inherits="Portals__default_Skins_AgapeFR_controls_Footer" %>
-<%@ Register TagPrefix="dnn" TagName="LOGO" Src="~/Admin/Skins/Logo.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="COPYRIGHT" Src="~/Admin/Skins/Copyright.ascx" %>
-<%@ Register TagPrefix="ddr" Namespace="DotNetNuke.Web.DDRMenu.TemplateEngine" Assembly="DotNetNuke.Web.DDRMenu" %>
-<%@ Register TagPrefix="ddr" TagName="MENU" Src="~/DesktopModules/DDRMenu/Menu.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="TEXT" Src="~/Admin/Skins/Text.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <dnn:DnnJsInclude runat="server" FilePath="js/popup-fr.js" PathNameAlias="SkinPath" />
@@ -12,12 +9,7 @@
         <div id="bar5" class="bar">
         </div>
         <div id="bar6" class="bar">
-            <div id="footer1" class="centeredbox">
-                <div id="logoFooter">
-                    <dnn:LOGO runat="server" ID="dnnLOGOFOOTER" />
-                </div>
-                <ddr:MENU ID="SITEMAP" MenuStyle="/templates/AgapeFRSitemap/" NodeSelector="*" runat="server" />
-            </div>
+
         </div>
         <div id="bar7" class="bar">
             <div id="footer2" class="centeredbox">
@@ -32,27 +24,6 @@
         <div id="bar8" class="bar">
             <div id="footer3" class="centeredbox">
                 <div id="contactAndSlogan">
-                    <div id="postalAddress">
-                        <dnn:TEXT runat="server" ID="txtPostalAddress" ResourceKey="OzoirAddress" />
-                    </div>
-                    <div id="telFaxEmail">
-                        <div id="tel">
-                            <div id="telIcon"></div>
-                            <div id="telText">
-                                <dnn:TEXT runat="server" ID="txtTel" ResourceKey="OzoirPhone" CssClass="" />
-                            </div>
-                        </div>
-                        <div id="fax">
-                            <div id="faxIcon"></div>
-                            <div id="faxText">
-                                <dnn:TEXT runat="server" ID="txtFax" ResourceKey="OzoirFax" CssClass="" />
-                            </div>
-                        </div>
-                        <div id="email">
-                            <div id="emailIcon"></div>
-                            <div id="emailText"><a href="mailto:<%=Translate("OzoirEmail.Text")%>?subject=<%=Translate("OzoirEmailSubject.Text")%>" target="_blank"><%=Translate("OzoirEmail.Text")%></a></div>
-                        </div>
-                    </div>
                     <div id="slogan">
                         <dnn:TEXT runat="server" ID="txtSlogan" ResourceKey="Slogan" CssClass="" />
                     </div>
@@ -63,7 +34,6 @@
                     </div>
                     <div id="mentionslegales"><a href="/mentionslegales" rel="nofollow"><%=Translate("MentionsLegales.Text")%></a></div>
                 </div>
-
             </div>
         </div>
     </div>
