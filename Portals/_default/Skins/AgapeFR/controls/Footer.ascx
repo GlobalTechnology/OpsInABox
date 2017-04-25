@@ -6,11 +6,6 @@
 
 <div class="bar">
     <div class="globalbox">
-        <div id="bar5" class="bar">
-        </div>
-        <div id="bar6" class="bar">
-
-        </div>
         <div id="bar7" class="bar">
             <div id="footer2" class="centeredbox">
                 <div id="socialmedia">

@@ -106,10 +106,6 @@ ul.navhor li {
 	text-decoration: underline;
 }
 
-#menu2 .navhor li {
-	/*line-height: 34px;*/
-}
-
 #menu2 .navhor li #pointer {
 	width: 0; 
 	height: 0; 
