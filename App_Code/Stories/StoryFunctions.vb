@@ -174,8 +174,11 @@ Public Module ControlerConstants
     Public Const TARGETBLANK As String = "_blank"
     Public Const IMAGELINKCLASS As String = "nivo-imageLink"
     Public Const URL As String = "URL"
+    Public Const LINK As String = "link"
     Public Const CLICKACTION As String = "action"
     Public Const LINKIMAGE As String = "linkImage"
+    Public Const HEADLINE As String = "headline"
+    Public Const DESCRIPTION As String = "description"
 
 End Module
 
@@ -723,19 +726,25 @@ Public Class StoryFunctions
 
     End Function
 
-    Public Shared Function GetListData(ByRef stories As List(Of AP_Stories_Module_Channel_Cache),
+    Public Shared Function GetListData(ByRef stories As IEnumerable(Of AP_Stories_Module_Channel_Cache),
                                            ByVal portalAlias As String,
                                            ByVal tabModuleId As Integer) As DataTable
         Dim listData As New DataTable
-        listData.Columns.Add()
+        listData.Columns.Add(ControlerConstants.LINK)
+        listData.Columns.Add(ControlerConstants.HEADLINE)
+        listData.Columns.Add(ControlerConstants.DESCRIPTION)
+        listData.Columns.Add(ControlerConstants.LINKIMAGE)
 
         For Each story In stories
 
-            Dim linkDetails As Dictionary(Of String, String) =
-                    StoryFunctions.GetLinkDetails(story, portalAlias, tabModuleId)
+            Dim dataRow As DataRow = listData.NewRow()
+            Dim linkDetails As Dictionary(Of String, String) = StoryFunctions.GetLinkDetails(story, portalAlias, tabModuleId)
 
-            story.Link = linkDetails(ControlerConstants.URL)
-
+            dataRow(ControlerConstants.LINK) = "javascript: registerClick(" & story.CacheId & "); " & linkDetails(ControlerConstants.CLICKACTION)
+            dataRow(ControlerConstants.HEADLINE) = story.Headline
+            dataRow(ControlerConstants.DESCRIPTION) = story.Description
+            dataRow(ControlerConstants.LINKIMAGE) = story.ImageId
+            listData.Rows.Add(dataRow)
         Next
 
         Return listData

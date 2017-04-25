@@ -13,11 +13,6 @@ Imports Stories
 Namespace DotNetNuke.Modules.AgapeConnect.Stories
     Partial Class ListFullWidth_Fr
         Inherits Entities.Modules.PortalModuleBase
-        'Adding Stories Translation
-        Dim d As New StoriesDataContext
-
-        Public divWidth As Integer = 150
-        Public divHeight As Integer = 150
 
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             'Allowing dynamically loaded controls to be translated using the DNN translation system is complex...
@@ -63,27 +58,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 StoryFunctions.FormatTagsSelected(Request.QueryString(TAGS_KEYWORD))
         End Sub
 
-        Public Sub Initialize(ByVal Stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
-
-            Dim photoWidth As Integer = 150
-            If Not String.IsNullOrEmpty(settings("PhotoWidth")) Then
-                photoWidth = settings("PhotoWidth")
-            End If
-
-            Dim photoAspect As Double = 1.0
-            If Not String.IsNullOrEmpty(settings("PhotoWidth")) Then
-                photoAspect = Double.Parse(CStr(settings("Aspect")), New CultureInfo(""))
-            End If
-
-            Dim photoHeight As Integer = CDbl(photoWidth) / photoAspect
-
-            Dim AspectMode As Integer = 1
-            If Not String.IsNullOrEmpty(settings("AspectMode")) Then
-                AspectMode = settings("AspectMode")
-            End If
-
-            divWidth = photoWidth
-            divHeight = photoHeight
+        Public Sub Initialize(ByVal stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
 
             Dim skip As Integer = 0
             Dim pg As Integer = 0
@@ -92,13 +67,19 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 skip = pg * CInt(settings("NumberOfStories"))
             End If
 
-            dlStories.DataSource = Stories.Skip(skip).Take(CInt(settings("NumberOfStories")))
+            'Dim storiesList As List(Of AP_Stories_Module_Channel_Cache) = stories.Skip(skip).Take(CInt(settings("NumberOfStories")))
+            Dim storiesList = stories.Skip(skip).Take(CInt(settings("NumberOfStories")))
+            Dim listData As DataTable = StoryFunctions.GetListData(storiesList, PortalSettings.DefaultPortalAlias,
+                                                                          TabModuleId)
+
+            dlStories.DataSource = listData
             dlStories.DataBind()
 
-            If Stories.Count > CInt(settings("NumberOfStories")) Then
+            If stories.Count > CInt(settings("NumberOfStories")) Then
                 btnPrev.Visible = True
                 btnNext.Visible = True
                 Dim urlStub = NavigateURL()
+
 
                 'Construct the URLs for btnPrev and btnNext
                 If (Request.QueryString(TAGS_KEYWORD) <> "") Then
@@ -119,7 +100,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 End If
 
                 'determine state of btnNext
-                If (Math.Floor((Stories.Count - 1) / CInt(settings("NumberOfStories"))) > pg) Then
+                If (Math.Floor((stories.Count - 1) / CInt(settings("NumberOfStories"))) > pg) Then
                     btnNext.Enabled = True
                 Else
                     btnNext.Style.Add("opacity", "0.5")

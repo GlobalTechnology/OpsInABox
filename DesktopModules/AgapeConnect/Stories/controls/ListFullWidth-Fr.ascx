@@ -3,30 +3,26 @@
 
 <script type="text/javascript">
 
-    function registerClick(c, l) {
-        $.ajax({
-            type: 'POST', url: "<%= NavigateURL() %>",
-            data: ({ StoryLink: c })
-        });
-        var target = "_blank"
-        if (l.indexOf("<%= PortalSettings.DefaultPortalAlias %>") >= 0)
-            target = "_self"
-        window.open(l, target);
-    }
+   function registerClick(c)
+   {
+        $.ajax({ type: 'POST', url: "<%= NavigateURL() %>",
+                        data: ({ StoryLink: c })
+                    });
+   }
 </script>
 
 <div id="ListFullWidth">
 <asp:DataList runat="server" ID="dlStories" AllowPaging="true" Width="100%">
     <ItemTemplate>
         <asp:HyperLink ID="hlStory" runat="server"
-            NavigateUrl='<%# "javascript: registerClick(" & DataBinder.Eval(Container.DataItem, "CacheId") & ", """ & CStr(DataBinder.Eval(Container.DataItem, "Link")) & """); "%>'>
+            NavigateUrl='<%# Eval(ControlerConstants.LINK) %>'>
             <div class="items" runat="server">
                 <div class="item">
-                    <h4><asp:Label ID="lblStoryTitle" runat="server"  Text='<%# Eval("Headline")%>' class="storyTitle" /></h4>
-                    <p><asp:Label ID="lblStoryPreview" runat="server" Text='<%# Eval("Description")%>' class="storyPreview" /></p>
+                    <h4><asp:Label ID="lblStoryTitle" runat="server"  Text='<%# Eval(ControlerConstants.HEADLINE) %>' class="storyTitle" /></h4>
+                    <p><asp:Label ID="lblStoryPreview" runat="server" Text='<%# Eval(ControlerConstants.DESCRIPTION) %>' class="storyPreview" /></p>
                 </div>
                 <div class="item">
-                    <asp:Image ID="StoryThumbnail" runat="server" CssClass="thumbnail" ImageUrl='<%# Eval("ImageId")  %>' />
+                    <asp:Image ID="StoryThumbnail" runat="server" CssClass="thumbnail" ImageUrl='<%# Eval(ControlerConstants.LINKIMAGE) %>' />
                 </div>
             </div>
         </asp:HyperLink>
