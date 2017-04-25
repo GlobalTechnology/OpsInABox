@@ -8,7 +8,12 @@ ul.navhor li {
     padding: 0;
     margin: 0;
 }
-
+/*===================== MENU ===================== */
+#header #menu {
+    position: absolute;
+    right:0px;
+    top:55px;
+}
 /*===================== MENU1 ===================== */
 
 #header #menu1 {
