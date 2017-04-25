@@ -152,7 +152,7 @@ Public Module TagSettingsConstants
 End Module
 
 'Rotator constants
-Public Module RotatorConstants
+Public Module ControlerConstants
     Public Const MANUALADVANCE As String = "ManualAdvance"
     Public Const SPEED As String = "Speed"
     Public Const PHOTOWIDTH As String = "PhotoWidth"
@@ -169,9 +169,13 @@ Public Module RotatorConstants
     Public Const SLIDETEXTLINK As String = "slideTextLink"
     Public Const SLIDEIMAGECSS As String = "slideLinkImageCSS"
     Public Const SLIDERAWURL As String = "slideRawURL"
+
     Public Const TARGETSELF As String = "_self"
     Public Const TARGETBLANK As String = "_blank"
     Public Const IMAGELINKCLASS As String = "nivo-imageLink"
+    Public Const URL As String = "URL"
+    Public Const CLICKACTION As String = "action"
+    Public Const LINKIMAGE As String = "linkImage"
 
 End Module
 
@@ -682,6 +686,62 @@ Public Class StoryFunctions
         Return control
     End Function
 
+    Public Shared Function GetLinkDetails(ByRef story As AP_Stories_Module_Channel_Cache,
+                                          ByVal portalAlias As String, ByVal tabModuleId As Integer) As Dictionary(Of String, String)
+
+        Dim viewStyles As Dictionary(Of String, String) = StoryFunctions.GetTagPersonalisation(story.GUID, tabModuleId)
+        Dim linkDetails As New Dictionary(Of String, String)
+        Dim URL As String = ""
+        Dim linkImage As String = ""
+        Dim clickAction As String = ""
+
+        Dim target = ControlerConstants.TARGETBLANK
+        If story.Link.Contains(portalAlias) Then
+            target = ControlerConstants.TARGETSELF
+        End If
+
+        'personalized opening style
+        If (viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING).Equals(TagSettingsConstants.OpenStyle.Popup.ToString)) Then
+            clickAction = "onclick=popupvideo('" & story.Spare1 & "', '" & story.ChannelId & "');" 'pass video id to pop up
+            URL = "youtube.com/watch?v=" & story.Spare1
+        Else
+            clickAction = "window.open('" & story.Link & "', '" & target & "');"
+            URL = story.Link
+        End If
+
+        'personalized link image
+        If (viewStyles.Item(TagSettingsConstants.LINKIMAGESTRING).Equals(TagSettingsConstants.LinkImage.PlayButton.ToString)) Then
+            linkImage = ControlerConstants.IMAGELINKCLASS & " " & TagSettingsConstants.LinkImage.PlayButton.ToString
+        Else
+            linkImage = ControlerConstants.IMAGELINKCLASS
+        End If
+
+        linkDetails.Add(ControlerConstants.CLICKACTION, clickAction)
+        linkDetails.Add(ControlerConstants.URL, URL)
+        linkDetails.Add(ControlerConstants.LINKIMAGE, linkImage)
+        Return linkDetails
+
+    End Function
+
+    Public Shared Function GetListData(ByRef stories As List(Of AP_Stories_Module_Channel_Cache),
+                                           ByVal portalAlias As String,
+                                           ByVal tabModuleId As Integer) As DataTable
+        Dim listData As New DataTable
+        listData.Columns.Add()
+
+        For Each story In stories
+
+            Dim linkDetails As Dictionary(Of String, String) =
+                    StoryFunctions.GetLinkDetails(story, portalAlias, tabModuleId)
+
+            story.Link = linkDetails(ControlerConstants.URL)
+
+        Next
+
+        Return listData
+    End Function
+
+
 #End Region
 
 #Region "Templates"
@@ -863,38 +923,38 @@ Public Class StoryFunctions
                                               ByVal settings As Hashtable) As Hashtable
         Dim rotatorSettings As New Hashtable
 
-        If settings.ContainsKey(RotatorConstants.MANUALADVANCE) And
-            Not String.IsNullOrEmpty(settings(RotatorConstants.MANUALADVANCE)) Then
-            rotatorSettings.Add(RotatorConstants.MANUALADVANCE, settings(RotatorConstants.MANUALADVANCE).toLower)
+        If settings.ContainsKey(ControlerConstants.MANUALADVANCE) And
+            Not String.IsNullOrEmpty(settings(ControlerConstants.MANUALADVANCE)) Then
+            rotatorSettings.Add(ControlerConstants.MANUALADVANCE, settings(ControlerConstants.MANUALADVANCE).toLower)
         Else
-            rotatorSettings.Add(RotatorConstants.MANUALADVANCE, RotatorConstants.MANUALADVANCEDEFALUT)
+            rotatorSettings.Add(ControlerConstants.MANUALADVANCE, ControlerConstants.MANUALADVANCEDEFALUT)
         End If
 
-        If settings.ContainsKey(RotatorConstants.SPEED) And
-            Not String.IsNullOrEmpty(settings(RotatorConstants.SPEED)) Then
-            rotatorSettings.Add(RotatorConstants.SPEED, CInt(settings(RotatorConstants.SPEED)) * 1000)
+        If settings.ContainsKey(ControlerConstants.SPEED) And
+            Not String.IsNullOrEmpty(settings(ControlerConstants.SPEED)) Then
+            rotatorSettings.Add(ControlerConstants.SPEED, CInt(settings(ControlerConstants.SPEED)) * 1000)
         Else
-            rotatorSettings.Add(RotatorConstants.SPEED, 3000)
+            rotatorSettings.Add(ControlerConstants.SPEED, 3000)
         End If
 
-        If settings.ContainsKey(RotatorConstants.PHOTOWIDTH) And
-            Not String.IsNullOrEmpty(settings(RotatorConstants.PHOTOWIDTH)) Then
-            rotatorSettings.Add(RotatorConstants.PHOTOWIDTH, settings(RotatorConstants.PHOTOWIDTH))
+        If settings.ContainsKey(ControlerConstants.PHOTOWIDTH) And
+            Not String.IsNullOrEmpty(settings(ControlerConstants.PHOTOWIDTH)) Then
+            rotatorSettings.Add(ControlerConstants.PHOTOWIDTH, settings(ControlerConstants.PHOTOWIDTH))
         Else
-            rotatorSettings.Add(RotatorConstants.PHOTOWIDTH, 150)
+            rotatorSettings.Add(ControlerConstants.PHOTOWIDTH, 150)
         End If
 
-        If settings.ContainsKey(RotatorConstants.ASPECT) And
-            Not String.IsNullOrEmpty(settings(RotatorConstants.ASPECT)) Then
-            rotatorSettings(RotatorConstants.ASPECT) = Double.Parse(CStr(settings(RotatorConstants.ASPECT)), New CultureInfo(""))
+        If settings.ContainsKey(ControlerConstants.ASPECT) And
+            Not String.IsNullOrEmpty(settings(ControlerConstants.ASPECT)) Then
+            rotatorSettings(ControlerConstants.ASPECT) = Double.Parse(CStr(settings(ControlerConstants.ASPECT)), New CultureInfo(""))
         Else
-            rotatorSettings.Add(RotatorConstants.ASPECT, 1.0)
+            rotatorSettings.Add(ControlerConstants.ASPECT, 1.0)
         End If
 
         If stories.Count > 0 Then
-            rotatorSettings.Add(RotatorConstants.CHANNELID, stories.First.ChannelId)
+            rotatorSettings.Add(ControlerConstants.CHANNELID, stories.First.ChannelId)
         Else
-            rotatorSettings.Add(RotatorConstants.CHANNELID, 1)
+            rotatorSettings.Add(ControlerConstants.CHANNELID, 1)
         End If
 
         Return rotatorSettings
@@ -905,58 +965,38 @@ Public Class StoryFunctions
                                             ByVal tabModuleId As Integer) As DataTable
         Dim sliderData As New DataTable
 
-        sliderData.Columns.Add(RotatorConstants.SLIDELINK)
-        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGE)
-        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGEALTTEXT)
-        sliderData.Columns.Add(RotatorConstants.SLIDETEXTLINK)
-        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGETITLE)
-        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGESUBTITLE)
-        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGEDESC)
-        sliderData.Columns.Add(RotatorConstants.SLIDEIMAGECSS)
-        sliderData.Columns.Add(RotatorConstants.SLIDERAWURL)
+        sliderData.Columns.Add(ControlerConstants.SLIDELINK)
+        sliderData.Columns.Add(ControlerConstants.SLIDEIMAGE)
+        sliderData.Columns.Add(ControlerConstants.SLIDEIMAGEALTTEXT)
+        sliderData.Columns.Add(ControlerConstants.SLIDETEXTLINK)
+        sliderData.Columns.Add(ControlerConstants.SLIDEIMAGETITLE)
+        sliderData.Columns.Add(ControlerConstants.SLIDEIMAGESUBTITLE)
+        sliderData.Columns.Add(ControlerConstants.SLIDEIMAGEDESC)
+        sliderData.Columns.Add(ControlerConstants.SLIDEIMAGECSS)
+        sliderData.Columns.Add(ControlerConstants.SLIDERAWURL)
 
         For Each story In stories
             Try
                 Dim dataRow As DataRow = sliderData.NewRow()
+                Dim linkDetails As Dictionary(Of String, String) = GetLinkDetails(story, portalAlias, tabModuleId)
 
-                'setup for the link
-                Dim viewStyles As Dictionary(Of String, String) = StoryFunctions.GetTagPersonalisation(story.GUID, tabModuleId)
-                Dim cssHyperlink As String = ""
-                Dim clickAction As String = ""
+                'personalized link image
+                dataRow(ControlerConstants.SLIDEIMAGECSS) = linkDetails(ControlerConstants.LINKIMAGE)
 
-                Dim target = RotatorConstants.TARGETBLANK
-                If story.Link.Contains(portalAlias) Then
-                    target = RotatorConstants.TARGETSELF
-                End If
-
-                'check for personalized link image
-                If (viewStyles.Item(TagSettingsConstants.LINKIMAGESTRING).Equals(TagSettingsConstants.LinkImage.PlayButton.ToString)) Then
-                    cssHyperlink = RotatorConstants.IMAGELINKCLASS & " " & TagSettingsConstants.LinkImage.PlayButton.ToString
-                Else
-                    cssHyperlink = RotatorConstants.IMAGELINKCLASS
-                End If
-                dataRow(RotatorConstants.SLIDEIMAGECSS) = cssHyperlink
-
-                'check for personalized opening style
-                If (viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING).Equals(TagSettingsConstants.OpenStyle.Popup.ToString)) Then
-                    clickAction = "onclick=popupvideo('" & story.Spare1 & "', '" & story.ChannelId & "');" 'pass video id to pop up
-                    dataRow(RotatorConstants.SLIDERAWURL) = "youtube.com/watch?v=" & story.Spare1
-                Else
-                    clickAction = "window.open('" & story.Link & "', '" & target & "');"
-                    dataRow(RotatorConstants.SLIDERAWURL) = story.Link
-                End If
+                'personalized opening style
+                dataRow(ControlerConstants.SLIDERAWURL) = linkDetails(ControlerConstants.URL)
 
                 'creation of link on slider
-                dataRow(RotatorConstants.SLIDELINK) = "javascript: registerClick(" & story.CacheId & "); " & clickAction
+                dataRow(ControlerConstants.SLIDELINK) = "javascript: registerClick(" & story.CacheId & "); " & linkDetails(ControlerConstants.CLICKACTION)
 
                 'creation of link on slider title
-                dataRow(RotatorConstants.SLIDETEXTLINK) = "<a href=""" & dataRow(RotatorConstants.SLIDELINK) & """>"
+                dataRow(ControlerConstants.SLIDETEXTLINK) = "<a href=""" & dataRow(ControlerConstants.SLIDELINK) & """>"
 
-                dataRow(RotatorConstants.SLIDEIMAGE) = story.ImageId
-                dataRow(RotatorConstants.SLIDEIMAGEALTTEXT) = story.Headline
-                dataRow(RotatorConstants.SLIDEIMAGETITLE) = story.Headline
-                dataRow(RotatorConstants.SLIDEIMAGESUBTITLE) = story.Subtitle
-                dataRow(RotatorConstants.SLIDEIMAGEDESC) = story.Description
+                dataRow(ControlerConstants.SLIDEIMAGE) = story.ImageId
+                dataRow(ControlerConstants.SLIDEIMAGEALTTEXT) = story.Headline
+                dataRow(ControlerConstants.SLIDEIMAGETITLE) = story.Headline
+                dataRow(ControlerConstants.SLIDEIMAGESUBTITLE) = story.Subtitle
+                dataRow(ControlerConstants.SLIDEIMAGEDESC) = story.Description
 
                 sliderData.Rows.Add(dataRow)
             Catch ex As Exception

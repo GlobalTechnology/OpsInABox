@@ -50,10 +50,10 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
             Dim rotatorSettings As Hashtable = StoryFunctions.GetRotatorSettings(stories, settings)
 
-            hfManualAdvance.Value = rotatorSettings.Item(RotatorConstants.MANUALADVANCE)
-            hfPauseTime.Value = rotatorSettings.Item(RotatorConstants.SPEED)
-            hfDivWidth.Value = rotatorSettings.Item(RotatorConstants.PHOTOWIDTH)
-            hfChannelId.Value = rotatorSettings.Item(RotatorConstants.CHANNELID)
+            hfManualAdvance.Value = rotatorSettings.Item(ControlerConstants.MANUALADVANCE)
+            hfPauseTime.Value = rotatorSettings.Item(ControlerConstants.SPEED)
+            hfDivWidth.Value = rotatorSettings.Item(ControlerConstants.PHOTOWIDTH)
+            hfChannelId.Value = rotatorSettings.Item(ControlerConstants.CHANNELID)
 
             Dim sliderData As DataTable = StoryFunctions.GetRotatorSlides(stories, rotatorSettings,
                                                                           PortalSettings.DefaultPortalAlias,
@@ -61,10 +61,10 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
             'customize title for this rotator
             For Each row As DataRow In sliderData.Rows
-                row.Item(RotatorConstants.SLIDEIMAGETITLE) = row.Item(RotatorConstants.SLIDETEXTLINK) &
-                    "<h1>" & row.Item(RotatorConstants.SLIDEIMAGETITLE) & "</h1> " &
-                    "<h2>" & row.Item(RotatorConstants.SLIDEIMAGESUBTITLE) & "</h2> " &
-                    "<p>" & row.Item(RotatorConstants.SLIDEIMAGEDESC) & "</p></a>" &
+                row.Item(ControlerConstants.SLIDEIMAGETITLE) = row.Item(ControlerConstants.SLIDETEXTLINK) &
+                    "<h1>" & row.Item(ControlerConstants.SLIDEIMAGETITLE) & "</h1> " &
+                    "<h2>" & row.Item(ControlerConstants.SLIDEIMAGESUBTITLE) & "</h2> " &
+                    "<p>" & row.Item(ControlerConstants.SLIDEIMAGEDESC) & "</p></a>" &
                      AddThisDiv(row)
             Next
 
@@ -76,10 +76,10 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
         Private Function AddThisDiv(ByRef row As DataRow) As String
             Return " <div class='addthis_toolbox addthis_default_style addthis_32x32_style;' " &
-                    "addthis:url=""" & row.Item(RotatorConstants.SLIDERAWURL) & """ " &
-                    "addthis:title=""" & row.Item(RotatorConstants.SLIDEIMAGETITLE) & """ " &
-                    "addthis:description=""" & row.Item(RotatorConstants.SLIDEIMAGEDESC) & """ " &
-                    "addthis:media=""" & row.Item(RotatorConstants.SLIDEIMAGE) & """ " &
+                    "addthis:url=""" & row.Item(ControlerConstants.SLIDERAWURL) & """ " &
+                    "addthis:title=""" & row.Item(ControlerConstants.SLIDEIMAGETITLE) & """ " &
+                    "addthis:description=""" & row.Item(ControlerConstants.SLIDEIMAGEDESC) & """ " &
+                    "addthis:media=""" & row.Item(ControlerConstants.SLIDEIMAGE) & """ " &
                     " style=""" & "width: 200px;""" & ">" &
                     " <a class='addthis_button_facebook'></a> " &
                     " <a class='addthis_button_twitter'></a> " &
