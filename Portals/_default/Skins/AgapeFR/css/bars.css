@@ -1,17 +1,9 @@
 .bar {
 	width: 100%;
-	text-align: center; /* To center header in older IE */
 }
 
 .centeredbox {
-    width: 975px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#bar1 {
-    background-image: url('../images/HeaderBkg.png');
-	background-repeat: repeat-x;
+    width: 100%;
 }
 
 .bar1 {
@@ -40,8 +32,4 @@
 
 #bar7 {
 	background: url('../images/FooterBandPatt.png') repeat;
-}
-
-#bar1 .centeredbox {
-	width: 1150px;
 }
