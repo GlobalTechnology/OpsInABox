@@ -62,7 +62,7 @@ Namespace DotNetNuke.Modules.Stories
                 If Me.UserInfo.IsSuperUser And IsEditable() Then
                     'SuperPowers.Visible = True
                 End If
-                PagePanel.Visible = True
+
                 NotFoundLabel.Visible = False
 
                 Dim authorTitle = StaffBrokerFunctions.GetSetting("Authors", Me.PortalId)
