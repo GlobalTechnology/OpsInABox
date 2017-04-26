@@ -34,7 +34,7 @@
 	background: url('../images/FooterBandPatt.png') repeat;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px) { /*computer mode*/
     .centeredbox {
         max-width:1300px;
         margin-left:auto;
