@@ -33,14 +33,12 @@
 </div>
 <div class="bar">
     <div id="header" class="centeredbox bar1">
-        <div id="headerContent" class="bar1">
-            <div id="logoHeader">
-                <dnn:LOGO runat="server" ID="dnnLOGOHEADER" />
-            </div>
-            <div id="menu">
-                <img src="Portals/_default/Skins/AgapeFR/images/searchblue.svg" alt="Menu!" height="50" />
-                <img src="Portals/_default/Skins/AgapeFR/images/menublue.svg" alt="Menu!" height="50" />
-            </div>
+        <div id="logoHeader">
+            <dnn:LOGO runat="server" ID="dnnLOGOHEADER" />
+        </div>
+        <div id="menu">
+            <img src="Portals/_default/Skins/AgapeFR/images/searchblue.svg" alt="Menu!" height="50" />
+            <img src="Portals/_default/Skins/AgapeFR/images/menublue.svg" alt="Menu!" height="50" />
         </div>
     </div>
 </div>
