@@ -33,3 +33,12 @@
 #bar7 {
 	background: url('../images/FooterBandPatt.png') repeat;
 }
+
+@media screen and (min-width: 1024px) {
+    .centeredbox {
+        max-width:1300px;
+        margin-left:auto;
+        margin-right:auto;
+        position:relative;
+    }
+}

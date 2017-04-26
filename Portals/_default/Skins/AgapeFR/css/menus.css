@@ -10,12 +10,10 @@ ul.navhor li {
 }
 /*===================== MENU ===================== */
 #header #menu {
-    color:#0e71b4;
-    font-size:60px;
     cursor:pointer;
-    position: absolute;
-    right:55px;
-    top:40px;
+    position:absolute;
+    right:40px;
+    top:55px;
 }
 /*===================== MENU1 ===================== */
 
