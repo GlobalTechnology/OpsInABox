@@ -21,6 +21,34 @@
     display: none;
 }
 
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #0e71b4;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 160px;
+
+}
+.sidenav a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+}
+.sidenav a:hover {
+    text-decoration: underline;
+}
+
+.sidenav ul {
+    list-style-type: none;
+}
+
 @media screen and (min-width: 768px) { /*tablet mode*/
     #searchicon {
         display: inline;
