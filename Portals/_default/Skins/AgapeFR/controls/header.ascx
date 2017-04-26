@@ -38,7 +38,8 @@
                 <dnn:LOGO runat="server" ID="dnnLOGOHEADER" />
             </div>
             <div id="menu">
-                <img src="Portals/_default/Skins/AgapeFR/images/menublue.svg" alt="Menu!" height="50" />
+                <span>&#9776;</span>
+                <%--<img src="Portals/_default/Skins/AgapeFR/images/menublue.svg" alt="Menu!" height="50" />--%>
             </div>
         </div>
     </div>
