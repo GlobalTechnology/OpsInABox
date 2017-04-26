@@ -37,8 +37,14 @@
             <dnn:LOGO runat="server" ID="dnnLOGOHEADER" />
         </div>
         <div id="menu">
-            <img src="Portals/_default/Skins/AgapeFR/images/searchblue.svg" alt="Menu!" height="50" />
-            <img src="Portals/_default/Skins/AgapeFR/images/menublue.svg" alt="Menu!" height="50" />
+            <div id="featuredlinks">
+                <span>Faire un Don | Boutique</span>
+            </div>
+            <div id="menubuttons">
+                <img id="searchicon" src="Portals/_default/Skins/AgapeFR/images/searchblue.svg" alt="Menu!" height="50" />
+                <img id="menuicon" src="Portals/_default/Skins/AgapeFR/images/menublue.svg" alt="Menu!" height="50" />
+            </div>
+            
         </div>
     </div>
 </div>
