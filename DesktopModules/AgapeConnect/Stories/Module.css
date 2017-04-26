@@ -166,3 +166,55 @@
 }
 
  /*ViewStory Section End*/
+
+ /*AddEdit Section Begin*/
+#divAddEditStory .FieldRow {
+    margin-bottom: 10px;
+}
+
+#divAddEditStory .FieldRow input[type="text"], #divAddEditStory .FieldRow textarea {
+    border: 1px gray solid;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#divAddEditStory .FieldRow input[type="text"] {
+    height: 25px;
+    line-height: 25px;
+    width: 600px;
+}
+
+#divAddEditStory .FieldRow textarea {
+    width: 400px;
+    height: 100px;
+}
+
+#divAddEditStory .FieldLabel {
+	display: inline-block;
+	zoom: 1; *display: inline; /* IE fix for inline-block display */
+    vertical-align: top;
+    text-align: left;
+    width: 200px;
+}
+
+#divAddEditStory .cblTags {
+    margin-left: 200px;
+}
+
+#divAddEditStory .FieldErrorMsg {
+    text-align: center;
+    font-size: small;
+    color: red;
+}
+
+#divAddEditStory .SubmitPanel
+{
+    width: 100%;
+    text-align: center;
+}
+
+#divAddEditStory .button {
+    margin-top: 15px;
+}
+ /*AddEdit Section End*/

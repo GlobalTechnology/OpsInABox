@@ -1,23 +1,15 @@
-﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="AddEditStory.ascx.vb"
-    Inherits="DotNetNuke.Modules.Stories.AddEditStory" %>
-<%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
-    Namespace="System.Web.UI" TagPrefix="asp" %>
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="AddEditStory.ascx.vb" Inherits="DotNetNuke.Modules.Stories.AddEditStory" %>
+<%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI" TagPrefix="asp" %>
 <%@ Register TagPrefix="dnn" TagName="TextEditor" Src="~/controls/TextEditor.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <%@ Register Src="../StaffAdmin/Controls/acImage.ascx" TagName="acImage" TagPrefix="uc1" %>
 
-
-<script src="/js/jquery.watermarkinput.js" type="text/javascript"></script>
 <script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key=<%= hfmapsKey.Value %>' async defer></script>
 <script src="/js/jquery.locationpicker.js" type="text/javascript"></script>
 <script type="text/javascript">
     /*globals jQuery, window, Sys */
     (function ($, Sys) {
         function setUpMyTabs() {
-            $('#<%= Headline.ClientId %>').Watermark('Headline');
-            $('#<%= Author.ClientId %>').Watermark('Author');
-            $('#<%= Subtitle.ClientID%>').Watermark('Subtitle');
-            $('.aButton').button();
             $("#<%= tbLocation.ClientId %>").locationPicker({ map: 'before', showMap: 'always', width: '200px', padding: 0, border: 0 });
             $('.picker-search-button').button();
             $('.picker-search-button').click();
@@ -38,83 +30,79 @@
                     $('#<%= lblSample.ClientID%>').hide();
                 }
             });
-
-
-
-
-
-
         }
 
         $(document).ready(function () {
-
             setUpMyTabs();
             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
                 setUpMyTabs();
             });
         });
     }(jQuery, window.Sys));
-
-
-
 </script>
-
-
-
 <asp:HiddenField ID="StoryIdHF" runat="server" />
 <asp:HiddenField ID="ShortTextHF" runat="server" />
 <asp:HiddenField ID="PhotoIdHF" runat="server" />
 <asp:HiddenField ID='hfmapsKey' runat="server" />
 
-
 <asp:Label ID="NotFoundLabel" runat="server" Text="Story Not Found" Font-Bold="True"
     ForeColor="Red"></asp:Label>
-<asp:Panel ID="PagePanel" runat="server" Style="margin-right: 0px; margin-left: 0px; padding-left 0px;">
-    <div class="Agape_Story_storymain">
-        <h1 class="AgapeH2">
-            <asp:TextBox ID="Headline" CssClass="AgapeH2" Style="border-bottom-style: none; width: 100%;" runat="server" MaxLength="154"></asp:TextBox>
-        </h1>
-        <div class="Agape_Story_subtitle">
-            <table width="100%">
-                <tr>
-                    <td class="Agape_Story_subtitle" align="left" style="width: 25%; white-space: nowrap">By
-                        <asp:TextBox ID="Author" runat="server" class="Agape_Story_subtitle" MaxLength="50" Style="width: 90%; display: inline;"></asp:TextBox>
-                        <asp:DropDownList ID="ddlAuthor" runat="server" Style="width: 90%; display: inline;" Visible="false"></asp:DropDownList>
-                    </td>
-                    <td style="width: 65%;">
-                        <asp:TextBox ID="Subtitle" runat="server" class="Agape_Story_subtitle" MaxLength="80" Style="width: 90%; display: inline;"></asp:TextBox>
-                    </td>
-                    <td class="Agape_Story_subtitle" align="right" style="padding-right: 25px">
-                        <%-- <asp:Label ID="StoryDate2" runat="server"></asp:Label>--%>
-                        <asp:TextBox ID="StoryDate" Width="75px" runat="server" CssClass="datepicker"></asp:TextBox>
-                    </td>
-                </tr>
-            </table>
-            <table width="100%" border="0" cellpadding="10" cellspacing="2">
-                <tr>
-                    <td><strong>Tags:</strong></td>
-                    <td><asp:CheckBoxList ID="cblTags" runat="server" Font-Size="Small"></asp:CheckBoxList></td>
-                </tr>
-                <tr>
-                    <td><strong>Keywords:</strong></td>
-                    <td><asp:TextBox ID="tbKeywords" runat="server" Width="100%" MaxLength="50"></asp:TextBox></td>
-                </tr>
-                <tr>
-                    <td><b><dnn:Label ID="lblYouTube" runat="server" ResourceKey="lblYouTube" ></dnn:Label></b></td>
-                    <td><asp:TextBox ID="tbField1" runat="server" Width="100%"></asp:TextBox></td>
-                </tr>
-                <tr>
-                     <td><b>Field2:</b></td>
-                     <td><asp:TextBox ID="tbField2" runat="server" Width="100%" MaxLength="50"></asp:TextBox></td>
-                </tr>
-                <tr>
-                     <td><b><asp:Label ID="lblField3" runat="server" Text="Field3:"></asp:Label></b></td>
-                     <td><asp:TextBox ID="tbField3" runat="server" Width="100%" MaxLength="50"></asp:TextBox></td>
-                </tr>
-            </table>
-            <br />
+
+
+
+    <div id="divAddEditStory">
+        <div id="divHeadline" class="FieldRow">
+            <asp:Label ID="lblHeadline" runat="server" ResourceKey="lblHeadline" CssClass="FieldLabel"></asp:Label>
+            <asp:TextBox ID="Headline"  runat="server" MaxLength="154"></asp:TextBox>
         </div>
-        <div class="Agape_FullStory_bodytext" style="padding-right: 12px; margin-bottom: 10px;">
+        <div class="FieldErrorMsg">
+            <asp:RequiredFieldValidator ID="rfHeadline" runat="server" resourcekey="rfHeadline" ControlToValidate="Headline" Display="Dynamic"></asp:RequiredFieldValidator>
+        </div>
+
+        <div id="divAuthor" class="FieldRow">
+            <asp:Label ID="lblAuthor" runat="server" ResourceKey="lblAuthor" CssClass="FieldLabel"></asp:Label>
+            <asp:TextBox ID="Author" runat="server" MaxLength="50"></asp:TextBox>
+            <asp:DropDownList ID="ddlAuthor" runat="server" Visible="false"></asp:DropDownList>
+        </div>
+    
+        <div id="divSubtitle" class="FieldRow">
+            <asp:Label ID="lblSubtitle" runat="server" ResourceKey="lblSubtitle" CssClass="FieldLabel"></asp:Label>
+            <asp:TextBox ID="Subtitle" runat="server" MaxLength="80"></asp:TextBox>
+        </div>
+
+        <div id="divStoryDate" class="FieldRow">
+            <asp:Label ID="lblStoryDate" runat="server" ResourceKey="lblStoryDate" CssClass="FieldLabel"></asp:Label>
+            <asp:TextBox ID="StoryDate" runat="server" CssClass="datepicker"></asp:TextBox>
+        </div>
+
+        <div id="divKeywords" class="FieldRow">
+            <asp:Label ID="lblKeywords" runat="server" ResourceKey="lblKeywords" CssClass="FieldLabel"></asp:Label>
+            <asp:TextBox ID="tbKeywords" runat="server" MaxLength="50"></asp:TextBox>
+        </div>
+
+        <div id="divTags" class="FieldRow">
+            <asp:Label ID="lblTags" runat="server" ResourceKey="lblTags" CssClass="FieldLabel"></asp:Label>
+            <asp:CheckBoxList ID="cblTags" CssClass="cblTags" runat="server"></asp:CheckBoxList>
+        </div>
+
+        <div id="divYouTube" class="FieldRow">
+            <asp:Label ID="lblYouTube" runat="server" ResourceKey="lblYouTube" CssClass="FieldLabel"></asp:Label>
+            <asp:TextBox ID="tbField1" runat="server"></asp:TextBox>
+        </div>
+
+        <div id="divExternalURL" class="FieldRow">
+            <asp:Label ID="lblExternalURL" runat="server" ResourceKey="lblExternalURL" CssClass="FieldLabel"></asp:Label>
+            <asp:TextBox ID="tbField2" runat="server" MaxLength="50"></asp:TextBox>
+        </div>
+
+        <div id="divField3" class="FieldRow">
+            <asp:Label ID="lblField3" runat="server" ResourceKey="lblField3" CssClass="FieldLabel"></asp:Label>
+            <asp:TextBox ID="tbField3" runat="server" MaxLength="50"></asp:TextBox>
+        </div>
+    
+
+
+
             <table>
                 <tr>
                     <td>
@@ -196,11 +184,12 @@
             </table>
 
 
-        </div>
+      
+
+
+
+    <div class="SubmitPanel">
+        <asp:Button ID="btnSave" runat="server" resourcekey="btnSave" CssClass="button" />
+        <asp:Button ID="btnCancel" runat="server" resourcekey="btnCancel" CssClass="button" />
     </div>
-    <div style="clear: both;" />
-    <div align="center">
-        <asp:Button ID="btnSave" runat="server" Text="Save" class="aButton btn" />
-        <asp:Button ID="btnCancel" runat="server" Text="Cancel" class="aButton btn" />
-    </div>
-</asp:Panel>
+  </div>
