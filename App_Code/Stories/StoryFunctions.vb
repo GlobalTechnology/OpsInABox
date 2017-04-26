@@ -168,17 +168,20 @@ Public Module ControlerConstants
     Public Const SLIDEIMAGEDESC As String = "slideImageDesc"
     Public Const SLIDETEXTLINK As String = "slideTextLink"
     Public Const SLIDEIMAGECSS As String = "slideLinkImageCSS"
+    Public Const SLIDEIMAGELINKCLASS As String = "nivo-imageLink"
     Public Const SLIDERAWURL As String = "slideRawURL"
 
     Public Const TARGETSELF As String = "_self"
     Public Const TARGETBLANK As String = "_blank"
-    Public Const IMAGELINKCLASS As String = "nivo-imageLink"
     Public Const URL As String = "URL"
-    Public Const LINK As String = "link"
+    Public Const OPENLINK As String = "openlink"
     Public Const CLICKACTION As String = "action"
+    Public Const LINKIMAGECSS As String = "linkImageCss"
     Public Const LINKIMAGE As String = "linkImage"
     Public Const HEADLINE As String = "headline"
     Public Const DESCRIPTION As String = "description"
+
+    Public Const NUMSTORIES As String = "NumberOfStories"
 
 End Module
 
@@ -689,7 +692,7 @@ Public Class StoryFunctions
         Return control
     End Function
 
-    Public Shared Function GetLinkDetails(ByRef story As AP_Stories_Module_Channel_Cache,
+    Public Shared Function GetLinkDetails(ByRef story As AP_Stories_Module_Channel_Cache, ByVal imageLinkClass As String,
                                           ByVal portalAlias As String, ByVal tabModuleId As Integer) As Dictionary(Of String, String)
 
         Dim viewStyles As Dictionary(Of String, String) = StoryFunctions.GetTagPersonalisation(story.GUID, tabModuleId)
@@ -714,14 +717,14 @@ Public Class StoryFunctions
 
         'personalized link image
         If (viewStyles.Item(TagSettingsConstants.LINKIMAGESTRING).Equals(TagSettingsConstants.LinkImage.PlayButton.ToString)) Then
-            linkImage = ControlerConstants.IMAGELINKCLASS & " " & TagSettingsConstants.LinkImage.PlayButton.ToString
+            linkImage = imageLinkClass & " " & TagSettingsConstants.LinkImage.PlayButton.ToString
         Else
-            linkImage = ControlerConstants.IMAGELINKCLASS
+            linkImage = imageLinkClass
         End If
 
         linkDetails.Add(ControlerConstants.CLICKACTION, clickAction)
         linkDetails.Add(ControlerConstants.URL, URL)
-        linkDetails.Add(ControlerConstants.LINKIMAGE, linkImage)
+        linkDetails.Add(ControlerConstants.LINKIMAGECSS, linkImage)
         Return linkDetails
 
     End Function
@@ -730,20 +733,27 @@ Public Class StoryFunctions
                                            ByVal portalAlias As String,
                                            ByVal tabModuleId As Integer) As DataTable
         Dim listData As New DataTable
-        listData.Columns.Add(ControlerConstants.LINK)
+        listData.Columns.Add(ControlerConstants.OPENLINK)
         listData.Columns.Add(ControlerConstants.HEADLINE)
         listData.Columns.Add(ControlerConstants.DESCRIPTION)
         listData.Columns.Add(ControlerConstants.LINKIMAGE)
+        listData.Columns.Add(ControlerConstants.LINKIMAGECSS)
 
         For Each story In stories
 
             Dim dataRow As DataRow = listData.NewRow()
-            Dim linkDetails As Dictionary(Of String, String) = StoryFunctions.GetLinkDetails(story, portalAlias, tabModuleId)
+            Dim linkDetails As Dictionary(Of String, String) = StoryFunctions.GetLinkDetails(story, "", portalAlias, tabModuleId)
 
-            dataRow(ControlerConstants.LINK) = "javascript: registerClick(" & story.CacheId & "); " & linkDetails(ControlerConstants.CLICKACTION)
+            dataRow(ControlerConstants.OPENLINK) = "javascript: registerClick(" & story.CacheId & "); " & linkDetails(ControlerConstants.CLICKACTION)
             dataRow(ControlerConstants.HEADLINE) = story.Headline
             dataRow(ControlerConstants.DESCRIPTION) = story.Description
             dataRow(ControlerConstants.LINKIMAGE) = story.ImageId
+
+            If (linkDetails(ControlerConstants.LINKIMAGECSS).Length > 0) Then
+                dataRow(ControlerConstants.LINKIMAGECSS) = True.ToString
+            Else
+                dataRow(ControlerConstants.LINKIMAGECSS) = False.ToString
+            End If
             listData.Rows.Add(dataRow)
         Next
 
@@ -987,10 +997,10 @@ Public Class StoryFunctions
         For Each story In stories
             Try
                 Dim dataRow As DataRow = sliderData.NewRow()
-                Dim linkDetails As Dictionary(Of String, String) = GetLinkDetails(story, portalAlias, tabModuleId)
+                Dim linkDetails As Dictionary(Of String, String) = GetLinkDetails(story, ControlerConstants.SLIDEIMAGELINKCLASS, portalAlias, tabModuleId)
 
                 'personalized link image
-                dataRow(ControlerConstants.SLIDEIMAGECSS) = linkDetails(ControlerConstants.LINKIMAGE)
+                dataRow(ControlerConstants.SLIDEIMAGECSS) = linkDetails(ControlerConstants.LINKIMAGECSS)
 
                 'personalized opening style
                 dataRow(ControlerConstants.SLIDERAWURL) = linkDetails(ControlerConstants.URL)

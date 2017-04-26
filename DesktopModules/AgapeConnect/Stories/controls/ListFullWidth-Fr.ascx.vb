@@ -1,15 +1,5 @@
-﻿Imports System
-Imports System.Collections
-Imports System.Configuration
-Imports System.Data
-Imports System.Linq
+﻿Imports Stories
 
-'Imports DotNetNuke
-'Imports DotNetNuke.Security
-'Imports StaffBroker
-Imports StaffBrokerFunctions
-Imports Stories
-'Imports DotNetNuke.Services.FileSystem
 Namespace DotNetNuke.Modules.AgapeConnect.Stories
     Partial Class ListFullWidth_Fr
         Inherits Entities.Modules.PortalModuleBase
@@ -64,22 +54,20 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             Dim pg As Integer = 0
             If Not String.IsNullOrEmpty(Request.QueryString("p")) Then
                 pg = Request.QueryString("p")
-                skip = pg * CInt(settings("NumberOfStories"))
+                skip = pg * CInt(settings(ControlerConstants.NUMSTORIES))
             End If
 
-            'Dim storiesList As List(Of AP_Stories_Module_Channel_Cache) = stories.Skip(skip).Take(CInt(settings("NumberOfStories")))
-            Dim storiesList = stories.Skip(skip).Take(CInt(settings("NumberOfStories")))
-            Dim listData As DataTable = StoryFunctions.GetListData(storiesList, PortalSettings.DefaultPortalAlias,
-                                                                          TabModuleId)
+            Dim listData As DataTable = StoryFunctions.GetListData(stories.Skip(skip).Take(CInt(settings(ControlerConstants.NUMSTORIES))),
+                                                                   PortalSettings.DefaultPortalAlias, TabModuleId)
 
             dlStories.DataSource = listData
             dlStories.DataBind()
 
-            If stories.Count > CInt(settings("NumberOfStories")) Then
+            'Pagination handling
+            If stories.Count > CInt(settings(ControlerConstants.NUMSTORIES)) Then
                 btnPrev.Visible = True
                 btnNext.Visible = True
                 Dim urlStub = NavigateURL()
-
 
                 'Construct the URLs for btnPrev and btnNext
                 If (Request.QueryString(TAGS_KEYWORD) <> "") Then
@@ -100,14 +88,14 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 End If
 
                 'determine state of btnNext
-                If (Math.Floor((stories.Count - 1) / CInt(settings("NumberOfStories"))) > pg) Then
+                If (Math.Floor((stories.Count - 1) / CInt(settings(ControlerConstants.NUMSTORIES))) > pg) Then
                     btnNext.Enabled = True
                 Else
                     btnNext.Style.Add("opacity", "0.5")
                     btnNext.Enabled = False
                 End If
-            End If
-        End Sub
+            End If 'End Pagination handling
 
+        End Sub
     End Class
 End Namespace
