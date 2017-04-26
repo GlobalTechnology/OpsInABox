@@ -3,6 +3,8 @@
 <%@ Register TagPrefix="dnn" TagName="USER" Src="~/Admin/Skins/User.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="LOGIN" Src="~/Admin/Skins/Login.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="SEARCH" Src="~/DesktopModules/AgapeFR/Search/Search.ascx" %>
+<%@ Register TagPrefix="ddr" Namespace="DotNetNuke.Web.DDRMenu.TemplateEngine" Assembly="DotNetNuke.Web.DDRMenu" %>
+<%@ Register TagPrefix="ddr" TagName="MENU" src="~/DesktopModules/DDRMenu/Menu.ascx" %>
 
 <script runat="server">
     Protected Function Translate(ResourceKey As String) As String
@@ -27,6 +29,15 @@
         });
     }(jQuery, window.Sys));
 </script>
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "500px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
 
 <div id="controlPanelContainer">
     <div id="ControlPanel" runat="server" />
@@ -41,10 +52,38 @@
                 <span>Faire un Don | Boutique</span>
             </div>
             <div id="menubuttons">
-                <img id="searchicon" src="Portals/_default/Skins/AgapeFR/images/searchblue.svg" alt="Menu!" height="50" />
-                <img id="menuicon" src="Portals/_default/Skins/AgapeFR/images/menublue.svg" alt="Menu!" height="50" />
+                <img id="searchicon" src="Portals/_default/Skins/AgapeFR/images/searchblue.svg" height="50" />
+                <img id="menuicon" src="Portals/_default/Skins/AgapeFR/images/menublue.svg" onclick="openNav()" height="50" />
             </div>
-            
         </div>
     </div>
+</div>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776;</a>
+    <%--demo menu--%>
+    <ul>
+        <li><a href="#">Faire un don</a></li>
+        <li><a href="#">Boutique</a></li>
+        <li><a href="#">Nous connaitre</a></li>
+        <li><a href="#">S'impliquer</a>
+            <ul>
+                <li><a href="#">Acceuil S'impliquer</a></li>
+                <li><a href="#">Partenariats</a></li>
+                <li><a href="#">Devenir permanent</a></li>
+                <li><a href="#">Faire un stage</a></li>
+                <li><a href="#">Nous aider benevolement</a></li>
+                <li><a href="#">Faire un don</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Activites</a></li>
+        <li><a href="#">Actualites</a></li>
+        <li><a href="#">Ressources</a></li>
+        <li><a href="#">Intranet</a></li>
+        <li><a href="#">May Workman</a>
+            <ul>
+                <li><a href="#">Deconnexion</a></li>
+            </ul>
+        </li>
+    </ul>
+    <%--/demo menu--%>
 </div>
