@@ -1,122 +1,37 @@
-﻿ul.navhor {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+﻿#header #menu {
+    height: 160px;
+    cursor: pointer;
+    position: absolute;
+    right: 40px;
+    color: #0e71b4;
 }
 
-ul.navhor li {
-    padding: 0;
-    margin: 0;
-}
-/*===================== MENU ===================== */
-#header #menu {
-    cursor:pointer;
-    position:absolute;
-    right:40px;
-    top:55px;
-}
-/*===================== MENU1 ===================== */
-
-#header #menu1 {
-	position: absolute;
-	bottom: 0px;
-	right: 0px;
-	text-align: right;
+#header #menu #menubuttons {
+    position: absolute;
+    right: 0px;
+    bottom: 30px;
+    height:50px;
 }
 
-#menu1 .navhor {
-    display: inline;
+#header #menu #featuredlinks {
+    display: none;
 }
 
-#menu1 .navhor li, #menu1 .navhor  a:link, #menu1 .navhor  a:active, #menu1 .navhor  a:visited, #menu1 .navhor  a:hover {
-	display: inline-block;
-	zoom: 1; *display: inline; /* IE fix for inline-block display */
-	vertical-align:bottom;
+#searchicon {
+    display: none;
 }
 
-#menu1 .navhor  a:link, #menu1 .navhor  a:active, #menu1 .navhor  a:visited, #menu1 .navhor  a:hover {
-	font-family: OpenSansLight;
-	font-size: 20px;
-    font-weight: normal;
-    white-space: nowrap; /* Needed for first iPad */
-	padding: 0 10px 0 10px;
-	color: #3A8BC2;
-	margin-bottom: 6px;
+@media screen and (min-width: 768px) { /*tablet mode*/
+    #searchicon {
+        display: inline;
+        margin-right: 20px;
+    }
+
+    #header #menu #featuredlinks {
+        display: block;
+        margin-top: 20px;
+    }
 }
 
-#menu1 .navhor  a:link, #menu1 .navhor  a:active, #menu1 .navhor  a:visited {
-	text-decoration: none;
+@media screen and (min-width: 768px) { /*computer mode*/
 }
-
-#menu1 .navhor  a:hover {
-	text-decoration: underline;
-}
-
-#menu1 .navhor  li + li a
-{
-    border-left: solid 1px #ABABAB;
-}
-
-#menu1 .navhor li {
-	text-align: center;
-}
-
-#menu1 .navhor li #pointer {
-	width: 0px; 
-	height: 12px; 
-}
-
-#menu1 .navhor li.selected #pointer {
-	margin-left: auto; *margin-left: 0;
-    margin-right: auto; *margin-right: 0;
-	/* Blue triangle */
-	width: 0px; 
-	height: 0px; 
-	border-left: 12px solid transparent;
-	border-right: 12px solid transparent;	
-	border-bottom: 12px solid #3A8BC2;
-	/* End blue triangle */
-}
-
-/*===================== MENU2 ===================== */
-
-#menu2 .navhor {
-    width: 100%;
-    margin-bottom: 5px;
-    margin-top: 5px;
-}
-
-#menu2 .navhor, #menu2 .navhor li, #menu2 .navhor a:link, #menu2 .navhor a:active, #menu2 .navhor a:visited, #menu2 .navhor a:hover {
-	display: inline-block;
-	zoom: 1; *display: inline; /* IE fix for inline-block display */	
-}
-
-#menu2 .navhor  a:link, #menu2 .navhor  a:active, #menu2 .navhor  a:visited, #menu2 .navhor  a:hover {
-	font-family: OpenSansRegular;
-	font-size: 14px;
-    font-weight: normal;
-	padding: 0 5px 0 5px;
-	color: white;
-}
-
-#menu2 .navhor  a:link, #menu2 .navhor  a:active, #menu2 .navhor  a:visited{
-	text-decoration: none;
-}
-
-#menu2 .navhor  a:hover {
-	text-decoration: underline;
-}
-
-#menu2 .navhor li #pointer {
-	width: 0; 
-	height: 0; 
-	line-height: 0;
-	font-size: 0;
-}
-
-#menu2 .navhor li.selected  a:link, #menu2 .navhor li.selected  a:active, #menu2 .navhor li.selected  a:visited, #menu2 .navhor li.selected  a:hover {
-	font-family: OpenSansSemibold;
-	color: #3A8BC2;
-	background: url('../images/SubMenuBkg.png') repeat-x center; 
-}
-
