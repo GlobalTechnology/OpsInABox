@@ -30,32 +30,7 @@
     }(jQuery, window.Sys));
 </script>
 <div id="mySidenav" class="sidenav">
-    <%--demo menu--%>
-    <ul>
-        <li><a href="#">Faire un don</a></li>
-        <li><a href="#">Boutique</a></li>
-        <li><a href="#">Nous connaitre</a></li>
-        <li><a href="#">S'impliquer</a>
-            <ul>
-                <li><a href="#">Acceuil S'impliquer</a></li>
-                <li><a href="#">Partenariats</a></li>
-                <li><a href="#">Devenir permanent</a></li>
-                <li><a href="#">Faire un stage</a></li>
-                <li><a href="#">Nous aider benevolement</a></li>
-                <li><a href="#">Faire un don</a></li>
-            </ul>
-        </li>
-        <li><a href="#">Activites</a></li>
-        <li><a href="#">Actualites</a></li>
-        <li><a href="#">Ressources</a></li>
-        <li><a href="#">Intranet</a></li>
-        <li><a href="#">May Workman</a>
-            <ul>
-                <li><a href="#">Deconnexion</a></li>
-            </ul>
-        </li>
-    </ul>
-    <%--/demo menu--%>
+    <ddr:MENU ID="MENU1" MenuStyle="/templates/AgapeFRMenu/" NodeSelector="*,0,+1" runat="server" includehidden="false" />
 </div>
 <div id="controlPanelContainer">
     <div id="ControlPanel" runat="server" />
