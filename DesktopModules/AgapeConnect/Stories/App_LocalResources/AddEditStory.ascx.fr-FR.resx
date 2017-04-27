@@ -126,17 +126,29 @@
   <data name="lblAuthor.Text" xml:space="preserve">
     <value>Auteur :</value>
   </data>
+  <data name="lblAutoGenerate.Text" xml:space="preserve">
+    <value>Générer automatiquement :</value>
+  </data>
+  <data name="lblChannel.Text" xml:space="preserve">
+    <value>Chaîne :</value>
+  </data>
   <data name="lblExternalURL.Text" xml:space="preserve">
-    <value>URL externe</value>
+    <value>URL externe : </value>
   </data>
   <data name="lblField3.Text" xml:space="preserve">
-    <value>Champs 3</value>
+    <value>Champs 3 :</value>
   </data>
   <data name="lblHeadline.Text" xml:space="preserve">
     <value>Titre :</value>
   </data>
   <data name="lblKeywords.Text" xml:space="preserve">
     <value>Mots clés :</value>
+  </data>
+  <data name="lblLanguage.Text" xml:space="preserve">
+    <value>Langue :</value>
+  </data>
+  <data name="lblSample.Text" xml:space="preserve">
+    <value>Texte sommaire :</value>
   </data>
   <data name="lblStoryDate.Text" xml:space="preserve">
     <value>Date :</value>
@@ -155,5 +167,8 @@
   </data>
   <data name="rfHeadline.Text" xml:space="preserve">
     <value>Il vous faut un titre pour la ressource.</value>
+  </data>
+  <data name="SeedText.Text" xml:space="preserve">
+    <value>Veuillez ajoutez le texte de l'histoire ici...</value>
   </data>
 </root>

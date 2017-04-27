@@ -32,7 +32,6 @@ Namespace DotNetNuke.Modules.Stories
                 If Settings("Aspect") <> "" Then
                     acImage1.Aspect = Double.Parse(Settings("Aspect"), New CultureInfo(""))
                 End If
-                lblSample.Style.Add("Display", "none")
 
                 Dim mc As New DotNetNuke.Entities.Modules.ModuleController
 
@@ -63,8 +62,6 @@ Namespace DotNetNuke.Modules.Stories
                     'SuperPowers.Visible = True
                 End If
 
-                NotFoundLabel.Visible = False
-
                 Dim authorTitle = StaffBrokerFunctions.GetSetting("Authors", Me.PortalId)
                 If authorTitle <> "" Then
                     Dim rc As New DotNetNuke.Security.Roles.RoleController()
@@ -86,7 +83,7 @@ Namespace DotNetNuke.Modules.Stories
 
                 If Request.QueryString("StoryID") <> "" Then
 
-                    StoryIdHF.Value = Request.QueryString("StoryId")
+                    'StoryIdHF.Value = Request.QueryString("StoryId")
                     Dim r = (From c In d.AP_Stories Where c.StoryId = Request.QueryString("StoryID")).First
 
                     Headline.Text = r.Headline
@@ -125,55 +122,58 @@ Namespace DotNetNuke.Modules.Stories
                     ' Dim thePhoto = DotNetNuke.Services.FileSystem.FileManager.Instance.GetFile(r.PhotoId)
                     '  StoryImage.ImageUrl = DotNetNuke.Services.FileSystem.FileManager.Instance.GetUrl(thePhoto)
                     acImage1.FileId = r.PhotoId
-                    PhotoIdHF.Value = r.PhotoId
+                    'PhotoIdHF.Value = r.PhotoId
                     If (From c As ListItem In ddlLanguage.Items Where c.Value = r.Language).Count > 0 Then
                         ddlLanguage.SelectedValue = r.Language
                     Else
                         ddlLanguage.SelectedValue = CultureInfo.CurrentCulture.Name.ToLower
                     End If
-                    pnlLanguages.Visible = False
-                    If Not (r.TranslationGroup Is Nothing) Then
 
-                        Dim Translist = From c In d.AP_Stories Where c.TranslationGroup = r.TranslationGroup And c.PortalID = r.PortalID And c.StoryId <> r.StoryId Select c.Language, c.StoryId
+                    'pnlLanguages.Visible = False
+                    'If Not (r.TranslationGroup Is Nothing) Then
 
-                        If Translist.Count > 0 Then
-                            pnlLanguages.Visible = True
-                            dlLanuages.DataSource = Translist
-                            dlLanuages.DataBind()
+                    '    Dim Translist = From c In d.AP_Stories Where c.TranslationGroup = r.TranslationGroup And c.PortalID = r.PortalID And c.StoryId <> r.StoryId Select c.Language, c.StoryId
 
-                        End If
+                    '    If Translist.Count > 0 Then
+                    '        pnlLanguages.Visible = True
+                    '        dlLanuages.DataSource = Translist
+                    '        dlLanuages.DataBind()
 
-                    End If
+                    '    End If
+
+                    'End If
 
                 Else
 
                     'Populate latitude/longitude textbox for new story
                     tbLocation.Text = StoryFunctions.GetDefaultLatLong(TabModuleId)
 
-                    If Request.QueryString("tg") <> "" Then
-                        pnlLanguages.Visible = False
+                    'If Request.QueryString("tg") <> "" Then
+                    '    pnlLanguages.Visible = False
 
-                        Dim Translist = From c In d.AP_Stories Where c.TranslationGroup = CInt(Request.QueryString("tg")) And c.PortalID = PortalId Select c.Language, c.StoryId
+                    '    Dim Translist = From c In d.AP_Stories Where c.TranslationGroup = CInt(Request.QueryString("tg")) And c.PortalID = PortalId Select c.Language, c.StoryId
 
-                        If Translist.Count > 0 Then
-                            pnlLanguages.Visible = True
-                            dlLanuages.DataSource = Translist
-                            dlLanuages.DataBind()
+                    '    If Translist.Count > 0 Then
+                    '        pnlLanguages.Visible = True
+                    '        dlLanuages.DataSource = Translist
+                    '        dlLanuages.DataBind()
 
-                        End If
+                    '    End If
 
-                    End If
+                    'End If
 
                     StoryDate.Text = Today.ToString("dd MMM yyyy")
-                    StoryText.Text = "Enter your news here..."
-
+                    StoryText.Text = LocalizeString("SeedText")
                     Author.Text = UserInfo.DisplayName
-
-                    'Headline.Text = CultureInfo.CurrentCulture.TwoLetterISOLanguageName
                     ddlLanguage.SelectedValue = CultureInfo.CurrentCulture.Name.ToLower
 
                 End If
 
+                'Focus at top of page. 
+                'Must scroll up too because Location Picker moves the scroll down.
+                Headline.Focus()
+                Dim scrollTop As HtmlInputHidden = Page.FindControl("ScrollTop")
+                scrollTop.Value = "0"
             End If
 
         End Sub
@@ -411,7 +411,7 @@ Namespace DotNetNuke.Modules.Stories
             If q.Count > 0 Then
 
                 If acImage1.CheckAspect() Then
-                    PhotoIdHF.Value = acImage1.FileId
+                    'PhotoIdHF.Value = acImage1.FileId
                     q.First.PhotoId = acImage1.FileId
                     d.SubmitChanges()
                     'If Settings("Aspect") <> "" Then
@@ -451,23 +451,25 @@ Namespace DotNetNuke.Modules.Stories
 
         End Function
 
-        Protected Sub dlLanuages_ItemCommand(source As Object, e As DataListCommandEventArgs) Handles dlLanuages.ItemCommand
-            If e.CommandName = "Translate" Then
-                Dim d As New StoriesDataContext
-                Dim fromStory = From c In d.AP_Stories Where c.StoryId = CInt(e.CommandArgument)
+        'Protected Sub dlLanuages_ItemCommand(source As Object, e As DataListCommandEventArgs) Handles dlLanuages.ItemCommand
+        '    If e.CommandName = "Translate" Then
+        '        Dim d As New StoriesDataContext
+        '        Dim fromStory = From c In d.AP_Stories Where c.StoryId = CInt(e.CommandArgument)
 
-                If fromStory.Count > 0 Then
-                    StoryText.Text = Translate(fromStory.First.StoryText, Left(fromStory.First.Language, 2))
+        '        If fromStory.Count > 0 Then
+        '            StoryText.Text = Translate(fromStory.First.StoryText, Left(fromStory.First.Language, 2))
 
-                    Headline.Text = Translate(fromStory.First.Headline, Left(fromStory.First.Language, 2))
+        '            Headline.Text = Translate(fromStory.First.Headline, Left(fromStory.First.Language, 2))
 
-                    Subtitle.Text = Translate(fromStory.First.Subtitle, Left(fromStory.First.Language, 2))
+        '            Subtitle.Text = Translate(fromStory.First.Subtitle, Left(fromStory.First.Language, 2))
 
-                    tbSample.Text = Translate(fromStory.First.TextSample, Left(fromStory.First.Language, 2))
+        '            tbSample.Text = Translate(fromStory.First.TextSample, Left(fromStory.First.Language, 2))
 
-                End If
-            End If
-        End Sub
+        '        End If
+        '    End If
+        'End Sub
+
+
 
 #Region "Helper Functions"
 
