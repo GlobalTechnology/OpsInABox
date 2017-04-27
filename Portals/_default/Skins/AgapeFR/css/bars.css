@@ -7,7 +7,7 @@
 }
 
 .bar1 {
-	height: 160px;
+	height: 80px;
 }
 
 #bar2 {
@@ -34,6 +34,11 @@
 	background: url('../images/FooterBandPatt.png') repeat;
 }
 
+@media screen and (min-width: 768px) { /*tablet mode*/
+    .bar1 {
+        height: 160px;
+    }
+}
 @media screen and (min-width: 1024px) { /*computer mode*/
     .centeredbox {
         max-width:1300px;
