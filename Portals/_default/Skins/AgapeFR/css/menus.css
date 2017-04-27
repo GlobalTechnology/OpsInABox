@@ -27,7 +27,7 @@
     display: none;
 }
 
-#searchicon {
+.searchicon {
     display: none;
 }
 
@@ -43,6 +43,9 @@
     transition: 0.5s;
     padding-top: 80px;
 
+}
+.opensidenav{
+  width:100%;
 }
 .sidenav a {
     text-decoration: none;
@@ -60,7 +63,7 @@
 }
 
 @media screen and (min-width: 768px) { /*tablet mode*/
-    #searchicon {
+    .searchicon {
         display: inline;
         margin-right: 20px;
     }
@@ -77,6 +80,9 @@
     }
     .sidenav {
         padding-top: 160px;
+    }
+    .opensidenav{
+      width:50%;
     }
 }
 
