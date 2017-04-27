@@ -183,10 +183,11 @@
     height: 25px;
     line-height: 25px;
     width: 600px;
+    padding: 0px 5px 0px 5px;
 }
 
 #divAddEditStory .FieldRow textarea {
-    width: 400px;
+    width: 600px;
     height: 100px;
 }
 
@@ -202,10 +203,41 @@
     margin-left: 200px;
 }
 
+#divField3 {
+    display: none;
+}
+
+#divLanguage {
+    display: none;
+}
+
+#divChannel {
+    display: none;
+}
+
+#divAutoGenerate {
+    display: none;
+}
+
 #divAddEditStory .FieldErrorMsg {
     text-align: center;
     font-size: small;
     color: red;
+}
+
+#divAddEditStory .imageCropper {
+    margin: 20px;
+    float: left;
+}
+
+#divAddEditStory .locationPicker {
+    margin: 20px;
+    float: left;
+    width: 300px;
+}
+#divAddEditStory .FieldRow input[type="text"].tbLocation {
+    width: 75%;
+    margin: 3px 3px 0px 0px;
 }
 
 #divAddEditStory .SubmitPanel
