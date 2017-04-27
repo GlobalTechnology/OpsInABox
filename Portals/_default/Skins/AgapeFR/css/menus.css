@@ -1,5 +1,5 @@
 ﻿#header #menu {
-    height: 160px;
+    height: 80px;
     cursor: pointer;
     position: absolute;
     right: 40px;
@@ -9,8 +9,18 @@
 #header #menu #menubuttons {
     position: absolute;
     right: 0px;
-    bottom: 30px;
+    bottom: 15px;
     height:50px;
+    z-index:1001
+}
+#header .closebtn svg .stripe{
+  fill:#ffffff;
+  transition: 0.5s;
+}
+
+#header .openbtn svg .stripe{
+  fill:#0e71b4;
+  transition: 0.5s;
 }
 
 #header #menu #featuredlinks {
@@ -31,7 +41,7 @@
     background-color: #0e71b4;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 160px;
+    padding-top: 80px;
 
 }
 .sidenav a {
@@ -59,7 +69,16 @@
         display: block;
         margin-top: 20px;
     }
+    #header #menu {
+        height: 160px;
+    }
+    #header #menu #menubuttons {
+        bottom: 30px;
+    }
+    .sidenav {
+        padding-top: 160px;
+    }
 }
 
-@media screen and (min-width: 768px) { /*computer mode*/
+@media screen and (min-width: 1024px) { /*computer mode*/
 }
