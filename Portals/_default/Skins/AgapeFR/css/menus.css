@@ -54,12 +54,21 @@
     display: block;
     transition: 0.3s;
 }
-.sidenav a:hover {
+.sidenav a:hover, .sidenav a.selected {
     text-decoration: underline;
 }
 
 .sidenav ul {
     list-style-type: none;
+}
+    .sidenav ul li ul {
+        display:none;
+    }
+    .sidenav ul li.selected ul, .sidenav ul li.breadcrumb ul {
+        display:block;
+    }
+.sidenav a.parent::after {
+content:" drop!";
 }
 
 @media screen and (min-width: 768px) { /*tablet mode*/
