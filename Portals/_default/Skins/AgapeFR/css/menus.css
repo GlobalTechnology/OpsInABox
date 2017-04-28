@@ -51,7 +51,6 @@
     text-decoration: none;
     font-size: 20px;
     color: #ffffff;
-    display: block;
     transition: 0.3s;
 }
 .sidenav a:hover, .sidenav a.selected {
@@ -67,8 +66,14 @@
     .sidenav ul li.selected ul, .sidenav ul li.breadcrumb ul {
         display:block;
     }
-.sidenav a.parent::after {
-content:" drop!";
+.sidenav .menudrop {
+content:url(/Portals/_default/Skins/AgapeFR/images/down-arrow.svg);
+margin-left:10px;
+vertical-align:sub;
+}
+
+.sidenav .breadcrumb .menudrop {
+    transform:rotate(180deg);
 }
 
 @media screen and (min-width: 768px) { /*tablet mode*/
