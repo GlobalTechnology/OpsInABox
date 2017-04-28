@@ -13,8 +13,8 @@ if (nodes.Count > 0)
                 var cssClasses = new List<string>();
                 if (node.First) { cssClasses.Add("first"); }
                 if (node.Last) { cssClasses.Add("last"); }
-                if (node.Selected) { cssClasses.Add("selected"); }
-                if (node.Breadcrumb) { cssClasses.Add("breadcrumb"); }
+                if (node.Selected) { cssClasses.Add("selected menuopen"); }
+                if (node.Breadcrumb) { cssClasses.Add("menuopen"); }
                 if (node.Children.Count > 0) { cssClasses.Add("parent"); }
                 var classString = new HtmlString((cssClasses.Count == 0) ? "" : (String.Join(" ", cssClasses.ToArray()) + "\""));
                 <li class="@classString">

@@ -65,11 +65,11 @@
 }
 
 .sidenav ul li ul { /*hide second level links*/
-    display: none;
+    display:none;
 }
 
-.sidenav ul li.selected ul, .sidenav ul li.breadcrumb ul { /*show second level links*/
-    display: block;
+.sidenav ul li.menuopen ul { /*show second level links*/
+    display:block;
 }
 
 .sidenav .menudrop { /*add menu arrows*/
@@ -78,7 +78,7 @@
     vertical-align: sub;
 }
 
-.sidenav .breadcrumb .menudrop { /*flip menu arrow up*/
+.sidenav .menuopen .menudrop { /*flip menu arrow up*/
     transform: rotate(180deg);
 }
 
