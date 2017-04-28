@@ -62,12 +62,14 @@
     </div>
 </div>
 <script>
-$(".menubtn").click(function() {
+$(".menubtn").click(function() { //hide and show nav menu
   $("#mySidenav").toggleClass("opensidenav");
   $("#menubuttons").toggleClass("closebtn");
   $("#menubuttons").toggleClass("openbtn");
 });
 
-$(".menudrop").click(function () {
-    $( this ).parent().toggleClass("breadcrumb");
+$(".menudrop").click(function () { //hide and show second level menu
+    $(".parent").not($(this).parent()).removeClass("menuopen");
+    $(this).parent().toggleClass("menuopen");
+    
 });</script>
