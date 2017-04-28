@@ -68,4 +68,6 @@ $(".menubtn").click(function() {
   $("#menubuttons").toggleClass("openbtn");
 });
 
-</script>
+$(".menudrop").click(function () {
+    $( this ).parent().toggleClass("breadcrumb");
+});</script>
