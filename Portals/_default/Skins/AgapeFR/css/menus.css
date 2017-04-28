@@ -1,4 +1,4 @@
-﻿#header #menu {
+﻿#header #menu { /*position links and icons*/
     height: 80px;
     cursor: pointer;
     position: absolute;
@@ -6,32 +6,33 @@
     color: #0e71b4;
 }
 
-#header #menu #menubuttons {
+#header #menu #menubuttons { /*position the search and menu icons*/
     position: absolute;
     right: 0px;
     bottom: 15px;
-    height:50px;
-    z-index:1001
-}
-#header .closebtn svg .stripe{
-  fill:#ffffff;
-  transition: 0.5s;
+    height: 50px;
+    z-index: 1001;
 }
 
-#header .openbtn svg .stripe{
-  fill:#0e71b4;
-  transition: 0.5s;
+#header .closebtn svg .stripe { /*make menu icons white*/
+    fill: #ffffff;
+    transition: 0.5s;
 }
 
-#header #menu #featuredlinks {
+#header .openbtn svg .stripe { /*make menu icons blue*/
+    fill: #0e71b4;
+    transition: 0.5s;
+}
+
+#header #menu #featuredlinks { /*hide dons and boutique links*/
     display: none;
 }
 
-.searchicon {
+.searchicon { /*hide search icon*/
     display: none;
 }
 
-.sidenav {
+.sidenav { /*set up nav menu*/
     height: 100%;
     width: 0;
     position: fixed;
@@ -42,61 +43,70 @@
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 80px;
-    white-space:nowrap;
+    white-space: nowrap;
 }
-.opensidenav{
-  width:100%;
+
+.opensidenav { /*show nav menu*/
+    width: 100%;
 }
-.sidenav a {
+
+.sidenav a { /*style nav menu links*/
     text-decoration: none;
     font-size: 20px;
     color: #ffffff;
-    transition: 0.3s;
 }
-.sidenav a:hover, .sidenav a.selected {
+
+.sidenav a:hover, .sidenav a.selected { /*underline active or hovered links*/
     text-decoration: underline;
 }
 
-.sidenav ul {
+.sidenav ul { /*remove bullets on links*/
     list-style-type: none;
 }
-    .sidenav ul li ul {
-        display:none;
-    }
-    .sidenav ul li.selected ul, .sidenav ul li.breadcrumb ul {
-        display:block;
-    }
-.sidenav .menudrop {
-content:url(/Portals/_default/Skins/AgapeFR/images/down-arrow.svg);
-margin-left:10px;
-vertical-align:sub;
+
+.sidenav ul li ul { /*hide second level links*/
+    display: none;
 }
 
-.sidenav .breadcrumb .menudrop {
-    transform:rotate(180deg);
+.sidenav ul li.selected ul, .sidenav ul li.breadcrumb ul { /*show second level links*/
+    display: block;
+}
+
+.sidenav .menudrop { /*add menu arrows*/
+    content: url(/Portals/_default/Skins/AgapeFR/images/down-arrow.svg);
+    margin-left: 10px;
+    vertical-align: sub;
+}
+
+.sidenav .breadcrumb .menudrop { /*flip menu arrow up*/
+    transform: rotate(180deg);
 }
 
 @media screen and (min-width: 768px) { /*tablet mode*/
-    .searchicon {
+    .searchicon { /*show search icon*/
         display: inline;
         margin-right: 20px;
     }
 
-    #header #menu #featuredlinks {
+    #header #menu #featuredlinks { /*show dons and boutique links*/
         display: block;
         margin-top: 20px;
     }
-    #header #menu {
+
+    #header #menu { /*make logo bigger*/
         height: 160px;
     }
-    #header #menu #menubuttons {
+
+    #header #menu #menubuttons { /*raise menu icons*/
         bottom: 30px;
     }
-    .sidenav {
+
+    .sidenav { /*push nav menu links down*/
         padding-top: 160px;
     }
-    .opensidenav{
-      width:50%;
+
+    .opensidenav { /*shrink nav menu*/
+        width: 50%;
     }
 }
 
