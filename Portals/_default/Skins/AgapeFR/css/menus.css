@@ -42,7 +42,7 @@
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 80px;
-
+    white-space:nowrap;
 }
 .opensidenav{
   width:100%;
