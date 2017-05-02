@@ -12,6 +12,22 @@
     bottom: 15px;
     height: 50px;
     z-index: 1001;
+    display:flex;
+}
+
+#header #SearchContainer .searchInputContainer a.dnnSearchBoxClearText { /*move cleartext button up into field*/
+    margin-top: -32px;
+    margin-right: 30px;
+}
+
+#header #SearchContainer input { /*style search box*/
+    margin-right: 30px;
+    height: 50px;
+    font-size: 20px;
+    border: 2px solid #0e71b4;
+    border-radius: 4px;
+    padding-right: 30px;
+    padding-left: 10px;
 }
 
 #header .closebtn svg .stripe { /*make menu icons white*/
