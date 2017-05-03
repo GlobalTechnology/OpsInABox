@@ -1,17 +1,110 @@
-﻿#header #logoHeader {
+﻿#header #logoHeader { /*shrink logo for mobile*/
     float: left;
     height: 80px;
 }
 
-    #header #logoHeader img {
-        height:80px;
-    }
+#header #logoHeader img { /*shrink logo for mobile*/
+    height: 80px;
+}
+
+#header #menu { /*position links and icons*/
+    height: 80px;
+    position: absolute;
+    right: 40px;
+    color: #0e71b4;
+}
+
+#header #menu #menubuttons { /*position the search and menu icons*/
+    position: absolute;
+    right: 0px;
+    bottom: 15px;
+    height: 50px;
+    z-index: 1001;
+    display: flex;
+    cursor: pointer;
+}
+
+#header .closebtn svg .stripe { /*make menu icons white*/
+    fill: #ffffff;
+    transition: 0.5s;
+}
+
+#header .openbtn svg .stripe { /*make menu icons blue*/
+    fill: #0e71b4;
+    transition: 0.5s;
+}
+
+#header #menu #featuredlinks { /*hide dons and boutique links*/
+    display: none;
+}
+
+#header .searchicon { /*hide search icon*/
+    visibility: hidden;
+    margin-right: 20px;
+    opacity:0;
+    transition: opacity 0.5s;
+}
+
+#header .closebtn .searchicon { /*show search icon when mobile menu is open*/
+    visibility: visible;
+    opacity:1;
+    transition: opacity 0.5s;
+}
+
+#header #SearchContainer .searchInputContainer a.dnnSearchBoxClearText { /*move cleartext button up into field*/
+    margin-top: -32px;
+    margin-right: 30px;
+}
+
+#header #SearchContainer input { /*style search box*/
+    margin-right: 30px;
+    height: 50px;
+    font-size: 20px;
+    border: none;
+    border-radius: 4px;
+    width: 0;
+    transition: width 0.5s;
+}
+
+    width: 250px;
+    padding-right: 30px;
+    padding-left: 10px;
+    border: 2px solid #0e71b4;
+    transition: width 0.5s;
+}
 
 @media screen and (min-width: 768px) { /*tablet mode*/
     #header #logoHeader {
         height: 160px;
     }
+
     #header #logoHeader img {
-        height:160px;
+        height: 160px;
     }
+
+    #header .searchicon { /*show search icon*/
+        visibility: visible;
+        opacity:1;
+        transition: opacity 0.5s;
+    }
+
+    #header #menu #featuredlinks { /*show dons and boutique links*/
+        display: block;
+        margin-top: 20px;
+    }
+
+    #header #menu { /*make logo bigger*/
+        height: 160px;
+    }
+
+    #header #menu #menubuttons { /*raise menu icons*/
+        bottom: 30px;
+    }
+    #header #SearchContainer.opensearch input { /*show search field*/
+    width: 250px;
+    padding-right: 30px;
+    padding-left: 10px;
+    border: 2px solid #0e71b4;
+    transition: width 0.5s;
+}
 }
