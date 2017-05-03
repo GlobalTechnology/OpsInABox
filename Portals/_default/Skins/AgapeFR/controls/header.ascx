@@ -74,5 +74,9 @@ $(".menubtn").click(function() { //hide and show nav menu
 $(".menudrop").click(function () { //hide and show second level menu
     $(".parent").not($(this).parent()).removeClass("menuopen");
     $(this).parent().toggleClass("menuopen");
-    
-});</script>
+});
+
+$(".searchicon").click(function () { //hide and show search field
+    $("#SearchContainer").toggleClass("opensearch");
+});
+</script>
