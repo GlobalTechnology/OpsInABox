@@ -31,11 +31,15 @@
 }
 
 .sidenav ul li ul { /*hide second level links*/
-    display:none;
+    overflow:hidden;
+    max-height:0;
+    transition: 0.5s ease;
 }
 
-.sidenav ul li.menuopen ul { /*show second level links*/
-    display:block;
+.sidenav ul li.menuopen ul { /*hide second level links*/
+
+    max-height:1000px;
+    transition: 0.5s ease;
 }
 
 .sidenav .menudrop { /*add menu arrows*/
