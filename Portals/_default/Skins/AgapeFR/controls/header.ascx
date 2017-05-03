@@ -31,6 +31,17 @@
 </script>
 <div id="mySidenav" class="sidenav">
     <ddr:MENU ID="MENU1" MenuStyle="/templates/AgapeFRMenu/" NodeSelector="*,0,+1" runat="server" includehidden="false" />
+    <% If Request.IsAuthenticated %>
+        <ul id="usercontainer" runat="server">
+            <li class="parent">
+                <a href="#" id="UserContainer" class="parent"><%=UserController.Instance.GetCurrentUserInfo().DisplayName%></a>
+                <span class="menudrop"></span>
+                <ul>
+                    <li><dnn:LOGIN runat="server" ID="dnnLOGIN" CssClass="user" /></li>
+                </ul>
+            </li>
+        </ul>
+    <% End If %>
 </div>
 <div id="controlPanelContainer">
     <div id="ControlPanel" runat="server" />
