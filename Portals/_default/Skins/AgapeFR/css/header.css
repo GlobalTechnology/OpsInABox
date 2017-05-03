@@ -66,6 +66,7 @@
     transition: width 0.5s;
 }
 
+#header .closebtn #SearchContainer.opensearch input { /*show search field when menu is open on mobile*/
     width: 250px;
     padding-right: 30px;
     padding-left: 10px;
