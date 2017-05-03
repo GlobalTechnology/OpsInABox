@@ -1,63 +1,4 @@
-﻿#header #menu { /*position links and icons*/
-    height: 80px;
-    cursor: pointer;
-    position: absolute;
-    right: 40px;
-    color: #0e71b4;
-}
-
-#header #menu #menubuttons { /*position the search and menu icons*/
-    position: absolute;
-    right: 0px;
-    bottom: 15px;
-    height: 50px;
-    z-index: 1001;
-    display:flex;
-}
-
-#header #SearchContainer .searchInputContainer a.dnnSearchBoxClearText { /*move cleartext button up into field*/
-    margin-top: -32px;
-    margin-right: 30px;
-}
-
-#header #SearchContainer input { /*style search box*/
-    margin-right: 30px;
-    height: 50px;
-    font-size: 20px;
-    border:none;
-    border-radius: 4px;
-    width:0;
-    transition: width 0.5s;
-}
-
-#header #SearchContainer.opensearch input { /*show search field*/
-    /*display: initial;*/
-    width:250px;
-    padding-right: 30px;
-    padding-left: 10px;
-    border: 2px solid #0e71b4;
-    transition: width 0.5s;
-}
-
-#header .closebtn svg .stripe { /*make menu icons white*/
-    fill: #ffffff;
-    transition: 0.5s;
-}
-
-#header .openbtn svg .stripe { /*make menu icons blue*/
-    fill: #0e71b4;
-    transition: 0.5s;
-}
-
-#header #menu #featuredlinks { /*hide dons and boutique links*/
-    display: none;
-}
-
-.searchicon { /*hide search icon*/
-    display: none;
-}
-
-.sidenav { /*set up nav menu*/
+﻿.sidenav { /*set up nav menu*/
     height: 100%;
     width: 0;
     position: fixed;
@@ -108,24 +49,6 @@
 }
 
 @media screen and (min-width: 768px) { /*tablet mode*/
-    .searchicon { /*show search icon*/
-        display: inline;
-        margin-right: 20px;
-    }
-
-    #header #menu #featuredlinks { /*show dons and boutique links*/
-        display: block;
-        margin-top: 20px;
-    }
-
-    #header #menu { /*make logo bigger*/
-        height: 160px;
-    }
-
-    #header #menu #menubuttons { /*raise menu icons*/
-        bottom: 30px;
-    }
-
     .sidenav { /*push nav menu links down*/
         padding-top: 160px;
     }
