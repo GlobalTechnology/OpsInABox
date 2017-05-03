@@ -24,10 +24,19 @@
     margin-right: 30px;
     height: 50px;
     font-size: 20px;
-    border: 2px solid #0e71b4;
+    border:none;
     border-radius: 4px;
+    width:0;
+    transition: width 0.5s;
+}
+
+#header #SearchContainer.opensearch input { /*show search field*/
+    /*display: initial;*/
+    width:250px;
     padding-right: 30px;
     padding-left: 10px;
+    border: 2px solid #0e71b4;
+    transition: width 0.5s;
 }
 
 #header .closebtn svg .stripe { /*make menu icons white*/
@@ -120,11 +129,10 @@
     .sidenav { /*push nav menu links down*/
         padding-top: 160px;
     }
-
-    .opensidenav { /*shrink nav menu*/
-        width: 50%;
-    }
 }
 
 @media screen and (min-width: 1024px) { /*computer mode*/
+    .opensidenav { /*shrink nav menu*/
+        width: 50%;
+    }
 }
