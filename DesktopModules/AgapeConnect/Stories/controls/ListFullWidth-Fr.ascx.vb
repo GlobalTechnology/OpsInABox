@@ -58,7 +58,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             End If
 
             Dim listData As DataTable = StoryFunctions.GetListData(stories.Skip(skip).Take(CInt(settings(ControlerConstants.NUMSTORIES))),
-                                                                   PortalSettings.DefaultPortalAlias, TabModuleId)
+                                                                   PortalSettings.DefaultPortalAlias)
 
             dlStories.DataSource = listData
             dlStories.DataBind()

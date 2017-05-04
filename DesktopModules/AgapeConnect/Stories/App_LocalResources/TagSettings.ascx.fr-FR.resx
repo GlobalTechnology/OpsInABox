@@ -168,8 +168,8 @@
   <data name="LinkImage.Text" xml:space="preserve">
     <value>Image de surimpression</value>
   </data>
-  <data name="NewPage.Text" xml:space="preserve">
-    <value>Nouvelle page</value>
+  <data name="StoryPage.Text" xml:space="preserve">
+    <value>Page Histoire</value>
   </data>
   <data name="None.Text" xml:space="preserve">
     <value>Aucun</value>
@@ -182,5 +182,8 @@
   </data>
   <data name="Popup.Text" xml:space="preserve">
     <value>Pop-up</value>
+  </data>
+  <data name="ExternalPage.Text" xml:space="preserve">
+    <value>URL Externe</value>
   </data>
 </root>
