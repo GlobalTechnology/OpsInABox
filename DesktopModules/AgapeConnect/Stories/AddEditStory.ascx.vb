@@ -81,6 +81,7 @@ Namespace DotNetNuke.Modules.Stories
                     lblField3.Visible = True
                 End If
 
+                'Edit mode
                 If Request.QueryString("StoryID") <> "" Then
 
                     'StoryIdHF.Value = Request.QueryString("StoryId")
@@ -99,6 +100,7 @@ Namespace DotNetNuke.Modules.Stories
                         row.Selected = r.AP_Stories_Tag_Metas.Where(Function(c) c.AP_Stories_Tag.StoryTagId = CInt(row.Value)).Count > 0
 
                     Next
+
 
                     If (Not String.IsNullOrEmpty(r.Field1)) Then
                         tbField1.Text = r.Field1
@@ -469,15 +471,27 @@ Namespace DotNetNuke.Modules.Stories
         '    End If
         'End Sub
 
-
-
 #Region "Helper Functions"
 
         Protected Sub BuildTagList()
-            cblTags.DataSource = StoryFunctions.GetTags(TabModuleId)
+            Dim tagList = StoryFunctions.GetTags(TabModuleId)
+            cblTags.DataSource = tagList
             cblTags.DataTextField = "TagName"
             cblTags.DataValueField = "StoryTagId"
             cblTags.DataBind()
+
+            Dim tagDict As New Dictionary(Of String, String)
+            For Each tag In tagList
+                If tag.OpenStyle.Equals(TagSettingsConstants.OpenStyle.StoryPage.ToString) Then
+                    tagDict.Add(tag.StoryTagId, TagSettingsConstants.OpenStyle.StoryPage.ToString)
+                ElseIf tag.OpenStyle.Equals(TagSettingsConstants.OpenStyle.Popup.ToString) Then
+                    tagDict.Add(tag.StoryTagId, TagSettingsConstants.OpenStyle.Popup.ToString)
+                Else 'External URL
+                    tagDict.Add(tag.StoryTagId, TagSettingsConstants.OpenStyle.ExternalPage.ToString)
+                End If
+            Next
+
+            hftagDict.Value = Newtonsoft.Json.JsonConvert.SerializeObject(tagDict)
         End Sub
 
 #End Region 'Helper Functions

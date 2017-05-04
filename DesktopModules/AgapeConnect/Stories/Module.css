@@ -225,15 +225,19 @@
     color: red;
 }
 
-#divAddEditStory .imageCropper {
+#divAddEditStory .VisualRow {
     margin: 20px;
+    width: 100%;
+}
+
+#divAddEditStory .imageCropper {
     float: left;
+    width: 50%;
 }
 
 #divAddEditStory .locationPicker {
-    margin: 20px;
     float: left;
-    width: 300px;
+    width: 50%;
 }
 #divAddEditStory .FieldRow input[type="text"].tbLocation {
     width: 75%;

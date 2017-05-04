@@ -766,7 +766,7 @@ Public Class StoryFunctions
     End Function
 
 
-#End Region
+#End Region 'Story Controls
 
 #Region "Templates"
 

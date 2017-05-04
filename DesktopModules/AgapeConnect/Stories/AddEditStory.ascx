@@ -18,22 +18,46 @@
             var pickerOpts = {
                 dateFormat: '<%= GetDateFormat() %>'
             };
-        $('.datepicker').datepicker(pickerOpts);
+            $('.datepicker').datepicker(pickerOpts);
 
-<%--        $('#<%= cbAutoGenerate.ClientId %>').click(function () {
-                if ($(this).is(':checked')) {
-                    $('#<%= tbSample.ClientID%>').hide();
-                    $('#<%= lblSample.ClientID%>').show();
+             $('#<%= cblTags.ClientID %>').find('input:checkbox').click(function () {
+                showAppropriateOptions();
+            });
+        }
+
+        function showAppropriateOptions() {
+        $(".storyOption").hide();
+
+        var chblist = $('#<%= cblTags.ClientID %>').find('input:checkbox');
+            var tagdict = JSON.parse('<%= hftagDict.Value %>');
+            if (showEditor(chblist, tagdict)) {
+                $(".textEditor").show();
+            }
+            chblist.each(function (index) {
+                var item = $(this)
+                if (item.is(':checked') && tagdict[item.val()] == 'ExternalPage') {
+                    $(".ExternalURL").show();
                 }
-                else {
-                    $('#<%= tbSample.ClientID%>').show();
-                    $('#<%= lblSample.ClientID%>').hide();
+                else if (item.is(':checked') && tagdict[item.val()] == 'Popup') {
+                    $(".YouTube").show();
                 }
-            });--%>
+            });
+        }
+
+        function showEditor(chblist, tagdict) {
+            var specialLink = false;
+            chblist.each(function (index) {
+                var item = $(this)
+                if (item.is(':checked') && (tagdict[item.val()] == 'ExternalPage' || tagdict[item.val()] == 'Popup')) {
+                    specialLink = true;
+                }
+            });
+            return !specialLink
         }
 
         $(document).ready(function () {
             setUpMyTabs();
+            showAppropriateOptions()
             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
                 setUpMyTabs();
             });
@@ -42,6 +66,7 @@
 </script>
 
 <asp:HiddenField ID='hfmapsKey' runat="server" />
+<asp:HiddenField ID='hftagDict' runat="server" />
 
 <div id="divAddEditStory">
     <div id="divHeadline" class="FieldRow">
@@ -78,12 +103,12 @@
         <asp:CheckBoxList ID="cblTags" CssClass="cblTags" runat="server"></asp:CheckBoxList>
     </div>
 
-    <div id="divYouTube" class="FieldRow">
+    <div id="divYouTube" class="storyOption YouTube FieldRow">
         <asp:Label ID="lblYouTube" runat="server" ResourceKey="lblYouTube" CssClass="FieldLabel"></asp:Label>
         <asp:TextBox ID="tbField1" runat="server"></asp:TextBox>
     </div>
 
-    <div id="divExternalURL" class="FieldRow">
+    <div id="divExternalURL" class="storyOption ExternalURL FieldRow">
         <asp:Label ID="lblExternalURL" runat="server" ResourceKey="lblExternalURL" CssClass="FieldLabel"></asp:Label>
         <asp:TextBox ID="tbField2" runat="server" MaxLength="50"></asp:TextBox>
     </div>
@@ -108,12 +133,12 @@
         <asp:TextBox ID="tbSample" runat="server" TextMode="MultiLine" Text='<%# Bind("TemplateDescription") %>' ></asp:TextBox>
     </div>
 
-        <div id="divAutoGenerate" class="FieldRow">
+    <div id="divAutoGenerate" class="FieldRow">
         <asp:Label ID="lblAutoGenerate" runat="server" ResourceKey="lblAutoGenerate" CssClass="FieldLabel"></asp:Label>
         <asp:CheckBox ID="cbAutoGenerate" runat="server" Text="AutoGenerate" />
     </div>
         
-    <div id="divCropLocation" class="FieldRow">
+    <div id="divCropLocation" class="VisualRow">
         <div class="imageCropper">
             <uc1:acImage ID="acImage1" runat="server" SaveWidth="700" />
         </div>
@@ -122,7 +147,7 @@
         </div>
     </div>  
         
-    <div id="divTextEditor" class="FieldRow">
+    <div id="divTextEditor" class="storyOption textEditor FieldRow">
         <dnn:TextEditor ID="StoryText" runat="server" TextRenderMode="Raw" Width="100%" HtmlEncode="False" DefaultMode="Rich" Height="400" ChooseMode="True" ChooseRender="False" />
     </div>      
 
