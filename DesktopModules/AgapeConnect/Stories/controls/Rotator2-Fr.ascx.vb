@@ -56,8 +56,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             hfChannelId.Value = rotatorSettings.Item(ControlerConstants.CHANNELID)
 
             Dim sliderData As DataTable = StoryFunctions.GetRotatorSlides(stories, rotatorSettings,
-                                                                          PortalSettings.DefaultPortalAlias,
-                                                                          TabModuleId)
+                                                                          PortalSettings.DefaultPortalAlias)
 
             'customize title for this rotator
             For Each row As DataRow In sliderData.Rows

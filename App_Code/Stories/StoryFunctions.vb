@@ -145,7 +145,8 @@ Public Module TagSettingsConstants
     End Enum
 
     Public Enum OpenStyle
-        NewPage
+        StoryPage
+        ExternalPage
         Popup
     End Enum
 
@@ -236,7 +237,7 @@ Public Class StoryFunctions
 
     End Function
 
-    Public Shared Function GetTag(ByVal tagId As Integer, ByVal TabModuleId As Integer) As AP_Stories_Tag
+    Public Shared Function GetTag(ByVal tagId As Integer) As AP_Stories_Tag
         Dim d As New StoriesDataContext
         Return (From c In d.AP_Stories_Tags Where c.StoryTagId = tagId).First
     End Function
@@ -282,7 +283,7 @@ Public Class StoryFunctions
         insert.Keywords = ""
         insert.StoryModuleId = GetStoryModule(TabModuleId).StoryModuleId
         insert.LinkImage = TagSettingsConstants.LinkImage.None.ToString
-        insert.OpenStyle = TagSettingsConstants.OpenStyle.NewPage.ToString()
+        insert.OpenStyle = TagSettingsConstants.OpenStyle.StoryPage.ToString()
         d.AP_Stories_Tags.InsertOnSubmit(insert)
         d.SubmitChanges()
     End Sub
@@ -330,28 +331,36 @@ Public Class StoryFunctions
         End If
     End Function
 
-    Public Shared Function GetTagPersonalisation(ByRef storyId As Integer, ByVal tabModuleId As Integer) As Dictionary(Of String, String)
+    Public Shared Function GetTagParamsByStory(ByRef storyId As Integer) As Dictionary(Of String, String)
         Dim d As New StoriesDataContext
         Dim storyList As New List(Of AP_Story)
         Dim tagList As New List(Of Integer)
         Dim personalDict As New Dictionary(Of String, String)
-        personalDict.Add(TagSettingsConstants.LINKIMAGESTRING, TagSettingsConstants.LinkImage.None)
-        personalDict.Add(TagSettingsConstants.OPENSTYLESTRING, TagSettingsConstants.OpenStyle.NewPage)
+
+        personalDict.Add(TagSettingsConstants.LINKIMAGESTRING, TagSettingsConstants.LinkImage.None.ToString)
+        personalDict.Add(TagSettingsConstants.OPENSTYLESTRING, TagSettingsConstants.OpenStyle.StoryPage.ToString)
 
         storyList.Add(StoryFunctions.GetStory(storyId))
         tagList = (From c In StoryFunctions.GetTagsOfStory(storyList) Select c.StoryTagId).ToList
 
-        For Each tagID In tagList
-            If (StoryFunctions.GetTag(tagID, tabModuleId)).LinkImage <> (TagSettingsConstants.LinkImage.None).ToString Then
-                personalDict(TagSettingsConstants.LINKIMAGESTRING) = TagSettingsConstants.LinkImage.PlayButton.ToString
-            End If
-
-            If (StoryFunctions.GetTag(tagID, tabModuleId)).OpenStyle <> (TagSettingsConstants.OpenStyle.NewPage).ToString Then
-                personalDict(TagSettingsConstants.OPENSTYLESTRING) = TagSettingsConstants.OpenStyle.Popup.ToString
-            End If
+        For Each tagId In tagList
+            GetTagParams(tagId, personalDict)
         Next
         Return personalDict
     End Function
+
+    Public Shared Sub GetTagParams(ByRef tagId As Integer, ByRef personalDict As Dictionary(Of String, String))
+
+        If (StoryFunctions.GetTag(tagId)).LinkImage = TagSettingsConstants.LinkImage.PlayButton.ToString Then
+            personalDict(TagSettingsConstants.LINKIMAGESTRING) = TagSettingsConstants.LinkImage.PlayButton.ToString
+        End If
+
+        If (StoryFunctions.GetTag(tagId)).OpenStyle = TagSettingsConstants.OpenStyle.Popup.ToString Then
+            personalDict(TagSettingsConstants.OPENSTYLESTRING) = TagSettingsConstants.OpenStyle.Popup.ToString
+        ElseIf (StoryFunctions.GetTag(tagId)).OpenStyle = TagSettingsConstants.OpenStyle.ExternalPage.ToString Then
+            personalDict(TagSettingsConstants.OPENSTYLESTRING) = TagSettingsConstants.OpenStyle.ExternalPage.ToString
+        End If
+    End Sub
 
 #End Region 'Tags
 
@@ -693,26 +702,23 @@ Public Class StoryFunctions
     End Function
 
     Public Shared Function GetLinkDetails(ByRef story As AP_Stories_Module_Channel_Cache, ByVal imageLinkClass As String,
-                                          ByVal portalAlias As String, ByVal tabModuleId As Integer) As Dictionary(Of String, String)
+                                          ByVal portalAlias As String) As Dictionary(Of String, String)
 
-        Dim viewStyles As Dictionary(Of String, String) = StoryFunctions.GetTagPersonalisation(story.GUID, tabModuleId)
+        Dim viewStyles As Dictionary(Of String, String) = StoryFunctions.GetTagParamsByStory(story.GUID)
         Dim linkDetails As New Dictionary(Of String, String)
         Dim URL As String = ""
         Dim linkImage As String = ""
         Dim clickAction As String = ""
 
-        Dim target = ControlerConstants.TARGETBLANK
-        If story.Link.Contains(portalAlias) Then
-            target = ControlerConstants.TARGETSELF
-        End If
-
         'personalized opening style
-        If (viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING).Equals(TagSettingsConstants.OpenStyle.Popup.ToString)) Then
+        If viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING) = TagSettingsConstants.OpenStyle.StoryPage.ToString Then
+            clickAction = "window.open('" & story.Link & "', '" & ControlerConstants.TARGETSELF & "');"
+            URL = story.Link
+        ElseIf viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING) = TagSettingsConstants.OpenStyle.Popup.ToString Then
             clickAction = "onclick=popupvideo('" & story.Spare1 & "', '" & story.ChannelId & "');" 'pass video id to pop up
             URL = "youtube.com/watch?v=" & story.Spare1
-        Else
-            clickAction = "window.open('" & story.Link & "', '" & target & "');"
-            URL = story.Link
+        Else 'ExternalPage
+            clickAction = "window.open('" & story.Spare2 & "', '" & ControlerConstants.TARGETBLANK & "');"
         End If
 
         'personalized link image
@@ -730,8 +736,7 @@ Public Class StoryFunctions
     End Function
 
     Public Shared Function GetListData(ByRef stories As IEnumerable(Of AP_Stories_Module_Channel_Cache),
-                                           ByVal portalAlias As String,
-                                           ByVal tabModuleId As Integer) As DataTable
+                                           ByVal portalAlias As String) As DataTable
         Dim listData As New DataTable
         listData.Columns.Add(ControlerConstants.OPENLINK)
         listData.Columns.Add(ControlerConstants.HEADLINE)
@@ -742,7 +747,7 @@ Public Class StoryFunctions
         For Each story In stories
 
             Dim dataRow As DataRow = listData.NewRow()
-            Dim linkDetails As Dictionary(Of String, String) = StoryFunctions.GetLinkDetails(story, "", portalAlias, tabModuleId)
+            Dim linkDetails As Dictionary(Of String, String) = StoryFunctions.GetLinkDetails(story, "", portalAlias)
 
             dataRow(ControlerConstants.OPENLINK) = "javascript: registerClick(" & story.CacheId & "); " & linkDetails(ControlerConstants.CLICKACTION)
             dataRow(ControlerConstants.HEADLINE) = story.Headline
@@ -980,8 +985,7 @@ Public Class StoryFunctions
     End Function
 
     Public Shared Function GetRotatorSlides(ByRef stories As List(Of AP_Stories_Module_Channel_Cache),
-                                            ByRef rotatorSettings As Hashtable, ByVal portalAlias As String,
-                                            ByVal tabModuleId As Integer) As DataTable
+                                            ByRef rotatorSettings As Hashtable, ByVal portalAlias As String) As DataTable
         Dim sliderData As New DataTable
 
         sliderData.Columns.Add(ControlerConstants.SLIDELINK)
@@ -997,7 +1001,7 @@ Public Class StoryFunctions
         For Each story In stories
             Try
                 Dim dataRow As DataRow = sliderData.NewRow()
-                Dim linkDetails As Dictionary(Of String, String) = GetLinkDetails(story, ControlerConstants.SLIDEIMAGELINKCLASS, portalAlias, tabModuleId)
+                Dim linkDetails As Dictionary(Of String, String) = GetLinkDetails(story, ControlerConstants.SLIDEIMAGELINKCLASS, portalAlias)
 
                 'personalized link image
                 dataRow(ControlerConstants.SLIDEIMAGECSS) = linkDetails(ControlerConstants.LINKIMAGECSS)
