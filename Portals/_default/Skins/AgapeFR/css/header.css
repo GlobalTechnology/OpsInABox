@@ -82,7 +82,8 @@
     }
 
     #header #logoHeader img {
-        height: 140px;
+        height: 112px;
+        padding:24px;
     }
 
     #header .searchicon { /*show search icon*/
