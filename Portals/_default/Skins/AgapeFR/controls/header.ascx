@@ -29,6 +29,7 @@
     }(jQuery, window.Sys));
 </script>
 <div id="mySidenav" class="sidenav">
+    <img src="/Portals/_default/Skins/AgapeFR/images/Logo_Agape_France_Symbole.svg"/>
     <ddr:MENU ID="MENU1" MenuStyle="/templates/AgapeFRMenu/" NodeSelector="*,0,+1" runat="server" includehidden="false" />
     <% If Request.IsAuthenticated %>
         <ul id="usercontainer" runat="server">
