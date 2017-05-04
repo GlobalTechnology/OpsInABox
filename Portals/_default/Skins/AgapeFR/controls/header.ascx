@@ -1,5 +1,4 @@
 <%@ Control Language="vb" AutoEventWireup="false" Explicit="True" %>
-<%@ Register TagPrefix="dnn" TagName="LOGO" Src="~/Admin/Skins/Logo.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="USER" Src="~/Admin/Skins/User.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="LOGIN" Src="~/Admin/Skins/Login.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="SEARCH" Src="~/DesktopModules/AgapeFR/Search/Search.ascx" %>
@@ -49,7 +48,9 @@
 <div class="bar">
     <div id="header" class="centeredbox bar1">
         <div id="logoHeader">
-            <dnn:LOGO runat="server" ID="dnnLOGOHEADER" />
+            <a href="/">
+                <img src="/Portals/_default/Skins/AgapeFR/images/Logo_Agape_France.svg"/>
+            </a>
         </div>
         <div id="menu">
             <div id="featuredlinks">

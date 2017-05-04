@@ -4,7 +4,9 @@
 }
 
 #header #logoHeader img { /*shrink logo for mobile*/
-    height: 80px;
+    height: 60px;
+    padding:10px;
+    transition: height .3s;
 }
 
 #header #menu { /*position links and icons*/
@@ -80,7 +82,7 @@
     }
 
     #header #logoHeader img {
-        height: 160px;
+        height: 140px;
     }
 
     #header .searchicon { /*show search icon*/
