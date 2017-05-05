@@ -175,7 +175,7 @@
     <value>Aucun</value>
   </data>
   <data name="OpenStyle.Text" xml:space="preserve">
-    <value>Mode d'ouverture des histoires</value>
+    <value>Mode d'ouverture</value>
   </data>
   <data name="PlayButton.Text" xml:space="preserve">
     <value>Bouton de lecture</value>

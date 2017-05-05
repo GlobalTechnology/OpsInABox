@@ -26,15 +26,17 @@
         }
 
         function showAppropriateOptions() {
-        $(".storyOption").hide();
-
-        var chblist = $('#<%= cblTags.ClientID %>').find('input:checkbox');
+            $(".storyOption").hide();
+            
+            var chblist = $('#<%= cblTags.ClientID %>').find('input:checkbox');
             var tagdict = JSON.parse('<%= hftagDict.Value %>');
-            if (showEditor(chblist, tagdict)) {
-                $(".textEditor").show();
-            }
+            var showEditor = true;
+
             chblist.each(function (index) {
                 var item = $(this)
+                if (item.is(':checked') && (tagdict[item.val()] == 'ExternalPage' || tagdict[item.val()] == 'Popup')) {
+                    showEditor = false;
+                }
                 if (item.is(':checked') && tagdict[item.val()] == 'ExternalPage') {
                     $(".ExternalURL").show();
                 }
@@ -42,17 +44,12 @@
                     $(".YouTube").show();
                 }
             });
-        }
-
-        function showEditor(chblist, tagdict) {
-            var specialLink = false;
-            chblist.each(function (index) {
-                var item = $(this)
-                if (item.is(':checked') && (tagdict[item.val()] == 'ExternalPage' || tagdict[item.val()] == 'Popup')) {
-                    specialLink = true;
-                }
-            });
-            return !specialLink
+            if (showEditor) {
+                $(".textEditor").show();
+            }
+            if ($(".ExternalURL").is(':visible') && $(".YouTube").is(':visible')) {
+                $(".TagErrorMsg").show();
+            }
         }
 
         $(document).ready(function () {
@@ -101,6 +98,9 @@
     <div id="divTags" class="FieldRow">
         <asp:Label ID="lblTags" runat="server" ResourceKey="lblTags" CssClass="FieldLabel"></asp:Label>
         <asp:CheckBoxList ID="cblTags" CssClass="cblTags" runat="server"></asp:CheckBoxList>
+    </div>
+    <div class="TagErrorMsg storyOption">
+        <asp:Label ID="lblTagErrorMsg" runat="server" ResourceKey="lblTagErrorMsg"></asp:Label>
     </div>
 
     <div id="divYouTube" class="storyOption YouTube FieldRow">

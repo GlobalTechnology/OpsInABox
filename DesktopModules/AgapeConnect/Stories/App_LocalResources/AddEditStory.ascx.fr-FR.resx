@@ -148,7 +148,7 @@
     <value>Langue :</value>
   </data>
   <data name="lblSample.Text" xml:space="preserve">
-    <value>Texte sommaire :</value>
+    <value>Résumé :</value>
   </data>
   <data name="lblStoryDate.Text" xml:space="preserve">
     <value>Date :</value>
@@ -170,5 +170,8 @@
   </data>
   <data name="SeedText.Text" xml:space="preserve">
     <value>Veuillez ajoutez le texte de l'histoire ici...</value>
+  </data>
+  <data name="lblTagErrorMsg.Text" xml:space="preserve">
+    <value>Vous avez choisi des catégories avec des modes d'ouverture incompatibles. Veuillez tester l'affichage de cette histoire.</value>
   </data>
 </root>

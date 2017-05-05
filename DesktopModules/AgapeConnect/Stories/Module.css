@@ -170,6 +170,7 @@
  /*AddEdit Section Begin*/
 #divAddEditStory .FieldRow {
     margin-bottom: 10px;
+    width: 100%;
 }
 
 #divAddEditStory .FieldRow input[type="text"], #divAddEditStory .FieldRow textarea {
@@ -177,30 +178,30 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    width: 70%;
+    padding: 0px 5px 0px 5px;
 }
 
 #divAddEditStory .FieldRow input[type="text"] {
     height: 25px;
     line-height: 25px;
-    width: 600px;
-    padding: 0px 5px 0px 5px;
 }
 
 #divAddEditStory .FieldRow textarea {
-    width: 600px;
     height: 100px;
+    padding: 5px;
 }
 
 #divAddEditStory .FieldLabel {
 	display: inline-block;
-	zoom: 1; *display: inline; /* IE fix for inline-block display */
     vertical-align: top;
-    text-align: left;
-    width: 200px;
+    text-align: right;
+    width: 20%;
+    padding-right: 5px;
 }
 
 #divAddEditStory .cblTags {
-    margin-left: 200px;
+    display: inline;
 }
 
 #divField3 {
@@ -223,6 +224,14 @@
     text-align: center;
     font-size: small;
     color: red;
+    margin-bottom: 20px;
+}
+
+#divAddEditStory .TagErrorMsg {
+    text-align: center;
+    font-size: small;
+    color: red;
+    margin-bottom: 20px;
 }
 
 #divAddEditStory .VisualRow {
