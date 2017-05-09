@@ -153,6 +153,6 @@
 
     <div class="SubmitPanel">
         <asp:Button ID="btnSave" runat="server" resourcekey="btnSave" CssClass="button" />
-        <asp:Button ID="btnCancel" runat="server" resourcekey="btnCancel" CssClass="button" />
+        <asp:Button ID="btnCancel" runat="server" resourcekey="btnCancel" CssClass="button" CausesValidation="false" />
     </div>
 </div>
