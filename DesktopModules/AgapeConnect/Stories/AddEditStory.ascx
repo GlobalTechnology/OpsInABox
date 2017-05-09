@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="AddEditStory.ascx.vb" Inherits="DotNetNuke.Modules.Stories.AddEditStory" %>
 <%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI" TagPrefix="asp" %>
+<%@ Register Src="../StaffAdmin/Controls/acImage.ascx" TagName="acImage" TagPrefix="uc1" %>
 <%@ Register TagPrefix="dnn" TagName="TextEditor" Src="~/controls/TextEditor.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
-<%@ Register Src="../StaffAdmin/Controls/acImage.ascx" TagName="acImage" TagPrefix="uc1" %>
 
 <script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key=<%= hfmapsKey.Value %>' async defer></script>
 <script src="/js/jquery.locationpicker.js" type="text/javascript"></script>
@@ -53,8 +53,8 @@
         }
 
         $(document).ready(function () {
-            setUpMyTabs();
             showAppropriateOptions()
+            setUpMyTabs();            
             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
                 setUpMyTabs();
             });
@@ -104,7 +104,7 @@
     </div>
 
     <div id="divYouTube" class="storyOption YouTube FieldRow">
-        <asp:Label ID="lblYouTube" runat="server" ResourceKey="lblYouTube" CssClass="FieldLabel"></asp:Label>
+       <dnn:Label ID="lblYouTube" runat="server" ResourceKey="lblYouTube" CssClass="tooltipLabel"></dnn:Label>
         <asp:TextBox ID="tbField1" runat="server"></asp:TextBox>
     </div>
 
@@ -129,7 +129,7 @@
     </div> 
            
     <div id="divSample" class="FieldRow">
-        <asp:Label ID="lblSample" runat="server" ResourceKey="lblSample" CssClass="FieldLabel"></asp:Label>
+        <dnn:Label ID="lblSample" runat="server" ResourceKey="lblSample" CssClass="tooltipLabel"></dnn:Label>
         <asp:TextBox ID="tbSample" runat="server" TextMode="MultiLine" Text='<%# Bind("TemplateDescription") %>' ></asp:TextBox>
     </div>
 
@@ -151,31 +151,8 @@
         <dnn:TextEditor ID="StoryText" runat="server" TextRenderMode="Raw" Width="100%" HtmlEncode="False" DefaultMode="Rich" Height="400" ChooseMode="True" ChooseRender="False" />
     </div>      
 
-
-    <%--  <asp:Panel ID="pnlLanguages" runat="server" Visible="false" Width="100%">
-        <br />
-        <b>Translations:</b><br />
-        <div style="margin: 4px 0 4px 0;">
-            <asp:DataList ID="dlLanuages" runat="server" RepeatDirection="Vertical" ItemStyle-HorizontalAlign="Left" Width="100%">
-                <ItemTemplate>
-                    <table>
-                        <tr valign="middle">
-                            <td>
-                                <asp:HyperLink ID="HyperLink2" runat="server" Target="_blank" ToolTip='<%# GetLanguageName(Eval("Language")) %>' ImageUrl='<%# GetFlag(Eval("Language"))  %>' NavigateUrl='<%# NavigateURL() & "?StoryId=" & Eval("StoryId") %>'>HyperLink</asp:HyperLink>
-                            </td>
-                            <td>
-                                <asp:LinkButton ID="LinkButton2" runat="server" CommandName="Translate" CommandArgument='<%# Eval("StoryId") %>' Font-Size="X-Small" Text=' <%# "AutoTranslate from " & GetLanguageName(Eval("Language"))%>'></asp:LinkButton>
-                            </td>
-                        </tr>
-                    </table>
-                </ItemTemplate>
-            </asp:DataList>
-        </div>
-    </asp:Panel>--%>
-
-
-<div class="SubmitPanel">
-    <asp:Button ID="btnSave" runat="server" resourcekey="btnSave" CssClass="button" />
-    <asp:Button ID="btnCancel" runat="server" resourcekey="btnCancel" CssClass="button" />
-</div>
+    <div class="SubmitPanel">
+        <asp:Button ID="btnSave" runat="server" resourcekey="btnSave" CssClass="button" />
+        <asp:Button ID="btnCancel" runat="server" resourcekey="btnCancel" CssClass="button" />
+    </div>
 </div>

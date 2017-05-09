@@ -163,7 +163,7 @@
     <value>Veuillez entrer uniquement l'identifant YouTube de la vidéo (exemple : LSW9XgU0xC8).</value>
   </data>
   <data name="lblYouTube.Text" xml:space="preserve">
-    <value>Identifant YouTube: </value>
+    <value>Identifant YouTube : </value>
   </data>
   <data name="rfHeadline.Text" xml:space="preserve">
     <value>Il vous faut un titre pour la ressource.</value>
@@ -173,5 +173,8 @@
   </data>
   <data name="lblTagErrorMsg.Text" xml:space="preserve">
     <value>Vous avez choisi des catégories avec des modes d'ouverture incompatibles. Veuillez tester l'affichage de cette histoire.</value>
+  </data>
+  <data name="lblSample.Help" xml:space="preserve">
+    <value />
   </data>
 </root>
