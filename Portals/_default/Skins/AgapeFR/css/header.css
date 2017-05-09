@@ -1,12 +1,23 @@
-﻿#header #logoHeader { /*shrink logo for mobile*/
+﻿#header #logoHeader { /*shrink logo for mobile, show above menu*/
     float: left;
     height: 80px;
+    z-index: 999999;
+    position: absolute;
 }
 
-#header #logoHeader img { /*shrink logo for mobile*/
+#header #logoHeader svg { /*shrink logo for mobile*/
     height: 60px;
     padding:10px;
     transition: height .3s;
+}
+
+#header #logoHeader.white .aflightblue,
+#header #logoHeader.white .afmedblue,
+#header #logoHeader.white .afdarkblue,
+#header #logoHeader.white .afblack,
+#header #logoHeader.white .afgray { /*color logo white*/
+    fill:#ffffff;
+    transition:.5s;
 }
 
 #header #menu { /*position links and icons*/
@@ -81,7 +92,7 @@
         height: 160px;
     }
 
-    #header #logoHeader img {
+    #header #logoHeader svg {
         height: 112px;
         padding:24px;
     }
@@ -110,5 +121,27 @@
     padding-left: 10px;
     border: 2px solid #0e71b4;
     transition: width 0.5s;
+    }
 }
+
+@media screen and (min-width: 1024px) { /*computer mode*/
+    #header #logoHeader.white .aflightblue { /*color logo*/
+        fill:#b2dbed;
+    }
+
+    #header #logoHeader.white .afmedblue { /*color logo*/
+        fill:#66b8dc;
+    }
+
+    #header #logoHeader.white .afdarkblue { /*color logo*/
+        fill:#0e71b4;
+    }
+
+    #header #logoHeader.white .afgray { /*color logo*/
+        fill:#868889;
+    }
+
+    #header #logoHeader.white .afblack { /*color logo*/
+        fill:#1a171a;
+    }
 }
