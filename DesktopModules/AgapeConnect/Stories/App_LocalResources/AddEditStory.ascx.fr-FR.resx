@@ -175,6 +175,10 @@
     <value>Vous avez choisi des catégories avec des modes d'ouverture incompatibles. Veuillez tester l'affichage de cette histoire.</value>
   </data>
   <data name="lblSample.Help" xml:space="preserve">
-    <value />
+    <value>Le résumé correspond à 4 utilisations : &lt;/br&gt;
+1. texte gris de la liste des ressources, &lt;/br&gt;
+2. texte gris à droite d'une image du carrousel, &lt;/br&gt;
+3. méta-donnée description pour le partage sur les réseaux sociaux, &lt;/br&gt;
+4. lieu et heures d'un événement (indiquer le lieu sur la première ligne et l'heure sur la suivante).</value>
   </data>
 </root>
