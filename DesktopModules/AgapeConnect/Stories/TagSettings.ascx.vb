@@ -139,7 +139,7 @@ Namespace DotNetNuke.Modules.Stories
             ' bind only rows that contain data (not header or footer rows...)
             If e.Row.RowType = DataControlRowType.DataRow Then
 
-                Dim tagPhotoId As Nullable(Of Integer) = StoryFunctions.GetTag(gvTags.DataKeys(e.Row.RowIndex).Value, TabModuleId).PhotoId
+                Dim tagPhotoId As Nullable(Of Integer) = StoryFunctions.GetTag(gvTags.DataKeys(e.Row.RowIndex).Value).PhotoId
 
                 If (e.Row.RowState = DataControlRowState.Normal Or e.Row.RowState = DataControlRowState.Alternate) Then
                     'get thumbnail of image

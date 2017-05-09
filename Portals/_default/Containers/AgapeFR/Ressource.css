@@ -39,7 +39,8 @@
 }
 
 #ListFullWidth .item {
-    margin: 5px;
+    position: relative;
+    margin: 5px;    
 }
 
 #ListFullWidth .storyPreview {
@@ -47,9 +48,19 @@
 }
 
 #ListFullWidth .thumbnail {
+    position: relative;
     height: 100px;
     margin: 5px;
 }
+
+#ListFullWidth .playbutton {
+    position: absolute;
+    height: 100px;
+    margin: 5px;
+    top: 0;
+}
+
+
 
 /*Ressource ListFullWidth Section End*/
 

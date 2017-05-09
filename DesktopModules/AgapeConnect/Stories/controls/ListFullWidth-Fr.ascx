@@ -1,32 +1,31 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="ListFullWidth-Fr.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Stories.ListFullWidth_Fr" %>
-<link href="/DesktopModules/AgapeConnect/Stories/themes/default/default.css" rel="stylesheet" type="text/css" media="screen" />
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+<dnn:DnnJsInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/js/videopopup.js" />
+<dnn:DnnCssInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/themes/default/france.css" />
 
 <script type="text/javascript">
 
-    function registerClick(c, l) {
-        $.ajax({
-            type: 'POST', url: "<%= NavigateURL() %>",
-            data: ({ StoryLink: c })
-        });
-        var target = "_blank"
-        if (l.indexOf("<%= PortalSettings.DefaultPortalAlias %>") >= 0)
-            target = "_self"
-        window.open(l, target);
-    }
+   function registerClick(c)
+   {
+        $.ajax({ type: 'POST', url: "<%= NavigateURL() %>",
+                        data: ({ StoryLink: c })
+                    });
+   }
 </script>
 
 <div id="ListFullWidth">
 <asp:DataList runat="server" ID="dlStories" AllowPaging="true" Width="100%">
     <ItemTemplate>
         <asp:HyperLink ID="hlStory" runat="server"
-            NavigateUrl='<%# "javascript: registerClick(" & DataBinder.Eval(Container.DataItem, "CacheId") & ", """ & CStr(DataBinder.Eval(Container.DataItem, "Link")) & """); "%>'>
+            NavigateUrl='<%# Eval(ControlerConstants.OPENLINK) %>'>
             <div class="items" runat="server">
                 <div class="item">
-                    <h4><asp:Label ID="lblStoryTitle" runat="server"  Text='<%# Eval("Headline")%>' class="storyTitle" /></h4>
-                    <p><asp:Label ID="lblStoryPreview" runat="server" Text='<%# Eval("Description")%>' class="storyPreview" /></p>
+                    <h4><asp:Label ID="lblStoryTitle" runat="server"  Text='<%# Eval(ControlerConstants.HEADLINE) %>' class="storyTitle" /></h4>
+                    <p><asp:Label ID="lblStoryPreview" runat="server" Text='<%# Eval(ControlerConstants.DESCRIPTION) %>' class="storyPreview" /></p>
                 </div>
                 <div class="item">
-                    <asp:Image ID="StoryThumbnail" runat="server" CssClass="thumbnail" ImageUrl='<%# Eval("ImageId")  %>' />
+                    <asp:Image ID="StoryThumbnail" runat="server" CssClass="thumbnail" ImageUrl='<%# Eval(ControlerConstants.LINKIMAGE) %>' />
+                    <asp:Image ID="playbutton" visible='<%# Eval(ControlerConstants.LINKIMAGECSS) %>' runat="server" CssClass="playButton" ImageUrl='/DesktopModules/AgapeConnect/Stories/themes/default/playAspect2.png' />
                 </div>
             </div>
         </asp:HyperLink>
@@ -38,5 +37,3 @@
     <asp:Hyperlink ID="btnPrev" runat="server" Text="Previous" CssClass="button" resourceKey="btnPrevious" Visible="false" Width="80px"/>
     <asp:Hyperlink ID="btnNext" runat="server" Text="Next" CssClass="button" resourceKey="btnNext"  Visible="false" Width="80px"/>
 </div>
-<div style="clear: both;"></div>
-<asp:Literal ID="ltPagination" runat="server"></asp:Literal>

@@ -1,23 +1,8 @@
-﻿Imports System
-Imports System.Collections
-Imports System.Configuration
-Imports System.Data
-Imports System.Linq
+﻿Imports Stories
 
-'Imports DotNetNuke
-'Imports DotNetNuke.Security
-'Imports StaffBroker
-Imports StaffBrokerFunctions
-Imports Stories
-'Imports DotNetNuke.Services.FileSystem
 Namespace DotNetNuke.Modules.AgapeConnect.Stories
     Partial Class ListFullWidth_Fr
         Inherits Entities.Modules.PortalModuleBase
-        'Adding Stories Translation
-        Dim d As New StoriesDataContext
-
-        Public divWidth As Integer = 150
-        Public divHeight As Integer = 150
 
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             'Allowing dynamically loaded controls to be translated using the DNN translation system is complex...
@@ -63,39 +48,23 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 StoryFunctions.FormatTagsSelected(Request.QueryString(TAGS_KEYWORD))
         End Sub
 
-        Public Sub Initialize(ByVal Stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
-
-            Dim photoWidth As Integer = 150
-            If Not String.IsNullOrEmpty(settings("PhotoWidth")) Then
-                photoWidth = settings("PhotoWidth")
-            End If
-
-            Dim photoAspect As Double = 1.0
-            If Not String.IsNullOrEmpty(settings("PhotoWidth")) Then
-                photoAspect = Double.Parse(CStr(settings("Aspect")), New CultureInfo(""))
-            End If
-
-            Dim photoHeight As Integer = CDbl(photoWidth) / photoAspect
-
-            Dim AspectMode As Integer = 1
-            If Not String.IsNullOrEmpty(settings("AspectMode")) Then
-                AspectMode = settings("AspectMode")
-            End If
-
-            divWidth = photoWidth
-            divHeight = photoHeight
+        Public Sub Initialize(ByVal stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
 
             Dim skip As Integer = 0
             Dim pg As Integer = 0
             If Not String.IsNullOrEmpty(Request.QueryString("p")) Then
                 pg = Request.QueryString("p")
-                skip = pg * CInt(settings("NumberOfStories"))
+                skip = pg * CInt(settings(ControlerConstants.NUMSTORIES))
             End If
 
-            dlStories.DataSource = Stories.Skip(skip).Take(CInt(settings("NumberOfStories")))
+            Dim listData As DataTable = StoryFunctions.GetListData(stories.Skip(skip).Take(CInt(settings(ControlerConstants.NUMSTORIES))),
+                                                                   PortalSettings.DefaultPortalAlias)
+
+            dlStories.DataSource = listData
             dlStories.DataBind()
 
-            If Stories.Count > CInt(settings("NumberOfStories")) Then
+            'Pagination handling
+            If stories.Count > CInt(settings(ControlerConstants.NUMSTORIES)) Then
                 btnPrev.Visible = True
                 btnNext.Visible = True
                 Dim urlStub = NavigateURL()
@@ -119,14 +88,14 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 End If
 
                 'determine state of btnNext
-                If (Math.Floor((Stories.Count - 1) / CInt(settings("NumberOfStories"))) > pg) Then
+                If (Math.Floor((stories.Count - 1) / CInt(settings(ControlerConstants.NUMSTORIES))) > pg) Then
                     btnNext.Enabled = True
                 Else
                     btnNext.Style.Add("opacity", "0.5")
                     btnNext.Enabled = False
                 End If
-            End If
-        End Sub
+            End If 'End Pagination handling
 
+        End Sub
     End Class
 End Namespace

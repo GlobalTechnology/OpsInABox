@@ -117,68 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>Annuler</value>
+  <data name="btnNext.Text" xml:space="preserve">
+    <value>Suivant</value>
   </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Valider</value>
-  </data>
-  <data name="lblAuthor.Text" xml:space="preserve">
-    <value>Auteur :</value>
-  </data>
-  <data name="lblAutoGenerate.Text" xml:space="preserve">
-    <value>Générer automatiquement :</value>
-  </data>
-  <data name="lblChannel.Text" xml:space="preserve">
-    <value>Chaîne :</value>
-  </data>
-  <data name="lblExternalURL.Text" xml:space="preserve">
-    <value>URL externe : </value>
-  </data>
-  <data name="lblField3.Text" xml:space="preserve">
-    <value>Champs 3 :</value>
-  </data>
-  <data name="lblHeadline.Text" xml:space="preserve">
-    <value>Titre :</value>
-  </data>
-  <data name="lblKeywords.Text" xml:space="preserve">
-    <value>Mots clés :</value>
-  </data>
-  <data name="lblLanguage.Text" xml:space="preserve">
-    <value>Langue :</value>
-  </data>
-  <data name="lblSample.Text" xml:space="preserve">
-    <value>Résumé :</value>
-  </data>
-  <data name="lblStoryDate.Text" xml:space="preserve">
-    <value>Date :</value>
-  </data>
-  <data name="lblSubtitle.Text" xml:space="preserve">
-    <value>Sous-titre :</value>
-  </data>
-  <data name="lblTags.Text" xml:space="preserve">
-    <value>Catégories :</value>
-  </data>
-  <data name="lblYouTube.Help" xml:space="preserve">
-    <value>Veuillez entrer uniquement l'identifant YouTube de la vidéo (exemple : LSW9XgU0xC8).</value>
-  </data>
-  <data name="lblYouTube.Text" xml:space="preserve">
-    <value>Identifant YouTube : </value>
-  </data>
-  <data name="rfHeadline.Text" xml:space="preserve">
-    <value>Il vous faut un titre pour la ressource.</value>
-  </data>
-  <data name="SeedText.Text" xml:space="preserve">
-    <value>Veuillez ajoutez le texte de l'histoire ici...</value>
-  </data>
-  <data name="lblTagErrorMsg.Text" xml:space="preserve">
-    <value>Vous avez choisi des catégories avec des modes d'ouverture incompatibles. Veuillez tester l'affichage de cette histoire.</value>
-  </data>
-  <data name="lblSample.Help" xml:space="preserve">
-    <value>Le résumé correspond à 4 utilisations : &lt;/br&gt;
-1. texte gris de la liste des ressources, &lt;/br&gt;
-2. texte gris à droite d'une image du carrousel, &lt;/br&gt;
-3. méta-donnée description pour le partage sur les réseaux sociaux, &lt;/br&gt;
-4. lieu et heures d'un événement (indiquer le lieu sur la première ligne et l'heure sur la suivante).</value>
+  <data name="btnPrevious.Text" xml:space="preserve">
+    <value>Précédent</value>
   </data>
 </root>

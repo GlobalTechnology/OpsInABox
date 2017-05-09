@@ -166,3 +166,110 @@
 }
 
  /*ViewStory Section End*/
+
+ /*AddEdit Section Begin*/
+#divAddEditStory .FieldRow {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#divAddEditStory .FieldRow input[type="text"], #divAddEditStory .FieldRow textarea {
+    border: 1px gray solid;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    width: 60%;
+    padding: 0px 5px 0px 5px;
+
+}
+
+#divAddEditStory .FieldRow input[type="text"] {
+    height: 25px;
+    line-height: 25px;
+}
+
+#divAddEditStory .FieldRow textarea {
+    height: 100px;
+    padding: 5px;
+}
+
+#divAddEditStory .FieldLabel {
+	display: inline-block;
+    vertical-align: top;
+    text-align: right;
+    width: 20%;
+    padding-right: 5px;
+    margin-right: 30px;
+}
+
+#divAddEditStory .cblTags {
+    display: inline;
+}
+
+#divField3 {
+    display: none;
+}
+
+#divLanguage {
+    display: none;
+}
+
+#divChannel {
+    display: none;
+}
+
+#divAutoGenerate {
+    display: none;
+}
+
+#divAddEditStory .FieldErrorMsg {
+    text-align: center;
+    font-size: small;
+    color: red;
+    margin-bottom: 20px;
+}
+
+#divAddEditStory .TagErrorMsg {
+    text-align: center;
+    font-size: small;
+    color: red;
+    margin-bottom: 20px;
+    display: none;
+}
+
+#divAddEditStory .VisualRow {
+    margin: 20px;
+    width: 100%;
+    min-height: 250px;
+}
+
+#divAddEditStory .imageCropper {
+    float: left;
+    width: 50%;
+}
+
+#divAddEditStory .locationPicker {
+    float: left;
+    width: 50%;
+}
+#divAddEditStory .FieldRow input[type="text"].tbLocation {
+    width: 75%;
+    margin: 3px 3px 0px 0px;
+}
+
+#divAddEditStory .SubmitPanel
+{
+    width: 100%;
+    text-align: center;
+}
+
+#divAddEditStory .button {
+    margin-top: 15px;
+}
+
+#divAddEditStory .dnnLabel {
+    width: 20%;
+    margin-right: 20px;
+}
+
+ /*AddEdit Section End*/

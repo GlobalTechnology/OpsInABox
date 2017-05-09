@@ -50,19 +50,18 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
             Dim rotatorSettings As Hashtable = StoryFunctions.GetRotatorSettings(stories, settings)
 
-            hfManualAdvance.Value = rotatorSettings.Item(RotatorConstants.MANUALADVANCE)
-            hfPauseTime.Value = rotatorSettings.Item(RotatorConstants.SPEED)
-            hfDivWidth.Value = rotatorSettings.Item(RotatorConstants.PHOTOWIDTH)
-            hfChannelId.Value = rotatorSettings.Item(RotatorConstants.CHANNELID)
+            hfManualAdvance.Value = rotatorSettings.Item(ControlerConstants.MANUALADVANCE)
+            hfPauseTime.Value = rotatorSettings.Item(ControlerConstants.SPEED)
+            hfDivWidth.Value = rotatorSettings.Item(ControlerConstants.PHOTOWIDTH)
+            hfChannelId.Value = rotatorSettings.Item(ControlerConstants.CHANNELID)
 
             Dim sliderData As DataTable = StoryFunctions.GetRotatorSlides(stories, rotatorSettings,
-                                                                          PortalSettings.DefaultPortalAlias,
-                                                                          TabModuleId)
+                                                                          PortalSettings.DefaultPortalAlias)
 
             'customize title for this rotator
             For Each row As DataRow In sliderData.Rows
-                row.Item(RotatorConstants.SLIDEIMAGETITLE) = row.Item(RotatorConstants.SLIDETEXTLINK) &
-                    "<h1 class='slider-image-text'>" & row.Item(RotatorConstants.SLIDEIMAGETITLE) & "</h1></a>"
+                row.Item(ControlerConstants.SLIDEIMAGETITLE) = row.Item(ControlerConstants.SLIDETEXTLINK) &
+                    "<h1 class='slider-image-text'>" & row.Item(ControlerConstants.SLIDEIMAGETITLE) & "</h1></a>"
             Next
 
             SliderImageList.DataSource = sliderData

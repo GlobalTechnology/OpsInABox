@@ -61,14 +61,14 @@
         <asp:Repeater ID="SliderImageList" runat="server">
             <ItemTemplate>
             <asp:HyperLink 
-                href=<%# Eval(RotatorConstants.SLIDELINK) %>
+                href=<%# Eval(ControlerConstants.SLIDELINK) %>
                 ID="hlImageSlider"
-                CssClass = <%# Eval(RotatorConstants.SLIDEIMAGECSS) %>
+                CssClass = <%# Eval(ControlerConstants.SLIDEIMAGECSS) %>
                 runat="server">
                 <asp:Image
-                    src=<%# Eval(RotatorConstants.SLIDEIMAGE) %> 
-                    alt=<%# Eval(RotatorConstants.SLIDEIMAGEALTTEXT) %> 
-                    title=<%# Eval(RotatorConstants.SLIDEIMAGETITLE) %> 
+                    src=<%# Eval(ControlerConstants.SLIDEIMAGE) %> 
+                    alt=<%# Eval(ControlerConstants.SLIDEIMAGEALTTEXT) %> 
+                    title=<%# Eval(ControlerConstants.SLIDEIMAGETITLE) %> 
                     runat="server" />
             </asp:HyperLink>
             </ItemTemplate>
