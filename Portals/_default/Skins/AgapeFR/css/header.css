@@ -145,4 +145,8 @@
     #header #logoHeader.white .afblack { /*color logo*/
         fill:#1a171a;
     }
+    #header #menu { /*link text size for dons and boutique*/
+    font-size:20px;
+}
+
 }
