@@ -1,7 +1,7 @@
 ﻿#header #logoHeader { /*shrink logo for mobile, show above menu*/
     float: left;
     height: 80px;
-    z-index: 999999;
+    z-index: 1001;
     position: absolute;
 }
 
