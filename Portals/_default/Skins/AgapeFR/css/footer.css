@@ -30,7 +30,7 @@
 }
 
 #footer2 span {
-    color: #3A8BC2;
+    color: #0e71b4;
     text-transform: uppercase;
     font-size: 14px;
     display: inline-block;
@@ -42,7 +42,7 @@
     -moz-border-radius: .5em;
     border-radius: .5em;
     border-style: none;
-    background-color: #3A8BC2;
+    background-color: #0e71b4;
     width: 32px;
     height: 32px;
     display: inline-block;
@@ -51,7 +51,7 @@
 }
 
 #footer2 #newsletter {
-    background: #3A8BC2 url('../images/newsletter.png') no-repeat center center;
+    background: #0e71b4 url('../images/newsletter.png') no-repeat center center;
     margin: 0 0 0 20px;
 }
 
@@ -60,7 +60,7 @@
 }
 
 #footer2 #facebook {
-    background: #3A8BC2 url('../images/facebook.png') no-repeat center center;
+    background: #0e71b4 url('../images/facebook.png') no-repeat center center;
     margin: 0 0 0 5px;
 }
 
@@ -69,7 +69,7 @@
 }
 
 #footer2 #youtube {
-    background: #3A8BC2 url('../images/youtube.png') no-repeat center center;
+    background: #0e71b4 url('../images/youtube.png') no-repeat center center;
     margin: 0 0 0 5px;
 }
 
@@ -99,7 +99,7 @@
 #footer3 #slogan span {
     text-transform: uppercase;
     font-family: 'OpenSansRegular';
-    color: #3A8BC2;
+    color: #0e71b4;
 }
 
 #footer3 #contactAndSlogan {
