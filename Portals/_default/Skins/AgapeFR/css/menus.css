@@ -8,11 +8,11 @@
     background-color: #0e71b4;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 0;
+    padding-top: 80px;
     white-space: nowrap;
 }
     .sidenav li {
-        font-size: 20px;
+        font-size: 24px;
         color: #ffffff;
     }
 
@@ -22,7 +22,7 @@
 
 .sidenav a { /*style nav menu links*/
     text-decoration: none;
-    font-size: 20px;
+    font-size: 24px;
     color: #ffffff;
 }
 
