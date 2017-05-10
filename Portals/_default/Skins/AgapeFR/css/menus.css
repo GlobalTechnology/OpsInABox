@@ -11,6 +11,10 @@
     padding-top: 0;
     white-space: nowrap;
 }
+    .sidenav li {
+        font-size: 20px;
+        color: #ffffff;
+    }
 
 .opensidenav { /*show nav menu*/
     width: 100%;

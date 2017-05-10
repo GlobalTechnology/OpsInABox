@@ -110,9 +110,9 @@ $(".menubtn").click(function() { //hide and show nav menu
   $("#logoHeader").toggleClass("white");
 });
 
-$(".menudrop").click(function () { //hide and show second level menu
-    $(".parent").not($(this).parent()).removeClass("menuopen");
-    $(this).parent().toggleClass("menuopen");
+$(".parent").click(function () { //hide and show second level menu
+    $(".parent").not($(this)).removeClass("menuopen");
+    $(this).toggleClass("menuopen");
 });
 
 $(".searchicon").click(function () { //hide and show search field
