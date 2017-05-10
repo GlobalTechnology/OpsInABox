@@ -76,4 +76,8 @@
     .opensidenav { /*shrink nav menu*/
         width: 50%;
     }
+    .sidenav li,
+    .sidenav a {
+        font-size:20px;
+    }
 }
