@@ -80,7 +80,7 @@
         </div>
         <div id="menu">
             <div id="featuredlinks">
-                <span>Faire un Don | Boutique</span>
+                <span><a href="http://dons.agapefrance.org">Faire un Don</a> | <a href="https://agapemedia.fr">Boutique</a></span>
             </div>
             <div id="menubuttons" class="openbtn">
                 <div id="SearchContainer">
