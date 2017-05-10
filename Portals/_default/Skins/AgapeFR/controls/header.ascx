@@ -4,6 +4,7 @@
 <%@ Register TagPrefix="dnn" TagName="SEARCH" Src="~/DesktopModules/AgapeFR/Search/Search.ascx" %>
 <%@ Register TagPrefix="ddr" Namespace="DotNetNuke.Web.DDRMenu.TemplateEngine" Assembly="DotNetNuke.Web.DDRMenu" %>
 <%@ Register TagPrefix="ddr" TagName="MENU" src="~/DesktopModules/DDRMenu/Menu.ascx" %>
+<meta name="theme-color" content="#0e71b4">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script runat="server">
     Protected Function Translate(ResourceKey As String) As String
