@@ -26,7 +26,9 @@
     color: #ffffff;
 }
 
-.sidenav a:hover, .sidenav a.selected { /*underline active or hovered links*/
+.sidenav a:hover,
+.sidenav a.selected,
+.sidenav .parent .offlink:hover { /*underline active or hovered links*/
     text-decoration: underline;
 }
 
