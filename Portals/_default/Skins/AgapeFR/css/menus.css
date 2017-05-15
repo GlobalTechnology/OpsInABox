@@ -58,17 +58,12 @@
     transform: rotate(180deg);
 }
 
-.sidenav img {
-    height:60px;
-    padding:10px;
+#Form.showControlBar .sidenav { /*move menu items down when admin bar is visible*/
+    margin-top: 53px;
 }
-
 @media screen and (min-width: 768px) { /*tablet mode*/
     .sidenav { /*push nav menu links down*/
         padding-top: 160px;
-    }
-    .sidenav img {
-        display:none;
     }
 }
 
