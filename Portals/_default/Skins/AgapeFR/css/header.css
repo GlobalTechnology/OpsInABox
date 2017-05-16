@@ -1,8 +1,12 @@
-﻿#header #logoHeader { /*shrink logo for mobile, show above menu*/
-    float: left;
+﻿#header { /*arrange items in header*/
+    display:flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+#header #logoHeader { /*shrink logo for mobile, show above menu*/
     height: 80px;
     z-index: 1001;
-    position: absolute;
 }
 
 #header #logoHeader svg { /*shrink logo for mobile*/
@@ -11,39 +15,39 @@
     transition: height .3s;
 }
 
-#header #logoHeader.white .aflightblue,
-#header #logoHeader.white .afmedblue,
-#header #logoHeader.white .afdarkblue,
-#header #logoHeader.white .afblack,
-#header #logoHeader.white .afgray { /*color logo white*/
+#header.menuopen #logoHeader .aflightblue,
+#header.menuopen #logoHeader .afmedblue,
+#header.menuopen #logoHeader .afdarkblue,
+#header.menuopen #logoHeader .afblack,
+#header.menuopen #logoHeader .afgray { /*color logo white*/
     fill:#ffffff;
     transition:.5s;
 }
 
 #header #menu { /*position links and icons*/
     height: 80px;
-    position: absolute;
-    right: 20px;
     font-size:24px;
     color: #0e71b4;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
 }
 
 #header #menu #menubuttons { /*position the search and menu icons*/
-    position: absolute;
-    right: 0px;
-    bottom: 15px;
+    position: relative;
+    padding: 15px 10px;
     height: 50px;
     z-index: 1001;
     display: flex;
     cursor: pointer;
 }
 
-#header .closebtn svg .stripe { /*make menu icons white*/
+#header.menuopen svg .stripe { /*make menu icons white*/
     fill: #ffffff;
     transition: 0.5s;
 }
 
-#header .openbtn svg .stripe { /*make menu icons blue*/
+#header.menuclosed svg .stripe { /*make menu icons blue*/
     fill: #0e71b4;
     transition: 0.5s;
 }
@@ -59,33 +63,52 @@
     transition: opacity 0.5s;
 }
 
-#header .closebtn .searchicon { /*show search icon when mobile menu is open*/
+#header.menuopen .searchicon { /*show search icon when mobile menu is open*/
     visibility: visible;
     opacity:1;
     transition: opacity 0.5s;
 }
+#header #SearchContainer { /*center search box*/
+    height:0;
+    width: 98%;
+    margin-left:auto;
+    margin-right:auto;
+    z-index: 1001;
+    transition: 0.5s;
+}
+#header #SearchContainer.opensearch {
+    height:50px;
+    transition: 0.5s;
+}
+#header #SearchContainer .searchInputContainer { /*make search box full width*/
+    width:100%;
+}
 
 #header #SearchContainer .searchInputContainer a.dnnSearchBoxClearText { /*move cleartext button up into field*/
     margin-top: -32px;
-    margin-right: 30px;
+    margin-right: 10px;
+    visibility:hidden;
+    opacity:0;
+    transition:.5s
+}
+#header.menuopen #SearchContainer.opensearch .searchInputContainer a.dnnSearchBoxClearText { /*show cleartext button when menu and search are open*/
+    visibility:visible;
+    opacity:1;
 }
 
 #header #SearchContainer input { /*style search box*/
-    margin-right: 20px;
-    height: 50px;
     font-size: 20px;
+    transition: 0.5s;
+    width:100%;
+    padding:0 40px 0 10px;
+    height: 0;
     border: none;
-    border-radius: 4px;
-    width: 0;
-    transition: width 0.5s;
 }
 
-#header .closebtn #SearchContainer.opensearch input { /*show search field when menu is open on mobile*/
-    width: 250px;
-    padding-right: 30px;
-    padding-left: 10px;
+#header.menuopen #SearchContainer.opensearch input { /*show search field when menu is open on mobile*/
+    height:50px;
     border: 2px solid #0e71b4;
-    transition: width 0.5s;
+    border-radius:4px;
 }
 
 @media screen and (min-width: 768px) { /*tablet mode*/
@@ -106,7 +129,7 @@
 
     #header #menu #featuredlinks { /*show dons and boutique links*/
         display: block;
-        margin-top: 20px;
+        margin: 20px 10px 12px 0;
     }
 
     #header #menu { /*make logo bigger*/
@@ -114,39 +137,70 @@
     }
 
     #header #menu #menubuttons { /*raise menu icons*/
-        bottom: 30px;
+        
     }
     #header #SearchContainer.opensearch input { /*show search field*/
-    width: 250px;
-    padding-right: 30px;
-    padding-left: 10px;
-    border: 2px solid #0e71b4;
-    transition: width 0.5s;
+    width:100%;
     }
 }
 
 @media screen and (min-width: 1024px) { /*computer mode*/
-    #header #logoHeader.white .aflightblue { /*color logo*/
+    #header {
+        
+    }
+    #header #logoHeader {
+        margin-right: auto;
+    }
+    #header.menuopen #logoHeader .aflightblue { /*color logo*/
         fill:#b2dbed;
     }
 
-    #header #logoHeader.white .afmedblue { /*color logo*/
+    #header.menuopen #logoHeader .afmedblue { /*color logo*/
         fill:#66b8dc;
     }
 
-    #header #logoHeader.white .afdarkblue { /*color logo*/
+    #header.menuopen #logoHeader .afdarkblue { /*color logo*/
         fill:#0e71b4;
     }
 
-    #header #logoHeader.white .afgray { /*color logo*/
+    #header.menuopen #logoHeader .afgray { /*color logo*/
         fill:#868889;
     }
 
-    #header #logoHeader.white .afblack { /*color logo*/
+    #header.menuopen #logoHeader .afblack { /*color logo*/
         fill:#1a171a;
     }
     #header #menu { /*link text size for dons and boutique*/
     font-size:20px;
+    }
+    #header #logoHeader {
+        order:1;
+        
+    }
+    #header #SearchContainer {
+        order:2;
+        width:0;
+        height:50px;
+        margin:0 -50px 32px 0;
+    }
+    #header #SearchContainer.opensearch {
+        width:300px;
+    }
+    #header #SearchContainer input { /*style search box*/
+    padding:0;
+    height:50px;
+    border: none;
+    }
+    #header #SearchContainer.opensearch input { /*style search box*/
+    padding:0 40px 0 10px;
+    width:300px;
+    border: 2px solid #0e71b4;
+    }
+    #header #SearchContainer.opensearch .searchInputContainer a.dnnSearchBoxClearText { /*show cleartext button when menu and search are open*/
+    visibility:visible;
+    opacity:1;
 }
-
+    #header #menu {
+        order:3;
+    }
 }
