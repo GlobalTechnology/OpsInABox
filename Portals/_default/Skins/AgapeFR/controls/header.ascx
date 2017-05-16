@@ -47,7 +47,7 @@
     <div id="ControlPanel" runat="server" />
 </div>
 <div class="bar">
-    <div id="header" class="centeredbox bar1">
+    <div id="header" class="centeredbox bar1 menuclosed">
         <div id="logoHeader">
             <a href="/">
                 <svg id="aflogo" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" y="0px" xml:space="preserve" height="112" viewBox="0 0 567.544 266.545" version="1.1" enable-background="new 0 0 841.89 595.275" x="0px" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"><metadata id="metadata290"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work></rdf:RDF></metadata>
@@ -83,10 +83,7 @@
             <div id="featuredlinks">
                 <span><a href="http://dons.agapefrance.org">Faire un Don</a> | <a href="https://agapemedia.fr">Boutique</a></span>
             </div>
-            <div id="menubuttons" class="openbtn">
-                <div id="SearchContainer">
-                    <dnn:SEARCH runat="server" ID="dnnSEARCH" UseDropDownList="False" ShowWeb="False" ShowSite="False" Submit="<div id=&quot;SearchSubmit&quot;></div>" />
-                </div>
+            <div id="menubuttons">
                 <svg class="searchicon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50px" version="1.1" height="50px" viewBox="0 0 64 64" enable-background="new 0 0 64 64">
                   <g>
                     <path class="stripe" d="M25.915,52.205c6.377,0,12.206-2.344,16.708-6.196L59.98,63.365c0.392,0.391,0.904,0.587,1.418,0.587   c0.513,0,1.025-0.196,1.418-0.587c0.392-0.393,0.588-0.904,0.588-1.418s-0.196-1.027-0.588-1.419L45.459,43.172   c3.853-4.5,6.197-10.331,6.197-16.707c0-14.194-11.549-25.741-25.741-25.741c-14.194,0-25.742,11.547-25.742,25.741   C0.173,40.658,11.721,52.205,25.915,52.205z M25.915,4.735c11.98,0,21.729,9.747,21.729,21.729c0,11.98-9.749,21.729-21.729,21.729   c-11.981,0-21.73-9.748-21.73-21.729C4.185,14.482,13.934,4.735,25.915,4.735z"/>
@@ -101,22 +98,26 @@
                 </svg>
             </div>
         </div>
+        <div id="SearchContainer">
+            <dnn:SEARCH runat="server" ID="dnnSEARCH" UseDropDownList="False" ShowWeb="False" ShowSite="False" Submit="<div id=&quot;SearchSubmit&quot;></div>" />
+        </div>
     </div>
 </div>
 <script>
 $(".menubtn").click(function() { //hide and show nav menu
   $("#mySidenav").toggleClass("opensidenav");
-  $("#menubuttons").toggleClass("closebtn");
-  $("#menubuttons").toggleClass("openbtn");
+  $("#header").toggleClass("menuopen");
+  $("#header").toggleClass("menuclosed");
   $("#logoHeader").toggleClass("white");
 });
 
 $(".parent .offlink, .menudrop").click(function () { //hide and show second level menu
-    $(this).nextAll('ul').eq(0).slideToggle();
+    $(this).nextAll("ul").eq(0).slideToggle();
     $(".parent ul").not($(this).nextAll('ul').eq(0)).slideUp();
+    $(this).closest(".menudrop").toggleClass('expanded');
 });
 
 $(".searchicon").click(function () { //hide and show search field
-    $("#SearchContainer").toggleClass("opensearch");
+    $("#SearchContainer, #mySidenav").toggleClass("opensearch");
 });
 </script>
