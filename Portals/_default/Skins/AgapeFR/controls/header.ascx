@@ -112,8 +112,8 @@ $(".menubtn").click(function() { //hide and show nav menu
 });
 
 $(".parent .offlink, .menudrop").click(function () { //hide and show second level menu
-    $(".parent").not($(this).parent()).removeClass("menuopen");
-    $(this).parent().toggleClass("menuopen");
+    $(this).nextAll('ul').eq(0).slideToggle();
+    $(".parent ul").not($(this).nextAll('ul').eq(0)).slideUp();
 });
 
 $(".searchicon").click(function () { //hide and show search field
