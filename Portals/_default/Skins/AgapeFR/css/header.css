@@ -187,6 +187,7 @@
         width:300px;
     }
     #header #SearchContainer input { /*style search box*/
+    width:0;
     padding:0;
     height:50px;
     border: none;
