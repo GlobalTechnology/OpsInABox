@@ -6,7 +6,7 @@
 	width: 100%;
 }
 
-.bar1 {
+#bar1 {
 	height: 80px;
 }
 
@@ -32,7 +32,7 @@ background: repeating-linear-gradient(110deg, #FFFFFF, #e4e4e4 4px, #f5f5f5 4px)
 }
 
 @media screen and (min-width: 768px) { /*tablet mode*/
-    .bar1 {
+    #bar1 {
         height: 160px;
     }
 }
