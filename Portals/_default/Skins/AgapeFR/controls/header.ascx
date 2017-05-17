@@ -46,7 +46,7 @@
 <div id="controlPanelContainer">
     <div id="ControlPanel" runat="server" />
 </div>
-<div id="header" class="centeredbox bar bar1 menuclosed">
+<div id="bar1" class="centeredbox bar menuclosed">
     <div id="logoHeader">
         <a href="/">
             <svg id="aflogo" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" y="0px" xml:space="preserve" height="112" viewBox="0 0 567.544 266.545" version="1.1" enable-background="new 0 0 841.89 595.275" x="0px" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"><metadata id="metadata290"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work></rdf:RDF></metadata>
@@ -104,8 +104,8 @@
 <script>
 $(".menubtn").click(function() { //hide and show nav menu
   $("#mySidenav").toggleClass("opensidenav");
-  $("#header").toggleClass("menuopen");
-  $("#header").toggleClass("menuclosed");
+  $("#bar1").toggleClass("menuopen");
+  $("#bar1").toggleClass("menuclosed");
   $("#logoHeader").toggleClass("white");
 });
 
