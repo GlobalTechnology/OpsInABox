@@ -19,35 +19,23 @@
 
 #footer2 {
     height: 52px;
-    line-height: 52px;
-    vertical-align: middle;
-}
-
-#footer2 #socialmedia {
-    line-height: 50px;
-    display: inline-block;
-    zoom: 1; *display: inline; /* IE fix for inline-block display */
+    display:flex;
+    justify-content:center;
+    align-items: center;
 }
 
 #footer2 span {
     color: #0e71b4;
     text-transform: uppercase;
     font-size: 14px;
-    display: inline-block;
-    zoom: 1; *display: inline; /* IE fix for inline-block display */
 }
 
 #footer2 #newsletter, #footer2 #facebook, #footer2 #youtube {
-    -webkit-border-radius: .5em;
-    -moz-border-radius: .5em;
     border-radius: .5em;
     border-style: none;
     background-color: #0e71b4;
     width: 32px;
     height: 32px;
-    display: inline-block;
-    zoom: 1; *display: inline; /* IE fix for inline-block display */
-    vertical-align: middle;
 }
 
 #footer2 #newsletter {
@@ -75,6 +63,12 @@
 
 #footer2 #youtube:hover {
     background-color: #ABACAE;
+}
+
+#footer3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #footer3 div {
