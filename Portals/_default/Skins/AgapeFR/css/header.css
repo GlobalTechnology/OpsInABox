@@ -6,7 +6,7 @@
 }
 #bar1 #logoHeader { /*shrink logo for mobile, show above menu*/
     height: 80px;
-    z-index: 1001;
+    z-index: 9;
 }
 
 #bar1 #logoHeader svg { /*shrink logo for mobile*/
@@ -37,7 +37,7 @@
     position: relative;
     padding: 15px 10px;
     height: 50px;
-    z-index: 1001;
+    z-index: 9;
     display: flex;
     cursor: pointer;
 }
@@ -73,7 +73,7 @@
     width: 98%;
     margin-left:auto;
     margin-right:auto;
-    z-index: 1001;
+    z-index: 9;
     transition: 0.5s;
 }
 #bar1 #SearchContainer.opensearch {
