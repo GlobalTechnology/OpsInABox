@@ -30,7 +30,10 @@
     font-size: 14px;
 }
 
-#footer2 #newsletter, #footer2 #facebook, #footer2 #youtube {
+#footer2 #newsletter,
+#footer2 #facebook,
+#footer2 #youtube,
+#footer2 #contact {
     border-radius: .5em;
     border-style: none;
     background-color: #0e71b4;
@@ -56,8 +59,17 @@
 	background-color: #ABACAE;
 }
 
+#footer2 #contact:hover {
+	background-color: #ABACAE;
+}
+
 #footer2 #youtube {
     background: #0e71b4 url('../images/youtube.png') no-repeat center center;
+    margin: 0 0 0 5px;
+}
+#footer2 #contact {
+    background: #0e71b4 url('../images/question.svg') no-repeat center center;
+    background-size:32px 32px;
     margin: 0 0 0 5px;
 }
 
