@@ -11,7 +11,7 @@
 
 #bar1 #logoHeader svg { /*shrink logo for mobile*/
     height: 60px;
-    padding:10px;
+    margin:10px;
     transition: height .3s;
 }
 
@@ -118,7 +118,7 @@
 
     #bar1 #logoHeader svg {
         height: 112px;
-        padding:24px;
+        margin:24px;
     }
 
     #bar1 .searchicon { /*show search icon*/
