@@ -4,19 +4,21 @@
 
 <dnn:Header runat="server" ID="dnnHeader" />
 <div id="bar2" class="bar">
-	<div id="ContentContainer" class="centeredbox">
-        <div id="TopPane" class="TopPane" runat="server">
+	<div id="ContentContainer" class="centeredbox row">
+        <div id="TopCarrousel" class="TopPane col-9" runat="server">
+		</div>
+        <div id="TopBlocks" class="TopPane col-3" runat="server">
 		</div>
 	</div>
 </div>
 <div id="bar3" class="bar">
-	<div class="centeredbox">
+	<div class="centeredbox row">
         <div id="ContentPane" class="ContentPane" runat="server">
 		</div>
 	</div>
 </div>
 <div id="bar4" class="bar">
-	<div class="centeredbox">
+	<div class="centeredbox row">
         <div id="BottomPane" class="BottomPane" runat="server">
 		</div>
 	</div>
