@@ -12,9 +12,8 @@
                  'visibility':'visible'}).nivoSlider({
                  effect: 'fade',
                  pauseTime: <%= hfPauseTime.Value %>,
-                 width: <%= hfDivWidth.Value %>,
                  manualAdvance: <%= hfManualAdvance.Value %>,
-                 manualCaption: false,
+                 manualCaption: true,
                  channelID: <%= hfChannelId.Value %>,
                  beforeChange: function(){linkImageFadeOut('#slider<%= hfChannelId.Value %>');},
              });
@@ -45,9 +44,8 @@
 
 <asp:HiddenField ID="hfManualAdvance" runat="server" />
 <asp:HiddenField ID="hfPauseTime" runat="server" />
-<asp:HiddenField ID="hfDivWidth" runat="server" />
 <asp:HiddenField ID="hfChannelId" runat="server" />
-
+<div id="rotator<%= hfChannelId.Value %>" class="rotator1">
 <div id="rotatorContainer<%= hfChannelId.Value %>" class="theme-default">
     <div id="slider<%= hfChannelId.Value %>" class="nivoSlider">
         <asp:Repeater ID="SliderImageList" runat="server">
@@ -67,6 +65,8 @@
         </asp:Repeater>
     </div>
 </div>
+</div>
+<div id="manual-nivo-caption<%= hfChannelId.Value %>" class="nivo-caption"></div>
 <div class="no-stories">
     <asp:Label ID="lblNoStories" runat="server" ResourceKey="lblNoStories" Visible="false"></asp:Label>
 </div>
