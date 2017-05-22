@@ -32,7 +32,7 @@
 	margin-top: 5px;
     color: transparent;
 	padding:  0;
-    top:-100px;
+    z-index:1;
 }
 .theme-default .nivo-controlNav a {
 	display:inline-block;
@@ -70,18 +70,18 @@
 .theme-default a.nivo-prevNav {
 	left:15px;
 }
-
-.theme-default .nivo-caption a {
-    color:#3A8BC2;
-    border-bottom:1px dotted #fff;
+.rotator1 .nivo-caption {
+    position:initial;
+    padding:0;
+    background:transparent;
 }
-.theme-default .nivo-caption a:hover {
-    color:#3A8BC2;
-    text-decoration: none;
+.rotator1 .slider-image-text {
+    margin:0;
+    line-height:42px;
 }
-.theme-default a.nivo-caption, .theme-default a.nivo-caption:hover,  .theme-default a.nivo-caption:link,  .theme-default a.nivoCaption:visited
+.rotator1 .nivo-caption a, .rotator1 .nivo-caption a:hover,  .rotator1 .nivo-caption a:link,  .rotator1 .nivoCaption a:visited
 {
-    color: #3A8BC2;
+    color: #0e71b4;
     text-decoration: none;
 }
 
@@ -100,19 +100,6 @@
 	height: auto;
 }
 
-.theme-default .nivo-caption {
-	font-family: Helvetica, Arial, sans-serif;
-    font-size: x-large ;
-	background:transparent;
-    color:#0e71b4;
-    position: initial ;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    white-space: normal;
-    vertical-align: top;
-    height : 100px !important;
-    padding: 0;
-}
 
 .theme-default .nivo-box {
 	overflow: visible;
@@ -198,15 +185,11 @@
     margin-top: 30px;
 }
 
-
-.rotator2 .theme-default {
-}
-
 .rotator2 .nivo-caption {
 	font-family: Helvetica, Arial, sans-serif;
     font-size: x-large ;
 	background:transparent;
-    color:#3A8BC2;
+    color:#0e71b4;
     overflow-y: hidden;
     overflow-x: hidden;
     white-space: normal;
