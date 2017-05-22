@@ -109,10 +109,19 @@ $(".menubtn").click(function() { //hide and show nav menu
   $("#logoHeader").toggleClass("white");
 });
 
-$(".parent .offlink, .menudrop").click(function () { //hide and show second level menu
+$(".menudrop").click(function () { //hide and show second level menu for dropdown arrow click
     $(this).nextAll("ul").eq(0).slideToggle();
     $(".parent ul").not($(this).nextAll('ul').eq(0)).slideUp();
     $(this).closest(".menudrop").toggleClass('expanded');
+    $(".menudrop").not((this).closest(".menudrop")).removeClass('expanded');
+});
+
+$(".parent .offlink").click(function () { //hide and show second level menu for parent link click
+    $(this).nextAll("ul").eq(0).slideToggle(); //works
+    $(".parent ul").not($(this).nextAll('ul').eq(0)).slideUp(); //works
+    var arrow = $(this).next(".menudrop")
+    arrow.toggleClass('expanded'); //works
+    $(".menudrop").not(arrow).removeClass('expanded'); // not working...
 });
 
 $(".searchicon").click(function () { //hide and show search field
