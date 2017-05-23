@@ -1,4 +1,4 @@
-/*===================== RESET CSS ===================== */
+﻿/*===================== RESET CSS ===================== */
 @import url("./css/reset.css");
 
 /*===================== FONTS ===================== */
@@ -42,36 +42,7 @@
     clear: both;
     display: table;
 }
-@media only screen and (min-width: 768px) {
-    /* For tablets: */
-    .col-m-1 {width: 8.33%;}
-    .col-m-2 {width: 16.66%;}
-    .col-m-3 {width: 25%;}
-    .col-m-4 {width: 33.33%;}
-    .col-m-5 {width: 41.66%;}
-    .col-m-6 {width: 50%;}
-    .col-m-7 {width: 58.33%;}
-    .col-m-8 {width: 66.66%;}
-    .col-m-9 {width: 75%;}
-    .col-m-10 {width: 83.33%;}
-    .col-m-11 {width: 91.66%;}
-    .col-m-12 {width: 100%;}
-}
-@media only screen and (min-width: 1024px) {
-    /* For desktop: */
-    .col-1 {width: 8.33%;}
-    .col-2 {width: 16.66%;}
-    .col-3 {width: 25%;}
-    .col-4 {width: 33.33%;}
-    .col-5 {width: 41.66%;}
-    .col-6 {width: 50%;}
-    .col-7 {width: 58.33%;}
-    .col-8 {width: 66.66%;}
-    .col-9 {width: 75%;}
-    .col-10 {width: 83.33%;}
-    .col-11 {width: 91.66%;}
-    .col-12 {width: 100%;}
-}
+
 
 html, body, form {
     height: 100%;
@@ -414,4 +385,129 @@ span.ImageMapDialog {
 /* Set font size for snippet list */
 .reDropDownBody table td {
   font-size: 12px !important;
+}
+
+/*BEGIN home page block links*/
+.TopPane #quadblocks{
+    margin-top:10px;
+}
+a.BlocLienRapide{
+    text-align:center;
+    padding:10px;
+    background-color:#f5f5f5;
+    margin-top:10px;
+    padding:15px;
+    box-shadow:0 1px 4px 0 #999999;
+}
+.BlocLienRapide h1 {
+    font-family: OpenSansBold;
+    font-size: 20px;
+    line-height: normal;
+    letter-spacing: normal;
+    margin: 0;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: #5f5f5f;
+}
+
+.BlocLienRapide h2 {    
+    font-size: 14px;
+    line-height: normal;
+    letter-spacing:normal;
+    margin: 0;
+    white-space: nowrap;
+    color: #5f5f5f;
+}
+
+.BlocLienRapide .highlight {
+    color: #0e71b4;
+    font-weight: inherit;
+    display: inline;
+}
+
+a.BlocLienRapide:hover {
+    text-decoration: none;
+}
+
+a.BlocLienRapide:hover h1 {
+    text-decoration: underline;
+}
+/*END home page block links*/
+
+/*===================== LIENS RESEAUX SOCIAUX ===================== */
+.TopPane #socialblocks{
+    display: flex;
+    justify-content: space-between;
+}
+.TopPane .socialbutton {
+    border-radius: .3em;
+    border-style: none;
+    width: 46px;
+    height: 41px;
+    display: inline-block;
+    zoom: 1; *display: inline; /* IE fix for inline-block display */
+    background-size:30px 30px;
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-color: #0e71b4;
+}
+
+.TopPane .socialbutton:hover {
+    background-color: #ABACAE;
+}
+
+.TopPane #newsletter {
+    background-image: url('./images/envelope.svg');
+}
+
+.TopPane #facebook {
+    background-image: url('./images/facebook.svg');
+}
+
+.TopPane #youtube {
+    background-image: url('./images/youtube.svg');
+}
+
+.TopPane #nouscontacter {
+    background-image: url('./images/question.svg');
+}
+
+@media only screen and (min-width: 768px) {
+    /* For tablets: */
+    .col-m-1 {width: 8.33%;}
+    .col-m-2 {width: 16.66%;}
+    .col-m-3 {width: 25%;}
+    .col-m-4 {width: 33.33%;}
+    .col-m-5 {width: 41.66%;}
+    .col-m-6 {width: 50%;}
+    .col-m-7 {width: 58.33%;}
+    .col-m-8 {width: 66.66%;}
+    .col-m-9 {width: 75%;}
+    .col-m-10 {width: 83.33%;}
+    .col-m-11 {width: 91.66%;}
+    .col-m-12 {width: 100%;}
+
+    .TopPane #socialblocks{
+        justify-content: space-around;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+
+    .TopPane #socialblocks{
+        justify-content: space-between;
+    }
+
 }
