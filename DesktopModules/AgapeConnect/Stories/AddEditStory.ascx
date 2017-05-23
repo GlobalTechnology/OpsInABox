@@ -68,7 +68,7 @@
 <div id="divAddEditStory">
     <div id="divHeadline" class="FieldRow">
         <asp:Label ID="lblHeadline" runat="server" ResourceKey="lblHeadline" CssClass="FieldLabel"></asp:Label>
-        <asp:TextBox ID="Headline"  runat="server" MaxLength="154"></asp:TextBox>
+        <asp:TextBox ID="Headline"  runat="server" MaxLength="75"></asp:TextBox>
     </div>
     <div class="FieldErrorMsg">
         <asp:RequiredFieldValidator ID="rfHeadline" runat="server" resourcekey="rfHeadline" ControlToValidate="Headline" Display="Dynamic"></asp:RequiredFieldValidator>

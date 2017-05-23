@@ -74,6 +74,7 @@
     position:initial;
     padding:0;
     background:transparent;
+    min-height:126px;
 }
 .rotator1 .slider-image-text {
     margin:0;
@@ -234,3 +235,18 @@
 }
 
 /* END don't know what this goes to */
+
+
+
+    @media only screen and (min-width: 768px) {
+    /* For tablets: */
+    .rotator1 .nivo-caption {
+        min-height:84px;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    /* For desktop: */
+    .rotator1 .nivo-caption {
+        min-height:42px;
+    }
+}
