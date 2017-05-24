@@ -1,4 +1,4 @@
-﻿.ActionForm input[type="text"], .ActionForm textarea, .ActionForm select.form-control {
+﻿.ActionForm input[type="text"], .ActionForm textarea, .ActionForm select.form-control, .ActionForm textarea.form-control {
     border: 1px gray solid;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -11,7 +11,7 @@
 .ActionForm input[type="text"], .ActionForm select.form-control {
     height: 25px;
     line-height: 25px;
-    width: 200px;
+    width: 100%;
 }
 
 .ActionForm textarea {
@@ -51,10 +51,14 @@
     font-size:small;
     color:red;
 }
-.bstrap30 .has-error input.form-control {
+.bstrap30 .has-error input.form-control, 
+.bstrap30 .has-error textarea.form-control, 
+.bstrap30 .has-error select.form-control {
     border-color:red;
 }
-.bstrap30 .has-error input.form-control:focus {
+.bstrap30 .has-error input.form-control:focus, 
+.bstrap30 .has-error textarea.form-control:focus, 
+.bstrap30 .has-error select.form-control:focus {
     border-color:red;
 }
 .bstrap30 div.alert-danger{
