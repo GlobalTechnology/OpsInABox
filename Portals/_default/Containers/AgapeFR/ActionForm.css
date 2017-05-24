@@ -51,10 +51,14 @@
     font-size:small;
     color:red;
 }
-.bstrap30 .has-error input.form-control {
+.bstrap30 .has-error input.form-control, 
+.bstrap30 .has-error textarea.form-control, 
+.bstrap30 .has-error select.form-control {
     border-color:red;
 }
-.bstrap30 .has-error input.form-control:focus {
+.bstrap30 .has-error input.form-control:focus, 
+.bstrap30 .has-error textarea.form-control:focus, 
+.bstrap30 .has-error select.form-control:focus {
     border-color:red;
 }
 .bstrap30 div.alert-danger{

@@ -190,7 +190,7 @@
     <value>Veuillez renseigner un nombre entier positif valide.</value>
   </data>
   <data name="validation.numberPositive" xml:space="preserve">
-    <value>Veuillez renseigner un nombre positif valide.</value>
+    <value>Veuillez renseigner un nombre positif.</value>
   </data>
   <data name="validation.passwordNoMatch" xml:space="preserve">
     <value>Les champs mot de passe ne correspondent pas.</value>
@@ -220,7 +220,7 @@
     <value>Ce champ est obligatoire.</value>
   </data>
   <data name="validation.requiredServerMessage" xml:space="preserve">
-    <value>Champ obligatoire {0} manquant.</value>
+    <value>Veuillez remplir {0}.</value>
   </data>
   <data name="validation.url" xml:space="preserve">
     <value>Veuillez renseigner une URL valide.</value>
