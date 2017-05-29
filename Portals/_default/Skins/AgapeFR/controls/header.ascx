@@ -116,7 +116,7 @@ $(".menudrop").click(function () { //hide and show second level menu for dropdow
     $(".menudrop").not((this).closest(".menudrop")).removeClass('expanded');
 });
 
-$(".parent .offlink").click(function () { //hide and show second level menu for parent link click
+$(".parent .offlink, a#UserContainer").click(function () { //hide and show second level menu for parent link click
     $(this).nextAll("ul").eq(0).slideToggle(); //works
     $(".parent ul").not($(this).nextAll('ul').eq(0)).slideUp(); //works
     var arrow = $(this).next(".menudrop")
