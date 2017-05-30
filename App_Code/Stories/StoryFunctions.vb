@@ -1017,7 +1017,7 @@ Public Class StoryFunctions
 
                 dataRow(ControlerConstants.SLIDEIMAGE) = story.ImageId
                 dataRow(ControlerConstants.SLIDEIMAGEALTTEXT) = story.Headline
-                dataRow(ControlerConstants.SLIDEIMAGETITLE) = story.Headline
+                dataRow(ControlerConstants.SLIDEIMAGETITLE) = Left(story.Headline, 75)
                 dataRow(ControlerConstants.SLIDEIMAGESUBTITLE) = story.Subtitle
                 dataRow(ControlerConstants.SLIDEIMAGEDESC) = story.Description
 
