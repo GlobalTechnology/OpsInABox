@@ -1,0 +1,168 @@
+﻿/*BEGIN home page block links*/
+.TopPane #quadblocks{
+    margin-top:10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+a.BlocLienRapide{
+    flex-basis:100%;
+    text-align:center;
+    background-color:#f5f5f5;
+    margin-top:10px;
+    padding:15px;
+    box-shadow:0 1px 4px 0 #999999;
+}
+.BlocLienRapide h1 {
+    font-family: OpenSansBold;
+    font-size: 20px;
+    line-height: normal;
+    letter-spacing: normal;
+    margin: 0;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: #5f5f5f;
+}
+
+.BlocLienRapide h2 {    
+    font-size: 14px;
+    line-height: normal;
+    letter-spacing:normal;
+    margin: 0;
+    white-space: nowrap;
+    color: #5f5f5f;
+}
+
+.BlocLienRapide .highlight {
+    color: #0e71b4;
+    font-weight: inherit;
+    display: inline;
+}
+
+a.BlocLienRapide:hover {
+    text-decoration: none;
+}
+
+a.BlocLienRapide:hover h1 {
+    text-decoration: underline;
+}
+/*END home page block links*/
+
+/*===================== LIENS RESEAUX SOCIAUX ===================== */
+.TopPane #socialblocks{
+    display: flex;
+    justify-content: space-between;
+}
+.TopPane .socialbutton {
+    border-radius: .3em;
+    border-style: none;
+    width: 46px;
+    height: 41px;
+    display: inline-block;
+    zoom: 1; *display: inline; /* IE fix for inline-block display */
+    background-size:30px 30px;
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-color: #0e71b4;
+}
+
+.TopPane .socialbutton:hover {
+    background-color: #ABACAE;
+}
+
+.TopPane #newsletter {
+    background-image: url('../images/envelope.svg');
+}
+
+.TopPane #facebook {
+    background-image: url('../images/facebook.svg');
+}
+
+.TopPane #youtube {
+    background-image: url('../images/youtube.svg');
+}
+
+.TopPane #nouscontacter {
+    background-image: url('../images/question.svg');
+}
+
+/*===================== LIENS PHOTO ===================== */
+
+.liensphoto {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.liensphoto a {
+    flex-basis:100%;
+    margin-bottom:10px;
+}
+
+.liensphoto a .textbox{
+    width:60%;
+    position:relative;
+    color:white;
+    top:-40%;
+}
+
+.liensphoto a:hover {
+    text-decoration:none;  
+}
+
+.liensphoto a h1{
+    padding-left:10px;
+    color:white;
+    background-color: rgba(0,0,0,0.8);
+    font-size:20px;
+    font-weight:bold;
+    margin:0;
+}
+
+.liensphoto a h2{
+    color:white;
+    font-size:15px;
+    background-color:#0e71b4;
+    margin: -10px 10px 0 10px;
+    padding-left:10px;
+}
+
+.liensphoto img {
+    width:100%;
+    box-shadow:0 1px 4px 0 #999999;
+}
+
+/*===================== RESPONSIVE ===================== */
+
+@media only screen and (min-width: 768px) { /*tablet mode*/
+
+    .TopPane #socialblocks{
+        justify-content: space-around;
+    }
+
+    a.BlocLienRapide {
+        flex-basis: 49%;
+    }
+
+    .liensphoto a {
+    flex-basis:32%;
+    margin:0;
+    }
+
+    .liensphoto a .textbox{
+        width:100%;
+    }
+}
+@media only screen and (min-width: 1024px) { /*computer mode*/
+    /* For desktop: */
+    .TopPane #socialblocks{
+        justify-content: space-between;
+    }
+    a.BlocLienRapide {
+        flex-basis: 100%;
+    }
+
+    .liensphoto a .textbox{
+        width:60%;
+    }
+}

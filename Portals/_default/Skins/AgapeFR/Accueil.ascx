@@ -8,8 +8,6 @@
 	<div class="centeredbox">
         <div id="ContentPane" class="ContentPane" runat="server">
 		</div>
-        <div id="RightPane" class="RightPane" runat="server">
-		</div>
 	</div>
 </div>
 <div id="bar4" class="bar accueil">
