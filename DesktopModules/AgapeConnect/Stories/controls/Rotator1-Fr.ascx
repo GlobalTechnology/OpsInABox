@@ -12,9 +12,8 @@
                  'visibility':'visible'}).nivoSlider({
                  effect: 'fade',
                  pauseTime: <%= hfPauseTime.Value %>,
-                 width: <%= hfDivWidth.Value %>,
                  manualAdvance: <%= hfManualAdvance.Value %>,
-                 manualCaption: false,
+                 manualCaption: true,
                  channelID: <%= hfChannelId.Value %>,
                  beforeChange: function(){linkImageFadeOut('#slider<%= hfChannelId.Value %>');},
              });
@@ -45,28 +44,29 @@
 
 <asp:HiddenField ID="hfManualAdvance" runat="server" />
 <asp:HiddenField ID="hfPauseTime" runat="server" />
-<asp:HiddenField ID="hfDivWidth" runat="server" />
 <asp:HiddenField ID="hfChannelId" runat="server" />
-
-<div id="rotatorContainer<%= hfChannelId.Value %>" class="theme-default"style="width:<%= hfDivWidth.Value %>">
-    <div id="slider<%= hfChannelId.Value %>" class="nivoSlider">
-        <asp:Repeater ID="SliderImageList" runat="server">
-            <ItemTemplate>
-            <asp:HyperLink 
-                href=<%# Eval(ControlerConstants.SLIDELINK) %>
-                ID="hlImageSlider"
-                CssClass = <%# Eval(ControlerConstants.SLIDEIMAGECSS) %>
-                runat="server">
-                <asp:Image
-                    src=<%# Eval(ControlerConstants.SLIDEIMAGE) %> 
-                    alt=<%# Eval(ControlerConstants.SLIDEIMAGEALTTEXT) %> 
-                    title=<%# Eval(ControlerConstants.SLIDEIMAGETITLE) %> 
-                    runat="server" />
-            </asp:HyperLink>
-            </ItemTemplate>
-        </asp:Repeater>
+<div id="rotator<%= hfChannelId.Value %>" class="rotator1">
+    <div id="rotatorContainer<%= hfChannelId.Value %>" class="theme-default">
+        <div id="slider<%= hfChannelId.Value %>" class="nivoSlider">
+            <asp:Repeater ID="SliderImageList" runat="server">
+                <ItemTemplate>
+                <asp:HyperLink 
+                    href=<%# Eval(ControlerConstants.SLIDELINK) %>
+                    ID="hlImageSlider"
+                    CssClass = <%# Eval(ControlerConstants.SLIDEIMAGECSS) %>
+                    runat="server">
+                    <asp:Image
+                        src=<%# Eval(ControlerConstants.SLIDEIMAGE) %> 
+                        alt=<%# Eval(ControlerConstants.SLIDEIMAGEALTTEXT) %> 
+                        title=<%# Eval(ControlerConstants.SLIDEIMAGETITLE) %> 
+                        runat="server" />
+                </asp:HyperLink>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
     </div>
-</div>
-<div class="no-stories">
-    <asp:Label ID="lblNoStories" runat="server" ResourceKey="lblNoStories" Visible="false"></asp:Label>
+    <div id="manual-nivo-caption<%= hfChannelId.Value %>" class="nivo-caption"></div>
+    <div class="no-stories">
+        <asp:Label ID="lblNoStories" runat="server" ResourceKey="lblNoStories" Visible="false"></asp:Label>
+    </div>
 </div>

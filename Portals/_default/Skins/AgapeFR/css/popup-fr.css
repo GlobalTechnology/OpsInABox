@@ -1,17 +1,17 @@
 ﻿#popupclose {
     text-decoration:none;
-    color:#3a8bc2;
+    color:#0e71b4;
     cursor:pointer;
 }
 #my_popup {
-    z-index: 1001;
+    z-index: 10;
     position: fixed;
     bottom: 0;
     right: 0;
     display: none;
     padding: 0px 25px 25px;
     background: rgba(255,255,255,0.9);
-    border: 2px solid #3a8bc2;
+    border: 2px solid #0e71b4;
     width: 20%;
     min-width: 270px;
     border-radius: 5px 0px 0px 5px;
