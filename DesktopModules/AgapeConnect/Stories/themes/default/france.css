@@ -4,13 +4,16 @@
 
 /* END Slider Customization */
 .theme-default .nivoSlider {
-	position:relative;
-	background:#fff url(loading.gif) no-repeat 50% 50%;
-    
-    -webkit-box-shadow: 0px 1px 9px 0px #4a4a4a;
-    -moz-box-shadow: 0px 1px 9px 0px #4a4a4a;
+    position:relative;
+	width: 100%;
+	height:auto;
+	overflow: visible;
+    visibility: hidden;
+}
+.theme-default img.nivo-main-image{
     box-shadow: 0px 1px 9px 0px #4a4a4a;
 }
+
 .theme-default .nivoSlider img     
 {
     position: relative;
@@ -28,8 +31,8 @@
 	text-align: right;
 	margin-top: 5px;
     color: transparent;
-	z-index: 9;
 	padding:  0;
+    z-index:1;
 }
 .theme-default .nivo-controlNav a {
 	display:inline-block;
@@ -67,18 +70,19 @@
 .theme-default a.nivo-prevNav {
 	left:15px;
 }
-
-.theme-default .nivo-caption a {
-    color:#3A8BC2;
-    border-bottom:1px dotted #fff;
+.rotator1 .nivo-caption {
+    position:initial;
+    padding:0;
+    background:transparent;
+    min-height:126px;
 }
-.theme-default .nivo-caption a:hover {
-    color:#3A8BC2;
-    text-decoration: none;
+.rotator1 .slider-image-text {
+    margin:0;
+    line-height:42px;
 }
-.theme-default a.nivo-caption, .theme-default a.nivo-caption:hover,  .theme-default a.nivo-caption:link,  .theme-default a.nivoCaption:visited
+.rotator1 .nivo-caption a, .rotator1 .nivo-caption a:hover,  .rotator1 .nivo-caption a:link,  .rotator1 .nivoCaption a:visited
 {
-    color: #3A8BC2;
+    color: #0e71b4;
     text-decoration: none;
 }
 
@@ -97,34 +101,11 @@
 	height: auto;
 }
 
-.theme-default .nivo-caption {
-	font-family: Helvetica, Arial, sans-serif;
-    font-size: x-large ;
-	background:transparent;
-    color:#3A8BC2;
-    position: absolute ;
-    bottom: -120px;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    white-space: normal;
-    vertical-align: top;
-    height : 120px !important;
-    padding: 10px 0 10px 0;
-}
 
 .theme-default .nivo-box {
 	overflow: visible;
 }
 .nivo-box img { display:block; }
-
-.theme-default .nivoSlider {
-	position:relative;
-	width: 100%;
-	height:auto;
-	overflow: visible;
-	background-color: Black;
-    visibility: hidden;
-}
 
 .theme-default .slider-image-text {
     opacity: 1.0 !important;
@@ -205,15 +186,11 @@
     margin-top: 30px;
 }
 
-
-.rotator2 .theme-default {
-}
-
 .rotator2 .nivo-caption {
 	font-family: Helvetica, Arial, sans-serif;
     font-size: x-large ;
 	background:transparent;
-    color:#3A8BC2;
+    color:#0e71b4;
     overflow-y: hidden;
     overflow-x: hidden;
     white-space: normal;
@@ -258,3 +235,18 @@
 }
 
 /* END don't know what this goes to */
+
+
+
+    @media only screen and (min-width: 768px) {
+    /* For tablets: */
+    .rotator1 .nivo-caption {
+        min-height:84px;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    /* For desktop: */
+    .rotator1 .nivo-caption {
+        min-height:42px;
+    }
+}
