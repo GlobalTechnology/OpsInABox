@@ -45,13 +45,9 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
             If Not String.IsNullOrEmpty(Request.Form("StoryLink")) Then
                 'Register a click for this story
-                Dim theCache = From c In d.AP_Stories_Module_Channel_Caches Where c.CacheId = CInt(Request.Form("StoryLink"))
-
-                If theCache.Count > 0 Then
-                    theCache.First.Clicks += 1
-                End If
-                d.SubmitChanges()
-                Return
+                'TODO this had a return before the End If to stop processing. Need to rework the code so it doesn't keep going down the line.
+                Dim theCache = StoryFunctions.GetCacheByCacheId(Request.Form("StoryLink"))
+                StoryFunctions.UpdateClicks(theCache.CacheId)
             End If
 
             If Not Page.IsPostBack Then
