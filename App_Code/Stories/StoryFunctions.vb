@@ -714,11 +714,13 @@ Public Class StoryFunctions
         If viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING) = TagSettingsConstants.OpenStyle.StoryPage.ToString Then
             clickAction = "window.open('" & story.Link & "', '" & ControlerConstants.TARGETSELF & "');"
             URL = story.Link
+
+            'preventDefault() keeps the href element from executing
         ElseIf viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING) = TagSettingsConstants.OpenStyle.Popup.ToString Then
-            clickAction = "popupvideo('" & story.Spare1 & "', '" & story.ChannelId & "'); return false" 'pass video id to pop up
+            clickAction = "event.preventDefault(); popupvideo('" & story.Spare1 & "', '" & story.ChannelId & "');" 'pass video id to pop up
             URL = "https://www.youtube.com/watch?v=" & story.Spare1
         Else 'ExternalPage
-            clickAction = "window.open('" & story.Spare2 & "', '" & ControlerConstants.TARGETBLANK & "'); return false"
+            clickAction = "window.open('" & story.Spare2 & "', '" & ControlerConstants.TARGETBLANK & "'); return false;"
             URL = story.Spare2
         End If
 

@@ -16,7 +16,7 @@
 <div id="ListFullWidth">
 <asp:DataList runat="server" ID="dlStories" AllowPaging="true" Width="100%">
     <ItemTemplate>
-        <asp:HyperLink ID="hlStory" runat="server" OnClick='<%# Eval(ControlerConstants.OPENLINK) %>'>
+        <asp:HyperLink ID="hlStory" runat="server" href='<%# Eval(ControlerConstants.URL) %>' OnClick='<%# Eval(ControlerConstants.OPENLINK) %>'>
             <div class="items" runat="server">
                 <div class="item">
                     <h4><asp:Label ID="lblStoryTitle" runat="server"  Text='<%# Eval(ControlerConstants.HEADLINE) %>' class="storyTitle" /></h4>
