@@ -716,7 +716,7 @@ Public Class StoryFunctions
             URL = story.Link
         ElseIf viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING) = TagSettingsConstants.OpenStyle.Popup.ToString Then
             clickAction = "popupvideo('" & story.Spare1 & "', '" & story.ChannelId & "'); return false" 'pass video id to pop up
-            URL = "youtube.com/watch?v=" & story.Spare1
+            URL = "https://www.youtube.com/watch?v=" & story.Spare1
         Else 'ExternalPage
             clickAction = "window.open('" & story.Spare2 & "', '" & ControlerConstants.TARGETBLANK & "'); return false"
             URL = story.Spare2
