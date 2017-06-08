@@ -40,27 +40,26 @@
 
 #ListFullWidth .item {
     position: relative;
-    margin: 5px;    
+    height: 100px;
+    margin: 5px;  
+}
+
+#ListFullWidth .text {
+    flex-basis: 75%
+}
+
+#ListFullWidth .image {
+    flex-basis: 20%
 }
 
 #ListFullWidth .storyPreview {
     font-size: small;
 }
 
-#ListFullWidth .thumbnail {
-    position: relative;
-    height: 100px;
-    margin: 5px;
-}
-
-#ListFullWidth .playbutton {
+#ListFullWidth .thumbnail, .playbutton {
     position: absolute;
     height: 100px;
-    margin: 5px;
-    top: 0;
 }
-
-
 
 /*Ressource ListFullWidth Section End*/
 
