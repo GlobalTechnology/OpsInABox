@@ -714,11 +714,14 @@ Public Class StoryFunctions
         If viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING) = TagSettingsConstants.OpenStyle.StoryPage.ToString Then
             clickAction = "window.open('" & story.Link & "', '" & ControlerConstants.TARGETSELF & "');"
             URL = story.Link
+
+            'preventDefault() keeps the href element from executing
         ElseIf viewStyles.Item(TagSettingsConstants.OPENSTYLESTRING) = TagSettingsConstants.OpenStyle.Popup.ToString Then
-            clickAction = "onclick=popupvideo('" & story.Spare1 & "', '" & story.ChannelId & "');" 'pass video id to pop up
-            URL = "youtube.com/watch?v=" & story.Spare1
+            clickAction = "event.preventDefault(); popupvideo('" & story.Spare1 & "', '" & story.ChannelId & "');" 'pass video id to pop up
+            URL = "https://www.youtube.com/watch?v=" & story.Spare1
         Else 'ExternalPage
-            clickAction = "window.open('" & story.Spare2 & "', '" & ControlerConstants.TARGETBLANK & "');"
+            clickAction = "window.open('" & story.Spare2 & "', '" & ControlerConstants.TARGETBLANK & "'); return false;"
+            URL = story.Spare2
         End If
 
         'personalized link image
@@ -739,6 +742,7 @@ Public Class StoryFunctions
                                            ByVal portalAlias As String) As DataTable
         Dim listData As New DataTable
         listData.Columns.Add(ControlerConstants.OPENLINK)
+        listData.Columns.Add(ControlerConstants.URL)
         listData.Columns.Add(ControlerConstants.HEADLINE)
         listData.Columns.Add(ControlerConstants.DESCRIPTION)
         listData.Columns.Add(ControlerConstants.LINKIMAGE)
@@ -750,6 +754,7 @@ Public Class StoryFunctions
             Dim linkDetails As Dictionary(Of String, String) = StoryFunctions.GetLinkDetails(story, "", portalAlias)
 
             dataRow(ControlerConstants.OPENLINK) = "javascript: registerClick(" & story.CacheId & "); " & linkDetails(ControlerConstants.CLICKACTION)
+            dataRow(ControlerConstants.URL) = linkDetails(ControlerConstants.URL)
             dataRow(ControlerConstants.HEADLINE) = story.Headline
             dataRow(ControlerConstants.DESCRIPTION) = story.Description
             dataRow(ControlerConstants.LINKIMAGE) = story.ImageId

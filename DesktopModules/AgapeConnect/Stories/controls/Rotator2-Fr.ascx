@@ -61,7 +61,8 @@
         <asp:Repeater ID="SliderImageList" runat="server">
             <ItemTemplate>
             <asp:HyperLink 
-                href=<%# Eval(ControlerConstants.SLIDELINK) %>
+                href=<%# Eval(ControlerConstants.SLIDERAWURL) %>
+                Onclick=<%# Eval(ControlerConstants.SLIDELINK) %>
                 ID="hlImageSlider"
                 CssClass = <%# Eval(ControlerConstants.SLIDEIMAGECSS) %>
                 runat="server">

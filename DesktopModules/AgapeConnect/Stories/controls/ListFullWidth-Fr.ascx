@@ -16,14 +16,13 @@
 <div id="ListFullWidth">
 <asp:DataList runat="server" ID="dlStories" AllowPaging="true" Width="100%">
     <ItemTemplate>
-        <asp:HyperLink ID="hlStory" runat="server"
-            NavigateUrl='<%# Eval(ControlerConstants.OPENLINK) %>'>
+        <asp:HyperLink ID="hlStory" runat="server" href='<%# Eval(ControlerConstants.URL) %>' OnClick='<%# Eval(ControlerConstants.OPENLINK) %>'>
             <div class="items" runat="server">
-                <div class="item">
+                <div class="item text">
                     <h4><asp:Label ID="lblStoryTitle" runat="server"  Text='<%# Eval(ControlerConstants.HEADLINE) %>' class="storyTitle" /></h4>
                     <p><asp:Label ID="lblStoryPreview" runat="server" Text='<%# Eval(ControlerConstants.DESCRIPTION) %>' class="storyPreview" /></p>
                 </div>
-                <div class="item">
+                <div class="item image">
                     <asp:Image ID="StoryThumbnail" runat="server" CssClass="thumbnail" ImageUrl='<%# Eval(ControlerConstants.LINKIMAGE) %>' />
                     <asp:Image ID="playbutton" visible='<%# Eval(ControlerConstants.LINKIMAGECSS) %>' runat="server" CssClass="playButton" ImageUrl='/DesktopModules/AgapeConnect/Stories/themes/default/playAspect2.png' />
                 </div>
