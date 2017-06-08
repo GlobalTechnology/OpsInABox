@@ -26,7 +26,7 @@ function popclosevideo() {
     $('#fr_video_popup').fadeOut();
     player.pauseVideo();
 
-    if (document.getElementById('#slider' + currentvidslider) === null) { }
+    if (document.getElementById('slider' + currentvidslider) === null) { }
     else {      //restart the slider after the video is closed
         setTimeout("$('#slider' + currentvidslider).data('nivoslider').start()", 1000); 
     }
@@ -34,15 +34,16 @@ function popclosevideo() {
 
 function popupvideo(videoid, sliderid) {
     currentvidslider = sliderid;
+
     if (currentvidid == videoid) { } else { player.cueVideoById(videoid); }
     currentvidid = videoid;
     $('#fr_video_popup').fadeIn();
     $('#fr_video_popup').css("display", "flex");
     
-    if (document.getElementById('#slider' + sliderid) === null) { }
+    if (document.getElementById('slider' + sliderid) == null) { }
     else {   //stop the slider while the video is open
         $('#slider' + sliderid).data('nivoslider').stop();
-   } 
+    }
 }
 
 $(document).keyup(function (e) {
