@@ -43,48 +43,60 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 End If
             End If
 
+            'Register a click for this story
             If Not String.IsNullOrEmpty(Request.Form("StoryLink")) Then
-                'Register a click for this story
-                'TODO this had a return before the End If to stop processing. Need to rework the code so it doesn't keep going down the line.
-                Dim theCache = StoryFunctions.GetCacheByCacheId(Request.Form("StoryLink"))
-                StoryFunctions.UpdateClicks(theCache.CacheId)
-            End If
+                StoryFunctions.UpdateClicks(Request.Form("StoryLink"))
+            Else
 
-            If Not Page.IsPostBack Then
+                If Not Page.IsPostBack Then
 
-                Dim tagsQueryString As String = Request.QueryString(TAGS_KEYWORD)
-                Dim validTagQueryList As List(Of String) = StoryFunctions.ValidTagList(tagsQueryString, TabModuleId)
-                Dim cleanTagsQueryString As String = String.Join(",", validTagQueryList)
+                    Dim tagsQueryString As String = Request.QueryString(TAGS_KEYWORD)
+                    Dim validTagQueryList As List(Of String) = StoryFunctions.ValidTagList(tagsQueryString, TabModuleId)
+                    Dim cleanTagsQueryString As String = String.Join(",", validTagQueryList)
 
-                'If tags query string isn't empty and it is different from the clean query string
-                'make query string editable, remove tags query string and add clean tags query string.
-                If ((Not String.IsNullOrEmpty(tagsQueryString)) And (Not String.Equals(cleanTagsQueryString, tagsQueryString))) Then
+                    'If tags query string isn't empty and it is different from the clean query string
+                    'make query string editable, remove tags query string and add clean tags query string.
+                    If ((Not String.IsNullOrEmpty(tagsQueryString)) And (Not String.Equals(cleanTagsQueryString, tagsQueryString))) Then
 
-                    Dim isreadonly As PropertyInfo = GetType(System.Collections.Specialized.NameValueCollection).GetProperty("IsReadOnly", BindingFlags.Instance Or BindingFlags.NonPublic)
+                        Dim isreadonly As PropertyInfo = GetType(System.Collections.Specialized.NameValueCollection).GetProperty("IsReadOnly", BindingFlags.Instance Or BindingFlags.NonPublic)
 
-                    ' make collection editable
-                    isreadonly.SetValue(Me.Request.QueryString, False, Nothing)
+                        ' make collection editable
+                        isreadonly.SetValue(Me.Request.QueryString, False, Nothing)
 
-                    ' remove
-                    Me.Request.QueryString.Remove(TAGS_KEYWORD)
+                        ' remove
+                        Me.Request.QueryString.Remove(TAGS_KEYWORD)
 
-                    ' add
-                    Me.Request.QueryString.Add(TAGS_KEYWORD, cleanTagsQueryString)
+                        ' add
+                        Me.Request.QueryString.Add(TAGS_KEYWORD, cleanTagsQueryString)
 
-                    ' make collection read only again
-                    isreadonly.SetValue(Me.Request.QueryString, True, Nothing)
-                End If
+                        ' make collection read only again
+                        isreadonly.SetValue(Me.Request.QueryString, True, Nothing)
+                    End If
 
-                'NO tag is chosen or NO valid tag is in query string
-                'Will show a list of stories or a list of tags
-                If (validTagQueryList.Count < 1) Then
+                    'NO tag is chosen or NO valid tag is in query string
+                    'Will show a list of stories or a list of tags
+                    If (validTagQueryList.Count < 1) Then
 
-                    'A tag list is viewable
-                    If Not String.IsNullOrEmpty(Settings("TagListControlId")) Then
-                        Dim control = StoryFunctions.GetStoryControlLocation(Settings("TagListControlId"))
-                        LoadStoryControl(control.Location, validTagQueryList, True)
+                        'A tag list is viewable
+                        If Not String.IsNullOrEmpty(Settings("TagListControlId")) Then
+                            Dim control = StoryFunctions.GetStoryControlLocation(Settings("TagListControlId"))
+                            LoadStoryControl(control.Location, validTagQueryList, True)
 
-                    Else  'A tag list is not viewable
+                        Else  'A tag list is not viewable
+
+                            'Load default Display Type (first row in database) if none defined
+                            If String.IsNullOrEmpty(Settings("StoryControlId")) Then
+                                Dim control = StoryFunctions.GetStoryControlLocation(StoryFunctionsProperties.FIRST_CONTROL)
+                                LoadStoryControl(control.Location, validTagQueryList, control.Type = 2)
+
+                            Else  'Load Display Type defined in module settings
+                                Dim control = StoryFunctions.GetStoryControlLocation(Settings("StoryControlId"))
+                                LoadStoryControl(control.Location, validTagQueryList, control.Type = 2)
+                            End If
+
+                        End If
+
+                    Else ' Show list of stories that correspond to the valid tag(s)
 
                         'Load default Display Type (first row in database) if none defined
                         If String.IsNullOrEmpty(Settings("StoryControlId")) Then
@@ -94,35 +106,22 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                         Else  'Load Display Type defined in module settings
                             Dim control = StoryFunctions.GetStoryControlLocation(Settings("StoryControlId"))
                             LoadStoryControl(control.Location, validTagQueryList, control.Type = 2)
+
+                            'Html Meta tags for social media for tags
+                            Dim tag = StoryFunctions.GetTagByName(validTagQueryList.First, TabModuleId)
+
+                            StoryFunctions.SetSocialMediaMetaTags(StoryFunctions.GetPhotoURL(tag.PhotoId),
+                                                                       TabController.CurrentPage.TabName & " " & StoryFunctions.FormatTagsSelected(tagsQueryString),
+                                                                       TabController.CurrentPage.FullUrl & TAGS_IN_URL & tagsQueryString,
+                                                                       TabController.CurrentPage.Description,
+                                                                       PortalSettings.PortalName,
+                                                                       StaffBrokerFunctions.GetSetting("FacebookId", PortalSettings.PortalId),
+                                                                       StoryFunctionsProperties.SOCIAL_MEDIA_ARTICLE,
+                                                                       Page.Header.Controls)
                         End If
-
                     End If
-
-                Else ' Show list of stories that correspond to the valid tag(s)
-
-                    'Load default Display Type (first row in database) if none defined
-                    If String.IsNullOrEmpty(Settings("StoryControlId")) Then
-                        Dim control = StoryFunctions.GetStoryControlLocation(StoryFunctionsProperties.FIRST_CONTROL)
-                        LoadStoryControl(control.Location, validTagQueryList, control.Type = 2)
-
-                    Else  'Load Display Type defined in module settings
-                        Dim control = StoryFunctions.GetStoryControlLocation(Settings("StoryControlId"))
-                        LoadStoryControl(control.Location, validTagQueryList, control.Type = 2)
-
-                        'Html Meta tags for social media for tags
-                        Dim tag = StoryFunctions.GetTagByName(validTagQueryList.First, TabModuleId)
-
-                        StoryFunctions.SetSocialMediaMetaTags(StoryFunctions.GetPhotoURL(tag.PhotoId),
-                                                                   TabController.CurrentPage.TabName & " " & StoryFunctions.FormatTagsSelected(tagsQueryString),
-                                                                   TabController.CurrentPage.FullUrl & TAGS_IN_URL & tagsQueryString,
-                                                                   TabController.CurrentPage.Description,
-                                                                   PortalSettings.PortalName,
-                                                                   StaffBrokerFunctions.GetSetting("FacebookId", PortalSettings.PortalId),
-                                                                   StoryFunctionsProperties.SOCIAL_MEDIA_ARTICLE,
-                                                                   Page.Header.Controls)
-                    End If
-                End If
-            End If
+                End If 'Page.IsPostBack
+            End If 'Register a click for this story
         End Sub
 
 #End Region 'Base Method Implementations
