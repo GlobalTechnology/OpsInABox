@@ -47,7 +47,7 @@
          addthis.toolbox('.addthis_toolbox')
      }
 
-     var addthis_config = { 'data_track_addressbar': true };
+     var addthis_config = { 'data_track_addressbar': false };
 
 </script>
 <asp:HiddenField ID="hfManualAdvance" runat="server" />
