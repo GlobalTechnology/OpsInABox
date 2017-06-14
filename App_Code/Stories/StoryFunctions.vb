@@ -555,6 +555,22 @@ Public Class StoryFunctions
         Return storyCache
     End Function
 
+    Public Shared Sub UpdateClicks(ByVal cacheID As String)
+        Dim d As New StoriesDataContext
+
+        Dim storyCache As New AP_Stories_Module_Channel_Cache
+
+        If (IsInt(cacheID)) Then
+            Dim storyCacheQuery As IQueryable(Of AP_Stories_Module_Channel_Cache) = From c In d.AP_Stories_Module_Channel_Caches
+                                                                                    Where c.CacheId = cacheID
+            If (storyCacheQuery.Count > 0) Then
+                storyCache = storyCacheQuery.First
+                storyCache.Clicks += 1
+                d.SubmitChanges()
+            End If
+        End If
+    End Sub
+
     'Returns only published stories 
     Public Shared Function GetPublishedStories(ByVal TabModuleID As Integer, ByVal portalID As Integer) As IQueryable(Of AP_Story)
         Dim d As New StoriesDataContext

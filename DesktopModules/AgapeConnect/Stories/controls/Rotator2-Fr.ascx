@@ -47,8 +47,6 @@
          addthis.toolbox('.addthis_toolbox')
      }
 
-     var addthis_config = { 'data_track_addressbar': true };
-
 </script>
 <asp:HiddenField ID="hfManualAdvance" runat="server" />
 <asp:HiddenField ID="hfPauseTime" runat="server" />
