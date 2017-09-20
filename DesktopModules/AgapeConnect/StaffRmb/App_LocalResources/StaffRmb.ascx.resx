@@ -408,7 +408,7 @@
     <value>Split Transaction</value>
   </data>
   <data name="AccountsMode.Text" xml:space="preserve">
-    <value>You are in Accounts Mode. To switch to normal mode (as a normal staff member or Approver), switch to VIEW mode (bottom left).</value>
+    <value>You are in Accounts Mode. To switch to normal mode (as a normal staff member or Approver), close Edit Mode (bottom right).</value>
   </data>
   <data name="ErrorHelp.Text" xml:space="preserve">
     <value>* Note: If the automatic download experiences an error whilst inserting transactions to the Accounts Program, the entire batch may be rejected. If you have multiple reimbursements in an error state - the problem might be with one of the other reimbursements.</value>
