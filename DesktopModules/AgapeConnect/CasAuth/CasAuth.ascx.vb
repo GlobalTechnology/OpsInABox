@@ -13,6 +13,7 @@ Namespace DotNetNuke.Modules.AgapePortal
     Partial Class CasAuth
         Inherits Entities.Modules.PortalModuleBase
         Private Const Cashost As String = "https://thekey.me/cas/"
+        'Private Const Cashost As String = "https://casdev.gcx.org/cas/"
         Dim _service As String = ""
 
 
@@ -87,8 +88,10 @@ Namespace DotNetNuke.Modules.AgapePortal
 
             ' Second time (back from CAS) there is a ticket= to validate
             Dim validateurl As String = Cashost + "proxyValidate?" & "ticket=" & tkt & "&" & "service=" & _service & "&pgtUrl=https://agapeconnect.me/CasLogin.aspx"
+            '   Dim validateurl As String = Cashost + "proxyValidate?" & "ticket=" & tkt & "&" & "service=" & _service & "&pgtUrl=https://www.agapeconnect.me/CasLogin.aspx"
+            '     Dim validateurl As String = Cashost + "proxyValidate?" & "ticket=" & tkt & "&" & "service=" & _service & "&pgtUrl=https://mat.ministryview.org/CasLogin.aspx"
             'Dim validateurl As String = Cashost + "proxyValidate?" & "ticket=" & tkt & "&" & "service=" & _service & "&pgtUrl=https://myagape.org.uk/PgtCallback.aspx"
-
+            'AgapeLogger.WriteEventLog(1, validateurl)
             Dim reader1 As StreamReader = New StreamReader(New WebClient().OpenRead(validateurl))
             Dim doc As New XmlDocument()
             doc.Load(reader1)
@@ -205,15 +208,39 @@ Namespace DotNetNuke.Modules.AgapePortal
 
 
                     Else
+                        'AgapeLogger.WriteEventLog(0, "ssoGUID: " + ssoGuid)
 
                         If ssoGuid <> String.Empty Then
                             StaffBrokerFunctions.SetUserProfileProperty(PortalId, objUserInfo.UserID, "ssoGUID", ssoGuid)
                         End If
                         If pgtiou <> String.Empty Then
+
+
+                            'If email = "jon.vellacott@cru.org" Then
+                            '    '    objUserInfo.Profile.SetProfileProperty("GCXPGTIOU", pgtiou)
+                            '    '    UserController.UpdateUser(PortalId, objUserInfo)
+                            '    UpdateCASProperties(ps.PortalId, objUserInfo, ssoGuid, pgtiou)
+                            '    '  AgapeLogger.WriteEventLog(0, "PortalId: " & PortalId & " : " & objUserInfo.Profile.GetPropertyValue("GCXPGTIOU"))
+                            '    '  System.Threading.Thread.Sleep(3000)
+                            '    'UserController.UpdateUser(PortalId, objUserInfo, True)
+                            '    '   StaffBrokerFunctions.SetUserProfileProperty(PortalId, objUserInfo.UserID, "GCXPGTIOU", pgtiou)
+                            '    '  objUserInfo.Profile.SetProfileProperty("GCXPGTIOU", pgtiou)
+                            '    '  UserController.UpdateUser(PortalId, objUserInfo, True)
+                            '    AgapeLogger.WriteEventLog(0, objUserInfo.Profile.GetPropertyValue("GCXPGTIOU"))
+
+                            '    objUserInfo = UserController.GetUserByName(CType(HttpContext.Current.Items("PortalSettings"), PortalSettings).PortalId, netid)
+                            '    AgapeLogger.WriteEventLog(0, objUserInfo.Profile.GetPropertyValue("GCXPGTIOU"))
+                            'Else
                             StaffBrokerFunctions.SetUserProfileProperty(PortalId, objUserInfo.UserID, "GCXPGTIOU", pgtiou)
+                            ' End If
                         End If
+                        '   UpdateCASProperties(ps.PortalId, objUserInfo, ssoGuid, pgtiou)
 
 
+                        '   objUserInfo = UserController.GetUserByName(CType(HttpContext.Current.Items("PortalSettings"), PortalSettings).PortalId, netid)
+                        '   UserController.UpdateUser(PortalId, objUserInfo)
+
+                        '    AgapeLogger.WriteEventLog(0, objUserInfo.Profile.GetPropertyValue("ssoGUID"))
                         LoginUser(objUserInfo, returnUrl)
                         'FormsAuthentication.RedirectFromLoginPage(netid, False) 'set netid in ASP.NET blocks
 
@@ -222,6 +249,41 @@ Namespace DotNetNuke.Modules.AgapePortal
                 End If
             End If
         End Sub
+
+        Private Sub UpdateCASProperties(ByVal portalId As Integer, ByVal objUserInfo As UserInfo, ByVal CASGUID As String, ByVal GCXPGTIOU As String)
+            Try
+
+
+                Dim d As New StaffBroker.StaffBrokerDataContext()
+                Dim u = (From c In d.Users Where c.UserID = objUserInfo.UserID).FirstOrDefault
+                If Not u Is Nothing Then
+                    'AgapeLogger.WriteEventLog(0, "3: " & u.UserID)
+                    Dim pp1 = (From c In d.ProfilePropertyDefinitions Where c.PropertyName = "ssoGUID" And c.PortalID = portalId).FirstOrDefault
+                    If Not pp1 Is Nothing Then
+                        Dim upp1 = u.UserProfiles.Where(Function(c) c.PropertyDefinitionID = pp1.PropertyDefinitionID).FirstOrDefault
+                        If Not upp1 Is Nothing Then
+                            upp1.PropertyValue = CASGUID
+
+                        End If
+                    End If
+
+                    Dim pp2 = (From c In d.ProfilePropertyDefinitions Where c.PropertyName = "GCXPGTIOU" And c.PortalID = portalId).FirstOrDefault
+                    If Not pp2 Is Nothing Then
+                        ' AgapeLogger.WriteEventLog(0, "3: " & pp2.PropertyName)
+                        Dim upp2 = u.UserProfiles.Where(Function(c) c.PropertyDefinitionID = pp2.PropertyDefinitionID).FirstOrDefault
+                        If Not upp2 Is Nothing Then
+                            upp2.PropertyValue = GCXPGTIOU
+                            ' AgapeLogger.WriteEventLog(0, "3: " & GCXPGTIOU)
+                        End If
+                    End If
+                    d.SubmitChanges()
+
+                End If
+            Catch ex As Exception
+                AgapeLogger.WriteEventLog(0, "3: " & ex.ToString)
+            End Try
+        End Sub
+
 
         Private Sub LoginUser(ByVal objUserInfo As UserInfo, ByVal returnUrl As String)
 
