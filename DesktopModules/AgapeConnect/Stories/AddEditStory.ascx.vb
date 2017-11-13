@@ -21,7 +21,7 @@ Namespace DotNetNuke.Modules.Stories
             Dim q = From chan In d.AP_Stories_Module_Channels Join smod In d.AP_Stories_Modules On chan.StoryModuleId Equals smod.StoryModuleId Where smod.TabModuleId = TabModuleId And chan.Type = 2 Select chan.ChannelTitle
             lblChannel.Text = q.First
 
-            If (Not IsEditable And Not UserInfo.IsInRole("Administrators")) Then
+            If (Not DotNetNuke.Security.Permissions.ModulePermissionController.CanEditModuleContent(Me.ModuleConfiguration)) Then
                 Response.Redirect(NavigateURL(PortalSettings.Current.ErrorPage404))
             End If
 
@@ -57,10 +57,6 @@ Namespace DotNetNuke.Modules.Stories
                 ddlLanguage.DataBind()
 
                 BuildTagList()
-
-                If Me.UserInfo.IsSuperUser And IsEditable() Then
-                    'SuperPowers.Visible = True
-                End If
 
                 Dim authorTitle = StaffBrokerFunctions.GetSetting("Authors", Me.PortalId)
                 If authorTitle <> "" Then

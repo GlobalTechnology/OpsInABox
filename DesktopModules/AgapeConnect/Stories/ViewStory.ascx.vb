@@ -31,7 +31,7 @@ Namespace DotNetNuke.Modules.FullStory
 
             'If story is not found (incorrect story id) or if it is not published and
             'if the page is not in edit mode and if the user is not an admin - 404 Error.
-            If (String.IsNullOrEmpty(story.Headline) Or (Not story.IsVisible And Not IsEditable And Not UserInfo.IsInRole("Administrators"))) Then
+            If (String.IsNullOrEmpty(story.Headline) Or (Not story.IsVisible And Not DotNetNuke.Security.Permissions.ModulePermissionController.CanEditModuleContent(Me.ModuleConfiguration))) Then
                 Response.Redirect(NavigateURL(PortalSettings.Current.ErrorPage404))
             Else
                 hfmapsKey.Value = StoryFunctions.GetGoogleMapsApiKey(PortalId)
@@ -97,7 +97,7 @@ Namespace DotNetNuke.Modules.FullStory
                     ltStory2.Text = template.Substring(superpowersIndex + SUPERPOWERS_TEMPLATE_KEY.Length)
                 End If
 
-                If (IsEditable Or UserInfo.IsInRole("Administrators")) Then
+                If (DotNetNuke.Security.Permissions.ModulePermissionController.CanEditModuleContent(Me.ModuleConfiguration)) Then
                     SuperPowers.Visible = True
                     SuperPowers.SuperEditor = UserInfo.IsSuperUser
                     SuperPowers.EditUrl = NavigateURL(CInt(GetTabId(Request.QueryString("origTabId"))), "AddEditStory", {"mid", GetModId(Request.QueryString("origModId"))})

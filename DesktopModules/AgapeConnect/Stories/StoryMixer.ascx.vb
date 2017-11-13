@@ -19,7 +19,7 @@ Namespace DotNetNuke.Modules.Stories
 
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
 
-            If (Not IsEditable And Not UserInfo.IsInRole("Administrators")) Then
+            If (Not DotNetNuke.Security.Permissions.ModulePermissionController.CanEditModuleContent(Me.ModuleConfiguration)) Then
                 Response.Redirect(NavigateURL(PortalSettings.Current.ErrorPage404))
             End If
 
