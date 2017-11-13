@@ -54,45 +54,37 @@
 </script>
 
 <div id="DocumentsMain" class="documents">
-
-    <asp:UpdatePanel ID="upFolderView" runat="server">
-        <ContentTemplate>
-            <div id="SearchRessource">
-                <asp:Panel ID="PanelSearch" runat="server" DefaultButton="lbSearchNew">
-                    <asp:TextBox ID="tbSearch" runat="server" EnableViewState="False" CssClass="NormalTextBox" MaxLength="255"></asp:TextBox>
-                    <asp:LinkButton ID="lbSearchNew" runat="server" CssClass="SearchNew" OnClick="SearchNew_OnClick"></asp:LinkButton>
-                </asp:Panel>
-            </div>
-            <asp:ListView ID="dlFolderView" runat="server">
-                <ItemTemplate>
-                    <div id="Icons" class="icons" runat="server">
-                        <asp:HyperLink ID="HyperLink1" runat="server"
-                            Target='<%# GetDocTarget(Eval("DocId")) %>'
-                            NavigateUrl='<%# IIf(Eval("FileId") Is Nothing, NavigateURL() & "?FolderId=" & Eval("FolderId"), GetDocUrl(Eval("DocId")))%>'>
-                            <asp:Image ID="icon" CssClass="icon" runat="server" ImageUrl='<%# DocumentsController.GetFileIcon(Eval("FileId"), Eval("LinkType"), Eval("CustomIcon"))%>' />
-                            <div class="docInfo">
-                                <div class="docTitle">
-                                    <asp:Label ID="lblItemName" runat="server" Text='<%# Eval("DisplayName") %>'></asp:Label>
-                                </div>
-                                <div id="theDesc" runat="server" class="docText">
-                                    <asp:Label ID="lblItemDesc" runat="server" Text='<%# Eval("Description") %>'></asp:Label>
-                                </div>
-                            </div>
-                        </asp:HyperLink>
-                        <div id="docButtons" class="docButtons" runat="server">
-                            <asp:HyperLink ID="btnEditDoc" CssClass="btnEdit" runat="server" 
-                                NavigateUrl='<%# EditUrl("", "", DocumentsControllerConstants.AddEditDocumentControlKey, DocumentsControllerConstants.DocIdParamKey, Eval("DocId"), DocumentsControllerConstants.SearchWordsParamKey, SearchWords)%>'></asp:HyperLink>
-                            <asp:LinkButton ID="btnDeleteDoc" CssClass="btnDelete" runat="server" CommandArgument='<%# Eval("DocId")%>'></asp:LinkButton>
+    <div id="SearchRessource">
+        <asp:Panel ID="PanelSearch" runat="server" DefaultButton="lbSearchNew">
+            <asp:TextBox ID="tbSearch" runat="server" EnableViewState="False" CssClass="NormalTextBox" MaxLength="255"></asp:TextBox>
+            <asp:LinkButton ID="lbSearchNew" runat="server" CssClass="SearchNew" OnClick="SearchNew_OnClick"></asp:LinkButton>
+        </asp:Panel>
+    </div>
+    <asp:ListView ID="dlFolderView" runat="server">
+        <ItemTemplate>
+            <div id="Icons" class="icons" runat="server">
+                <asp:HyperLink ID="HyperLink1" runat="server"
+                    Target='<%# GetDocTarget(Eval("DocId")) %>'
+                    NavigateUrl='<%# IIf(Eval("FileId") Is Nothing, NavigateURL() & "?FolderId=" & Eval("FolderId"), GetDocUrl(Eval("DocId")))%>'>
+                    <asp:Image ID="icon" CssClass="icon" runat="server" ImageUrl='<%# DocumentsController.GetFileIcon(Eval("FileId"), Eval("LinkType"), Eval("CustomIcon"))%>' />
+                    <div class="docInfo">
+                        <div class="docTitle">
+                            <asp:Label ID="lblItemName" runat="server" Text='<%# Eval("DisplayName") %>'></asp:Label>
+                        </div>
+                        <div id="theDesc" runat="server" class="docText">
+                            <asp:Label ID="lblItemDesc" runat="server" Text='<%# Eval("Description") %>'></asp:Label>
                         </div>
                     </div>
-                </ItemTemplate>
-                <EmptyDataTemplate>
-                    <div class="noresource"><%=LocalizeString("lblNoResource")%></div>
-                </EmptyDataTemplate>
-            </asp:ListView>
-        </ContentTemplate>
-        <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="dlFolderView" EventName="ItemCommand" />
-        </Triggers>
-    </asp:UpdatePanel>
+                </asp:HyperLink>
+                <div id="docButtons" class="docButtons" runat="server">
+                    <asp:HyperLink ID="btnEditDoc" CssClass="btnEdit" runat="server" 
+                        NavigateUrl='<%# EditUrl("", "", DocumentsControllerConstants.AddEditDocumentControlKey, DocumentsControllerConstants.DocIdParamKey, Eval("DocId"), DocumentsControllerConstants.SearchWordsParamKey, SearchWords)%>'></asp:HyperLink>
+                    <asp:LinkButton ID="btnDeleteDoc" CssClass="btnDelete" runat="server" CommandArgument='<%# Eval("DocId")%>'></asp:LinkButton>
+                </div>
+            </div>
+        </ItemTemplate>
+        <EmptyDataTemplate>
+            <div class="noresource"><%=LocalizeString("lblNoResource")%></div>
+        </EmptyDataTemplate>
+    </asp:ListView>
 </div>
