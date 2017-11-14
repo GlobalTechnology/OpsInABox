@@ -13,7 +13,6 @@
                  'visibility':'visible'}).nivoSlider({
                  effect: 'fade',
                  pauseTime: <%= hfPauseTime.Value %>,
-                 width: <%= hfDivWidth.Value %>,
                  manualAdvance: <%= hfManualAdvance.Value %>,
                  manualCaption: true,
                  channelID: <%= hfChannelId.Value %>,
@@ -52,11 +51,10 @@
 </script>
 <asp:HiddenField ID="hfManualAdvance" runat="server" />
 <asp:HiddenField ID="hfPauseTime" runat="server" />
-<asp:HiddenField ID="hfDivWidth" runat="server" />
 <asp:HiddenField ID="hfChannelId" runat="server" />
 
 <div id="rotator<%= hfChannelId.Value %>" class="rotator2">
-<div id="rotatorContainer<%= hfChannelId.Value %>" class="theme-default" style="width:<%= hfDivWidth.Value %>">
+<div id="rotatorContainer<%= hfChannelId.Value %>" class="theme-default">
     <div id="slider<%= hfChannelId.Value %>" class="nivoSlider">
         <asp:Repeater ID="SliderImageList" runat="server">
             <ItemTemplate>

@@ -27,8 +27,7 @@
 .theme-default .nivo-controlNav 
 {
     position: relative;
-    height: 10px;
-	text-align: right;
+    text-align: right;
 	margin-top: 5px;
     color: transparent;
 	padding:  0;
@@ -179,7 +178,7 @@
 .rotator2 {
     
     /*padding: 30px 20px 30px 20px;*/
-    display: flex;
+    /*display: flex;*/
     margin-top: 30px;
 }
 
@@ -194,8 +193,8 @@
     vertical-align: top;
     padding: 0 10px;
     position:relative;
-    width:300px;
     margin-left: 10px;
+    width:90%;
 }
 
 .rotator2 .nivo-caption a:hover {
@@ -215,13 +214,7 @@
     margin-top:-10px;
 }
 
-.addthis_toolbox {
-    padding-left: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    position: absolute;
-    bottom: 0;
-}
+
 
 /* END Rotator2-Fr */
 
@@ -245,5 +238,21 @@
     /* For desktop: */
     .rotator1 .nivo-caption {
         min-height:42px;
+    }
+    .rotator2 {
+        display:flex;
+    }
+    .addthis_toolbox {
+        padding-left: 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0;
+    }
+    .rotator2 .theme-default {
+        width:935px;
+    }
+    .rotator2 .nivo-caption {
+        width: 300px;
     }
 }
