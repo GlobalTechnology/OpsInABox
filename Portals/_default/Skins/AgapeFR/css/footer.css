@@ -70,11 +70,11 @@
     background-size:30px 30px;
     margin: 0 0 0 5px;
 }
-#footer2 #contact {
-    background: #0e71b4 url('../images/question.svg') no-repeat center center;
-    background-size:32px 32px;
-    margin: 0 0 0 5px;
-}
+    #footer2 #contact {
+        background: #0e71b4 url('../images/speech-bubble.svg') no-repeat center center;
+        background-size: 32px 32px;
+        margin: 0 0 0 5px;
+    }
 
 #footer2 #youtube:hover {
     background-color: #ABACAE;
