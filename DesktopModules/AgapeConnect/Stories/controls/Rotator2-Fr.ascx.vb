@@ -52,7 +52,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
             hfManualAdvance.Value = rotatorSettings.Item(ControlerConstants.MANUALADVANCE)
             hfPauseTime.Value = rotatorSettings.Item(ControlerConstants.SPEED)
-            hfDivWidth.Value = rotatorSettings.Item(ControlerConstants.PHOTOWIDTH)
             hfChannelId.Value = rotatorSettings.Item(ControlerConstants.CHANNELID)
 
             Dim sliderData As DataTable = StoryFunctions.GetRotatorSlides(stories, rotatorSettings,
@@ -78,8 +77,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                     "addthis:url=""" & row.Item(ControlerConstants.SLIDERAWURL) & """ " &
                     "addthis:title=""" & row.Item(ControlerConstants.SLIDEIMAGETITLE) & """ " &
                     "addthis:description=""" & row.Item(ControlerConstants.SLIDEIMAGEDESC) & """ " &
-                    "addthis:media=""" & row.Item(ControlerConstants.SLIDEIMAGE) & """ " &
-                    " style=""" & "width: 200px;""" & ">" &
+                    "addthis:media=""" & row.Item(ControlerConstants.SLIDEIMAGE) & """ " & ">" &
                     " <a class='addthis_button_facebook'></a> " &
                     " <a class='addthis_button_twitter'></a> " &
                     " <a class='addthis_button_google_plusone_share'></a> " &
