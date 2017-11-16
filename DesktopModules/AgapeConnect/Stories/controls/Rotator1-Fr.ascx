@@ -2,6 +2,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <dnn:DnnJsInclude runat="server" FilePath="/js/jquery.nivo.slider.js" />
 <dnn:DnnJsInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/js/videopopup.js" />
+<dnn:DnnJsInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/js/jquery.mobile.custom.touch.min.js" />
 <dnn:DnnCssInclude runat="server" FilePath="/js/nivo-slider.css" />
 <dnn:DnnCssInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/themes/default/france.css" />
 
@@ -16,7 +17,13 @@
                  manualCaption: true,
                  channelID: <%= hfChannelId.Value %>,
                  beforeChange: function(){linkImageFadeOut('#slider<%= hfChannelId.Value %>');},
-             });
+                 });
+             $(".rotator1").on("swipeleft", function () {
+                 $(".nivo-nextNav").trigger("click"); //next slide
+             }); 
+             $(".rotator1").on("swiperight", function () {
+                 $(".nivo-prevNav").trigger("click"); //previous slide
+             }); 
          }
 
          $(document).ready(function () {
