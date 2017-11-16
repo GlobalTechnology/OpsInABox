@@ -241,7 +241,7 @@
     <value>Insérer une colonne à droite</value>
   </data>
   <data name="InsertCustomLink" xml:space="preserve">
-    <value>Liens mémorisés</value>
+    <value>Lien prédéfini</value>
   </data>
   <data name="InsertDate" xml:space="preserve">
     <value>Insérer la date</value>
