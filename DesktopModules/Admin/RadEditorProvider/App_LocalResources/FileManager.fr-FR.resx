@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ErrorCodes.AddFolder_NoPermission">
+    <value xml:space="preserve">L'utilisateur n'a pas l'autorisation d'ajouter un dossier</value>
+  </data>
+  <data name="ErrorCodes.AddFolder_NotInsecureFolder">
+    <value xml:space="preserve">L'utilisateur ne peut ajouter un dossier ou un fichier dans un dossier marqué comme "base de données" ou "sécurisé"</value>
+  </data>
+  <data name="ErrorCodes.CannotCopyFolder_ChildrenVisible">
+    <value xml:space="preserve">L’utilisateur n’a pas l’autorisation de copier le dossier étant donné que tous les fichiers ne sont pas visibles dans la fenêtre.</value>
+  </data>
+  <data name="ErrorCodes.CannotDeleteFolder_ChildrenVisible">
+    <value xml:space="preserve">L’utilisateur n’a pas l’autorisation de supprimer le dossier étant donné que tous les fichiers ne sont pas visibles dans la fenêtre.</value>
+  </data>
+  <data name="ErrorCodes.CannotMoveFolder_ChildrenVisible">
+    <value xml:space="preserve">L’utilisateur n’a pas l’autorisation de déplacer le dossier étant donné que tous les fichiers ne sont pas visibles dans la fenêtre.</value>
+  </data>
+  <data name="ErrorCodes.CopyFolder_NoPermission">
+    <value xml:space="preserve">L'utilisateur n'a pas la permission de copier le dossier</value>
+  </data>
+  <data name="ErrorCodes.CopyFolder_NotInsecureFolder">
+    <value xml:space="preserve">L'utilisateur ne peut copier un dossier ou un fichier dans un dossier marqué comme "base de données" ou "sécurisé"</value>
+  </data>
+  <data name="ErrorCodes.DeleteFolder_NoPermission">
+    <value xml:space="preserve">L'utilisateur n'a pas l'autorisation de supprimer le dossier ou le fichier</value>
+  </data>
+  <data name="ErrorCodes.DeleteFolder_NotInsecureFolder">
+    <value xml:space="preserve">L'utilisateur ne peut supprimer un dossier ou un fichier dans un dossier marqué comme "base de données" ou "sécurisé"</value>
+  </data>
+  <data name="ErrorCodes.DeleteFolder_Protected">
+    <value xml:space="preserve">L’utilisateur n’a pas l’autorisation de supprimer le dossier parce qu'il est "protégé"</value>
+  </data>
+  <data name="ErrorCodes.DeleteFolder_Root">
+    <value xml:space="preserve">Impossible de supprimer le dossier racine</value>
+  </data>
+  <data name="ErrorCodes.DirectoryAlreadyExists">
+    <value xml:space="preserve">le dossier existe déjà. Actualisez votre liste des dossiers.</value>
+  </data>
+  <data name="ErrorCodes.FileDoesNotExist">
+    <value xml:space="preserve">Le fichier n'existe pas. Actualisez votre liste des dossiers.</value>
+  </data>
+  <data name="ErrorCodes.FolderDoesNotExist">
+    <value xml:space="preserve">Le dossier n'existe pas. Actualisez votre liste des dossiers.</value>
+  </data>
+  <data name="ErrorCodes.General_PermissionDenied">
+    <value xml:space="preserve">Vous n’avez pas les autorisations nécessaires pour effectuer cette action. Contactez l’administrateur système pour de plus amples informations.</value>
+  </data>
+  <data name="ErrorCodes.InvalidCharactersInPath">
+    <value xml:space="preserve">Il y a des caractères non valides dans le chemin d'accès.</value>
+  </data>
+  <data name="ErrorCodes.NewFileAlreadyExists">
+    <value xml:space="preserve">Le fichier existe déjà. Actualisez votre liste des dossiers.</value>
+  </data>
+  <data name="ErrorCodes.RenameFolder_Root">
+    <value xml:space="preserve">Impossible de renommer le répertoire racine</value>
+  </data>
+  <data name="FolderDoesNotExist.Text">
+    <value xml:space="preserve">Le dossier n'existe pas. Actualisez votre liste de dossiers.</value>
+  </data>
+  <data name="SystemError.Text">
+    <value xml:space="preserve">Impossible de terminer l'opération. Une erreur inconnue s'est produite.</value>
+  </data>
+</root>

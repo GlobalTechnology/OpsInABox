@@ -40,6 +40,8 @@ cd ..\DesktopModules\Admin\RadEditorProvider\ConfigFile
 mklink /H %var%DesktopModules\Admin\RadEditorProvider\ConfigFile\ConfigFile.PortalId.0.xml ConfigFile.PortalId.0.xml
 cd ..\ToolsFile
 mklink /H %var%DesktopModules\Admin\RadEditorProvider\ToolsFile\ToolsFile.PortalId.0.xml ToolsFile.PortalId.0.xml
+cd ..\App_LocalResources
+FOR %%G in (*.*.fr-FR.resx) DO mklink /H %var%DesktopModules\Admin\RadEditorProvider\App_LocalResources\%%G %%G
 cd ..\..\..
 
 REM SETUP FRANCE PORTAL SPECIFIC DNNSharp RESOURCE FILES

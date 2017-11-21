@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="action">
+    <value xml:space="preserve">Action</value>
+  </data>
+  <data name="align">
+    <value xml:space="preserve">Alignement</value>
+  </data>
+  <data name="alt">
+    <value xml:space="preserve">Info-bulle</value>
+  </data>
+  <data name="bgColor">
+    <value xml:space="preserve">Arrière-plan</value>
+  </data>
+  <data name="blank">
+    <value xml:space="preserve">Nouvelle fenêtre</value>
+  </data>
+  <data name="border">
+    <value xml:space="preserve">Largeur de la bordure</value>
+  </data>
+  <data name="borderColor">
+    <value xml:space="preserve">Couleur de bordure</value>
+  </data>
+  <data name="cellPadding">
+    <value xml:space="preserve">Marge intérieure des cellules</value>
+  </data>
+  <data name="cellSpacing">
+    <value xml:space="preserve">CellSpacing</value>
+  </data>
+  <data name="className">
+    <value xml:space="preserve">ClassName</value>
+  </data>
+  <data name="cols">
+    <value xml:space="preserve">Colonnes</value>
+  </data>
+  <data name="Doctype">
+    <value xml:space="preserve">Sélectionnez Doctype</value>
+  </data>
+  <data name="DomInspectorRemoveElement">
+    <value xml:space="preserve">Supprimer l'élément</value>
+  </data>
+  <data name="ExpandValidator">
+    <value xml:space="preserve">Développez volet de rapport</value>
+  </data>
+  <data name="height">
+    <value xml:space="preserve">Hauteur</value>
+  </data>
+  <data name="href">
+    <value xml:space="preserve">URL</value>
+  </data>
+  <data name="id">
+    <value xml:space="preserve">ID</value>
+  </data>
+  <data name="media">
+    <value xml:space="preserve">Volet Media</value>
+  </data>
+  <data name="name">
+    <value xml:space="preserve">Nom</value>
+  </data>
+  <data name="NodeInspectorInvalidValue">
+    <value xml:space="preserve">Valeur non valide. Veuillez entrer un numéro.</value>
+  </data>
+  <data name="NodeInspectorSelectedElement">
+    <value xml:space="preserve">L'élément sélectionné est</value>
+  </data>
+  <data name="noWrap">
+    <value xml:space="preserve">NoWrap</value>
+  </data>
+  <data name="parent">
+    <value xml:space="preserve">Fenêtre parente</value>
+  </data>
+  <data name="RadEditorDomInspector">
+    <value xml:space="preserve">Inspecteur de balises</value>
+  </data>
+  <data name="RadEditorHtmlInspector">
+    <value xml:space="preserve">Affichage en temps réel de HTML</value>
+  </data>
+  <data name="RadEditorNodeInspector">
+    <value xml:space="preserve">Inspecteur Propriétés</value>
+  </data>
+  <data name="RadEditorStatistics">
+    <value xml:space="preserve">Statistiques</value>
+  </data>
+  <data name="RadEditorXhtmlValidator">
+    <value xml:space="preserve">Validateur XHTML</value>
+  </data>
+  <data name="ReservedResource">
+    <value xml:space="preserve">SVP, ne supprimez pas de cette chaîne. RadEditor en a besoin pour déterminer si un fichier de ressources externes est p</value>
+  </data>
+  <data name="rows">
+    <value xml:space="preserve">Lignes</value>
+  </data>
+  <data name="search">
+    <value xml:space="preserve">Volet recherche</value>
+  </data>
+  <data name="self">
+    <value xml:space="preserve">Même fenêtre</value>
+  </data>
+  <data name="StatisticsCharacters">
+    <value xml:space="preserve">Caractères :</value>
+  </data>
+  <data name="StatisticsWords">
+    <value xml:space="preserve">Mots :</value>
+  </data>
+  <data name="target">
+    <value xml:space="preserve">Cible</value>
+  </data>
+  <data name="title">
+    <value xml:space="preserve">Info-bulle</value>
+  </data>
+  <data name="top">
+    <value xml:space="preserve">Fenêtre de navigateur</value>
+  </data>
+  <data name="ValidateXHTML">
+    <value xml:space="preserve">Validation XHTML</value>
+  </data>
+  <data name="vAlign">
+    <value xml:space="preserve">Alignement vertical</value>
+  </data>
+  <data name="value">
+    <value xml:space="preserve">Valeur</value>
+  </data>
+  <data name="width">
+    <value xml:space="preserve">Largeur</value>
+  </data>
+</root>
