@@ -142,7 +142,7 @@ Namespace DotNetNuke.Modules.FullStory
             ReplaceField(template, "[HEADLINE]", story.Headline)
             ReplaceField(template, "[STORYTEXT]", story.StoryText)
             ReplaceField(template, "[MAP]", " <div id=""map_canvas""></div>")
-            ReplaceField(template, "[Tab:Title]", story.Headline.Replace(ControlChars.Quote, ""))
+            ReplaceField(template, "[Tab:TabName]", story.Headline.Replace(ControlChars.Quote, ""))
             ReplaceField(template, "[IMAGEURL]", URL)
             ReplaceField(template, "[FACEBOOKID]", Fid)
             ReplaceField(template, "[AUTHOR]", story.Author)
