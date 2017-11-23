@@ -51,6 +51,9 @@ html, body, form {
 
 	background: white;
 }
+#Form { /*to allow full height menu*/ 
+    position: relative;
+}
 
 .dnnTextEditor {
     font-size: small;
