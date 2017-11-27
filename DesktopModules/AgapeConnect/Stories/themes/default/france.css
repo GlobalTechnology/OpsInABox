@@ -163,8 +163,17 @@
     cursor:pointer;
 }
 
-/* END video popup */
+#fr_video_popup #playerspace {
+    width: 95%;
+    height: 50vw;
+}
 
+#fr_video_popup #popplayer {
+    width: 100%;
+    height: 100%;
+}
+
+/* END video popup */
 /* BEGIN Rotator1-Fr and Rotator2-Fr */
 .no-stories {
     font-size: small;
