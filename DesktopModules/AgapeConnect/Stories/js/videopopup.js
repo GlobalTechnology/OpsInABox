@@ -16,8 +16,8 @@ var currentvidid;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('popplayer', {
         origin: 'https://www.agapefrance.org',
-        height: '432',
-        width: '768',
+       // height: '432',
+        //width: '768',
         playerVars: { 'rel': 0, 'color': 'white' }
     });
 }
