@@ -220,7 +220,7 @@
     <value>Gestionnaire d'images</value>
   </data>
   <data name="ImageMapDialog" xml:space="preserve">
-    <value>Définir des zones réactives sur l'image</value>
+    <value>Définir zones réactives sur l'image</value>
   </data>
   <data name="IncreaseSize" xml:space="preserve">
     <value>Augmenter la taille</value>
@@ -241,7 +241,7 @@
     <value>Insérer une colonne à droite</value>
   </data>
   <data name="InsertCustomLink" xml:space="preserve">
-    <value>Liens mémorisés</value>
+    <value>Liens contact</value>
   </data>
   <data name="InsertDate" xml:space="preserve">
     <value>Insérer la date</value>
@@ -385,10 +385,10 @@
     <value>Coller en tant que code HTML</value>
   </data>
   <data name="PasteFromWord" xml:space="preserve">
-    <value>Coller à partir de Word</value>
+    <value>Coller de Word</value>
   </data>
   <data name="PasteFromWordNoFontsNoSizes" xml:space="preserve">
-    <value>Coller à partir de Word sans police ni taille</value>
+    <value>Coller de Word sans police ni taille</value>
   </data>
   <data name="PasteHtml" xml:space="preserve">
     <value>Coller du code HTML</value>
