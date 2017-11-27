@@ -41,7 +41,7 @@ del %var%DesktopModules\Admin\RadEditorProvider\ConfigFile\ConfigFile.PortalId.0
 cd ..\ToolsFile
 del %var%DesktopModules\Admin\RadEditorProvider\ToolsFile\ToolsFile.PortalId.0.xml
 cd ..\App_LocalResources
-FOR %%G in (*.*.fr-FR.resx) DO del %var%DesktopModules\Admin\RadEditorProvider\App_LocalResources\%%G
+FOR %%G in (*fr-FR.resx) DO del %var%DesktopModules\Admin\RadEditorProvider\App_LocalResources\%%G
 cd ..\..\..
 
 REM SETUP FRANCE PORTAL SPECIFIC DNNSharp RESOURCE FILES
