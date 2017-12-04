@@ -144,11 +144,7 @@
             margin: 24px;
         }
 
-    #bar1 .searchicon { /*show search icon*/
-        visibility: visible;
-        opacity: 1;
-        transition: opacity 0.5s;
-    }
+
 
     #bar1 #menu #featuredlinks { /*show dons and boutique links*/
         display: block;
@@ -163,77 +159,85 @@
             margin-right: 24px;
         }
 
-    #bar1 #SearchContainer.opensearch input { /*show search field*/
+    #bar1.menuopen #SearchContainer.opensearch input { /*show search field*/
         width: 100%;
     }
 }
 
 @media screen and (min-width: 1024px) { /*computer mode*/
-    #bar1 {
+
+    #bar1 .searchicon { /*show search icon*/
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.5s;
     }
 
-        #bar1 #logoHeader {
-            margin-right: auto;
+    #bar1 #logoHeader {
+        margin-right: auto;
+    }
+
+    #bar1.menuopen #logoHeader .aflightblue { /*color logo*/
+        fill: #b2dbed;
+    }
+
+    #bar1.menuopen #logoHeader .afmedblue { /*color logo*/
+        fill: #66b8dc;
+    }
+
+    #bar1.menuopen #logoHeader .afdarkblue { /*color logo*/
+        fill: #0e71b4;
+    }
+
+    #bar1.menuopen #logoHeader .afgray { /*color logo*/
+        fill: #868889;
+    }
+
+    #bar1.menuopen #logoHeader .afblack { /*color logo*/
+        fill: #1a171a;
+    }
+
+    #bar1 #menu { /*link text size for dons and boutique*/
+        font-size: 20px;
+    }
+
+    #bar1 #logoHeader {
+        order: 1;
+    }
+
+    #bar1 #SearchContainer {
+        order: 2;
+        width: 0;
+        height: 50px;
+        margin: 0 -50px 32px 0;
+    }
+
+        #bar1 #SearchContainer.opensearch {
+            width: 300px;
         }
 
-        #bar1.menuopen #logoHeader .aflightblue { /*color logo*/
-            fill: #b2dbed;
-        }
+    #bar1.menuopen #SearchContainer input {
+        height: 50px
+    }
 
-        #bar1.menuopen #logoHeader .afmedblue { /*color logo*/
-            fill: #66b8dc;
-        }
+    #bar1 #SearchContainer input { /*style search box*/
+        width: 0;
+        padding: 0;
+        height: 50px;
+        border: none;
+    }
 
-        #bar1.menuopen #logoHeader .afdarkblue { /*color logo*/
-            fill: #0e71b4;
-        }
+    #bar1 #SearchContainer.opensearch input { /*style search box*/
+        padding: 0 40px 0 10px;
+        width: 300px;
+        border: 2px solid #0e71b4;
+    }
 
-        #bar1.menuopen #logoHeader .afgray { /*color logo*/
-            fill: #868889;
-        }
+    #bar1 #SearchContainer.opensearch .searchInputContainer a.dnnSearchBoxClearText { /*show cleartext button when menu and search are open*/
+        visibility: visible;
+        opacity: 1;
+    }
 
-        #bar1.menuopen #logoHeader .afblack { /*color logo*/
-            fill: #1a171a;
-        }
-
-        #bar1 #menu { /*link text size for dons and boutique*/
-            font-size: 20px;
-        }
-
-        #bar1 #logoHeader {
-            order: 1;
-        }
-
-        #bar1 #SearchContainer {
-            order: 2;
-            width: 0;
-            height: 50px;
-            margin: 0 -50px 32px 0;
-        }
-
-            #bar1 #SearchContainer.opensearch {
-                width: 300px;
-            }
-
-            #bar1 #SearchContainer input { /*style search box*/
-                width: 0;
-                padding: 0;
-                height: 50px;
-                border: none;
-            }
-
-            #bar1 #SearchContainer.opensearch input { /*style search box*/
-                padding: 0 40px 0 10px;
-                width: 300px;
-                border: 2px solid #0e71b4;
-            }
-
-            #bar1 #SearchContainer.opensearch .searchInputContainer a.dnnSearchBoxClearText { /*show cleartext button when menu and search are open*/
-                visibility: visible;
-                opacity: 1;
-            }
-
-        #bar1 #menu {
-            order: 3;
-        }
+    #bar1 #menu {
+        order: 3;
+    }
 }
