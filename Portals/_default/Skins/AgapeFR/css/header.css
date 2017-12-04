@@ -1,129 +1,152 @@
 ﻿#bar1 { /*arrange items in header*/
-    display:flex;
-    justify-content:space-between;
+    display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
     align-items: flex-end;
 }
-#bar1 #logoHeader { /*shrink logo for mobile, show above menu*/
-    height: 80px;
-    z-index: 9;
-}
 
-#bar1 #logoHeader svg { /*shrink logo for mobile*/
-    height: 60px;
-    margin:10px;
-    transition: height .3s;
-}
+    #bar1 #logoHeader { /*shrink logo for mobile, show above menu*/
+        height: 80px;
+        z-index: 9;
+    }
 
-#bar1.menuopen #logoHeader .aflightblue,
-#bar1.menuopen #logoHeader .afmedblue,
-#bar1.menuopen #logoHeader .afdarkblue,
-#bar1.menuopen #logoHeader .afblack,
-#bar1.menuopen #logoHeader .afgray { /*color logo white*/
-    fill:#ffffff;
-    transition:.5s;
-}
+        #bar1 #logoHeader svg { /*shrink logo for mobile*/
+            height: 60px;
+            margin: 10px;
+            transition: height .3s;
+        }
 
-#bar1 #menu { /*position links and icons*/
-    height: 80px;
-    font-size:24px;
-    color: #0e71b4;
-    display: flex;
-    flex-direction: column;
-    align-items:flex-end;
-}
+    #bar1.menuopen #logoHeader .aflightblue,
+    #bar1.menuopen #logoHeader .afmedblue,
+    #bar1.menuopen #logoHeader .afdarkblue,
+    #bar1.menuopen #logoHeader .afblack,
+    #bar1.menuopen #logoHeader .afgray { /*color logo white*/
+        fill: #ffffff;
+        transition: .5s;
+    }
 
-#bar1 #menu #menubuttons { /*position the search and menu icons*/
-    position: relative;
-    margin: 15px 10px;
-    height: 50px;
-    z-index: 9;
-    display: flex;
-    cursor: pointer;
-}
+    #bar1 #menu { /*position links and icons*/
+        height: 80px;
+        font-size: 24px;
+        color: #0e71b4;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
 
-#bar1.menuopen svg .stripe { /*make menu icons white*/
-    fill: #ffffff;
-    transition: 0.5s;
-}
+        #bar1 #menu #menubuttons { /*position the search and menu icons*/
+            position: relative;
+            margin: 15px 10px;
+            height: 50px;
+            z-index: 9;
+            display: flex;
+            cursor: pointer;
+        }
 
-#bar1.menuclosed svg .stripe { /*make menu icons blue*/
-    fill: #0e71b4;
-    transition: 0.5s;
-}
+    #bar1.menuopen svg .stripe { /*make menu icons white*/
+        fill: #ffffff;
+        transition: 0.5s;
+    }
 
-#bar1 #menu #featuredlinks { /*hide dons and boutique links*/
-    display: none;
-}
+    #bar1.menuclosed svg .stripe { /*make menu icons blue*/
+        fill: #0e71b4;
+        transition: 0.5s;
+    }
 
-#bar1 .searchicon { /*hide search icon*/
-    visibility: hidden;
-    margin-right: 20px;
-    opacity:0;
-    transition: opacity 0.5s;
-}
+    #bar1 #menu #featuredlinks { /*hide dons and boutique links*/
+        display: none;
+    }
 
-#bar1.menuopen .searchicon { /*show search icon when mobile menu is open*/
-    visibility: visible;
-    opacity:1;
-    transition: opacity 0.5s;
-}
-#bar1 #SearchContainer { /*center search box*/
-    height:0;
-    width: 98%;
-    margin-left:auto;
-    margin-right:auto;
-    z-index: 9;
-    transition: 0.5s;
-}
-#bar1 #SearchContainer.opensearch {
+    #bar1 .searchicon { /*hide search icon*/
+        visibility: hidden;
+        margin-right: 20px;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+
+    #bar1.menuopen .searchicon { /*show search icon when mobile menu is open*/
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.5s;
+    }
+
+    #bar1 #SearchContainer { /*center search box*/
+        height: 0;
+        width: 98%;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: 9;
+        transition: 0.5s;
+    }
+        /*#bar1 #SearchContainer.opensearch {
     height:50px;
     transition: 0.5s;
-}
-#bar1 #SearchContainer .searchInputContainer { /*make search box full width*/
-    width:100%;
-}
+}*/
+        #bar1 #SearchContainer .searchInputContainer { /*make search box full width*/
+            width: 100%;
+        }
 
-#bar1 #SearchContainer .searchInputContainer a.dnnSearchBoxClearText { /*move cleartext button up into field*/
-    margin-top: -32px;
-    margin-right: 10px;
-    visibility:hidden;
-    opacity:0;
-    transition:.5s
-}
-#bar1.menuopen #SearchContainer.opensearch .searchInputContainer a.dnnSearchBoxClearText { /*show cleartext button when menu and search are open*/
-    visibility:visible;
-    opacity:1;
-}
+            #bar1 #SearchContainer .searchInputContainer a.dnnSearchBoxClearText { /*move cleartext button up into field*/
+                margin-top: -32px;
+                margin-right: 10px;
+                visibility: hidden;
+                opacity: 0;
+                transition: .2s
+            }
 
-#bar1 #SearchContainer input { /*style search box*/
-    font-size: 20px;
-    transition: 0.5s;
-    width:100%;
-    padding:0 40px 0 10px;
-    height: 0;
-    border: none;
-}
+    #bar1.menuopen #SearchContainer.opensearch .searchInputContainer a.dnnSearchBoxClearText { /*show cleartext button when menu and search are open*/
+        visibility: visible;
+        opacity: 1;
+    }
 
-#bar1.menuopen #SearchContainer.opensearch input { /*show search field when menu is open on mobile*/
-    height:50px;
-    border: 2px solid #0e71b4;
-    border-radius:4px;
-}
+    #bar1 #SearchContainer input { /*style search box*/
+        position: absolute;
+        right: 0;
+        font-size: 20px;
+        transition: 0.45s;
+        width: 0;
+        padding: 0;
+        height: 0;
+        border: none;
+    }
+
+    #bar1 #SearchContainer.opensearch input { /*style search box*/
+        font-size: 20px;
+        transition: 0.45s;
+        width: 0;
+        padding: 0;
+        height: 50px;
+        border: none;
+    }
+
+    #bar1.menuopen #SearchContainer.opensearch input { /*show search field when menu is open on mobile*/
+        height: 50px;
+        border: 2px solid #0e71b4;
+        border-radius: 4px;
+        width: 100%;
+        padding: 0 40px 0 10px;
+        transition: .5s;
+    }
+
+    #bar1.menuopen #SearchContainer input { /*show search field when menu is open on mobile*/
+        height: 0;
+        width: 100%;
+        transition: .45s;
+    }
 
 @media screen and (min-width: 768px) { /*tablet mode*/
     #bar1 #logoHeader {
         height: 160px;
     }
 
-    #bar1 #logoHeader svg {
-        height: 112px;
-        margin:24px;
-    }
+        #bar1 #logoHeader svg {
+            height: 112px;
+            margin: 24px;
+        }
 
     #bar1 .searchicon { /*show search icon*/
         visibility: visible;
-        opacity:1;
+        opacity: 1;
         transition: opacity 0.5s;
     }
 
@@ -136,72 +159,81 @@
         height: 160px;
     }
 
-    #bar1 #menu #menubuttons { /*raise menu icons*/
-        margin-right:24px;
-    }
+        #bar1 #menu #menubuttons { /*raise menu icons*/
+            margin-right: 24px;
+        }
+
     #bar1 #SearchContainer.opensearch input { /*show search field*/
-    width:100%;
+        width: 100%;
     }
 }
 
 @media screen and (min-width: 1024px) { /*computer mode*/
     #bar1 {
-        
-    }
-    #bar1 #logoHeader {
-        margin-right: auto;
-    }
-    #bar1.menuopen #logoHeader .aflightblue { /*color logo*/
-        fill:#b2dbed;
     }
 
-    #bar1.menuopen #logoHeader .afmedblue { /*color logo*/
-        fill:#66b8dc;
-    }
+        #bar1 #logoHeader {
+            margin-right: auto;
+        }
 
-    #bar1.menuopen #logoHeader .afdarkblue { /*color logo*/
-        fill:#0e71b4;
-    }
+        #bar1.menuopen #logoHeader .aflightblue { /*color logo*/
+            fill: #b2dbed;
+        }
 
-    #bar1.menuopen #logoHeader .afgray { /*color logo*/
-        fill:#868889;
-    }
+        #bar1.menuopen #logoHeader .afmedblue { /*color logo*/
+            fill: #66b8dc;
+        }
 
-    #bar1.menuopen #logoHeader .afblack { /*color logo*/
-        fill:#1a171a;
-    }
-    #bar1 #menu { /*link text size for dons and boutique*/
-    font-size:20px;
-    }
-    #bar1 #logoHeader {
-        order:1;
-        
-    }
-    #bar1 #SearchContainer {
-        order:2;
-        width:0;
-        height:50px;
-        margin:0 -50px 32px 0;
-    }
-    #bar1 #SearchContainer.opensearch {
-        width:300px;
-    }
-    #bar1 #SearchContainer input { /*style search box*/
-    width:0;
-    padding:0;
-    height:50px;
-    border: none;
-    }
-    #bar1 #SearchContainer.opensearch input { /*style search box*/
-    padding:0 40px 0 10px;
-    width:300px;
-    border: 2px solid #0e71b4;
-    }
-    #bar1 #SearchContainer.opensearch .searchInputContainer a.dnnSearchBoxClearText { /*show cleartext button when menu and search are open*/
-    visibility:visible;
-    opacity:1;
-}
-    #bar1 #menu {
-        order:3;
-    }
+        #bar1.menuopen #logoHeader .afdarkblue { /*color logo*/
+            fill: #0e71b4;
+        }
+
+        #bar1.menuopen #logoHeader .afgray { /*color logo*/
+            fill: #868889;
+        }
+
+        #bar1.menuopen #logoHeader .afblack { /*color logo*/
+            fill: #1a171a;
+        }
+
+        #bar1 #menu { /*link text size for dons and boutique*/
+            font-size: 20px;
+        }
+
+        #bar1 #logoHeader {
+            order: 1;
+        }
+
+        #bar1 #SearchContainer {
+            order: 2;
+            width: 0;
+            height: 50px;
+            margin: 0 -50px 32px 0;
+        }
+
+            #bar1 #SearchContainer.opensearch {
+                width: 300px;
+            }
+
+            #bar1 #SearchContainer input { /*style search box*/
+                width: 0;
+                padding: 0;
+                height: 50px;
+                border: none;
+            }
+
+            #bar1 #SearchContainer.opensearch input { /*style search box*/
+                padding: 0 40px 0 10px;
+                width: 300px;
+                border: 2px solid #0e71b4;
+            }
+
+            #bar1 #SearchContainer.opensearch .searchInputContainer a.dnnSearchBoxClearText { /*show cleartext button when menu and search are open*/
+                visibility: visible;
+                opacity: 1;
+            }
+
+        #bar1 #menu {
+            order: 3;
+        }
 }
