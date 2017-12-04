@@ -56,6 +56,7 @@
 	text-indent:-9999px;
 	border:0;
     opacity: 0;
+    z-index:7;
 }
 
 .theme-default:hover .nivo-directionNav a {
@@ -204,6 +205,7 @@
     position:relative;
     margin-left: 10px;
     width:90%;
+    z-index:7;
 }
 
 .rotator2 .nivo-caption a:hover {
