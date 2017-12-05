@@ -1,8 +1,9 @@
 ﻿#popupclose {
-    text-decoration:none;
-    color:#0e71b4;
-    cursor:pointer;
+    text-decoration: none;
+    color: #0e71b4;
+    cursor: pointer;
 }
+
 #my_popup {
     z-index: 10;
     position: fixed;
@@ -16,12 +17,18 @@
     min-width: 270px;
     border-radius: 5px;
 }
+
 .my_popup_close {
     text-align: right;
+    margin-top: 20px;
+}
+
+.my_popup_close svg .cancelbutton {
+        fill: #0e71b4;
 }
 
 @media screen and (min-width: 768px) { /*tablet mode*/
     #my_popup {
-        width:20%;
+        width: 20%;
     }
 }
