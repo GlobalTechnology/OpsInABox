@@ -23,8 +23,6 @@
 	<div id="ContentContainer" class="centeredbox">
 		<div id="PhotoPane" class="PhotoPane" runat="server">
 		</div>
-        <div id="PhotoOverlay">
-		</div>
         <div id="ContentTitle">
 		</div>
         <div id="ContentPane" class="ContentPane" runat="server">
