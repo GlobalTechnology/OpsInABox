@@ -1,11 +1,18 @@
-/*========================== PHOTO =======================*/
+/*========================== Photo Positioning =======================*/
+#bar3 {
+    position: relative;
+    display: block;
+    text-align: center;
+}
 
-#ContentContainer .PhotoPane .DNNModuleContent img {
-    width: 100%
+.PhotoPane {
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    left: 0;
 }
 
 /*========================== TITLE =======================*/
-
 #ContentContainer #ContentTitle {
     display: inline-block;
     line-height: 40px;
@@ -15,11 +22,18 @@
     background: #0e71b4;
     font-family: OpenSansLight;
     font-size: 20px;
-    margin-top: -50px;
+    margin-top: -40px;
     margin-left: 20px;
+    position: absolute;
+    left:0;
 }
 
 /*========================== CONTENT =======================*/
+#ContentContainer {
+    display: inline-block;
+    margin-top: 200px;
+    background: white;
+}
 
 #ContentContainer .ContentPane {
     padding-bottom: 100px;
@@ -28,7 +42,7 @@
 
 @media only screen and (min-width: 768px) { /*tablet mode*/
     #ContentContainer #ContentTitle {
-        margin-top: -60px;
-        margin-left: 30px
+       
     }
 }
+
