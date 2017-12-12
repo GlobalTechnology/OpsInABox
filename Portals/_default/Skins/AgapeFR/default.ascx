@@ -4,15 +4,9 @@
 
 <dnn:Header runat="server" ID="dnnHeader" />
 
-<div id="bar3" class="bar accueil">
+<div id="bar3" class="bar">
 	<div class="centeredbox">
         <div id="ContentPane" class="ContentPane" runat="server">
-		</div>
-	</div>
-</div>
-<div id="bar4" class="bar accueil">
-	<div class="centeredbox">
-        <div id="BottomPane" class="BottomPane" runat="server">
 		</div>
 	</div>
 </div>
