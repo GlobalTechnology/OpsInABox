@@ -1,0 +1,28 @@
+.PhotoPane .c_contentpane {
+    padding: 0px;
+}
+
+.PhotoPane .DNNModuleContent img {
+    width: 100%;
+    filter: opacity(40%);
+}
+
+.PhotoPane .DNNModuleContent .Normal:after {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-collapse: separate;
+    box-shadow: inset 0px -40px 40px -20px;
+    color: white;
+}
+
+.PhotoPane .Normal {
+    position: relative;
+    display: inline-block;
+    color: white;
+    width: 100%
+}
