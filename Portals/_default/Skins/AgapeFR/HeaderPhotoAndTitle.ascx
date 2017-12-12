@@ -20,15 +20,10 @@
 <dnn:Header runat="server" ID="dnnHeader" />
 
 <div id="bar3" class="bar">
+    <div id="PhotoPane" class="PhotoPane" runat="server"></div>
 	<div id="ContentContainer" class="centeredbox">
-		<div id="PhotoPane" class="PhotoPane" runat="server">
-		</div>
-        <div id="PhotoOverlay">
-		</div>
-        <div id="ContentTitle">
-		</div>
-        <div id="ContentPane" class="ContentPane" runat="server">
-		</div>
+		<div id="ContentTitle"></div>
+        <div id="ContentPane" class="ContentPane" runat="server"></div>
 	</div>
 </div>	
 
