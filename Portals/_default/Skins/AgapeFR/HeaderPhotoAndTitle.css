@@ -31,7 +31,7 @@
 /*========================== CONTENT =======================*/
 #ContentContainer {
     display: inline-block;
-    margin-top: 200px;
+    margin-top: 100px;
     background: white;
 }
 
@@ -41,8 +41,8 @@
 }
 
 @media only screen and (min-width: 768px) { /*tablet mode*/
-    #ContentContainer #ContentTitle {
-       
+    #ContentContainer {
+        margin-top: 200px;
     }
 }
 
