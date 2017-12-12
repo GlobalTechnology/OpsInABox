@@ -1,4 +1,4 @@
-﻿#bar1 { /*arrange items in header*/
+#bar1 { /*arrange items in header*/
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -87,11 +87,11 @@
         }
 
             #bar1 #SearchContainer .searchInputContainer a.dnnSearchBoxClearText { /*move cleartext button up into field*/
-                margin-top: -32px;
+                margin-top: 16px;
                 margin-right: 10px;
                 visibility: hidden;
                 opacity: 0;
-                transition: .2s
+                transition: .2s;
             }
 
     #bar1.menuopen #SearchContainer.opensearch .searchInputContainer a.dnnSearchBoxClearText { /*show cleartext button when menu and search are open*/
