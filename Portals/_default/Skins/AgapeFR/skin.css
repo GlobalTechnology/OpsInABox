@@ -1,4 +1,4 @@
-﻿/*===================== RESET CSS ===================== */
+/*===================== RESET CSS ===================== */
 @import url("./css/reset.css");
 
 /*===================== FONTS ===================== */
@@ -391,6 +391,11 @@ span.ImageMapDialog {
 /* Set font size for snippet list */
 .reDropDownBody table td {
   font-size: 12px !important;
+}
+
+/* Move action menu back over focused module */
+.actionMenu ul.dnn_mact {
+    margin-left: -90px !important;
 }
 
 @media only screen and (min-width: 768px) {
