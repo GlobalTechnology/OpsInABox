@@ -14,7 +14,9 @@
 #bar2{
     background: #dce2e3;
 }
-
+#bar3 img{
+    max-width:100%;
+}
 #bar4{
     background: #dce2e3;
 }
