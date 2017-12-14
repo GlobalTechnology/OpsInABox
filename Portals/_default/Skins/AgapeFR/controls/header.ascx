@@ -31,7 +31,7 @@
 </script>
 <div id="mySidenav" class="sidenav">
     <ddr:MENU ID="MENU1" MenuStyle="/templates/AgapeFRMenu/" NodeSelector="*,0,+1" runat="server" includehidden="false" />
-    <% If Request.IsAuthenticated %>
+    <% If UserController.Instance.GetCurrentUserInfo().UserID > 0  %>
         <ul id="usercontainer" runat="server">
             <li class="parent">
                 <a href="#" id="UserContainer" class="parent"><%=UserController.Instance.GetCurrentUserInfo().DisplayName%></a>
