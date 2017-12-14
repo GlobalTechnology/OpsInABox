@@ -1,4 +1,4 @@
-﻿(function ($, window) {
+(function ($, window) {
 
     $.dnnSearchBox = function (options, element) {
         this.$el = $(element);
@@ -71,7 +71,7 @@
                 $('.dnnSearchBox_advanced_query', this.$wrap).hide().css({ marginRight: w + 30 });
                 $('.dnnSearchBoxClearAdvanced', this.$wrap).css({ right: w + 38, top: 0 });
             }
-            this.realInput.css({ right: realInputRight, width: wrapWidth - realInputRight - 8 });
+            
             if (originalVal) {
                 this.realInput.next().addClass('dnnShow').css({ right: realInputRight - 15});
             }
