@@ -15,10 +15,20 @@
     line-height: 25px;
     width: 100%;
 }
-
+.ActionForm input[type="checkbox"]{ /*move checkbox out of paragraph*/
+	position:absolute;
+	margin-left:-20px;
+}
+.ActionForm div.checkbox label {
+    display:block;
+    padding-left: 20px;
+}
 .ActionForm textarea {
     width: 400px;
     height: 150px;
+}
+.ActionForm .checkbox-list {
+    margin-top: 10px;
 }
 
 .ActionForm .form-horizontal .form-group .control-label {
