@@ -1,65 +1,10 @@
-﻿.ActionForm .bstrap30  h1, h2, h3, h4, h5, h6 {
-    display: block;
-    font-weight: normal;
-    font-family: OpenSansRegular;
-}
-
-.ActionForm .bstrap30  h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-    font-weight: inherit;
-}
-
-.ActionForm .bstrap30 h1 {
-    font-size: 28px;
-    line-height: 54px;
-    letter-spacing: -0.03em;
-    margin-top: 8px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    color: #3A8BC2;
-}
-
-.ActionForm .bstrap30 h2 {
-    font-size: 26px;
-    line-height: 36px;
-    letter-spacing: -0.03em;
-    margin-top: 8px;
-    margin-bottom: 10px;
-    color: #5f5f5f;
-}
-
-.ActionForm .bstrap30 h3 {
-    font-size: 22px;
-    line-height: 36px;
-    letter-spacing: -1px;
-    margin-top: 8px;
-    margin-bottom: 10px;
-    color: #3A8BC2;
-}
-
-.ActionForm .bstrap30 h4 {
-    font-size: 20px;
-    line-height: 30px;
-    letter-spacing: -1px;
-    color: #3A8BC2;
-}
-
-.ActionForm .bstrap30 h5 {
-    font-size: 18px;
-    line-height: 22px;
-    color: #3A8BC2;
-}
-
-.ActionForm .bstrap30 h6 {
-    font-size: 16px;
-    line-height: 18px;
-    color: #5f5f5f;
-}
-
 .ActionForm input[type="text"], .ActionForm textarea, .ActionForm select.form-control, .ActionForm textarea.form-control {
     border: 1px gray solid;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
     border-radius: 3px;
+    padding:6px 11px;
+    font-family:OpenSansRegular;
+    font-size:14px;
+	color:#555;
 }
 .ActionForm select.form-control {
     padding:0 0 0 8px;
@@ -80,7 +25,7 @@
 	display: inline-block;
 	zoom: 1; *display: inline; /* IE fix for inline-block display */
     vertical-align: top;
-    width: 200px;
+    width: 100%;
     float:left;
     padding-top:0;
     font-weight:normal !important;
@@ -113,11 +58,13 @@
 .bstrap30 .has-error select.form-control {
     border-color:red;
 }
-.bstrap30 .has-error input.form-control:focus, 
-.bstrap30 .has-error textarea.form-control:focus, 
-.bstrap30 .has-error select.form-control:focus {
-    border-color:red;
-}
+    .bstrap30 .has-error input.form-control:focus,
+    .bstrap30 .has-error textarea.form-control:focus,
+    .bstrap30 .has-error select.form-control:focus {
+        border-color: red;
+        outline: none;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #ce8483;
+    }
 .bstrap30 div.alert-danger{
 	background-color: rgba(255,0,0,0.15);
     border-color: rgba(255,0,0,0.2);
@@ -130,4 +77,8 @@
 .bstrap30 div.alert-info{
 	background-color: #F5F5F5;
     border-color: #5F5F5F;	
+}
+
+.DnnModule-ActionForm{
+    max-width:900px;
 }
