@@ -24,7 +24,7 @@
     padding-left: 20px;
 }
 .ActionForm textarea {
-    width: 400px;
+    width: 100%;
     height: 150px;
 }
 .ActionForm .checkbox-list {
