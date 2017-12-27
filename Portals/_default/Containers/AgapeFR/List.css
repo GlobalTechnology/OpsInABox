@@ -7,7 +7,7 @@
 
     .list a {
         position: relative; /* To center the inner image vertically */
-        display: inline-block;
+        display: flow-root;
         margin: 0;
         padding: 10px;
         border: 2px solid transparent; /* To avoid moving text when adding a border on hover */
