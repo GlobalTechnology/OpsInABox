@@ -20,26 +20,15 @@
 <dnn:Header runat="server" ID="dnnHeader" />
 
 <div id="bar3" class="bar">
+    <div id="PhotoPane" class="PhotoPane" runat="server"></div>
 	<div id="ContentContainer" class="centeredbox">
-		<div id="PhotoPane" class="PhotoPane" runat="server">
-		</div>
-        <div id="PhotoOverlay">
-		</div>
-        <div id="ContentTitle">
-		</div>
-        <div class="ContentPane">
-            <div id="TopPane" class="TopPane" runat="server">
-		    </div>
-            <div class="LeftColumn">
-                <div id="LeftPane" class="LeftPane" runat="server">
-		        </div>
-                <div id="BottomLeftPane" class="BottomLeftPane" runat="server">
-		        </div>
-            </div>
-            <div id="ContentPane" class="CenterPane" runat="server">
-		    </div>
-		</div>
+		<div id="ContentTitle"></div>
+        <div id="afContentWrapper">
+            <div id ="left1" class="col-3" runat="server"></div>
+            <div id="ContentPane" class="ContentPane col-9" runat="server"></div>
+            <div id ="left2" class="col-3" runat="server"></div>
+        </div>
 	</div>
-</div>	
+</div>		
 
 <dnn:Footer runat="server" ID="dnnFooter" />
