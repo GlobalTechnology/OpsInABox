@@ -400,7 +400,6 @@ span.ImageMapDialog {
 
 /* activities links */
 .afsocialbutton {
-    margin-left: 20px;
     margin-top:10px;
     margin-right:10px;
 }
@@ -421,6 +420,17 @@ span.ImageMapDialog {
     background-position: center center;
     background-color: #0e71b4;
     background-image: url(/Portals/_default/skins/agapefr/images/facebook.svg);
+}
+
+
+.afsocialblock{
+    margin-bottom: 10px;
+    padding: 20px;
+    background: #F5F5F5;
+}
+
+.afsocialblock h6{
+    font-weight:bold;
 }
 
     @media only screen and (
@@ -481,6 +491,17 @@ span.ImageMapDialog {
         .col-sm-8 {
     width: 66.66%;
         }
+        .col-sm-12 {
+    width: 100%;
+        }
+        .afsocialblock{
+    width: 49%;
+    }
+    .afsocialgroup{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
     }
 
     @media only screen and (
@@ -533,5 +554,11 @@ span.ImageMapDialog {
         .col-12 {
     width: 100%;
         }
+        .afsocialgroup{
+    display:block;
+}
+.afsocialblock{
+    width: 100%;
+    
     }
     
