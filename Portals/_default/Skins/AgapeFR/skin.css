@@ -409,7 +409,7 @@ span.ImageMapDialog {
     height:41px;
 }
 
-.affbicon, .afmailicon, .afwebicon {
+.affbicon, .afmailicon, .afwebicon, .afwebiconaf {
     border-radius: .3em;
     border-style: none;
     width: 46px;
@@ -434,6 +434,11 @@ span.ImageMapDialog {
 .afwebicon {
     background-image: url(/Portals/_default/skins/agapefr/images/planet-earth.svg);
 }
+
+.afwebiconaf {
+    background-image: url(/Portals/_default/skins/agapefr/images/Logo_Agape_France_Symbole.svg);
+}
+
 
 .afsocialblock{
     margin-bottom: 10px;
