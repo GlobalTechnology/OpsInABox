@@ -32,10 +32,15 @@
 
         .list a img {
             width: 100%;
+            margin-top: -40px;
         }
 
         .list a h4 {
             display:inline-block;
+            position: relative;
+            background: #0e71b4;
+            color: white;
+            padding: 5px;
         }
 
 @media screen and (min-width: 768px) { /*tablet mode*/
@@ -43,5 +48,11 @@
         width: 50%;
         float: right;
         padding-left: 10px;
+        margin-top:0;
+    }
+    .list a h4 {
+        background: none;
+        color: #0e71b4;
+        padding:0;
     }
 }
