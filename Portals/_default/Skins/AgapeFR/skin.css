@@ -406,9 +406,10 @@ span.ImageMapDialog {
 
 .aflinkicon {
     width:46px;
+    height:41px;
 }
 
-.affbicon {
+.affbicon, .afmailicon, .afwebicon {
     border-radius: .3em;
     border-style: none;
     width: 46px;
@@ -422,6 +423,17 @@ span.ImageMapDialog {
     background-image: url(/Portals/_default/skins/agapefr/images/facebook.svg);
 }
 
+.affbicon {
+    background-image: url(/Portals/_default/skins/agapefr/images/facebook.svg);
+}
+
+.afmailicon {
+    background-image: url(/Portals/_default/skins/agapefr/images/speech-bubble.svg);
+}
+
+.afwebicon {
+    background-image: url(/Portals/_default/skins/agapefr/images/planet-earth.svg);
+}
 
 .afsocialblock{
     margin-bottom: 10px;
