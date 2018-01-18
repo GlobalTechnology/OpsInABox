@@ -450,6 +450,11 @@ span.ImageMapDialog {
     font-weight:bold;
 }
 
+.afsocialblock .afappicon{
+    width:100%;
+    margin-top:10px;
+}
+
     @media only screen and (
     min-width: 768px) {
         /* For tablets: */
