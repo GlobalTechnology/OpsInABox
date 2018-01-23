@@ -172,8 +172,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
             End If
 
-            sortedChannelCache = sortedChannelCache.Where(Function(c) CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToLower = c.channelCache.Langauge.Substring(0, 2) And
-                                                              c.channelCache.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = TabModuleId And Not _
+            sortedChannelCache = sortedChannelCache.Where(Function(c) c.channelCache.AP_Stories_Module_Channel.AP_Stories_Module.TabModuleId = TabModuleId And Not _
                                                               c.channelCache.Block) _
                                                               .OrderByDescending(Function(c) c.ViewOrder) _
                                                               .Take(N)
