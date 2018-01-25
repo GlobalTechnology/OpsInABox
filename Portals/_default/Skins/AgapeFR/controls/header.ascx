@@ -82,7 +82,7 @@
     </div>
     <div id="menu">
         <div id="featuredlinks">
-            <span><a href="http://dons.agapefrance.org">Faire un Don</a> | <a href="https://agapemedia.fr">Boutique</a></span>
+            <span><a href="http://dons.agapefrance.org">Faire un Don</a> | <a href="https://agapemedia.fr" target="_blank">Boutique</a></span>
         </div>
         <div id="menubuttons">
             <svg class="searchicon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50px" version="1.1" height="50px" viewBox="0 0 64 64" enable-background="new 0 0 64 64">
