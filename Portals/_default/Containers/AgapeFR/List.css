@@ -44,11 +44,11 @@
         }
 
 @media screen and (min-width: 768px) { /*tablet mode*/
-    .list a img {
+    #bar3 .list a img {
         width: 50%;
         float: right;
         padding-left: 10px;
-        margin-top:0;
+        margin-top: 0;
     }
     .list a h4 {
         background: none;
