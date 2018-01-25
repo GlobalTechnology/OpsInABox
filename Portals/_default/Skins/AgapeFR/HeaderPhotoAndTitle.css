@@ -51,8 +51,12 @@
     position: absolute;
 }
 
+#ContentContainer .ContentPane img.fullwidth {
+    width:100%;
+}
+
 @media only screen and (min-width: 768px) { /*tablet mode*/
-    #ContentContainer {
+        #ContentContainer {
         margin-top: 200px;
     }
 }
