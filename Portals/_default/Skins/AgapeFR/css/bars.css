@@ -15,7 +15,7 @@
     background: #dce2e3;
 }
 #bar3 img{
-    width: 100%;
+    max-width: 100%;
 }
 #bar4{
     background: #dce2e3;
