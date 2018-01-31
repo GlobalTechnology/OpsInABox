@@ -104,6 +104,9 @@
     </div>
 </div>
 <script>
+    $(document).ready(function () {
+        $("li.menuopen ul").slideDown();
+    });
     function menutoggle() { //hide and show nav menu
         $("#mySidenav").toggleClass("opensidenav");
         $("#bar1").toggleClass("menuopen");
@@ -122,16 +125,15 @@
     $(".menudrop").click(function () { //hide and show second level menu for dropdown arrow click
         $(this).nextAll("ul").eq(0).slideToggle();
         $(".parent ul").not($(this).nextAll('ul').eq(0)).slideUp();
-        $(this).closest(".menudrop").toggleClass('expanded');
-        $(".menudrop").not((this).closest(".menudrop")).removeClass('expanded');
+        $(this).parent().toggleClass("menuopen");
+        $("li.parent").not($(this).parent()).removeClass("menuopen");
     });
 
     $(".parent .offlink, a#UserContainer").click(function () { //hide and show second level menu for parent link click
-        $(this).nextAll("ul").eq(0).slideToggle(); //works
-        $(".parent ul").not($(this).nextAll('ul').eq(0)).slideUp(); //works
-        var arrow = $(this).next(".menudrop")
-        arrow.toggleClass('expanded'); //works
-        $(".menudrop").not(arrow).removeClass('expanded'); // not working...
+        $(this).nextAll("ul").eq(0).slideToggle();
+        $(".parent ul").not($(this).nextAll('ul').eq(0)).slideUp();
+        $(this).parent().toggleClass("menuopen");
+        $("li.parent").not($(this).parent()).removeClass("menuopen");
     });
 
     $(".searchicon").click(function () { //hide and show search field

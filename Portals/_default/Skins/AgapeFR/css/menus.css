@@ -49,14 +49,15 @@
     vertical-align: sub;
 }
 
-.sidenav .expanded { /*flip menu arrow up*/
-    transform: rotate(180deg);
-}
-
 #Form.showControlBar .sidenav { /*move menu items down when admin bar is visible*/
     margin-top: 53px;
 }
 
+
+
+.sidenav li.menuopen .menudrop { /*flip menu arrow up*/
+    transform: rotate(180deg);
+}
 .menuoverlay {
     z-index: 7;
     position: fixed;
