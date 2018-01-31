@@ -62,12 +62,14 @@
         margin-right: 20px;
         opacity: 0;
         transition: opacity 0.5s;
+        display:none;
     }
 
     #bar1.menuopen .searchicon { /*show search icon when mobile menu is open*/
         visibility: visible;
         opacity: 1;
         transition: opacity 0.5s;
+        display:unset;
     }
 
     #bar1 #SearchContainer { /*center search box*/
@@ -170,6 +172,7 @@
         visibility: visible;
         opacity: 1;
         transition: opacity 0.5s;
+        display:unset;
     }
 
     #bar1 #logoHeader {
