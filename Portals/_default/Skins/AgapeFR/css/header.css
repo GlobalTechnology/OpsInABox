@@ -234,6 +234,7 @@
         padding: 0 40px 0 10px;
         width: 300px;
         border: 2px solid #0e71b4;
+        border-radius: 3px;
     }
 
     #bar1 #SearchContainer.opensearch .searchInputContainer a.dnnSearchBoxClearText { /*show cleartext button when menu and search are open*/
