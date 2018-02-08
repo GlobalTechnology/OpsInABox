@@ -1,4 +1,4 @@
-﻿/*BEGIN home page block links*/
+/*BEGIN home page block links*/
 .TopPane #quadblocks {
     margin-top: 10px;
     display: flex;
@@ -57,13 +57,14 @@ a.BlocLienRapide:hover {
 }
 
 .TopPane .socialbutton {
-    border-radius: .3em;
+    border-radius: 3px;
     border-style: none;
     width: 46px;
     height: 41px;
     display: inline-block;
     zoom: 1;
-    *display: inline; /* IE fix for inline-block display */
+    *
+    display: inline; /* IE fix for inline-block display */
     background-size: 30px 30px;
     background-repeat: no-repeat;
     background-position: center center;

@@ -348,10 +348,30 @@
     top: 5px;
 }
 
-.dnnGridItem:hover, .dnnGridAltItem:hover {
-    border: 2px solid lightgrey;
+.afnewslist .afnews {
+    border: 2px solid white;
     text-decoration: none;
-    background-color: #f1f1f1;
+}
+
+    .afnewslist .afnews:hover {
+        border: 2px solid lightgrey;
+        background-color: #f1f1f1;
+        text-decoration: none;
+    }
+
+    .afnewslist .afnews:hover a {
+        text-decoration: none;
+    }
+
+
+.frtitleinfo {
+    display:flex;
+}
+
+.aficonarticle {
+    width: 45px;
+    height: 45px;
+    margin-right: 5px;
 }
 
 .dnnGridItem, .dnnGridAltItem {
@@ -484,4 +504,36 @@ Inherited from div.pagination.pagination-centered .pagination-centered {
     margin-left: 5px;
 }
 
-</style >
+.frtitleinfo .Evénement {
+    margin-right: 10px;
+    border-radius: .3em;
+    border-style: none;
+    width: 46px;
+    height: 41px;
+    flex: none;
+    zoom: 1;
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #0e71b4;
+    background-image: url(/Portals/_default/skins/agapefr/images/calendar.svg);
+}
+
+.frtitleinfo .Article {
+    margin-right: 10px;
+    border-radius: .3em;
+    border-style: none;
+    width: 46px;
+    height: 41px;
+    flex: none;
+    zoom: 1;
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #0e71b4;
+    background-image: url(/Portals/_default/skins/agapefr/images/article.svg);
+}
+
+.frpagearticle {
+    width:150px;
+}

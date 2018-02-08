@@ -76,93 +76,61 @@ html, body, form {
     font-weight: normal;
     white-space: nowrap;
     color: white;
-    border: 1px #3784cd solid;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
     border-radius: 3px;
-  
-    background: #3784cd; /* Old browsers */
-    background: -moz-linear-gradient(top,  #3784cd 0%, #4aa1e5 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3784cd), color-stop(100%,#4aa1e5)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #3784cd 0%,#4aa1e5 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #3784cd 0%,#4aa1e5 100%); /* Opera 11.10+ */
-    background: #3784cd -ms-linear-gradient(top,  #3784cd 0%,#4aa1e5 100%); /* IE10+ */ /* Fixed color before gradient solves a transparent bar on the left with IE10+ */
-    background: #3784cd linear-gradient(to bottom,  #3784cd 0%,#4aa1e5 100%); /* W3C */ /* Fixed color before gradient solves a transparent bar on the left with IE10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3784cd', endColorstr='#4aa1e5',GradientType=0 ); /* IE6-9 */
-
-    -webkit-box-shadow: none;
     box-shadow: none;
     text-shadow: none;
     text-decoration: none;
-    /*width: auto !important;*/
+    background-color: #0e71b4;
+    border:none;
 }
 
     .ui-dialog-buttonset .dnnPrimaryAction .ui-button-text {
         padding: 0;
     }
 
-    .button:hover, a.button:hover,
-    .dnnPrimaryAction:hover, a.dnnPrimaryAction:hover,
-    .dnnFormPopup .ui-dialog-buttonpane button.dnnPrimaryAction:hover,
-    .dnnFormItem input[type="submit"]:hover, .bstrap30 .btn.agapefrancebutton:hover {
+.button:hover, a.button:hover,
+.dnnPrimaryAction:hover, a.dnnPrimaryAction:hover,
+.dnnFormPopup .ui-dialog-buttonpane button.dnnPrimaryAction:hover,
+.dnnFormItem input[type="submit"]:hover, .bstrap30 .btn.agapefrancebutton:hover {
+    background-color: #ABACAE;
+    font-size: medium;
+    font-weight: normal;
+    white-space: nowrap;
+    text-decoration: none;
+    color: white;
+    font-family: OpenSansSemiBold;
+}
 
-        background: #4aa1e5; /* Old browsers */
-        background: -moz-linear-gradient(top,  #4aa1e5 0%, #3784cd 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4aa1e5), color-stop(100%,#3784cd)); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top,  #4aa1e5 0%,#3784cd 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top,  #4aa1e5 0%,#3784cd 100%); /* Opera 11.10+ */
-        background: #4aa1e5 -ms-linear-gradient(top,  #4aa1e5 0%,#3784cd 100%); /* IE10+ */
-        background: #4aa1e5 linear-gradient(to bottom,  #4aa1e5 0%,#3784cd 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4aa1e5', endColorstr='#3784cd',GradientType=0 ); /* IE6-9 */
+.button:active, a.button:active,
+.dnnPrimaryAction:active, a.dnnPrimaryAction:active,
+.dnnFormPopup .ui-dialog-buttonpane button.dnnPrimaryAction:active,
+.dnnFormItem input[type="submit"]:active {
+    background-color: #ABACAE;
+    font-size: medium;
+    font-weight: normal;
+    white-space: nowrap;
+    text-decoration: none;
+    color: white;
+    font-family: OpenSansSemiBold;
+    border: none;
+}
 
-        font-family: OpenSansSemiBold;
-        font-size: medium;
-        font-weight: normal;
-        white-space: nowrap;
-        color: white;
-        text-decoration: none;
-        border: 1px #3784cd solid;
-    }
-
-    .button:active, a.button:active,
-    .dnnPrimaryAction:active, a.dnnPrimaryAction:active,
-    .dnnFormPopup .ui-dialog-buttonpane button.dnnPrimaryAction:active,
-    .dnnFormItem input[type="submit"]:active {
-
-        background: #4aa1e5; /* Old browsers */
-        background: -moz-linear-gradient(top,  #4aa1e5 0%, #3784cd 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4aa1e5), color-stop(100%,#3784cd)); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top,  #4aa1e5 0%,#3784cd 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top,  #4aa1e5 0%,#3784cd 100%); /* Opera 11.10+ */
-        background: #4aa1e5 -ms-linear-gradient(top,  #4aa1e5 0%,#3784cd 100%); /* IE10+ */
-        background: #4aa1e5 linear-gradient(to bottom,  #4aa1e5 0%,#3784cd 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4aa1e5', endColorstr='#3784cd',GradientType=0 ); /* IE6-9 */
-
-        font-family: OpenSansSemiBold;
-        font-size: medium;
-        font-weight: normal;
-        white-space: nowrap;
-        color: #fff;
-        text-decoration: none;
-        border: 1px #3784cd solid;
-    }
-
-    .button[disabled], .button[disabled]:hover, .button[disabled]:active,
-    a.button[disabled], a.button[disabled]:hover, a.button[disabled]:active,
-    .dnnFormPopup .ui-dialog-buttonpane button[disabled].dnnPrimaryAction,
-    .dnnPrimaryAction[disabled], .dnnPrimaryAction[disabled]:hover, .dnnPrimaryAction[disabled]:active {
-        background: #ccc !important;
-        border: 1px #ccc solid !important;
-        -webkit-box-shadow: none !important;
-        box-shadow: none !important;
-        color: #999 !important;
-        text-shadow: none;
-        font-family: OpenSansSemiBold;
-        font-size: medium;
-        font-weight: normal;
-        white-space: nowrap;
-        text-decoration: none;
-    }
+.button[disabled], .button[disabled]:hover, .button[disabled]:active,
+a.button[disabled], a.button[disabled]:hover, a.button[disabled]:active,
+.dnnFormPopup .ui-dialog-buttonpane button[disabled].dnnPrimaryAction,
+.dnnPrimaryAction[disabled], .dnnPrimaryAction[disabled]:hover, .dnnPrimaryAction[disabled]:active {
+    background: #ccc !important;
+    border: 1px #ccc solid !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    color: #999 !important;
+    text-shadow: none;
+    font-family: OpenSansSemiBold;
+    font-size: medium;
+    white-space: nowrap;
+    text-decoration: none;
+    border: none;
+}
 
 /* Secondary Action */
 .dnnFormItem button, .dnnFormItem input[type="button"],
@@ -182,86 +150,52 @@ ul.dnnAdminTabNav li a,
     white-space: nowrap;
     color: #3A8BC2;
     border: 1px #dfdfdf solid;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
     border-radius: 3px;
-
-    background: #f5f5f5; /* Old browsers */
-    background: -moz-linear-gradient(top,  #f5f5f5 1%, #dfdfdf 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#f5f5f5), color-stop(100%,#dfdfdf)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #f5f5f5 1%,#dfdfdf 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #f5f5f5 1%,#dfdfdf 100%); /* Opera 11.10+ */
-    background: #f5f5f5 -ms-linear-gradient(top,  #f5f5f5 1%,#dfdfdf 100%); /* IE10+ */
-    background: #f5f5f5 linear-gradient(to bottom,  #f5f5f5 1%,#dfdfdf 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#dfdfdf',GradientType=0 ); /* IE6-9 */
-    
-    -webkit-box-shadow: none;
+    background: #f5f5f5;
     box-shadow: none;
     text-shadow: none;
     text-decoration: none;
-    /*width: auto !important;*/ 
+    border:none;
 }
 
     .ui-dialog-buttonset .dnnSecondaryAction .ui-button-text {
         padding: 0;
     }
 
-    .dnnFormItem button:hover, .dnnFormItem input[type="button"]:hover,
-    .dnnFormItem input[type="reset"]:hover,
-    .dnnSecondaryAction:hover,
-    a.dnnSecondaryAction:hover,
-    ul.dnnAdminTabNav li a:hover,
-    .dnnLogin .LoginTabGroup span:hover,
-    .dnnFormPopup .ui-dialog-buttonpane button.dnnSecondaryAction:hover {
+.dnnFormItem button:hover, .dnnFormItem input[type="button"]:hover,
+.dnnFormItem input[type="reset"]:hover,
+.dnnSecondaryAction:hover,
+a.dnnSecondaryAction:hover,
+ul.dnnAdminTabNav li a:hover,
+.dnnLogin .LoginTabGroup span:hover,
+.dnnFormPopup .ui-dialog-buttonpane button.dnnSecondaryAction:hover {
+    background-color: #ABACAE;
+    font-size: medium;
+    font-weight: normal;
+    white-space: nowrap;
+    text-decoration: none;
+    color: white;
+    font-family: OpenSansSemiBold;
+    border: none;
+}
 
-        background: #fefefe; /* Old browsers */
-        background: -moz-linear-gradient(top,  #fefefe 2%, #e8e8e8 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(2%,#fefefe), color-stop(100%,#e8e8e8)); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top,  #fefefe 2%,#e8e8e8 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top,  #fefefe 2%,#e8e8e8 100%); /* Opera 11.10+ */
-        background: #fefefe -ms-linear-gradient(top,  #fefefe 2%,#e8e8e8 100%); /* IE10+ */
-        background: #fefefe linear-gradient(to bottom,  #fefefe 2%,#e8e8e8 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#e8e8e8',GradientType=0 ); /* IE6-9 */
-
-        font-family: OpenSansSemiBold;
-        font-size: medium;
-        font-weight: normal;
-        white-space: nowrap;
-        color: #3A8BC2;
-        text-decoration: none;
-        border: 1px #dfdfdf solid;
-    }
-
-    .dnnFormItem button:active,
-    .dnnFormItem input[type="button"]:active,
-    .dnnFormItem input[type="reset"]:active,
-    .dnnFormItem input[type="reset"]:active,
-    .dnnSecondaryAction:active,
-    a.dnnSecondaryAction:active,
-    ul.dnnAdminTabNav li a:active,
-    .dnnFormPopup .ui-dialog-buttonpane button.dnnSecondaryAction:active {
-        border-color: #999;
-
-        background: #c6c6c6; /* Old browsers */
-        background: -moz-linear-gradient(top,  #c6c6c6 0%, #f3f3f3 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c6c6c6), color-stop(100%,#f3f3f3)); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top,  #c6c6c6 0%,#f3f3f3 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top,  #c6c6c6 0%,#f3f3f3 100%); /* Opera 11.10+ */
-        background: #c6c6c6 -ms-linear-gradient(top,  #c6c6c6 0%,#f3f3f3 100%); /* IE10+ */
-        background: #c6c6c6 linear-gradient(to bottom,  #c6c6c6 0%,#f3f3f3 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c6c6c6', endColorstr='#f3f3f3',GradientType=0 ); /* IE6-9 */
-
-        -webkit-box-shadow: none;
-        box-shadow: none;
-        text-decoration: none;
-        font-family: OpenSansSemiBold;
-        font-size: medium;
-        font-weight: normal;
-        white-space: nowrap;
-        color: #3A8BC2;
-        text-decoration: none;
-        border: 1px #dfdfdf solid;
-    }
+.dnnFormItem button:active,
+.dnnFormItem input[type="button"]:active,
+.dnnFormItem input[type="reset"]:active,
+.dnnFormItem input[type="reset"]:active,
+.dnnSecondaryAction:active,
+a.dnnSecondaryAction:active,
+ul.dnnAdminTabNav li a:active,
+.dnnFormPopup .ui-dialog-buttonpane button.dnnSecondaryAction:active {
+    background-color: #ABACAE;
+    font-size: medium;
+    font-weight: normal;
+    white-space: nowrap;
+    text-decoration: none;
+    color: white;
+    font-family: OpenSansSemiBold;
+    border: none;
+}
 
 /*-------------------------------------*/
 /* TABS : JQUERY UI TABS 1.8.14 */
@@ -410,7 +344,7 @@ span.ImageMapDialog {
 }
 
 .affbicon, .afmailicon, .afwebicon, .afwebiconaf {
-    border-radius: .3em;
+    border-radius: 3px;
     border-style: none;
     width: 46px;
     height: 41px;

@@ -18,7 +18,7 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
         Public divWidth As Integer = 150
         Public divHeight As Integer = 150
-        Public eventIcon As String = "~/DesktopModules/AgapeConnect/Stories/images/eventIcon.png"
+        Public eventIcon As String = "~/DesktopModules/AgapeConnect/Stories/images/calendar.svg"
         Public articleIcon As String = "~/DesktopModules/AgapeConnect/Stories/images/articleIcon.png"
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             'Allowing dynamically loaded controls to be translated using the DNN translation system is complex...
