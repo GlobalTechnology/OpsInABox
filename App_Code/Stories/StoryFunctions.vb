@@ -127,7 +127,7 @@ Public Module ViewStoryConstants
     Public Const NUM_OF_RELATED_AGENDA As Integer = 3
     Public Const HTML_META_PROPERTY As String = "property"
 
-    Public eventIcon As String = StoryFunctionsProperties.StoriesModulePath & "/images/eventIcon.png"
+    Public eventIcon As String = StoryFunctionsProperties.StoriesModulePath & "/images/calendar.svg"
     Public articleIcon As String = StoryFunctionsProperties.StoriesModulePath & "/images/articleIcon.png"
     Public calendarIcon As String = StoryFunctionsProperties.StoriesModulePath & "/images/cal.png"
 

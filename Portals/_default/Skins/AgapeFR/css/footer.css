@@ -1,4 +1,4 @@
-﻿#footer1, #footer2, #footer3 {
+#footer1, #footer2, #footer3 {
     font-size: 12px;
     font-weight: normal;
 	font-family: OpenSansRegular;
@@ -34,7 +34,7 @@
 #footer2 #facebook,
 #footer2 #youtube,
 #footer2 #contact {
-    border-radius: .5em;
+    border-radius: 3px;
     border-style: none;
     background-color: #0e71b4;
     width: 46px;

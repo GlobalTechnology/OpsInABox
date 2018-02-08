@@ -1,11 +1,11 @@
-﻿body, .Normal {
+body, .Normal {
 	font-size: medium;
     line-height: 1.5;
 }
 
 body, p, ul, ol, a:link, a:active, a:visited, a:hover, select {
     font-weight: normal;
-	font-family: OpenSansRegular;
+    font-family: OpenSansRegular;
     font-size: inherit;
     color: #5f5f5f;
     -webkit-text-size-adjust: 100%; /*Prevent iPhone Text Enlargement*/

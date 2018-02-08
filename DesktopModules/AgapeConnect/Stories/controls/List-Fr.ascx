@@ -56,17 +56,19 @@
                 <div>
                     <asp:Image ID="imgImage" runat="server" ImageUrl='<%# Eval("ImageId")  %>' CssClass="seachImage" />
                 </div>
-                <div class="typeFont">
-                    <h6>
-                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# GetTypeImage( Eval("GUID")) %>' CssClass="iconImage" />&nbsp;&nbsp;
-                        <asp:Label ID="Label1" runat="server" Style="font-size: medium" Text='<%#  GetTypeText( Eval("GUID")) %>' />
-                        &nbsp;&nbsp;
-                        <asp:Label ID="Label5" runat="server" Font-Size="medium" Text='<%# GetStoryDateString(Eval("StoryDate"), Eval("GUID"), Eval("Link"))%>' />
-                    </h6>
+                <div class="frtitleinfo">
+                    <span class="<%# GetTypeText(Eval("GUID")) %>"></span>
+                    <div class="frtitletext">
+                        <h6>
+                            <asp:Label ID="Label1" runat="server" Style="font-size: medium" Text='<%#  GetTypeText( Eval("GUID")) %>' />
+                            &nbsp;&nbsp;
+                            <asp:Label ID="Label5" runat="server" Font-Size="medium" Text='<%# GetStoryDateString(Eval("StoryDate"), Eval("GUID"), Eval("Link"))%>' />
+                        </h6>
+                        <h4>
+                            <asp:Label ID="HyperLink1" runat="server" CssClass="storyTitle" Text='<%# Eval("Headline")%>' />
+                        </h4>
+                    </div>
                 </div>
-                <h4>
-                    <asp:Label ID="HyperLink1" runat="server" CssClass="storyTitle" Text='<%# Eval("Headline")%>' />
-                </h4>
             </asp:HyperLink>
         </div>
     </ItemTemplate>
@@ -74,7 +76,7 @@
 </div>
 
 <div style="width: 100%; text-align: center; margin-top: 20px;">
-<asp:Hyperlink ID="btnPrev" runat="server" Text="Previous" CssClass="button" resourceKey="btnPrevious" Visible="false" Width="80px"/>
-<asp:Hyperlink ID="btnNext" runat="server" Text="Next" CssClass="button" resourceKey="btnNext"  Visible="false" Width="80px"/>
+<asp:Hyperlink ID="btnPrev" runat="server" Text="Previous" CssClass="button frpagearticle" resourceKey="btnPrevious" Visible="false"/>
+<asp:Hyperlink ID="btnNext" runat="server" Text="Next" CssClass="button frpagearticle" resourceKey="btnNext"  Visible="false"/>
 </div>
 <asp:Literal ID="ltPagination" runat="server"></asp:Literal>
