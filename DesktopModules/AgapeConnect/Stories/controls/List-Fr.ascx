@@ -51,7 +51,7 @@
 <div class="afnewslist">
 <asp:Repeater runat="server" ID="dlStories">
     <ItemTemplate>
-        <div class="afnews col-6">
+        <div class="afnews col-6 col-m-6">
             <asp:HyperLink ID="lnkLink" runat="server" CssClass="CommandButton" NavigateUrl='<%# "javascript: registerClick(" & DataBinder.Eval(Container.DataItem, "CacheId") & ", """ &   CStr(DataBinder.Eval(Container.DataItem, "Link")) & """); "%>'>
                 <div>
                     <asp:Image ID="imgImage" runat="server" ImageUrl='<%# Eval("ImageId")  %>' CssClass="seachImage" />
