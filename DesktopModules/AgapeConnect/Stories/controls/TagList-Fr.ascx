@@ -1,9 +1,9 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="TagList-Fr.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Stories.TagList_Fr" %>
 
 <div id="TagList">
-    <asp:DataList runat="server" ID="dlTags" AllowPaging="false" RepeatColumns="3" RepeatDirection="Horizontal" Width="100%">
+    <asp:Repeater runat="server" ID="dlTags">
         <ItemTemplate>
-            <asp:HyperLink ID="lnkLink" runat="server" CssClass="CommandButton" 
+            <asp:HyperLink ID="lnkLink" runat="server" CssClass="CommandButton col-4 col-m-6" 
                 NavigateUrl='<%# NavigateURL() & "?tags=" + HttpUtility.UrlEncode(Eval("TagName"))%>'>
                 <div class="container">
                     <div class="item">
@@ -15,5 +15,5 @@
                 </div>
             </asp:HyperLink>
         </ItemTemplate>
-    </asp:DataList>
+    </asp:Repeater>
 </div>
