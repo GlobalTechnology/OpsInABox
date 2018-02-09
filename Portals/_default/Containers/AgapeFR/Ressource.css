@@ -1,69 +1,50 @@
-
 /*Ressource ListFullWidth Section Begin*/
 
 #ListFullWidth a {
+    position: relative;
+    display: flow-root;
+    margin: 0;
+    border: 2px solid transparent;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    text-decoration:none;
+}
+
+#ListFullWidth a:hover {
     text-decoration: none;
-}
-
-#ListFullWidth .items {
-    padding: 5px;
-    border: 2px solid transparent; /* To avoid moving text when adding a border on hover */
-    border-bottom: 1px solid #ddd; /* Horizontal separator */
-    min-height: 100px;
-    width:100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#ListFullWidth .items + .items {
-    /* Not for first element */
-    border-top: 1px solid transparent;
-}
-
-#ListFullWidth .items:hover {
-    border: 2px solid lightgrey; /* Top, left and right borders when hover */
-    border-bottom: 1px solid lightgrey; /* Bottom border when hover, to be combined whith top border of following element */
+    border: 2px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
     background-color: #f1f1f1;
 }
 
-#ListFullWidth .items + .items:hover, #ListFullWidth .items:hover + .items {
-    /* Not for first element. Applied if element or previous element is hover. */
-    border-top: 1px solid lightgrey;
-}
-
-#ListFullWidth .items:last-of-type:hover {
-    /* Only for last element */
-    border-bottom: 1px solid lightgrey;
-    box-shadow: 0 1px 0 lightgrey; /* To avoid moving text when adding a border on hover */
-}
-
-#ListFullWidth .item {
+#ListFullWidth h4{
+    display: inline-block;
     position: relative;
-    height: 100px;
-    margin: 5px 20px 5px 5px;  
+    background: #0e71b4;
+    color: white;
+    padding: 5px 10px;
 }
 
-#ListFullWidth .text {
-    flex-basis: 75%
+#ListFullWidth .frresourceimg {
+    width: 100%;
+    margin-top: -40;
+    display:;
+    position:;
 }
 
-#ListFullWidth .image {
-    flex-basis: 20%
-}
-
-#ListFullWidth .storyPreview {
-    font-size: small;
-}
-
-#ListFullWidth .thumbnail, .playbutton {
+#ListFullWidth .frresourceimg img.playButton{
     position: absolute;
-    height: 100px;
+    left: 0px;
+    width: 100%;
 }
 
 /*Ressource ListFullWidth Section End*/
-
 /*Ressource TagList Section Begin*/
+
+#TagList {
+    display: flex;
+    flex-wrap: wrap;
+}
 
 #TagList a {
     text-decoration: none;
@@ -78,26 +59,9 @@
     align-items: center;
 }
 
-#TagList .container + .container {
-    /* Not for first element */
-    border-top: 1px solid transparent;
-}
-
 #TagList .container:hover {
     border: 2px solid lightgrey; /* Top, left and right borders when hover */
-    border-bottom: 1px solid lightgrey; /* Bottom border when hover, to be combined whith top border of following element */
     background-color: #f1f1f1;
-}
-
-#TagList .container + .item:hover, #TagList .container:hover + .container {
-    /* Not for first element. Applied if element or previous element is hover. */
-    border-top: 1px solid lightgrey;
-}
-
-#TagList .container:last-of-type:hover {
-    /* Only for last element */
-    border-bottom: 1px solid lightgrey;
-    box-shadow: 0 1px 0 lightgrey; /* To avoid moving text when adding a border on hover */
 }
 
 #TagList .tagThumbnail {
@@ -105,3 +69,25 @@
 }
 /*Ressource TagList Section End*/
 
+@media screen and (min-width: 768px) {
+    #ListFullWidth a h4 {
+        background: none;
+        color: #0e71b4;
+        padding: 0;
+    }
+
+    #ListFullWidth .frresourceimg {
+        width: 50%;
+        padding-left:10px;
+        margin-top:0;
+        float: right;
+    }
+    #ListFullWidth .frresourceimg img {
+        
+    }
+    #ListFullWidth .frresourceimg img.playButton{
+    width: 50%;
+    right: 0px;
+    left: unset;
+    }
+}
