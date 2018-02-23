@@ -40,8 +40,8 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
 
         myFeed.Title = TextSyndicationContent.CreatePlaintextContent(channeltitle)
         myFeed.Description = TextSyndicationContent.CreatePlaintextContent(PS.PortalName & "/" & channeltitle)
-        myFeed.Links.Add(SyndicationLink.CreateAlternateLink(New Uri(NavigateURL().Replace("http://", "https://"))))
-        myFeed.Links.Add(SyndicationLink.CreateSelfLink(New Uri(NavigateURL(x.TabID).Replace("http://", "https://"))))
+        myFeed.Links.Add(SyndicationLink.CreateAlternateLink(New Uri(NavigateURL().Replace("http://", "http://"))))
+        myFeed.Links.Add(SyndicationLink.CreateSelfLink(New Uri(NavigateURL(x.TabID).Replace("http://", "http://"))))
         myFeed.Copyright = SyndicationContent.CreatePlaintextContent("Copyright " & PS.PortalName)
         myFeed.Language = PS.DefaultLanguage
         Dim myList As New List(Of SyndicationItem)
@@ -51,7 +51,7 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
 
             insert.Title = TextSyndicationContent.CreatePlaintextContent(row.Headline)
 
-            insert.Links.Add(New SyndicationLink(New Uri(NavigateURL(CInt(row.TabId)).Replace("en-us/", "").Replace("http://", "https://") & "?StoryId=" & row.StoryId)))
+            insert.Links.Add(New SyndicationLink(New Uri(NavigateURL(CInt(row.TabId)).Replace("en-us/", "").Replace("http://", "http://") & "?StoryId=" & row.StoryId)))
             Dim summary As String = ""
             If String.IsNullOrEmpty(row.TextSample) Then
                 summary = Left(StoryFunctions.StripTags(row.StoryText), 500)
@@ -76,26 +76,11 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
             author.Email = ""
             insert.Authors.Add(author)
 
-            Dim thePhoto = FileManager.Instance.GetFile(row.PhotoId)
             Dim media As XNamespace = XNamespace.Get("http://www.w3.org/2003/01/media/wgs84_pos#")
+            Dim photourl = StoryFunctions.GetPhotoURL(row.PhotoId)
 
+            insert.ElementExtensions.Add(New XElement(media + "thumbnail", New XAttribute(XNamespace.Xmlns + "media", "http://www.w3.org/2003/01/media/wgs84_pos#"), New XAttribute("url", photourl), New XAttribute("width", thePhoto.Width), New XAttribute("height", thePhoto.Height)))
 
-            If Not thePhoto Is Nothing Then
-
-                Dim photourl = FileManager.Instance.GetUrl(thePhoto)
-                If photourl.StartsWith("/") Then
-                    photourl = "https://" & PortalSettings.Current.PortalAlias.HTTPAlias & photourl
-                ElseIf Not photourl.StartsWith("http") Then
-                    photourl = "https://" & photourl
-                End If
-
-                insert.ElementExtensions.Add(New XElement(media + "thumbnail", New XAttribute(XNamespace.Xmlns + "media", "http://www.w3.org/2003/01/media/wgs84_pos#"), New XAttribute("url", photourl), New XAttribute("width", thePhoto.Width), New XAttribute("height", thePhoto.Height)))
-
-
-                'insert.ElementExtensions.Add(New XElement("enclosure",
-                '    New XElement("Key", New XAttribute("type", "image/jpeg")),
-                '     New XElement("Value", New XAttribute("url", photourl))).CreateReader())
-            End If
             Dim geo As XNamespace = XNamespace.Get("http://www.w3.org/2003/01/geo/wgs84_pos#")
 
 
