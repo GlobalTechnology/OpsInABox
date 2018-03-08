@@ -504,7 +504,8 @@ Inherited from div.pagination.pagination-centered .pagination-centered {
     margin-left: 5px;
 }
 
-.frtitleinfo .Evénement {
+.frtitleinfo .Evénement, .eventIcon {
+    display:inline-block;
     margin-right: 10px;
     border-radius: .3em;
     border-style: none;
@@ -536,4 +537,10 @@ Inherited from div.pagination.pagination-centered .pagination-centered {
 
 .frpagearticle {
     width:150px;
+}
+.eventDiv {
+    margin-top:10px;
+}
+.afeventinfo{
+    display:inline-block;
 }
