@@ -544,3 +544,10 @@ Inherited from div.pagination.pagination-centered .pagination-centered {
 .afeventinfo{
     display:inline-block;
 }
+.eventDiv a {
+    display:flex;
+}
+
+.Agape_Story_storymain img {
+    width:100%;
+}
