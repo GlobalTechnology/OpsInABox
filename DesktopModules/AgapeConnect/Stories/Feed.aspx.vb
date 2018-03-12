@@ -40,8 +40,10 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
 
         myFeed.Title = TextSyndicationContent.CreatePlaintextContent(channeltitle)
         myFeed.Description = TextSyndicationContent.CreatePlaintextContent(PS.PortalName & "/" & channeltitle)
-        myFeed.Links.Add(SyndicationLink.CreateAlternateLink(New Uri(NavigateURL().Replace("http://", "http://"))))
-        myFeed.Links.Add(SyndicationLink.CreateSelfLink(New Uri(NavigateURL(x.TabID).Replace("http://", "http://"))))
+        'TODO
+        'Need to remove the hard links going to cash - not being used as RSS Feed.
+        myFeed.Links.Add(SyndicationLink.CreateAlternateLink(New Uri(NavigateURL().Replace("http://", "https://"))))
+        myFeed.Links.Add(SyndicationLink.CreateSelfLink(New Uri(NavigateURL(x.TabID).Replace("http://", "https://"))))
         myFeed.Copyright = SyndicationContent.CreatePlaintextContent("Copyright " & PS.PortalName)
         myFeed.Language = PS.DefaultLanguage
         Dim myList As New List(Of SyndicationItem)
@@ -50,8 +52,9 @@ Partial Class DesktopModules_AgapeConnect_Stories_RSS
             Dim insert As New SyndicationItem
 
             insert.Title = TextSyndicationContent.CreatePlaintextContent(row.Headline)
-
-            insert.Links.Add(New SyndicationLink(New Uri(NavigateURL(CInt(row.TabId)).Replace("en-us/", "").Replace("http://", "http://") & "?StoryId=" & row.StoryId)))
+            'TODO
+            'Need to remove the hard links going to cash - not being used as RSS Feed.
+            insert.Links.Add(New SyndicationLink(New Uri(NavigateURL(CInt(row.TabId)).Replace("en-us/", "").Replace("http://", "https://") & "?StoryId=" & row.StoryId)))
             Dim summary As String = ""
             If String.IsNullOrEmpty(row.TextSample) Then
                 summary = Left(StoryFunctions.StripTags(row.StoryText), 500)
