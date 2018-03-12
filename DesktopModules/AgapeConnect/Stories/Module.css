@@ -520,7 +520,8 @@ Inherited from div.pagination.pagination-centered .pagination-centered {
     background-image: url(/Portals/_default/skins/agapefr/images/calendar.svg);
 }
 
-.frtitleinfo .Article {
+.frtitleinfo .Article, .articleIcon {
+    display: inline-block;
     margin-right: 10px;
     border-radius: .3em;
     border-style: none;
@@ -550,4 +551,7 @@ Inherited from div.pagination.pagination-centered .pagination-centered {
 
 .Agape_Story_storymain img {
     width:100%;
+}
+.eventDate {
+    color: #5f5f5f;
 }
