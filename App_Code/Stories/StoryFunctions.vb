@@ -1057,14 +1057,19 @@ Public Class StoryFunctions
         Dim imageUrl As String
         If (imageId IsNot Nothing And imageId > 0) Then
             Dim imageFile = FileManager.Instance.GetFile(imageId)
-            If (imageFile IsNot Nothing) And (StoryFunctionsProperties.imageExtensions.Contains(imageFile.Extension.ToLower)) Then
-                imageUrl = FileManager.Instance.GetUrl(imageFile)
+            If (imageFile IsNot Nothing) Then
+                If (StoryFunctionsProperties.imageExtensions.Contains(imageFile.Extension.ToLower)) Then
+                    imageUrl = FileManager.Instance.GetUrl(imageFile)
+                Else
+                    imageUrl = StoryFunctionsProperties.noImage
+                End If
             Else
                 imageUrl = StoryFunctionsProperties.noImage
             End If
         Else
             imageUrl = StoryFunctionsProperties.noImage
         End If
+
 
         Return imageUrl
     End Function
