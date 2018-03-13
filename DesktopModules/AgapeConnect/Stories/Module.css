@@ -555,3 +555,18 @@ img.Agape_Story_picturebox {
 .eventDate {
     color: #5f5f5f;
 }
+
+.afarticle {
+    margin-bottom:10px;
+}
+
+@media only screen and ( min-width: 1024px) { /* For desktop: */
+    .afarticle {
+        float: right;
+        padding-left: 10px;
+    }
+
+    .afarticleextra {
+        padding-right: 30px;
+    }
+}
