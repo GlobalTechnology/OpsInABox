@@ -373,7 +373,6 @@ span.ImageMapDialog {
     background-image: url(/Portals/_default/skins/agapefr/images/Logo_Agape_France_Symbole.svg);
 }
 
-
 .afsocialblock{
     margin-bottom: 10px;
     padding: 20px;
@@ -389,12 +388,7 @@ span.ImageMapDialog {
     margin-top:10px;
 }
 
-.afarticleextra .button {
-    margin-bottom: 20px;
-}
-
-    @media only screen and (
-    min-width: 768px) {
+@media only screen and (min-width: 768px) {
         /* For tablets: */
         .col-m-1 {
             width: 8.33%;

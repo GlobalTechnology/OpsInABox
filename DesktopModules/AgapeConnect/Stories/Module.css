@@ -556,17 +556,20 @@ img.Agape_Story_picturebox {
     color: #5f5f5f;
 }
 
-.afarticle {
+#ViewStory .afarticle {
     margin-bottom:10px;
+}
+#ViewStory .afarticleextra .button {
+    margin-bottom: 20px;
 }
 
 @media only screen and ( min-width: 1024px) { /* For desktop: */
-    .afarticle {
+    #ViewStory .afarticle {
         float: right;
         padding-left: 10px;
     }
 
-    .afarticleextra {
+    #ViewStory .afarticleextra {
         padding-right: 30px;
     }
 }
