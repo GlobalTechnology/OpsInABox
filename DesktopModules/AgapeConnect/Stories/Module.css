@@ -549,8 +549,8 @@ Inherited from div.pagination.pagination-centered .pagination-centered {
     display:flex;
 }
 
-.Agape_Story_storymain img {
-    width:100%;
+img.Agape_Story_picturebox {
+    width: 100%;
 }
 .eventDate {
     color: #5f5f5f;
