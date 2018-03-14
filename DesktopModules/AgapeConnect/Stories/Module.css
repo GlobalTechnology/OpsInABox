@@ -556,6 +556,10 @@ img.Agape_Story_picturebox {
     color: #5f5f5f;
 }
 
+.relatedressources .eventDate {
+    display: none;
+}
+
 #ViewStory .afarticle {
     margin-bottom:10px;
 }
