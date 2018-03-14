@@ -563,6 +563,10 @@ img.Agape_Story_picturebox {
     margin-bottom: 20px;
 }
 
+.ContentPane {
+    display: inline-block;
+}
+
 @media only screen and ( min-width: 1024px) { /* For desktop: */
     #ViewStory .afarticle {
         float: right;
