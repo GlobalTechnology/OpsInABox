@@ -41,9 +41,7 @@
 
 #ListFullWidth .frresourceimg {
     width: 100%;
-    margin-top: -40;
-    display:;
-    position:;
+    margin-top: -40px;
 }
 
 #ListFullWidth .frresourceimg img.playButton{
@@ -96,9 +94,7 @@
         margin-top:0;
         float: right;
     }
-    #ListFullWidth .frresourceimg img {
-        
-    }
+
     #ListFullWidth .frresourceimg img.playButton{
     width: 50%;
     right: 0px;
