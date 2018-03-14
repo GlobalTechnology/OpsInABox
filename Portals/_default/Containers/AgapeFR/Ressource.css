@@ -9,12 +9,26 @@
     padding: 10px;
     text-decoration:none;
 }
+#ListFullWidth a + a {
+        border-top: 1px solid transparent;
+    }
 
 #ListFullWidth a:hover {
     text-decoration: none;
     border: 2px solid lightgrey;
     border-bottom: 1px solid lightgrey;
     background-color: #f1f1f1;
+}
+
+#ListFullWidth a + a:hover, #ListFullWidth a:hover + a {
+    /* Not for first element. Applied if element or previous element is hover. */
+    border-top: 1px solid lightgrey;
+}
+
+#ListFullWidth a:last-of-type:hover {
+/* Only for last element */
+    border-bottom: 1px solid lightgrey;
+    box-shadow: 0 1px 0 lightgrey; /* To avoid moving text when adding a border on hover */
 }
 
 #ListFullWidth h4{
