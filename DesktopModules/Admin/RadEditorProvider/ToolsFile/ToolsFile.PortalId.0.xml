@@ -109,8 +109,8 @@
     </paragraphs>
 
     <classes>
-        <class name="Image 50%" value=".img-col-6" />
-        <class name="Image 100%" value=".img-col-12" />
+        <class name="Image Moyenne" value=".img-col-6" />
+        <class name="Image Grande" value=".img-col-12" />
         <class name="Texte temporaire à modifier" value=".draft" />
         <class name="Bouton" value=".button" />
     </classes>
