@@ -38,8 +38,8 @@ rd %var%DesktopModules\AgapeUK
 REM SETUP FRANCE PORTAL SPECIFIC RADEDITOR CONFIG FILES
 cd ..\DesktopModules\Admin\RadEditorProvider\ConfigFile
 del %var%DesktopModules\Admin\RadEditorProvider\ConfigFile\ConfigFile.PortalId.0.xml
-cd ..\ToolsFile
-del %var%DesktopModules\Admin\RadEditorProvider\ToolsFile\ToolsFile.PortalId.0.xml
+cd ..\
+rd %var%DesktopModules\Admin\RadEditorProvider\ToolsFile
 cd ..\App_LocalResources
 FOR %%G in (*fr-FR.resx) DO del %var%DesktopModules\Admin\RadEditorProvider\App_LocalResources\%%G
 cd ..\..\..
