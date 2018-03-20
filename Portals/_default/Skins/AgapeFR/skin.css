@@ -40,6 +40,12 @@
     width: 100%;
     float: left;
 }
+
+[class*="img-col-"] {
+    width: 100%;
+    float: left;
+}
+
 .row::after {
     content: "";
     clear: both;
@@ -49,9 +55,9 @@
 
 html, body, form {
 
-	background: white;
+    background: white;
 }
-#Form { /*to allow full height menu*/ 
+#Form { /*to allow full height menu*/
     position: relative;
 }
 
@@ -84,9 +90,9 @@ html, body, form {
     border:none;
 }
 
-    .ui-dialog-buttonset .dnnPrimaryAction .ui-button-text {
-        padding: 0;
-    }
+.ui-dialog-buttonset .dnnPrimaryAction .ui-button-text {
+    padding: 0;
+}
 
 .button:hover, a.button:hover,
 .dnnPrimaryAction:hover, a.dnnPrimaryAction:hover,
@@ -158,9 +164,9 @@ ul.dnnAdminTabNav li a,
     border:none;
 }
 
-    .ui-dialog-buttonset .dnnSecondaryAction .ui-button-text {
-        padding: 0;
-    }
+.ui-dialog-buttonset .dnnSecondaryAction .ui-button-text {
+    padding: 0;
+}
 
 .dnnFormItem button:hover, .dnnFormItem input[type="button"]:hover,
 .dnnFormItem input[type="reset"]:hover,
@@ -216,40 +222,40 @@ ul.dnnAdminTabNav {
         list-style: none;
     }
 
-    .ui-tabs ul.dnnAdminTabNav li { /* .ui-tabs needed here to override another definition */
-        border-bottom-width: 1px;
+.ui-tabs ul.dnnAdminTabNav li { /* .ui-tabs needed here to override another definition */
+    border-bottom-width: 1px;
+}
+
+ul.dnnAdminTabNav li a {
+    /* most styles are inherited from typography.css */
+    margin-bottom: 0;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -webkit-border-radius: 3px 3px 0px 0px;
+    height: auto;
+    line-height: inherit;
+    border: none;
+    font-family: OpenSansRegular;
+    background: none;
+}
+
+    ul.dnnAdminTabNav li a:hover {
+        border: none;
+        font-family: OpenSansRegular;
+        background: none;
     }
 
-        ul.dnnAdminTabNav li a {
-            /* most styles are inherited from typography.css */
-            margin-bottom: 0;
-            box-shadow: none;
-            -webkit-box-shadow: none;
-            -webkit-border-radius: 3px 3px 0px 0px;
-            height: auto;
-            line-height: inherit;
-            border: none;
-            font-family: OpenSansRegular;
-            background: none;
-        }
+ul.dnnAdminTabNav li.ui-tabs-active a {
+    margin-top: 0; /*-3px;*/
+    padding: .5em 1em;
+    background: none; /*#fff;*/
+    border: none;
+    font-family: OpenSansRegular;
+}
 
-        ul.dnnAdminTabNav li a:hover {
-            border: none;
-            font-family: OpenSansRegular;
-            background: none;
-        }
-        
-        ul.dnnAdminTabNav li.ui-tabs-active a {
-            margin-top: 0; /*-3px;*/
-            padding: .5em 1em;
-            background: none; /*#fff;*/
-            border: none;
-            font-family: OpenSansRegular;
-        }
-
-        ul.dnnAdminTabNav li.ui-tabs-active a:hover {
-            color: #ffffff;
-        }
+    ul.dnnAdminTabNav li.ui-tabs-active a:hover {
+        color: #ffffff;
+    }
 
 /* Panels */
 .ui-tabs .ui-tabs-panel {
@@ -272,9 +278,9 @@ hr {
     border-width: 1px 0 0 0;
 }
 
-hr.dotted {
-    border-style: dotted;
-}
+    hr.dotted {
+        border-style: dotted;
+    }
 
 /*===================== RADEDITOR FIXES ===================== */
 
@@ -285,7 +291,7 @@ hr.dotted {
 }*/
 
 span.ImageManager,
-span.InsertImage
+span.InsertImage 
 {
     background: url('/Portals/0/RadEditor/images/InsertMedia.png') no-repeat center center;
 }
@@ -307,7 +313,7 @@ span.InsertDocument
 }*/
 
 span.ImageMapDialog {
-  background: url('/Portals/0/RadEditor/images/ImageMapEditor.png') no-repeat center center;
+    background: url('/Portals/0/RadEditor/images/ImageMapEditor.png') no-repeat center center;
 }
 
 /*.InsertCodeSnippet,
@@ -324,7 +330,7 @@ span.ImageMapDialog {
 
 /* Set font size for snippet list */
 .reDropDownBody table td {
-  font-size: 12px !important;
+    font-size: 12px !important;
 }
 
 /* Move action menu back over focused module */
@@ -379,84 +385,84 @@ span.ImageMapDialog {
     background: #F5F5F5;
 }
 
-.afsocialblock h6{
-    font-weight:bold;
-}
+    .afsocialblock h6{
+        font-weight:bold;
+    }
 
-.afsocialblock .afappicon{
-    width: 49%;
-    margin-top:10px;
-}
+    .afsocialblock .afappicon{
+        width: 49%;
+        margin-top:10px;
+    }
 
 @media only screen and (min-width: 768px) {
-        /* For tablets: */
-        .col-m-1 {
-            width: 8.33%;
-        }
+    /* For tablets: */
+    .col-m-1 {
+        width: 8.33%;
+    }
 
-        .col-m-2 {
-    width: 16.66%;
-        }
+    .col-m-2 {
+        width: 16.66%;
+    }
 
-        .col-m-3 {
-    width: 25%;
-        }
+    .col-m-3 {
+        width: 25%;
+    }
 
-        .col-m-4 {
-    width: 33.33%;
-        }
+    .col-m-4 {
+        width: 33.33%;
+    }
 
-        .col-m-5 {
-    width: 41.66%;
-        }
+    .col-m-5 {
+        width: 41.66%;
+    }
 
-        .col-m-6 {
-    width: 50%;
-        }
+    .col-m-6 {
+        width: 50%;
+    }
 
-        .col-m-7 {
-    width: 58.33%;
-        }
+    .col-m-7 {
+        width: 58.33%;
+    }
 
-        .col-m-8 {
-    width: 66.66%;
-        }
+    .col-m-8 {
+        width: 66.66%;
+    }
 
-        .col-m-9 {
-    width: 75%;
-        }
+    .col-m-9 {
+        width: 75%;
+    }
 
-        .col-m-10 {
-    width: 83.33%;
-        }
+    .col-m-10 {
+        width: 83.33%;
+    }
 
-        .col-m-11 {
-    width: 91.66%;
-        }
+    .col-m-11 {
+        width: 91.66%;
+    }
 
-        .col-m-12 {
-    width: 100%;
-        }
+    .col-m-12 {
+        width: 100%;
+    }
 
-        .col-sm-4 {
-    width: 33.33%;
-        }
+    .col-sm-4 {
+        width: 33.33%;
+    }
 
-        .col-sm-8 {
-    width: 66.66%;
-        }
-        .col-sm-12 {
-    width: 100%;
-        }
-        .afsocialblock{
-    width: 49%;
+    .col-sm-8 {
+        width: 66.66%;
+    }
+    .col-sm-12 {
+        width: 100%;
+    }
+    .afsocialblock{
+        width: 49%;
     }
     .afsocialgroup{
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
+}
 
 @media only screen and ( min-width: 1024px) {
     /* For desktop: */
@@ -515,5 +521,12 @@ span.ImageMapDialog {
     .afsocialblock {
         width: 100%;
     }
+
+    .img-col-6 {
+        width: 49%;
+    }
+
+    .img-col-12 {
+        width: 100%;
+    }
 }
-    
