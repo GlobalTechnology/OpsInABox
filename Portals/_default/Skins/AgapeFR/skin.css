@@ -40,10 +40,8 @@
     width: 100%;
     float: left;
 }
-
-[class*="img-col-"] {
+.story-col-r, .story-col-l {
     width: 100%;
-    float: left;
 }
 
 .row::after {
@@ -462,9 +460,17 @@ span.ImageMapDialog {
         flex-wrap: wrap;
         justify-content: space-between;
     }
+    .story-col-r {
+        width: 49%;
+        float:right;
+    }
+    .story-col-l{
+        width: 49%;
+        float:left;
+    }
 }
 
-@media only screen and ( min-width: 1024px) {
+@media only screen and (min-width:1024px) {
     /* For desktop: */
     .col-1 {
         width: 8.33%;
@@ -519,14 +525,6 @@ span.ImageMapDialog {
     }
 
     .afsocialblock {
-        width: 100%;
-    }
-
-    .img-col-6 {
-        width: 49%;
-    }
-
-    .img-col-12 {
         width: 100%;
     }
 }
