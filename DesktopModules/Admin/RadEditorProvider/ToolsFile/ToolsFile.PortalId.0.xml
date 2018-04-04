@@ -110,7 +110,8 @@
     </paragraphs>
 
     <classes>
-        <class name="Demi-colonne" value=".story-col-6" />
+        <class name="Colonne Gauche" value=".story-col-l" />
+      <class name="Colonne Droite" value=".story-col-r" />
         <class name="Texte temporaire à modifier" value=".draft" />
         <class name="Bouton" value=".button" />
     </classes>
