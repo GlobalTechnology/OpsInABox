@@ -40,16 +40,10 @@
     width: 100%;
     float: left;
 }
-.story-col-r, .story-col-l {
+
+.story-col-l, .story-col-r {
     width: 100%;
-}
-
-img.story-col-l {
-    padding-right: 15px;
-}
-
-img.story-col-r {
-    padding-left: 15px;
+    padding-bottom:10px;
 }
 
 .row::after {
@@ -399,6 +393,27 @@ span.ImageMapDialog {
         width: 49%;
         margin-top:10px;
     }
+ .afvideowrapper { /*make video responsive*/
+    width: 100%;
+    position: relative;
+    padding-bottom: 56%;
+}
+
+.afvideowrapper iframe { /*make video responsive*/
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+.afgive {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.afgivvid {
+    width: 100%;
+    padding-bottom: 10px;
+}
 
 @media only screen and (min-width: 768px) {
     /* For tablets: */
@@ -470,11 +485,16 @@ span.ImageMapDialog {
     }
     .story-col-r {
         width: 50%;
-        float:right;
+        float: right;
+        padding-left: 15px;
     }
-    .story-col-l{
+    .story-col-l {
         width: 50%;
-        float:left;
+        float: left;
+        padding-right: 15px;
+    }
+    .afgivvid {
+        width: 30%;
     }
 }
 
