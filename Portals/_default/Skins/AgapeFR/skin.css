@@ -44,6 +44,14 @@
     width: 100%;
 }
 
+img.story-col-l {
+    padding-right: 15px;
+}
+
+img.story-col-r {
+    padding-left: 15px;
+}
+
 .row::after {
     content: "";
     clear: both;
@@ -461,11 +469,11 @@ span.ImageMapDialog {
         justify-content: space-between;
     }
     .story-col-r {
-        width: 49%;
+        width: 50%;
         float:right;
     }
     .story-col-l{
-        width: 49%;
+        width: 50%;
         float:left;
     }
 }
