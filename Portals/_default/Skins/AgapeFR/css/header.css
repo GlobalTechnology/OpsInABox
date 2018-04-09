@@ -136,6 +136,11 @@
         transition: .45s;
     }
 
+#SearchContainer .searchInputContainer a.dnnSearchBoxClearText.dnnShow {
+    background: url(/Portals/_default/Skins/AgapeFR/images/cancel.svg) center center no-repeat;
+    background-size:contain;
+}
+
 @media screen and (min-width: 768px) { /*tablet mode*/
     #bar1 #logoHeader {
         height: 160px;
