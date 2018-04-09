@@ -138,5 +138,7 @@
 
     $(".searchicon").click(function () { //hide and show search field
         $("#SearchContainer, #mySidenav").toggleClass("opensearch");
+        $(".opensearch input").focus();
     });
+    
 </script>
