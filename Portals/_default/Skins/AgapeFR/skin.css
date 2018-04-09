@@ -410,9 +410,14 @@ span.ImageMapDialog {
     flex-wrap: wrap;
 }
 
-.afgivvid {
+.afgiverect {
     width: 100%;
     padding-bottom: 10px;
+}
+.givegray {
+    background-color: #F5F5F5;
+    padding:20px;
+    margin-bottom: 20px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -493,7 +498,7 @@ span.ImageMapDialog {
         float: left;
         padding-right: 15px;
     }
-    .afgivvid {
+    .afgiverect {
         width: 30%;
     }
 }
