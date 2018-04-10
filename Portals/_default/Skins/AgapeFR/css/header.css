@@ -93,7 +93,7 @@
                 margin-right: 10px;
                 visibility: hidden;
                 opacity: 0;
-                transition: .2s;
+                
             }
 
     #bar1.menuopen #SearchContainer.opensearch .searchInputContainer a.dnnSearchBoxClearText { /*show cleartext button when menu and search are open*/
@@ -139,6 +139,15 @@
 #SearchContainer .searchInputContainer a.dnnSearchBoxClearText.dnnShow {
     background: url(/Portals/_default/Skins/AgapeFR/images/cancel.svg) center center no-repeat;
     background-size:contain;
+    transition-duration: .5s;
+    transition-property: transform;
+    transition-timing-function: ease-in-out;
+}
+
+#SearchContainer .searchInputContainer a.dnnSearchBoxClearText.dnnShow:hover,
+#SearchContainer .searchInputContainer a.dnnSearchBoxClearText.dnnShow:focus,
+#SearchContainer .searchInputContainer a.dnnSearchBoxClearText.dnnShow:active{
+    transform: rotate(180deg);
 }
 
 @media screen and (min-width: 768px) { /*tablet mode*/

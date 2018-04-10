@@ -1,7 +1,9 @@
-﻿#popupclose {
-    text-decoration: none;
-    color: #0e71b4;
-    cursor: pointer;
+#popupclose {
+    display: inline-block;
+    position: relative;
+    transition-duration: .5s;
+    transition-property: transform;
+    transition-timing-function: ease-in-out;
 }
 
 #my_popup {
@@ -25,6 +27,10 @@
 
 .my_popup_close svg .cancelbutton {
         fill: #0e71b4;
+}
+
+#popupclose:hover, #popupclose:focus, #popupclose:active {
+    transform: rotate(180deg);
 }
 
 @media screen and (min-width: 768px) { /*tablet mode*/
