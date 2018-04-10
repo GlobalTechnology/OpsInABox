@@ -143,24 +143,16 @@
 }
 
 .fr_video_popup_close {
-    color: white;
-    text-decoration: none;
     display: inline-block;
-    vertical-align: middle;
+    padding: 5px;
     position: relative;
-    -webkit-transition-duration: .5s;
     transition-duration: .5s;
-    -webkit-transition-property: transform;
     transition-property: transform;
-    -webkit-transition-timing-function: ease-in-out;
     transition-timing-function: ease-in-out;
 }
 
 .fr_video_popup_close:hover, .fr_video_popup_close:focus, .fr_video_popup_close:active {
-    -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
-    text-decoration: none;
-    color: white;
     cursor:pointer;
 }
 
