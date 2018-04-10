@@ -54,7 +54,7 @@
 
 
 html, body, form {
-
+    min-width:300px;
     background: white;
 }
 #Form { /*to allow full height menu*/
