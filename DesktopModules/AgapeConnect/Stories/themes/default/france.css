@@ -5,23 +5,19 @@
 /* END Slider Customization */
 .theme-default .nivoSlider {
     position:relative;
-	width: 100%;
-	height:auto;
-	overflow: visible;
-    visibility: hidden;
-}
-.theme-default img.nivo-main-image{
+    width: 100%;
+    padding-bottom: 50%;
     box-shadow: 0px 1px 9px 0px #4a4a4a;
 }
 
-.theme-default .nivoSlider img     
-{
-    position: relative;
-    overflow: hidden;
-}
+    .theme-default .nivoSlider img {
+        position: relative;
+        overflow: hidden;
+        position: absolute !important;
+    }
 .theme-default .nivoSlider a {
-	border:0;
-	display:block;
+    border: 0;
+    display: block;
 }
 
 .theme-default .nivo-controlNav 
@@ -118,7 +114,10 @@
 }
 
 .theme-default a.nivo-imageLink {
-	background:none; 
+	background:none;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 /* END Slider Customization */
