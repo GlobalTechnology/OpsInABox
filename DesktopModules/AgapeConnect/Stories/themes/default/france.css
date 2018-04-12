@@ -67,14 +67,26 @@
 	left:15px;
 }
 .rotator1 .nivo-caption {
-    position:initial;
+    position: relative;
     padding:0;
     background:transparent;
-    min-height:126px;
+    height: 84px;
 }
 .rotator1 .slider-image-text {
     margin:0;
     line-height:42px;
+    overflow: hidden;
+    position:relative;
+}
+.rotator1 .nivo-caption:after {
+    content: "";
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100px;
+    height: 42px;
+    background: linear-gradient(to right, rgba(220, 226, 227, 0), rgba(220, 226, 227, 1) 50%);
 }
 .rotator1 .nivo-caption a, .rotator1 .nivo-caption a:hover,  .rotator1 .nivo-caption a:link,  .rotator1 .nivoCaption a:visited
 {
@@ -227,34 +239,33 @@
 }
 
 /* END don't know what this goes to */
-
-
-
-    @media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
     /* For tablets: */
+
     .rotator1 .nivo-caption {
-        min-height:84px;
+        height: 42px;
     }
 }
-@media only screen and (min-width: 1024px) {
-    /* For desktop: */
-    .rotator1 .nivo-caption {
-        min-height:42px;
+    @media only screen and (min-width: 1024px) {
+        /* For desktop: */
+
+        .rotator2 {
+            display: flex;
+        }
+
+        .addthis_toolbox {
+            padding-left: 5px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .rotator2 .theme-default {
+            width: 935px;
+        }
+
+        .rotator2 .nivo-caption {
+            width: 300px;
+        }
     }
-    .rotator2 {
-        display:flex;
-    }
-    .addthis_toolbox {
-        padding-left: 5px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        position: absolute;
-        bottom: 0;
-    }
-    .rotator2 .theme-default {
-        width:935px;
-    }
-    .rotator2 .nivo-caption {
-        width: 300px;
-    }
-}
