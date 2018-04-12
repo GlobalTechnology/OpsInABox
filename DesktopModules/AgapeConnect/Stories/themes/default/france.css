@@ -72,6 +72,7 @@
     padding:0;
     background:transparent;
     height: 84px;
+    z-index:6;
 }
 
 .rotator1 .slider-image-text {
