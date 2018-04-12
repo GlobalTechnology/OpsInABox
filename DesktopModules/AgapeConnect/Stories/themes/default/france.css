@@ -84,7 +84,7 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 100px;
+    width: 55%;
     height: 42px;
     background: linear-gradient(to right, rgba(220, 226, 227, 0), rgba(220, 226, 227, 1) 50%);
 }
@@ -245,6 +245,9 @@
     .rotator1 .nivo-caption {
         height: 42px;
     }
+        .rotator1 .nivo-caption:after{
+            width:100px;
+        }
 }
     @media only screen and (min-width: 1024px) {
         /* For desktop: */
