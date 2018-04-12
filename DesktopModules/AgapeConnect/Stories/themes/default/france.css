@@ -1,8 +1,6 @@
-
 /* France's custom skin for the Stories module */
 
-
-/* END Slider Customization */
+/* Slider Customization */
 .theme-default .nivoSlider {
     position:relative;
     width: 100%;
@@ -29,6 +27,7 @@
 	padding:  0;
     z-index:1;
 }
+
 .theme-default .nivo-controlNav a {
 	display:inline-block;
 	width:18px;
@@ -63,21 +62,25 @@
 	background-position:-30px 0;
 	right:15px;
 }
+
 .theme-default a.nivo-prevNav {
 	left:15px;
 }
+
 .rotator1 .nivo-caption {
     position: relative;
     padding:0;
     background:transparent;
     height: 84px;
 }
+
 .rotator1 .slider-image-text {
     margin:0;
     line-height:42px;
     overflow: hidden;
     position:relative;
 }
+
 .rotator1 .nivo-caption:after {
     content: "";
     text-align: right;
@@ -88,6 +91,7 @@
     height: 42px;
     background: linear-gradient(to right, rgba(220, 226, 227, 0), rgba(220, 226, 227, 1) 50%);
 }
+
 .rotator1 .nivo-caption a, .rotator1 .nivo-caption a:hover,  .rotator1 .nivo-caption a:link,  .rotator1 .nivoCaption a:visited
 {
     color: #0e71b4;
@@ -97,23 +101,27 @@
 .theme-default .nivo-controlNav.nivo-thumbs-enabled {
 	width: 100%;
 }
+
 .theme-default .nivo-controlNav.nivo-thumbs-enabled a {
 	width: auto;
 	height: auto;
 	background: none;
 	margin-bottom: 5px;
 }
+
 .theme-default .nivo-controlNav.nivo-thumbs-enabled img {
 	display: block;
 	width: 120px;
 	height: auto;
 }
 
-
 .theme-default .nivo-box {
 	overflow: visible;
 }
-.nivo-box img { display:block; }
+
+.nivo-box img {
+    display:block;
+}
 
 .theme-default .slider-image-text {
     opacity: 1.0 !important;
@@ -178,7 +186,9 @@
 }
 
 /* END video popup */
+
 /* BEGIN Rotator1-Fr and Rotator2-Fr */
+
 .no-stories {
     font-size: small;
     color: red;
@@ -189,9 +199,6 @@
 /* BEGIN Rotator2-Fr */
 
 .rotator2 {
-    
-    /*padding: 30px 20px 30px 20px;*/
-    /*display: flex;*/
     margin-top: 30px;
 }
 
@@ -228,8 +235,6 @@
     margin-top:-10px;
 }
 
-
-
 /* END Rotator2-Fr */
 
 /* BEGIN don't know what this goes to */
@@ -239,36 +244,38 @@
 }
 
 /* END don't know what this goes to */
-@media only screen and (min-width: 768px) {
-    /* For tablets: */
+
+@media only screen and (min-width: 768px) { /* For tablets: */
 
     .rotator1 .nivo-caption {
         height: 42px;
     }
-        .rotator1 .nivo-caption:after{
-            width:100px;
-        }
-}
-    @media only screen and (min-width: 1024px) {
-        /* For desktop: */
-
-        .rotator2 {
-            display: flex;
-        }
-
-        .addthis_toolbox {
-            padding-left: 5px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            position: absolute;
-            bottom: 0;
-        }
-
-        .rotator2 .theme-default {
-            width: 935px;
-        }
-
-        .rotator2 .nivo-caption {
-            width: 300px;
-        }
+    .rotator1 .nivo-caption:after{
+        width:100px;
     }
+
+}
+
+@media only screen and (min-width: 1024px) { /* For desktop: */
+
+    .rotator2 {
+        display: flex;
+    }
+
+    .addthis_toolbox {
+        padding-left: 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .rotator2 .theme-default {
+        width: 935px;
+    }
+
+    .rotator2 .nivo-caption {
+        width: 300px;
+    }
+
+}
