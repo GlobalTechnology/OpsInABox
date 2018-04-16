@@ -16,7 +16,8 @@ a.BlocLienRapide {
 }
 
 .BlocLienRapide h1 {
-    font-family: OpenSansBold;
+    font-family: Open Sans;
+    font-weight:700;
     font-size: 20px;
     line-height: normal;
     letter-spacing: normal;
