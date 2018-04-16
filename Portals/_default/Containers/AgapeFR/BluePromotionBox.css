@@ -28,7 +28,8 @@
 .BluePromotionBox .title {
     color: white;
     text-transform: uppercase;
-    font-family: 'OpenSansBold';
+    font-family: 'Open Sans';
+	font-weight:700;
     font-size: 20px;
     letter-spacing : -1px;
     position: relative;
@@ -79,7 +80,7 @@
 }
 
 .BluePromotionBox .contentContainer .DNNModuleContent p {
-    font-family: OpenSansRegular;
+    font-family: Open Sans;
     font-size: 20px;
     padding-bottom: 20px;
 }
@@ -96,7 +97,7 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    font-family: OpenSansSemiBold;
+    font-family: Open Sans;
     color: #DBDEE3;
     white-space: nowrap; 
     text-align: left;
