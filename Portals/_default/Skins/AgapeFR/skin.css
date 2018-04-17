@@ -358,6 +358,7 @@ span.ImageMapDialog {
     background-position: center center;
     background-color: #0e71b4;
     background-image: url(/Portals/_default/skins/agapefr/images/facebook.svg);
+    vertical-align: middle;
 }
 
 .affbicon {
