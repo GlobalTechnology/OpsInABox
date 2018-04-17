@@ -110,6 +110,7 @@
         padding: 0;
         height: 0;
         border: none;
+        outline: none;
     }
 
     #bar1 #SearchContainer.opensearch input { /*style search box*/
