@@ -52,3 +52,4 @@
     </div>
 </div>
 <asp:Label ID="myURL" runat="server" />
+<script type="text/javascript">_satellite.pageBottom();</script>
