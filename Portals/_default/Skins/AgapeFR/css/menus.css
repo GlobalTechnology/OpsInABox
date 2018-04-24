@@ -41,6 +41,7 @@
 
 .sidenav ul li ul { /*hide second level links*/
     display:none;
+    margin-top:10px;
 }
 
 .sidenav .menudrop { /*add menu arrows*/
