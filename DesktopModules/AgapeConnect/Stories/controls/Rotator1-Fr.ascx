@@ -19,10 +19,10 @@
                  beforeChange: function(){linkImageFadeOut('#slider<%= hfChannelId.Value %>');},
                  });
              $(".rotator1").on("swipeleft", function () {
-                 $(".nivo-nextNav").trigger("click"); //next slide
+                 $(".rotator1 .nivo-nextNav").trigger("click"); //next slide
              }); 
              $(".rotator1").on("swiperight", function () {
-                 $(".nivo-prevNav").trigger("click"); //previous slide
+                 $(".rotator1 .nivo-prevNav").trigger("click"); //previous slide
              }); 
          }
 

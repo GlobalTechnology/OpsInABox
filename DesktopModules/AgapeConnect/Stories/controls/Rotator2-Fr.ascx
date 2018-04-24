@@ -18,7 +18,13 @@
                  channelID: <%= hfChannelId.Value %>,
                  beforeChange: function(){linkImageFadeOut('#slider<%= hfChannelId.Value %>');},
                  afterChange: function(){loadAddThis();},
-             });
+                 });
+             $(".rotator2").on("swipeleft", function () {
+                 $(".rotator2 .nivo-nextNav").trigger("click"); //next slide
+             }); 
+             $(".rotator2").on("swiperight", function () {
+                 $(".rotator2 .nivo-prevNav").trigger("click"); //previous slide
+             }); 
          }
 
          $(document).ready(function () {
