@@ -37,6 +37,7 @@
     background: #0e71b4;
     color: white;
     padding: 5px 10px;
+    z-index: 1;
 }
 
 #ListFullWidth .frresourceimg {
