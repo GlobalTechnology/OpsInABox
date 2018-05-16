@@ -5,6 +5,7 @@
 
 .bar {
 	width: 100%;
+	position: relative;
 }
 
 #bar1 {
