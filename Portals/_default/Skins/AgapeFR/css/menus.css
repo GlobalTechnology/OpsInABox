@@ -44,10 +44,11 @@
     margin-top:10px;
 }
 
-.sidenav .menudrop { /*add menu arrows*/
+li.parent span:first-of-type::after {
     content: url(/Portals/_default/Skins/AgapeFR/images/down-arrow.svg);
     margin-left: 10px;
     vertical-align: sub;
+    display: inline-block;
 }
 
 #Form.showControlBar .sidenav { /*move menu items down when admin bar is visible*/
@@ -56,7 +57,7 @@
 
 
 
-.sidenav li.menuopen .menudrop { /*flip menu arrow up*/
+li.menuopen span:first-of-type::after { /*flip menu arrow up*/
     transform: rotate(180deg);
 }
 .menuoverlay {

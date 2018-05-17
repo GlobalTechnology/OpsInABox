@@ -25,10 +25,7 @@ if (nodes.Count > 0)
                     else
                     {
                         <span class="offlink">@node.Text</span>
-                    }
-                    @if (node.Children.Count > 0) {
-                        <span class="menudrop"></span>
-                    }
+                    }                    
                     @RenderNodes(node.Children)
                 </li>
             }

@@ -122,13 +122,6 @@
         menutoggle();
     });
 
-    $(".menudrop").click(function () { //hide and show second level menu for dropdown arrow click
-        $(this).nextAll("ul").eq(0).slideToggle();
-        $(".parent ul").not($(this).nextAll('ul').eq(0)).slideUp();
-        $(this).parent().toggleClass("menuopen");
-        $("li.parent").not($(this).parent()).removeClass("menuopen");
-    });
-
     $(".parent .offlink, a#UserContainer").click(function () { //hide and show second level menu for parent link click
         $(this).nextAll("ul").eq(0).slideToggle();
         $(".parent ul").not($(this).nextAll('ul').eq(0)).slideUp();
