@@ -62,6 +62,7 @@
                         <dnn:COPYRIGHT runat="server" ID="dnnCOPYRIGHT" CssClass="" />
                     </div>
                     <div id="mentionslegales"><a href="/mentionslegales" rel="nofollow"><%=Translate("MentionsLegales.Text")%></a></div>
+                    <div id="privacypolicy"><a href="/mentionslegales/protectiondesdonneespersonnelles" rel="nofollow"><%=Translate("PrivacyPolicy.Text")%></a></div>
                 </div>
 
             </div>

@@ -147,6 +147,9 @@
   <data name="PopupParagraph.Text" xml:space="preserve">
     <value>Restez informés</value>
   </data>
+  <data name="PrivacyPolicy.Text" xml:space="preserve">
+    <value>Données personnelles</value>
+  </data>
   <data name="SearchButton.Text" xml:space="preserve">
     <value>Rechercher</value>
   </data>
