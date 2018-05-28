@@ -5,7 +5,7 @@
     <asp:RadioButton ID="WebRadioButton" runat="server" CssClass="SkinObject" GroupName="Search" />
     <asp:RadioButton ID="SiteRadioButton" runat="server" CssClass="SkinObject" GroupName="Search" />
     <span class="searchInputContainer" data-moreresults="<%= SeeMoreText %>" data-noresult="<%= NoResultText %>">
-        <asp:TextBox ID="txtSearch" runat="server" EnableViewState="False" CssClass="NormalTextBox" Columns="20" MaxLength="255"></asp:TextBox>
+        <asp:TextBox ID="txtSearch" type="search" runat="server" EnableViewState="False" CssClass="NormalTextBox" Columns="20" MaxLength="255"></asp:TextBox>
         <a class="dnnSearchBoxClearText"></a>
     </span>
     <asp:LinkButton ID="cmdSearch" runat="server" CausesValidation="False" CssClass="SkinObject"></asp:LinkButton>
