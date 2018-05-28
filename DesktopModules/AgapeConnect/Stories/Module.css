@@ -81,7 +81,6 @@
 
 #StoryMixer .FieldLabel {
 	display: inline-block;
-	zoom: 1; *display: inline; /* IE fix for inline-block display */
     vertical-align: top;
     text-align: left;
 }
@@ -289,11 +288,11 @@
 
 
 /*copied styles from ascx*/
-<style type="text/css" > a.button, a.button:visited {
+ a.button, a.button:visited {
     text-decoration: none;
 }
 
-#<%= dlStories.ClientId% > td {
+ td {
     width: 50%;
 }
 
@@ -330,18 +329,6 @@
     margin-bottom: 5px;
 }
 
-.storyTitle {
-}
-
-<%--.dnnGridItem:hover .storyTitle, .dnnGridAltItem:hover .storyTitle {
-    text-decoration: underline;
-}
-
---% > .typeFont {
-    <%--color: #AAA;
-    --%> <%--margin: 10px 0 15px 0;
-    --%>
-}
 
 .typeFont span {
     position: relative;
@@ -577,7 +564,7 @@ img.Agape_Story_picturebox {
     margin-bottom: 30px;
 }
 
-@media only screen and ( min-width: 1024px) { /* For desktop: */
+@media only screen and (min-width: 1024px) { /* For desktop: */
     #ViewStory .afarticle {
         float: right;
         padding-left: 10px;

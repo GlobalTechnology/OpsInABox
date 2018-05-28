@@ -63,9 +63,6 @@ a.BlocLienRapide:hover {
     width: 46px;
     height: 41px;
     display: inline-block;
-    zoom: 1;
-    *
-    display: inline; /* IE fix for inline-block display */
     background-size: 30px 30px;
     background-repeat: no-repeat;
     background-position: center center;
