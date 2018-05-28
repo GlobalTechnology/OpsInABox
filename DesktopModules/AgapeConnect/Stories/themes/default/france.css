@@ -179,6 +179,7 @@
 #fr_video_popup #playerspace {
     width: 95%;
     height: 50vw;
+    max-height: 75vh;
 }
 
 #fr_video_popup #popplayer {
