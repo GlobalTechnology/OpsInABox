@@ -13,7 +13,6 @@
 
 #logoFooter, #sitemap,  #sitemap .level1 {
     display: inline-block;
-    zoom: 1; *display: inline; /* IE fix for inline-block display */
     text-align: left;
 }
 
@@ -148,7 +147,6 @@
 
 #footer3 #contactAndSlogan div, #footer3 #infosLegales div {
     display: inline-block;
-    zoom: 1; *display: inline; /* IE fix for inline-block display */
 }
 
 #footer3 div#tel, #footer3 div#fax, #footer3 div#email {
