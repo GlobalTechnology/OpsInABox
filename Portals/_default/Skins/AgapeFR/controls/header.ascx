@@ -19,7 +19,7 @@
 <script type="text/javascript">
     (function ($, Sys) {
         function initSearchText() {
-            $('#SearchContainer span input[type=text]').Watermark('<%=Translate("SearchWatermark.Text")%>');
+            $('#SearchContainer span input[type=search]').Watermark('<%=Translate("SearchWatermark.Text")%>');
         }
         $(document).ready(function () {
             initSearchText();

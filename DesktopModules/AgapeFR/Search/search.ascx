@@ -17,7 +17,7 @@
             <dnn:DnnImage ID="downArrow" runat="server" IconKey="Action" />
         </div>
         <span class="searchInputContainer" data-moreresults="<%= SeeMoreText %>" data-noresult="<%= NoResultText %>">
-            <asp:TextBox ID="txtSearchNew" runat="server" CssClass="SearchTextBox" MaxLength="255" EnableViewState="False"></asp:TextBox>
+            <asp:TextBox ID="txtSearchNew" type="search" runat="server" CssClass="SearchTextBox" MaxLength="255" EnableViewState="False"></asp:TextBox>
             <a class="dnnSearchBoxClearText"></a>
         </span>
 

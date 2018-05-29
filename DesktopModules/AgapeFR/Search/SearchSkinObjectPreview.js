@@ -104,7 +104,7 @@
 
                 $('.searchInputContainer').next().on('click', function() {
                     var $this = $(this);
-                    var inputBox = $this.prev().find('input[type="text"]');
+                    var inputBox = $this.prev().find('input[type="search"]');
                     var val = inputBox.val();
                     if (val.length) {
                         return true;
