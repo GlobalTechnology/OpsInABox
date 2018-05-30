@@ -6,8 +6,6 @@
 <script type="text/javascript">
     (function ($, Sys) {
         function setUpMyTabs() {
-
-
             $(".tagFilter").click(function () {
                 var querystring = "";
                 $(".tagFilter input:checked").each(function () {
@@ -17,12 +15,6 @@
 
                 window.location.href = "<%= NavigateURL() & "?tags="%>" + querystring;
             });
-
-
-            
-
-
-
         }
 
         $(document).ready(function () {
@@ -32,7 +24,6 @@
             });
         });
     }(jQuery, window.Sys));
-
 
     function registerClick(c, l) {
         $.ajax({
@@ -48,6 +39,7 @@
     }
 
 </script>
+
 <div class="afnewslist">
 <asp:Repeater runat="server" ID="dlStories">
     <ItemTemplate>
