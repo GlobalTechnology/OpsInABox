@@ -126,6 +126,8 @@ Public Module ViewStoryConstants
     Public Const NUM_OF_RELATED_ARTICLES As Integer = 3
     Public Const NUM_OF_RELATED_AGENDA As Integer = 3
     Public Const HTML_META_PROPERTY As String = "property"
+    Public Const eventIcon As String = "eventIcon"
+    Public Const articleIcon As String = "articleIcon"
 
 End Module
 
