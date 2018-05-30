@@ -20,7 +20,6 @@
     padding: 10px;
 }
 
-
 #Unpublished .submitPanel {
     width: 100%;
     margin-top: 50px;
@@ -68,8 +67,6 @@
     margin-top: 30px;
     text-align: center;
 }
-
-    
 
 /*Tag Settings Section End*/
 
@@ -164,22 +161,108 @@
     height: 200px;
 }
 
+.frtitleinfo .Evénement, .eventIcon {
+    display: inline-block;
+    margin-right: 10px;
+    border-radius: .3em;
+    border-style: none;
+    width: 46px;
+    height: 41px;
+    flex: none;
+    zoom: 1;
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #0e71b4;
+    background-image: url(/Portals/_default/skins/agapefr/images/calendar.svg);
+}
+
+.frtitleinfo .Article, .articleIcon {
+    display: inline-block;
+    margin-right: 10px;
+    border-radius: .3em;
+    border-style: none;
+    width: 46px;
+    height: 41px;
+    flex: none;
+    zoom: 1;
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #0e71b4;
+    background-image: url(/Portals/_default/skins/agapefr/images/article.svg);
+}
+
+.frpagearticle {
+    width: 150px;
+}
+
+.eventDiv {
+    margin-top: 10px;
+}
+
+.afeventinfo {
+    display: inline-block;
+}
+
+.eventDiv a {
+    display: flex;
+}
+
+img.Agape_Story_picturebox {
+    width: 100%;
+}
+
+.eventDate {
+    color: #5f5f5f;
+}
+
+.relatedressources .eventDate {
+    display: none;
+}
+
+#ViewStory .afarticle {
+    margin-bottom: 20px;
+}
+
+#ViewStory .afarticleextra .button {
+    margin-bottom: 30px;
+}
+
+.ContentPane {
+    display: inline-block;
+}
+
+.afrelatedbtn {
+    margin-top: 30px;
+}
+
+.addthis_toolbox {
+    margin-bottom: 30px;
+}
+
+.typeFont span {
+    position: relative;
+    top: 5px;
+}
+
  /*ViewStory Section End*/
 
  /*AddEdit Section Begin*/
+
 #divAddEditStory .FieldRow {
     margin-bottom: 10px;
     width: 100%;
 }
 
-#divAddEditStory .FieldRow input[type="text"], #divAddEditStory .FieldRow textarea {
+#divAddEditStory .FieldRow input[type="text"],
+#divAddEditStory .FieldRow textarea {
     border: 1px gray solid;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
     width: 60%;
     padding: 0px 5px 0px 5px;
-
 }
 
 #divAddEditStory .FieldRow input[type="text"] {
@@ -251,10 +334,6 @@
     float: left;
     width: 50%;
 }
-#divAddEditStory .FieldRow input[type="text"].tbLocation {
-    width: 75%;
-    margin: 3px 3px 0px 0px;
-}
 
 #divAddEditStory .SubmitPanel
 {
@@ -273,6 +352,8 @@
 
  /*AddEdit Section End*/
 
+/*ViewStories Section Begin*/
+
 .afnewslist {
     display: flex;
     flex-wrap: wrap;
@@ -280,47 +361,8 @@
 }
 
 .afnews {
-    padding:7px;
+    padding: 7px;
 }
-.seachImage {
-    width: 100%;
-}
-
-
-/*copied styles from ascx*/
- a.button, a.button:visited {
-    text-decoration: none;
-}
-
- td {
-    width: 50%;
-}
-
-.StoriesList {
-    width: 100%;
-}
-
-
-.dnnGridItem a:hover, .dnnGridAltItem a:hover {
-    text-decoration: none;
-}
-
-.dnnGridItem, .dnnGridAltItem {
-    padding: 10px;
-}
-
-.iconImage {
-    float: left;
-}
-
-.buttonLeft {
-    float: left;
-}
-
-.buttonRight {
-    float: Right;
-}
-
 
 .seachImage {
     width: 100%;
@@ -329,240 +371,30 @@
     margin-bottom: 5px;
 }
 
-
-.typeFont span {
-    position: relative;
-    top: 5px;
-}
-
 .afnewslist .afnews {
     border: 2px solid white;
     text-decoration: none;
 }
 
-    .afnewslist .afnews:hover {
-        border: 2px solid lightgrey;
-        background-color: #f1f1f1;
-        text-decoration: none;
-    }
+.afnewslist .afnews:hover {
+    border: 2px solid lightgrey;
+    background-color: #f1f1f1;
+    text-decoration: none;
+}
 
-    .afnewslist .afnews:hover a {
-        text-decoration: none;
-    }
-
+.afnewslist .afnews:hover a {
+    text-decoration: none;
+}
 
 .frtitleinfo {
-    display:flex;
+    display: flex;
 }
-
-.aficonarticle {
-    width: 45px;
-    height: 45px;
-    margin-right: 5px;
-}
-
-.dnnGridItem, .dnnGridAltItem {
-    border: 2px inset transparent;
-    max-width: 50%;
-}
-
-.mynavbar-inner {
-    min-height: 30px;
-    padding-right: 20px;
-    padding-left: 20px;
-    padding-top: 5px;
-    background-color: #fafafa;
-    background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
-    background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2);
-    background-image: -o-linear-gradient(top, #ffffff, #f2f2f2);
-    background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
-    background-repeat: repeat-x;
-    border: 1px solid #d4d4d4;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
-}
-
-.mynavbar-search .search-query {
-    padding: 4px 14px;
-    margin-bottom: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    font-weight: normal;
-    line-height: 1;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
-}
-
-.pagination ul > li:first-child > a, .pagination ul > li:first-child > span {
-    border-left-width: 1px;
-    -webkit-border-bottom-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    -webkit-border-top-left-radius: 4px;
-    border-top-left-radius: 4px;
-    -moz-border-radius-bottomleft: 4px;
-    -moz-border-radius-topleft: 4px;
-}
-
-.pagination ul > li > a:hover, .pagination ul > li > a:focus, .pagination ul > .active > a, .pagination ul > .active > span {
-    background-color: #f5f5f5;
-}
-
-.pagination ul > li > a, .pagination ul > li > span {
-    float: left;
-    padding: 4px 12px;
-    line-height: 20px;
-    text-decoration: none;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-left-width: 0;
-}
-
-.pagination ul > li {
-    display: inline;
-}
-
-.pagination ul {
-    display: inline-block;
-    margin-bottom: 0;
-    margin-left: 0;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-}
-
-ul, ol {
-    padding: 0;
-    margin: 0 0 10px 25px;
-}
-
-ul, ol {
-    padding: 0;
-    margin: 0 0 9px 25px;
-}
-
-user agent stylesheetul, menu, dir {
-    display: block;
-    list-style-type: disc;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    -webkit-padding-start: 40px;
-}
-
-Inherited from div.pagination.pagination-centered .pagination-centered {
-    text-align: center;
-}
-
-.pagination-centered {
-    text-align: center;
-}
-
-.pagination {
-    margin: 20px 0;
-}
-
-    .pagination ul > .active > a, .pagination ul > .active > span {
-        color: #999;
-        cursor: default;
-    }
-
-    .pagination ul > li > a:hover, .pagination ul > li > a:focus, .pagination ul > .active > a, .pagination ul > .active > span {
-        background-color: #f5f5f5;
-    }
-
-    .pagination ul > .disabled > span, .pagination ul > .disabled > a, .pagination ul > .disabled > a:hover, .pagination ul > .disabled > a:focus {
-        color: #999;
-        cursor: default;
-        background-color: transparent;
-    }
 
 .tagFilter label {
     margin-left: 5px;
 }
 
-.frtitleinfo .Evénement, .eventIcon {
-    display:inline-block;
-    margin-right: 10px;
-    border-radius: .3em;
-    border-style: none;
-    width: 46px;
-    height: 41px;
-    flex: none;
-    zoom: 1;
-    background-size: 30px 30px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-color: #0e71b4;
-    background-image: url(/Portals/_default/skins/agapefr/images/calendar.svg);
-}
-
-.frtitleinfo .Article, .articleIcon {
-    display: inline-block;
-    margin-right: 10px;
-    border-radius: .3em;
-    border-style: none;
-    width: 46px;
-    height: 41px;
-    flex: none;
-    zoom: 1;
-    background-size: 30px 30px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-color: #0e71b4;
-    background-image: url(/Portals/_default/skins/agapefr/images/article.svg);
-}
-
-.frpagearticle {
-    width:150px;
-}
-.eventDiv {
-    margin-top:10px;
-}
-.afeventinfo{
-    display:inline-block;
-}
-.eventDiv a {
-    display:flex;
-}
-
-img.Agape_Story_picturebox {
-    width: 100%;
-}
-.eventDate {
-    color: #5f5f5f;
-}
-
-.relatedressources .eventDate {
-    display: none;
-}
-
-#ViewStory .afarticle {
-    margin-bottom:20px;
-}
-#ViewStory .afarticleextra .button {
-    margin-bottom: 30px;
-}
-
-.ContentPane {
-    display: inline-block;
-}
-.afrelatedbtn {
-    margin-top:30px;
-}
-.addthis_toolbox {
-    margin-bottom: 30px;
-}
+/*ViewStories Section End*/
 
 @media only screen and (min-width: 1024px) { /* For desktop: */
     #ViewStory .afarticle {
