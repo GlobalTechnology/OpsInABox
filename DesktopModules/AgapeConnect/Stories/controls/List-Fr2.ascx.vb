@@ -1,23 +1,11 @@
-﻿Imports System
-Imports System.Collections
-Imports System.Configuration
-Imports System.Data
-Imports System.Linq
+﻿Imports Stories
 
-'Imports DotNetNuke
-'Imports DotNetNuke.Security
-'Imports StaffBroker
-Imports StaffBrokerFunctions
-Imports Stories
-'Imports DotNetNuke.Services.FileSystem
 Namespace DotNetNuke.Modules.AgapeConnect.Stories
     Partial Class List_Fr
         Inherits Entities.Modules.PortalModuleBase
         'Adding Stories Translation
         Dim d As New StoriesDataContext
 
-        Public divWidth As Integer = 150
-        Public divHeight As Integer = 150
         Protected Sub Page_Init(sender As Object, e As System.EventArgs) Handles Me.Init
             'Allowing dynamically loaded controls to be translated using the DNN translation system is complex...
             'However this code does the trick. Just copy this Sub (Page_Init) ,as is, to make it work
@@ -56,36 +44,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
         Public Sub Initialize(ByVal Stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
 
-            'Dim d As New StoriesDataContext
-
-
-
-            Dim out As String = ""
-
-
-
-            Dim photoWidth As Integer = 150
-            If Not String.IsNullOrEmpty(settings("PhotoWidth")) Then
-                photoWidth = settings("PhotoWidth")
-            End If
-
-            Dim photoAspect As Double = 1.0
-            If Not String.IsNullOrEmpty(settings("PhotoWidth")) Then
-                photoAspect = Double.Parse(CStr(settings("Aspect")), New CultureInfo(""))
-            End If
-
-            Dim photoHeight As Integer = CDbl(photoWidth) / photoAspect
-
-            Dim AspectMode As Integer = 1
-            If Not String.IsNullOrEmpty(settings("AspectMode")) Then
-                AspectMode = settings("AspectMode")
-            End If
-            If AspectMode > 2 Then
-                AspectMode = 1  ' Ascpect Modes 3 and 4 are not valid with this rotator. It requires a fixed size.
-            End If
-            divWidth = photoWidth
-            divHeight = photoHeight
-
             Dim Skip As Integer = 0
             Dim pg As Integer = 0
             If Not String.IsNullOrEmpty(Request.QueryString("p")) Then
@@ -93,12 +51,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                 Skip = pg * CInt(settings("NumberOfStories"))
             End If
 
-
             dlStories.DataSource = Stories.Skip(Skip).Take(CInt(settings("NumberOfStories")))
             dlStories.DataBind()
-
-
-
 
             If Stories.Count > CInt(settings("NumberOfStories")) Then
                 btnPrev.Visible = True
