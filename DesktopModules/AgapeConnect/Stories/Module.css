@@ -393,9 +393,12 @@ img.Agape_Story_picturebox {
 .tagFilter label {
     margin-left: 5px;
 }
+.afpagebuttons {
+    text-align: center;
+    margin-top: 20px;
+}
 
 /*ViewStories Section End*/
-
 @media only screen and (min-width: 1024px) { /* For desktop: */
     #ViewStory .afarticle {
         float: right;
