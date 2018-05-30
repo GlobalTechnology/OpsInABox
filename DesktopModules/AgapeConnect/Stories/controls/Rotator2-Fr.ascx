@@ -2,6 +2,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <dnn:DnnJsInclude runat="server" FilePath="/js/jquery.nivo.slider.js" />
 <dnn:DnnJsInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/js/videopopup.js" />
+<dnn:DnnJsInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/js/jquery.mobile.custom.touch.min.js" />
 <dnn:DnnCssInclude runat="server" FilePath="/js/nivo-slider.css" />
 <dnn:DnnCssInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/themes/default/france.css" />
 <dnn:DnnJsInclude runat="server" FilePath="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52c6717a6463b499" />
