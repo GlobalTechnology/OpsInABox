@@ -75,7 +75,7 @@
 </asp:Repeater>
 </div>
 
-<div style="width: 100%; text-align: center; margin-top: 20px;">
+<div class="afpagebuttons">
 <asp:Hyperlink ID="btnPrev" runat="server" Text="Previous" CssClass="button frpagearticle" resourceKey="btnPrevious" Visible="false"/>
 <asp:Hyperlink ID="btnNext" runat="server" Text="Next" CssClass="button frpagearticle" resourceKey="btnNext"  Visible="false"/>
 </div>
