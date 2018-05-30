@@ -119,12 +119,12 @@ Namespace DotNetNuke.Modules.FullStory
             If StoryFunctions.IsStoryType(story, FRENCH_EVENT) Then
                 Dim relatedAgenda As IQueryable(Of AP_Story) =
                     StoryFunctions.GetRelatedEventsForEvents(story.StoryId, story.TabModuleId, PortalId, NUM_OF_RELATED_AGENDA)
-                SetTemplateFields(template, story, FRENCH_EVENT, FormatingRelatedAgenda(relatedAgenda))
+                SetTemplateFields(template, story, eventIcon, FRENCH_EVENT, FormatingRelatedAgenda(relatedAgenda))
                 zoomLevel = 15
             Else
                 Dim relatedAgenda As IQueryable(Of AP_Story) =
                     StoryFunctions.GetRelatedEventsForArticles(story.StoryId, story.TabModuleId, PortalId, NUM_OF_RELATED_AGENDA)
-                SetTemplateFields(template, story, FRENCH_ARTICLE, FormatingRelatedAgenda(relatedAgenda))
+                SetTemplateFields(template, story, articleIcon, FRENCH_ARTICLE, FormatingRelatedAgenda(relatedAgenda))
             End If
 
             Return template
