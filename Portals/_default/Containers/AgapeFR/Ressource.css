@@ -7,11 +7,12 @@
     border: 2px solid transparent;
     border-bottom: 1px solid #ddd;
     padding: 10px;
-    text-decoration:none;
+    text-decoration: none;
 }
+
 #ListFullWidth a + a {
-        border-top: 1px solid transparent;
-    }
+    border-top: 1px solid transparent;
+}
 
 #ListFullWidth a:hover {
     text-decoration: none;
@@ -26,12 +27,12 @@
 }
 
 #ListFullWidth a:last-of-type:hover {
-/* Only for last element */
+    /* Only for last element */
     border-bottom: 1px solid lightgrey;
     box-shadow: 0 1px 0 lightgrey; /* To avoid moving text when adding a border on hover */
 }
 
-#ListFullWidth h4{
+#ListFullWidth h4 {
     display: inline-block;
     position: relative;
     background: #0e71b4;
@@ -45,7 +46,7 @@
     margin-top: -40px;
 }
 
-#ListFullWidth .frresourceimg img.playButton{
+#ListFullWidth .frresourceimg img.playButton {
     position: absolute;
     left: 0px;
     width: 100%;
@@ -91,14 +92,14 @@
 
     #ListFullWidth .frresourceimg {
         width: 50%;
-        padding-left:10px;
-        margin-top:0;
+        padding-left: 10px;
+        margin-top: 0;
         float: right;
     }
 
-    #ListFullWidth .frresourceimg img.playButton{
-    width: 50%;
-    right: 0px;
-    left: unset;
+    #ListFullWidth .frresourceimg img.playButton {
+        width: 50%;
+        right: 0px;
+        left: unset;
     }
 }
