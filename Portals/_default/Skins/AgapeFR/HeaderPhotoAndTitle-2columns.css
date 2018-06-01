@@ -1,16 +1,17 @@
 @import url("./HeaderPhotoAndTitle.css");
-#afContentWrapper{
-    display:flex;
-    flex-wrap:wrap;
+
+#afContentWrapper {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 @media screen and (min-width: 1024px) { /*computer mode*/
 
     #afContentWrapper {
-        display:block;
-    }
-        .ContentPane {
-        float:right;
+        display: block;
     }
 
+    .ContentPane {
+        float: right;
+    }
 }
