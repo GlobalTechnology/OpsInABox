@@ -2,56 +2,57 @@
 
 /* Slider Customization */
 .theme-default .nivoSlider {
-    position:relative;
+    position: relative;
     width: 100%;
     padding-bottom: 50%;
     box-shadow: 0px 1px 9px 0px #4a4a4a;
 }
 
-    .theme-default .nivoSlider img {
-        position: relative;
-        overflow: hidden;
-        position: absolute !important;
-    }
+.theme-default .nivoSlider img {
+    position: relative;
+    overflow: hidden;
+    position: absolute !important;
+}
+
 .theme-default .nivoSlider a {
     border: 0;
     display: block;
 }
 
-.theme-default .nivo-controlNav 
-{
+.theme-default .nivo-controlNav {
     position: relative;
     text-align: right;
-	margin-top: 5px;
+    margin-top: 5px;
     color: transparent;
-	padding:  0;
-    z-index:1;
+    padding: 0;
+    z-index: 1;
 }
 
 .theme-default .nivo-controlNav a {
-	display:inline-block;
-	width:18px;
-	height:18px;
-	background:url(bulletsIcon.png) no-repeat;
-	text-indent:-9999px;
-	border:0;
-	margin: 0 0px;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url(bulletsIcon.png) no-repeat;
+    text-indent: -9999px;
+    border: 0;
+    margin: 0 0px;
     color: transparent;
 }
+
 .theme-default .nivo-controlNav a.active {
-	background-position:0 -22px;
+    background-position: 0 -22px;
     color: transparent;
 }
 
 .theme-default .nivo-directionNav a {
-	display:block;
-	width:30px;
-	height:30px;
-	background:url(arrows.png) no-repeat;
-	text-indent:-9999px;
-	border:0;
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: url(arrows.png) no-repeat;
+    text-indent: -9999px;
+    border: 0;
     opacity: 0;
-    z-index:7;
+    z-index: 7;
 }
 
 .theme-default:hover .nivo-directionNav a {
@@ -59,27 +60,27 @@
 }
 
 .theme-default a.nivo-nextNav {
-	background-position:-30px 0;
-	right:15px;
+    background-position: -30px 0;
+    right: 15px;
 }
 
 .theme-default a.nivo-prevNav {
-	left:15px;
+    left: 15px;
 }
 
 .rotator1 .nivo-caption {
     position: relative;
-    padding:0;
-    background:transparent;
+    padding: 0;
+    background: transparent;
     height: 84px;
-    z-index:6;
+    z-index: 6;
 }
 
 .rotator1 .slider-image-text {
-    margin:0;
-    line-height:42px;
+    margin: 0;
+    line-height: 42px;
     overflow: hidden;
-    position:relative;
+    position: relative;
 }
 
 .rotator1 .nivo-caption:after {
@@ -93,35 +94,34 @@
     background: linear-gradient(to right, rgba(220, 226, 227, 0), rgba(220, 226, 227, 1) 50%);
 }
 
-.rotator1 .nivo-caption a, .rotator1 .nivo-caption a:hover,  .rotator1 .nivo-caption a:link,  .rotator1 .nivoCaption a:visited
-{
+.rotator1 .nivo-caption a, .rotator1 .nivo-caption a:hover, .rotator1 .nivo-caption a:link, .rotator1 .nivoCaption a:visited {
     color: #0e71b4;
     text-decoration: none;
 }
 
 .theme-default .nivo-controlNav.nivo-thumbs-enabled {
-	width: 100%;
+    width: 100%;
 }
 
 .theme-default .nivo-controlNav.nivo-thumbs-enabled a {
-	width: auto;
-	height: auto;
-	background: none;
-	margin-bottom: 5px;
+    width: auto;
+    height: auto;
+    background: none;
+    margin-bottom: 5px;
 }
 
 .theme-default .nivo-controlNav.nivo-thumbs-enabled img {
-	display: block;
-	width: 120px;
-	height: auto;
+    display: block;
+    width: 120px;
+    height: auto;
 }
 
 .theme-default .nivo-box {
-	overflow: visible;
+    overflow: visible;
 }
 
 .nivo-box img {
-    display:block;
+    display: block;
 }
 
 .theme-default .slider-image-text {
@@ -130,15 +130,15 @@
 }
 
 .theme-default a.nivo-imageLink.PlayButton {
-    background: url(play.png) no-repeat center; 
+    background: url(play.png) no-repeat center;
     opacity: 1;
 }
 
 .theme-default a.nivo-imageLink {
-	background:none;
-	position: absolute;
-	top: 0;
-	left: 0;
+    background: none;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 /* END Slider Customization */
@@ -147,7 +147,7 @@
 
 #fr_video_popup {
     display: none;
-    z-index:10000;
+    z-index: 10000;
     position: fixed;
     padding: 0;
     margin: 0;
@@ -171,9 +171,11 @@
     transition-timing-function: ease-in-out;
 }
 
-.fr_video_popup_close:hover, .fr_video_popup_close:focus, .fr_video_popup_close:active {
+.fr_video_popup_close:hover,
+.fr_video_popup_close:focus,
+.fr_video_popup_close:active {
     transform: rotate(180deg);
-    cursor:pointer;
+    cursor: pointer;
 }
 
 #fr_video_popup #playerspace {
@@ -205,57 +207,48 @@
 }
 
 .rotator2 .nivo-caption {
-	font-family: Helvetica, Arial, sans-serif;
-    font-size: x-large ;
-	background:transparent;
-    color:#0e71b4;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: x-large;
+    background: transparent;
+    color: #0e71b4;
     overflow-y: hidden;
     overflow-x: hidden;
     white-space: normal;
     vertical-align: top;
     padding: 0 10px;
-    position:relative;
+    position: relative;
     margin-left: 10px;
-    width:90%;
-    z-index:7;
+    width: 90%;
+    z-index: 7;
 }
 
 .rotator2 .nivo-caption a:hover {
     text-decoration: none;
 }
 
-.rotator2 a.nivo-caption, .rotator2 a.nivo-caption:hover,  .rotator2 a.nivo-caption:link,  .rotator2 a.nivoCaption:visited
-{
+.rotator2 a.nivo-caption, .rotator2 a.nivo-caption:hover, .rotator2 a.nivo-caption:link, .rotator2 a.nivoCaption:visited {
     text-decoration: none;
 }
 
 .rotator2 .nivo-caption h1 {
-    margin-top:-10px;
+    margin-top: -10px;
 }
 
 .rotator2 .nivo-caption h2 {
-    margin-top:-10px;
+    margin-top: -10px;
 }
 
 /* END Rotator2-Fr */
-
-/* BEGIN don't know what this goes to */
-
-.dnnGridItem:hover span.storyTitle, .dnnGridAltItem:hover span.storyTitle {
-    text-decoration: none;
-}
-
-/* END don't know what this goes to */
 
 @media only screen and (min-width: 768px) { /* For tablets: */
 
     .rotator1 .nivo-caption {
         height: 42px;
     }
-    .rotator1 .nivo-caption:after{
-        width:100px;
-    }
 
+    .rotator1 .nivo-caption:after {
+        width: 100px;
+    }
 }
 
 @media only screen and (min-width: 1024px) { /* For desktop: */
@@ -279,5 +272,4 @@
     .rotator2 .nivo-caption {
         width: 300px;
     }
-
 }
