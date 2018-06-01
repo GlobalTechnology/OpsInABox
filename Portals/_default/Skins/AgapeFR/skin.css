@@ -26,21 +26,29 @@
 /*===================== POPUP ===================== */
 @import url("./css/popup-fr.css");
 
-/*===================== PAGE GLOBALS ===================== */
+/*=== Page Globals Section Begin ===*/
 
-*{
+* {
     box-sizing: border-box;
 }
 
-/* For mobile phones: */
-[class*="col-"] {
+html, body, form {
+    min-width: 300px;
+    background: white;
+}
+
+#Form { /*to allow full height menu*/
+    position: relative;
+}
+
+[class*="col-"] { /*responsive classes*/
     width: 100%;
     float: left;
 }
 
-.story-col-l, .story-col-r {
+.story-col-l, .story-col-r { /*responsive classes for editor*/
     width: 100%;
-    padding-bottom:10px;
+    padding-bottom: 10px;
 }
 
 .row::after {
@@ -49,22 +57,9 @@
     display: table;
 }
 
+/*=== Page Globals Section End ===*/
 
-html, body, form {
-    min-width:300px;
-    background: white;
-}
-#Form { /*to allow full height menu*/
-    position: relative;
-}
-
-.dnnTextEditor {
-    font-size: small;
-}
-
-/*===================== BUTTONS ===================== */
-
-/* Primary Action and custom buttons */
+/*=== Buttons Section Begin ===*/
 
 .button, a.button:link, a.button:visited,
 .dnnPrimaryAction, a.dnnPrimaryAction, p a.dnnPrimaryAction,
@@ -84,7 +79,7 @@ html, body, form {
     text-shadow: none;
     text-decoration: none;
     background-color: #0e71b4;
-    border:none;
+    border: none;
 }
 
 .ui-dialog-buttonset .dnnPrimaryAction .ui-button-text {
@@ -135,7 +130,6 @@ a.button[disabled], a.button[disabled]:hover, a.button[disabled]:active,
     border: none;
 }
 
-/* Secondary Action */
 .dnnFormItem button, .dnnFormItem input[type="button"],
 .dnnFormItem input[type="reset"],
 .dnnSecondaryAction,
@@ -158,7 +152,7 @@ ul.dnnAdminTabNav li a,
     box-shadow: none;
     text-shadow: none;
     text-decoration: none;
-    border:none;
+    border: none;
 }
 
 .ui-dialog-buttonset .dnnSecondaryAction .ui-button-text {
@@ -200,71 +194,9 @@ ul.dnnAdminTabNav li a:active,
     border: none;
 }
 
-/*-------------------------------------*/
-/* TABS : JQUERY UI TABS 1.8.14 */
-/*-------------------------------------*/
-/* Tabs */
-ul.dnnAdminTabNav {
-    display: inline-block;
-    margin-top: 5px;
-    margin-left: 0;
-    width: 99%;
-    height: auto;
-    border-bottom: 1px solid #c2c2c2;
-}
+/*=== Buttons Section End ===*/
 
-    ul.dnnAdminTabNav li {
-        float: left;
-        margin-right: 4px;
-        list-style: none;
-    }
-
-.ui-tabs ul.dnnAdminTabNav li { /* .ui-tabs needed here to override another definition */
-    border-bottom-width: 1px;
-}
-
-ul.dnnAdminTabNav li a {
-    /* most styles are inherited from typography.css */
-    margin-bottom: 0;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    -webkit-border-radius: 3px 3px 0px 0px;
-    height: auto;
-    line-height: inherit;
-    border: none;
-    font-family: Open Sans;
-    background: none;
-}
-
-    ul.dnnAdminTabNav li a:hover {
-        border: none;
-        font-family: Open Sans;
-        background: none;
-    }
-
-ul.dnnAdminTabNav li.ui-tabs-active a {
-    margin-top: 0; /*-3px;*/
-    padding: .5em 1em;
-    background: none; /*#fff;*/
-    border: none;
-    font-family: Open Sans;
-}
-
-    ul.dnnAdminTabNav li.ui-tabs-active a:hover {
-        color: #ffffff;
-    }
-
-/* Panels */
-.ui-tabs .ui-tabs-panel {
-    position: relative;
-    display: block;
-}
-
-.ui-tabs .ui-tabs-hide {
-    display: none;
-}
-
-/*===================== HORIZONTAL SEPARATOR ===================== */
+/*=== Text Editor Elements Section Begin ===*/
 
 hr {
     display: block;
@@ -275,75 +207,71 @@ hr {
     border-width: 1px 0 0 0;
 }
 
-    hr.dotted {
-        border-style: dotted;
-    }
+hr.dotted {
+    border-style: dotted;
+}
 
-/*===================== RADEDITOR FIXES ===================== */
+.afvideowrapper { /*make video responsive*/
+    width: 100%;
+    position: relative;
+    padding-bottom: 56%;
+}
 
-/*.ImageManager,
-.InsertImage
-{
-	background-position: -366px center;
-}*/
+.afvideowrapper iframe { /*make video responsive*/
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+/*=== Text Editor Elements Section End ===*/
+
+/*=== Radeditor Section Begin ===*/
+
+.dnnTextEditor {
+    font-size: small;
+}
 
 span.ImageManager,
-span.InsertImage 
-{
+span.InsertImage {
     background: url('/Portals/0/RadEditor/images/InsertMedia.png') no-repeat center center;
 }
 
-/*.DocumentManager,
-.InsertDocument
-{
-	background-position: -1476px center;
-}*/
-
 span.DocumentManager,
-span.InsertDocument
-{
+span.InsertDocument {
     background: url('/Portals/0/RadEditor/images/DocumentManager.png') no-repeat center center;
 }
-
-/*.ImageMapDialog {
-  background-position: -396px center;
-}*/
 
 span.ImageMapDialog {
     background: url('/Portals/0/RadEditor/images/ImageMapEditor.png') no-repeat center center;
 }
 
-/*.InsertCodeSnippet,
-.InsertSnippet
-{
-	background-position: -2164px center;
-}*/
-
 .reTool span.InsertCodeSnippet,
-.reTool span.InsertSnippet
-{
+.reTool span.InsertSnippet {
     background: url('/Portals/0/RadEditor/images/snippet.png') no-repeat center center;
 }
 
-/* Set font size for snippet list */
-.reDropDownBody table td {
+
+.reDropDownBody table td { /* Set font size for snippet list */
     font-size: 12px !important;
 }
 
-/* Move action menu back over focused module */
-.actionMenu ul.dnn_mact {
+
+.actionMenu ul.dnn_mact { /* Move action menu back over focused module */
     margin-left: -90px !important;
 }
 
-/* activities links */
+/*=== Radeditor Section End ===*/
+
+/*=== Left Column Section Begin ===*/
+
 .afsocialbutton {
-    margin-top:10px;
-    margin-right:10px;
+    margin-top: 10px;
+    margin-right: 10px;
 }
 
 .aflinkicon {
-    width:46px;
-    height:41px;
+    width: 46px;
+    height: 41px;
 }
 
 .affbicon, .afmailicon, .afwebicon, .afwebiconaf {
@@ -377,31 +305,25 @@ span.ImageMapDialog {
     background-image: url(/Portals/_default/skins/agapefr/images/Logo_Agape_France_Symbole.svg);
 }
 
-.afsocialblock{
+.afsocialblock {
     margin-bottom: 10px;
     padding: 20px;
     background: #F5F5F5;
 }
 
-    .afsocialblock h6{
-        font-weight:bold;
-    }
-
-    .afsocialblock .afappicon{
-        width: 49%;
-        margin-top:10px;
-    }
- .afvideowrapper { /*make video responsive*/
-    width: 100%;
-    position: relative;
-    padding-bottom: 56%;
+.afsocialblock h6 {
+    font-weight: bold;
 }
 
-.afvideowrapper iframe { /*make video responsive*/
-        width: 100%;
-        height: 100%;
-        position: absolute;
-    }
+.afsocialblock .afappicon {
+    width: 49%;
+    margin-top: 10px;
+}
+
+/*=== Left Column Section End ===*/
+
+/*=== Give Page Section Begin ===*/
+
 .afgive {
     display: flex;
     justify-content: space-between;
@@ -412,14 +334,19 @@ span.ImageMapDialog {
     width: 100%;
     padding-bottom: 10px;
 }
+
 .givegray {
     background-color: #F5F5F5;
-    padding:20px;
+    padding: 20px;
     margin-bottom: 20px;
 }
 
-@media only screen and (min-width: 768px) {
-    /* For tablets: */
+/*=== Give Page Section End ===*/
+
+/*=== Responsive Rules Begin ===*/
+
+@media only screen and (min-width: 768px) { /* For tablets: */
+
     .col-m-1 {
         width: 8.33%;
     }
@@ -475,34 +402,40 @@ span.ImageMapDialog {
     .col-sm-8 {
         width: 66.66%;
     }
+
     .col-sm-12 {
         width: 100%;
     }
-    .afsocialblock{
+
+    .afsocialblock {
         width: 49%;
     }
-    .afsocialgroup{
-        display:flex;
+
+    .afsocialgroup {
+        display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
     }
+
     .story-col-r {
         width: 50%;
         float: right;
         padding-left: 15px;
     }
+
     .story-col-l {
         width: 50%;
         float: left;
         padding-right: 15px;
     }
+
     .afgiverect {
         width: 30%;
     }
 }
 
-@media only screen and (min-width:1024px) {
-    /* For desktop: */
+@media only screen and (min-width:1024px) { /* For desktop: */
+
     .col-1 {
         width: 8.33%;
     }
@@ -559,3 +492,5 @@ span.ImageMapDialog {
         width: 100%;
     }
 }
+
+/*=== Responsive Rules End ===*/
