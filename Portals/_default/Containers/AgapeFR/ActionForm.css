@@ -1,13 +1,14 @@
 .ActionForm input[type="text"], .ActionForm textarea, .ActionForm select.form-control, .ActionForm textarea.form-control {
     border: 1px gray solid;
     border-radius: 3px;
-    padding:6px 11px;
-    font-family:Open Sans;
-    font-size:14px;
-	color:#555;
+    padding: 6px 11px;
+    font-family: Open Sans;
+    font-size: 14px;
+    color: #555;
 }
+
 .ActionForm select.form-control {
-    padding:0 0 0 8px;
+    padding: 0 0 0 8px;
 }
 
 .ActionForm input[type="text"], .ActionForm select.form-control {
@@ -15,35 +16,40 @@
     line-height: 25px;
     width: 100%;
 }
-.ActionForm input[type="checkbox"]{ /*move checkbox out of paragraph*/
-	position:absolute;
-	margin-left:-20px;
+
+.ActionForm input[type="checkbox"] { /*move checkbox out of paragraph*/
+    position: absolute;
+    margin-left: -20px;
 }
+
 .ActionForm div.checkbox label {
-    display:block;
+    display: block;
     padding-left: 20px;
 }
+
 .ActionForm textarea {
     width: 100%;
     height: 150px;
 }
+
 .ActionForm .checkbox-list {
     margin-top: 10px;
 }
 
 .ActionForm .form-horizontal .form-group .control-label {
-	display: inline-block;
-	zoom: 1; *display: inline; /* IE fix for inline-block display */
+    display: inline-block;
+    zoom: 1;
+    *display: inline; /* IE fix for inline-block display */
     vertical-align: top;
     width: 100%;
-    float:left;
-    padding-top:0;
-    font-weight:normal !important;
-    padding-right:10px;
+    float: left;
+    padding-top: 0;
+    font-weight: normal !important;
+    padding-right: 10px;
 }
 
 .ActionForm .form-horizontal .form-group .control-label::after {
-	content:"*";
+    content: "*";
     color: rgba(0,0,0,0);
 }
 
@@ -52,43 +58,48 @@
     color: #3A8BC2;
 }
 
-.ActionForm .form-horizontal .form-group .checkbox label input{
-
+.ActionForm .form-horizontal .form-group .checkbox label input {
     margin-top: 5px;
 }
+
 .form-group-obligtext p {
-    font-size:small;
+    font-size: small;
 }
+
 .bstrap30 span.text-danger {
-    font-size:small;
-    color:red;
+    font-size: small;
+    color: red;
 }
-.bstrap30 .has-error input.form-control, 
-.bstrap30 .has-error textarea.form-control, 
+
+.bstrap30 .has-error input.form-control,
+.bstrap30 .has-error textarea.form-control,
 .bstrap30 .has-error select.form-control {
-    border-color:red;
+    border-color: red;
 }
-    .bstrap30 .has-error input.form-control:focus,
-    .bstrap30 .has-error textarea.form-control:focus,
-    .bstrap30 .has-error select.form-control:focus {
-        border-color: red;
-        outline: none;
-        box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #ce8483;
-    }
-.bstrap30 div.alert-danger{
-	background-color: rgba(255,0,0,0.15);
+
+.bstrap30 .has-error input.form-control:focus,
+.bstrap30 .has-error textarea.form-control:focus,
+.bstrap30 .has-error select.form-control:focus {
+    border-color: red;
+    outline: none;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #ce8483;
+}
+
+.bstrap30 div.alert-danger {
+    background-color: rgba(255,0,0,0.15);
     border-color: rgba(255,0,0,0.2);
-	color:#444;
-}
-.bstrap30 div.alert-danger div{
-	display:none;
+    color: #444;
 }
 
-.bstrap30 div.alert-info{
-	background-color: #F5F5F5;
-    border-color: #5F5F5F;	
+    .bstrap30 div.alert-danger div {
+        display: none;
+    }
+
+.bstrap30 div.alert-info {
+    background-color: #F5F5F5;
+    border-color: #5F5F5F;
 }
 
-.DnnModule-ActionForm{
-    max-width:900px;
+.DnnModule-ActionForm {
+    max-width: 900px;
 }
