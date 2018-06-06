@@ -1,107 +1,79 @@
-﻿#footer1, #footer2, #footer3 {
+#footer1, #footer2, #footer3 {
     font-size: 12px;
     font-weight: normal;
-	font-family: OpenSansRegular;
-	color: #5f5f5f;
-}
-
-#logoFooter img {
-    width: 180px;
-}
-
-#sitemap {
-    vertical-align: top;
-    margin: 20px;
-}
-
-#logoFooter, #sitemap,  #sitemap .level1 {
-    display: inline-block;
-    zoom: 1; *display: inline; /* IE fix for inline-block display */
-    text-align: left;
-}
-
-#sitemap .level1 {
-    margin-left: 35px;
-    text-align: left;
-    vertical-align: top;
-}
-
-#sitemap .level2, #sitemap .level2 a {
-    display: block;
-}
-
-#sitemap .level2 {
-    margin-top: 10px;
-}
-
-#sitemap .level1, #sitemap .level1 a {
-    color: #3A8BC2;
-    text-transform: uppercase;
-}
-
-#sitemap .level2, #sitemap .level2 a {
+    font-family: Open Sans;
     color: #5f5f5f;
-    text-transform: none;
 }
 
 #footer2 {
     height: 52px;
-    line-height: 52px;
-    vertical-align: middle;
-}
-
-#footer2 #socialmedia {
-    line-height: 50px;
-    display: inline-block;
-    zoom: 1; *display: inline; /* IE fix for inline-block display */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }
 
 #footer2 span {
-    color: #3A8BC2;
+    color: #0e71b4;
     text-transform: uppercase;
     font-size: 14px;
-    display: inline-block;
-    zoom: 1; *display: inline; /* IE fix for inline-block display */
 }
 
-#footer2 #newsletter, #footer2 #facebook, #footer2 #youtube {
-    -webkit-border-radius: .5em;
-    -moz-border-radius: .5em;
-    border-radius: .5em;
+#footer2 #newsletter,
+#footer2 #facebook,
+#footer2 #youtube,
+#footer2 #contact {
+    border-radius: 3px;
     border-style: none;
-    background-color: #3A8BC2;
-    width: 32px;
-    height: 32px;
-    display: inline-block;
-    zoom: 1; *display: inline; /* IE fix for inline-block display */
-    vertical-align: middle;
+    background-color: #0e71b4;
+    width: 46px;
+    height: 41px;
 }
 
 #footer2 #newsletter {
-    background: #3A8BC2 url('../images/newsletter.png') no-repeat center center;
+    background: #0e71b4 url('../images/envelope.svg') no-repeat center center;
+    background-size: 30px 30px;
     margin: 0 0 0 20px;
 }
 
 #footer2 #newsletter:hover {
-	background-color: #ABACAE;
+    background-color: #ABACAE;
 }
 
 #footer2 #facebook {
-    background: #3A8BC2 url('../images/facebook.png') no-repeat center center;
+    background: #0e71b4 url('../images/facebook.svg') no-repeat center center;
+    background-size: 30px 30px;
     margin: 0 0 0 5px;
 }
 
 #footer2 #facebook:hover {
-	background-color: #ABACAE;
+    background-color: #ABACAE;
+}
+
+#footer2 #contact:hover {
+    background-color: #ABACAE;
 }
 
 #footer2 #youtube {
-    background: #3A8BC2 url('../images/youtube.png') no-repeat center center;
+    background: #0e71b4 url('../images/youtube.svg') no-repeat center center;
+    background-size: 30px 30px;
+    margin: 0 0 0 5px;
+}
+
+#footer2 #contact {
+    background: #0e71b4 url('../images/speech-bubble.svg') no-repeat center center;
+    background-size: 32px 32px;
     margin: 0 0 0 5px;
 }
 
 #footer2 #youtube:hover {
     background-color: #ABACAE;
+}
+
+#footer3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #footer3 div {
@@ -115,48 +87,14 @@
     font-weight: normal;
 }
 
-#footer3 a.SkinObject:hover, #footer3 a.SkinObject:active {
-    text-decoration: underline;
-}
-
-#footer3 #postalAddress {
-    text-transform: uppercase;
-}
-
 #footer3 #slogan span {
     text-transform: uppercase;
-    font-family: 'OpenSansRegular';
-    color: #3A8BC2;
+    font-family: 'Open Sans';
+    color: #0e71b4;
 }
 
 #footer3 #contactAndSlogan {
     padding: 30px;
-}
-
-#footer3 #postalAddress, #footer3 #telFaxEmail {
-    text-align: left;
-}
-
-#footer3 #telFaxEmail{
-    margin: 0 150px 0 40px;
-}
-
-#footer3 #telIcon, #footer3 #faxIcon, #footer3 #emailIcon {
-    margin: 0 5px 0 0;
-    width: 19px;
-    height: 12px;
-}
-
-#footer3 #telIcon {
-    background: url('../images/phone.png') no-repeat center center;
-}
-
-#footer3 #faxIcon {
-    background: url('../images/fax.png') no-repeat center center;
-}
-
-#footer3 #emailIcon {
-    background: url('../images/email.png') no-repeat center center;
 }
 
 #footer3 #infosLegales {
@@ -165,11 +103,6 @@
 
 #footer3 #contactAndSlogan div, #footer3 #infosLegales div {
     display: inline-block;
-    zoom: 1; *display: inline; /* IE fix for inline-block display */
-}
-
-#footer3 div#tel, #footer3 div#fax, #footer3 div#email {
-    display: block;
 }
 
 #footer3 #infosLegales div {

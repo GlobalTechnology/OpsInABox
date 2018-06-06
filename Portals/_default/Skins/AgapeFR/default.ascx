@@ -5,7 +5,7 @@
 <dnn:Header runat="server" ID="dnnHeader" />
 
 <div id="bar3" class="bar">
-	<div id="ContentContainer" class="centeredbox">
+	<div class="centeredbox">
         <div id="ContentPane" class="ContentPane" runat="server">
 		</div>
 	</div>

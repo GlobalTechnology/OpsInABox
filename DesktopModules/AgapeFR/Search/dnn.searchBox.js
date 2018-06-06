@@ -1,4 +1,4 @@
-﻿(function ($, window) {
+(function ($, window) {
 
     $.dnnSearchBox = function (options, element) {
         this.$el = $(element);
@@ -40,7 +40,7 @@
             if (advancedEnabled) {
                 markup += '<span class="dnnSearchBox_advanced_query" /><a class="dnnSearchBoxClearAdvanced"></a>';
             }
-            markup += '<input id="' + this.options.id + '_input" type="text" value="' + originalVal.replace(/"/g, '&quot;') + '" autocomplete="off" />' +
+            markup += '<input id="' + this.options.id + '_input" type="search" value="' + originalVal.replace(/"/g, '&quot;') + '" autocomplete="off" />' +
                             '<a class="dnnSearchBoxClearText"></a>';
 
             markup += '<a class="dnnSearchButton"></a>';
@@ -71,7 +71,7 @@
                 $('.dnnSearchBox_advanced_query', this.$wrap).hide().css({ marginRight: w + 30 });
                 $('.dnnSearchBoxClearAdvanced', this.$wrap).css({ right: w + 38, top: 0 });
             }
-            this.realInput.css({ right: realInputRight, width: wrapWidth - realInputRight - 8 });
+            
             if (originalVal) {
                 this.realInput.next().addClass('dnnShow').css({ right: realInputRight - 15});
             }

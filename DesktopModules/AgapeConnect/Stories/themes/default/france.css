@@ -1,59 +1,58 @@
-
 /* France's custom skin for the Stories module */
 
-
-/* END Slider Customization */
+/* Slider Customization */
 .theme-default .nivoSlider {
-	position:relative;
-	background:#fff url(loading.gif) no-repeat 50% 50%;
-    
-    -webkit-box-shadow: 0px 1px 9px 0px #4a4a4a;
-    -moz-box-shadow: 0px 1px 9px 0px #4a4a4a;
+    position: relative;
+    width: 100%;
+    padding-bottom: 50%;
     box-shadow: 0px 1px 9px 0px #4a4a4a;
 }
-.theme-default .nivoSlider img     
-{
+
+.theme-default .nivoSlider img {
     position: relative;
     overflow: hidden;
-}
-.theme-default .nivoSlider a {
-	border:0;
-	display:block;
+    position: absolute !important;
 }
 
-.theme-default .nivo-controlNav 
-{
+.theme-default .nivoSlider a {
+    border: 0;
+    display: block;
+}
+
+.theme-default .nivo-controlNav {
     position: relative;
-    height: 10px;
-	text-align: right;
-	margin-top: 5px;
+    text-align: right;
+    margin-top: 5px;
     color: transparent;
-	z-index: 9;
-	padding:  0;
+    padding: 0;
+    z-index: 1;
 }
+
 .theme-default .nivo-controlNav a {
-	display:inline-block;
-	width:18px;
-	height:18px;
-	background:url(bulletsIcon.png) no-repeat;
-	text-indent:-9999px;
-	border:0;
-	margin: 0 0px;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url(bulletsIcon.png) no-repeat;
+    text-indent: -9999px;
+    border: 0;
+    margin: 0 0px;
     color: transparent;
 }
+
 .theme-default .nivo-controlNav a.active {
-	background-position:0 -22px;
+    background-position: 0 -22px;
     color: transparent;
 }
 
 .theme-default .nivo-directionNav a {
-	display:block;
-	width:30px;
-	height:30px;
-	background:url(arrows.png) no-repeat;
-	text-indent:-9999px;
-	border:0;
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: url(arrows.png) no-repeat;
+    text-indent: -9999px;
+    border: 0;
     opacity: 0;
+    z-index: 7;
 }
 
 .theme-default:hover .nivo-directionNav a {
@@ -61,69 +60,68 @@
 }
 
 .theme-default a.nivo-nextNav {
-	background-position:-30px 0;
-	right:15px;
-}
-.theme-default a.nivo-prevNav {
-	left:15px;
+    background-position: -30px 0;
+    right: 15px;
 }
 
-.theme-default .nivo-caption a {
-    color:#3A8BC2;
-    border-bottom:1px dotted #fff;
+.theme-default a.nivo-prevNav {
+    left: 15px;
 }
-.theme-default .nivo-caption a:hover {
-    color:#3A8BC2;
-    text-decoration: none;
+
+.rotator1 .nivo-caption {
+    position: relative;
+    padding: 0;
+    background: transparent;
+    height: 84px;
+    z-index: 6;
 }
-.theme-default a.nivo-caption, .theme-default a.nivo-caption:hover,  .theme-default a.nivo-caption:link,  .theme-default a.nivoCaption:visited
-{
-    color: #3A8BC2;
+
+.rotator1 .slider-image-text {
+    margin: 0;
+    line-height: 42px;
+    overflow: hidden;
+    position: relative;
+}
+
+.rotator1 .nivo-caption:after {
+    content: "";
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 55%;
+    height: 42px;
+    background: linear-gradient(to right, rgba(220, 226, 227, 0), rgba(220, 226, 227, 1) 50%);
+}
+
+.rotator1 .nivo-caption a, .rotator1 .nivo-caption a:hover, .rotator1 .nivo-caption a:link, .rotator1 .nivoCaption a:visited {
+    color: #0e71b4;
     text-decoration: none;
 }
 
 .theme-default .nivo-controlNav.nivo-thumbs-enabled {
-	width: 100%;
-}
-.theme-default .nivo-controlNav.nivo-thumbs-enabled a {
-	width: auto;
-	height: auto;
-	background: none;
-	margin-bottom: 5px;
-}
-.theme-default .nivo-controlNav.nivo-thumbs-enabled img {
-	display: block;
-	width: 120px;
-	height: auto;
+    width: 100%;
 }
 
-.theme-default .nivo-caption {
-	font-family: Helvetica, Arial, sans-serif;
-    font-size: x-large ;
-	background:transparent;
-    color:#3A8BC2;
-    position: absolute ;
-    bottom: -120px;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    white-space: normal;
-    vertical-align: top;
-    height : 120px !important;
-    padding: 10px 0 10px 0;
+.theme-default .nivo-controlNav.nivo-thumbs-enabled a {
+    width: auto;
+    height: auto;
+    background: none;
+    margin-bottom: 5px;
+}
+
+.theme-default .nivo-controlNav.nivo-thumbs-enabled img {
+    display: block;
+    width: 120px;
+    height: auto;
 }
 
 .theme-default .nivo-box {
-	overflow: visible;
+    overflow: visible;
 }
-.nivo-box img { display:block; }
 
-.theme-default .nivoSlider {
-	position:relative;
-	width: 100%;
-	height:auto;
-	overflow: visible;
-	background-color: Black;
-    visibility: hidden;
+.nivo-box img {
+    display: block;
 }
 
 .theme-default .slider-image-text {
@@ -132,12 +130,15 @@
 }
 
 .theme-default a.nivo-imageLink.PlayButton {
-    background: url(play.png) no-repeat center; 
+    background: url(play.png) no-repeat center;
     opacity: 1;
 }
 
 .theme-default a.nivo-imageLink {
-	background:none; 
+    background: none;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 /* END Slider Customization */
@@ -146,7 +147,7 @@
 
 #fr_video_popup {
     display: none;
-    z-index:10000;
+    z-index: 10000;
     position: fixed;
     padding: 0;
     margin: 0;
@@ -162,30 +163,36 @@
 }
 
 .fr_video_popup_close {
-    color: white;
-    text-decoration: none;
     display: inline-block;
-    vertical-align: middle;
+    padding: 5px;
     position: relative;
-    -webkit-transition-duration: .5s;
     transition-duration: .5s;
-    -webkit-transition-property: transform;
     transition-property: transform;
-    -webkit-transition-timing-function: ease-in-out;
     transition-timing-function: ease-in-out;
 }
 
-.fr_video_popup_close:hover, .fr_video_popup_close:focus, .fr_video_popup_close:active {
-    -webkit-transform: rotate(180deg);
+.fr_video_popup_close:hover,
+.fr_video_popup_close:focus,
+.fr_video_popup_close:active {
     transform: rotate(180deg);
-    text-decoration: none;
-    color: white;
-    cursor:pointer;
+    cursor: pointer;
+}
+
+#fr_video_popup #playerspace {
+    width: 95%;
+    height: 50vw;
+    max-height: 75vh;
+}
+
+#fr_video_popup #popplayer {
+    width: 100%;
+    height: 100%;
 }
 
 /* END video popup */
 
 /* BEGIN Rotator1-Fr and Rotator2-Fr */
+
 .no-stories {
     font-size: small;
     color: red;
@@ -196,65 +203,73 @@
 /* BEGIN Rotator2-Fr */
 
 .rotator2 {
-    background: #F5F5F5;
-    padding: 30px 20px 30px 20px;
-    -webkit-box-shadow: inset 20px 0px 20px -25px rgba(0, 0, 0, 0.45), inset -20px 0px 20px -25px rgba(0, 0, 0, 0.45);
-    -moz-box-shadow: inset 20px 0px 20px -25px rgba(0, 0, 0, 0.45), inset -20px 0px 20px -25px rgba(0, 0, 0, 0.45);
-    box-shadow: inset 20px 0px 20px -25px rgba(0, 0, 0, 0.45), inset -20px 0px 20px -25px rgba(0, 0, 0, 0.45);
-    display: flex;
     margin-top: 30px;
 }
 
-
-.rotator2 .theme-default {
-}
-
 .rotator2 .nivo-caption {
-	font-family: Helvetica, Arial, sans-serif;
-    font-size: x-large ;
-	background:transparent;
-    color:#3A8BC2;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: x-large;
+    background: transparent;
+    color: #0e71b4;
     overflow-y: hidden;
     overflow-x: hidden;
     white-space: normal;
     vertical-align: top;
     padding: 0 10px;
-    position:relative;
-    width:300px;
+    position: relative;
     margin-left: 10px;
+    width: 90%;
+    z-index: 7;
 }
 
 .rotator2 .nivo-caption a:hover {
     text-decoration: none;
 }
 
-.rotator2 a.nivo-caption, .rotator2 a.nivo-caption:hover,  .rotator2 a.nivo-caption:link,  .rotator2 a.nivoCaption:visited
-{
+.rotator2 a.nivo-caption, .rotator2 a.nivo-caption:hover, .rotator2 a.nivo-caption:link, .rotator2 a.nivoCaption:visited {
     text-decoration: none;
 }
 
 .rotator2 .nivo-caption h1 {
-    margin-top:-10px;
+    margin-top: -10px;
 }
 
 .rotator2 .nivo-caption h2 {
-    margin-top:-10px;
-}
-
-.addthis_toolbox {
-    padding-left: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    position: absolute;
-    bottom: 0;
+    margin-top: -10px;
 }
 
 /* END Rotator2-Fr */
 
-/* BEGIN don't know what this goes to */
+@media only screen and (min-width: 768px) { /* For tablets: */
 
-.dnnGridItem:hover span.storyTitle, .dnnGridAltItem:hover span.storyTitle {
-    text-decoration: none;
+    .rotator1 .nivo-caption {
+        height: 42px;
+    }
+
+    .rotator1 .nivo-caption:after {
+        width: 100px;
+    }
 }
 
-/* END don't know what this goes to */
+@media only screen and (min-width: 1024px) { /* For desktop: */
+
+    .rotator2 {
+        display: flex;
+    }
+
+    .addthis_toolbox {
+        padding-left: 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .rotator2 .theme-default {
+        width: 935px;
+    }
+
+    .rotator2 .nivo-caption {
+        width: 300px;
+    }
+}

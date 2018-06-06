@@ -1,14 +1,17 @@
-﻿body, .Normal {
+* {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+}
+body, .Normal {
 	font-size: medium;
     line-height: 1.5;
 }
 
-body, p, ul, ol, a:link, a:active, a:visited, a:hover, select {
-    font-weight: normal;
-	font-family: OpenSansRegular;
+body, p, ul, ol, a:link, a:active, a:visited, a:hover, select, input {
     font-size: inherit;
     color: #5f5f5f;
-    -webkit-text-size-adjust: 100%; /*Prevent iPhone Text Enlargement*/
+    font-family: 'Open Sans';
 }
 
 p {
@@ -18,7 +21,7 @@ p {
 }
 
 a:link, a:active, a:visited, a:hover {
-	color: #3A8BC2;
+	color: #0e71b4;
 }
 
 a:link, a:active, a:visited {
@@ -30,9 +33,9 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans';
+    font-weight: 400;
     display: block;
-    font-weight: normal;
-	font-family: OpenSansRegular;
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -40,13 +43,13 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 }
 
 h1 {
-    font-size: 28px;
+    font-size: 24px;
     line-height: 54px;
     letter-spacing: -0.03em;
     margin-top: 8px;
     margin-bottom: 10px;
     text-transform: uppercase;
-    color: #3A8BC2;
+    color: #0e71b4;
 }
 
 h2 {
@@ -64,20 +67,20 @@ h3 {
     letter-spacing: -1px;
     margin-top: 8px;
     margin-bottom: 10px;
-    color: #3A8BC2;
+    color: #0e71b4;
 }
 
 h4 {
     font-size: 20px;
     line-height: 30px;
     letter-spacing: -1px;
-    color: #3A8BC2;
+    color: #0e71b4;
 }
 
 h5 {
     font-size: 18px;
     line-height: 22px;
-    color: #3A8BC2;
+    color: #0e71b4;
 }
 
 h6 {
@@ -86,14 +89,14 @@ h6 {
     color: #5f5f5f;
 }
 
-.highlight {
-    font-family: OpenSansBold;
-    color: #383838;
-    display: inline;
+.story-col-l {
+    color: #5f5f5f;
 }
-
+.story-col-r {
+    color: #5f5f5f;
+}
 .introduction {
-    color: #3A8BC2;
+    color: #0e71b4;
     font-weight: normal;
     font-size: medium;
 }
@@ -138,12 +141,4 @@ ol {
 ul li, ol li {
     text-align: left;
     margin-bottom: 10px;
-}
-
-em, i {
-    font-family: OpenSansItalic;
-}
-
-strong, b {
-    font-family: OpenSansBold;
 }

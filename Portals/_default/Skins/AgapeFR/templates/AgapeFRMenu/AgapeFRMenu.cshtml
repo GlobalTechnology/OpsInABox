@@ -1,57 +1,35 @@
 ﻿@using DotNetNuke.Web.DDRMenu;
-@using System.Dynamic; 
-@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic>
+@using System.Dynamic;
+@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage
 @{ var root = Model.Source.root; }
 
 @helper RenderNodes(IList<MenuNode> nodes)
 {
-    if (nodes.Count > 0)
-    {
-    <ul class="navhor">
-        @foreach (var node in nodes)
-        {
-            if (IsVisible(node))
+if (nodes.Count > 0)
+{
+        <ul>
+            @foreach (var node in nodes)
             {
                 var cssClasses = new List<string>();
-                if (node.Selected || HasSelectedChild(node)) { cssClasses.Add("selected"); }
-                var classString = new HtmlString((cssClasses.Count == 0) ? "" :
-                                    (" class=\"" + String.Join(" ", cssClasses.ToArray()) + "\""));
-                <li @classString>
+                if (node.First) { cssClasses.Add("first"); }
+                if (node.Last) { cssClasses.Add("last"); }
+                if (node.Selected) { cssClasses.Add("selected menuopen"); }
+                if (node.Breadcrumb) { cssClasses.Add("menuopen"); }
+                if (node.Children.Count > 0) { cssClasses.Add("parent"); }
+                var classString = new HtmlString((cssClasses.Count == 0) ? "" : (String.Join(" ", cssClasses.ToArray()) + "\""));
+                <li class="@classString">
                     @if (node.Enabled)
                     {
-                        <a href="@node.Url">@node.Text</a>
-                        <div id="pointer"></div>
-                        }
+                        <a class="@classString" href="@node.Url" target="@node.Target">@node.Text</a>
+                    }
                     else
                     {
-                        @node.Text
-                    }
+                        <span class="offlink">@node.Text</span>
+                    }                    
+                    @RenderNodes(node.Children)
                 </li>
             }
-        }
-    </ul>
-    }
+        </ul>
 }
-
-@functions{
-
-    public int portalId = DotNetNuke.Entities.Portals.PortalController.GetCurrentPortalSettings().PortalId;
-    public DotNetNuke.Entities.Tabs.TabController tc = new DotNetNuke.Entities.Tabs.TabController();
-
-    Boolean HasSelectedChild(MenuNode node)
-    {
-        foreach (var child in node.Children)
-        {
-            if (child.Selected || HasSelectedChild(child)) { return true; }
-        }
-        return false;
-    }
- 
-    public Boolean IsVisible(MenuNode node)
-    {
-        DotNetNuke.Entities.Tabs.TabInfo tab = tc.GetTab(node.TabId, portalId, false);
-        return tab.IsVisible;
-    }   
 }
-
 @RenderNodes(root.Children)

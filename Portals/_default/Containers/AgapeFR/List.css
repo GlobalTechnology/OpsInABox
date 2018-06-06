@@ -1,19 +1,10 @@
-.list {
-    padding-left: 0;
-}
-
-.list p {
-    font-size: small;
-    margin-right: 196px; /* So that the image is not on the text */
-}
-
 .list a {
     position: relative; /* To center the inner image vertically */
-    display: block;
+    display: flow-root;
     margin: 0;
-    padding: 10px;
     border: 2px solid transparent; /* To avoid moving text when adding a border on hover */
     border-bottom: 1px solid #ddd; /* Horizontal separator */
+    padding: 10px; /*make room around text*/
 }
 
 .list a + a {
@@ -28,10 +19,10 @@
     background-color: #f1f1f1;
 }
 
-.list a + a:hover, .list a:hover + a {
-    /* Not for first element. Applied if element or previous element is hover. */
-    border-top: 1px solid lightgrey;
-}
+    .list a + a:hover, .list a:hover + a {
+        /* Not for first element. Applied if element or previous element is hover. */
+        border-top: 1px solid lightgrey;
+    }
 
 .list a:last-of-type:hover {
     /* Only for last element */
@@ -40,14 +31,29 @@
 }
 
 .list a img {
-    float: right;
-    width: 186px;
-    height: 75px;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    margin: -37px 10px 10px 10px;
+    width: 100%;
+    margin-top: -40px;
 }
 
+.list a h4 {
+    display: inline-block;
+    position: relative;
+    background: #0e71b4;
+    color: white;
+    padding: 5px 10px;
+}
 
+@media screen and (min-width: 768px) { /*tablet mode*/
+    #bar3 .list a img {
+        width: 50%;
+        float: right;
+        padding-left: 10px;
+        margin-top: 0;
+    }
 
+    .list a h4 {
+        background: none;
+        color: #0e71b4;
+        padding: 0;
+    }
+}

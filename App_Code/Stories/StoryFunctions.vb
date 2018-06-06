@@ -126,10 +126,8 @@ Public Module ViewStoryConstants
     Public Const NUM_OF_RELATED_ARTICLES As Integer = 3
     Public Const NUM_OF_RELATED_AGENDA As Integer = 3
     Public Const HTML_META_PROPERTY As String = "property"
-
-    Public eventIcon As String = StoryFunctionsProperties.StoriesModulePath & "/images/eventIcon.png"
-    Public articleIcon As String = StoryFunctionsProperties.StoriesModulePath & "/images/articleIcon.png"
-    Public calendarIcon As String = StoryFunctionsProperties.StoriesModulePath & "/images/cal.png"
+    Public Const eventIcon As String = "eventIcon"
+    Public Const articleIcon As String = "articleIcon"
 
 End Module
 
@@ -1038,7 +1036,7 @@ Public Class StoryFunctions
 
                 dataRow(ControlerConstants.SLIDEIMAGE) = story.ImageId
                 dataRow(ControlerConstants.SLIDEIMAGEALTTEXT) = story.Headline
-                dataRow(ControlerConstants.SLIDEIMAGETITLE) = story.Headline
+                dataRow(ControlerConstants.SLIDEIMAGETITLE) = Left(story.Headline, 75)
                 dataRow(ControlerConstants.SLIDEIMAGESUBTITLE) = story.Subtitle
                 dataRow(ControlerConstants.SLIDEIMAGEDESC) = story.Description
 

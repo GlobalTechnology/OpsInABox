@@ -5,10 +5,10 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-	border: 1px solid #DFDFDF;
-    -moz-box-shadow:    1px 1px 5px 2px #F4F4F4;
+    border: 1px solid #DFDFDF;
+    -moz-box-shadow: 1px 1px 5px 2px #F4F4F4;
     -webkit-box-shadow: 1px 1px 5px 2px #F4F4F4;
-    box-shadow:         1px 1px 5px 2px #F4F4F4;
+    box-shadow: 1px 1px 5px 2px #F4F4F4;
 }
 
 .BluePromotionBox .titleContainer {
@@ -22,15 +22,16 @@
     -webkit-border-radius: 5px 5px 0 0;
     -moz-border-radius: 5px 5px 0 0;
     border-radius: 5px 5px 0 0;
-	border: none;
+    border: none;
 }
 
 .BluePromotionBox .title {
     color: white;
     text-transform: uppercase;
-    font-family: 'OpenSansBold';
+    font-family: 'Open Sans';
+    font-weight: 700;
     font-size: 20px;
-    letter-spacing : -1px;
+    letter-spacing: -1px;
     position: relative;
 }
 
@@ -39,7 +40,8 @@
     line-height: 48px;
     width: 261px;
     position: absolute;
-    right: 0; top: 0;
+    right: 0;
+    top: 0;
     background: url('images/BoxTitleRays.png') no-repeat;
 }
 
@@ -48,12 +50,15 @@
     border-top: 1px solid white;
     position: relative;
 }
+
 #ContentContainer .BluePromotionBox .ContentPane {
     padding-bottom: 0px;
-	margin: 0px;
+    margin: 0px;
 }
+
 .BluePromotionBox .contentpane div.Normal img {
-    position: absolute; z-index: -1;
+    position: absolute;
+    z-index: -1;
     top: 0;
     left: 0;
     margin: -20px -20px 0 -20px;
@@ -65,21 +70,18 @@
 
 .BluePromotionBox .contentContainer .DNNModuleContent {
     height: 676px;
-    display:table;
+    display: table;
 }
 
 .BluePromotionBox .Normal {
-    vertical-align:bottom;
-    display:table-cell;
+    vertical-align: bottom;
+    display: table-cell;
     text-align: right;
-    *clear: expression(
-        style.marginTop = "" + (offsetHeight < parentNode.offsetHeight ? parseInt((parentNode.offsetHeight - offsetHeight)) + "px" : "0"),
-        style.clear = "none", 0
-        );
+    *clear: expression( style.marginTop = "" + (offsetHeight < parentNode.offsetHeight ? parseInt((parentNode.offsetHeight - offsetHeight)) + "px" : "0"), style.clear = "none", 0 );
 }
 
 .BluePromotionBox .contentContainer .DNNModuleContent p {
-    font-family: OpenSansRegular;
+    font-family: Open Sans;
     font-size: 20px;
     padding-bottom: 20px;
 }
@@ -96,9 +98,9 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    font-family: OpenSansSemiBold;
+    font-family: Open Sans;
     color: #DBDEE3;
-    white-space: nowrap; 
+    white-space: nowrap;
     text-align: left;
 }
 
@@ -112,5 +114,3 @@
     text-decoration: none;
     color: #ABACAE;
 }
-
-

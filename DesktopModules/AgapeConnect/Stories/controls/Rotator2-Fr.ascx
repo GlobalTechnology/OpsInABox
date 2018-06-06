@@ -2,6 +2,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <dnn:DnnJsInclude runat="server" FilePath="/js/jquery.nivo.slider.js" />
 <dnn:DnnJsInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/js/videopopup.js" />
+<dnn:DnnJsInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/js/jquery.mobile.custom.touch.min.js" />
 <dnn:DnnCssInclude runat="server" FilePath="/js/nivo-slider.css" />
 <dnn:DnnCssInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/themes/default/france.css" />
 <dnn:DnnJsInclude runat="server" FilePath="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52c6717a6463b499" />
@@ -13,13 +14,18 @@
                  'visibility':'visible'}).nivoSlider({
                  effect: 'fade',
                  pauseTime: <%= hfPauseTime.Value %>,
-                 width: <%= hfDivWidth.Value %>,
                  manualAdvance: <%= hfManualAdvance.Value %>,
                  manualCaption: true,
                  channelID: <%= hfChannelId.Value %>,
                  beforeChange: function(){linkImageFadeOut('#slider<%= hfChannelId.Value %>');},
                  afterChange: function(){loadAddThis();},
-             });
+                 });
+             $(".rotator2").on("swipeleft", function () {
+                 $(".rotator2 .nivo-nextNav").trigger("click"); //next slide
+             }); 
+             $(".rotator2").on("swiperight", function () {
+                 $(".rotator2 .nivo-prevNav").trigger("click"); //previous slide
+             }); 
          }
 
          $(document).ready(function () {
@@ -50,11 +56,10 @@
 </script>
 <asp:HiddenField ID="hfManualAdvance" runat="server" />
 <asp:HiddenField ID="hfPauseTime" runat="server" />
-<asp:HiddenField ID="hfDivWidth" runat="server" />
 <asp:HiddenField ID="hfChannelId" runat="server" />
 
 <div id="rotator<%= hfChannelId.Value %>" class="rotator2">
-<div id="rotatorContainer<%= hfChannelId.Value %>" class="theme-default" style="width:<%= hfDivWidth.Value %>">
+<div id="rotatorContainer<%= hfChannelId.Value %>" class="theme-default">
     <div id="slider<%= hfChannelId.Value %>" class="nivoSlider">
         <asp:Repeater ID="SliderImageList" runat="server">
             <ItemTemplate>

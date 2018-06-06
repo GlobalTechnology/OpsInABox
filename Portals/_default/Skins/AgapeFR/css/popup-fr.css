@@ -1,21 +1,40 @@
-﻿#popupclose {
-    text-decoration:none;
-    color:#3a8bc2;
-    cursor:pointer;
+#popupclose {
+    display: inline-block;
+    position: relative;
+    transition-duration: .5s;
+    transition-property: transform;
+    transition-timing-function: ease-in-out;
 }
+
 #my_popup {
-    z-index: 1001;
+    z-index: 10;
     position: fixed;
     bottom: 0;
     right: 0;
     display: none;
     padding: 0px 25px 25px;
     background: rgba(255,255,255,0.9);
-    border: 2px solid #3a8bc2;
-    width: 20%;
+    border: 2px solid #0e71b4;
+    width: 100%;
     min-width: 270px;
-    border-radius: 5px 0px 0px 5px;
+    border-radius: 5px;
 }
+
 .my_popup_close {
     text-align: right;
+    margin-top: 20px;
+}
+
+.my_popup_close svg .cancelbutton {
+        fill: #0e71b4;
+}
+
+#popupclose:hover, #popupclose:focus, #popupclose:active {
+    transform: rotate(180deg);
+}
+
+@media screen and (min-width: 768px) { /*tablet mode*/
+    #my_popup {
+        width: 20%;
+    }
 }

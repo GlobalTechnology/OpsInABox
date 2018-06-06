@@ -118,12 +118,12 @@ Namespace DotNetNuke.Modules.FullStory
             'Set template
             If StoryFunctions.IsStoryType(story, FRENCH_EVENT) Then
                 Dim relatedAgenda As IQueryable(Of AP_Story) =
-                        StoryFunctions.GetRelatedEventsForEvents(story.StoryId, story.TabModuleId, PortalId, NUM_OF_RELATED_AGENDA)
+                    StoryFunctions.GetRelatedEventsForEvents(story.StoryId, story.TabModuleId, PortalId, NUM_OF_RELATED_AGENDA)
                 SetTemplateFields(template, story, eventIcon, FRENCH_EVENT, FormatingRelatedAgenda(relatedAgenda))
                 zoomLevel = 15
             Else
                 Dim relatedAgenda As IQueryable(Of AP_Story) =
-                        StoryFunctions.GetRelatedEventsForArticles(story.StoryId, story.TabModuleId, PortalId, NUM_OF_RELATED_AGENDA)
+                    StoryFunctions.GetRelatedEventsForArticles(story.StoryId, story.TabModuleId, PortalId, NUM_OF_RELATED_AGENDA)
                 SetTemplateFields(template, story, articleIcon, FRENCH_ARTICLE, FormatingRelatedAgenda(relatedAgenda))
             End If
 
@@ -238,18 +238,16 @@ Namespace DotNetNuke.Modules.FullStory
             Dim returnString As String = ""
 
             If relatedStories.Count > 0 Then
-                returnString &= "<h2 class=""agendaTitle"">" & LocalizeString("Agenda") & "</h2>"
+                returnString &= "<div class='afsocialblock'>"
+                returnString &= "<h6>" & LocalizeString("Agenda") & "</h6>"
                 For Each relatedStory In relatedStories
                     returnString &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?"
                     returnString &= GetStoryURLParams(relatedStory.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)) & """>"
-                    returnString &= "<table><tr><td style='vertical-align: top;'><div class='eventDay' >" & relatedStory.StoryDate.Day & "</div>"
-                    returnString &= "<div class='eventMonth'>" & relatedStory.StoryDate.ToString("MMM", New CultureInfo("fr-fr")) & "</div>"
-                    returnString &= "<img src='" & ViewStoryConstants.calendarIcon & "' style='width:32px;' /></td><td style='padding-left: 12px;'>"
-                    returnString &= "<h4 class='eventTitle'>" & relatedStory.Headline & "</h4>"
-
-                    returnString &= "<h6  class='eventSample'>" & relatedStory.TextSample & "</h6></td></tr></table></a></div>"
-                    relatedStory.StoryDate.ToString()
+                    returnString &= "<span class='eventIcon'></span>"
+                    returnString &= "<div class='afeventinfo'><span class='eventTitle'>" & relatedStory.Headline & "</span><br>"
+                    returnString &= "<span class='eventDate'>" & relatedStory.StoryDate.ToString("dd MMMM yyyy", New CultureInfo("fr-fr")) & "</span></div></a></div>"
                 Next
+                returnString &= "</div>"
             End If
 
 
@@ -261,17 +259,17 @@ Namespace DotNetNuke.Modules.FullStory
             Dim returnString As String = ""
 
             If relatedStories.Count > 0 Then
-                returnString &= "<h2 class=""agendaTitle"">" & LocalizeString(StoryFunctions.getChannelTitle(relatedStories.First.TabModuleId)) & "</h2>"
+                returnString &= "<div class='afsocialblock'>"
+                returnString &= "<h6>" & LocalizeString(StoryFunctions.getChannelTitle(relatedStories.First.TabModuleId)) & "</h6>"
 
                 For Each relatedStory In relatedStories
                     returnString &= "<div class='eventDiv'><a href=""" & NavigateURL() & "?"
                     returnString &= GetStoryURLParams(relatedStory.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)) & """>"
-                    returnString &= "<table><tr><td style='vertical-align: top;'>"
-                    returnString &= "<img src='" & ViewStoryConstants.articleIcon & "' /></td><td style='padding-left: 12px;'>"
-                    returnString &= "<h4 class='eventTitle'>" & relatedStory.Headline & "</h4>"
-                    returnString &= "<h6  class='eventSample'>" & relatedStory.StoryDate.ToString("dd MMMM yyyy", New CultureInfo("fr-fr")) & "</h6></td></tr></table></a></div>"
+                    returnString &= "<span class='articleIcon'></span>"
+                    returnString &= "<div class='afeventinfo'><span class='eventTitle'>" & relatedStory.Headline & "</span><br>"
+                    returnString &= "<span class='eventDate'>" & relatedStory.StoryDate.ToString("dd MMMM yyyy", New CultureInfo("fr-fr")) & "</span></div></a></div>"
                 Next
-                returnString &= "</ul>"
+                returnString &= "</div>"
             End If
             Return returnString
         End Function
@@ -280,13 +278,14 @@ Namespace DotNetNuke.Modules.FullStory
             Dim returnString As String = ""
 
             If relatedStories.Count > 0 Then
-                returnString &= "<h3>" & LocalizeString("RelatedNews") & "</h3><ul class=""nav nav-tabs nav-stacked"">"
+                returnString &= "<div class='afsocialblock'>"
+                returnString &= "<h6>" & LocalizeString("RelatedNews") & "</h6><ul class=""nav nav-tabs nav-stacked"">"
                 For Each relatedStory In relatedStories
                     returnString &= "<li><a href=""" & NavigateURL() & "?"
                     returnString &= GetStoryURLParams(relatedStory.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)) & """>"
                     returnString &= relatedStory.Headline & "</a></li>"
                 Next
-                returnString &= "</ul>"
+                returnString &= "</ul></div>"
             End If
             Return returnString
         End Function
