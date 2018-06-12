@@ -39,6 +39,7 @@ html, body, form {
 
 #Form { /*to allow full height menu*/
     position: relative;
+    /* min-height: 150vh; */
 }
 
 [class*="col-"] { /*responsive classes*/
@@ -57,10 +58,12 @@ html, body, form {
     display: table;
 }
 
+.dnnSearchBoxPanel .dnnSearchBox > a.dnnSearchBoxClearText { /*fix cleartext button position on search page*/
+    display: inline-block;
+}
+
 /*=== Page Globals Section End ===*/
-
 /*=== Buttons Section Begin ===*/
-
 .button, a.button:link, a.button:visited,
 .dnnPrimaryAction, a.dnnPrimaryAction, p a.dnnPrimaryAction,
 .dnnFormPopup .ui-dialog-buttonpane button.dnnPrimaryAction,
