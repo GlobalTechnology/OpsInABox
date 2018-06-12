@@ -34,8 +34,7 @@
     <% If UserController.Instance.GetCurrentUserInfo().UserID > 0  %>
         <ul id="usercontainer" runat="server">
             <li class="parent">
-                <a href="#" id="UserContainer" class="parent"><%=UserController.Instance.GetCurrentUserInfo().DisplayName%></a>
-                <span class="menudrop"></span>
+                <a href="#" id="UserContainer" class="offlink"><%=UserController.Instance.GetCurrentUserInfo().DisplayName%></a>
                 <ul>
                     <li><dnn:LOGIN runat="server" ID="dnnLOGIN" CssClass="user" /></li>
                 </ul>

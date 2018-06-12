@@ -45,6 +45,7 @@
     padding-left: 40px;
     margin: 0;
     color: white;
+    cursor: pointer;
 }
 
 .sidenav ul li ul { /*hide second level links*/
@@ -52,7 +53,7 @@
     margin-top: 10px;
 }
 
-li.parent span:first-of-type::after {
+.sidenav li.parent>.offlink:first-of-type::after {
     content: url(/Portals/_default/Skins/AgapeFR/images/down-arrow.svg);
     margin-left: 10px;
     vertical-align: sub;
@@ -65,7 +66,7 @@ li.parent span:first-of-type::after {
 
 
 
-li.menuopen span:first-of-type::after { /*flip menu arrow up*/
+.sidenav li.menuopen.parent>.offlink:first-of-type::after { /*flip menu arrow up*/
     transform: rotate(180deg);
 }
 
