@@ -19,6 +19,7 @@
 .sidenav li {
     font-size: 24px;
     color: #ffffff;
+    line-height: 36px;
 }
 
 .opensidenav { /*show nav menu*/
@@ -32,13 +33,18 @@
 }
 
 .sidenav a:hover,
+.sidenav a:focus, 
 .sidenav a.selected,
 .sidenav .parent .offlink:hover { /*underline active or hovered links*/
     text-decoration: underline;
+    color: unset;
 }
 
 .sidenav ul { /*remove bullets on links*/
     list-style-type: none;
+    padding-left: 40px;
+    margin: 0;
+    color: white;
 }
 
 .sidenav ul li ul { /*hide second level links*/
