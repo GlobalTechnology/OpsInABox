@@ -1,5 +1,6 @@
 /*===================== FONTS ===================== */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i');
+/*@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i');*/
+/*Loaded in site settings as host*/
 
 /*===================== TYPOGRAPHY ===================== */
 @import url("/Portals/_default/Skins/AgapeFR/css/typography.css");
@@ -39,6 +40,7 @@ html, body, form {
 
 #Form { /*to allow full height menu*/
     position: relative;
+    /* min-height: 150vh; */
 }
 
 [class*="col-"] { /*responsive classes*/
@@ -57,10 +59,12 @@ html, body, form {
     display: table;
 }
 
+.dnnSearchBoxPanel .dnnSearchBox > a.dnnSearchBoxClearText { /*fix cleartext button position on search page*/
+    display: inline-block;
+}
+
 /*=== Page Globals Section End ===*/
-
 /*=== Buttons Section Begin ===*/
-
 .button, a.button:link, a.button:visited,
 .dnnPrimaryAction, a.dnnPrimaryAction, p a.dnnPrimaryAction,
 .dnnFormPopup .ui-dialog-buttonpane button.dnnPrimaryAction,

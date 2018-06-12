@@ -77,8 +77,7 @@
     color: red;
 }
 
-.Documents .SubmitPanel
-{
+.Documents .SubmitPanel{
     color: gray;
     font-size: 12px;
     margin-top: 10px;
@@ -87,16 +86,6 @@
 
 .Documents .button {
     margin-top: 15px;
-}
-
-.Documents .Menu_Prefix
-{
-
-}
-
-.Documents .Menu_Suffix
-{
-
 }
 
 .Documents .btnEdit {
@@ -216,12 +205,9 @@
 
 
 #DocumentsMain #SearchRessource input {
-	-webkit-border-radius: .5em 0 0 .5em;
-    -moz-border-radius: .5em 0 0 .5em;
     border-radius: .5em 0 0 .5em;
 	border-style: none;
 	margin: 0px;
-	font-family: 'OpenSansItalic';
     height: 26.5px;
 	padding-left: 8px;
 	width: 300px;
@@ -229,15 +215,14 @@
 }
 
 #DocumentsMain .SearchNew {
-	-webkit-border-radius: 0 .5em .5em 0;
-    -moz-border-radius: 0 .5em .5em 0;
     border-radius: 0 .5em .5em 0;
-	border-style: none;
-	background-color: #3A8BC2;
+    border-style: none;
+    background-color: #3A8BC2;
     height: 27px;
-	width: 31px;
-	background:#3A8BC2 url('images/loupe.png') no-repeat center center;
-    display:inline-block;
+    width: 31px;
+    background: #3A8BC2 url(images/search.svg) no-repeat center center;
+    background-size: 16px;
+    display: inline-block;
     padding: 0px 0px 0px 0px;
     margin: -1.5px 0px 0px -5px;
 }
