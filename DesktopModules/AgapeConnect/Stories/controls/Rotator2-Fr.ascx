@@ -78,7 +78,6 @@
             </ItemTemplate>
         </asp:Repeater>
     </div>
-    
 </div>
     <div id="manual-nivo-caption<%= hfChannelId.Value %>" class="nivo-caption"></div>
     <div class="no-stories">
