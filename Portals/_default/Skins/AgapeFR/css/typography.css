@@ -106,14 +106,9 @@ h6 {
 }
 
 .quote {
-    background: white url(/Portals/_default/Skins/AgapeFR/images/quote.png) no-repeat;
-    margin: 15px 0 0 0;
-    padding: 5px 0 0 60px;
-    color: #545454;
+    padding-left: 25px;
+    border-left: 6px solid #e6e6e6;
     font-style: italic;
-    font-size: 20px;
-    min-height: 39px;
-    line-height: 28px;
 }
 
 .draft {
