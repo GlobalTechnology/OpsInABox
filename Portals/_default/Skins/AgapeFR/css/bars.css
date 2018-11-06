@@ -15,15 +15,9 @@
 #bar2{
     background: #dce2e3;
 }
-
 #bar3 img{
     max-width: 100%;
 }
-
-#bar3 .contentpane {
-    width: 100%;
-}
-
 #bar4{
     background: #dce2e3;
 }
@@ -42,11 +36,10 @@ background: repeating-linear-gradient(110deg, #FFFFFF, #e4e4e4 4px, #f5f5f5 4px)
         height: 160px;
     }
 }
-
 @media screen and (min-width: 1024px) { /*computer mode*/
     .centeredbox {
-        max-width: 1300px;
-        margin-left: auto;
-        margin-right: auto;
+        max-width:1300px;
+        margin-left:auto;
+        margin-right:auto;
     }
 }
