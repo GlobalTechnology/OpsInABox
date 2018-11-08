@@ -172,10 +172,6 @@ input[type="search"]::-webkit-search-cancel-button { /* Remove default decoratio
         height: 160px;
     }
 
-    #bar1 #menu #menubuttons { /*raise menu icons*/
-        margin-right: 24px;
-    }
-
     #bar1.menuopen #SearchContainer.opensearch input { /*show search field*/
         width: 100%;
     }
