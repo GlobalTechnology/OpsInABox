@@ -1,4 +1,4 @@
-<%@ Control Language="vb" AutoEventWireup="false" Explicit="True" %>
+<%@ Control Language="vb" AutoEventWireup="false" Explicit="True" CodeFile="Header.ascx.vb" Inherits="Portals__default_Skins_AgapeFR_controls_Header" %>
 <%@ Register TagPrefix="dnn" TagName="USER" Src="~/Admin/Skins/User.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="LOGIN" Src="~/Admin/Skins/Login.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="SEARCH" Src="~/DesktopModules/AgapeFR/Search/Search.ascx" %>
@@ -6,15 +6,7 @@
 <%@ Register TagPrefix="ddr" TagName="MENU" src="~/DesktopModules/DDRMenu/Menu.ascx" %>
 <meta name="theme-color" content="#0e71b4">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script runat="server">
-    Protected Function Translate(ResourceKey As String) As String
-        Dim PS = CType(HttpContext.Current.Items("PortalSettings"), PortalSettings)
-        Dim strFile As String = System.IO.Path.GetFileName(Server.MapPath(PS.ActiveTab.SkinSrc))
-        strFile = PS.ActiveTab.SkinPath + Localization.LocalResourceDirectory + "/" + strFile
-        Return Localization.GetString(ResourceKey, strFile)
-    End Function
 
-</script>
 <script src="/js/jquery.watermarkinput.js" type="text/javascript"></script>
 <script type="text/javascript">
     (function ($, Sys) {
@@ -29,18 +21,17 @@
         });
     }(jQuery, window.Sys));
 </script>
+
 <div id="mySidenav" class="sidenav">
     <ddr:MENU ID="MENU1" MenuStyle="/templates/AgapeFRMenu/" NodeSelector="*,0,+1" runat="server" includehidden="false" />
-    <% If UserController.Instance.GetCurrentUserInfo().UserID > 0  %>
-        <ul id="usercontainer" runat="server">
-            <li class="parent">
-                <a href="#" id="UserContainer" class="offlink"><%=UserController.Instance.GetCurrentUserInfo().DisplayName%></a>
+    <ul id="userConnected" runat="server">
+        <li class="parent">
+            <a href="#" id="UserContainer" class="offlink"><%=UserController.Instance.GetCurrentUserInfo().DisplayName%></a>
                 <ul>
                     <li><dnn:LOGIN runat="server" ID="dnnLOGIN" CssClass="user" /></li>
                 </ul>
-            </li>
-        </ul>
-    <% End If %>
+        </li>
+    </ul>
 </div>
 
 <div id="controlPanelContainer">
@@ -89,6 +80,12 @@
                 <path class="stripe" d="M25.915,52.205c6.377,0,12.206-2.344,16.708-6.196L59.98,63.365c0.392,0.391,0.904,0.587,1.418,0.587   c0.513,0,1.025-0.196,1.418-0.587c0.392-0.393,0.588-0.904,0.588-1.418s-0.196-1.027-0.588-1.419L45.459,43.172   c3.853-4.5,6.197-10.331,6.197-16.707c0-14.194-11.549-25.741-25.741-25.741c-14.194,0-25.742,11.547-25.742,25.741   C0.173,40.658,11.721,52.205,25.915,52.205z M25.915,4.735c11.98,0,21.729,9.747,21.729,21.729c0,11.98-9.749,21.729-21.729,21.729   c-11.981,0-21.73-9.748-21.73-21.729C4.185,14.482,13.934,4.735,25.915,4.735z"/>
                 </g>
             </svg>
+             <svg id="userIcon" runat="server" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50px" version="1.1" height="50px" viewBox="0 0 64 64" enable-background="new 0 0 64 64">
+                <g>
+                <path class="stripe" d="m63.834,61.199c-0.767-3.404-6.562-24.541-31.855-24.541-27.372,0-31.908,24.748-31.951,24.999-0.098,0.581 0.062,1.179 0.444,1.63 0.381,0.452 0.942,0.713 1.532,0.713h59.951c0.016,0 0.027,0 0.041,0 1.105,0 2.004-0.897 2.004-2.006 0-0.282-0.059-0.553-0.166-0.795zm-59.259-1.211c1.742-5.632 7.977-19.317 27.403-19.317s25.662,13.685 27.404,19.317h-54.807z" fill="#FFFFFF"/>
+                <path class="stripe" d="m31.977,32.895c9.063,0 16.436-7.377 16.436-16.447-0.001-9.069-7.373-16.448-16.436-16.448-9.06,0-16.43,7.379-16.43,16.447 0,9.071 7.37,16.448 16.43,16.448zm0-28.883c6.854-8.88178e-16 12.428,5.578 12.428,12.436 0,6.856-5.573,12.436-12.428,12.436-6.849,0-12.422-5.579-12.422-12.436 0-6.858 5.573-12.436 12.422-12.436z" fill="#FFFFFF"/>
+                </g>
+            </svg>
             <svg class="menubtn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50px" version="1.1" height="50px" viewBox="0 0 64 64" enable-background="new 0 0 64 64">
                 <g>
                     <path class="stripe" d="M2.252,10.271h58.871c1.124,0,2.034-0.91,2.034-2.034c0-1.123-0.91-2.034-2.034-2.034H2.252    c-1.124,0-2.034,0.911-2.034,2.034C0.218,9.36,1.128,10.271,2.252,10.271z"/>
@@ -106,13 +103,14 @@
     $(document).ready(function () {
         $("li.menuopen ul").slideDown();
     });
+
     function menutoggle() { //hide and show nav menu
         $("#mySidenav").toggleClass("opensidenav");
         $("#bar1").toggleClass("menuopen");
         $("#bar1").toggleClass("menuclosed");
         $("#logoHeader").toggleClass("white");
     }
-    
+
     $(".menubtn").click(function() { 
         menutoggle();
     });
@@ -132,5 +130,4 @@
         $("#SearchContainer, #mySidenav").toggleClass("opensearch");
         $(".opensearch input").focus();
     });
-    
 </script>
