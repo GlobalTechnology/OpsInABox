@@ -36,7 +36,6 @@
 #bar1 #menu #menubuttons { /*position the search and menu icons*/
     position: relative;
     margin: 15px 10px;
-    height: 50px;
     z-index: 9;
     display: flex;
 }
@@ -48,6 +47,11 @@
 
 #bar1.menuclosed svg .stripe { /*make menu icons blue*/
     fill: #0e71b4;
+    transition: 0.5s;
+}
+
+#bar1 svg.usericon.login .stripe { /*make user icon grey when not connected*/
+    fill: #aaaaaa;
     transition: 0.5s;
 }
 
