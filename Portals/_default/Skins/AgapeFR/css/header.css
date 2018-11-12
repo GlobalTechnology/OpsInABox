@@ -59,8 +59,12 @@
     display: none;
 }
 
-#bar1 .searchicon { /*hide search icon*/
+#bar1 .usericon,
+#bar1 .searchicon {
     margin-right: 20px;
+}
+
+#bar1 .searchicon { /*hide search icon*/
     opacity: 0;
     transition: opacity 0.5s;
     visibility: hidden;
