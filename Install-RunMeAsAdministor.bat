@@ -38,6 +38,11 @@ mklink /J %var%DesktopModules\AgapeUK AgapeUK
 REM SETUP FRANCE PORTAL SPECIFIC RADEDITOR CONFIG FILES
 cd ..\DesktopModules\Admin\RadEditorProvider\ConfigFile
 mklink /H %var%DesktopModules\Admin\RadEditorProvider\ConfigFile\ConfigFile.PortalId.0.xml ConfigFile.PortalId.0.xml
+
+IF NOT EXIST %var%DesktopModules\Admin\RadEditorProvider\ToolsFile (
+	echo Creating ToolsFile folder
+	mkdir %var%DesktopModules\Admin\RadEditorProvider\ToolsFile
+	)
 cd ..\ToolsFile
 FOR %%G in (*) DO mklink /H %var%DesktopModules\Admin\RadEditorProvider\ToolsFile\%%G %%G
 cd ..\App_LocalResources
