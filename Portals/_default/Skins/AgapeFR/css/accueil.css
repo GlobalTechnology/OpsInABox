@@ -90,6 +90,9 @@ a.BlocLienRapide:hover {
 }
 
 /*===================== LIENS PHOTO ===================== */
+.ContentPane {
+    width: 100%;
+}
 
 .liensphoto {
     display: flex;
