@@ -50,8 +50,8 @@ namespace DotNetNuke.Modules.Admin.Authentication
 
 		private void Redirect()
 		{
-            //Get the current portal landing page
-            string _service = DotNetNuke.Common.Globals.NavigateURL(PortalSettings.LoginTabId);
+            //Get the current portal home page
+            string _service = DotNetNuke.Common.Globals.NavigateURL(PortalSettings.HomeTabId);
 			//Redirect browser back to portal landing page
             Response.Redirect("https://thekey.me/cas/logout?service=" + _service );
 			//Response.Redirect(AuthenticationController.GetLogoffRedirectURL(PortalSettings, Request), true);
