@@ -5,7 +5,6 @@
 
 
         Dim myUrl = HttpContext.Current.Request.Url
-        AgapeLogger.Error(1, UserController.Instance.GetCurrentUserInfo().UserID)
 
         If UserController.Instance.GetCurrentUserInfo().UserID > 0 Then
             userConnected.Visible = True
@@ -16,9 +15,7 @@
             userConnected.Visible = False
             userIcon.Attributes.Add("class", "usericon login")
             userIconLink.Attributes.Add("href", HttpContext.Current.Request.Url.Scheme & "://" & HttpContext.Current.Request.Url.Authority & "/caslogin?service=" & TabController.CurrentPage.FullUrl.ToString)
-            ' userIconLink.Attributes.Add("href", "https://thekey.me/cas/login?service=" & TabController.CurrentPage.FullUrl.ToString)
             userIconLink.Attributes.Add("title", Translate("Connect"))
-
         End If
 
     End Sub
