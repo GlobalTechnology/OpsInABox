@@ -9,7 +9,7 @@
         If UserController.Instance.GetCurrentUserInfo().UserID > 0 Then
             userConnected.Visible = True
             userIcon.Attributes.Add("class", "usericon")
-            userIconLink.Attributes.Add("href", "https://cruwp-stage.agapefrance.fr/dons/compte/")
+            userIconLink.Attributes.Add("href", "https://wp-stage.agapefrance.fr/dons/compte/")
             userIconLink.Attributes.Add("title", Translate("Profile"))
         Else
             userConnected.Visible = False
