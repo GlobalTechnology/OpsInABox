@@ -14,10 +14,14 @@
         Else
             userConnected.Visible = False
             userIcon.Attributes.Add("class", "usericon login")
-            userIconLink.Attributes.Add("href", HttpContext.Current.Request.Url.Scheme & "://" & HttpContext.Current.Request.Url.Authority & "/caslogin?service=" & TabController.CurrentPage.FullUrl.ToString)
+            If Request.QueryString("StoryID") <> "" Then
+                userIconLink.Attributes.Add("href", HttpContext.Current.Request.Url.Scheme & "://" & HttpContext.Current.Request.Url.Authority & "/caslogin?returnurl=" & TabController.CurrentPage.FullUrl.ToString & "?StoryId=" & Request.QueryString("StoryID"))
+            Else
+                userIconLink.Attributes.Add("href", HttpContext.Current.Request.Url.Scheme & "://" & HttpContext.Current.Request.Url.Authority & "/caslogin?returnurl=" & TabController.CurrentPage.FullUrl.ToString)
+            End If
             userIconLink.Attributes.Add("title", Translate("Connect"))
         End If
-
+    AgapeLogger.error(0, Request.QueryString.ToString & " is the query I saved")
     End Sub
 
 
