@@ -30,6 +30,16 @@
                     <asp:label id="lblConnectText" runat="server"/>
                 </asp:HyperLink>
                 <ul>
+                    <li>
+                        <a href="https://dons.agapefrance.org/wp-admin/edit.php">
+                            <asp:label id="lblmyDonPage" runat="server"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://dons.agapefrance.org/compte/">
+                            <asp:label id="lblAccountText" runat="server"/>
+                        </a>
+                    </li>
                     <li><dnn:LOGIN runat="server" ID="dnnLOGIN" CssClass="user" /></li>
                 </ul>
             </li>

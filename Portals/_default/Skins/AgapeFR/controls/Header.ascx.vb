@@ -12,7 +12,8 @@
             userIconLink.Attributes.Add("href", "https://wp-stage.agapefrance.fr/dons/compte/")
             userIconLink.Attributes.Add("title", Translate("Profile"))
             lblConnectText.Text=UserController.Instance.GetCurrentUserInfo().DisplayName
-            
+            lblAccountText.Text=Translate("myAccount")
+            lblmyDonPage.Text=Translate("myDonPage")
         Else 'User is not connected
             userIcon.Attributes.Add("class", "usericon login")
             Dim connectionLink as String=""

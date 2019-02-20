@@ -174,4 +174,10 @@
   <data name="Login.Text" xml:space="preserve">
     <value>Connexion</value>
   </data>
+  <data name="myAccount.Text" xml:space="preserve">
+    <value>Votre Compte</value>
+  </data>
+  <data name="myDonPage.Text" xml:space="preserve">
+    <value>Modifier vos pages de dons</value>
+  </data>
 </root>
