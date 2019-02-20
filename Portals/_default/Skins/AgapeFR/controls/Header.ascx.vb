@@ -21,7 +21,6 @@
             End If
             userIconLink.Attributes.Add("title", Translate("Connect"))
         End If
-    AgapeLogger.error(0, Request.QueryString.ToString & " is the query I saved")
     End Sub
 
 
