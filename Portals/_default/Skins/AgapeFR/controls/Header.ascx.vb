@@ -3,10 +3,8 @@
     Inherits System.Web.UI.UserControl
     Protected Overrides Sub OnLoad(ByVal e As EventArgs)
 
-
-        Dim myUrl = HttpContext.Current.Request.Url
-
-        If UserController.Instance.GetCurrentUserInfo().UserID > 0 Then 'User is connected
+        Dim userInfo = UserController.GetCurrentUserInfo()
+        If userInfo.UserID > 0 Then 'User is connected
             userMenu.Attributes.Add("class", "parent")
             userIcon.Attributes.Add("class", "usericon")
             userIconLink.Attributes.Add("href", "https://wp-stage.agapefrance.fr/dons/compte/")
@@ -14,6 +12,11 @@
             lblConnectText.Text=UserController.Instance.GetCurrentUserInfo().DisplayName
             lblAccountText.Text=Translate("myAccount")
             lblmyDonPage.Text=Translate("myDonPage")
+            If (userInfo.IsInRole("Staff")) Then
+                lnkEditDonPage.visible=True
+            Else
+                lnkEditDonPage.visible=False
+            End If
         Else 'User is not connected
             userIcon.Attributes.Add("class", "usericon login")
             Dim connectionLink as String=""

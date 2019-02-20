@@ -30,7 +30,7 @@
                     <asp:label id="lblConnectText" runat="server"/>
                 </asp:HyperLink>
                 <ul>
-                    <li>
+                    <li id="lnkEditDonPage" runat="server">
                         <a href="https://dons.agapefrance.org/wp-admin/edit.php">
                             <asp:label id="lblmyDonPage" runat="server"/>
                         </a>
