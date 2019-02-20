@@ -6,20 +6,25 @@
 
         Dim myUrl = HttpContext.Current.Request.Url
 
-        If UserController.Instance.GetCurrentUserInfo().UserID > 0 Then
-            userConnected.Visible = True
+        If UserController.Instance.GetCurrentUserInfo().UserID > 0 Then 'User is connected
+            userMenu.Attributes.Add("class", "parent")
             userIcon.Attributes.Add("class", "usericon")
             userIconLink.Attributes.Add("href", "https://wp-stage.agapefrance.fr/dons/compte/")
             userIconLink.Attributes.Add("title", Translate("Profile"))
-        Else
-            userConnected.Visible = False
+            lblConnectText.Text=UserController.Instance.GetCurrentUserInfo().DisplayName
+            
+        Else 'User is not connected
             userIcon.Attributes.Add("class", "usericon login")
+            Dim connectionLink as String=""
             If Request.QueryString("StoryID") <> "" Then
-                userIconLink.Attributes.Add("href", HttpContext.Current.Request.Url.Scheme & "://" & HttpContext.Current.Request.Url.Authority & "/caslogin?returnurl=" & TabController.CurrentPage.FullUrl.ToString & "?StoryId=" & Request.QueryString("StoryID"))
+                connectionLink=HttpContext.Current.Request.Url.Scheme & "://" & HttpContext.Current.Request.Url.Authority & "/caslogin?returnurl=" & TabController.CurrentPage.FullUrl.ToString & "?StoryId=" & Request.QueryString("StoryID")
             Else
-                userIconLink.Attributes.Add("href", HttpContext.Current.Request.Url.Scheme & "://" & HttpContext.Current.Request.Url.Authority & "/caslogin?returnurl=" & TabController.CurrentPage.FullUrl.ToString)
+                connectionLink=HttpContext.Current.Request.Url.Scheme & "://" & HttpContext.Current.Request.Url.Authority & "/caslogin?returnurl=" & TabController.CurrentPage.FullUrl.ToString
             End If
             userIconLink.Attributes.Add("title", Translate("Connect"))
+            userIconLink.Attributes.Add("href", connectionLink)
+            lblConnectText.Text=Translate("Login")
+            userConnectLink.Attributes.Add("href",connectionLink)
         End If
     End Sub
 

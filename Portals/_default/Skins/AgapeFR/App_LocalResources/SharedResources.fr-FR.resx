@@ -171,4 +171,7 @@
   <data name="SocialMedia.Text" xml:space="preserve">
     <value>Restons connectés</value>
   </data>
+  <data name="Login.Text" xml:space="preserve">
+    <value>Connexion</value>
+  </data>
 </root>

@@ -24,9 +24,11 @@
 
 <div id="mySidenav" class="sidenav">
     <ddr:MENU ID="MENU1" MenuStyle="/templates/AgapeFRMenu/" NodeSelector="*,0,+1" runat="server" includehidden="false" />
-        <ul id="userConnected" runat="server">
-            <li class="parent">
-                <a href="#" id="UserContainer" class="offlink"><%=UserController.Instance.GetCurrentUserInfo().DisplayName%></a>
+        <ul id="userConnected">
+            <li id="userMenu" runat="server">
+                <asp:HyperLink ID="userConnectLink" class="offlink" runat="server">
+                    <asp:label id="lblConnectText" runat="server"/>
+                </asp:HyperLink>
                 <ul>
                     <li><dnn:LOGIN runat="server" ID="dnnLOGIN" CssClass="user" /></li>
                 </ul>
