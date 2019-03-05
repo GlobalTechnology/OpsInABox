@@ -36,7 +36,6 @@
 #bar1 #menu #menubuttons { /*position the search and menu icons*/
     position: relative;
     margin: 15px 10px;
-    height: 50px;
     z-index: 9;
     display: flex;
 }
@@ -51,12 +50,22 @@
     transition: 0.5s;
 }
 
+#bar1 svg.usericon.login .stripe { /*make user icon grey when not connected*/
+    fill: #aaaaaa;
+    transition: 0.5s;
+}
+
 #bar1 #menu #featuredlinks { /*hide dons and boutique links*/
     display: none;
 }
 
-#bar1 .searchicon { /*hide search icon*/
+#bar1 .usericon,
+#bar1 .carticon,
+#bar1 .searchicon {
     margin-right: 20px;
+}
+
+#bar1 .searchicon { /*hide search icon*/
     opacity: 0;
     transition: opacity 0.5s;
     visibility: hidden;
