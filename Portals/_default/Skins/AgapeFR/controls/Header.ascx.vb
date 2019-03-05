@@ -12,7 +12,7 @@
             lblConnectText.Text=UserController.Instance.GetCurrentUserInfo().DisplayName
             lblAccountText.Text=Translate("myAccount")
             lblmyDonPage.Text=Translate("myDonPage")
-            If (userInfo.IsInRole("Staff")) Then
+            If (userInfo.IsInRole("StaffDons")) Then
                 lnkEditDonPage.visible=True
             Else
                 lnkEditDonPage.visible=False
