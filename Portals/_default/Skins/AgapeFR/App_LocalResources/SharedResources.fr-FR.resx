@@ -172,10 +172,10 @@
     <value>Restons connectés</value>
   </data>
   <data name="Login.Text" xml:space="preserve">
-    <value>Connexion</value>
+    <value>Identifiez-vous</value>
   </data>
   <data name="myAccount.Text" xml:space="preserve">
-    <value>Votre Compte</value>
+    <value>Votre compte</value>
   </data>
   <data name="myDonPage.Text" xml:space="preserve">
     <value>Modifier vos pages de dons</value>
