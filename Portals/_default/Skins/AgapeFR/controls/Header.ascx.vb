@@ -7,7 +7,7 @@
         If userInfo.UserID > 0 Then 'User is connected
             userMenu.Attributes.Add("class", "parent")
             userIcon.Attributes.Add("class", "usericon")
-            userIconLink.Attributes.Add("href", "https://wp-stage.agapefrance.fr/dons/compte/")
+            userIconLink.Attributes.Add("href", "https://dons.agapefrance.org/compte/")
             userIconLink.Attributes.Add("title", Translate("Profile"))
             lblConnectText.Text=UserController.Instance.GetCurrentUserInfo().DisplayName
             lblAccountText.Text=Translate("myAccount")
