@@ -72,6 +72,11 @@
     cursor: pointer;
 }
 
+#bar1 .userIconLink,
+#bar1 .cartIconLink { /*hide cart and user icons*/
+    display:none;
+}
+
 #bar1.menuopen .searchicon { /*show search icon when mobile menu is open*/
     opacity: 1;
     transition: opacity 0.5s;
@@ -159,6 +164,13 @@ input[type="search"]::-webkit-search-cancel-button { /* Remove default decoratio
 #SearchContainer .searchInputContainer a.dnnSearchBoxClearText.dnnShow:focus,
 #SearchContainer .searchInputContainer a.dnnSearchBoxClearText.dnnShow:active {
     transform: rotate(180deg);
+}
+
+@media screen and (min-width: 480px) { /*small tablet mode*/
+    #bar1 .userIconLink,
+        #bar1 .cartIconLink { /*show cart and user icons*/
+            display:unset;
+        }
 }
 
 @media screen and (min-width: 768px) { /*tablet mode*/
