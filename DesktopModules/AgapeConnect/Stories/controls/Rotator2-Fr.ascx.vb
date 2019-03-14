@@ -80,7 +80,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
                     "addthis:media=""" & row.Item(ControlerConstants.SLIDEIMAGE) & """ " & ">" &
                     " <a class='addthis_button_facebook'></a> " &
                     " <a class='addthis_button_twitter'></a> " &
-                    " <a class='addthis_button_google_plusone_share'></a> " &
                     " <a class='addthis_button_email'></a> " &
                     " <a class='addthis_button_compact'></a></div>"
         End Function
