@@ -34,10 +34,14 @@
         });
         </script>
         <script type="text/javascript">
-        tarteaucitron.user.addthisPubId = 'ra-52c6717a6463b499';
-        (tarteaucitron.job = tarteaucitron.job || []).push('addthis');
+            tarteaucitron.user.addthisPubId = 'ra-52c6717a6463b499';
+            (tarteaucitron.job = tarteaucitron.job || []).push('addthis');
         </script>
-
+        <script type="text/javascript">
+            tarteaucitron.user.gajsUa = 'UA-30452694-1';
+            tarteaucitron.user.gajsMore = function () { /* add here your optionnal _ga.push() */ };
+            (tarteaucitron.job = tarteaucitron.job || []).push('gajs');
+        </script>
 
 <script src="/js/jquery.watermarkinput.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -53,7 +57,20 @@
         });
     }(jQuery, window.Sys));
 </script>
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-30452694-1']);
+    _gaq.push(['_trackPageview']);
 
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; 
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
 <div id="mySidenav" class="sidenav">
     <ddr:MENU ID="MENU1" MenuStyle="/templates/AgapeFRMenu/" NodeSelector="*,0,+1" runat="server" includehidden="false" />
         <ul id="userConnected">
