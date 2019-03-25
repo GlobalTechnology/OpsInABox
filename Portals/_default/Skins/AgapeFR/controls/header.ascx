@@ -15,9 +15,9 @@
     	  "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
     	  "cookieName": "tartaucitron", /* Cookie name */
     
-    	  "orientation": "top", /* Banner position (top - bottom) */
-    	  "showAlertSmall": true, /* Show the small banner on bottom right */
-    	  "cookieslist": true, /* Show the cookie list */
+    	  "orientation": "bottom", /* Banner position (top - bottom) */
+    	  "showAlertSmall": false, /* Show the small banner on bottom right */
+    	  "cookieslist": false, /* Show the cookie list */
 
     	  "adblocker": false, /* Show a Warning if an adblocker is detected */
     	  "AcceptAllCta" : true, /* Show the accept all button when highPrivacy on */
@@ -30,7 +30,7 @@
 
     	  //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
                           
-    	  "readmoreLink": "/cookiespolicy" /* Change the default readmore link */
+    	  "readmoreLink": "/mentionslegales/cookies" /* Change the default readmore link */
         });
         </script>
         <script type="text/javascript">
@@ -41,6 +41,7 @@
             tarteaucitron.user.gajsUa = 'UA-30452694-1';
             tarteaucitron.user.gajsMore = function () { /* add here your optionnal _ga.push() */ };
             (tarteaucitron.job = tarteaucitron.job || []).push('gajs');
+            (tarteaucitron.job = tarteaucitron.job || []).push('adobeanalytics');
         </script>
 
 <script src="/js/jquery.watermarkinput.js" type="text/javascript"></script>
@@ -71,6 +72,7 @@
         s.parentNode.insertBefore(ga, s);
     })();
 </script>
+
 <div id="mySidenav" class="sidenav">
     <ddr:MENU ID="MENU1" MenuStyle="/templates/AgapeFRMenu/" NodeSelector="*,0,+1" runat="server" includehidden="false" />
         <ul id="userConnected">

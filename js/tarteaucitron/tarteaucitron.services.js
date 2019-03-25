@@ -2625,3 +2625,22 @@ tarteaucitron.services.getquanty = {
         tarteaucitron.addScript('https://get.smart-data-systems.com/track?site_id=' + tarteaucitron.user.getguanty);
     }
 };
+tarteaucitron.services.adobeanalytics = {
+    "key": "adobeanalytics",
+    "type": "analytic",
+    "name": "Adobe Analytics",
+    "needConsent": true,
+    "cookies": [],
+    //"readmoreLink": "/custom_read_more", // If you want to change readmore link
+    "js": function () {
+      "use strict";
+      // When user allow cookie
+      tarteaucitron.addScript('//assets.adobedtm.com/3202ba9b02b459ee20779cfcd8e79eaf266be170/satelliteLib-f01d20dc487f0111a45979d1b665f126d8becb7a.js', "", function() {
+        _satellite.pageBottom();
+      });
+    },
+    "fallback": function () {
+      "use strict";
+      // when use deny cookie
+    }
+  };
