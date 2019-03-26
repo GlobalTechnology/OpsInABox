@@ -490,7 +490,7 @@ div#tarteaucitronServices {
 }
 
 #tarteaucitronAlertBig #tarteaucitronCloseAlert, #tarteaucitronAlertBig #tarteaucitronPersonalize, #tarteaucitron #tarteaucitronPrivacyUrl {
-    background: #008300;
+    background: #0e71b4;
     color: #fff;
     cursor: pointer;
     display: inline-block;

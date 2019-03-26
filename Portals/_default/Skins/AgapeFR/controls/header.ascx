@@ -42,6 +42,7 @@
             tarteaucitron.user.gajsMore = function () { /* add here your optionnal _ga.push() */ };
             (tarteaucitron.job = tarteaucitron.job || []).push('gajs');
             (tarteaucitron.job = tarteaucitron.job || []).push('adobeanalytics');
+            (tarteaucitron.job = tarteaucitron.job || []).push('newsletterpopup');
         </script>
 
 <script src="/js/jquery.watermarkinput.js" type="text/javascript"></script>
