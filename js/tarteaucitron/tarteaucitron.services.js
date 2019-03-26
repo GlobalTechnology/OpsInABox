@@ -2631,7 +2631,7 @@ tarteaucitron.services.adobeanalytics = {
     "type": "analytic",
     "name": "Adobe Analytics",
     "needConsent": true,
-    "cookies": [],
+    "cookies": ['AMCVS_361330C25499877D0A4C98A6%40AdobeOrg','AMCV_361330C25499877D0A4C98A6%40AdobeOrg','_sp_id.781e','_sp_ses.781e','aa_lastvisit','demdex','dpm','ev_sync_dd','everest_g_v2','everest_session_v2','gpv','s_cc','s_nr'],
     //"readmoreLink": "/custom_read_more", // If you want to change readmore link
     "js": function () {
       "use strict";
