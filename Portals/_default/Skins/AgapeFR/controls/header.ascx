@@ -43,6 +43,7 @@
             (tarteaucitron.job = tarteaucitron.job || []).push('gajs');
             (tarteaucitron.job = tarteaucitron.job || []).push('adobeanalytics');
             (tarteaucitron.job = tarteaucitron.job || []).push('newsletterpopup');
+            (tarteaucitron.job = tarteaucitron.job || []).push('youtube');
         </script>
 
 <script src="/js/jquery.watermarkinput.js" type="text/javascript"></script>
