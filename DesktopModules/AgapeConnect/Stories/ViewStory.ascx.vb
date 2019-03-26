@@ -19,7 +19,10 @@ Namespace DotNetNuke.Modules.FullStory
         Private modTranslation As New Dictionary(Of String, String) From {{"419", "5548"}, {"434", "5524"}, {"507", "5571"}}
 
         Public location As String = ""
-        Public zoomLevel As Integer = 4
+       
+        Public latitude As String = ""
+        Public longitude As String = ""
+        Public zoomLevel As Integer = 15
 
 #End Region
 
@@ -138,10 +141,15 @@ Namespace DotNetNuke.Modules.FullStory
             Dim URL = StoryFunctions.GetPhotoURL(story.PhotoId)
             Dim Fid = StaffBrokerFunctions.GetSetting("FacebookId", PortalSettings.PortalId)
             Dim permalink = NavigateURL(TabId, "", GetStoryURLParams(story.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)))
-
+            If ((story.Latitude IsNot Nothing) And (story.Longitude IsNot Nothing)) Then
+                latitude = story.Latitude.Value.ToString(New CultureInfo(""))
+                longitude = story.Longitude.Value.ToString(New CultureInfo(""))
+                location = latitude & "," & longitude
+            End If
             ReplaceField(template, "[HEADLINE]", story.Headline)
             ReplaceField(template, "[STORYTEXT]", story.StoryText)
-            ReplaceField(template, "[MAP]", " <div id=""map_canvas""></div>")
+            Dim maphtml as String = "<div id=""map_canvas"" class=""googlemaps-canvas"" zoom=""" & zoomLevel & """ latitude=""" & latitude & """ longitude=""" & longitude & """></div>"
+            ReplaceField(template, "[MAP]", maphtml)
             ReplaceField(template, "[Tab:TabName]", story.Headline.Replace(ControlChars.Quote, ""))
             ReplaceField(template, "[IMAGEURL]", URL)
             ReplaceField(template, "[FACEBOOKID]", Fid)
@@ -159,9 +167,7 @@ Namespace DotNetNuke.Modules.FullStory
             ReplaceField(template, "[DATAHREF]", permalink)
             ReplaceField(template, "[LANGUAGES]", "")
 
-            If ((story.Latitude IsNot Nothing) And (story.Longitude IsNot Nothing)) Then
-                location = story.Latitude.Value.ToString(New CultureInfo("")) & ", " & story.Longitude.Value.ToString(New CultureInfo(""))
-            End If
+            
 
             'Only show updated date if the update was more than two weeks after the creation date
             If (Not IsNothing(story.UpdatedDate)) _

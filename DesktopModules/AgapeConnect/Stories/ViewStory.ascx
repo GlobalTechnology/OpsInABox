@@ -2,7 +2,10 @@
 <%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI" TagPrefix="asp" %>
 <%@ Register Src="~/DesktopModules/AgapeConnect/Stories/controls/SuperPowers.ascx" TagPrefix="uc1" TagName="SuperPowers" %>
 
-<script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key=<%= hfmapsKey.Value %>'></script>
+<script type="text/javascript">
+        tarteaucitron.user.googlemapsKey = '<%= hfmapsKey.Value %>';
+        (tarteaucitron.job = tarteaucitron.job || []).push('googlemaps');
+        </script>
 
 <script type="text/javascript">
 
@@ -33,25 +36,7 @@
                 $('.boost').prop("checked", <%= CStr(SuperPowers.IsBoosted).ToLower%>).change();
                $('.block').prop("checked", <%= CStr(SuperPowers.IsBlocked).ToLower%>).change();
 
-               function initialize() {
-                   if ($('#map_canvas').length) {
-                       var myLatlng = new google.maps.LatLng(<%= location %>);
-
-                       var mapOptions = {
-                           zoom: <%= zoomLevel%>,
-                           center: myLatlng,
-                           mapTypeId: google.maps.MapTypeId.ROADMAP
-                       };
-
-                       var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-
-                       var marker = new google.maps.Marker({
-                           position: myLatlng,
-                           map: map
-                       });
-                   }
-                }
-                google.maps.event.addDomListener(window, 'load', initialize);
+               
             }
 
             $(document).ready(function () {
