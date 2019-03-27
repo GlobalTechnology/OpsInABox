@@ -1149,6 +1149,10 @@ tarteaucitron.services.googlemaps = {
                     center: new google.maps.LatLng(parseFloat(document.getElementById(uniqIds[i]).getAttribute('latitude'), 10), parseFloat(document.getElementById(uniqIds[i]).getAttribute('longitude'), 10))
                 };
                 map = new google.maps.Map(document.getElementById(uniqIds[i]), mapOptions);
+                var marker = new google.maps.Marker({	
+                    position: mapOptions.center,	
+                    map: map	
+                });
             }
         };
     },
