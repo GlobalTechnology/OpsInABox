@@ -2103,7 +2103,7 @@ tarteaucitron.services.youtube = {
             } else {
                 frame_height += '"" ';
             }
-            video_frame = '<iframe type="text/html" ' + frame_width + frame_height + ' src="//www.youtube-nocookie.com/embed/' + video_id + '?' + params + '" frameborder="0"></iframe>';
+            video_frame = '<iframe type="text/html" ' + frame_width + frame_height + ' src="//www.youtube-nocookie.com/embed/' + video_id + '?' + params + '" frameborder="0" allowfullscreen></iframe>';
             return video_frame;
         });
     },
