@@ -47,9 +47,7 @@
          ;};
 
 </script>
-<script>
-    (tarteaucitron.job = tarteaucitron.job || []).push('youtubepopup');
-</script>
+
 <asp:HiddenField ID="hfManualAdvance" runat="server" />
 <asp:HiddenField ID="hfPauseTime" runat="server" />
 <asp:HiddenField ID="hfChannelId" runat="server" />

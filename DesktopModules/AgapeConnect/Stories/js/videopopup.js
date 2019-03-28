@@ -1,6 +1,9 @@
-﻿//create player div on page
-$('body').append("<div id='popdiv'></div>");
-$('#popdiv').load("/DesktopModules/AgapeConnect/Stories/controls/popup.html");
+﻿//create player div on page if a rotator is present
+if ($(".nivoSlider")[0]){
+    $('body').append("<div id='popdiv'></div>");
+    $('#popdiv').load("/DesktopModules/AgapeConnect/Stories/controls/popup.html");
+} 
+
 
 //set up video
 var tag = document.createElement('script');
