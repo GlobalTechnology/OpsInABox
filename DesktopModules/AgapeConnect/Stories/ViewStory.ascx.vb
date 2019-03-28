@@ -37,7 +37,7 @@ Namespace DotNetNuke.Modules.FullStory
             If (String.IsNullOrEmpty(story.Headline) Or (Not story.IsVisible And Not DotNetNuke.Security.Permissions.ModulePermissionController.CanEditModuleContent(Me.ModuleConfiguration))) Then
                 Response.Redirect(NavigateURL(PortalSettings.Current.ErrorPage404))
             Else
-                hfmapsKey.Value = StoryFunctions.GetGoogleMapsApiKey(PortalId)
+                'fmapsKey.Value = StoryFunctions.GetGoogleMapsApiKey(PortalId)
 
                 'Check if story is published 
                 If (story.IsVisible) Then

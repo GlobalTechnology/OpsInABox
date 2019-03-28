@@ -3,11 +3,6 @@
 <%@ Register Src="~/DesktopModules/AgapeConnect/Stories/controls/SuperPowers.ascx" TagPrefix="uc1" TagName="SuperPowers" %>
 
 <script type="text/javascript">
-        tarteaucitron.user.googlemapsKey = '<%= hfmapsKey.Value %>';
-        (tarteaucitron.job = tarteaucitron.job || []).push('googlemaps');
-        </script>
-
-<script type="text/javascript">
 
         (function ($, Sys) {
             function setUpMyTabs() {
@@ -57,7 +52,7 @@
 </script>
 
 <div id="ViewStory">
-<asp:HiddenField ID='hfmapsKey' runat="server" />
+<!-- <asp:HiddenField ID='hfmapsKey' runat="server" /> -->
 
 <asp:Panel ID="PagePanel" runat="server" >
     <asp:Literal ID="ltStory1" runat="server"></asp:Literal>

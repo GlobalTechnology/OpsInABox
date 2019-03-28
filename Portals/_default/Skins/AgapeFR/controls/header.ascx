@@ -33,11 +33,9 @@
     	  "readmoreLink": "/mentionslegales/cookies" /* Change the default readmore link */
         });
         </script>
-        <script type="text/javascript">
+        <script type="text/javascript"> //load cookie policy
             tarteaucitron.user.addthisPubId = 'ra-52c6717a6463b499';
             (tarteaucitron.job = tarteaucitron.job || []).push('addthis');
-        </script>
-        <script type="text/javascript">
             tarteaucitron.user.gajsUa = 'UA-30452694-1';
             tarteaucitron.user.gajsMore = function () { /* add here your optionnal _ga.push() */ };
             (tarteaucitron.job = tarteaucitron.job || []).push('gajs');
@@ -45,6 +43,8 @@
             (tarteaucitron.job = tarteaucitron.job || []).push('newsletterpopup');
             (tarteaucitron.job = tarteaucitron.job || []).push('youtube');
             (tarteaucitron.job = tarteaucitron.job || []).push('youtubepopup');
+            tarteaucitron.user.googlemapsKey = '<%= hfmapsKey.value %>';
+            (tarteaucitron.job = tarteaucitron.job || []).push('googlemaps');
         </script>
 
 <script src="/js/jquery.watermarkinput.js" type="text/javascript"></script>
@@ -174,6 +174,7 @@
         <dnn:SEARCH runat="server" ID="dnnSEARCH" UseDropDownList="False" ShowWeb="False" ShowSite="False" Submit="<div id=&quot;SearchSubmit&quot;></div>" />
     </div>
 </div>
+<asp:HiddenField ID='hfmapsKey' runat="server" />
 <script>
     $(document).ready(function () {
         $("li.menuopen ul").slideDown();
