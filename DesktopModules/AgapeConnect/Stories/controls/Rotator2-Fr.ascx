@@ -70,8 +70,7 @@
                 runat="server">
                 <asp:Image
                     src=<%# Eval(ControlerConstants.SLIDEIMAGE) %> 
-                    alt=<%# Eval(ControlerConstants.SLIDEIMAGEALTTEXT) %> 
-                    title=<%# Eval(ControlerConstants.SLIDEIMAGETITLE) %> 
+                    alt=<%# Eval(ControlerConstants.SLIDEIMAGEALTTEXT) %>
                     runat="server" />
             </asp:HyperLink>
             </ItemTemplate>
