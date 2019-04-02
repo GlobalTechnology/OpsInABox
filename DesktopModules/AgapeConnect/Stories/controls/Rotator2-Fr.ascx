@@ -34,7 +34,7 @@
          });
      } (jQuery, window.Sys));
    
-   function registerClick(c)z
+   function registerClick(c)
    {
         $.ajax({ type: 'POST', url: "<%= NavigateURL() %>",
                         data: ({ StoryLink: c })
