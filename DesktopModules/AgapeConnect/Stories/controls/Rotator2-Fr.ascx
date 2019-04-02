@@ -34,7 +34,7 @@
          });
      } (jQuery, window.Sys));
    
-   function registerClick(c)
+   function registerClick(c)z
    {
         $.ajax({ type: 'POST', url: "<%= NavigateURL() %>",
                         data: ({ StoryLink: c })
@@ -71,6 +71,7 @@
                 <asp:Image
                     src=<%# Eval(ControlerConstants.SLIDEIMAGE) %> 
                     alt=<%# Eval(ControlerConstants.SLIDEIMAGEALTTEXT) %>
+                    title=<%# Eval(ControlerConstants.SLIDEIMAGETITLE) %> 
                     runat="server" />
             </asp:HyperLink>
             </ItemTemplate>
