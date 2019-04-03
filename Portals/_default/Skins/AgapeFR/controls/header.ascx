@@ -42,7 +42,6 @@
             (tarteaucitron.job = tarteaucitron.job || []).push('adobeanalytics');
             (tarteaucitron.job = tarteaucitron.job || []).push('newsletterpopup');
             (tarteaucitron.job = tarteaucitron.job || []).push('youtube');
-            (tarteaucitron.job = tarteaucitron.job || []).push('youtubepopup');
             tarteaucitron.user.googlemapsKey = '<%= hfmapsKey.value %>';
             (tarteaucitron.job = tarteaucitron.job || []).push('googlemaps');
         </script>
