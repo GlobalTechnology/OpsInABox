@@ -62,6 +62,8 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
             dlStories.DataSource = listData
             dlStories.DataBind()
+            SliderVideoPopup.DataSource = listData
+            SliderVideoPopup.DataBind()
 
             'Pagination handling
             If stories.Count > CInt(settings(ControlerConstants.NUMSTORIES)) Then
