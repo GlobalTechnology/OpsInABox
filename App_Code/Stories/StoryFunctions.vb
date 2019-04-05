@@ -787,6 +787,25 @@ Public Class StoryFunctions
         Return listData
     End Function
 
+    Public Shared Function GetVideoList(ByRef stories As IEnumerable(Of AP_Stories_Module_Channel_Cache),
+                                           ByVal portalAlias As String) As DataTable
+        Dim listData As New DataTable
+        listData.Columns.Add(ControlerConstants.VIDEOID)
+
+        For Each story In stories
+
+            Dim dataRow As DataRow = listData.NewRow()
+            Dim linkDetails As Dictionary(Of String, String) = StoryFunctions.GetLinkDetails(story, "", portalAlias)
+
+            If story.Spare1.Length > 0 Then
+                dataRow(ControlerConstants.VIDEOID) = story.Spare1
+                listData.Rows.Add(dataRow)
+            End If
+
+        Next
+
+        Return listData
+    End Function
 
 #End Region 'Story Controls
 

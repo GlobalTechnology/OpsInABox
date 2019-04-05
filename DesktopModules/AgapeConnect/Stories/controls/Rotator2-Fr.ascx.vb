@@ -68,8 +68,6 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
 
             SliderImageList.DataSource = sliderData
             SliderImageList.DataBind()
-            SliderVideoPopup.DataSource = sliderData
-            SliderVideoPopup.DataBind()
         End Sub
 
 #Region "Helper functions"
