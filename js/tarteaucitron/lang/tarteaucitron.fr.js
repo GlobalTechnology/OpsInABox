@@ -6,7 +6,7 @@ tarteaucitron.lang = {
     
     "alertBigScroll": "En continuant de défiler,",
     "alertBigClick": "En poursuivant votre navigation,",
-    "alertBig": "vous acceptez le dépôt de cookies tiers destinés à mesurer la fréquentation du site ainsi que vous proposer des vidéos, des boutons de partage, des messages de communication personnalisés, des remontées de contenus de plateformes sociales.",
+    "alertBig": "vous acceptez le dépôt de cookies tiers destinés à mesurer la fréquentation du site et pour vous proposer des vidéos, des boutons de partage, des messages de communication personnalisés, des remontées de contenus de plateformes sociales.",
     
     "alertBigPrivacy": "Ce site utilise des cookies et vous donne le contrôle sur ce que vous souhaitez activer",
     "alertSmall": "Gestion des services",
