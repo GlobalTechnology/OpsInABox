@@ -18,8 +18,6 @@ Namespace DotNetNuke.Modules.FullStory
         Private tabTranslation As New Dictionary(Of String, String) From {{"190", "2341"}, {"55", "2335"}, {"200", "2351"}}
         Private modTranslation As New Dictionary(Of String, String) From {{"419", "5548"}, {"434", "5524"}, {"507", "5571"}}
 
-        Public location As String = ""
-       
         Public latitude As String = ""
         Public longitude As String = ""
         Public zoomLevel As Integer = 15
@@ -37,10 +35,7 @@ Namespace DotNetNuke.Modules.FullStory
             If (String.IsNullOrEmpty(story.Headline) Or (Not story.IsVisible And Not DotNetNuke.Security.Permissions.ModulePermissionController.CanEditModuleContent(Me.ModuleConfiguration))) Then
                 Response.Redirect(NavigateURL(PortalSettings.Current.ErrorPage404))
             Else
-                'fmapsKey.Value = StoryFunctions.GetGoogleMapsApiKey(PortalId)
-
-                'Check if story is published 
-                If (story.IsVisible) Then
+                If (story.IsVisible) Then 'Check if story is published 
 
                     Dim theCache As AP_Stories_Module_Channel_Cache = StoryFunctions.GetCacheByStoryId(story.StoryId, story.TabModuleId)
 
@@ -141,14 +136,15 @@ Namespace DotNetNuke.Modules.FullStory
             Dim URL = StoryFunctions.GetPhotoURL(story.PhotoId)
             Dim Fid = StaffBrokerFunctions.GetSetting("FacebookId", PortalSettings.PortalId)
             Dim permalink = NavigateURL(TabId, "", GetStoryURLParams(story.StoryId, Request.QueryString(ORIGINAL_MODULEID), Request.QueryString(ORIGINAL_TABID)))
-            If ((story.Latitude IsNot Nothing) And (story.Longitude IsNot Nothing)) Then
+
+            If ((story.Latitude IsNot Nothing) And (story.Longitude IsNot Nothing)) Then 'checking for map used in story
                 latitude = story.Latitude.Value.ToString(New CultureInfo(""))
                 longitude = story.Longitude.Value.ToString(New CultureInfo(""))
-                location = latitude & "," & longitude
             End If
+            Dim maphtml As String = "<div id=""map_canvas"" class=""googlemaps-canvas"" zoom=""" & zoomLevel & """ latitude=""" & latitude & """ longitude=""" & longitude & """></div>"
+
             ReplaceField(template, "[HEADLINE]", story.Headline)
             ReplaceField(template, "[STORYTEXT]", story.StoryText)
-            Dim maphtml as String = "<div id=""map_canvas"" class=""googlemaps-canvas"" zoom=""" & zoomLevel & """ latitude=""" & latitude & """ longitude=""" & longitude & """></div>"
             ReplaceField(template, "[MAP]", maphtml)
             ReplaceField(template, "[Tab:TabName]", story.Headline.Replace(ControlChars.Quote, ""))
             ReplaceField(template, "[IMAGEURL]", URL)

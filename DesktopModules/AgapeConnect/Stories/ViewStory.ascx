@@ -52,8 +52,6 @@
 </script>
 
 <div id="ViewStory">
-<!-- <asp:HiddenField ID='hfmapsKey' runat="server" /> -->
-
 <asp:Panel ID="PagePanel" runat="server" >
     <asp:Literal ID="ltStory1" runat="server"></asp:Literal>
     <uc1:SuperPowers runat="server" ID="SuperPowers" Visible="False" />
