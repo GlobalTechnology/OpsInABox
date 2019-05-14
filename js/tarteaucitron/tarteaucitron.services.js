@@ -2671,23 +2671,3 @@ tarteaucitron.services.newsletterpopup = {
       // when use deny cookie
     }
   };
-
-  //Youtube Popup
-tarteaucitron.services.youtubepopup = {
-    "key": "youtubepopup",
-    "type": "video",
-    "name": "YouTube Featured",
-    "needConsent": true,
-    "cookies": ['GPS','IDE','PREF','VISITOR_INFO1_LIVE','YSC'],
-    //"readmoreLink": "/custom_read_more", // If you want to change readmore link
-    "js": function () {
-      "use strict";
-      // When user allow cookie
-      tarteaucitron.addScript('/DesktopModules/AgapeConnect/Stories/js/videopopup.js');
-
-    },
-    "fallback": function () {
-      "use strict";
-      // when use deny cookie
-    }
-  };
