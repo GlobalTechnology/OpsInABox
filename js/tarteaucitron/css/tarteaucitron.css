@@ -497,6 +497,7 @@ div#tarteaucitronServices {
     padding: 5px 10px;
     text-decoration: none;
     margin-left: 7px;
+    margin-top: 10px;
 }
 
 #tarteaucitronAlertBig #tarteaucitronCloseAlert, #tarteaucitron #tarteaucitronPrivacyUrl {
