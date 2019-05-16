@@ -522,13 +522,33 @@ var tarteaucitron = {
             html += '       <span class="tarteaucitronH3" role="heading" aria-level="h3">' + service.name + '</span>';
             html += '       <span id="tacCL' + service.key + '" class="tarteaucitronListCookies"></span><br/>';
             if (tarteaucitron.parameters.moreInfoLink == true) {
+                if (service.key == 'adobeanalytics') {
+                    html += '       <a href="https://marketing.adobe.com/resources/help/fr_FR/whitepapers/cookies/cookies_analytics.html" target="_blank" rel="noopener" title="' + tarteaucitron.lang.cookieDetail + ' ' + service.name + ' ' + tarteaucitron.lang.ourSite + ' ' + tarteaucitron.lang.newWindow + '">';
+                    html += '           ' + tarteaucitron.lang.more;
+                    html += '       </a>';
+                    html += '        - ';
+                    html += '       <a href="' + service.uri + '" target="_blank" rel="noopener" title="' + service.name + ' ' + tarteaucitron.lang.newWindow + '">';
+                    html += '           ' + tarteaucitron.lang.source;
+                    html += '       </a>';
+                }
+                else if (service.key == 'newsletterpopup') {
+                    html += '       <a href="/mentionslegales/cookies" target="_blank" rel="noopener" title="' + tarteaucitron.lang.cookieDetail + ' ' + service.name + ' ' + tarteaucitron.lang.ourSite + ' ' + tarteaucitron.lang.newWindow + '">';
+                    html += '           ' + tarteaucitron.lang.more;
+                    html += '       </a>';
+                    html += '        - ';
+                    html += '       <a href="' + service.uri + '" target="_blank" rel="noopener" title="' + service.name + ' ' + tarteaucitron.lang.newWindow + '">';
+                    html += '           ' + tarteaucitron.lang.source;
+                    html += '       </a>';
+                }
+                else { 
                 html += '       <a href="https://opt-out.ferank.eu/service/' + service.key + '/" target="_blank" rel="noopener" title="'+ tarteaucitron.lang.cookieDetail + ' ' + service.name + ' ' + tarteaucitron.lang.ourSite + ' ' + tarteaucitron.lang.newWindow +'">';
                 html += '           ' + tarteaucitron.lang.more;
                 html += '       </a>';
                 html += '        - ';
                 html += '       <a href="' + service.uri + '" target="_blank" rel="noopener" title="' + service.name + ' ' + tarteaucitron.lang.newWindow + '">';
                 html += '           ' + tarteaucitron.lang.source;
-                html += '       </a>';
+                    html += '       </a>';
+                }
             }
             html += '   </div>';
             html += '   <div class="tarteaucitronAsk">';
