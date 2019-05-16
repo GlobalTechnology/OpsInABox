@@ -2637,6 +2637,7 @@ tarteaucitron.services.adobeanalytics = {
     "needConsent": true,
     "cookies": ['AMCVS_361330C25499877D0A4C98A6%40AdobeOrg','AMCV_361330C25499877D0A4C98A6%40AdobeOrg','_sp_id.781e','_sp_ses.781e','aa_lastvisit','demdex','dpm','ev_sync_dd','everest_g_v2','everest_session_v2','gpv','s_cc','s_nr'],
     //"readmoreLink": "/custom_read_more", // If you want to change readmore link
+    "uri": "https://www.adobe.com/fr/privacy/policy.html",
     "js": function () {
       "use strict";
       // When user allow cookie
@@ -2658,6 +2659,7 @@ tarteaucitron.services.newsletterpopup = {
     "needConsent": true,
     "cookies": ['frpopupinscription'],
     //"readmoreLink": "/custom_read_more", // If you want to change readmore link
+    "uri": "https://www.agapefrance.org/mentionslegales/protectiondesdonneespersonnelles",
     "js": function () {
       "use strict";
       // When user allow cookie
