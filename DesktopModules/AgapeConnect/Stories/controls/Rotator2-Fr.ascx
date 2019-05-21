@@ -1,59 +1,58 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="Rotator2-Fr.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Stories.Rotator_Fr" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <dnn:DnnJsInclude runat="server" FilePath="/js/jquery.nivo.slider.js" />
-<dnn:DnnJsInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/js/videopopup.js" />
 <dnn:DnnJsInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/js/jquery.mobile.custom.touch.min.js" />
 <dnn:DnnCssInclude runat="server" FilePath="/js/nivo-slider.css" />
-<dnn:DnnCssInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/themes/default/france.css" />
-<dnn:DnnJsInclude runat="server" FilePath="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52c6717a6463b499" />
 
- <script type="text/javascript">
-     (function ($, Sys) {
-         function setUpMyTabs() {
-             $('#slider<%= hfChannelId.Value %>').css({
-                 'visibility':'visible'}).nivoSlider({
+<script type="text/javascript">
+    (function ($, Sys) {
+        function setUpMyTabs() {
+            $('#slider<%= hfChannelId.Value %>').css({
+                 'visibility': 'visible'
+             }).nivoSlider({
                  effect: 'fade',
                  pauseTime: <%= hfPauseTime.Value %>,
-                 manualAdvance: <%= hfManualAdvance.Value %>,
-                 manualCaption: true,
-                 channelID: <%= hfChannelId.Value %>,
-                 beforeChange: function(){linkImageFadeOut('#slider<%= hfChannelId.Value %>');},
-                 afterChange: function(){loadAddThis();},
-                 });
-             $(".rotator2").on("swipeleft", function () {
-                 $(".rotator2 .nivo-nextNav").trigger("click"); //next slide
-             }); 
-             $(".rotator2").on("swiperight", function () {
-                 $(".rotator2 .nivo-prevNav").trigger("click"); //previous slide
-             }); 
-         }
+                     manualAdvance: <%= hfManualAdvance.Value %>,
+                     manualCaption: true,
+                     channelID: <%= hfChannelId.Value %>,
+                     beforeChange: function () { linkImageFadeOut('#slider<%= hfChannelId.Value %>'); },
+                    afterChange: function () { loadAddThis(); },
+                });
+            $(".rotator2").on("swipeleft", function () {
+                $(".rotator2 .nivo-nextNav").trigger("click"); //next slide
+            });
+            $(".rotator2").on("swiperight", function () {
+                $(".rotator2 .nivo-prevNav").trigger("click"); //previous slide
+            });
+        }
 
-         $(document).ready(function () {
-             setUpMyTabs();
-             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
-                 setUpMyTabs();
-             });
-         });
-     } (jQuery, window.Sys));
-   
-   function registerClick(c)
-   {
-        $.ajax({ type: 'POST', url: "<%= NavigateURL() %>",
-                        data: ({ StoryLink: c })
-                    });
-   }
+        $(document).ready(function () {
+            setUpMyTabs();
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
+                setUpMyTabs();
+            });
+        });
+    }(jQuery, window.Sys));
 
-     // Fades out the play button immediately
-     function linkImageFadeOut(sliderId) {
-         $(sliderId + ' a.nivo-imageLink')
-         .fadeOut(0)
-         ;};
+    function registerClick(c) {
+        $.ajax({
+            type: 'POST', url: "<%= NavigateURL() %>",
+            data: ({ StoryLink: c })
+        });
+    }
 
-     function loadAddThis() {
-         addthis.toolbox('.addthis_toolbox')
-     }
+    // Fades out the play button immediately
+    function linkImageFadeOut(sliderId) {
+        $(sliderId + ' a.nivo-imageLink')
+            .fadeOut(0)
+            ;
+    };
 
+    function loadAddThis() {
+        addthis.toolbox('.addthis_toolbox')
+    }
 </script>
+
 <asp:HiddenField ID="hfManualAdvance" runat="server" />
 <asp:HiddenField ID="hfPauseTime" runat="server" />
 <asp:HiddenField ID="hfChannelId" runat="server" />
@@ -71,10 +70,11 @@
                 runat="server">
                 <asp:Image
                     src=<%# Eval(ControlerConstants.SLIDEIMAGE) %> 
-                    alt=<%# Eval(ControlerConstants.SLIDEIMAGEALTTEXT) %> 
+                    alt=<%# Eval(ControlerConstants.SLIDEIMAGEALTTEXT) %>
                     title=<%# Eval(ControlerConstants.SLIDEIMAGETITLE) %> 
                     runat="server" />
             </asp:HyperLink>
+                
             </ItemTemplate>
         </asp:Repeater>
     </div>

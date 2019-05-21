@@ -187,8 +187,25 @@ Namespace DotNetNuke.Modules.AgapeConnect.Stories
             Dim ucType As Type = theControl.GetType()
 
             ucType.GetMethod("Initialize").Invoke(theControl, New Object() {storyList, Settings})
-
+            LoadVideoRepeater(storyList, Settings)
         End Sub
+
+        Private Sub LoadVideoRepeater(ByVal stories As List(Of AP_Stories_Module_Channel_Cache), settings As Hashtable)
+            Dim skip As Integer = 0
+            Dim pg As Integer = 0
+            If Not String.IsNullOrEmpty(Request.QueryString("p")) Then
+                pg = Request.QueryString("p")
+                skip = pg * CInt(settings(ControlerConstants.NUMSTORIES))
+            End If
+
+            Dim listData As DataTable = StoryFunctions.GetVideoList(stories.Skip(skip).Take(CInt(settings(ControlerConstants.NUMSTORIES))),
+                                                                   PortalSettings.DefaultPortalAlias)
+
+            SliderVideoPopup.DataSource = listData
+            SliderVideoPopup.DataBind()
+        End Sub
+
+
 
 #End Region 'Helper Functions
 

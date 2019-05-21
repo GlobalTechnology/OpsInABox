@@ -169,6 +169,7 @@ Public Module ControlerConstants
     Public Const SLIDEIMAGECSS As String = "slideLinkImageCSS"
     Public Const SLIDEIMAGELINKCLASS As String = "nivo-imageLink"
     Public Const SLIDERAWURL As String = "slideRawURL"
+    Public Const VIDEOID As String = "videoid"
 
     Public Const TARGETSELF As String = "_self"
     Public Const TARGETBLANK As String = "_blank"
@@ -761,6 +762,7 @@ Public Class StoryFunctions
         listData.Columns.Add(ControlerConstants.DESCRIPTION)
         listData.Columns.Add(ControlerConstants.LINKIMAGE)
         listData.Columns.Add(ControlerConstants.LINKIMAGECSS)
+        listData.Columns.Add(ControlerConstants.VIDEOID)
 
         For Each story In stories
 
@@ -772,6 +774,7 @@ Public Class StoryFunctions
             dataRow(ControlerConstants.HEADLINE) = story.Headline
             dataRow(ControlerConstants.DESCRIPTION) = story.Description
             dataRow(ControlerConstants.LINKIMAGE) = story.ImageId
+            dataRow(ControlerConstants.VIDEOID) = story.Spare1
 
             If (linkDetails(ControlerConstants.LINKIMAGECSS).Length > 0) Then
                 dataRow(ControlerConstants.LINKIMAGECSS) = True.ToString
@@ -784,6 +787,25 @@ Public Class StoryFunctions
         Return listData
     End Function
 
+    Public Shared Function GetVideoList(ByRef stories As IEnumerable(Of AP_Stories_Module_Channel_Cache),
+                                           ByVal portalAlias As String) As DataTable
+        Dim listData As New DataTable
+        listData.Columns.Add(ControlerConstants.VIDEOID)
+
+        For Each story In stories
+
+            Dim dataRow As DataRow = listData.NewRow()
+            Dim linkDetails As Dictionary(Of String, String) = StoryFunctions.GetLinkDetails(story, "", portalAlias)
+
+            If story.Spare1.Length > 0 Then
+                dataRow(ControlerConstants.VIDEOID) = story.Spare1
+                listData.Rows.Add(dataRow)
+            End If
+
+        Next
+
+        Return listData
+    End Function
 
 #End Region 'Story Controls
 
@@ -1016,6 +1038,7 @@ Public Class StoryFunctions
         sliderData.Columns.Add(ControlerConstants.SLIDEIMAGEDESC)
         sliderData.Columns.Add(ControlerConstants.SLIDEIMAGECSS)
         sliderData.Columns.Add(ControlerConstants.SLIDERAWURL)
+        sliderData.Columns.Add(ControlerConstants.VIDEOID)
 
         For Each story In stories
             Try
@@ -1039,6 +1062,7 @@ Public Class StoryFunctions
                 dataRow(ControlerConstants.SLIDEIMAGETITLE) = Left(story.Headline, 75)
                 dataRow(ControlerConstants.SLIDEIMAGESUBTITLE) = story.Subtitle
                 dataRow(ControlerConstants.SLIDEIMAGEDESC) = story.Description
+                dataRow(ControlerConstants.VIDEOID) = story.Spare1
 
                 sliderData.Rows.Add(dataRow)
             Catch ex As Exception

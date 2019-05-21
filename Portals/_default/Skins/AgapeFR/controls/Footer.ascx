@@ -2,7 +2,6 @@
 <%@ Register TagPrefix="dnn" TagName="COPYRIGHT" Src="~/Admin/Skins/Copyright.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="TEXT" Src="~/Admin/Skins/Text.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
-<dnn:DnnJsInclude runat="server" FilePath="js/popup-fr.js" PathNameAlias="SkinPath" />
 
 <div id="bar7" class="bar">
     <div id="footer2" class="centeredbox">
@@ -52,4 +51,3 @@
     </div>
 </div>
 <asp:Label ID="myURL" runat="server" />
-<script type="text/javascript">_satellite.pageBottom();</script>

@@ -1,8 +1,9 @@
-﻿Partial Class Portals__default_Skins_AgapeFR_controls_Header
+﻿Imports Stories
+Partial Class Portals__default_Skins_AgapeFR_controls_Header
 
     Inherits System.Web.UI.UserControl
     Protected Overrides Sub OnLoad(ByVal e As EventArgs)
-
+        hfmapsKey.Value = StoryFunctions.GetGoogleMapsApiKey(DotNetNuke.Entities.Portals.PortalController.GetCurrentPortalSettings().PortalId)
         Dim userInfo = UserController.GetCurrentUserInfo()
         If userInfo.UserID > 0 Then 'User is connected
             userMenu.Attributes.Add("class", "parent")

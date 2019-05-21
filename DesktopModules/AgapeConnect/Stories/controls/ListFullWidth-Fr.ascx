@@ -1,7 +1,4 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="ListFullWidth-Fr.ascx.vb" Inherits="DotNetNuke.Modules.AgapeConnect.Stories.ListFullWidth_Fr" %>
-<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
-<dnn:DnnJsInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/js/videopopup.js" />
-<dnn:DnnCssInclude runat="server" FilePath="/DesktopModules/AgapeConnect/Stories/themes/default/france.css" />
 
 <script type="text/javascript">
 
@@ -10,7 +7,8 @@
         $.ajax({ type: 'POST', url: "<%= NavigateURL() %>",
                         data: ({ StoryLink: c })
                     });
-   }
+    }
+
 </script>
 
 <div id="ListFullWidth">
