@@ -19,7 +19,7 @@ Partial Class Portals__default_Skins_AgapeFR_controls_Header
                 lnkEditDonPage.Visible = False
             End If
         Else 'User is not connected
-                userIcon.Attributes.Add("class", "usericon login")
+            userIcon.Attributes.Add("class", "usericon login")
             Dim connectionLink as String=""
             If Request.QueryString("StoryID") <> "" Then
                 connectionLink=HttpContext.Current.Request.Url.Scheme & "://" & HttpContext.Current.Request.Url.Authority & "/caslogin?returnurl=" & TabController.CurrentPage.FullUrl.ToString & "?StoryId=" & Request.QueryString("StoryID")
