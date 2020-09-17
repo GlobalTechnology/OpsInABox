@@ -74,11 +74,19 @@ a.BlocLienRapide:hover {
     }
 
 .TopPane #newsletter {
-    background-image: url('../images/envelope.svg');
+    background-image: url('../images/newsletter.svg');
+}
+
+.TopPane #instagram {
+    background-image: url('../images/instagram.svg');
+}
+
+.TopPane #linkedin {
+    background-image: url('../images/newsletter.svg');
 }
 
 .TopPane #facebook {
-    background-image: url('../images/facebook.svg');
+    background-image: url('../images/linkedin.svg');
 }
 
 .TopPane #youtube {
