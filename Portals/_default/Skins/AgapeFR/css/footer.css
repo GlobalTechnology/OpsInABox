@@ -128,12 +128,12 @@
     margin: 0 10px 0 10px;
 }
 
-#txtSocialMedia{
+div.socialmedia{
     display: none;
 }
 
 @media only screen and (min-width: 768px) { /*tablet mode*/
-    #txtSocialMedia{
+    div.socialmedia{
         display: block;
     }
     
