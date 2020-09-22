@@ -127,3 +127,15 @@
 #footer3 #infosLegales div {
     margin: 0 10px 0 10px;
 }
+
+#txtSocialMedia{
+    display: none;
+}
+
+@media only screen and (min-width: 768px) { /*tablet mode*/
+    #txtSocialMedia{
+        display: block;
+    }
+    
+    
+}
