@@ -22,6 +22,8 @@
 #footer2 #newsletter,
 #footer2 #facebook,
 #footer2 #youtube,
+#footer2 #instagram,
+#footer2 #linkedin,
 #footer2 #contact {
     border-radius: 3px;
     border-style: none;
@@ -31,7 +33,7 @@
 }
 
 #footer2 #newsletter {
-    background: #0e71b4 url('../images/envelope.svg') no-repeat center center;
+    background: #0e71b4 url('../images/newsletter.svg') no-repeat center center;
     background-size: 30px 30px;
     margin: 0 0 0 20px;
 }
@@ -49,6 +51,12 @@
 #footer2 #facebook:hover {
     background-color: #ABACAE;
 }
+#footer2 #instagram:hover {
+    background-color: #ABACAE;
+}
+#footer2 #linkedin:hover {
+    background-color: #ABACAE;
+}
 
 #footer2 #contact:hover {
     background-color: #ABACAE;
@@ -59,6 +67,17 @@
     background-size: 30px 30px;
     margin: 0 0 0 5px;
 }
+#footer2 #instagram {
+    background: #0e71b4 url('../images/instagram.svg') no-repeat center center;
+    background-size: 30px 30px;
+    margin: 0 0 0 5px;
+}
+#footer2 #linkedin {
+    background: #0e71b4 url('../images/linkedin.svg') no-repeat center center;
+    background-size: 30px 30px;
+    margin: 0 0 0 5px;
+}
+
 
 #footer2 #contact {
     background: #0e71b4 url('../images/speech-bubble.svg') no-repeat center center;
