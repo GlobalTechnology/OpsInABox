@@ -82,11 +82,11 @@ a.BlocLienRapide:hover {
 }
 
 .TopPane #linkedin {
-    background-image: url('../images/newsletter.svg');
+    background-image: url('../images/linkedin.svg');
 }
 
 .TopPane #facebook {
-    background-image: url('../images/linkedin.svg');
+    background-image: url('../images/facebook.svg');
 }
 
 .TopPane #youtube {
