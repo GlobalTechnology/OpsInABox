@@ -36,9 +36,8 @@
         <script type="text/javascript"> //load cookie policy
             tarteaucitron.user.addthisPubId = 'ra-52c6717a6463b499';
             (tarteaucitron.job = tarteaucitron.job || []).push('addthis');
-            tarteaucitron.user.gajsUa = 'UA-30452694-1';
-            tarteaucitron.user.gajsMore = function () { /* add here your optionnal _ga.push() */ };
-            (tarteaucitron.job = tarteaucitron.job || []).push('gajs');
+			tarteaucitron.user.googletagmanagerId = 'GTM-PXL6XDZ';
+			(tarteaucitron.job = tarteaucitron.job || []).push('googletagmanager');
             (tarteaucitron.job = tarteaucitron.job || []).push('adobeanalytics');
             (tarteaucitron.job = tarteaucitron.job || []).push('newsletterpopup');
             (tarteaucitron.job = tarteaucitron.job || []).push('youtube');
@@ -59,20 +58,6 @@
             });
         });
     }(jQuery, window.Sys));
-</script>
-<script>
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-30452694-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-        var ga = document.createElement('script');
-        ga.type = 'text/javascript';
-        ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; 
-        s.parentNode.insertBefore(ga, s);
-    })();
 </script>
 
 <div id="mySidenav" class="sidenav">
