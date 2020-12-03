@@ -36,9 +36,8 @@
         <script type="text/javascript"> //load cookie policy
             tarteaucitron.user.addthisPubId = 'ra-52c6717a6463b499';
             (tarteaucitron.job = tarteaucitron.job || []).push('addthis');
-            tarteaucitron.user.gajsUa = 'UA-30452694-1';
-            tarteaucitron.user.gajsMore = function () { /* add here your optionnal _ga.push() */ };
-            (tarteaucitron.job = tarteaucitron.job || []).push('gajs');
+			tarteaucitron.user.googletagmanagerId = 'GTM-PXL6XDZ';
+			(tarteaucitron.job = tarteaucitron.job || []).push('googletagmanager');
             (tarteaucitron.job = tarteaucitron.job || []).push('adobeanalytics');
             (tarteaucitron.job = tarteaucitron.job || []).push('newsletterpopup');
             (tarteaucitron.job = tarteaucitron.job || []).push('youtube');
