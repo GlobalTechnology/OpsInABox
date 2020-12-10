@@ -11,8 +11,8 @@
         <a href="/nousconnaitre/newsletter" id="newsletter" title="Newsletter" onclick="ga('send', 'event', 'buttons', 'click', 'footer-newsletter');"></a>
         <a href="http://www.facebook.com/agapefrance" target="_blank" id="facebook" title="Facebook"></a>
         <a href="http://www.youtube.com/user/VideosAgapeFrance" target="_blank" id="youtube" title="YouTube"></a>
-        <a href="https://www.linkedin.com/company/agapefrance/" target="_blank" id="instagram" title="Instagram"></a>
         <a href="https://www.linkedin.com/company/agapefrance/" target="_blank" id="linkedin" title="LinkedIn"></a>
+        <a href="https://www.instagram.com/agapefrance/" target="_blank" id="instagram" title="Instagram"></a>
         <a href="/nousconnaitre/nouscontacter" id="contact" title="Nous Contacter"></a>
     </div>
 </div>
