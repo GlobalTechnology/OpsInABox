@@ -2629,27 +2629,6 @@ tarteaucitron.services.getquanty = {
         tarteaucitron.addScript('https://get.smart-data-systems.com/track?site_id=' + tarteaucitron.user.getguanty);
     }
 };
-//Adobe Analytics
-tarteaucitron.services.adobeanalytics = {
-    "key": "adobeanalytics",
-    "type": "analytic",
-    "name": "Adobe Analytics",
-    "needConsent": true,
-    "cookies": ['AMCVS_361330C25499877D0A4C98A6%40AdobeOrg','AMCV_361330C25499877D0A4C98A6%40AdobeOrg','_sp_id.781e','_sp_ses.781e','aa_lastvisit','demdex','dpm','ev_sync_dd','everest_g_v2','everest_session_v2','gpv','s_cc','s_nr'],
-    //"readmoreLink": "/custom_read_more", // If you want to change readmore link
-    "uri": "https://www.adobe.com/fr/privacy/policy.html",
-    "js": function () {
-      "use strict";
-      // When user allow cookie
-      tarteaucitron.addScript('//assets.adobedtm.com/3202ba9b02b459ee20779cfcd8e79eaf266be170/satelliteLib-f01d20dc487f0111a45979d1b665f126d8becb7a.js', "", function() {
-        _satellite.pageBottom();
-      });
-    },
-    "fallback": function () {
-      "use strict";
-      // when use deny cookie
-    }
-  };
 
 //Newsletter Popup
 tarteaucitron.services.newsletterpopup = {
