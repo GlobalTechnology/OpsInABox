@@ -69,7 +69,7 @@
                 </asp:HyperLink>
                 <ul>
                     <li id="lnkEditDonPage" runat="server">
-                        <a href="https://dons.agapefrance.org/wp-admin/edit.php">
+                        <a href="https://dons.agapefrance.org/wp-admin/edit.php?post_type=beneficiary">
                             <asp:label id="lblmyDonPage" runat="server"/>
                         </a>
                     </li>
